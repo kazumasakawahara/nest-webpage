@@ -19,6 +19,7 @@
     "astro": "^6.3.7"
   },
   "devDependencies": {
+    "@types/node": "^25.9.1",
     "@vitest/coverage-v8": "^4.1.7",
     "vitest": "^4.1.7"
   }
