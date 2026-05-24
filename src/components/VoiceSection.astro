@@ -1,0 +1,154 @@
+---
+import { voices } from '../lib/site';
+---
+
+<section class="section voice-section" aria-labelledby="voice-title">
+  <div class="container">
+    <div class="voice-head reveal">
+      <span class="eyebrow eyebrow--center">Voices</span>
+      <h2 class="section__title section__title--center" id="voice-title">声を、ひとつずつ。</h2>
+      <p class="section__lead section__lead--center">
+        利用者・ご家族・スタッフ。nestに集う人たちの、それぞれの声をお届けします。
+      </p>
+    </div>
+
+    <div class="voices">
+      {
+        voices.map((v, i) => (
+          <figure class="voice reveal" data-delay={(i % 3) + 1}>
+            <div class="voice__quotemark" aria-hidden="true">『</div>
+            <blockquote class="voice__quote">
+              <p>{v.quote}</p>
+            </blockquote>
+            <figcaption class="voice__caption">
+              <div class="voice__avatar" aria-hidden="true">
+                {v.photo ? (
+                  <img src={v.photo} alt="" loading="lazy" />
+                ) : (
+                  <span>{v.name.charAt(0)}</span>
+                )}
+              </div>
+              <div class="voice__meta">
+                <div class="voice__name">{v.name}</div>
+                <div class="voice__role">{v.role}</div>
+              </div>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+
+    <p class="voice-note text-center text-soft reveal">
+      ※ 掲載にあたっては、ご本人・ご家族の同意を得ています。一部はプライバシー配慮のため仮名・シルエットで掲載しています。
+    </p>
+  </div>
+</section>
+
+<style>
+  .voice-section {
+    background-color: var(--color-cream);
+    background-image:
+      radial-gradient(circle at 10% 20%, rgba(217, 119, 87, 0.05), transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(74, 140, 63, 0.06), transparent 40%);
+  }
+
+  .voice-head { text-align: center; margin-bottom: var(--space-7); }
+
+  .voices {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  .voice {
+    background-color: var(--color-paper);
+    border-radius: var(--radius-lg);
+    padding: var(--space-7) var(--space-6) var(--space-6);
+    position: relative;
+    box-shadow: var(--shadow-soft);
+    transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+  }
+
+  .voice:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .voice__quotemark {
+    position: absolute;
+    top: 16px;
+    left: 24px;
+    font-family: var(--font-serif);
+    font-size: 64px;
+    color: var(--color-terra-500);
+    opacity: 0.4;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .voice__quote {
+    position: relative;
+    z-index: 1;
+    margin-bottom: var(--space-6);
+    padding-top: var(--space-3);
+  }
+
+  .voice__quote p {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    line-height: 1.95;
+    color: var(--color-ink);
+    letter-spacing: 0.02em;
+  }
+
+  .voice__caption {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-line-soft);
+  }
+
+  .voice__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-green-100), var(--color-terra-100));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-green-700);
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 600;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .voice__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .voice__name {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-green-900);
+  }
+
+  .voice__role {
+    font-size: 12px;
+    color: var(--color-ink-soft);
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+    margin-top: 2px;
+  }
+
+  .voice-note { margin-top: var(--space-6); }
+
+  @media (max-width: 880px) {
+    .voices { grid-template-columns: 1fr; }
+  }
+</style>

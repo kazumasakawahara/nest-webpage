@@ -1,0 +1,176 @@
+---
+import { site } from '../lib/site';
+
+interface Props {
+  title: string;
+  body?: string;
+  primary?: { label: string; href: string };
+  secondary?: { label: string; href: string };
+  showTel?: boolean;
+  variant?: 'dark' | 'cream' | 'sand';
+}
+
+const {
+  title,
+  body,
+  primary = { label: 'お問い合わせフォームへ', href: '/contact/' },
+  secondary,
+  showTel = true,
+  variant = 'dark',
+} = Astro.props;
+---
+
+<section class:list={['cta', `cta--${variant}`, 'reveal']} aria-labelledby="cta-title">
+  <div class="cta__decor cta__decor--1" aria-hidden="true"></div>
+  <div class="cta__decor cta__decor--2" aria-hidden="true"></div>
+  <div class="cta__inner">
+    <h2 class="cta__title" id="cta-title">{title}</h2>
+    {body && <p class="cta__body">{body}</p>}
+
+    {
+      showTel && (
+        <a href={`tel:${site.tel.replaceAll('-', '')}`} class="cta__tel">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+          </svg>
+          <span class="cta__tel-num">{site.tel}</span>
+          <span class="cta__tel-hours">{site.telHours}</span>
+        </a>
+      )
+    }
+
+    <div class="cta__actions">
+      <a href={primary.href} class="btn btn--accent btn--lg">
+        {primary.label}
+        <span class="btn__icon" aria-hidden="true">→</span>
+      </a>
+      {secondary && (
+        <a href={secondary.href} class:list={['btn', variant === 'dark' ? 'btn--ghost' : 'btn--outline', 'btn--lg']}>
+          {secondary.label}
+        </a>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta {
+    position: relative;
+    border-radius: var(--radius-lg);
+    padding: var(--space-9) var(--space-7);
+    text-align: center;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .cta--dark {
+    background-color: var(--color-green-900);
+    color: var(--color-cream);
+    background-image:
+      radial-gradient(circle at 0% 0%, rgba(217, 119, 87, 0.18), transparent 40%),
+      radial-gradient(circle at 100% 100%, rgba(74, 140, 63, 0.25), transparent 40%);
+  }
+
+  .cta--cream { background-color: var(--color-cream); }
+  .cta--sand { background-color: var(--color-sand); }
+
+  .cta__decor {
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+    filter: blur(40px);
+    opacity: 0.4;
+  }
+
+  .cta__decor--1 {
+    width: 280px;
+    height: 280px;
+    top: -100px;
+    left: -80px;
+    background: var(--color-terra-500);
+  }
+
+  .cta__decor--2 {
+    width: 240px;
+    height: 240px;
+    bottom: -80px;
+    right: -60px;
+    background: var(--color-green-500);
+  }
+
+  .cta__inner {
+    position: relative;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .cta__title {
+    font-family: var(--font-serif);
+    font-size: 32px;
+    font-weight: 600;
+    color: inherit;
+    margin-bottom: var(--space-4);
+    line-height: 1.5;
+  }
+
+  .cta--dark .cta__title { color: var(--color-cream); }
+
+  .cta__body {
+    font-size: 16px;
+    line-height: var(--lh-normal);
+    margin-bottom: var(--space-6);
+    color: inherit;
+    opacity: 0.92;
+  }
+
+  .cta__tel {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: var(--space-4) var(--space-7);
+    margin-bottom: var(--space-6);
+    color: inherit;
+    border: 1px dashed rgba(250, 246, 239, 0.4);
+    border-radius: var(--radius-md);
+    transition: background var(--dur-fast) var(--ease-out);
+  }
+
+  .cta--cream .cta__tel,
+  .cta--sand .cta__tel {
+    border-color: var(--color-green-700);
+    color: var(--color-green-900);
+  }
+
+  .cta__tel:hover {
+    background-color: rgba(250, 246, 239, 0.08);
+    color: inherit;
+  }
+
+  .cta__tel-num {
+    font-family: var(--font-serif);
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .cta__tel-hours {
+    font-size: 12px;
+    font-family: var(--font-mono);
+    letter-spacing: 0.05em;
+    opacity: 0.75;
+  }
+
+  .cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    justify-content: center;
+  }
+
+  @media (max-width: 768px) {
+    .cta { padding: var(--space-7) var(--space-5); }
+    .cta__title { font-size: 22px; }
+    .cta__tel-num { font-size: 28px; }
+  }
+</style>

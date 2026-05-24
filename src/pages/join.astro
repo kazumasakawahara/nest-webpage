@@ -1,0 +1,211 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+---
+
+<BaseLayout
+  title="入会・寄付"
+  description="NPO法人nestの活動を支えてくださる会員・寄付・ボランティアを募集しています。"
+  transparentHeader={true}
+>
+  <Hero
+    eyebrow="Support nest"
+    title="入会・寄付・ボランティア"
+    lead="nestの活動を、あなたの形で支えてください。会員・寄付・ボランティア、3つの応援のかたちがあります。"
+    size="md"
+    placeholderLabel="JOIN — 寄付・会員・ボランティア"
+  />
+
+  <!-- 3つの応援のかたち -->
+  <section class="section" aria-label="3つの応援のかたち">
+    <div class="container">
+      <div class="support-grid">
+
+        <article class="support reveal">
+          <div class="support__num">01</div>
+          <span class="eyebrow">Membership</span>
+          <h2 class="support__title">会員になる</h2>
+          <p class="support__lead">
+            正会員・賛助会員として、年単位で活動を支えていただく形です。<br />
+            総会のご案内・ニュースレターの送付などが含まれます。
+          </p>
+
+          <div class="fee-table">
+            <dl>
+              <dt>入会金</dt>
+              <dd><strong>1,000円</strong><span class="text-soft"> （正会員のみ）</span></dd>
+              <dt>年会費</dt>
+              <dd><strong>2,000円</strong></dd>
+            </dl>
+          </div>
+
+          <a href="/contact/" class="btn btn--primary">入会フォームへ</a>
+        </article>
+
+        <article class="support reveal" data-delay="1">
+          <div class="support__num">02</div>
+          <span class="eyebrow">Donation</span>
+          <h2 class="support__title">ご寄付</h2>
+          <p class="support__lead">
+            皆さまからいただいたご寄付は、利用者・ご家族への支援活動と、
+            地域の啓発活動に大切に使わせていただきます。
+          </p>
+
+          <div class="donation-amounts" aria-hidden="true">
+            <span>¥3,000</span>
+            <span>¥5,000</span>
+            <span>¥10,000</span>
+            <span>自由額</span>
+          </div>
+
+          <a href="#" class="btn btn--accent">寄付申込書（PDF）</a>
+          <p class="text-soft">※ 後でGoogleドライブリンクに差し替え</p>
+        </article>
+
+        <article class="support reveal" data-delay="2">
+          <div class="support__num">03</div>
+          <span class="eyebrow">Volunteer</span>
+          <h2 class="support__title">ボランティア</h2>
+          <p class="support__lead">
+            グループホームでの食事サポート、イベント運営の手伝い、
+            広報・SNS発信など、できる範囲でのご協力をお待ちしています。
+          </p>
+
+          <ul class="volunteer-list">
+            <li>食事・調理サポート</li>
+            <li>イベント運営補助</li>
+            <li>広報・SNS</li>
+            <li>送迎・移動支援</li>
+          </ul>
+
+          <a href="/contact/" class="btn btn--outline">ボランティア応募</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--sand">
+    <div class="container">
+      <CtaBlock
+        title="まずは、お話を聞かせてください"
+        body="入会・寄付・ボランティアのご相談は、お気軽に事務局まで。"
+        primary={{ label: 'お問い合わせフォーム', href: '/contact/' }}
+        variant="dark"
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .support-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+
+  .support {
+    background-color: var(--color-paper);
+    border-radius: var(--radius-lg);
+    padding: var(--space-7);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    box-shadow: var(--shadow-soft);
+    transition: transform var(--dur-base) var(--ease-out);
+  }
+
+  .support:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .support__num {
+    position: absolute;
+    top: var(--space-5);
+    right: var(--space-5);
+    font-family: var(--font-serif);
+    font-size: 40px;
+    color: var(--color-terra-100);
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .support__title {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    color: var(--color-green-900);
+  }
+
+  .support__lead {
+    font-size: 14px;
+    color: var(--color-ink-mute);
+    line-height: 1.85;
+    flex-grow: 1;
+  }
+
+  .fee-table {
+    background: var(--color-sand);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .fee-table dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-2) var(--space-4);
+    margin: 0;
+  }
+
+  .fee-table dt {
+    font-size: 13px;
+    color: var(--color-ink-mute);
+  }
+
+  .fee-table dd {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    color: var(--color-green-900);
+  }
+
+  .donation-amounts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2);
+    text-align: center;
+  }
+
+  .donation-amounts span {
+    background: var(--color-sand);
+    padding: var(--space-3);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-serif);
+    font-size: 16px;
+    color: var(--color-green-900);
+    font-weight: 500;
+  }
+
+  .volunteer-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2);
+  }
+
+  .volunteer-list li {
+    background: var(--color-green-100);
+    color: var(--color-green-900);
+    padding: 6px 12px;
+    border-radius: var(--radius-pill);
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  @media (max-width: 880px) {
+    .support-grid { grid-template-columns: 1fr; }
+  }
+</style>

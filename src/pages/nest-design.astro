@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+
+const works = [
+  { icon: '🎨', title: 'オリジナルグッズ企画製作販売' },
+  { icon: '🖼', title: 'アート作品製作販売' },
+  { icon: '⌨', title: 'テキスト入力〜校正作業' },
+  { icon: '📰', title: 'ネスト〜木町家販促物企画制作' },
+  { icon: '📄', title: '各種印刷物企画制作' },
+  { icon: '📱', title: 'SNS対応' },
+  { icon: '✨', title: 'その他クリエイティブワーク全般' },
+];
+---
+
+<BaseLayout
+  title="nest Design"
+  description="nest Designは、創造性をテーマにした就労継続支援B型事業所です。デザイン実務豊富なスタッフがあなたの才能を引き出します。"
+  transparentHeader={true}
+>
+  <Hero
+    eyebrow="nest Design"
+    title="創造性をテーマに、"
+    titleSub="あなたの才能を引き出す場所。"
+    lead="他の作業所とは一味違うnest独自の支援。常に創造性をテーマとしたワークスペースです。"
+    size="lg"
+    placeholderLabel="NEST DESIGN — アトリエ / 制作風景"
+  />
+
+  <!-- ===== コンセプト ===== -->
+  <section class="section">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow eyebrow--center">Our Concept</span>
+      <h2 class="section__title section__title--center">nest Design のコンセプト</h2>
+      <div class="prose">
+        <p>
+          他の作業所とは一味違うnest独自の支援がネストデザインです。
+          単純な軽作業になってしまいがちな就労継続支援B型ではなく、
+          常に<strong>創造性をテーマとしたワークスペース</strong>です。
+        </p>
+        <p>
+          絵やデザインが大好きなのに今まであきらめていた方のお手伝いをしたり、
+          自分の才能に気づいてない方の感性を引き出せることもあります。
+          デザイン実務豊富なスタッフが<strong>基礎から指導できる</strong>こともネストデザインの特徴です。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 制作作業 ===== -->
+  <section class="section section--sand">
+    <div class="container">
+      <div class="section-head reveal text-center">
+        <span class="eyebrow eyebrow--center">Our Works</span>
+        <h2 class="section__title section__title--center">制作作業</h2>
+        <p class="section__lead section__lead--center">
+          クリエイティブワーク全般に取り組んでいます。
+        </p>
+      </div>
+
+      <ul class="works-grid">
+        {
+          works.map((w, i) => (
+            <li class="work reveal" data-delay={(i % 3) + 1}>
+              <span class="work__icon" aria-hidden="true">{w.icon}</span>
+              <span class="work__title">{w.title}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="section">
+    <div class="container">
+      <CtaBlock
+        title="あなたの才能を、一緒に育てませんか？"
+        body="絵やデザインが好きな方、自分の感性を表現したい方の見学・体験を随時受け付けています。"
+        primary={{ label: 'お問い合わせフォーム', href: '/contact/' }}
+        secondary={{ label: '木町家もチェック', href: '/kimachiya/' }}
+        variant="dark"
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .prose p { font-size: 16px; line-height: 2; color: var(--color-ink); }
+  .prose p + p { margin-top: var(--space-4); }
+  .prose strong { color: var(--color-green-900); font-weight: 600; }
+
+  .works-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  .work {
+    background: var(--color-paper);
+    border-radius: var(--radius-md);
+    padding: var(--space-5) var(--space-5);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    box-shadow: var(--shadow-soft);
+    transition: transform var(--dur-base) var(--ease-out);
+  }
+
+  .work:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .work__icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--color-green-100);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  .work__title {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    color: var(--color-green-900);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .work:last-child:nth-child(3n+1) { grid-column: 1 / -1; }
+
+  @media (max-width: 880px) {
+    .works-grid { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,43 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  align?: 'center' | 'left';
+}
+
+const { eyebrow, title, lead, align = 'center' } = Astro.props;
+---
+
+<section class:list={['page-intro', `page-intro--${align}`, 'reveal']}>
+  <div class="container container--narrow">
+    {eyebrow && <span class:list={['eyebrow', { 'eyebrow--center': align === 'center' }]}>{eyebrow}</span>}
+    <h2 class:list={['page-intro__title', { 'text-center': align === 'center' }]}>{title}</h2>
+    {lead && <p class:list={['page-intro__lead', { 'text-center': align === 'center' }]}>{lead}</p>}
+  </div>
+</section>
+
+<style>
+  .page-intro {
+    padding-block: var(--space-8) var(--space-5);
+  }
+
+  .page-intro__title {
+    font-family: var(--font-serif);
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--color-green-900);
+    line-height: 1.5;
+    margin-bottom: var(--space-4);
+  }
+
+  .page-intro__lead {
+    font-size: 16px;
+    color: var(--color-ink-mute);
+    line-height: var(--lh-normal);
+  }
+
+  @media (max-width: 768px) {
+    .page-intro__title { font-size: 22px; }
+  }
+</style>

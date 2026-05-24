@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ServiceZigzag from '../components/ServiceZigzag.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+
+const services = [
+  {
+    eyebrow: 'B-Type Workshop 01',
+    title: 'キッチン＆マルシェ 木町家',
+    body: '南小倉駅前の就労継続支援B型事業所。調理補助・製パン・製菓・喫茶・接客・店内外清掃・POP製作など、飲食店の現場でのお仕事を体験できます。「わが子に食べさせたい味」を合言葉に、お客様にも安心安全なお料理をお届けしています。',
+    href: '/kimachiya/',
+    cta: '木町家の詳細を見る',
+  },
+  {
+    eyebrow: 'B-Type Workshop 02',
+    title: 'nest Design',
+    body: 'オリジナルグッズ企画製作販売／アート作品製作販売／テキスト入力〜校正作業／印刷物企画制作／SNS対応など。創造性をテーマとした、nest独自のワークスペースです。デザイン実務豊富なスタッフが基礎から指導します。',
+    href: '/nest-design/',
+    cta: 'nest Designの詳細を見る',
+  },
+];
+---
+
+<BaseLayout
+  title="就労継続支援B型"
+  description="NPO法人nestの就労継続支援B型事業所のご案内。キッチン＆マルシェ木町家とnest Designの2事業所を運営しています。"
+  transparentHeader={true}
+>
+  <Hero
+    eyebrow="B-Type Workshops"
+    title="就労継続支援B型とは"
+    lead="一般企業への就職が困難な障害をお持ちの方に就労の機会を提供し、社会生活に必要なスキルを学んだり、日中の居場所づくりを行います。nestには個性あふれる2つの事業所があります。"
+    size="md"
+    placeholderLabel="B-TYPE — 厨房・デザイン制作"
+  />
+
+  <section class="section">
+    <div class="container">
+      <ServiceZigzag services={services} />
+    </div>
+  </section>
+
+  <section class="section section--sand">
+    <div class="container">
+      <CtaBlock
+        title="見学・体験 随時受付中"
+        body="どちらの事業所も、まずは見学・体験からスタートできます。ご家族のみのご見学も歓迎です。"
+        primary={{ label: 'お問い合わせフォームへ', href: '/contact/' }}
+        secondary={{ label: 'アクセス・地図', href: '/access/' }}
+        variant="dark"
+      />
+    </div>
+  </section>
+</BaseLayout>

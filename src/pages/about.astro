@@ -1,0 +1,267 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import { site } from '../lib/site';
+---
+
+<BaseLayout
+  title="nestについて"
+  description="NPO法人nestの設立経緯・理念・事業概要をご紹介します。発達障害のある子どもの親たちの思いから生まれたNPO法人です。"
+  transparentHeader={true}
+>
+  <Hero
+    eyebrow="About nest"
+    title="想いを、かたちに。"
+    lead="障がいのある人やその家族の「暮らす」を支援する。 障がいのある人が地域で安心安全に自分らしい生活を送ることができるように。"
+    size="md"
+    placeholderLabel="ABOUT — 法人活動風景"
+  />
+
+  <!-- ===== 設立経緯 ===== -->
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="reveal">
+        <span class="eyebrow eyebrow--center">Our Origin</span>
+        <h2 class="section__title section__title--center">nest 設立の経緯</h2>
+
+        <div class="prose">
+          <p>
+            NPO法人nestは発達障害のある子どもの親たちの願いから発足しました。発達障害は、障害があることが外見でわかりにくく、
+            当時は社会的認知度もまだまだ高くありませんでした。また従来の障害福祉サービスの対象から漏れてしまうことも多く、
+            『制度の谷間にある障害』とも言われてきました。
+          </p>
+          <p>
+            このような状況の中で実際に子育てをしてきた親たちが、自分の子育てを通して築いてきたネットワークを活用して、
+            同様の困難さを抱えている本人や家族に対する支援の仕組みをつくり、これらを通して本人や家族の自立した地域生活を
+            ともに築いていきたいとの思いから、<strong>{site.established}</strong>に設立しました。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 事業一覧 ===== -->
+  <section class="section section--sand" aria-labelledby="services-title">
+    <div class="container">
+      <div class="section-head reveal text-center">
+        <span class="eyebrow eyebrow--center">Our Activities</span>
+        <h2 class="section__title section__title--center" id="services-title">主な事業</h2>
+      </div>
+
+      <div class="biz-grid">
+
+        <article class="biz reveal">
+          <div class="biz__num">01</div>
+          <h3 class="biz__title">特定非営利活動に係わる事業</h3>
+          <ul class="biz__list">
+            <li>地域内での人的交流や支え合いの創出による福祉コミュニティづくり
+              <ul>
+                <li>木町家映画上映会（木町チャレンジ１）</li>
+                <li>町内会花壇整備（木町チャレンジ２）</li>
+              </ul>
+            </li>
+            <li>発達障害児・者への当事者活動支援事業（鉄道俱楽部、当事者研究）</li>
+            <li>発達障害児・者への余暇活動支援事業（旅友サークル）</li>
+            <li>発達障害児への学習・生活支援事業（教育・生活相談）</li>
+          </ul>
+        </article>
+
+        <article class="biz reveal" data-delay="1">
+          <div class="biz__num">02</div>
+          <h3 class="biz__title">障害福祉サービス事業</h3>
+          <ul class="biz__list">
+            <li>共同生活援助（グループホーム）
+              <ul>
+                <li>原町STATION／木町BRANCH／木町BRANCH２／木町BRANCH３／木町三丁目BRANCH</li>
+                <li>弁天町STATION／弁天BRANCH／木町SATELLITE</li>
+                <li>木町三丁目SATELLITE／木町三丁目SATELLITE２</li>
+                <li>弁天町SATELLITE／弁天町SATELLITE２</li>
+              </ul>
+            </li>
+            <li>就労継続支援B型
+              <ul>
+                <li>キッチン＆マルシェ木町家</li>
+                <li>ネストデザイン</li>
+              </ul>
+            </li>
+          </ul>
+        </article>
+
+        <article class="biz reveal" data-delay="2">
+          <div class="biz__num">03</div>
+          <h3 class="biz__title">その他の事業</h3>
+          <ul class="biz__list">
+            <li>発達障害者への生活支援事業（生活相談）</li>
+            <li>発達障害児・者への理解啓発のための広報事業（講演会、ニュースレター「峠を越えて」発行）</li>
+            <li>発達障害児・者の家族への支援事業
+              <ul>
+                <li>KAREIプロジェクト</li>
+                <li>nestくらしサポートネット運営</li>
+                <li>プチ懇親会</li>
+              </ul>
+            </li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ニュースレター ===== -->
+  <section class="section" aria-labelledby="newsletter-title">
+    <div class="container">
+      <div class="section-head reveal text-center">
+        <span class="eyebrow eyebrow--center">Newsletter</span>
+        <h2 class="section__title section__title--center" id="newsletter-title">
+          nestの想いを伝える
+        </h2>
+        <p class="section__lead section__lead--center">
+          ニュースレター「峠を越えて」<br />
+          法人の活動報告や、スタッフ・利用者の声を定期発行でお届けしています。
+        </p>
+      </div>
+
+      <div class="grid-3">
+        {
+          [
+            { vol: 'vol.13', date: '2023年6月発行' },
+            { vol: 'vol.12', date: 'バックナンバー' },
+            { vol: 'vol.11', date: 'バックナンバー' },
+          ].map((p, i) => (
+            <article class="pdf-card reveal" data-delay={i + 1}>
+              <div class="ph ph--portrait image-rounded">
+                <span class="ph__label">PDF 表紙</span>
+              </div>
+              <div class="pdf-card__body">
+                <h3 class="pdf-card__vol">峠を越えて {p.vol}</h3>
+                <p class="pdf-card__date">{p.date}</p>
+                <a href="#" class="btn btn--outline">PDFダウンロード</a>
+                <p class="text-soft">※ 後でGoogleドライブリンクに差し替え</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .prose p {
+    font-size: 16px;
+    line-height: 2;
+    color: var(--color-ink);
+  }
+
+  .prose p + p { margin-top: var(--space-5); }
+  .prose strong { color: var(--color-green-900); font-weight: 600; }
+
+  .biz-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .biz {
+    background-color: var(--color-paper);
+    border-radius: var(--radius-lg);
+    padding: var(--space-7);
+    position: relative;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .biz__num {
+    position: absolute;
+    top: var(--space-5);
+    right: var(--space-6);
+    font-family: var(--font-serif);
+    font-size: 48px;
+    font-weight: 600;
+    color: var(--color-terra-100);
+    line-height: 1;
+  }
+
+  .biz__title {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--color-green-900);
+    margin-bottom: var(--space-4);
+    padding-right: 80px;
+  }
+
+  .biz__list {
+    list-style: none;
+    color: var(--color-ink);
+  }
+
+  .biz__list > li {
+    position: relative;
+    padding-left: 1.4em;
+    margin-bottom: var(--space-3);
+    line-height: 1.85;
+  }
+
+  .biz__list > li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.85em;
+    width: 8px;
+    height: 1.5px;
+    background-color: var(--color-terra-500);
+  }
+
+  .biz__list ul {
+    list-style: none;
+    margin-top: var(--space-2);
+    color: var(--color-ink-mute);
+    font-size: 14px;
+  }
+
+  .biz__list ul li {
+    position: relative;
+    padding-left: 1em;
+    line-height: 1.85;
+  }
+
+  .biz__list ul li::before {
+    content: '・';
+    position: absolute;
+    left: 0;
+    color: var(--color-green-700);
+  }
+
+  /* PDF cards */
+  .pdf-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .pdf-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    text-align: center;
+  }
+
+  .pdf-card__vol {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    color: var(--color-green-900);
+  }
+
+  .pdf-card__date {
+    font-size: 13px;
+    color: var(--color-ink-mute);
+    font-family: var(--font-mono);
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 768px) {
+    .biz { padding: var(--space-5); }
+    .biz__num { font-size: 32px; }
+    .biz__title { padding-right: 50px; font-size: 18px; }
+  }
+</style>

@@ -1,0 +1,167 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+---
+
+<BaseLayout
+  title="地域生活支援の取り組み"
+  description="NPO法人nestの地域生活支援の取り組み。日本財団助成事業として「生と性の視点から見た巣立ちを考える地域生活支援」に取り組んでいます。"
+  transparentHeader={true}
+>
+  <Hero
+    eyebrow="Community Life Support"
+    title="巣立ちを支える、"
+    titleSub="地域で支える。"
+    lead="障害のある人が地域で安心して暮らし、本人らしく生きていくための仕組みづくり。"
+    size="md"
+    placeholderLabel="SUDACHI — 地域活動 / 研修"
+  />
+
+  <!-- ===== 現在進行中 ===== -->
+  <section class="section" aria-labelledby="current-title">
+    <div class="container container--narrow">
+      <div class="reveal">
+        <span class="eyebrow">Now Running</span>
+        <h2 class="section__title" id="current-title">現在取り組んでいる事業</h2>
+      </div>
+
+      <article class="project reveal">
+        <div class="project__head">
+          <span class="badge badge--active">実施中</span>
+          <span class="project__funder">助成元：日本財団（THE NIPPON FOUNDATION）／今年度まで実施</span>
+        </div>
+        <h3 class="project__title">
+          生と性の視点から見た巣立ちを考える地域生活支援
+        </h3>
+        <p class="project__lead">
+          障害のある人が地域で安心して暮らし、本人らしく生きていくための意思決定支援と、
+          『生と性』というデリケートかつ重要なテーマに向き合いながら、
+          地域生活支援の仕組みを構築することを目的として取り組んでいます。
+        </p>
+
+        <div class="info-box" style="margin:0;">
+          <div class="info-box__title">取り組んでいる内容</div>
+          <ol class="ordered">
+            <li>成人の性的課題に係る調査と事業所との協働による研修プログラムの開発</li>
+            <li>「性的課題」にかかる先進地の視察</li>
+          </ol>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== 過去実績 ===== -->
+  <section class="section section--sand" aria-labelledby="past-title">
+    <div class="container container--narrow">
+      <div class="reveal">
+        <span class="eyebrow">Past Projects</span>
+        <h2 class="section__title" id="past-title">これまでの活動実績</h2>
+        <p class="text-soft" style="margin-bottom:var(--space-6);">
+          以下の事業は現在終了しています。
+        </p>
+      </div>
+
+      <article class="project reveal">
+        <div class="project__head">
+          <span class="badge badge--closed">終了</span>
+        </div>
+        <h3 class="project__title">巣立ちプロジェクトⅣ</h3>
+        <p class="project__lead">取り組んだ内容（5項目）</p>
+        <ol class="ordered ordered--detailed">
+          <li>成人の性的課題に係る調査と事業所との協働による研修プログラムの開発（日本財団助成）</li>
+          <li>「性的課題」にかかる先進地の視察（日本財団助成）</li>
+          <li>障害者の意思決定や意思決定支援に関する周知を図るための啓発活動<span class="text-soft">（北九州市委託：終了）</span></li>
+          <li>専門的人材の育成と活用<span class="text-soft">（北九州市委託：終了）</span></li>
+          <li>意思決定支援を行う支援者のフォロー体制整備<span class="text-soft">（北九州市委託：終了）</span></li>
+        </ol>
+      </article>
+
+      <article class="project reveal" data-delay="1" style="margin-top:32px;">
+        <h3 class="project__title">プロジェクトの目的</h3>
+        <p class="project__lead" style="font-style:italic;">
+          障害児者の親(家族)が、本人が独立した個人として本人らしく生活していくための自立を促し、
+          本人の意志決定支援者のネットワークづくりを普通のもてなしと受け入れることで、
+          障害者の自立を社会全体で見守る意識づくりを行い、障害児本人の利益のために意思決定を支援することができる
+          人材の養成とネットワークづくりに行政が積極的に関与する社会の実現を目的としています。
+        </p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .project {
+    background: var(--color-paper);
+    border-radius: var(--radius-lg);
+    padding: var(--space-7);
+    box-shadow: var(--shadow-soft);
+    margin-top: var(--space-5);
+  }
+
+  .project__head {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .project__funder {
+    font-size: 13px;
+    color: var(--color-ink-soft);
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+  }
+
+  .project__title {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    color: var(--color-green-900);
+    line-height: 1.6;
+    margin-bottom: var(--space-4);
+  }
+
+  .project__lead {
+    color: var(--color-ink);
+    line-height: 1.95;
+    margin-bottom: var(--space-5);
+  }
+
+  .ordered {
+    counter-reset: idx;
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .ordered li {
+    counter-increment: idx;
+    position: relative;
+    padding-left: 36px;
+    line-height: 1.85;
+    margin-bottom: var(--space-3);
+    color: var(--color-ink);
+  }
+
+  .ordered li::before {
+    content: counter(idx);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    background: var(--color-green-100);
+    color: var(--color-green-900);
+    border-radius: 50%;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 768px) {
+    .project { padding: var(--space-5); }
+    .project__title { font-size: 19px; }
+  }
+</style>

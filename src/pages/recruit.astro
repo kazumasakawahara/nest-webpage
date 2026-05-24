@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ServiceCardGrid from '../components/ServiceCardGrid.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+
+const services = [
+  {
+    icon: '🍞',
+    title: 'キッチン＆マルシェ 木町家',
+    body: '調理補助・製パン・製菓・接客・清掃・POP制作など、飲食店のお仕事を体験できます。',
+    href: '/kimachiya/',
+  },
+  {
+    icon: '🎨',
+    title: 'nest Design',
+    body: 'オリジナルグッズ製作、アート、テキスト入力、印刷物制作など創造性をテーマにしたクリエイティブワーク。',
+    href: '/nest-design/',
+  },
+];
+---
+
+<BaseLayout
+  title="利用者募集中"
+  description="NPO法人nestでは利用者を募集しています。就労継続支援B型の見学・体験はお気軽にご連絡ください。"
+  transparentHeader={true}
+>
+  <Hero
+    eyebrow="Now Recruiting"
+    title="nestでは、"
+    titleSub="利用者を募集しています。"
+    lead="まずは見学・体験から、お気軽に。"
+    size="md"
+    placeholderLabel="RECRUITING — 体験風景"
+  />
+
+  <section class="section">
+    <div class="container container--narrow reveal">
+      <p style="font-size:16px; line-height:2;">
+        nestでは、一般企業への就職が困難な障害をお持ちの方を対象に、就労の機会を提供して、
+        社会生活に必要なスキルを学んだり、日中の居場所づくりを行っています。
+        まずは、見学・体験からお気軽にご連絡ください。
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--sand">
+    <div class="container">
+      <div class="section-head reveal text-center">
+        <span class="eyebrow eyebrow--center">Workshops</span>
+        <h2 class="section__title section__title--center">募集中の事業所</h2>
+      </div>
+      <ServiceCardGrid cards={services} columns={2} />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <CtaBlock
+        title="見学・体験のご相談はこちら"
+        body="事務局までお気軽にお電話、またはお問い合わせフォームよりご連絡ください。"
+        primary={{ label: 'お問い合わせフォーム', href: '/contact/' }}
+        variant="dark"
+      />
+    </div>
+  </section>
+</BaseLayout>

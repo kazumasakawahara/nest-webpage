@@ -1,0 +1,137 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import IframePlaceholder from '../components/IframePlaceholder.astro';
+---
+
+<BaseLayout
+  title="会員の方へ"
+  description="NPO法人nest 会員専用ページ"
+  transparentHeader={true}
+>
+  <Fragment slot="head">
+    <meta name="robots" content="noindex, nofollow" />
+  </Fragment>
+
+  <Hero
+    eyebrow="Members Only"
+    title="会員の方へ"
+    lead="nest 会員専用ページ。お知らせ・行事カレンダー・会報バックナンバー・申込み・アンケートをまとめています。"
+    size="md"
+    placeholderLabel="MEMBERS ONLY"
+  />
+
+  <!-- ===== お知らせ ===== -->
+  <section class="section" aria-labelledby="m-news">
+    <div class="container container--narrow">
+      <div class="reveal">
+        <span class="eyebrow">Notice</span>
+        <h2 class="section__title" id="m-news">会員向けお知らせ</h2>
+      </div>
+
+      <article class="m-notice reveal">
+        <p>
+          <!-- ▼▼▼ ここをスタッフが直接編集してください ▼▼▼ -->
+          ここに会員の方向けのお知らせを記載してください。<br /><br />
+          例：「次回の懇親会は◯月◯日に開催します。会場は…」
+          <!-- ▲▲▲ ここまでスタッフが編集 ▲▲▲ -->
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== カレンダー ===== -->
+  <section class="section section--sand" aria-labelledby="m-cal">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Calendar</span>
+        <h2 class="section__title" id="m-cal">行事カレンダー</h2>
+      </div>
+      <IframePlaceholder
+        icon="📅"
+        title="Googleカレンダー"
+        note="Googleカレンダー →「カレンダーの設定」→「埋め込みコードを取得」→ HTMLをコピー → このdivと置き換え。"
+        minHeight="500px"
+      />
+    </div>
+  </section>
+
+  <!-- ===== バックナンバー ===== -->
+  <section class="section" aria-labelledby="m-dl">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Newsletter Archive</span>
+        <h2 class="section__title" id="m-dl">会報・資料ダウンロード</h2>
+        <p class="section__lead">「峠を越えて」バックナンバー</p>
+      </div>
+
+      <div class="grid-3">
+        {
+          [
+            { vol: 'vol.13', date: '2023年6月発行' },
+            { vol: 'vol.12', date: 'バックナンバー' },
+            { vol: 'vol.11', date: 'バックナンバー' },
+          ].map((p, i) => (
+            <article class="card reveal" data-delay={i + 1}>
+              <div class="ph ph--portrait image-rounded">
+                <span class="ph__label">PDF 表紙</span>
+              </div>
+              <h3 class="card__title">峠を越えて {p.vol}</h3>
+              <p class="card__text">{p.date}</p>
+              <a href="#" class="btn btn--outline">PDFダウンロード</a>
+              <p class="text-soft">※ Googleドライブリンク（後で差し替え）</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 申込 ===== -->
+  <section class="section section--sand" aria-labelledby="m-apply">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Event Application</span>
+        <h2 class="section__title" id="m-apply">イベント・行事のお申し込み</h2>
+      </div>
+      <IframePlaceholder
+        icon="📋"
+        title="Googleフォーム（行事申込）"
+        note="Googleフォーム作成 →「送信」→「&lt;&gt;埋め込み」→ HTMLをコピー → このdivと置き換え。"
+        minHeight="480px"
+      />
+    </div>
+  </section>
+
+  <!-- ===== アンケート ===== -->
+  <section class="section" aria-labelledby="m-survey">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Survey</span>
+        <h2 class="section__title" id="m-survey">アンケート</h2>
+      </div>
+      <IframePlaceholder
+        icon="📝"
+        title="Googleフォーム（アンケート）"
+        note="アンケート用のGoogleフォームを作成し、iframeコードをここに貼り付けてください。"
+        minHeight="480px"
+      />
+
+      <div class="members-notice reveal">
+        <strong>⚠ 共有のお願い：</strong>
+        このページの内容は会員の方のみにご案内しています。URLの他の方への共有はご遠慮ください。
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .m-notice {
+    background: var(--color-paper);
+    border-radius: var(--radius-lg);
+    padding: var(--space-7);
+    color: var(--color-ink-mute);
+    line-height: var(--lh-normal);
+    box-shadow: var(--shadow-soft);
+  }
+</style>

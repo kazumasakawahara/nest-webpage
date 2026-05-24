@@ -1,0 +1,155 @@
+---
+interface Service {
+  eyebrow?: string;
+  title: string;
+  body: string;
+  href: string;
+  cta?: string;
+  image?: string;
+  imageAlt?: string;
+  badge?: string;
+}
+
+interface Props {
+  services: Service[];
+}
+
+const { services } = Astro.props;
+---
+
+<div class="zigzag">
+  {
+    services.map((s, i) => (
+      <article class:list={['zigzag__item', { reverse: i % 2 === 1 }]}>
+        <div class="zigzag__media reveal">
+          {s.image ? (
+            <img src={s.image} alt={s.imageAlt ?? ''} loading="lazy" />
+          ) : (
+            <div class="ph ph--landscape image-rounded--lg">
+              <span class="ph__label">{s.title}</span>
+            </div>
+          )}
+          <div class="zigzag__index" aria-hidden="true">{String(i + 1).padStart(2, '0')}</div>
+        </div>
+
+        <div class="zigzag__body reveal" data-delay="1">
+          {s.eyebrow && <span class="eyebrow">{s.eyebrow}</span>}
+          {s.badge && <span class="badge badge--active" style="margin-bottom:12px;">{s.badge}</span>}
+          <h3 class="zigzag__title">{s.title}</h3>
+          <p class="zigzag__text">{s.body}</p>
+          <a href={s.href} class="zigzag__cta">
+            {s.cta ?? '詳しく見る'}
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+              <path d="M1 6h14M10 1l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        </div>
+      </article>
+    ))
+  }
+</div>
+
+<style>
+  .zigzag {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-9);
+  }
+
+  .zigzag__item {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: var(--space-8);
+    align-items: center;
+  }
+
+  .zigzag__item.reverse .zigzag__media { order: 2; }
+  .zigzag__item.reverse .zigzag__body { order: 1; }
+
+  .zigzag__media {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+  }
+
+  .zigzag__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .zigzag__media .ph {
+    width: 100%;
+    height: 100%;
+  }
+
+  .zigzag__index {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: rgba(250, 246, 239, 0.92);
+    backdrop-filter: blur(8px);
+    color: var(--color-green-900);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    letter-spacing: 0.1em;
+  }
+
+  .zigzag__title {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--color-green-900);
+    margin-bottom: var(--space-4);
+    line-height: 1.45;
+  }
+
+  .zigzag__text {
+    color: var(--color-ink);
+    font-size: 16px;
+    line-height: var(--lh-normal);
+    margin-bottom: var(--space-5);
+  }
+
+  .zigzag__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-green-700);
+    padding-bottom: 4px;
+    border-bottom: 1.5px solid var(--color-green-700);
+    transition: all var(--dur-fast) var(--ease-out);
+  }
+
+  .zigzag__cta svg {
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+
+  .zigzag__cta:hover {
+    color: var(--color-terra-500);
+    border-color: var(--color-terra-500);
+  }
+
+  .zigzag__cta:hover svg {
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 880px) {
+    .zigzag__item {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+    }
+
+    .zigzag__item.reverse .zigzag__media { order: 1; }
+    .zigzag__item.reverse .zigzag__body { order: 2; }
+
+    .zigzag__title { font-size: 22px; }
+  }
+</style>

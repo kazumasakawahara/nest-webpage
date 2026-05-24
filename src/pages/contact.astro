@@ -1,0 +1,174 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import IframePlaceholder from '../components/IframePlaceholder.astro';
+import { site } from '../lib/site';
+---
+
+<BaseLayout
+  title="お問い合わせ"
+  description="NPO法人nestへのお問い合わせはこちらから。見学・体験のご相談もお気軽にどうぞ。"
+  transparentHeader={true}
+>
+  <Hero
+    eyebrow="Contact"
+    title="お問い合わせ"
+    lead="ご相談・お問い合わせは、事務局まで。お電話またはフォームより、お気軽にどうぞ。"
+    size="md"
+    placeholderLabel="CONTACT"
+  />
+
+  <!-- フォーム -->
+  <section class="section" aria-labelledby="form-title">
+    <div class="container">
+      <div class="contact-grid">
+
+        <aside class="contact-side reveal">
+          <span class="eyebrow">Direct</span>
+          <h2 class="contact-side__title">お電話でも<br />お気軽にどうぞ</h2>
+          <a href={`tel:${site.tel.replaceAll('-', '')}`} class="contact-side__tel">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+            </svg>
+            <span class="contact-side__tel-num">{site.tel}</span>
+          </a>
+          <p class="contact-side__hours">電話受付：{site.telHours}</p>
+          <p class="contact-side__fax">FAX：{site.tel}</p>
+
+          <div class="contact-side__topics">
+            <h3 class="contact-side__topics-title">よくあるお問い合わせ</h3>
+            <ul>
+              <li>就労継続支援B型の見学・体験</li>
+              <li>グループホームの空き状況</li>
+              <li>入会・寄付・ボランティアについて</li>
+              <li>取材・講演のご依頼</li>
+            </ul>
+          </div>
+        </aside>
+
+        <div class="contact-form reveal" data-delay="1">
+          <span class="eyebrow">Inquiry Form</span>
+          <h2 id="form-title" class="contact-form__title">お問い合わせフォーム</h2>
+          <p class="contact-form__lead">
+            下記フォームよりお問い合わせください。担当者より後日ご連絡いたします。
+          </p>
+          <IframePlaceholder
+            icon="📋"
+            title="Googleフォーム"
+            note="ここにGoogleフォームのiframeコードを貼り付けてください。Googleフォーム → 「送信」→「&lt;&gt;埋め込み」→ HTMLをコピー → このdivと置き換え。"
+            minHeight="540px"
+          />
+        </div>
+
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: var(--space-7);
+    align-items: start;
+  }
+
+  .contact-side {
+    background-color: var(--color-paper);
+    border-radius: var(--radius-lg);
+    padding: var(--space-7);
+    box-shadow: var(--shadow-soft);
+    position: sticky;
+    top: 100px;
+  }
+
+  .contact-side__title {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    color: var(--color-green-900);
+    margin-bottom: var(--space-5);
+    line-height: 1.5;
+  }
+
+  .contact-side__tel {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    color: var(--color-green-900);
+    margin-bottom: var(--space-3);
+  }
+
+  .contact-side__tel-num {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+
+  .contact-side__tel:hover {
+    color: var(--color-terra-500);
+  }
+
+  .contact-side__hours,
+  .contact-side__fax {
+    font-size: 13px;
+    color: var(--color-ink-mute);
+    margin: 4px 0;
+  }
+
+  .contact-side__topics {
+    margin-top: var(--space-6);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-line);
+  }
+
+  .contact-side__topics-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-terra-500);
+    margin-bottom: var(--space-4);
+  }
+
+  .contact-side__topics ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .contact-side__topics li {
+    font-size: 13px;
+    color: var(--color-ink);
+    padding: var(--space-2) 0;
+    border-bottom: 1px dotted var(--color-line);
+    position: relative;
+    padding-left: 16px;
+  }
+
+  .contact-side__topics li::before {
+    content: '・';
+    position: absolute;
+    left: 0;
+    color: var(--color-green-700);
+  }
+
+  .contact-form__title {
+    font-family: var(--font-serif);
+    font-size: 26px;
+    color: var(--color-green-900);
+    margin-bottom: var(--space-3);
+  }
+
+  .contact-form__lead {
+    color: var(--color-ink-mute);
+    margin-bottom: var(--space-5);
+  }
+
+  @media (max-width: 980px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+    .contact-side { position: static; }
+  }
+</style>

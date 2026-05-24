@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import NewsList from '../../components/NewsList.astro';
+---
+
+<BaseLayout
+  title="nest News"
+  description="NPO法人nestの最新情報・イベント情報をお届けします。"
+  transparentHeader={true}
+>
+  <Hero
+    eyebrow="nest News"
+    title="お知らせ・最新情報"
+    lead="nestの活動の最新情報、イベント、メディア掲載情報などをお届けします。"
+    size="md"
+    placeholderLabel="NEWS"
+  />
+
+  <section class="section">
+    <div class="container container--narrow">
+      <NewsList showSummary={true} />
+
+      <p class="text-soft text-center" style="margin-top:var(--space-7);">
+        ※ このページは担当スタッフが随時更新します（Markdown ファイルを <code>src/content/news/</code> に追加するだけで反映）。
+      </p>
+    </div>
+  </section>
+</BaseLayout>

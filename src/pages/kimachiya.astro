@@ -1,0 +1,248 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+
+const features = [
+  {
+    icon: '🍲',
+    title: '美味しくてほっとするお料理',
+    body: '基本コンセプトは『わが子に食べさせたい味』。四季折々の新鮮食材をひと手間かけてご提供しています。',
+  },
+  {
+    icon: '🥖',
+    title: 'ヘルシー！オリジナル米粉パン',
+    body: '北九州ではここだけのオリジナル米粉パン。油の吸収率が低く、消化しやすいのが特徴です。',
+  },
+  {
+    icon: '🍰',
+    title: '絶品！手づくりスイーツ',
+    body: 'ていねいに作られたシフォンケーキやスイーツ。木の温もりと手づくりの味わいの中でお楽しみいただけます。',
+  },
+  {
+    icon: '🥬',
+    title: 'いろいろ楽しい毎日マルシェ！',
+    body: '提携農場の新鮮野菜や、つくり手の顔が見える惣菜、山や海の幸を提供しています。',
+  },
+];
+---
+
+<BaseLayout
+  title="キッチン＆マルシェ 木町家"
+  description="キッチン＆マルシェ木町家は、北九州市小倉北区の就労継続支援B型事業所です。南小倉駅前で美味しいお料理をご提供しています。"
+  transparentHeader={true}
+>
+  <Hero
+    eyebrow="Kimachi-ya"
+    title="美味しくて、ほっとする味を、"
+    titleSub="南小倉駅のすぐそばで。"
+    lead="キッチン＆マルシェ木町家 — 就労継続支援B型事業所"
+    size="lg"
+    placeholderLabel="KIMACHI-YA — 厨房 / 料理 / 米粉パン"
+  />
+
+  <!-- ===== コンセプト ===== -->
+  <section class="section">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow eyebrow--center">Our Concept</span>
+      <h2 class="section__title section__title--center">木町家について</h2>
+      <p style="font-size:16px; line-height:2; color:var(--color-ink);">
+        『木町家』は就労継続支援B型の障害福祉サービス事業所です。
+        お客様にはいろいろとご面倒をおかけすると思いますが、その分どこよりも美味しく安心安全なお料理をご提供致します。<br />
+        手づくりウエディングなどの集いの席、各種イベント、作品展、ギャラリー、ミニライブなどにもご利用いただけます。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 特徴 ===== -->
+  <section class="section section--sand">
+    <div class="container">
+      <div class="section-head reveal text-center">
+        <span class="eyebrow eyebrow--center">Four Highlights</span>
+        <h2 class="section__title section__title--center">木町家の4つの特徴</h2>
+      </div>
+
+      <div class="features">
+        {
+          features.map((f, i) => (
+            <article class="feature reveal" data-delay={(i % 4) + 1}>
+              <div class="feature__icon" aria-hidden="true">{f.icon}</div>
+              <div class="feature__num">{String(i + 1).padStart(2, '0')}</div>
+              <h3 class="feature__title">{f.title}</h3>
+              <p class="feature__body">{f.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 営業情報 ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal text-center">
+        <span class="eyebrow eyebrow--center">Hours & Access</span>
+        <h2 class="section__title section__title--center">営業情報</h2>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card reveal">
+          <div class="info-card__icon" aria-hidden="true">📞</div>
+          <div class="info-card__label">ご予約・お問い合わせ</div>
+          <div class="info-card__value">093-592-0331</div>
+        </div>
+
+        <div class="info-card reveal" data-delay="1">
+          <div class="info-card__icon" aria-hidden="true">🕐</div>
+          <div class="info-card__label">営業時間</div>
+          <div class="info-card__value info-card__value--sm">AM11:00〜PM3:00</div>
+          <div class="info-card__note">月・火・水・木・金・第3土曜日</div>
+        </div>
+
+        <div class="info-card reveal" data-delay="2">
+          <div class="info-card__icon" aria-hidden="true">📍</div>
+          <div class="info-card__label">住所</div>
+          <div class="info-card__value info-card__value--sm">北九州市小倉北区<br>木町3丁目9-15</div>
+          <div class="info-card__note">南小倉駅前 徒歩1分</div>
+        </div>
+      </div>
+
+      <div class="info-box reveal" style="margin-top:48px;">
+        <div class="info-box__title">🌙 夜間営業について</div>
+        <dl>
+          <dt>営業時間</dt>
+          <dd>PM6:30〜PM9:00の間で <strong>90分</strong></dd>
+          <dt>ご利用条件</dt>
+          <dd>4名様以上・完全予約制・<strong>2日前まで</strong>に要予約</dd>
+          <dt>定休日</dt>
+          <dd>土曜日・日曜日（第3土曜日を除く）</dd>
+          <dt>郵便番号</dt>
+          <dd>〒803-0851</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="section section--sand">
+    <div class="container">
+      <CtaBlock
+        title="見学・体験ご希望の方へ"
+        body="就労継続支援B型のご利用をご検討中の方は、お気軽にお問い合わせください。"
+        primary={{ label: 'お問い合わせフォーム', href: '/contact/' }}
+        secondary={{ label: '利用者募集の詳細', href: '/recruit/' }}
+        variant="dark"
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+  }
+
+  .feature {
+    background-color: var(--color-paper);
+    border-radius: var(--radius-lg);
+    padding: var(--space-7);
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--dur-base) var(--ease-out);
+  }
+
+  .feature:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
+
+  .feature__num {
+    position: absolute;
+    top: var(--space-4);
+    right: var(--space-5);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--color-ink-soft);
+    letter-spacing: 0.1em;
+  }
+
+  .feature__icon {
+    font-size: 36px;
+    margin-bottom: var(--space-3);
+  }
+
+  .feature__title {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    color: var(--color-green-900);
+    margin-bottom: var(--space-3);
+  }
+
+  .feature__body {
+    color: var(--color-ink-mute);
+    line-height: 1.85;
+    font-size: 14px;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+
+  .info-card {
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    padding: var(--space-7) var(--space-5);
+    text-align: center;
+    transition: transform var(--dur-base) var(--ease-out);
+  }
+
+  .info-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .info-card__icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--color-green-100);
+    margin: 0 auto var(--space-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+
+  .info-card__label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-ink-soft);
+    margin-bottom: var(--space-3);
+  }
+
+  .info-card__value {
+    font-family: var(--font-serif);
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--color-green-900);
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+  }
+
+  .info-card__value--sm { font-size: 19px; }
+
+  .info-card__note {
+    margin-top: var(--space-3);
+    font-size: 12px;
+    color: var(--color-ink-mute);
+  }
+
+  @media (max-width: 880px) {
+    .features { grid-template-columns: 1fr; }
+    .info-grid { grid-template-columns: 1fr; }
+  }
+</style>

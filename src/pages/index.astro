@@ -1,0 +1,240 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import StatsSection from '../components/StatsSection.astro';
+import VoiceSection from '../components/VoiceSection.astro';
+import ServiceCardGrid from '../components/ServiceCardGrid.astro';
+import NewsList from '../components/NewsList.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+import { site } from '../lib/site';
+
+const services = [
+  {
+    title: 'キッチン＆マルシェ 木町家',
+    body: '南小倉駅前の就労継続支援B型事業所。米粉パン・スイーツ・四季のお料理をご提供しています。',
+    href: '/kimachiya/',
+    icon: '🍞',
+  },
+  {
+    title: 'nest Design',
+    body: '創造性をテーマにした就労継続支援B型。オリジナルグッズ・アート・印刷物制作に取り組んでいます。',
+    href: '/nest-design/',
+    icon: '🎨',
+  },
+  {
+    title: '共同生活援助（グループホーム）',
+    body: '原町・木町・弁天町などの12拠点で運営。地域で安心して暮らせる住まいの場をつくっています。',
+    href: '/about/',
+    icon: '🏠',
+  },
+  {
+    title: '当事者活動支援',
+    body: '鉄道俱楽部や当事者研究など、本人が主体的に取り組む活動を伴走しています。',
+    href: '/about/',
+    icon: '🚃',
+  },
+  {
+    title: '地域生活支援の取り組み',
+    body: '日本財団助成「生と性の視点から見た巣立ちを考える地域生活支援」。今年度まで実施中です。',
+    href: '/sudachi/',
+    icon: '🌱',
+    badge: '実施中',
+  },
+  {
+    title: '入会・ご支援のお願い',
+    body: '正会員・賛助会員、ボランティアの方を募集しています。nestの活動を支えてください。',
+    href: '/join/',
+    icon: '💌',
+  },
+];
+---
+
+<BaseLayout
+  title="TOP"
+  description={site.description}
+  transparentHeader={true}
+>
+  <Hero
+    eyebrow="NPO法人 nest — since 2006"
+    title="巣立っても、"
+    titleSub="いつでも帰ってこられる。"
+    lead="飛び立っても羽を休める場所。発達障害のある人とご家族の暮らしを、地域とともに支えています。"
+    size="lg"
+    placeholderLabel="MAIN VISUAL — 厨房 / グループホーム / アート"
+  >
+    <div class="hero-actions">
+      <a href="/about/" class="btn btn--accent btn--lg">
+        nestについて知る
+        <span class="btn__icon" aria-hidden="true">→</span>
+      </a>
+      <a href="/contact/" class="btn btn--ghost btn--lg">見学を申し込む</a>
+    </div>
+  </Hero>
+
+  <!-- ===== Mission ===== -->
+  <section class="section" aria-labelledby="mission-title">
+    <div class="container container--narrow">
+      <div class="mission reveal">
+        <span class="eyebrow eyebrow--center">Our Mission</span>
+        <h2 class="mission__title" id="mission-title">
+          nestは【鳥の巣】。<br />
+          <span class="mission__title-sub">巣立ちと、安らぎの場所。</span>
+        </h2>
+        <div class="mission__body">
+          <p>
+            特定非営利活動法人nestは、発達障害のある人、そしてその家族のそれぞれの生活や人生がより豊かになるよう、
+            個々のライフステージに応じた支援と、誰もが住みよい地域社会づくりをめざして事業を展開しています。
+          </p>
+          <p>
+            障害の有無にかかわらず、事業に参加したみんなが笑顔になれるような、
+            そんな楽しい活動をしていきたいと思っています。
+          </p>
+        </div>
+        <a href="/about/" class="mission__link">
+          設立の経緯を読む
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Stats ===== -->
+  <StatsSection />
+
+  <!-- ===== Services ===== -->
+  <section class="section" aria-labelledby="services-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Our Work</span>
+        <div class="section-head__row">
+          <h2 class="section__title" id="services-title">現在の主な事業</h2>
+          <p class="section-head__lead">
+            nestが取り組んでいる6つの事業。<br />
+            「働く・暮らす・つながる」を、それぞれの場所で支えています。
+          </p>
+        </div>
+      </div>
+
+      <ServiceCardGrid cards={services} columns={3} />
+    </div>
+  </section>
+
+  <!-- ===== Voice (NEW) ===== -->
+  <VoiceSection />
+
+  <!-- ===== News ===== -->
+  <section class="section section--sand" aria-labelledby="news-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">News</span>
+        <div class="section-head__row">
+          <h2 class="section__title" id="news-title">nest News</h2>
+          <a href="/news/" class="section-head__link">
+            一覧を見る
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+
+      <NewsList limit={4} />
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="section">
+    <div class="container">
+      <CtaBlock
+        title="まずは見学から、お気軽に。"
+        body="利用のご相談・見学・体験は、随時受け付けています。電話 or フォームでお気軽にどうぞ。"
+        primary={{ label: 'お問い合わせフォーム', href: '/contact/' }}
+        secondary={{ label: 'アクセス・地図を見る', href: '/access/' }}
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  .mission {
+    text-align: center;
+  }
+
+  .mission__title {
+    font-family: var(--font-serif);
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--color-green-900);
+    line-height: 1.5;
+    margin-bottom: var(--space-6);
+  }
+
+  .mission__title-sub {
+    font-size: 0.78em;
+    color: var(--color-terra-500);
+  }
+
+  .mission__body {
+    text-align: left;
+    color: var(--color-ink);
+    font-size: 16px;
+    line-height: 2;
+  }
+
+  .mission__body p + p { margin-top: var(--space-4); }
+
+  .mission__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-6);
+    font-weight: 600;
+    color: var(--color-green-700);
+    padding-bottom: 4px;
+    border-bottom: 1.5px solid var(--color-green-700);
+  }
+
+  .mission__link:hover {
+    color: var(--color-terra-500);
+    border-color: var(--color-terra-500);
+  }
+
+  .section-head { margin-bottom: var(--space-7); }
+
+  .section-head__row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-5);
+    flex-wrap: wrap;
+  }
+
+  .section-head__lead {
+    color: var(--color-ink-mute);
+    font-size: 15px;
+    line-height: 1.85;
+    max-width: 400px;
+  }
+
+  .section-head__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-green-700);
+    white-space: nowrap;
+  }
+
+  .section-head__link:hover { color: var(--color-terra-500); }
+
+  @media (max-width: 768px) {
+    .mission__title { font-size: 26px; }
+    .section-head__row { flex-direction: column; align-items: flex-start; }
+  }
+</style>

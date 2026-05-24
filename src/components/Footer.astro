@@ -1,0 +1,190 @@
+---
+import { site, navLinks } from '../lib/site';
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+
+      <div class="site-footer__brand">
+        <div class="footer-logo">nest</div>
+        <p class="footer-tagline">巣立っても、いつでも帰ってこられる</p>
+        <a href={site.instagram} class="footer-social" target="_blank" rel="noopener noreferrer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.5" />
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5" />
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
+          </svg>
+          <span>@kimachi_ya</span>
+        </a>
+      </div>
+
+      <div class="site-footer__col">
+        <h4 class="site-footer__heading">サイトマップ</h4>
+        <ul class="site-footer__list">
+          {navLinks.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+        </ul>
+      </div>
+
+      <div class="site-footer__col">
+        <h4 class="site-footer__heading">事業所</h4>
+        <ul class="site-footer__list">
+          <li><a href="/kimachiya/">キッチン＆マルシェ 木町家</a></li>
+          <li><a href="/nest-design/">nest Design</a></li>
+          <li><a href="/about/">グループホーム一覧</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__col">
+        <h4 class="site-footer__heading">事務局</h4>
+        <address class="site-footer__address">
+          <p>{site.name}</p>
+          <p>{site.address}</p>
+          <p>
+            TEL/FAX <a href={`tel:${site.tel.replaceAll('-', '')}`}>{site.tel}</a><br>
+            <span class="text-soft">電話受付 {site.telHours}</span>
+          </p>
+        </address>
+      </div>
+
+    </div>
+
+    <div class="site-footer__base">
+      <p class="site-footer__copy">{site.copyright}</p>
+      <ul class="site-footer__meta">
+        <li><a href="/privacy/">プライバシーポリシー</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--color-green-900);
+    color: var(--color-cream);
+    padding: var(--space-9) 0 var(--space-5);
+    margin-top: var(--space-9);
+  }
+
+  .site-footer__grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr 1.4fr;
+    gap: var(--space-7);
+    padding-bottom: var(--space-7);
+    border-bottom: 1px solid rgba(250, 246, 239, 0.15);
+  }
+
+  .footer-logo {
+    font-family: var(--font-serif);
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--color-cream);
+    letter-spacing: 0.04em;
+    margin-bottom: var(--space-3);
+  }
+
+  .footer-tagline {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    color: rgba(250, 246, 239, 0.78);
+    margin-bottom: var(--space-5);
+    line-height: 1.7;
+  }
+
+  .footer-social {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-cream);
+    font-size: 13px;
+    font-family: var(--font-mono);
+    letter-spacing: 0.05em;
+    padding: 8px 14px;
+    border: 1px solid rgba(250, 246, 239, 0.3);
+    border-radius: var(--radius-pill);
+    transition: all var(--dur-fast) var(--ease-out);
+  }
+
+  .footer-social:hover {
+    background-color: var(--color-cream);
+    color: var(--color-green-900);
+    border-color: var(--color-cream);
+  }
+
+  .site-footer__heading {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-terra-500);
+    margin-bottom: var(--space-4);
+  }
+
+  .site-footer__list { display: flex; flex-direction: column; gap: var(--space-3); }
+  .site-footer__list a {
+    font-size: 14px;
+    color: rgba(250, 246, 239, 0.85);
+  }
+  .site-footer__list a:hover { color: var(--color-terra-500); }
+
+  .site-footer__address {
+    font-style: normal;
+    font-size: 14px;
+    line-height: 1.85;
+    color: rgba(250, 246, 239, 0.85);
+  }
+
+  .site-footer__address p { margin-bottom: var(--space-3); }
+  .site-footer__address a {
+    color: var(--color-cream);
+    font-weight: 600;
+    border-bottom: 1px dotted rgba(250, 246, 239, 0.5);
+  }
+  .site-footer__address a:hover { color: var(--color-terra-500); }
+
+  .site-footer__base {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
+    padding-top: var(--space-5);
+    flex-wrap: wrap;
+  }
+
+  .site-footer__copy {
+    font-size: 12px;
+    color: rgba(250, 246, 239, 0.5);
+    font-family: var(--font-mono);
+    letter-spacing: 0.05em;
+  }
+
+  .site-footer__meta {
+    display: flex;
+    gap: var(--space-5);
+  }
+
+  .site-footer__meta a {
+    font-size: 12px;
+    color: rgba(250, 246, 239, 0.7);
+  }
+
+  .site-footer__meta a:hover { color: var(--color-terra-500); }
+
+  @media (max-width: 880px) {
+    .site-footer__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+    }
+
+    .site-footer__brand {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 540px) {
+    .site-footer__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

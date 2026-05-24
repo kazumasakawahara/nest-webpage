@@ -1,0 +1,172 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import { site } from '../lib/site';
+---
+
+<BaseLayout
+  title="プライバシーポリシー"
+  description="NPO法人nestのプライバシーポリシー（個人情報保護方針）。"
+  transparentHeader={true}
+>
+  <Hero
+    eyebrow="Privacy Policy"
+    title="プライバシーポリシー"
+    lead="個人情報保護方針"
+    size="sm"
+    placeholderLabel="POLICY"
+  />
+
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="policy reveal">
+
+        <p class="policy__intro">
+          特定非営利活動法人（NPO法人）nest（以下「当法人」といいます）は、
+          利用者・ご家族・会員・関係者の個人情報の重要性を認識し、
+          個人情報の保護に関する法律および関係法令を遵守し、適切に取り扱うため、
+          以下のとおりプライバシーポリシーを定めます。
+        </p>
+
+        <section class="policy__section">
+          <h2>Ⅰ. 個人情報保護方針</h2>
+          <ol>
+            <li>当法人は、個人情報の取得にあたって利用目的をできる限り特定し、その目的の達成に必要な範囲を超えて個人情報を取り扱いません。</li>
+            <li>当法人は、個人情報を適法かつ公正な手段によって取得します。</li>
+            <li>当法人は、個人情報を取得する際、本人に対し利用目的を通知または公表します。</li>
+            <li>当法人は、個人情報の漏えい・滅失または毀損の防止その他の安全管理のために、必要かつ適切な措置を講じます。</li>
+          </ol>
+        </section>
+
+        <section class="policy__section">
+          <h2>Ⅱ. 個人情報の利用目的</h2>
+          <p>当法人は、取得した個人情報を以下の目的の範囲内で利用します。</p>
+          <ol>
+            <li>障害福祉サービスの提供および利用調整のため</li>
+            <li>各種ご相談・お問い合わせへの対応のため</li>
+            <li>会員・寄付者・ボランティアの方への連絡および会報等の送付のため</li>
+            <li>当法人の活動に関する情報提供（ニュースレター・お知らせ等）のため</li>
+            <li>行政機関・関連機関への必要な報告・申請のため</li>
+          </ol>
+        </section>
+
+        <section class="policy__section">
+          <h2>Ⅲ. サービス担当者会議における個人情報利用について</h2>
+          <p>
+            当法人は、利用者へのよりよい支援を行うため、サービス担当者会議その他の支援関係機関との連携の場において、
+            利用者の個人情報を共有することがあります。共有にあたっては、あらかじめ本人またはご家族の同意を得たうえで、
+            必要最小限の範囲で行います。
+          </p>
+        </section>
+
+        <section class="policy__section">
+          <h2>Ⅳ. 個人情報の安全管理措置</h2>
+          <p>当法人は、取得した個人情報の漏えい、滅失または毀損の防止その他の安全管理のため、以下の措置を講じます。</p>
+          <ul>
+            <li>個人情報を取り扱う書類・電子データへのアクセス制限</li>
+            <li>個人情報を取り扱う職員への教育・研修の実施</li>
+            <li>個人情報を保存する記録媒体・書類の施錠保管</li>
+            <li>不要となった個人情報の確実な廃棄・消去</li>
+          </ul>
+        </section>
+
+        <section class="policy__section">
+          <h2>Ⅴ. 個人情報の第三者への提供</h2>
+          <p>
+            当法人は、以下のいずれかに該当する場合を除き、あらかじめ本人の同意を得ることなく、
+            個人情報を第三者に提供することはありません。
+          </p>
+          <ol>
+            <li>法令に基づく場合</li>
+            <li>人の生命、身体または財産の保護のために必要がある場合であって、本人の同意を得ることが困難であるとき</li>
+            <li>公衆衛生の向上または児童の健全な育成の推進のために特に必要がある場合であって、本人の同意を得ることが困難であるとき</li>
+            <li>国の機関もしくは地方公共団体またはその委託を受けた者が法令の定める事務を遂行することに対して協力する必要がある場合</li>
+            <li>サービス担当者会議等で支援関係機関と必要な情報を共有する場合（本人の同意を得たうえで実施）</li>
+            <li>利用目的の達成に必要な範囲内で業務の一部を委託する場合（委託先には適切な監督を行います）</li>
+            <li>合併その他の事由による事業の承継に伴って個人情報が提供される場合</li>
+            <li>その他、個人情報保護法その他の法令で認められる場合</li>
+          </ol>
+        </section>
+
+        <section class="policy__contact">
+          <h2>個人情報に関するお問い合わせ窓口</h2>
+          <div class="info-box">
+            <dl>
+              <dt>法人名</dt>
+              <dd>{site.name}</dd>
+              <dt>個人情報管理者</dt>
+              <dd>{site.representative}</dd>
+              <dt>所在地</dt>
+              <dd>{site.address}</dd>
+              <dt>TEL / FAX</dt>
+              <dd><strong>{site.tel}</strong>（電話受付 {site.telHours}）</dd>
+            </dl>
+          </div>
+        </section>
+
+        <p class="policy__rev">
+          制定日：※公開時に記入<br />
+          最終改定日：※改定時に更新
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .policy { color: var(--color-ink); }
+
+  .policy__intro {
+    background: var(--color-paper);
+    border-left: 3px solid var(--color-terra-500);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: var(--space-5) var(--space-6);
+    margin-bottom: var(--space-7);
+    line-height: 1.95;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .policy__section {
+    margin-bottom: var(--space-7);
+  }
+
+  .policy__section h2 {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    color: var(--color-green-900);
+    padding-bottom: var(--space-3);
+    margin-bottom: var(--space-4);
+    border-bottom: 2px solid var(--color-green-700);
+  }
+
+  .policy__section p { line-height: 1.95; margin-bottom: var(--space-3); }
+
+  .policy__section ol,
+  .policy__section ul {
+    padding-left: 1.6em;
+    margin-bottom: var(--space-3);
+  }
+
+  .policy__section ol { list-style: decimal; }
+  .policy__section ul { list-style: disc; }
+  .policy__section li { line-height: 1.95; margin-bottom: var(--space-2); }
+
+  .policy__contact {
+    margin-top: var(--space-9);
+  }
+
+  .policy__contact h2 {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    color: var(--color-green-900);
+    margin-bottom: var(--space-4);
+  }
+
+  .policy__rev {
+    text-align: right;
+    font-size: 13px;
+    color: var(--color-ink-soft);
+    margin-top: var(--space-7);
+    font-family: var(--font-mono);
+  }
+</style>

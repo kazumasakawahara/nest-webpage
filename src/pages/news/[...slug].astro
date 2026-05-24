@@ -1,0 +1,133 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const items = await getCollection('news', ({ data }) => !data.draft);
+  return items.map((item) => ({
+    params: { slug: item.id },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+const { Content } = await render(item);
+
+const fmtDate = (d: Date) =>
+  `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
+---
+
+<BaseLayout title={item.data.title} description={item.data.summary ?? item.data.title}>
+  <article class="news-article">
+    <div class="container container--narrow">
+      <header class="news-article__head reveal">
+        <a href="/news/" class="news-article__back">
+          <span aria-hidden="true">←</span> nest News 一覧へ
+        </a>
+        <span class="badge badge--accent">{item.data.tag}</span>
+        <h1 class="news-article__title">{item.data.title}</h1>
+        <time class="news-article__date" datetime={item.data.date.toISOString()}>
+          {fmtDate(item.data.date)}
+        </time>
+      </header>
+
+      <div class="news-article__body reveal">
+        <Content />
+      </div>
+
+      <div class="news-article__foot reveal">
+        <a href="/news/" class="btn btn--outline">一覧に戻る</a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .news-article {
+    padding-block: var(--space-9) var(--space-8);
+  }
+
+  .news-article__head {
+    text-align: center;
+    margin-bottom: var(--space-7);
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .news-article__back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 13px;
+    color: var(--color-ink-mute);
+    font-family: var(--font-mono);
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-5);
+  }
+
+  .news-article__back:hover { color: var(--color-terra-500); }
+
+  .news-article__title {
+    font-family: var(--font-serif);
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--color-green-900);
+    line-height: 1.5;
+    margin-block: var(--space-4);
+  }
+
+  .news-article__date {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--color-ink-soft);
+    letter-spacing: 0.05em;
+  }
+
+  .news-article__body {
+    font-size: 16px;
+    line-height: 2;
+    color: var(--color-ink);
+  }
+
+  .news-article__body :global(p) { margin-bottom: var(--space-5); }
+  .news-article__body :global(h2) {
+    font-size: 22px;
+    margin-top: var(--space-7);
+    margin-bottom: var(--space-3);
+    color: var(--color-green-900);
+  }
+  .news-article__body :global(h3) {
+    font-size: 18px;
+    margin-top: var(--space-5);
+    margin-bottom: var(--space-3);
+    color: var(--color-green-900);
+  }
+  .news-article__body :global(ul),
+  .news-article__body :global(ol) {
+    padding-left: 1.6em;
+    margin-bottom: var(--space-5);
+  }
+  .news-article__body :global(ul) { list-style: disc; }
+  .news-article__body :global(ol) { list-style: decimal; }
+  .news-article__body :global(li) { margin-bottom: var(--space-2); }
+  .news-article__body :global(a) {
+    color: var(--color-green-700);
+    border-bottom: 1px solid currentColor;
+  }
+  .news-article__body :global(a:hover) {
+    color: var(--color-terra-500);
+  }
+  .news-article__body :global(strong) {
+    color: var(--color-green-900);
+    font-weight: 600;
+  }
+
+  .news-article__foot {
+    margin-top: var(--space-8);
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .news-article__title { font-size: 22px; }
+  }
+</style>
