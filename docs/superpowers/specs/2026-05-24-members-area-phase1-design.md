@@ -142,7 +142,7 @@ Astro Middleware（`src/middleware.ts`）で実装：
 ### 3.3 機関誌配信（バックナンバー）
 
 - ルート：`/members/newsletter/`
-- 表示内容：機関誌「峠を越えて」のバックナンバー一覧（タイトル・発行月・表紙サムネ・ダウンロードボタン）
+- 表示内容：機関誌「巣箱」のバックナンバー一覧（タイトル・発行月・表紙サムネ・ダウンロードボタン）
 - PDF取得：ボタンクリック → サーバ側で **署名付き短期 URL（有効期限：5分）** を発行 → ブラウザがダウンロード
 - 直接URL流出での無認可ダウンロードを防ぐ
 - スタッフが管理画面からアップロード・並び替え・削除
@@ -381,7 +381,7 @@ last_seen_at    timestamptz   default now()
 newsletters
 ─────────────────────────────────────────
 id              uuid          primary key
-title           text          not null  (例: "峠を越えて vol.14")
+title           text          not null  (例: "巣箱 vol.14")
 issue           text          not null  (例: "vol.14")
 published_on    date          not null
 cover_path      text          nullable  (storage path)
@@ -581,7 +581,7 @@ PUBLIC_SITE_URL                 https://www.nponest.org
 
 | # | 項目 | 決定者 |
 |---|---|---|
-| D1 | 機関誌「峠を越えて」のバックナンバー一覧（既存号の数とPDF所在） | 河原さん／林代表 |
+| D1 | 機関誌「巣箱」のバックナンバー一覧（既存号の数とPDF所在） | 河原さん／林代表 |
 | D2 | 家族会員リスト（メアド付き）の初期データ | 事務局 |
 | D3 | 会員（賛助会員含む）リストの初期データ | 事務局 |
 | D4 | LINEオープンチャットの招待URL／QRコード | 河原さん |
