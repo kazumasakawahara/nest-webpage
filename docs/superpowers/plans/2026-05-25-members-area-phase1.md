@@ -988,7 +988,8 @@ function startsWithAny(path: string, prefixes: string[]): boolean {
 }
 
 export function isPublicRoute(path: string): boolean {
-  return PUBLIC_PATHS.some((p) => path === p || path.startsWith(p + '?'));
+  // Astro.url.pathname にクエリ文字列は含まれないため完全一致のみ
+  return PUBLIC_PATHS.includes(path);
 }
 
 export function canAccessRoute(member: Member | null, path: string): boolean {
@@ -1356,15 +1357,16 @@ export async function consumeMagicLink(
   const m = data.members;
   if (!m || m.deleted_at) return null;
 
-  // 単回限りでマークする
-  const { error: updateError } = await supabase
+  // 単回限りでマークする — UPDATE が実際に何行更新したかを返り値で確認する
+  const { data: updated, error: updateError } = await supabase
     .from('magic_link_tokens')
     .update({ used_at: new Date().toISOString() })
     .eq('token', token)
-    .is('used_at', null);
+    .is('used_at', null)
+    .select('token');
 
-  // 同時アクセスで既に消費されていた場合は失敗扱い
-  if (updateError) return null;
+  // updateError か、または該当行が無い（同時アクセスで既に消費済み）場合は失敗
+  if (updateError || !updated || updated.length === 0) return null;
 
   return {
     member: {
@@ -1568,11 +1570,17 @@ import { canAccessRoute, isPublicRoute } from './lib/rbac';
 import { getMemberBySession } from './lib/session';
 import { SESSION_COOKIE_NAME } from './lib/cookies';
 
+// /members/* から返るレスポンスには必ず Cache-Control を付与する
+function withNoStore(response: Response): Response {
+  response.headers.set('Cache-Control', 'private, no-store');
+  return response;
+}
+
 export const onRequest = defineMiddleware(async (ctx, next) => {
   const path = ctx.url.pathname;
 
-  // /members 以外は素通り
-  if (!path.startsWith('/members')) {
+  // /members 完全一致と /members/ 配下のみ対象（/membersclub などを誤検知しない）
+  if (path !== '/members' && !path.startsWith('/members/')) {
     return next();
   }
 
@@ -1586,25 +1594,21 @@ export const onRequest = defineMiddleware(async (ctx, next) => {
 
   // 公開パスはアクセス制御スキップ
   if (isPublic) {
-    const response = await next();
-    response.headers.set('Cache-Control', 'private, no-store');
-    return response;
+    return withNoStore(await next());
   }
 
   // 未ログイン → サインインへリダイレクト（戻り先を保持）
   if (!member) {
     const redirect = encodeURIComponent(path + ctx.url.search);
-    return ctx.redirect(`/members/sign-in?redirect=${redirect}`);
+    return withNoStore(ctx.redirect(`/members/sign-in?redirect=${redirect}`));
   }
 
   // ロール・スタッフ判定
   if (!canAccessRoute(member, path)) {
-    return new Response('Forbidden', { status: 403 });
+    return withNoStore(new Response('Forbidden', { status: 403 }));
   }
 
-  const response = await next();
-  response.headers.set('Cache-Control', 'private, no-store');
-  return response;
+  return withNoStore(await next());
 });
 ```
 
@@ -1634,10 +1638,13 @@ git commit -m "feat: add auth middleware with route protection and cache headers
 > - コミットも 1 つに統合：`feat(members): add sign-in page with magic link issuance`
 >
 > Task 3.3 のセクションは下記に「統合済み」の注記のみ残してある。
+>
+> **2026-05-25 追記（レビュー指摘修正）**: 本ページは `<Fragment slot="head">` で `<meta name="robots" content="noindex, nofollow" />` を注入するが、`BaseLayout.astro` 側に名前付き `head` スロットが無いと黙って破棄される。Stage 3 レビューで発覚したため `src/layouts/BaseLayout.astro` の `</head>` 直前に `<slot name="head" />` を追加した。
 
 **Files:**
 - Create: `src/components/members/SignInForm.astro`
 - Create: `src/pages/members/sign-in.astro`（GET 描画と POST マジックリンク発行を統合）
+- Edit: `src/layouts/BaseLayout.astro`（`<slot name="head" />` を追加。noindex メタ等を子から注入できるようにするため）
 
 - [ ] **Step 1: フォームコンポーネント作成**
 
@@ -1757,12 +1764,27 @@ if (Astro.request.method === 'POST') {
   const siteUrl = import.meta.env.PUBLIC_SITE_URL.replace(/\/$/, '');
   const magicLinkUrl = `${siteUrl}/members/verify?token=${encodeURIComponent(result.token)}`;
 
-  await sendMagicLinkEmail({
-    to: result.member.email,
-    displayName: result.member.display_name,
-    magicLinkUrl,
-    expiresInMinutes: Math.floor(MAGIC_LINK_TTL_SECONDS / 60),
-  });
+  // Resend 送信失敗時は audit に残しつつ invalid メッセージで戻す
+  // （「このメールは登録済みだが送れなかった」と漏らさないため）
+  try {
+    await sendMagicLinkEmail({
+      to: result.member.email,
+      displayName: result.member.display_name,
+      magicLinkUrl,
+      expiresInMinutes: Math.floor(MAGIC_LINK_TTL_SECONDS / 60),
+    });
+  } catch (e) {
+    await recordAudit({
+      memberId: result.member.id,
+      event: 'sign_in_failed',
+      detail: {
+        reason: 'email_send_failed',
+        error: e instanceof Error ? e.message : String(e),
+      },
+      ip, userAgent: ua,
+    });
+    return Astro.redirect('/members/sign-in?m=invalid', 303);
+  }
 
   await recordAudit({
     memberId: result.member.id,
@@ -1933,7 +1955,10 @@ export const POST: APIRoute = async ({ request, cookies, locals }) => {
   return Response.redirect(new URL('/members/sign-in', request.url), 303);
 };
 
-// GET でもログアウトできるようにしておく（ナビからのリンクで使う）
+// GET でもログアウトできるようにしておく（ナビからのリンクで使う）。
+// SameSite=Lax により <img>/embed 経由の CSRF は防げる。
+// ユーザがクロスサイトリンク経由で誘導される CSRF リスクは残るが、影響は
+// 「ログアウトされるだけ」で、Phase 1 では UX 優先で許容する。
 export const GET = POST;
 ```
 

@@ -63,15 +63,16 @@ export async function consumeMagicLink(
   const m = data.members;
   if (!m || m.deleted_at) return null;
 
-  // 単回限りでマークする
-  const { error: updateError } = await supabase
+  // 単回限りでマークする — UPDATE が実際に何行更新したかを返り値で確認する
+  const { data: updated, error: updateError } = await supabase
     .from('magic_link_tokens')
     .update({ used_at: new Date().toISOString() })
     .eq('token', token)
-    .is('used_at', null);
+    .is('used_at', null)
+    .select('token');
 
-  // 同時アクセスで既に消費されていた場合は失敗扱い
-  if (updateError) return null;
+  // updateError か、または該当行が無い（同時アクセスで既に消費済み）場合は失敗
+  if (updateError || !updated || updated.length === 0) return null;
 
   return {
     member: {

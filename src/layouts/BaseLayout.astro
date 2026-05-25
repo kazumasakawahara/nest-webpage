@@ -64,6 +64,9 @@ const canonical = new URL(Astro.url.pathname, site.legacyUrl).toString();
     <script is:inline>
       document.documentElement.classList.add('js-enabled');
     </script>
+
+    <!-- ページ側から head に追記するためのスロット（noindex メタ等） -->
+    <slot name="head" />
   </head>
   <body>
     <a href="#main" class="skip-link">メインコンテンツへスキップ</a>

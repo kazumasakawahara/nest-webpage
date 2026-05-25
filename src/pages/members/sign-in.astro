@@ -35,12 +35,27 @@ if (Astro.request.method === 'POST') {
   const siteUrl = import.meta.env.PUBLIC_SITE_URL.replace(/\/$/, '');
   const magicLinkUrl = `${siteUrl}/members/verify?token=${encodeURIComponent(result.token)}`;
 
-  await sendMagicLinkEmail({
-    to: result.member.email,
-    displayName: result.member.display_name,
-    magicLinkUrl,
-    expiresInMinutes: Math.floor(MAGIC_LINK_TTL_SECONDS / 60),
-  });
+  // Resend 送信失敗時は audit に残しつつ invalid メッセージで戻す
+  // （「このメールは登録済みだが送れなかった」と漏らさないため）
+  try {
+    await sendMagicLinkEmail({
+      to: result.member.email,
+      displayName: result.member.display_name,
+      magicLinkUrl,
+      expiresInMinutes: Math.floor(MAGIC_LINK_TTL_SECONDS / 60),
+    });
+  } catch (e) {
+    await recordAudit({
+      memberId: result.member.id,
+      event: 'sign_in_failed',
+      detail: {
+        reason: 'email_send_failed',
+        error: e instanceof Error ? e.message : String(e),
+      },
+      ip, userAgent: ua,
+    });
+    return Astro.redirect('/members/sign-in?m=invalid', 303);
+  }
 
   await recordAudit({
     memberId: result.member.id,

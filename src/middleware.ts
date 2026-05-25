@@ -3,11 +3,17 @@ import { canAccessRoute, isPublicRoute } from './lib/rbac';
 import { getMemberBySession } from './lib/session';
 import { SESSION_COOKIE_NAME } from './lib/cookies';
 
+// /members/* から返るレスポンスには必ず Cache-Control を付与する
+function withNoStore(response: Response): Response {
+  response.headers.set('Cache-Control', 'private, no-store');
+  return response;
+}
+
 export const onRequest = defineMiddleware(async (ctx, next) => {
   const path = ctx.url.pathname;
 
-  // /members 以外は素通り
-  if (!path.startsWith('/members')) {
+  // /members 完全一致と /members/ 配下のみ対象（/membersclub などを誤検知しない）
+  if (path !== '/members' && !path.startsWith('/members/')) {
     return next();
   }
 
@@ -21,23 +27,19 @@ export const onRequest = defineMiddleware(async (ctx, next) => {
 
   // 公開パスはアクセス制御スキップ
   if (isPublic) {
-    const response = await next();
-    response.headers.set('Cache-Control', 'private, no-store');
-    return response;
+    return withNoStore(await next());
   }
 
   // 未ログイン → サインインへリダイレクト（戻り先を保持）
   if (!member) {
     const redirect = encodeURIComponent(path + ctx.url.search);
-    return ctx.redirect(`/members/sign-in?redirect=${redirect}`);
+    return withNoStore(ctx.redirect(`/members/sign-in?redirect=${redirect}`));
   }
 
   // ロール・スタッフ判定
   if (!canAccessRoute(member, path)) {
-    return new Response('Forbidden', { status: 403 });
+    return withNoStore(new Response('Forbidden', { status: 403 }));
   }
 
-  const response = await next();
-  response.headers.set('Cache-Control', 'private, no-store');
-  return response;
+  return withNoStore(await next());
 });

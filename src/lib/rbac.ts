@@ -20,7 +20,8 @@ function startsWithAny(path: string, prefixes: string[]): boolean {
 }
 
 export function isPublicRoute(path: string): boolean {
-  return PUBLIC_PATHS.some((p) => path === p || path.startsWith(p + '?'));
+  // Astro.url.pathname にクエリ文字列は含まれないため完全一致のみ
+  return PUBLIC_PATHS.includes(path);
 }
 
 export function canAccessRoute(member: Member | null, path: string): boolean {
