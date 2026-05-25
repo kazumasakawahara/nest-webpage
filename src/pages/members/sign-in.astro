@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SignInForm from '../../components/members/SignInForm.astro';
+import { issueMagicLink } from '../../lib/magic-link';
+import { sendMagicLinkEmail } from '../../lib/resend';
+import { recordAudit } from '../../lib/audit';
+import { MAGIC_LINK_TTL_SECONDS } from '../../lib/auth-token';
+
+export const prerender = false;
+
+// POST: マジックリンク発行
+if (Astro.request.method === 'POST') {
+  const form = await Astro.request.formData();
+  const email = String(form.get('email') ?? '').trim().toLowerCase();
+  const redirect = String(form.get('redirect') ?? '/members/');
+  const ip = Astro.request.headers.get('cf-connecting-ip') ?? null;
+  const ua = Astro.request.headers.get('user-agent') ?? null;
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return Astro.redirect('/members/sign-in?m=invalid', 303);
+  }
+
+  const result = await issueMagicLink(email, redirect);
+
+  if (!result) {
+    await recordAudit({
+      memberId: null,
+      event: 'sign_in_failed',
+      detail: { reason: 'email_not_registered', email },
+      ip, userAgent: ua,
+    });
+    return Astro.redirect('/members/sign-in?m=invalid', 303);
+  }
+
+  const siteUrl = import.meta.env.PUBLIC_SITE_URL.replace(/\/$/, '');
+  const magicLinkUrl = `${siteUrl}/members/verify?token=${encodeURIComponent(result.token)}`;
+
+  await sendMagicLinkEmail({
+    to: result.member.email,
+    displayName: result.member.display_name,
+    magicLinkUrl,
+    expiresInMinutes: Math.floor(MAGIC_LINK_TTL_SECONDS / 60),
+  });
+
+  await recordAudit({
+    memberId: result.member.id,
+    event: 'sign_in_request',
+    detail: { redirect },
+    ip, userAgent: ua,
+  });
+
+  return Astro.redirect('/members/sign-in?m=sent', 303);
+}
+
+// GET: フォーム表示
+const redirect = Astro.url.searchParams.get('redirect') ?? '/members/';
+const messageParam = Astro.url.searchParams.get('m');
+const message =
+  messageParam === 'sent' || messageParam === 'invalid' ? messageParam : null;
+---
+
+<BaseLayout
+  title="会員ログイン"
+  description="NPO法人nest 会員ページのログインリンクを発行します"
+>
+  <Fragment slot="head">
+    <meta name="robots" content="noindex, nofollow" />
+  </Fragment>
+
+  <section class="section">
+    <div class="container container--narrow">
+      <h1 class="section__title">会員ログイン</h1>
+      <p class="section__lead">
+        会員登録時のメールアドレスを入力してください。<br />
+        パスワードは不要です。届いたメールのリンクからログインできます。
+      </p>
+      <SignInForm redirect={redirect} message={message} />
+    </div>
+  </section>
+</BaseLayout>

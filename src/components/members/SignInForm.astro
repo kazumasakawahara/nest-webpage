@@ -1,0 +1,71 @@
+---
+interface Props {
+  redirect?: string;
+  message?: 'sent' | 'invalid' | null;
+}
+const { redirect = '', message = null } = Astro.props;
+---
+
+<form method="POST" action="/members/sign-in" class="signin">
+  <label for="email" class="signin__label">会員登録メールアドレス</label>
+  <input
+    id="email"
+    name="email"
+    type="email"
+    autocomplete="email"
+    required
+    class="signin__input"
+    placeholder="your-email@example.com"
+  />
+  <input type="hidden" name="redirect" value={redirect} />
+  <button type="submit" class="btn btn--primary signin__submit">
+    ログインリンクをメールで送る
+  </button>
+
+  {message === 'sent' && (
+    <p class="signin__notice signin__notice--ok">
+      メールを送信しました。受信箱を確認し、リンクをクリックしてログインしてください。<br />
+      （15分以内、迷惑メールフォルダに入る場合があります）
+    </p>
+  )}
+  {message === 'invalid' && (
+    <p class="signin__notice signin__notice--err">
+      このメールアドレスは会員として登録されていません。<br />
+      ご不明な点は事務局（093-582-7018）までお問い合わせください。
+    </p>
+  )}
+</form>
+
+<style>
+  .signin {
+    display: grid;
+    gap: var(--space-3);
+    max-width: 32rem;
+    margin: 0 auto;
+  }
+  .signin__label {
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+  .signin__input {
+    font: inherit;
+    padding: var(--space-3);
+    border: 1px solid var(--color-ink-mute);
+    border-radius: var(--radius-md);
+    background: var(--color-cream);
+  }
+  .signin__submit { justify-self: start; }
+  .signin__notice {
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    line-height: var(--lh-normal);
+  }
+  .signin__notice--ok {
+    background: var(--color-sand);
+    color: var(--color-green-900);
+  }
+  .signin__notice--err {
+    background: #fce4e0;
+    color: #8a2a1a;
+  }
+</style>
