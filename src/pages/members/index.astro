@@ -1,0 +1,101 @@
+---
+import MembersLayout from '../../layouts/MembersLayout.astro';
+import { createServerClient } from '../../lib/supabase';
+
+export const prerender = false;
+
+const supabase = createServerClient();
+const member = Astro.locals.member!;
+
+// お知らせ（最新1件）— 家族会員には family / member 両対象、一般会員には member のみ
+const audience = member.role === 'family' ? ['member', 'family'] : ['member'];
+const { data: latestAnnouncement } = await supabase
+  .from('announcements')
+  .select('id, body_markdown, audience, created_at')
+  .eq('published', true)
+  .in('audience', audience)
+  .order('created_at', { ascending: false })
+  .limit(1)
+  .maybeSingle();
+
+// 最新の機関誌
+const { data: latestNewsletter } = await supabase
+  .from('newsletters')
+  .select('id, title, published_on')
+  .eq('visible', true)
+  .order('published_on', { ascending: false })
+  .limit(1)
+  .maybeSingle();
+
+// 次回家族会（家族会員のみ）
+let upcomingMeeting: { id: string; held_on: string; title: string; location: string | null } | null = null;
+if (member.role === 'family') {
+  const { data } = await supabase
+    .from('family_meetings')
+    .select('id, held_on, title, location')
+    .eq('is_upcoming', true)
+    .eq('visible', true)
+    .maybeSingle();
+  upcomingMeeting = data ?? null;
+}
+
+const displayName = member.display_name ?? '会員';
+---
+
+<MembersLayout title="会員トップ" description="NPO法人 nest 会員ページのトップ">
+  <section class="section">
+    <div class="container container--narrow">
+      <h1 class="section__title">{displayName} 様、ようこそ</h1>
+
+      {latestAnnouncement && (
+        <article class="mcard">
+          <h2 class="mcard__title">お知らせ</h2>
+          <p class="mcard__body">{latestAnnouncement.body_markdown}</p>
+        </article>
+      )}
+
+      {latestNewsletter && (
+        <article class="mcard">
+          <h2 class="mcard__title">最新の機関誌「巣箱」</h2>
+          <p class="mcard__body">
+            {latestNewsletter.title}（{new Date(latestNewsletter.published_on).toLocaleDateString('ja-JP')}）
+          </p>
+          <a href="/members/newsletter/" class="btn btn--outline">バックナンバー一覧へ</a>
+        </article>
+      )}
+
+      {upcomingMeeting && (
+        <article class="mcard">
+          <h2 class="mcard__title">次回家族会</h2>
+          <p class="mcard__body">
+            <strong>{upcomingMeeting.title}</strong><br />
+            {new Date(upcomingMeeting.held_on).toLocaleDateString('ja-JP')}
+            {upcomingMeeting.location && <> @ {upcomingMeeting.location}</>}
+          </p>
+          <a href="/members/family/" class="btn btn--outline">詳しく見る</a>
+        </article>
+      )}
+
+      {!latestAnnouncement && !latestNewsletter && !upcomingMeeting && (
+        <p class="text-soft">
+          現在、お知らせはありません。<br />
+          上部のメニューから各コンテンツをご覧いただけます。
+        </p>
+      )}
+    </div>
+  </section>
+</MembersLayout>
+
+<style>
+  .mcard {
+    background: var(--color-cream);
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    margin-block: var(--space-4);
+  }
+  .mcard__title {
+    font-family: var(--font-heading);
+    margin-top: 0;
+  }
+</style>
