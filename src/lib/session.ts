@@ -51,9 +51,12 @@ export async function getMemberBySession(sessionId: string): Promise<Member | nu
   if (!m || m.deleted_at) return null;
 
   // last_seen_at を非同期で更新（失敗しても無視）
-  void supabase.from('sessions')
+  // 注: supabase-js v2 の builder は PromiseLike なので、.then() を明示的に
+  // 呼ばないと HTTP リクエストが発火しない。`void builder` だけでは no-op。
+  supabase.from('sessions')
     .update({ last_seen_at: new Date().toISOString() })
-    .eq('session_id', sessionId);
+    .eq('session_id', sessionId)
+    .then(() => undefined, () => undefined);
 
   return {
     id: m.id,
