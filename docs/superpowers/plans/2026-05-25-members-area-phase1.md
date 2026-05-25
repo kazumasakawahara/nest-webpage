@@ -1623,11 +1623,21 @@ git commit -m "feat: add auth middleware with route protection and cache headers
 
 ---
 
-### Task 3.2: サインインページ (UI)
+### Task 3.2: サインインページ（UI + POST ハンドラ統合）
+
+> **実装メモ（2026-05-25 更新）**: 当初は Task 3.2（`sign-in.astro` で GET 描画）と Task 3.3（`sign-in.ts` で POST 処理）を別ファイルに分ける計画だったが、**Astro のルーティング制約により同一パスで `.astro` と `.ts` が共存すると `.astro` が優先され `.ts` は無視される**ことを実装時に発見した。
+>
+> このため Task 3.2 と Task 3.3 を統合し、**単一の `src/pages/members/sign-in.astro` で `Astro.request.method` を見て GET/POST を分岐**する Astro 慣用のパターンに変更した。`SignInForm.astro` コンポーネントは独立した部品として残す。
+>
+> - 実際に作成したファイル：`src/components/members/SignInForm.astro` ＋ `src/pages/members/sign-in.astro`（GET と POST を内包）
+> - **作成しないファイル**：`src/pages/members/sign-in.ts`（衝突するため）
+> - コミットも 1 つに統合：`feat(members): add sign-in page with magic link issuance`
+>
+> Task 3.3 のセクションは下記に「統合済み」の注記のみ残してある。
 
 **Files:**
 - Create: `src/components/members/SignInForm.astro`
-- Create: `src/pages/members/sign-in.astro`
+- Create: `src/pages/members/sign-in.astro`（GET 描画と POST マジックリンク発行を統合）
 
 - [ ] **Step 1: フォームコンポーネント作成**
 
@@ -1706,14 +1716,65 @@ const { redirect = '', message = null } = Astro.props;
 </style>
 ```
 
-- [ ] **Step 2: ページ作成**
+- [ ] **Step 2: ページ作成（GET 描画 + POST マジックリンク発行を統合）**
 
 `src/pages/members/sign-in.astro`：
 ```astro
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SignInForm from '../../components/members/SignInForm.astro';
+import { issueMagicLink } from '../../lib/magic-link';
+import { sendMagicLinkEmail } from '../../lib/resend';
+import { recordAudit } from '../../lib/audit';
+import { MAGIC_LINK_TTL_SECONDS } from '../../lib/auth-token';
 
+export const prerender = false;
+
+// POST: マジックリンク発行
+if (Astro.request.method === 'POST') {
+  const form = await Astro.request.formData();
+  const email = String(form.get('email') ?? '').trim().toLowerCase();
+  const redirect = String(form.get('redirect') ?? '/members/');
+  const ip = Astro.request.headers.get('cf-connecting-ip') ?? null;
+  const ua = Astro.request.headers.get('user-agent') ?? null;
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return Astro.redirect('/members/sign-in?m=invalid', 303);
+  }
+
+  const result = await issueMagicLink(email, redirect);
+
+  if (!result) {
+    await recordAudit({
+      memberId: null,
+      event: 'sign_in_failed',
+      detail: { reason: 'email_not_registered', email },
+      ip, userAgent: ua,
+    });
+    return Astro.redirect('/members/sign-in?m=invalid', 303);
+  }
+
+  const siteUrl = import.meta.env.PUBLIC_SITE_URL.replace(/\/$/, '');
+  const magicLinkUrl = `${siteUrl}/members/verify?token=${encodeURIComponent(result.token)}`;
+
+  await sendMagicLinkEmail({
+    to: result.member.email,
+    displayName: result.member.display_name,
+    magicLinkUrl,
+    expiresInMinutes: Math.floor(MAGIC_LINK_TTL_SECONDS / 60),
+  });
+
+  await recordAudit({
+    memberId: result.member.id,
+    event: 'sign_in_request',
+    detail: { redirect },
+    ip, userAgent: ua,
+  });
+
+  return Astro.redirect('/members/sign-in?m=sent', 303);
+}
+
+// GET: フォーム表示
 const redirect = Astro.url.searchParams.get('redirect') ?? '/members/';
 const messageParam = Astro.url.searchParams.get('m');
 const message =
@@ -1747,97 +1808,27 @@ const message =
 npm run dev
 # http://localhost:4321/members/sign-in を開く
 ```
-Expected: フォーム表示、見た目崩れなし。
+Expected: フォーム表示、見た目崩れなし。POST 送信時もこのファイル内のスクリプト部で処理される。
 
-- [ ] **Step 4: Commit**
+- [ ] **Step 4: Commit（旧 Task 3.3 を統合）**
 
 ```bash
 git add src/components/members/SignInForm.astro src/pages/members/sign-in.astro
-git commit -m "feat(members): add sign-in page UI"
+git commit -m "feat(members): add sign-in page with magic link issuance"
 ```
 
 ---
 
-### Task 3.3: サインイン POST ハンドラ（マジックリンク発行）
+### Task 3.3: ~~サインイン POST ハンドラ（マジックリンク発行）~~ → **Task 3.2 に統合**
 
-**Files:**
-- Create: `src/pages/members/sign-in.ts`
-
-- [ ] **Step 1: 実装**
-
-`src/pages/members/sign-in.ts`：
-```ts
-import type { APIRoute } from 'astro';
-import { issueMagicLink } from '../../lib/magic-link';
-import { sendMagicLinkEmail } from '../../lib/resend';
-import { recordAudit } from '../../lib/audit';
-import { MAGIC_LINK_TTL_SECONDS } from '../../lib/auth-token';
-
-export const POST: APIRoute = async ({ request }) => {
-  const form = await request.formData();
-  const email = String(form.get('email') ?? '').trim().toLowerCase();
-  const redirect = String(form.get('redirect') ?? '/members/');
-  const ip = request.headers.get('cf-connecting-ip') ?? null;
-  const ua = request.headers.get('user-agent') ?? null;
-
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return Response.redirect(
-      new URL('/members/sign-in?m=invalid', request.url),
-      303,
-    );
-  }
-
-  const result = await issueMagicLink(email, redirect);
-
-  if (!result) {
-    await recordAudit({
-      memberId: null,
-      event: 'sign_in_failed',
-      detail: { reason: 'email_not_registered', email },
-      ip, userAgent: ua,
-    });
-    return Response.redirect(
-      new URL('/members/sign-in?m=invalid', request.url),
-      303,
-    );
-  }
-
-  const siteUrl = import.meta.env.PUBLIC_SITE_URL.replace(/\/$/, '');
-  const magicLinkUrl = `${siteUrl}/members/verify?token=${encodeURIComponent(result.token)}`;
-
-  await sendMagicLinkEmail({
-    to: result.member.email,
-    displayName: result.member.display_name,
-    magicLinkUrl,
-    expiresInMinutes: Math.floor(MAGIC_LINK_TTL_SECONDS / 60),
-  });
-
-  await recordAudit({
-    memberId: result.member.id,
-    event: 'sign_in_request',
-    detail: { redirect },
-    ip, userAgent: ua,
-  });
-
-  return Response.redirect(
-    new URL('/members/sign-in?m=sent', request.url),
-    303,
-  );
-};
-```
-
-- [ ] **Step 2: 型チェック**
-
-```bash
-npm run astro -- check
-```
-
-- [ ] **Step 3: Commit**
-
-```bash
-git add src/pages/members/sign-in.ts
-git commit -m "feat(members): add sign-in POST handler issuing magic link"
-```
+> **2026-05-25 実装時の方針変更**: Astro は同一パスで `.astro` と `.ts` が共存すると `.astro` を優先し `.ts` を無視するため、`src/pages/members/sign-in.ts` を独立ファイルとして作成することはできない。
+>
+> このため当 Task の POST ハンドラ実装は **Task 3.2 の `sign-in.astro` 内に `Astro.request.method === 'POST'` 分岐として統合**された。元の `sign-in.ts` 案で書かれていたロジック（`issueMagicLink` → メール送信 → 監査ログ → 303 リダイレクト）はすべて Task 3.2 Step 2 のコードブロック先頭に移植済み。
+>
+> - 作成ファイル：なし（Task 3.2 に統合済み）
+> - コミット：Task 3.2 のコミット `feat(members): add sign-in page with magic link issuance` に含まれる
+>
+> このセクションは履歴として残してあるが、新たな実装作業は不要。
 
 ---
 
