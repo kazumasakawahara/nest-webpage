@@ -2240,7 +2240,8 @@ interface Props {
   description?: string;
 }
 const { title, description } = Astro.props;
-const fullTitle = `${title}｜会員ページ - NPO法人 nest`;
+// BaseLayout が組織名を付加するので、ここでは「会員ページ」までに留める
+const fullTitle = `${title}｜会員ページ`;
 ---
 
 <BaseLayout title={fullTitle} description={description}>
