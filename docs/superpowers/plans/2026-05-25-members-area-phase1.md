@@ -984,7 +984,7 @@ const FAMILY_PREFIXES = ['/members/family'];
 const ADMIN_PREFIXES = ['/members/admin'];
 
 function startsWithAny(path: string, prefixes: string[]): boolean {
-  return prefixes.some((p) => path === p || path.startsWith(p + '/') || path.startsWith(p));
+  return prefixes.some((p) => path === p || path.startsWith(p + '/'));
 }
 
 export function isPublicRoute(path: string): boolean {

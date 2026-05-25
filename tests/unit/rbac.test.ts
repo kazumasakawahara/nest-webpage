@@ -45,4 +45,22 @@ describe('canAccessRoute', () => {
     expect(canAccessRoute(null, '/members/verify')).toBe(true);
     expect(canAccessRoute(null, '/members/sign-out')).toBe(true);
   });
+
+  it('紛らわしいパス名で family/admin 制限を誤適用しない', () => {
+    // ロール無しでもアクセス可能な /members/* のサブパスとして扱われるべき
+    // (実際にはルートが存在しないが、prefix match の正確性を担保する)
+    expect(canAccessRoute(memberOnly, '/members/familyabc')).toBe(true);
+    expect(canAccessRoute(memberOnly, '/members/family-newsletter')).toBe(true);
+    expect(canAccessRoute(memberOnly, '/members/adminxyz')).toBe(true);
+    expect(canAccessRoute(memberOnly, '/members/admin-archive')).toBe(true);
+  });
+
+  it('family 制限は厳密に "/members/family" ディレクトリ配下のみ', () => {
+    expect(canAccessRoute(memberOnly, '/members/family')).toBe(false);     // 完全一致
+    expect(canAccessRoute(memberOnly, '/members/family/')).toBe(false);    // 末尾スラッシュ
+    expect(canAccessRoute(memberOnly, '/members/family/minutes/x')).toBe(false); // サブパス
+    expect(canAccessRoute(familyMember, '/members/family')).toBe(true);
+    expect(canAccessRoute(familyMember, '/members/family/')).toBe(true);
+    expect(canAccessRoute(familyMember, '/members/family/minutes/x')).toBe(true);
+  });
 });
