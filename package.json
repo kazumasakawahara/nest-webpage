@@ -18,7 +18,8 @@
   "dependencies": {
     "@astrojs/cloudflare": "^13.5.4",
     "@supabase/supabase-js": "^2.106.2",
-    "astro": "^6.3.7"
+    "astro": "^6.3.7",
+    "resend": "^6.12.3"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",
