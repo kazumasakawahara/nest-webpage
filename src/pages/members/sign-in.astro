@@ -32,8 +32,10 @@ if (Astro.request.method === 'POST') {
     return Astro.redirect('/members/sign-in?m=invalid', 303);
   }
 
-  const siteUrl = import.meta.env.PUBLIC_SITE_URL.replace(/\/$/, '');
-  const magicLinkUrl = `${siteUrl}/members/verify?token=${encodeURIComponent(result.token)}`;
+  // リクエストの origin を使うことで、ローカル開発・ステージング・本番すべてで
+  // 自動的に正しいリンクが生成される（PUBLIC_SITE_URL を本番固定にしておけて、
+  // 環境ごとに書き換える運用負担が出ない）。
+  const magicLinkUrl = `${Astro.url.origin}/members/verify?token=${encodeURIComponent(result.token)}`;
 
   // Resend 送信失敗時は audit に残しつつ invalid メッセージで戻す
   // （「このメールは登録済みだが送れなかった」と漏らさないため）
