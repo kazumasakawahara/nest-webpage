@@ -3,10 +3,19 @@ import { canAccessRoute, isPublicRoute } from './lib/rbac';
 import { getMemberBySession } from './lib/session';
 import { SESSION_COOKIE_NAME } from './lib/cookies';
 
-// /members/* から返るレスポンスには必ず Cache-Control を付与する
+// /members/* から返るレスポンスには必ず Cache-Control を付与する。
+// 一部のランタイム（Cloudflare Workers / undici）では Response.redirect() や
+// ctx.redirect() が返す Response の headers が immutable なため、
+// 直接 .set() すると "Can't modify immutable headers" 例外が出る。
+// 安全のため新しい Response を組み立てて返す。
 function withNoStore(response: Response): Response {
-  response.headers.set('Cache-Control', 'private, no-store');
-  return response;
+  const headers = new Headers(response.headers);
+  headers.set('Cache-Control', 'private, no-store');
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
 }
 
 export const onRequest = defineMiddleware(async (ctx, next) => {
