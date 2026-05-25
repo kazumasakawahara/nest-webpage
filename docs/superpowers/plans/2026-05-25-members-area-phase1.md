@@ -1031,7 +1031,7 @@ git commit -m "feat(lib): add RBAC route access logic with tests"
 `tests/unit/auth-token.test.ts`：
 ```ts
 import { describe, it, expect } from 'vitest';
-import { generateToken, hashToken } from '~/lib/auth-token';
+import { generateToken } from '~/lib/auth-token';
 
 describe('generateToken', () => {
   it('43文字以上の base64url 文字列を返す', () => {
@@ -1046,20 +1046,6 @@ describe('generateToken', () => {
     expect(a).not.toBe(b);
   });
 });
-
-describe('hashToken', () => {
-  it('同じ入力に対して同じハッシュを返す', () => {
-    expect(hashToken('abc')).toBe(hashToken('abc'));
-  });
-
-  it('異なる入力に対して異なるハッシュを返す', () => {
-    expect(hashToken('abc')).not.toBe(hashToken('abd'));
-  });
-
-  it('64文字の hex 文字列を返す（SHA-256）', () => {
-    expect(hashToken('x')).toMatch(/^[0-9a-f]{64}$/);
-  });
-});
 ```
 
 - [ ] **Step 2: 失敗確認**
@@ -1072,23 +1058,25 @@ npm run test -- auth-token
 
 `src/lib/auth-token.ts`：
 ```ts
-import { randomBytes, createHash } from 'node:crypto';
-
 /**
  * URL-safe な 32バイト ランダム文字列を返す。
  * マジックリンクトークン / セッションIDの両方に使う。
+ *
+ * Cloudflare Workers / Node v20+ 両方で動作する Web Crypto を使用。
  */
 export function generateToken(): string {
-  return randomBytes(32).toString('base64url');
+  const bytes = new Uint8Array(32);
+  crypto.getRandomValues(bytes);
+  return base64urlEncode(bytes);
 }
 
-/**
- * DBには平文トークンを保存しない方針なら hash を使う。
- * Phase 1 では magic_link_tokens.token に平文を入れる（既存スキーマ通り）が、
- * 監査・ログ出力時にハッシュを使いたい場面のためのヘルパ。
- */
-export function hashToken(token: string): string {
-  return createHash('sha256').update(token).digest('hex');
+function base64urlEncode(bytes: Uint8Array): string {
+  let binary = '';
+  for (const b of bytes) binary += String.fromCharCode(b);
+  return btoa(binary)
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/, '');
 }
 
 export const MAGIC_LINK_TTL_SECONDS = 15 * 60;       // 15分
@@ -1100,7 +1088,7 @@ export const SESSION_TTL_SECONDS = 30 * 24 * 60 * 60; // 30日
 ```bash
 npm run test -- auth-token
 ```
-Expected: 5 passed.
+Expected: 2 passed.
 
 - [ ] **Step 5: Commit**
 
