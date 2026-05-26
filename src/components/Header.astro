@@ -11,6 +11,9 @@ interface Props {
 
 const { transparent = false } = Astro.props;
 const currentPath = Astro.url.pathname;
+// 公開静的ページでは locals.member は undefined。/members/* の SSR ページではセットされる。
+const member = Astro.locals.member;
+const membersLinkLabel = member ? '会員ページ' : '会員の方へ';
 
 function isActive(href: string) {
   if (href === '/') return currentPath === '/' || currentPath === '/index.html';
@@ -58,6 +61,14 @@ function isActive(href: string) {
             </li>
           ))
         }
+        <li class="site-nav__item">
+          <a
+            href="/members/"
+            class:list={['site-nav__link', { 'is-active': isActive('/members/') }]}
+          >
+            {membersLinkLabel}
+          </a>
+        </li>
       </ul>
 
       <div class="site-nav__cta">
