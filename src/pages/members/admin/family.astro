@@ -1,0 +1,134 @@
+---
+import MembersLayout from '../../../layouts/MembersLayout.astro';
+import { createServerClient } from '../../../lib/supabase';
+
+export const prerender = false;
+
+const supabase = createServerClient();
+let message: string | null = null;
+
+if (Astro.request.method === 'POST') {
+  const form = await Astro.request.formData();
+  const action = String(form.get('_action') ?? '');
+
+  if (action === 'create') {
+    const heldOn = String(form.get('held_on') ?? '');
+    const title = String(form.get('title') ?? '').trim();
+    const location = String(form.get('location') ?? '').trim() || null;
+    const agenda = String(form.get('agenda') ?? '').trim() || null;
+    const minutesPath = String(form.get('minutes_pdf_path') ?? '').trim() || null;
+    const isUpcoming = form.get('is_upcoming') === 'on';
+
+    if (isUpcoming) {
+      // 既存の upcoming を解除（DB 制約により同時に1件しか許容しないため）
+      await supabase.from('family_meetings').update({ is_upcoming: false }).eq('is_upcoming', true);
+    }
+
+    if (heldOn && title) {
+      const { error } = await supabase.from('family_meetings').insert({
+        held_on: heldOn, title, location, agenda,
+        minutes_pdf_path: minutesPath, is_upcoming: isUpcoming,
+      });
+      message = error ? `エラー：${error.message}` : '登録しました。';
+    } else {
+      message = '開催日とタイトルは必須です。';
+    }
+  } else if (action === 'toggle_upcoming') {
+    const id = String(form.get('id'));
+    await supabase.from('family_meetings').update({ is_upcoming: false }).eq('is_upcoming', true);
+    await supabase.from('family_meetings').update({ is_upcoming: true }).eq('id', id);
+    message = '「次回」を変更しました。';
+  } else if (action === 'delete') {
+    const id = String(form.get('id'));
+    await supabase.from('family_meetings').delete().eq('id', id);
+    message = '削除しました。';
+  }
+}
+
+const { data: list } = await supabase
+  .from('family_meetings')
+  .select('id, held_on, title, location, is_upcoming, minutes_pdf_path')
+  .order('held_on', { ascending: false });
+---
+
+<MembersLayout title="家族会管理">
+  <section class="section">
+    <div class="container">
+      <h1 class="section__title">家族会管理</h1>
+      <p class="text-soft">
+        議事録 PDF は Supabase Studio から <code>family-minutes</code> バケットにアップし、
+        パスをここで登録してください。
+      </p>
+
+      {message && <p class="notice">{message}</p>}
+
+      <h2 class="section__title--sub">新規登録</h2>
+      <form method="POST" class="adminform">
+        <input type="hidden" name="_action" value="create" />
+        <label>開催日<input type="date" name="held_on" required /></label>
+        <label>タイトル<input type="text" name="title" required placeholder="第○回 家族会" /></label>
+        <label>場所<input type="text" name="location" placeholder="木町家2F" /></label>
+        <label>議題・案内<textarea name="agenda" rows="3"></textarea></label>
+        <label>議事録PDFパス<input type="text" name="minutes_pdf_path" placeholder="2026-06-15.pdf" /></label>
+        <label class="adminform__check"><input type="checkbox" name="is_upcoming" />これを「次回」として表示する</label>
+        <button type="submit" class="btn btn--primary">登録</button>
+      </form>
+
+      <h2 class="section__title--sub">登録済み一覧</h2>
+      {(!list || list.length === 0) ? (
+        <p class="text-soft">まだ登録されていません。</p>
+      ) : (
+        <table class="admin-table">
+          <thead><tr><th>開催日</th><th>タイトル</th><th>次回</th><th>議事録</th><th>操作</th></tr></thead>
+          <tbody>
+            {list.map(m => (
+              <tr>
+                <td>{new Date(m.held_on).toLocaleDateString('ja-JP')}</td>
+                <td>{m.title}</td>
+                <td>{m.is_upcoming ? '○' : '—'}</td>
+                <td>{m.minutes_pdf_path ?? '—'}</td>
+                <td class="admin-table__actions">
+                  {!m.is_upcoming && (
+                    <form method="POST" class="inline-form">
+                      <input type="hidden" name="_action" value="toggle_upcoming" />
+                      <input type="hidden" name="id" value={m.id} />
+                      <button type="submit" class="btn btn--outline btn--sm">次回にする</button>
+                    </form>
+                  )}
+                  <form method="POST" class="inline-form" onsubmit="return confirm('削除しますか？');">
+                    <input type="hidden" name="_action" value="delete" />
+                    <input type="hidden" name="id" value={m.id} />
+                    <button type="submit" class="btn btn--outline btn--sm">削除</button>
+                  </form>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
+  </section>
+</MembersLayout>
+
+<style>
+  .adminform { display: grid; gap: var(--space-3); max-width: 36rem; margin-block: var(--space-3); }
+  .adminform label { display: grid; gap: var(--space-1); font-weight: 600; }
+  .adminform input, .adminform textarea {
+    font: inherit;
+    padding: var(--space-2);
+    border: 1px solid var(--color-ink-mute);
+    border-radius: var(--radius-md);
+    background: var(--color-cream);
+  }
+  .adminform__check { grid-template-columns: auto 1fr; align-items: center; gap: var(--space-2); font-weight: 400; }
+  .admin-table { width: 100%; border-collapse: collapse; margin-top: var(--space-3); }
+  .admin-table th, .admin-table td { padding: var(--space-2); border-bottom: 1px solid var(--color-ink-mute); text-align: left; }
+  .admin-table__actions { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+  .inline-form { display: inline; }
+  .notice {
+    padding: var(--space-2) var(--space-3);
+    background: var(--color-sand);
+    border-radius: var(--radius-md);
+    margin-block: var(--space-3);
+  }
+</style>
