@@ -1,82 +1,76 @@
 # 写真素材ディレクトリ
 
-このディレクトリにJPEG/PNG/WebPの写真を配置してください。
+このディレクトリには JPEG / PNG / WebP / GIF の画像を配置します。
+Astro が自動で WebP / AVIF 変換、サイズ最適化を行います。
 
-## ディレクトリ構成
+## 実際の構成
 
 ```
 public/images/
-├── hero/                 ヒーロー用大判写真（推奨 1920×1080 以上）
-│   ├── home.jpg          トップページ
-│   ├── about.jpg         nestについて
-│   ├── kimachiya.jpg     木町家
-│   ├── nest-design.jpg   nest Design
-│   ├── recruit.jpg       利用者募集中
-│   ├── sudachi.jpg       地域生活支援
-│   ├── join.jpg          入会・寄付
-│   └── contact.jpg       お問い合わせ
-├── services/             事業カード用（推奨 800×500）
-│   ├── kimachiya.jpg
-│   ├── nest-design.jpg
-│   ├── grouphome.jpg
-│   ├── activity.jpg
-│   ├── sudachi.jpg
-│   └── support.jpg
-├── voices/               「声」セクション用 顔写真 / シルエット（300×300 正方形）
-│   ├── voice-1.jpg
-│   ├── voice-2.jpg
-│   └── voice-3.jpg
-└── news/                 ニュース記事用サムネイル
+├── nest-image1/
+│   ├── kimachiyayukei.png        木町家 夕景（Hero）
+│   ├── kimachiyayakei.png        木町家 夜景
+│   ├── kimachiya-gaikan.png      木町家 外観
+│   ├── kimachiya-bread-salad.png 木町家 米粉パン＆サラダ
+│   ├── kimachiya_working1.png    木町家 作業風景 1
+│   ├── kimachiya_working2.png    木町家 作業風景 2
+│   ├── kimachiya_working3.png    木町家 作業風景 3
+│   ├── kimachiya-logo.png        木町家ロゴ
+│   ├── kimachiya-logo-white.png  木町家ロゴ 白版
+│   ├── mori_subako1.jpg          森の巣箱 1（法人ロゴ的）
+│   ├── mori_subako2.jpg          森の巣箱 2
+│   ├── mori_subako3.png          森の巣箱 3
+│   └── mori_subako4.png          森の巣箱 4
+└── nest-image2/
+    ├── nest-logo-01.png          NEST 法人ロゴ
+    ├── nest-logo-01-white.png    白版
+    ├── nest-logo-02.png          バリエーション
+    ├── nest-logo-03.png          バリエーション
+    ├── nest-logo-03-white.png    白版
+    ├── nestdesign-logo.png       nestDesign ロゴ
+    ├── nestdesign-logo-white.png 白版
+    ├── nestdesign_working.png    nestDesign 作業風景
+    ├── nestdesign_shitsunai.png  nestDesign 室内
+    ├── neststation_gaikan.png    nest STATION 外観
+    ├── mori_subako5.png          森の巣箱 5
+    └── nestmap.gif               所在地マップ（未使用、将来 access ページ用）
 ```
 
 ## 画像差し替え方法
 
-### Hero（各ページの大判ヒーロー）
+### Hero（各ページの大判背景）
 
-`src/pages/<page>.astro` の `<Hero>` コンポーネントに `image` プロパティを追加：
+`src/pages/<page>.astro` の `<Hero>` コンポーネントに `image` を指定：
 
 ```astro
 <Hero
   title="..."
-  image="/images/hero/kimachiya.jpg"
+  image="/images/nest-image1/kimachiyayukei.png"
   imagePosition="center"
 />
 ```
 
-### サービスカード（トップページ）
+### サービスカード（TOP ページ）
 
-`src/pages/index.astro` の `services` 配列の各オブジェクトに `image` を追加：
+`src/pages/index.astro` の `services` 配列に `image` と `imageAlt` を追加：
 
 ```ts
 {
   title: 'キッチン＆マルシェ 木町家',
-  image: '/images/services/kimachiya.jpg',
-  imageAlt: '木町家の店内風景',
-  ...
-}
-```
-
-### 「声」セクション
-
-`src/lib/site.ts` の `voices` 配列の `photo` を更新：
-
-```ts
-{
-  quote: '...',
-  name: '利用者・Aさん',
-  photo: '/images/voices/voice-1.jpg',
+  image: '/images/nest-image1/kimachiya-bread-salad.png',
+  imageAlt: '米粉パンとサラダ',
   ...
 }
 ```
 
 ## 撮影のアドバイス
 
-- **横向き構図**を基本に（ヒーローはレスポンシブ対応のため）
-- **自然光**を活用（蛍光灯は緑がかるので避ける）
-- **手元・後ろ姿・物の写真**も歓迎（肖像権配慮）
-- **米粉パン、シフォン、料理、アート作品**などモノの写真は単独でも強い印象
-- 解像度は最低 **1600px幅** 推奨（Astro が自動でWebP変換します）
+- 横向き構図を基本に（ヒーローはレスポンシブ対応のため）
+- 自然光を活用（蛍光灯は緑がかるので避ける）
+- 解像度は最低 1600px 幅推奨
 
-## 画像最適化（自動）
+## 未使用ストック（将来活用候補）
 
-Astro が自動で WebP / AVIF 変換、サイズ最適化を行います。元ファイルはオリジナル品質で OK。
+- ロゴ各種：フッターや法人情報ページのマーク
+- `nestmap.gif`：アクセスページ用
+- 巣箱画像（mori_subako*）：voices セクション or 装飾
