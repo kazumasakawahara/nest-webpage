@@ -1,0 +1,54 @@
+---
+import MembersLayout from '../../../../layouts/MembersLayout.astro';
+import { createServerClient } from '../../../../lib/supabase';
+
+export const prerender = false;
+
+const supabase = createServerClient();
+const { data: members } = await supabase
+  .from('members')
+  .select('id, email, display_name, role, is_staff, joined_at')
+  .is('deleted_at', null)
+  .order('joined_at', { ascending: false });
+---
+
+<MembersLayout title="会員管理">
+  <section class="section">
+    <div class="container">
+      <div class="admin-head">
+        <h1 class="section__title">会員一覧</h1>
+        <a href="/members/admin/members/new" class="btn btn--primary">＋ 新規追加</a>
+      </div>
+
+      {(!members || members.length === 0) && (
+        <p class="text-soft">会員はまだ登録されていません。</p>
+      )}
+
+      {members && members.length > 0 && (
+        <table class="admin-table">
+          <thead>
+            <tr><th>氏名</th><th>メール</th><th>区分</th><th>スタッフ</th><th>入会日</th><th></th></tr>
+          </thead>
+          <tbody>
+            {members.map(m => (
+              <tr>
+                <td>{m.display_name ?? '（未登録）'}</td>
+                <td>{m.email}</td>
+                <td>{m.role === 'family' ? '家族会員' : '全会員'}</td>
+                <td>{m.is_staff ? '○' : '—'}</td>
+                <td>{new Date(m.joined_at).toLocaleDateString('ja-JP')}</td>
+                <td><a href={`/members/admin/members/${m.id}`}>編集</a></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
+  </section>
+</MembersLayout>
+
+<style>
+  .admin-head { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); flex-wrap: wrap; margin-bottom: var(--space-4); }
+  .admin-table { width: 100%; border-collapse: collapse; }
+  .admin-table th, .admin-table td { padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--color-ink-mute); text-align: left; }
+</style>

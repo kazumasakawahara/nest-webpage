@@ -1,0 +1,100 @@
+---
+import MembersLayout from '../../../../layouts/MembersLayout.astro';
+import { createServerClient } from '../../../../lib/supabase';
+import { recordAudit } from '../../../../lib/audit';
+
+export const prerender = false;
+
+let error: string | null = null;
+let success = false;
+
+if (Astro.request.method === 'POST') {
+  const form = await Astro.request.formData();
+  const email = String(form.get('email') ?? '').trim().toLowerCase();
+  const displayName = String(form.get('display_name') ?? '').trim() || null;
+  const role = String(form.get('role') ?? 'member');
+  const isStaff = form.get('is_staff') === 'on';
+  const joinedAt = String(form.get('joined_at') ?? new Date().toISOString().slice(0, 10));
+  const note = String(form.get('note') ?? '').trim() || null;
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    error = 'メールアドレスの形式が正しくありません。';
+  } else if (!['member', 'family'].includes(role)) {
+    error = '会員区分が正しくありません。';
+  } else {
+    const supabase = createServerClient();
+    const { data, error: insertError } = await supabase
+      .from('members')
+      .insert({ email, display_name: displayName, role, is_staff: isStaff, joined_at: joinedAt, note })
+      .select('id').single();
+    if (insertError) {
+      error = `登録に失敗しました：${insertError.message}`;
+    } else {
+      await recordAudit({
+        memberId: Astro.locals.member!.id,
+        event: 'member_created',
+        detail: { new_member_id: data!.id, email, role, is_staff: isStaff },
+      });
+      success = true;
+    }
+  }
+}
+---
+
+<MembersLayout title="会員 新規追加">
+  <section class="section">
+    <div class="container container--narrow">
+      <h1 class="section__title">会員 新規追加</h1>
+
+      {error && <p class="err">{error}</p>}
+      {success && (
+        <>
+          <p class="ok">登録しました。</p>
+          <p><a href="/members/admin/members">一覧に戻る</a></p>
+        </>
+      )}
+
+      {!success && (
+        <form method="POST" class="adminform">
+          <label>メールアドレス（必須）
+            <input type="email" name="email" required />
+          </label>
+          <label>氏名
+            <input type="text" name="display_name" />
+          </label>
+          <label>会員区分
+            <select name="role">
+              <option value="member">全会員</option>
+              <option value="family">家族会員</option>
+            </select>
+          </label>
+          <label class="adminform__check">
+            <input type="checkbox" name="is_staff" />スタッフ権限を付与
+          </label>
+          <label>入会日
+            <input type="date" name="joined_at" value={new Date().toISOString().slice(0, 10)} />
+          </label>
+          <label>備考
+            <textarea name="note" rows="3"></textarea>
+          </label>
+          <button type="submit" class="btn btn--primary">登録</button>
+        </form>
+      )}
+    </div>
+  </section>
+</MembersLayout>
+
+<style>
+  .adminform { display: grid; gap: var(--space-3); }
+  .adminform label { display: grid; gap: var(--space-1); font-weight: 600; }
+  .adminform input, .adminform select, .adminform textarea {
+    font: inherit;
+    padding: var(--space-2);
+    border: 1px solid var(--color-ink-mute);
+    border-radius: var(--radius-md);
+    background: var(--color-cream);
+  }
+  .adminform__check { grid-template-columns: auto 1fr; align-items: center; gap: var(--space-2); font-weight: 400; }
+  .err { color: #8a2a1a; padding: var(--space-2) var(--space-3); background: #fce4e0; border-radius: var(--radius-md); }
+  .ok { color: var(--color-green-700); }
+</style>
