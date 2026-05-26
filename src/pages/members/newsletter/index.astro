@@ -1,0 +1,38 @@
+---
+import MembersLayout from '../../../layouts/MembersLayout.astro';
+import PdfCard from '../../../components/members/PdfCard.astro';
+import { createServerClient } from '../../../lib/supabase';
+
+export const prerender = false;
+
+const supabase = createServerClient();
+const { data: newsletters } = await supabase
+  .from('newsletters')
+  .select('id, title, issue, published_on, cover_path')
+  .eq('visible', true)
+  .order('sort_order', { ascending: false })
+  .order('published_on', { ascending: false });
+---
+
+<MembersLayout title="機関誌「巣箱」バックナンバー">
+  <section class="section">
+    <div class="container">
+      <h1 class="section__title">機関誌「巣箱」バックナンバー</h1>
+      <p class="section__lead">PDFをダウンロードしてご覧いただけます。</p>
+
+      {(!newsletters || newsletters.length === 0) && (
+        <p class="text-soft">バックナンバーはまだ登録されていません。</p>
+      )}
+
+      <div class="grid-3">
+        {newsletters?.map(n => (
+          <PdfCard
+            title={n.title}
+            subtitle={new Date(n.published_on).toLocaleDateString('ja-JP', { year: 'numeric', month: 'long' })}
+            downloadHref={`/members/newsletter/${n.id}/download`}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</MembersLayout>
