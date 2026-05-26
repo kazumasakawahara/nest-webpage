@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>入会申込書 — 特定非営利活動法人 nest</title>
+  <!--
+    入会申込書 テンプレート（叩き台）
+    最終確認すべき箇所は <!-- TODO: ... --> でマークしてあります。
+    林代表に確認のうえ確定版にしてください。
+
+    使い方:
+    1. ブラウザで開く: https://www.nponest.org/pdfs/forms/membership-application.html
+    2. Cmd/Ctrl + P で印刷ダイアログを開く
+    3. 「PDF として保存」または直接印刷
+    4. 手書きで記入して郵送 or 持参
+  -->
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  />
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* ===== Tokens（プロジェクトの global.css に合わせた配色） ===== */
+    :root {
+      --color-ink: #2a2620;
+      --color-ink-mute: #6b6358;
+      --color-line: #c8beae;
+      --color-green-900: #1a3d18;
+      --color-green-700: #2d5a27;
+      --color-terra-500: #d97757;
+      --color-paper: #ffffff;
+      --color-cream: #faf6ef;
+      --font-serif: 'Shippori Mincho', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+      --font-sans: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    /* ===== Reset ===== */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--color-ink);
+      background: var(--color-cream);
+      line-height: 1.6;
+      padding: 24px;
+      font-size: 13px;
+    }
+
+    /* ===== 用紙 ===== */
+    .sheet {
+      max-width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      background: var(--color-paper);
+      padding: 18mm 18mm 14mm;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    /* ===== ヘッダー ===== */
+    .form-header {
+      border-bottom: 2px solid var(--color-green-900);
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .form-header__org {
+      font-family: var(--font-serif);
+      font-size: 14px;
+      color: var(--color-green-900);
+      font-weight: 500;
+    }
+    .form-header__title {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--color-green-900);
+      letter-spacing: 0.06em;
+    }
+    .form-header__date {
+      font-size: 12px;
+      color: var(--color-ink-mute);
+      white-space: nowrap;
+    }
+    .form-header__date span {
+      display: inline-block;
+      min-width: 2.4em;
+      border-bottom: 1px solid var(--color-ink);
+      margin: 0 0.2em;
+      text-align: center;
+    }
+
+    /* ===== セクション ===== */
+    .sec { margin-bottom: 12px; }
+    .sec__title {
+      font-family: var(--font-serif);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-green-900);
+      border-left: 3px solid var(--color-terra-500);
+      padding-left: 8px;
+      margin-bottom: 6px;
+    }
+
+    /* ===== チェックボックス（会員区分） ===== */
+    .types {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+    .type {
+      border: 1px solid var(--color-line);
+      padding: 6px 10px;
+      border-radius: 4px;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .type__check {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 1.5px solid var(--color-ink);
+      vertical-align: middle;
+    }
+    .type__label {
+      font-weight: 500;
+      flex: 1;
+    }
+    .type__fee {
+      color: var(--color-ink-mute);
+      font-size: 11px;
+    }
+
+    /* ===== テーブル（申込者情報） ===== */
+    .info {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .info th,
+    .info td {
+      border: 1px solid var(--color-line);
+      padding: 7px 10px;
+      vertical-align: middle;
+      font-size: 12px;
+    }
+    .info th {
+      background: var(--color-cream);
+      font-weight: 500;
+      width: 22%;
+      text-align: left;
+      color: var(--color-green-900);
+    }
+    .info td {
+      min-height: 28px;
+      height: 28px;
+    }
+    .info td.tall {
+      height: 36px;
+    }
+    .info .inline-cells {
+      display: flex;
+      gap: 0;
+      margin: -7px -10px;
+    }
+    .info .inline-cells > div {
+      flex: 1;
+      padding: 7px 10px;
+    }
+    .info .inline-cells > div + div {
+      border-left: 1px solid var(--color-line);
+    }
+    .info .sub {
+      color: var(--color-ink-mute);
+      font-size: 11px;
+      font-weight: 400;
+      margin-left: 0.4em;
+    }
+
+    /* ===== 自由記述 ===== */
+    .freebox {
+      border: 1px solid var(--color-line);
+      min-height: 38px;
+      padding: 6px 10px;
+      border-radius: 4px;
+    }
+
+    /* ===== 同意・署名 ===== */
+    .consent {
+      background: var(--color-cream);
+      border: 1px solid var(--color-line);
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+    .consent strong {
+      color: var(--color-green-900);
+    }
+    .signature {
+      display: flex;
+      gap: 16px;
+      align-items: flex-end;
+      margin-top: 10px;
+    }
+    .signature__line {
+      flex: 1;
+      border-bottom: 1px solid var(--color-ink);
+      height: 28px;
+    }
+    .signature__label {
+      font-size: 12px;
+      color: var(--color-ink-mute);
+    }
+
+    /* ===== 事務局欄 ===== */
+    .office {
+      margin-top: 12px;
+      padding: 8px 10px;
+      border: 1px dashed var(--color-ink-mute);
+      border-radius: 4px;
+      display: grid;
+      grid-template-columns: auto 1fr auto 1fr auto 1fr;
+      gap: 6px 12px;
+      font-size: 11px;
+      color: var(--color-ink-mute);
+      align-items: center;
+    }
+    .office__label {
+      color: var(--color-green-900);
+      font-weight: 500;
+    }
+    .office__blank {
+      border-bottom: 1px solid var(--color-ink-mute);
+      height: 16px;
+    }
+
+    /* ===== フッター ===== */
+    .form-footer {
+      margin-top: 14px;
+      padding-top: 8px;
+      border-top: 1px solid var(--color-line);
+      font-size: 11px;
+      color: var(--color-ink-mute);
+      line-height: 1.7;
+    }
+    .form-footer strong {
+      color: var(--color-green-900);
+    }
+
+    /* ===== 画面ヘルプ（印刷時は非表示） ===== */
+    .screen-help {
+      max-width: 210mm;
+      margin: 0 auto 16px;
+      padding: 12px 16px;
+      background: #fff8e6;
+      border: 1px solid #e0c97d;
+      border-radius: 6px;
+      font-size: 12px;
+      color: #6a5320;
+    }
+    .screen-help h2 {
+      font-size: 13px;
+      margin-bottom: 4px;
+      color: #6a5320;
+    }
+    .screen-help kbd {
+      background: #fff;
+      border: 1px solid #d4c5a0;
+      border-radius: 3px;
+      padding: 1px 6px;
+      font-family: monospace;
+      font-size: 11px;
+    }
+
+    /* ===== 印刷時の調整 ===== */
+    @media print {
+      body {
+        padding: 0;
+        background: #fff;
+        font-size: 11px;
+      }
+      .sheet {
+        max-width: none;
+        min-height: 0;
+        margin: 0;
+        padding: 12mm 14mm;
+        box-shadow: none;
+      }
+      .screen-help { display: none !important; }
+
+      /* 印刷時はフォント色を黒寄せに */
+      .form-header__org,
+      .form-header__title,
+      .sec__title,
+      .info th {
+        color: #1a1a1a;
+      }
+
+      @page {
+        size: A4;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 画面で開いた時だけ見える操作ヘルプ -->
+  <aside class="screen-help">
+    <h2>📋 入会申込書（印刷用）</h2>
+    印刷するには <kbd>⌘</kbd> + <kbd>P</kbd>（Mac）または <kbd>Ctrl</kbd> + <kbd>P</kbd>（Windows）。
+    「送信先」をプリンタにすれば直接印刷、「PDFとして保存」にすればPDFファイルになります。
+    A4 用紙縦向き、余白なしの設定を推奨。
+  </aside>
+
+  <article class="sheet">
+    <!-- ===== ヘッダー ===== -->
+    <header class="form-header">
+      <div>
+        <div class="form-header__org">特定非営利活動法人 nest</div>
+        <h1 class="form-header__title">入 会 申 込 書</h1>
+      </div>
+      <div class="form-header__date">
+        申込日：<span></span>年<span></span>月<span></span>日
+      </div>
+    </header>
+
+    <!-- ===== 会員区分 ===== -->
+    <!-- TODO: 会員区分と年会費の額を林代表に確認。下記は仮置き。 -->
+    <section class="sec">
+      <h2 class="sec__title">ご希望の会員区分（いずれかに ✓）</h2>
+      <div class="types">
+        <div class="type">
+          <span class="type__check" aria-hidden="true"></span>
+          <span class="type__label">正会員</span>
+          <span class="type__fee">年会費 ¥_____</span>
+        </div>
+        <div class="type">
+          <span class="type__check" aria-hidden="true"></span>
+          <span class="type__label">賛助会員（個人）</span>
+          <span class="type__fee">年会費 ¥_____</span>
+        </div>
+        <div class="type">
+          <span class="type__check" aria-hidden="true"></span>
+          <span class="type__label">賛助会員（団体）</span>
+          <span class="type__fee">年会費 ¥_____</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 申込者情報 ===== -->
+    <section class="sec">
+      <h2 class="sec__title">申込者 情報</h2>
+      <table class="info">
+        <tr>
+          <th>ふりがな</th>
+          <td colspan="3"></td>
+        </tr>
+        <tr>
+          <th>お名前<span class="sub">（団体の場合は団体名）</span></th>
+          <td colspan="3" class="tall"></td>
+        </tr>
+        <tr>
+          <th>生年月日<span class="sub">（任意）</span></th>
+          <td colspan="3">
+            <div class="inline-cells">
+              <div>　　　　年　　　月　　　日</div>
+              <div>性別（任意）：　　　　　　　　　</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td colspan="3" class="tall">〒　　　-　　　　　　　　　　　　　　　　　　　　　　　　　　　　</td>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <td>　　　-　　　　-　　　　</td>
+          <th style="width: 18%;">FAX<span class="sub">（任意）</span></th>
+          <td>　　　-　　　　-　　　　</td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td colspan="3"></td>
+        </tr>
+        <tr>
+          <th>ご職業・ご所属<span class="sub">（任意）</span></th>
+          <td colspan="3"></td>
+        </tr>
+        <tr>
+          <th>緊急連絡先<span class="sub">（任意）</span></th>
+          <td colspan="3">
+            <div class="inline-cells">
+              <div>お名前：　　　　　　　　　　　</div>
+              <div>続柄：　　　　</div>
+              <div>電話：　　　-　　　　-　　　　</div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- ===== 動機など（任意） ===== -->
+    <section class="sec">
+      <h2 class="sec__title">nest を知ったきっかけ・入会の動機<span class="sub">（任意）</span></h2>
+      <div class="freebox"></div>
+    </section>
+
+    <!-- ===== 個人情報の取り扱い同意 ===== -->
+    <!-- TODO: 文言は林代表確認、または /members/privacy ページの定義に揃える -->
+    <section class="sec">
+      <h2 class="sec__title">個人情報の取り扱いについて</h2>
+      <div class="consent">
+        ご記入いただいた個人情報は、<strong>会員管理・会報誌の送付・行事のご案内</strong>の目的にのみ使用し、ご本人の同意なく第三者に提供することはありません。なお、保管にあたっては個人情報保護法に基づき適切に管理いたします。
+        <br /><br />
+        <span class="type__check" aria-hidden="true"></span>
+        <strong>上記内容に同意します</strong>
+      </div>
+
+      <div class="signature">
+        <div class="signature__line"></div>
+        <div class="signature__label">ご署名</div>
+      </div>
+    </section>
+
+    <!-- ===== 事務局記入欄 ===== -->
+    <section class="office" aria-label="事務局記入欄">
+      <span class="office__label">事務局欄</span>
+      <span class="office__blank"></span>
+      <span class="office__label">受付日</span>
+      <span class="office__blank"></span>
+      <span class="office__label">会員番号</span>
+      <span class="office__blank"></span>
+    </section>
+
+    <!-- ===== フッター（送付先） ===== -->
+    <footer class="form-footer">
+      <strong>送付先 — 特定非営利活動法人 nest 事務局</strong><br />
+      〒803-0851 福岡県北九州市小倉北区木町3丁目6−7<br />
+      TEL / FAX：093-582-7018　／　受付：平日 8:00〜20:00<br />
+      ※ 持参・郵送・FAX のいずれでも受け付けます。ご不明な点は事務局までお問い合わせください。
+    </footer>
+  </article>
+</body>
+</html>
