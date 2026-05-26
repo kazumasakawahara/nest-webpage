@@ -1,0 +1,124 @@
+---
+import MembersLayout from '../../../layouts/MembersLayout.astro';
+import { createServerClient } from '../../../lib/supabase';
+
+export const prerender = false;
+
+const supabase = createServerClient();
+let message: string | null = null;
+
+if (Astro.request.method === 'POST') {
+  const form = await Astro.request.formData();
+  const action = String(form.get('_action') ?? '');
+
+  if (action === 'create') {
+    const title = String(form.get('title') ?? '').trim();
+    const issue = String(form.get('issue') ?? '').trim();
+    const publishedOn = String(form.get('published_on') ?? '');
+    const pdfPath = String(form.get('pdf_path') ?? '').trim();
+    const coverPath = String(form.get('cover_path') ?? '').trim() || null;
+
+    if (title && issue && publishedOn && pdfPath) {
+      const { error } = await supabase.from('newsletters').insert({
+        title, issue, published_on: publishedOn, pdf_path: pdfPath, cover_path: coverPath,
+      });
+      message = error ? `エラー：${error.message}` : '登録しました。';
+    } else {
+      message = '必須項目が足りません。';
+    }
+  } else if (action === 'toggle_visible') {
+    const id = String(form.get('id'));
+    const visible = form.get('visible') === 'true';
+    await supabase.from('newsletters').update({ visible: !visible }).eq('id', id);
+    message = '表示/非表示を切替えました。';
+  } else if (action === 'delete') {
+    const id = String(form.get('id'));
+    await supabase.from('newsletters').delete().eq('id', id);
+    message = '削除しました。';
+  }
+}
+
+const { data: list } = await supabase
+  .from('newsletters')
+  .select('id, title, issue, published_on, pdf_path, visible')
+  .order('published_on', { ascending: false });
+---
+
+<MembersLayout title="機関誌管理">
+  <section class="section">
+    <div class="container">
+      <h1 class="section__title">機関誌「巣箱」管理</h1>
+      <p class="text-soft">
+        PDF ファイルは Supabase Studio から <code>newsletters</code> バケットにアップロードし、
+        そのパス（例：<code>vol-14.pdf</code>）をここで登録してください。
+      </p>
+
+      {message && <p class="notice">{message}</p>}
+
+      <h2 class="section__title--sub">新規登録</h2>
+      <form method="POST" class="adminform">
+        <input type="hidden" name="_action" value="create" />
+        <label>タイトル<input type="text" name="title" placeholder="巣箱 vol.14" required /></label>
+        <label>号<input type="text" name="issue" placeholder="vol.14" required /></label>
+        <label>発行日<input type="date" name="published_on" required /></label>
+        <label>PDFパス（バケット内）<input type="text" name="pdf_path" placeholder="vol-14.pdf" required /></label>
+        <label>表紙パス（任意）<input type="text" name="cover_path" placeholder="vol-14-cover.jpg" /></label>
+        <button type="submit" class="btn btn--primary">登録</button>
+      </form>
+
+      <h2 class="section__title--sub">登録済み一覧</h2>
+      {(!list || list.length === 0) ? (
+        <p class="text-soft">まだ登録されていません。</p>
+      ) : (
+        <table class="admin-table">
+          <thead><tr><th>号</th><th>タイトル</th><th>発行日</th><th>表示</th><th>操作</th></tr></thead>
+          <tbody>
+            {list.map(n => (
+              <tr>
+                <td>{n.issue}</td>
+                <td>{n.title}</td>
+                <td>{new Date(n.published_on).toLocaleDateString('ja-JP')}</td>
+                <td>{n.visible ? '○' : '✗'}</td>
+                <td class="admin-table__actions">
+                  <form method="POST" class="inline-form">
+                    <input type="hidden" name="_action" value="toggle_visible" />
+                    <input type="hidden" name="id" value={n.id} />
+                    <input type="hidden" name="visible" value={String(n.visible)} />
+                    <button type="submit" class="btn btn--outline btn--sm">{n.visible ? '非表示' : '表示'}</button>
+                  </form>
+                  <form method="POST" class="inline-form" onsubmit="return confirm('完全削除しますか？');">
+                    <input type="hidden" name="_action" value="delete" />
+                    <input type="hidden" name="id" value={n.id} />
+                    <button type="submit" class="btn btn--outline btn--sm">削除</button>
+                  </form>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
+  </section>
+</MembersLayout>
+
+<style>
+  .adminform { display: grid; gap: var(--space-3); max-width: 32rem; margin-block: var(--space-3); }
+  .adminform label { display: grid; gap: var(--space-1); font-weight: 600; }
+  .adminform input {
+    font: inherit;
+    padding: var(--space-2);
+    border: 1px solid var(--color-ink-mute);
+    border-radius: var(--radius-md);
+    background: var(--color-cream);
+  }
+  .admin-table { width: 100%; border-collapse: collapse; margin-top: var(--space-3); }
+  .admin-table th, .admin-table td { padding: var(--space-2); border-bottom: 1px solid var(--color-ink-mute); text-align: left; }
+  .admin-table__actions { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+  .inline-form { display: inline; }
+  .notice {
+    padding: var(--space-2) var(--space-3);
+    background: var(--color-sand);
+    border-radius: var(--radius-md);
+    margin-block: var(--space-3);
+  }
+</style>
