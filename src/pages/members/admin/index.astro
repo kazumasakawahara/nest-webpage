@@ -1,0 +1,38 @@
+---
+import MembersLayout from '../../../layouts/MembersLayout.astro';
+import { createServerClient } from '../../../lib/supabase';
+
+export const prerender = false;
+
+const supabase = createServerClient();
+const { count: memberCount } = await supabase
+  .from('members')
+  .select('id', { count: 'exact', head: true })
+  .is('deleted_at', null);
+const { count: newsletterCount } = await supabase
+  .from('newsletters').select('id', { count: 'exact', head: true });
+const { count: meetingCount } = await supabase
+  .from('family_meetings').select('id', { count: 'exact', head: true });
+---
+
+<MembersLayout title="管理">
+  <section class="section">
+    <div class="container container--narrow">
+      <h1 class="section__title">管理画面</h1>
+      <p class="section__lead">スタッフ専用です。</p>
+
+      <ul class="admin-menu">
+        <li><a href="/members/admin/members">会員管理（{memberCount ?? 0} 名）</a></li>
+        <li><a href="/members/admin/newsletters">機関誌管理（{newsletterCount ?? 0} 号）</a></li>
+        <li><a href="/members/admin/family">家族会管理（{meetingCount ?? 0} 件）</a></li>
+        <li><a href="/members/admin/announcements">お知らせ管理</a></li>
+      </ul>
+    </div>
+  </section>
+</MembersLayout>
+
+<style>
+  .admin-menu { list-style: none; padding: 0; }
+  .admin-menu li { padding: var(--space-3); border-bottom: 1px solid var(--color-ink-mute); }
+  .admin-menu a { font-size: var(--fs-lead); }
+</style>
