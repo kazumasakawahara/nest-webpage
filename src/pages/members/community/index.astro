@@ -1,0 +1,55 @@
+---
+import MembersLayout from '../../../layouts/MembersLayout.astro';
+
+export const prerender = false;
+
+// 招待URL等の設定値は今後 settings テーブルから取れるよう Phase 2 で抽出予定。
+// Phase 1 では運用上ハードコードで十分。リリース前に河原さんが実 URL に差し替える。
+const LINE_OC_URL = 'https://line.me/ti/g2/REPLACE_ME';
+const INSTAGRAM_URL = 'https://instagram.com/kimachi_ya/';
+---
+
+<MembersLayout title="コミュニティ">
+  <section class="section">
+    <div class="container container--narrow">
+      <h1 class="section__title">コミュニティ</h1>
+
+      <article class="mcard">
+        <h2 class="mcard__title">LINE オープンチャット</h2>
+        <p>
+          家族・支援者の方々で日々のことを共有できる場として、LINE オープンチャット
+          「nest 家族の輪」をご用意しています。
+        </p>
+        <p>
+          <a href={LINE_OC_URL} class="btn btn--primary" rel="external">
+            オープンチャットに参加する
+          </a>
+        </p>
+        <h3 class="mcard__subhead">参加にあたってのお願い</h3>
+        <ul>
+          <li>個人情報（実名・住所・電話番号など）の書き込みはお控えください</li>
+          <li>運営は事務局スタッフが行います。不適切な投稿は削除する場合があります</li>
+          <li>退会される場合は、ご自身でグループから退出してください</li>
+        </ul>
+      </article>
+
+      <article class="mcard">
+        <h2 class="mcard__title">Instagram で活動を発信中</h2>
+        <p>
+          nest が運営する木町家を中心に、活動の様子を Instagram で発信しています。
+        </p>
+        <p>
+          <a href={INSTAGRAM_URL} class="btn btn--outline" rel="external">
+            @kimachi_ya をフォローする
+          </a>
+        </p>
+      </article>
+    </div>
+  </section>
+</MembersLayout>
+
+<style>
+  .mcard { background: var(--color-cream); padding: var(--space-5); border-radius: var(--radius-lg); box-shadow: var(--shadow-soft); margin-block: var(--space-4); }
+  .mcard__title { font-family: var(--font-heading); margin-top: 0; }
+  .mcard__subhead { font-family: var(--font-heading); font-size: var(--fs-h4); margin-top: var(--space-4); margin-bottom: var(--space-2); }
+</style>
