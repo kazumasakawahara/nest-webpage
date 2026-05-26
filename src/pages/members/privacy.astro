@@ -1,0 +1,61 @@
+---
+import MembersLayout from '../../layouts/MembersLayout.astro';
+
+export const prerender = false;
+---
+
+<MembersLayout title="会員ページ 個人情報の取扱い">
+  <section class="section">
+    <div class="container container--narrow">
+      <h1 class="section__title">会員ページにおける個人情報の取扱い</h1>
+
+      <h2 class="section__title--sub">1. 収集する情報</h2>
+      <ul>
+        <li>氏名（任意）</li>
+        <li>メールアドレス</li>
+        <li>会員区分（全会員 / 家族会員）</li>
+        <li>ログイン履歴・PDF ダウンロード履歴（最大90日）</li>
+      </ul>
+
+      <h2 class="section__title--sub">2. 利用目的</h2>
+      <ul>
+        <li>会員向けコンテンツの配信</li>
+        <li>本人確認(ログイン)</li>
+        <li>サービス改善のための統計分析</li>
+      </ul>
+
+      <h2 class="section__title--sub">3. 保存場所</h2>
+      <p>
+        Supabase 東京リージョン（日本国内）に保存します。
+        会員情報の越境移転（海外サーバへの送信）は行いません。
+      </p>
+
+      <h2 class="section__title--sub">4. 第三者提供</h2>
+      <p>原則として行いません。法令に基づく場合を除き、ご本人の同意なく第三者に提供することはありません。</p>
+
+      <h2 class="section__title--sub">5. 削除・訂正のご依頼</h2>
+      <p>
+        ご自身の情報の削除・訂正を希望される場合は、事務局までご連絡ください。
+      </p>
+      <address class="privacy-address">
+        NPO法人 nest 事務局<br />
+        〒803-0851 福岡県北九州市小倉北区木町3丁目6−7<br />
+        TEL: 093-582-7018（平日 8:00〜20:00）
+      </address>
+
+      <h2 class="section__title--sub">6. ポリシーの変更</h2>
+      <p>本ポリシーは予告なく改定する場合があります。重要な変更は会員ページのお知らせで通知します。</p>
+    </div>
+  </section>
+</MembersLayout>
+
+<style>
+  .privacy-address {
+    font-style: normal;
+    background: var(--color-cream);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    margin-block: var(--space-3);
+    line-height: var(--lh-normal);
+  }
+</style>
