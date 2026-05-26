@@ -30,8 +30,10 @@
   --font-serif: 'Shippori Mincho B1', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
   --font-sans:  'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic', sans-serif;
   --font-mono:  'Inter', 'Helvetica Neue', sans-serif;
+  --font-heading: var(--font-serif); /* 見出し用の意味的エイリアス */
 
   --fs-eyebrow: 12px;
+  --fs-small:   13px;
   --fs-body:    16px;
   --fs-lead:    18px;
   --fs-h4:      18px;
