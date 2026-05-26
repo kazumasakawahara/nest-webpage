@@ -1,0 +1,71 @@
+---
+import MembersLayout from '../../../layouts/MembersLayout.astro';
+import { createServerClient } from '../../../lib/supabase';
+
+export const prerender = false;
+
+const supabase = createServerClient();
+
+const { data: upcoming } = await supabase
+  .from('family_meetings')
+  .select('id, held_on, title, location, agenda')
+  .eq('is_upcoming', true)
+  .eq('visible', true)
+  .maybeSingle();
+
+const { data: past } = await supabase
+  .from('family_meetings')
+  .select('id, held_on, title, minutes_pdf_path')
+  .eq('is_upcoming', false)
+  .eq('visible', true)
+  .order('held_on', { ascending: false });
+---
+
+<MembersLayout title="家族会">
+  <section class="section">
+    <div class="container container--narrow">
+      <h1 class="section__title">家族会</h1>
+
+      {upcoming && (
+        <article class="mcard">
+          <h2 class="mcard__title">次回のご案内</h2>
+          <p><strong>{upcoming.title}</strong></p>
+          <p>
+            日時：{new Date(upcoming.held_on).toLocaleDateString('ja-JP')}<br />
+            {upcoming.location && <>会場：{upcoming.location}<br /></>}
+          </p>
+          {upcoming.agenda && <p class="mcard__body">{upcoming.agenda}</p>}
+        </article>
+      )}
+
+      {!upcoming && (
+        <p class="text-soft">次回の家族会は未定です。決まり次第お知らせします。</p>
+      )}
+
+      <h2 class="section__title section__title--sub">過去の議事録</h2>
+      {(!past || past.length === 0) ? (
+        <p class="text-soft">議事録はまだありません。</p>
+      ) : (
+        <ul class="minutes">
+          {past.map(m => (
+            <li class="minutes__item">
+              <span class="minutes__date">{new Date(m.held_on).toLocaleDateString('ja-JP')}</span>
+              <span class="minutes__title">{m.title}</span>
+              {m.minutes_pdf_path && (
+                <a href={`/members/family/minutes/${m.id}/download`} class="btn btn--outline btn--sm">議事録PDF</a>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </section>
+</MembersLayout>
+
+<style>
+  .mcard { background: var(--color-cream); padding: var(--space-5); border-radius: var(--radius-lg); box-shadow: var(--shadow-soft); margin-block: var(--space-4); }
+  .mcard__title { font-family: var(--font-heading); margin-top: 0; }
+  .minutes { list-style: none; padding: 0; }
+  .minutes__item { display: grid; grid-template-columns: 8em 1fr auto; gap: var(--space-3); padding: var(--space-3); border-bottom: 1px solid var(--color-ink-mute); align-items: center; }
+  .minutes__date { color: var(--color-ink-mute); font-variant-numeric: tabular-nums; }
+</style>
