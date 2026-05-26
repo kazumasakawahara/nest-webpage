@@ -1,0 +1,61 @@
+---
+import MembersLayout from '../../../layouts/MembersLayout.astro';
+
+export const prerender = false;
+---
+
+<MembersLayout title="自分ノート">
+  <section class="section">
+    <div class="container container--narrow">
+      <h1 class="section__title">自分ノート</h1>
+      <p class="section__lead">
+        「親なき後」を見据えて、ご本人の生活情報・希望・支援者ネットワークを書き残しておく
+        ためのノートです。
+      </p>
+
+      <article class="mcard">
+        <h2 class="mcard__title">なぜ書くのか</h2>
+        <p>
+          ご家族や支援者が突然関わるようになったとき、本人のことを知っている人がいない／少ないと、
+          本人が安心して生活を続けることが難しくなります。
+          書いておくことで、本人の意思と日常を「言葉」で残し、誰かに引き継げる状態にすることができます。
+        </p>
+      </article>
+
+      <article class="mcard">
+        <h2 class="mcard__title">何を書くのか（例）</h2>
+        <ul>
+          <li>医療情報（病歴・服薬・主治医・アレルギー）</li>
+          <li>生活情報（食事の好み・苦手なこと・1日のルーティン）</li>
+          <li>緊急連絡先・支援者ネットワーク</li>
+          <li>「親なきあと」の希望（住まい・仕事・お金）</li>
+        </ul>
+      </article>
+
+      <article class="mcard">
+        <h2 class="mcard__title">記入用 PDF テンプレート</h2>
+        <p>下記から印刷用のテンプレートをダウンロードできます。</p>
+        <p>
+          {/* TODO: Phase 1 リリース時に河原さん／林代表用意の PDF を配置 */}
+          <a href="#" class="btn btn--primary">PDFテンプレートをダウンロード（準備中）</a>
+        </p>
+        <p class="text-soft">
+          ※ Phase 2 では、このノートを Web 上で記入・印刷できるツールを実装予定です。
+        </p>
+      </article>
+
+      <article class="mcard">
+        <h2 class="mcard__title">参考リンク</h2>
+        <ul>
+          <li><a href="https://www.mhlw.go.jp/" rel="external">厚生労働省「私のノート」</a></li>
+          <li><a href="https://zen-iku.jp/" rel="external">全国手をつなぐ育成会連合会</a></li>
+        </ul>
+      </article>
+    </div>
+  </section>
+</MembersLayout>
+
+<style>
+  .mcard { background: var(--color-cream); padding: var(--space-5); border-radius: var(--radius-lg); box-shadow: var(--shadow-soft); margin-block: var(--space-4); }
+  .mcard__title { font-family: var(--font-heading); margin-top: 0; }
+</style>
