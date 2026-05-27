@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>計画書：入会申込 Google Form 連携 — NPO法人 nest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --color-ink: #2a2620;
+      --color-ink-mute: #6b6358;
+      --color-line: #c8beae;
+      --color-green-900: #1a3d18;
+      --color-green-700: #2d5a27;
+      --color-green-100: #e6efd8;
+      --color-terra-500: #d97757;
+      --color-terra-100: #f5d5c4;
+      --color-paper: #ffffff;
+      --color-cream: #faf6ef;
+      --color-sand: #f0ead8;
+      --font-serif: 'Shippori Mincho', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+      --font-sans: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+      --color-rec: #2d5a27;
+      --color-warn: #b8860b;
+      --color-bad: #8a2a1a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--color-ink);
+      background: var(--color-cream);
+      line-height: 1.8;
+      padding: 32px 24px 64px;
+      font-size: 14px;
+      word-break: keep-all;
+      line-break: strict;
+      overflow-wrap: break-word;
+    }
+
+    /* ===== Layout ===== */
+    .doc {
+      max-width: 860px;
+      margin: 0 auto;
+      background: var(--color-paper);
+      padding: 48px 56px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      border-radius: 8px;
+    }
+
+    /* ===== Header ===== */
+    .doc-header {
+      border-bottom: 3px solid var(--color-green-900);
+      padding-bottom: 18px;
+      margin-bottom: 32px;
+    }
+    .doc-eyebrow {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      color: var(--color-terra-500);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .doc-title {
+      font-family: var(--font-serif);
+      font-size: 30px;
+      font-weight: 600;
+      color: var(--color-green-900);
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .doc-meta {
+      font-size: 12px;
+      color: var(--color-ink-mute);
+    }
+
+    /* ===== TOC ===== */
+    .toc {
+      background: var(--color-sand);
+      border-left: 4px solid var(--color-green-700);
+      padding: 16px 20px;
+      margin-bottom: 32px;
+      border-radius: 0 6px 6px 0;
+    }
+    .toc__title {
+      font-family: var(--font-serif);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-green-900);
+      margin-bottom: 8px;
+    }
+    .toc ol { padding-left: 24px; font-size: 13px; }
+    .toc li { margin: 4px 0; }
+    .toc a { color: var(--color-ink); text-decoration: none; }
+    .toc a:hover { color: var(--color-terra-500); }
+
+    /* ===== Section ===== */
+    section { margin-bottom: 40px; }
+
+    .sec-title {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--color-green-900);
+      border-bottom: 2px solid var(--color-terra-500);
+      padding-bottom: 6px;
+      margin-bottom: 18px;
+    }
+    .sec-title__num {
+      color: var(--color-terra-500);
+      margin-right: 8px;
+    }
+
+    .sub-title {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--color-green-700);
+      margin: 18px 0 8px;
+    }
+
+    p { margin-bottom: 12px; }
+
+    /* ===== Lists ===== */
+    ul, ol {
+      padding-left: 24px;
+      margin-bottom: 12px;
+    }
+    li { margin: 4px 0; }
+
+    /* ===== Code & inline notes ===== */
+    code {
+      background: var(--color-cream);
+      border: 1px solid var(--color-line);
+      border-radius: 3px;
+      padding: 1px 5px;
+      font-family: 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 12px;
+      color: var(--color-green-900);
+    }
+    pre {
+      background: var(--color-cream);
+      border: 1px solid var(--color-line);
+      border-radius: 6px;
+      padding: 12px 16px;
+      overflow-x: auto;
+      font-family: 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 12px;
+      line-height: 1.6;
+      margin: 12px 0;
+    }
+
+    /* ===== Tables ===== */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 13px;
+    }
+    th, td {
+      border: 1px solid var(--color-line);
+      padding: 8px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: var(--color-cream);
+      color: var(--color-green-900);
+      font-weight: 600;
+      font-family: var(--font-serif);
+    }
+    td.center, th.center { text-align: center; }
+    td.right, th.right { text-align: right; }
+
+    /* ===== Comparison cards ===== */
+    .options-grid {
+      display: grid;
+      gap: 16px;
+      margin: 16px 0;
+    }
+    .options-grid--3 { grid-template-columns: repeat(3, 1fr); }
+    .options-grid--2 { grid-template-columns: repeat(2, 1fr); }
+
+    .opt-card {
+      border: 1px solid var(--color-line);
+      border-radius: 8px;
+      padding: 16px;
+      background: var(--color-paper);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .opt-card--recommended {
+      border-color: var(--color-green-700);
+      border-width: 2px;
+      background: var(--color-green-100);
+    }
+    .opt-card__badge {
+      display: inline-block;
+      align-self: flex-start;
+      background: var(--color-green-700);
+      color: var(--color-paper);
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      letter-spacing: 0.1em;
+    }
+    .opt-card__title {
+      font-family: var(--font-serif);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--color-green-900);
+    }
+    .opt-card__summary {
+      font-size: 13px;
+      color: var(--color-ink-mute);
+    }
+    .opt-card__pros, .opt-card__cons {
+      font-size: 12px;
+      line-height: 1.7;
+    }
+    .opt-card__pros strong { color: var(--color-rec); }
+    .opt-card__cons strong { color: var(--color-bad); }
+
+    /* ===== Callouts ===== */
+    .callout {
+      border-left: 4px solid var(--color-terra-500);
+      background: var(--color-terra-100);
+      padding: 12px 16px;
+      margin: 16px 0;
+      border-radius: 0 6px 6px 0;
+      font-size: 13px;
+    }
+    .callout--warn {
+      border-left-color: var(--color-warn);
+      background: #fff8e6;
+    }
+    .callout--rec {
+      border-left-color: var(--color-rec);
+      background: var(--color-green-100);
+    }
+    .callout strong {
+      color: var(--color-green-900);
+    }
+
+    /* ===== Field list (for Form spec) ===== */
+    .field-list {
+      list-style: none;
+      padding: 0;
+    }
+    .field-list li {
+      border-bottom: 1px dashed var(--color-line);
+      padding: 8px 0;
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 0.6fr;
+      gap: 12px;
+      font-size: 13px;
+      align-items: baseline;
+    }
+    .field-list li:first-child {
+      font-weight: 600;
+      color: var(--color-green-900);
+      border-bottom-style: solid;
+      border-bottom-color: var(--color-green-700);
+    }
+    .field-list .type-tag {
+      font-size: 10px;
+      padding: 2px 6px;
+      background: var(--color-cream);
+      border-radius: 3px;
+      color: var(--color-ink-mute);
+      display: inline-block;
+    }
+    .field-list .req {
+      color: var(--color-bad);
+      font-weight: 600;
+      font-size: 12px;
+    }
+    .field-list .opt {
+      color: var(--color-ink-mute);
+      font-size: 12px;
+    }
+
+    /* ===== Checklist ===== */
+    .checklist { list-style: none; padding-left: 0; }
+    .checklist li {
+      padding: 6px 0 6px 28px;
+      position: relative;
+    }
+    .checklist li::before {
+      content: '☐';
+      position: absolute;
+      left: 0;
+      top: 4px;
+      font-size: 16px;
+      color: var(--color-green-700);
+    }
+    .checklist li.done::before {
+      content: '☑';
+      color: var(--color-green-700);
+    }
+
+    /* ===== Decision points ===== */
+    .decision {
+      background: var(--color-sand);
+      border: 1px solid var(--color-green-700);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin: 16px 0;
+    }
+    .decision__title {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      color: var(--color-green-900);
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+    .decision__title::before { content: '🤔 '; }
+
+    /* ===== Print ===== */
+    @media print {
+      body { padding: 0; background: #fff; font-size: 11px; }
+      .doc {
+        max-width: none;
+        margin: 0;
+        padding: 16mm 18mm;
+        box-shadow: none;
+        border-radius: 0;
+      }
+      section { page-break-inside: avoid; }
+      .opt-card { page-break-inside: avoid; }
+      .toc { page-break-after: always; }
+      @page { size: A4; margin: 0; }
+    }
+
+    @media (max-width: 720px) {
+      .doc { padding: 24px 20px; }
+      .options-grid--3, .options-grid--2 { grid-template-columns: 1fr; }
+      .field-list li { grid-template-columns: 1fr; gap: 4px; }
+    }
+  </style>
+</head>
+<body>
+  <article class="doc">
+
+    <!-- ===== ヘッダー ===== -->
+    <header class="doc-header">
+      <div class="doc-eyebrow">Planning Document</div>
+      <h1 class="doc-title">入会申込を Google Form から受け付ける<br />機能の計画書</h1>
+      <div class="doc-meta">
+        作成日：2026-05-27 ／ 対象：NPO法人 nest 公式サイト ／ ステータス：<strong>叩き台（要 林代表確認）</strong>
+      </div>
+    </header>
+
+    <!-- ===== TOC ===== -->
+    <nav class="toc" aria-label="目次">
+      <div class="toc__title">目次</div>
+      <ol>
+        <li><a href="#sec-1">何をつくるか（概要）</a></li>
+        <li><a href="#sec-2">全体アーキテクチャの3レベル</a></li>
+        <li><a href="#sec-3">Google Form のフィールド仕様案</a></li>
+        <li><a href="#sec-4">QR コードの生成・配置</a></li>
+        <li><a href="#sec-5">Spreadsheet 設計と運用ワークフロー</a></li>
+        <li><a href="#sec-6">個人情報保護の観点（HTML 申込書との比較）</a></li>
+        <li><a href="#sec-7">/join/ ページの動線設計</a></li>
+        <li><a href="#sec-8">実装ステップ（チェックリスト）</a></li>
+        <li><a href="#sec-9">林代表に確認したいこと</a></li>
+      </ol>
+    </nav>
+
+    <!-- ===== 1. 概要 ===== -->
+    <section id="sec-1">
+      <h2 class="sec-title"><span class="sec-title__num">1.</span>何をつくるか（概要）</h2>
+
+      <p>現状、入会申込は <strong>HTML 形式の申込書を印刷 → 手書き → 郵送/持参/FAX</strong> という紙ベースの一択です。これに <strong>Google Form 経由の電子申込ルート</strong>を追加し、QR コードでスマホから直接アクセスできるようにします。</p>
+
+      <p>申込内容は <strong>Google Spreadsheet</strong> に自動集約され、事務局がブラウザだけで管理できる状態を目指します。</p>
+
+      <div class="sub-title">期待される効果</div>
+      <ul>
+        <li>スマホ世代（30〜50代の家族層）が申込しやすくなる</li>
+        <li>事務局の手入力作業が減る（Spreadsheet に最初からデータが揃う）</li>
+        <li>申込件数・属性のデータが集計可能になる（広報の振り返りに使える）</li>
+      </ul>
+
+      <div class="sub-title">注意点</div>
+      <ul>
+        <li><strong>紙ルートも残す</strong>：高齢者・スマホ非保有者にも届けるため</li>
+        <li><strong>個人情報の越境</strong>：Google Forms = 米国サーバ（後述）</li>
+      </ul>
+    </section>
+
+    <!-- ===== 2. アーキテクチャ ===== -->
+    <section id="sec-2">
+      <h2 class="sec-title"><span class="sec-title__num">2.</span>全体アーキテクチャの3レベル</h2>
+
+      <p>自動化の度合いで3パターン用意できます。手間と機能のトレードオフです。</p>
+
+      <div class="options-grid options-grid--3">
+
+        <div class="opt-card opt-card--recommended">
+          <span class="opt-card__badge">推奨</span>
+          <div class="opt-card__title">Level 1<br />Form + Sheet 単独</div>
+          <div class="opt-card__summary">Google Form の標準機能だけで完結。最小工数。</div>
+          <div class="opt-card__pros"><strong>○</strong> 30分でセットアップ可<br /><strong>○</strong> ノーコード<br /><strong>○</strong> 月額0円<br /><strong>○</strong> 林代表/河原さんで保守できる</div>
+          <div class="opt-card__cons"><strong>×</strong> nest 会員DBへの登録は手動コピペ<br /><strong>×</strong> 確認メール送信は手動 or Form の標準機能のみ</div>
+        </div>
+
+        <div class="opt-card">
+          <div class="opt-card__title">Level 2<br />+ Apps Script 半自動</div>
+          <div class="opt-card__summary">Google Apps Script で通知・ステータス管理を自動化。</div>
+          <div class="opt-card__pros"><strong>○</strong> 受付メール自動送信（事務局＆申込者）<br /><strong>○</strong> ステータス列を Spreadsheet 側で管理<br /><strong>○</strong> 月額0円<br /><strong>○</strong> JS の基本知識で書ける（20〜50行）</div>
+          <div class="opt-card__cons"><strong>×</strong> Apps Script の保守が必要<br /><strong>×</strong> nest 会員DBへの登録は依然手動</div>
+        </div>
+
+        <div class="opt-card">
+          <div class="opt-card__title">Level 3<br />Supabase 自動連携</div>
+          <div class="opt-card__summary">Form → Apps Script → Supabase API で会員自動登録。</div>
+          <div class="opt-card__pros"><strong>○</strong> 完全自動化、事務局の作業ほぼゼロ<br /><strong>○</strong> ようこそメール（Resend）も自動</div>
+          <div class="opt-card__cons"><strong>×</strong> 会費納付確認の手動判定が依然残る<br /><strong>×</strong> エラーハンドリングが複雑<br /><strong>×</strong> Apps Script に Supabase の secret_key を持たせる必要あり<br /><strong>×</strong> Phase 2 マターのスコープ</div>
+        </div>
+
+      </div>
+
+      <div class="callout callout--rec">
+        <strong>推奨：Level 1 で開始し、運用が定着したら Level 2 に格上げ</strong>。Level 3 は Phase 2 で議論。<br />
+        Level 1 でも「事務局が新規申込を見落とす」リスクは Google Form 標準の「回答時にメール通知」機能で十分カバーできます。
+      </div>
+    </section>
+
+    <!-- ===== 3. フォーム仕様 ===== -->
+    <section id="sec-3">
+      <h2 class="sec-title"><span class="sec-title__num">3.</span>Google Form のフィールド仕様案</h2>
+
+      <p>HTML 紙申込書の項目と整合させ、Google Form の機能（選択肢、必須/任意、条件分岐）を活用します。</p>
+
+      <ul class="field-list">
+        <li><span>項目名</span><span>フォーム部品</span><span>必須/任意</span></li>
+        <li><span>会員区分</span><span><span class="type-tag">ラジオ</span> 正会員 / 賛助会員（個人）/ 賛助会員（団体）</span><span class="req">必須</span></li>
+        <li><span>お名前（団体名）</span><span><span class="type-tag">短文</span></span><span class="req">必須</span></li>
+        <li><span>お名前（ふりがな）</span><span><span class="type-tag">短文</span></span><span class="req">必須</span></li>
+        <li><span>メールアドレス</span><span><span class="type-tag">メール</span> 自動バリデーション</span><span class="req">必須</span></li>
+        <li><span>電話番号</span><span><span class="type-tag">短文</span> 正規表現バリデーション可</span><span class="req">必須</span></li>
+        <li><span>郵便番号</span><span><span class="type-tag">短文</span></span><span class="req">必須</span></li>
+        <li><span>住所</span><span><span class="type-tag">短文</span></span><span class="req">必須</span></li>
+        <li><span>生年月日</span><span><span class="type-tag">日付</span></span><span class="opt">任意</span></li>
+        <li><span>ご職業・ご所属</span><span><span class="type-tag">短文</span></span><span class="opt">任意</span></li>
+        <li><span>nest を知ったきっかけ</span><span><span class="type-tag">複数選択</span> Webサイト / 知人紹介 / イベント / SNS / その他</span><span class="opt">任意</span></li>
+        <li><span>入会の動機・nest への期待</span><span><span class="type-tag">長文</span></span><span class="opt">任意</span></li>
+        <li><span>ボランティア参加意向</span><span><span class="type-tag">ラジオ</span> 希望する / 応相談 / 希望しない</span><span class="opt">任意</span></li>
+        <li><span>緊急連絡先（任意）</span><span><span class="type-tag">短文</span> 氏名・続柄・電話</span><span class="opt">任意</span></li>
+        <li><span>個人情報取り扱いの同意</span><span><span class="type-tag">チェック</span> 同意する</span><span class="req">必須</span></li>
+        <li><span>その他のご要望・質問</span><span><span class="type-tag">長文</span></span><span class="opt">任意</span></li>
+      </ul>
+
+      <div class="callout">
+        Google Form の「<strong>セクション分岐</strong>」機能で、賛助会員（団体）を選択した場合のみ「団体担当者名」「団体住所」を表示する、といった出し分けも可能です。Level 1 では使わず、シンプルに1ページで揃えるのが推奨。
+      </div>
+    </section>
+
+    <!-- ===== 4. QR コード ===== -->
+    <section id="sec-4">
+      <h2 class="sec-title"><span class="sec-title__num">4.</span>QR コードの生成・配置</h2>
+
+      <div class="sub-title">4-1. 生成方法（3つの候補）</div>
+
+      <div class="options-grid options-grid--3">
+        <div class="opt-card opt-card--recommended">
+          <span class="opt-card__badge">推奨</span>
+          <div class="opt-card__title">A. 無料ツールで PNG 生成</div>
+          <div class="opt-card__summary">Google Chart API や qr-code-generator.com で 1分でPNG生成。</div>
+          <div class="opt-card__pros"><strong>○</strong> 最簡単、依存ゼロ<br /><strong>○</strong> Form URL は変わらないので一度作れば終わり<br /><strong>○</strong> 印刷物にも流用可</div>
+          <div class="opt-card__cons"><strong>×</strong> Form URL を変更したら再生成必要</div>
+        </div>
+
+        <div class="opt-card">
+          <div class="opt-card__title">B. ビルド時 SVG 生成</div>
+          <div class="opt-card__summary">qrcode npm パッケージで build 時に自動生成。</div>
+          <div class="opt-card__pros"><strong>○</strong> URL を環境変数で管理できる<br /><strong>○</strong> SVG なので印刷時もシャープ</div>
+          <div class="opt-card__cons"><strong>×</strong> ビルドパイプライン複雑化<br /><strong>×</strong> Phase 1 のスコープ外</div>
+        </div>
+
+        <div class="opt-card">
+          <div class="opt-card__title">C. ブランド入り QR</div>
+          <div class="opt-card__summary">中央に nest ロゴ、テラコッタ色を使った装飾 QR。</div>
+          <div class="opt-card__pros"><strong>○</strong> ブランド統一感<br /><strong>○</strong> 印刷物にも映える</div>
+          <div class="opt-card__cons"><strong>×</strong> qr-code-monkey.com 等で手動デザイン<br /><strong>×</strong> 装飾しすぎるとスキャン失敗率↑（要テスト）</div>
+        </div>
+      </div>
+
+      <div class="callout callout--rec">
+        <strong>推奨：A で開始 → 余裕があれば C にアップグレード</strong>。<br />
+        生成済み PNG は <code>public/images/qr/membership-form.png</code> に配置し、<code>/join/</code> ページに <code>&lt;img&gt;</code> で表示します。
+      </div>
+
+      <div class="sub-title">4-2. 推奨サイズ・配置</div>
+
+      <table>
+        <tr><th>用途</th><th>サイズ</th><th>備考</th></tr>
+        <tr><td>Web ページ（/join/）</td><td>200×200 px</td><td>retina 用に 400×400 PNG を 200×200 表示</td></tr>
+        <tr><td>印刷物（チラシ等）</td><td>2cm 角以上</td><td>解像度 300dpi 推奨</td></tr>
+        <tr><td>会員カード裏面（将来）</td><td>1.5cm 角</td><td>余白（quiet zone）4モジュール必要</td></tr>
+      </table>
+
+      <div class="sub-title">4-3. 補足：URL 短縮の検討</div>
+
+      <p>Google Form の URL は長い（例：<code>https://docs.google.com/forms/d/e/1FAIpQLSc.../viewform</code>）ため、QR コードのデータ密度が高くなり、印刷時に読み取りにくくなる可能性があります。</p>
+      <p>選択肢：</p>
+      <ul>
+        <li><strong>そのまま使う</strong>：QR は問題なくスキャン可。URL コピペで共有も可</li>
+        <li><strong>独自ドメインで短縮 URL</strong>：例 <code>nponest.org/apply</code> → Form にリダイレクト。<code>/join/</code> ページ内に短縮表記、QR は独自ドメイン URL を埋め込み。Cloudflare Pages の Redirect ルールで実装可能</li>
+        <li><strong>bit.ly 等の短縮サービス</strong>：依存サービス追加のため非推奨</li>
+      </ul>
+    </section>
+
+    <!-- ===== 5. Spreadsheet & ワークフロー ===== -->
+    <section id="sec-5">
+      <h2 class="sec-title"><span class="sec-title__num">5.</span>Spreadsheet 設計と運用ワークフロー</h2>
+
+      <div class="sub-title">5-1. Spreadsheet 列構成</div>
+
+      <p>Google Form と Spreadsheet を連携すると、Form の質問列が自動でできます。それに <strong>事務局管理用の追加列</strong> を手動で加えます。</p>
+
+      <table>
+        <tr><th>列名</th><th>源泉</th><th>用途</th></tr>
+        <tr><td>タイムスタンプ</td><td class="center">自動</td><td>申込日時</td></tr>
+        <tr><td>各質問項目（§3 のフィールド）</td><td class="center">自動</td><td>申込内容</td></tr>
+        <tr><td>受付状況</td><td class="center">手動</td><td>未対応 / 確認中 / 完了 のドロップダウン</td></tr>
+        <tr><td>会費確認</td><td class="center">手動</td><td>未納 / 入金確認済 / 不要</td></tr>
+        <tr><td>nest 会員登録日</td><td class="center">手動</td><td>管理画面で登録した日</td></tr>
+        <tr><td>会員番号</td><td class="center">手動</td><td>登録時に発番</td></tr>
+        <tr><td>事務局メモ</td><td class="center">手動</td><td>備考</td></tr>
+      </table>
+
+      <div class="sub-title">5-2. ワークフロー（Level 1 想定）</div>
+
+      <pre>┌─────────────────┐
+│ 申込者がフォーム入力 │
+└────────┬────────┘
+         ▼
+┌─────────────────┐
+│ 自動：Spreadsheet 追加 │
+│ + 事務局メール通知    │
+└────────┬────────┘
+         ▼
+┌─────────────────┐
+│ 事務局：内容確認     │
+│ → 受付状況を「確認中」│
+└────────┬────────┘
+         ▼
+┌─────────────────┐
+│ 事務局：会費納付の案内 │
+│ → 入金確認            │
+└────────┬────────┘
+         ▼
+┌─────────────────┐
+│ 事務局：管理画面     │
+│ /members/admin/...   │
+│ で会員追加           │
+│ → 「ようこそ」メール │
+└────────┬────────┘
+         ▼
+┌─────────────────┐
+│ Spreadsheet 「完了」│
+└─────────────────┘</pre>
+
+      <div class="callout">
+        <strong>会費納付の方法</strong>については別途林代表に確認が必要（銀行振込 / 郵便振替 / 現金持参 / オンライン決済の有無）。Form のサンクスメッセージで案内する文言が決まる。
+      </div>
+
+      <div class="sub-title">5-3. メール通知（Level 1 で利用可能な機能）</div>
+
+      <ul>
+        <li><strong>事務局向け</strong>：Form 編集画面 → 「回答」タブ → ⋮ メニュー → 「新しい回答についてのメール通知を受け取る」</li>
+        <li><strong>申込者向け</strong>：Form 編集画面 → 設定 → 「回答のコピーを送信」を有効化。申込者は自分の入力内容を控えとして受け取れる</li>
+      </ul>
+
+      <p>Level 2 にアップグレードすれば、文面のカスタマイズ・ステータス変更時の自動メール送信などが可能になります。</p>
+    </section>
+
+    <!-- ===== 6. 個人情報保護 ===== -->
+    <section id="sec-6">
+      <h2 class="sec-title"><span class="sec-title__num">6.</span>個人情報保護の観点</h2>
+
+      <p>HTML 申込書（紙）と Google Form（電子）では、個人情報の流れが大きく異なります。</p>
+
+      <table>
+        <tr>
+          <th></th>
+          <th>HTML 申込書（紙）</th>
+          <th>Google Form</th>
+        </tr>
+        <tr>
+          <td>データの流れ</td>
+          <td>本人 → 紙 → 事務局</td>
+          <td>本人 → Google サーバ（米国）→ Spreadsheet</td>
+        </tr>
+        <tr>
+          <td>越境移転</td>
+          <td>なし</td>
+          <td><strong>あり</strong>（米国）</td>
+        </tr>
+        <tr>
+          <td>本人同意</td>
+          <td>申込書面の同意欄</td>
+          <td><strong>Form 内に明示的な同意項目が必須</strong></td>
+        </tr>
+        <tr>
+          <td>同意取り消し対応</td>
+          <td>紙の破棄</td>
+          <td>Spreadsheet 行の削除 + Google アカウント側からの削除依頼</td>
+        </tr>
+        <tr>
+          <td>セキュリティ</td>
+          <td>物理保管（金庫等）</td>
+          <td>Google のセキュリティ + 事務局アカウントの2段階認証必須</td>
+        </tr>
+      </table>
+
+      <div class="callout callout--warn">
+        <strong>個情法上の対応</strong>：<br />
+        Form の最初か最後に、「ご記入いただく個人情報は <strong>Google 社（米国）のサーバを経由します</strong>。同意の上ご入力ください」という記載＋同意チェックを必須に。<br />
+        現行の <code>/members/privacy</code> ページの方針（Supabase 東京リージョン、越境移転なし）と一貫しないので、Form の利用にあたって <strong>個人情報取扱い説明文の追記</strong>が必要です。
+      </div>
+
+      <div class="sub-title">推奨される同意文（叩き台）</div>
+      <pre>本フォームに入力いただいた個人情報は、Google LLC（米国）が運営する
+Google Forms のサーバを経由して NPO法人 nest が受信・保管します。
+
+利用目的：会員管理、会報誌の送付、行事のご案内
+保管期間：会員として在籍している期間
+第三者提供：法令に基づく場合を除き、行いません
+
+紙ベースでの申込をご希望の方は、以下のURLから入会申込書（PDF）を
+ダウンロードしてご利用ください。
+https://www.nponest.org/pdfs/forms/membership-application.html
+
+☐ 上記内容に同意のうえ、フォームを送信します</pre>
+    </section>
+
+    <!-- ===== 7. /join/ 動線 ===== -->
+    <section id="sec-7">
+      <h2 class="sec-title"><span class="sec-title__num">7.</span>/join/ ページの動線設計</h2>
+
+      <div class="options-grid options-grid--3">
+        <div class="opt-card">
+          <div class="opt-card__title">α. Form 推し</div>
+          <div class="opt-card__summary">QR・「フォームで入会」を大きく、紙申込は補足的に。</div>
+          <div class="opt-card__pros"><strong>○</strong> 事務局の負担少<br /><strong>○</strong> モダンな印象</div>
+          <div class="opt-card__cons"><strong>×</strong> 高齢層が躊躇</div>
+        </div>
+
+        <div class="opt-card opt-card--recommended">
+          <span class="opt-card__badge">推奨</span>
+          <div class="opt-card__title">β. 並列・選択肢明示</div>
+          <div class="opt-card__summary">「Webから」「紙から」を対等に並べ、どちらでもOKと明示。</div>
+          <div class="opt-card__pros"><strong>○</strong> 全層に届く<br /><strong>○</strong> 高齢層への配慮が伝わる</div>
+          <div class="opt-card__cons"><strong>×</strong> 選択肢が多いと迷う可能性</div>
+        </div>
+
+        <div class="opt-card">
+          <div class="opt-card__title">γ. 紙推し</div>
+          <div class="opt-card__summary">従来通り紙が主、Form は「最近こちらでも」と小さく案内。</div>
+          <div class="opt-card__pros"><strong>○</strong> 既存運用との連続性<br /><strong>○</strong> 越境移転の負担少</div>
+          <div class="opt-card__cons"><strong>×</strong> Webからの導線が弱い</div>
+        </div>
+      </div>
+
+      <div class="sub-title">推奨レイアウト（β 並列）</div>
+
+      <pre>┌─────────────────────────────────────────────┐
+│         入会・ご支援のお願い                          │
+│                                                       │
+│  nest の活動を支えてくださる会員を募集しています。  │
+│  ご希望の方法で、お気軽にお申し込みください。       │
+│                                                       │
+│  ┌──────────────────┐  ┌──────────────────┐  │
+│  │  📱 Webから申込    │  │  📄 紙の申込書を    │  │
+│  │                     │  │     ダウンロード      │  │
+│  │   [ QR コード ]      │  │                       │  │
+│  │                     │  │   入会申込書 PDF      │  │
+│  │  または下のボタン  │  │   印刷 → 記入 →      │  │
+│  │                     │  │   郵送・FAX・持参    │  │
+│  │  [Google Form を開く]│  │                       │  │
+│  └──────────────────┘  └──────────────────┘  │
+│                                                       │
+│  ご不明な点は事務局まで：093-582-7018               │
+└─────────────────────────────────────────────┘</pre>
+
+      <p>視覚的に対等にすることで、「電子でも紙でも、どちらでも歓迎です」というメッセージを暗黙に伝えます。</p>
+    </section>
+
+    <!-- ===== 8. 実装ステップ ===== -->
+    <section id="sec-8">
+      <h2 class="sec-title"><span class="sec-title__num">8.</span>実装ステップ（チェックリスト）</h2>
+
+      <div class="sub-title">Phase A：林代表との確認（先行）</div>
+      <ul class="checklist">
+        <li>会員区分ごとの年会費を確定（§3 でも未確定）</li>
+        <li>会費納付方法を確定（銀行振込 / 郵便振替 / 現金 / オンライン）</li>
+        <li>個人情報の越境移転について同意（§6）</li>
+        <li>本機能のオーナーを決定（Google Form アカウントは誰が所有するか）</li>
+      </ul>
+
+      <div class="sub-title">Phase B：Google Form 構築（事務局）</div>
+      <ul class="checklist">
+        <li>Google アカウントで新規 Form 作成（タイトル：「入会申込フォーム」）</li>
+        <li>§3 のフィールド仕様に沿って質問を追加</li>
+        <li>テーマカラーを nest 緑（#2d5a27）に設定</li>
+        <li>カスタムロゴ追加（NEST LOGO_01.png）</li>
+        <li>「設定」→「回答のコピーを送信」を有効化</li>
+        <li>「回答」タブで Spreadsheet 連携を作成</li>
+        <li>Spreadsheet に管理列（受付状況・会費確認 等）を追加</li>
+        <li>「新しい回答についてのメール通知」を有効化</li>
+        <li>テスト送信で動作確認</li>
+      </ul>
+
+      <div class="sub-title">Phase C：QR・サイト統合（河原さん＋Claude）</div>
+      <ul class="checklist">
+        <li>Form の本番 URL を取得</li>
+        <li>QR コード PNG 生成（推奨：A 案）</li>
+        <li><code>public/images/qr/membership-form.png</code> に配置</li>
+        <li><code>src/pages/join.astro</code> を更新（§7 β 並列レイアウト）</li>
+        <li><code>npm run build</code> でビルド確認</li>
+        <li>動作確認：スマホで QR スキャン → Form 表示 → 送信 → Spreadsheet 反映</li>
+        <li>コミット & 本番デプロイ</li>
+      </ul>
+
+      <div class="sub-title">Phase D：運用立ち上げ</div>
+      <ul class="checklist">
+        <li>事務局スタッフ向けの運用手順書作成（<code>docs/operations/membership-intake.md</code>）</li>
+        <li>初回テスト申込（河原さん自身で）</li>
+        <li>1ヶ月後にフィードバック確認、Level 2 へのアップグレード要否を判断</li>
+      </ul>
+    </section>
+
+    <!-- ===== 9. 確認したいこと ===== -->
+    <section id="sec-9">
+      <h2 class="sec-title"><span class="sec-title__num">9.</span>林代表に確認したいこと</h2>
+
+      <p>本計画を進める前に、林代表との合意が必要な事項です：</p>
+
+      <div class="decision">
+        <div class="decision__title">Q1. 個人情報の Google 越境移転について</div>
+        <p>Google Forms を利用すると、申込者の個人情報が <strong>Google LLC（米国）のサーバ</strong>を経由します。 これは <code>/members/privacy</code> でうたっている「越境移転なし」と若干食い違います。</p>
+        <p><strong>選択肢：</strong></p>
+        <ul>
+          <li>(A) <strong>許容する</strong>：Form 上に明示的な同意文を出すことで対応</li>
+          <li>(B) <strong>許容しない</strong>：紙ルートのみで運用継続</li>
+        </ul>
+      </div>
+
+      <div class="decision">
+        <div class="decision__title">Q2. 自動化レベル（§2）</div>
+        <p>Level 1 / 2 / 3 のどれで始めるか。<strong>推奨は Level 1（Form + Sheet）</strong>。</p>
+      </div>
+
+      <div class="decision">
+        <div class="decision__title">Q3. /join/ ページ動線（§7）</div>
+        <p>α / β / γ のどれを採用するか。<strong>推奨は β（並列）</strong>。</p>
+      </div>
+
+      <div class="decision">
+        <div class="decision__title">Q4. 会費体系</div>
+        <p>正会員 / 賛助会員（個人）/ 賛助会員（団体）の年会費額。 HTML 申込書（§3）でも未確定。</p>
+      </div>
+
+      <div class="decision">
+        <div class="decision__title">Q5. 会費納付方法</div>
+        <p>銀行振込 / 郵便振替 / 現金持参 / オンライン決済の対応有無。 Form のサンクスメッセージで案内する文言が決まる。</p>
+      </div>
+
+      <div class="decision">
+        <div class="decision__title">Q6. Form / Spreadsheet のオーナー</div>
+        <p>Google アカウント所有者は誰になるか。事務局共用アカウント／法人代表アカウント／事務局スタッフ個人アカウントなど。 退職時のアカウント引継ぎリスクを考慮。</p>
+      </div>
+
+      <div class="decision">
+        <div class="decision__title">Q7. nest 会員 DB との連携時期</div>
+        <p>Phase 1 リリース後すぐ Level 2/3 に進むか、 まずは Level 1 で運用してから判断するか。</p>
+      </div>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer style="margin-top:48px; padding-top:24px; border-top:1px solid var(--color-line); font-size:11px; color:var(--color-ink-mute); text-align:center;">
+      📄 この計画書は <code>docs/planning/google-form-membership.html</code> に保存されています。<br />
+      ブラウザで開いて閲覧 ／ Cmd+P で印刷 ／ <strong>林代表との打合せ資料</strong> として利用できます。<br />
+      ご相談・修正のご要望は河原さんから Claude へ。
+    </footer>
+  </article>
+</body>
+</html>
