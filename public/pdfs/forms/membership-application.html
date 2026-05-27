@@ -54,6 +54,16 @@
       line-height: 1.6;
       padding: 24px;
       font-size: 13px;
+      /* 日本語の改行を自然に：単語の途中で切れず、句読点ぶら下げを許可 */
+      word-break: keep-all;
+      line-break: strict;
+      overflow-wrap: break-word;
+      hanging-punctuation: allow-end;
+    }
+
+    /* （任意）などの注釈は分離しないでひとかたまりに */
+    .sub {
+      white-space: nowrap;
     }
 
     /* ===== 用紙 ===== */
@@ -123,9 +133,11 @@
       border: 1px solid var(--color-line);
       padding: 6px 10px;
       border-radius: 4px;
-      display: flex;
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      column-gap: 8px;
+      row-gap: 2px;
       align-items: baseline;
-      gap: 8px;
     }
     .type__check {
       display: inline-block;
@@ -133,14 +145,17 @@
       height: 14px;
       border: 1.5px solid var(--color-ink);
       vertical-align: middle;
+      grid-row: span 2;
+      align-self: center;
     }
     .type__label {
       font-weight: 500;
-      flex: 1;
+      white-space: nowrap;
     }
     .type__fee {
       color: var(--color-ink-mute);
       font-size: 11px;
+      white-space: nowrap;
     }
 
     /* ===== テーブル（申込者情報） ===== */
