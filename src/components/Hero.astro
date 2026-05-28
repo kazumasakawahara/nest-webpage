@@ -39,12 +39,12 @@ const {
   }
   <div class="hero__overlay" aria-hidden="true"></div>
 
-  <div class="container hero__inner">
+  <div class="hero__inner">
     <div class="hero__content reveal">
       {eyebrow && <span class="eyebrow eyebrow--light">{eyebrow}</span>}
       <h1 class="hero__title">
-        {title}
-        {titleSub && <><br /><span class="hero__title-sub">{titleSub}</span></>}
+        <Fragment set:html={title} />
+        {titleSub && <><br /><span class="hero__title-sub" set:html={titleSub} /></>}
       </h1>
       {lead && <p class="hero__lead">{lead}</p>}
       <slot />
@@ -107,20 +107,36 @@ const {
     backdrop-filter: blur(4px);
   }
 
+  /* 文字が乗る左側だけを暗く沈め、右の写真は明るいまま残す（可読性を担保しつつ写真を活かす） */
   .hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(26, 38, 32, 0.32) 0%, rgba(26, 38, 32, 0.58) 100%);
     z-index: -1;
+    background:
+      linear-gradient(100deg,
+        rgba(16, 34, 17, 0.88) 0%,
+        rgba(16, 34, 17, 0.72) 30%,
+        rgba(16, 34, 17, 0.45) 52%,
+        rgba(16, 34, 17, 0.18) 70%,
+        rgba(16, 34, 17, 0) 88%);
+  }
+
+  .hero__overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(16, 34, 17, 0.5), rgba(16, 34, 17, 0) 42%);
   }
 
   .hero__inner {
     position: relative;
     width: 100%;
+    padding-left: clamp(24px, 7%, 112px);
+    padding-right: var(--space-5);
   }
 
   .hero__content {
-    max-width: 760px;
+    max-width: 600px;
   }
 
   .eyebrow--light {
@@ -130,11 +146,16 @@ const {
   .hero__title {
     font-family: var(--font-serif);
     font-size: var(--fs-display);
-    font-weight: 600;
-    line-height: 1.5;
+    font-weight: 500;
+    line-height: 1.35;
     color: var(--color-cream);
-    letter-spacing: 0.03em;
+    letter-spacing: 0.04em;
     margin-bottom: var(--space-4);
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.35);
+    /* 日本語を文節単位で改行（「場／所」のような語中分断を防ぐ）。
+       禁則処理も有効化。未対応ブラウザは normal にフォールバック。 */
+    line-break: strict;
+    word-break: auto-phrase;
   }
 
   .hero__title-sub {
@@ -149,6 +170,9 @@ const {
     color: rgba(250, 246, 239, 0.95);
     max-width: 600px;
     margin-bottom: var(--space-5);
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
+    line-break: strict;
+    word-break: auto-phrase;
   }
 
   /* Scroll indicator */
@@ -193,5 +217,18 @@ const {
     .hero--lg { min-height: 64vh; min-height: 64dvh; padding: 100px 0 80px; }
     .hero--md { min-height: 48vh; min-height: 48dvh; padding: 80px 0 64px; }
     .hero__scroll { display: none; }
+
+    /* モバイルは文字が全幅に広がるため、左方向ではなく縦方向の均一なスクリムで可読性を担保 */
+    .hero__overlay {
+      background: linear-gradient(
+        180deg,
+        rgba(16, 34, 17, 0.5) 0%,
+        rgba(16, 34, 17, 0.34) 38%,
+        rgba(16, 34, 17, 0.58) 100%
+      );
+    }
+    .hero__overlay::after { background: none; }
+
+    .hero__inner { padding-left: var(--space-5); }
   }
 </style>

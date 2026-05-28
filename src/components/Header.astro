@@ -1,15 +1,6 @@
 ---
 import { navLinks, site } from '../lib/site';
 
-interface Props {
-  /**
-   * When the page has a hero with dark background, header starts transparent
-   * and turns solid on scroll. When false, header is always solid.
-   */
-  transparent?: boolean;
-}
-
-const { transparent = false } = Astro.props;
 const currentPath = Astro.url.pathname;
 // 公開静的ページでは locals.member は undefined。/members/* の SSR ページではセットされる。
 const member = Astro.locals.member;
@@ -21,422 +12,383 @@ function isActive(href: string) {
 }
 ---
 
-<header class:list={['site-header', { 'is-transparent': transparent }]} data-transparent={transparent}>
-  <div class="container site-header__inner">
-    <a href="/" class="site-header__logo" aria-label="nest トップへ">
-      <span class="logo-mark">nest</span>
-      <span class="logo-sub">NPO法人 ネスト</span>
+<!-- モバイル用トップバー（デスクトップでは非表示） -->
+<div class="mobile-topbar">
+  <a href="/" class="mobile-topbar__logo" aria-label="nest トップへ">
+    <img
+      src="/images/nest-image2/nest-logo-01.png"
+      alt="特定非営利活動法人 nest"
+      width="1633"
+      height="687"
+    />
+  </a>
+  <button
+    class="mobile-topbar__burger"
+    aria-label="メニューを開く"
+    aria-expanded="false"
+    aria-controls="site-nav"
+    data-menu-trigger
+  >
+    <span></span><span></span><span></span>
+  </button>
+</div>
+
+<header class="site-sidebar" id="site-nav" aria-label="サイドナビゲーション">
+  <a href="/" class="sidebar__brand" aria-label="nest トップへ">
+    <img
+      class="sidebar__logo"
+      src="/images/nest-image2/nest-logo-01-white.png"
+      alt="特定非営利活動法人 nest"
+      width="1633"
+      height="687"
+    />
+  </a>
+
+  <div class="sidebar__rule"></div>
+
+  <nav class="sommaire" aria-label="メインナビゲーション">
+    <ul class="sommaire__list">
+      {
+        navLinks.map((link, i) => (
+          <li class:list={['sommaire__item', { 'has-sub': link.children }]}>
+            <a
+              href={link.href}
+              class:list={['sommaire__link', { 'is-active': isActive(link.href) }]}
+            >
+              <span class="sommaire__num">{String(i + 1).padStart(2, '0')}</span>
+              <span class="sommaire__lbl">{link.label}</span>
+            </a>
+            {link.children && (
+              <ul class="sommaire__sub">
+                {link.children.map((child) => (
+                  <li>
+                    <a
+                      href={child.href}
+                      class:list={['sommaire__sublink', { 'is-active': isActive(child.href) }]}
+                    >
+                      — {child.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+
+  <div class="sidebar__foot">
+    <div class="sidebar__rule"></div>
+    <p class="sidebar__ft-k">Contact</p>
+    <a href={`tel:${site.tel.replaceAll('-', '')}`} class="sidebar__tel">
+      {site.tel.replaceAll('-', ' ')}
     </a>
-
-    <nav class="site-nav" aria-label="メインナビゲーション" id="site-nav">
-      <ul class="site-nav__list">
-        {
-          navLinks.map((link) => (
-            <li class:list={['site-nav__item', { 'has-dropdown': link.children }]}>
-              <a
-                href={link.href}
-                class:list={['site-nav__link', { 'is-active': isActive(link.href) }]}
-              >
-                {link.label}
-                {link.children && (
-                  <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true">
-                    <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" />
-                  </svg>
-                )}
-              </a>
-              {link.children && (
-                <ul class="site-nav__dropdown">
-                  {link.children.map((child) => (
-                    <li>
-                      <a
-                        href={child.href}
-                        class:list={['site-nav__sublink', { 'is-active': isActive(child.href) }]}
-                      >
-                        {child.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </li>
-          ))
-        }
-        <li class="site-nav__item">
-          <a
-            href="/members/"
-            class:list={['site-nav__link', { 'is-active': isActive('/members/') }]}
-          >
-            {membersLinkLabel}
-          </a>
-        </li>
-      </ul>
-
-      <div class="site-nav__cta">
-        <a href={`tel:${site.tel.replaceAll('-', '')}`} class="nav-call">
-          <span aria-hidden="true">📞</span>
-          <span>{site.tel}</span>
-        </a>
-      </div>
-    </nav>
-
-    <button
-      class="site-header__menu-btn"
-      aria-label="メニューを開く"
-      aria-expanded="false"
-      aria-controls="site-nav"
-      data-menu-trigger
+    <a
+      href="/members/"
+      class:list={['sidebar__member', { 'is-active': isActive('/members/') }]}
     >
-      <span></span><span></span><span></span>
-    </button>
+      {membersLinkLabel}
+    </a>
   </div>
 </header>
 
+<div class="sidebar__backdrop" data-menu-close aria-hidden="true"></div>
+
 <style>
-  .site-header {
-    position: sticky;
+  /* ===== Sidebar (desktop, fixed left) ===== */
+  .site-sidebar {
+    position: fixed;
     top: 0;
-    z-index: 100;
-    background-color: var(--color-cream);
-    border-bottom: 1px solid transparent;
-    transition: background-color var(--dur-base) var(--ease-out),
-                border-color var(--dur-base) var(--ease-out),
-                box-shadow var(--dur-base) var(--ease-out);
-  }
-
-  .site-header.is-transparent {
-    background-color: transparent;
-    border-bottom-color: transparent;
-  }
-
-  .site-header.is-transparent.is-scrolled,
-  .site-header:not(.is-transparent) {
-    background-color: rgba(250, 246, 239, 0.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom-color: var(--color-line-soft);
-    box-shadow: var(--shadow-soft);
-  }
-
-  .site-header__inner {
+    left: 0;
+    bottom: 0;
+    width: var(--sidebar-w);
+    background-color: var(--color-green-900);
+    color: var(--color-cream);
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-5);
-    min-height: 72px;
+    flex-direction: column;
+    padding: 34px 24px 26px;
+    overflow-y: auto;
+    z-index: 100;
   }
 
-  .site-header__logo {
-    display: inline-flex;
-    flex-direction: column;
-    line-height: 1;
-    color: var(--color-green-900);
+  .sidebar__brand {
+    display: block;
+    text-decoration: none;
+  }
+
+  .sidebar__logo {
+    display: block;
+    width: 168px;
+    max-width: 100%;
+    height: auto;
+    transition: opacity var(--dur-fast) var(--ease-out);
+  }
+
+  .sidebar__brand:hover .sidebar__logo {
+    opacity: 0.78;
+  }
+
+  .sidebar__rule {
+    height: 1px;
+    background-color: rgba(250, 246, 239, 0.16);
+    margin: 22px 0 18px;
+  }
+
+  /* ===== Sommaire (numbered index nav) ===== */
+  .sommaire {
+    flex: 1;
+  }
+
+  .sommaire__list {
+    list-style: none;
+  }
+
+  .sommaire__item {
+    border-top: 1px solid rgba(250, 246, 239, 0.14);
+  }
+
+  .sommaire__item:first-child {
+    border-top: none;
+  }
+
+  .sommaire__link {
+    display: grid;
+    grid-template-columns: 26px 1fr;
+    align-items: baseline;
+    gap: 4px;
+    text-decoration: none;
+    font-family: var(--font-serif);
+    font-size: 15px;
+    letter-spacing: 0.06em;
+    padding: 9px 0;
+    color: rgba(250, 246, 239, 0.82);
     transition: color var(--dur-fast) var(--ease-out);
   }
 
-  .site-header.is-transparent:not(.is-scrolled) .site-header__logo {
-    color: var(--color-cream);
-  }
-
-  .site-header__logo:hover { color: var(--color-terra-500); }
-
-  .logo-mark {
-    font-family: var(--font-serif);
-    font-size: 28px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-  }
-
-  .logo-sub {
+  .sommaire__num {
     font-family: var(--font-mono);
     font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    margin-top: 4px;
-    color: var(--color-ink-soft);
+    letter-spacing: 0.06em;
+    color: rgba(250, 246, 239, 0.4);
+    transform: translateY(-1px);
+    transition: color var(--dur-fast) var(--ease-out);
   }
 
-  .site-header.is-transparent:not(.is-scrolled) .logo-sub {
-    color: rgba(250, 246, 239, 0.75);
-  }
-
-  /* === Nav === */
-  .site-nav {
-    display: flex;
-    align-items: center;
-    gap: var(--space-6);
-  }
-
-  .site-nav__list {
-    display: flex;
-    align-items: center;
-    gap: var(--space-1);
-  }
-
-  .site-nav__item {
-    position: relative;
-  }
-
-  .site-nav__link {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    padding: 10px 12px;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--color-ink);
-    border-radius: var(--radius-sm);
-    position: relative;
-  }
-
-  .site-header.is-transparent:not(.is-scrolled) .site-nav__link {
-    color: var(--color-cream);
-  }
-
-  .site-nav__link::after {
-    content: '';
-    position: absolute;
-    left: 12px;
-    right: 12px;
-    bottom: 4px;
-    height: 1.5px;
-    background-color: var(--color-terra-500);
-    transform: scaleX(0);
-    transform-origin: center;
+  .sommaire__lbl {
     transition: transform var(--dur-base) var(--ease-out);
   }
 
-  .site-nav__link:hover,
-  .site-nav__link.is-active {
-    color: var(--color-green-700);
+  .sommaire__link:hover {
+    color: #fff;
   }
 
-  .site-header.is-transparent:not(.is-scrolled) .site-nav__link:hover,
-  .site-header.is-transparent:not(.is-scrolled) .site-nav__link.is-active {
-    color: var(--color-cream);
+  .sommaire__link:hover .sommaire__lbl {
+    transform: translateX(3px);
   }
 
-  .site-nav__link:hover::after,
-  .site-nav__link.is-active::after {
-    transform: scaleX(1);
+  .sommaire__link.is-active {
+    color: #fff;
   }
 
-  /* Dropdown */
-  .site-nav__dropdown {
-    position: absolute;
-    top: calc(100% + 4px);
-    left: 0;
-    min-width: 180px;
-    background-color: var(--color-paper);
-    border-radius: var(--radius-md);
-    padding: var(--space-2) 0;
-    box-shadow: var(--shadow-card);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-6px);
-    transition: opacity var(--dur-base) var(--ease-out),
-                transform var(--dur-base) var(--ease-out),
-                visibility var(--dur-base) var(--ease-out);
+  .sommaire__link.is-active .sommaire__num {
+    color: var(--color-terra-500);
   }
 
-  .site-nav__item.has-dropdown:hover .site-nav__dropdown,
-  .site-nav__item.has-dropdown:focus-within .site-nav__dropdown {
-    opacity: 1;
-    visibility: visible;
-    transform: none;
+  .sommaire__sub {
+    list-style: none;
+    padding: 0 0 8px 26px;
   }
 
-  .site-nav__sublink {
+  .sommaire__sublink {
     display: block;
-    padding: 10px 18px;
-    font-size: 14px;
-    color: var(--color-ink);
+    text-decoration: none;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    padding: 5px 0;
+    color: rgba(250, 246, 239, 0.5);
+    transition: color var(--dur-fast) var(--ease-out);
   }
 
-  .site-nav__sublink:hover,
-  .site-nav__sublink.is-active {
-    background-color: var(--color-green-100);
-    color: var(--color-green-900);
+  .sommaire__sublink:hover,
+  .sommaire__sublink.is-active {
+    color: #fff;
   }
 
-  /* Call CTA in nav */
-  .nav-call {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    font-weight: 600;
+  /* ===== Foot (contact + members) ===== */
+  .sidebar__foot {
+    margin-top: auto;
+    padding-top: 18px;
+  }
+
+  .sidebar__foot .sidebar__rule {
+    margin: 0 0 16px;
+  }
+
+  .sidebar__ft-k {
     font-family: var(--font-mono);
-    color: var(--color-green-700);
-    padding: 8px 14px;
-    border: 1px solid var(--color-green-700);
-    border-radius: var(--radius-pill);
-    transition: all var(--dur-fast) var(--ease-out);
+    font-size: 9.5px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: rgba(250, 246, 239, 0.5);
+    margin-bottom: 7px;
   }
 
-  .nav-call:hover {
-    background-color: var(--color-green-700);
-    color: var(--color-cream);
-  }
-
-  .site-header.is-transparent:not(.is-scrolled) .nav-call {
-    color: var(--color-cream);
-    border-color: rgba(250, 246, 239, 0.5);
-  }
-
-  .site-header.is-transparent:not(.is-scrolled) .nav-call:hover {
-    background-color: var(--color-cream);
-    color: var(--color-green-900);
-  }
-
-  /* === Hamburger === */
-  .site-header__menu-btn {
-    display: none;
-    width: 44px;
-    height: 44px;
-    padding: 12px 10px;
-    position: relative;
-  }
-
-  .site-header__menu-btn span {
+  .sidebar__tel {
     display: block;
-    height: 1.5px;
-    width: 22px;
-    background-color: var(--color-green-900);
-    margin: 5px auto;
-    transition: all var(--dur-base) var(--ease-out);
+    font-family: var(--font-display);
+    font-size: 21px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--color-cream);
+    text-decoration: none;
   }
 
-  .site-header.is-transparent:not(.is-scrolled) .site-header__menu-btn span {
-    background-color: var(--color-cream);
+  .sidebar__tel:hover {
+    color: var(--color-terra-500);
   }
 
-  .site-header__menu-btn[aria-expanded="true"] span:nth-child(1) {
-    transform: translateY(6px) rotate(45deg);
+  .sidebar__member {
+    display: inline-block;
+    margin-top: 16px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: rgba(250, 246, 239, 0.7);
+    padding-bottom: 3px;
+    border-bottom: 1px solid rgba(250, 246, 239, 0.3);
+    transition: color var(--dur-fast) var(--ease-out);
   }
 
-  .site-header__menu-btn[aria-expanded="true"] span:nth-child(2) {
-    opacity: 0;
+  .sidebar__member:hover {
+    color: #fff;
   }
 
-  .site-header__menu-btn[aria-expanded="true"] span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
+  .sidebar__member.is-active {
+    color: #fff;
+    border-color: var(--color-terra-500);
   }
 
-  /* === Mobile === */
+  /* ===== Mobile top bar + drawer ===== */
+  .mobile-topbar {
+    display: none;
+  }
+
+  .sidebar__backdrop {
+    display: none;
+  }
+
   @media (max-width: 1024px) {
-    .site-header__menu-btn { display: block; }
-
-    .site-nav {
+    .mobile-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       position: fixed;
       top: 0;
+      left: 0;
       right: 0;
-      bottom: 0;
-      width: min(360px, 88vw);
-      background-color: var(--color-cream);
-      flex-direction: column;
-      align-items: stretch;
-      justify-content: flex-start;
-      padding: 88px var(--space-5) var(--space-7);
-      gap: var(--space-5);
-      overflow-y: auto;
-      transform: translateX(100%);
-      transition: transform var(--dur-base) var(--ease-in-out);
-      box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
-    }
-
-    .site-nav.is-open {
-      transform: none;
-    }
-
-    .site-nav__list {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0;
-      width: 100%;
-    }
-
-    .site-nav__item {
+      height: 64px;
+      padding: 0 12px 0 20px;
+      background-color: rgba(250, 246, 239, 0.94);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--color-line-soft);
+      z-index: 90;
     }
 
-    .site-nav__link {
-      width: 100%;
-      padding: 16px 8px;
-      font-size: 16px;
-      font-family: var(--font-serif);
-      justify-content: space-between;
-      color: var(--color-ink) !important;
+    .mobile-topbar__logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
     }
 
-    .site-nav__dropdown {
-      position: static;
-      opacity: 1;
-      visibility: visible;
-      transform: none;
-      box-shadow: none;
-      background-color: var(--color-green-100);
-      padding: 8px 16px;
-      border-radius: var(--radius-md);
-      margin-bottom: 12px;
+    .mobile-topbar__logo img {
+      display: block;
+      height: 34px;
+      width: auto;
     }
 
-    .site-nav__cta {
-      margin-top: auto;
-    }
-
-    .nav-call {
-      width: 100%;
+    .mobile-topbar__burger {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
-      padding: 14px;
-      font-size: 16px;
-      color: var(--color-green-700) !important;
-      border-color: var(--color-green-700) !important;
+      gap: 5px;
     }
 
-    /* Backdrop */
-    .site-nav.is-open::before {
-      content: '';
+    .mobile-topbar__burger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background-color: var(--color-green-900);
+      transition: transform var(--dur-base) var(--ease-out),
+                  opacity var(--dur-base) var(--ease-out);
+    }
+
+    .mobile-topbar__burger[aria-expanded='true'] span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+    .mobile-topbar__burger[aria-expanded='true'] span:nth-child(2) {
+      opacity: 0;
+    }
+    .mobile-topbar__burger[aria-expanded='true'] span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
+
+    /* Sidebar becomes an off-canvas drawer */
+    .site-sidebar {
+      width: min(320px, 86vw);
+      padding-top: 80px;
+      transform: translateX(-100%);
+      transition: transform var(--dur-base) var(--ease-in-out);
+      box-shadow: 10px 0 40px rgba(0, 0, 0, 0.18);
+    }
+
+    .site-sidebar.is-open {
+      transform: none;
+    }
+
+    .sidebar__backdrop.is-open {
+      display: block;
       position: fixed;
       inset: 0;
-      background-color: rgba(26, 38, 32, 0.4);
-      z-index: -1;
+      background-color: rgba(26, 38, 32, 0.42);
+      z-index: 80;
     }
   }
 </style>
 
 <script>
-  // Sticky header background toggle
-  const header = document.querySelector('.site-header');
-  if (header) {
-    const onScroll = () => {
-      if (window.scrollY > 24) {
-        header.classList.add('is-scrolled');
-      } else {
-        header.classList.remove('is-scrolled');
-      }
-    };
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-  }
-
-  // Mobile menu toggle
   const trigger = document.querySelector('[data-menu-trigger]') as HTMLButtonElement | null;
   const nav = document.querySelector('#site-nav') as HTMLElement | null;
+  const backdrop = document.querySelector('.sidebar__backdrop') as HTMLElement | null;
+
+  function closeMenu() {
+    nav?.classList.remove('is-open');
+    backdrop?.classList.remove('is-open');
+    trigger?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
   if (trigger && nav) {
     trigger.addEventListener('click', () => {
       const isOpen = nav.classList.toggle('is-open');
+      backdrop?.classList.toggle('is-open', isOpen);
       trigger.setAttribute('aria-expanded', String(isOpen));
       document.body.style.overflow = isOpen ? 'hidden' : '';
     });
 
-    // Close on link click (mobile)
+    backdrop?.addEventListener('click', closeMenu);
+
+    // Close on link click (mobile drawer)
     nav.querySelectorAll('a').forEach((a) => {
       a.addEventListener('click', () => {
-        if (window.innerWidth <= 1024) {
-          nav.classList.remove('is-open');
-          trigger.setAttribute('aria-expanded', 'false');
-          document.body.style.overflow = '';
-        }
+        if (window.innerWidth <= 1024) closeMenu();
       });
     });
   }

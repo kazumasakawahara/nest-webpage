@@ -31,6 +31,7 @@
   --font-sans:  'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic', sans-serif;
   --font-mono:  'Inter', 'Helvetica Neue', sans-serif;
   --font-heading: var(--font-serif); /* 見出し用の意味的エイリアス */
+  --font-display: 'Cormorant Garamond', 'Shippori Mincho B1', serif; /* ロゴ・ラテン表示用の高コントラスト・セリフ */
 
   --fs-eyebrow: 12px;
   --fs-small:   13px;
@@ -65,6 +66,7 @@
   --container-narrow: 760px;
   --container-base:   1100px;
   --container-wide:   1280px;
+  --sidebar-w:        240px;  /* 固定左ナビパネルの幅（デスクトップ） */
 
   --radius-sm:   4px;
   --radius-md:   12px;
@@ -187,6 +189,28 @@ p { line-height: var(--lh-normal); }
 
 .container--narrow { max-width: var(--container-narrow); }
 .container--wide   { max-width: var(--container-wide); }
+
+/* === Layout shell ===
+   固定左サイドバー（.site-sidebar）の分だけ本文を右へオフセットする。
+   モバイルではサイドバーがドロワー化するためオフセットを解除し、
+   固定トップバー分の余白を上に確保する。 */
+.site-shell {
+  margin-left: var(--sidebar-w);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-shell > main {
+  flex: 1 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .site-shell {
+    margin-left: 0;
+    padding-top: 64px; /* 固定モバイルトップバーの高さ分 */
+  }
+}
 
 /* === Section === */
 .section {
@@ -673,6 +697,7 @@ p { line-height: var(--lh-normal); }
 
 /* === Print === */
 @media print {
-  .header, .footer, .sticky-cta, .skip-link { display: none; }
+  .site-sidebar, .mobile-topbar, .sidebar__backdrop, .sticky-cta, .skip-link { display: none; }
+  .site-shell { margin-left: 0; padding-top: 0; }
   body { background: #fff; color: #000; }
 }

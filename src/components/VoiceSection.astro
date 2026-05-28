@@ -16,9 +16,10 @@ import { voices } from '../lib/site';
       {
         voices.map((v, i) => (
           <figure class="voice reveal" data-delay={(i % 3) + 1}>
-            <div class="voice__quotemark" aria-hidden="true">『</div>
             <blockquote class="voice__quote">
+              <span class="voice__quotemark voice__quotemark--open" aria-hidden="true"></span>
               <p>{v.quote}</p>
+              <span class="voice__quotemark voice__quotemark--close" aria-hidden="true"></span>
             </blockquote>
             <figcaption class="voice__caption">
               <div class="voice__avatar" aria-hidden="true">
@@ -63,7 +64,7 @@ import { voices } from '../lib/site';
   .voice {
     background-color: var(--color-paper);
     border-radius: var(--radius-lg);
-    padding: var(--space-7) var(--space-6) var(--space-6);
+    padding: var(--space-6);
     position: relative;
     box-shadow: var(--shadow-soft);
     transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
@@ -74,23 +75,37 @@ import { voices } from '../lib/site';
     box-shadow: var(--shadow-card);
   }
 
+  /* かぎ括弧（「」）を CSS の border で描く。quote ブロックの内側に置くため、
+     left/right: 0 がテキストの左右端とピクセル単位で完全一致する
+     （グリフの字面ベアリングに依存しない）。 */
   .voice__quotemark {
     position: absolute;
-    top: 16px;
-    left: 24px;
-    font-family: var(--font-serif);
-    font-size: 64px;
-    color: var(--color-terra-500);
-    opacity: 0.4;
-    line-height: 1;
+    width: 22px;
+    height: 22px;
+    opacity: 0.5;
     pointer-events: none;
+  }
+
+  .voice__quotemark--open {
+    top: 0;
+    left: 0;
+    border-top: 3px solid var(--color-terra-500);
+    border-left: 3px solid var(--color-terra-500);
+  }
+
+  .voice__quotemark--close {
+    bottom: 0;
+    right: 0;
+    border-bottom: 3px solid var(--color-terra-500);
+    border-right: 3px solid var(--color-terra-500);
   }
 
   .voice__quote {
     position: relative;
     z-index: 1;
-    margin-bottom: var(--space-6);
-    padding-top: var(--space-3);
+    margin-bottom: var(--space-5);
+    /* 上下に余白を取り、開き「と閉じ」のスペースを確保 */
+    padding: var(--space-5) 0;
   }
 
   .voice__quote p {
@@ -99,6 +114,10 @@ import { voices } from '../lib/site';
     line-height: 1.95;
     color: var(--color-ink);
     letter-spacing: 0.02em;
+    /* 日本語を文節単位で改行（「心強い」が「心強／い」と切れるのを防ぐ）。
+       未対応ブラウザでは normal にフォールバック。 */
+    line-break: strict;
+    word-break: auto-phrase;
   }
 
   .voice__caption {

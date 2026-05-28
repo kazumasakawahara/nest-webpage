@@ -7,7 +7,14 @@ import { site, navLinks } from '../lib/site';
     <div class="site-footer__grid">
 
       <div class="site-footer__brand">
-        <div class="footer-logo">nest</div>
+        <img
+          src="/images/nest-image2/nest-logo-01-white.png"
+          alt="特定非営利活動法人 nest"
+          class="footer-logo"
+          width="1633"
+          height="687"
+          loading="lazy"
+        />
         <p class="footer-tagline">巣立っても、いつでも帰ってこられる</p>
         <a href={site.instagram} class="footer-social" target="_blank" rel="noopener noreferrer">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -75,12 +82,10 @@ import { site, navLinks } from '../lib/site';
   }
 
   .footer-logo {
-    font-family: var(--font-serif);
-    font-size: 36px;
-    font-weight: 600;
-    color: var(--color-cream);
-    letter-spacing: 0.04em;
-    margin-bottom: var(--space-3);
+    display: block;
+    width: 168px;
+    height: auto;
+    margin-bottom: var(--space-4);
   }
 
   .footer-tagline {
