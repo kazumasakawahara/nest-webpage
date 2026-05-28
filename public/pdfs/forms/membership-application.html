@@ -155,7 +155,7 @@
     .type__fee {
       color: var(--color-ink-mute);
       font-size: 11px;
-      white-space: nowrap;
+      line-height: 1.5;
     }
 
     /* ===== テーブル（申込者情報） ===== */
@@ -353,26 +353,29 @@
     </header>
 
     <!-- ===== 会員区分 ===== -->
-    <!-- TODO: 会員区分と年会費の額を林代表に確認。下記は仮置き。 -->
     <section class="sec">
       <h2 class="sec__title">ご希望の会員区分（いずれかに ✓）</h2>
       <div class="types">
         <div class="type">
           <span class="type__check" aria-hidden="true"></span>
           <span class="type__label">正会員</span>
-          <span class="type__fee">年会費 ¥_____</span>
+          <span class="type__fee">入会金 ¥1,000 ＋ 年会費 ¥2,000</span>
         </div>
         <div class="type">
           <span class="type__check" aria-hidden="true"></span>
           <span class="type__label">賛助会員（個人）</span>
-          <span class="type__fee">年会費 ¥_____</span>
+          <span class="type__fee">年会費 ¥2,000</span>
         </div>
         <div class="type">
           <span class="type__check" aria-hidden="true"></span>
           <span class="type__label">賛助会員（団体）</span>
-          <span class="type__fee">年会費 ¥_____</span>
+          <span class="type__fee">年会費 ¥2,000</span>
         </div>
       </div>
+      <p style="font-size: 11px; color: var(--color-ink-mute); margin-top: 6px;">
+        ※ 入会金は正会員のみ初年度に一度だけ必要です（次年度以降は年会費のみ）。<br />
+        ※ お支払いは当面、現金にて事務局へご持参ください（オンライン決済は今後対応予定）。
+      </p>
     </section>
 
     <!-- ===== 申込者情報 ===== -->
