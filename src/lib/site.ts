@@ -23,8 +23,6 @@ export type NavLink = {
 export const navLinks: NavLink[] = [
   { label: 'TOP', href: '/' },
   { label: 'nestについて', href: '/about/' },
-  { label: 'グループホーム', href: '/group-home/' },
-  { label: '親なき後', href: '/post-parent/' },
   {
     label: '就労継続支援B型',
     href: '/b-type/',
@@ -33,7 +31,9 @@ export const navLinks: NavLink[] = [
       { label: 'nestDesign', href: '/nest-design/' },
     ],
   },
+  { label: 'グループホーム', href: '/group-home/' },
   { label: '地域生活支援', href: '/sudachi/' },
+  { label: '親なき後', href: '/post-parent/' },
   { label: '利用者募集中', href: '/recruit/' },
   { label: 'nest News', href: '/news/' },
   { label: '入会・寄付', href: '/join/' },
