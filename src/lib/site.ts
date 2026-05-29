@@ -23,6 +23,8 @@ export type NavLink = {
 export const navLinks: NavLink[] = [
   { label: 'TOP', href: '/' },
   { label: 'nestについて', href: '/about/' },
+  { label: 'グループホーム', href: '/group-home/' },
+  { label: '親なき後', href: '/post-parent/' },
   {
     label: '就労継続支援B型',
     href: '/b-type/',
