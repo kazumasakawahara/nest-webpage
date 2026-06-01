@@ -16,22 +16,10 @@ import { voices } from '../lib/site';
       {
         voices.map((v, i) => (
           <figure class="voice reveal" data-delay={(i % 3) + 1}>
-            <div class="voice__quotemark" aria-hidden="true">『</div>
-            <blockquote class="voice__quote">
-              <p>{v.quote}</p>
-            </blockquote>
+            <blockquote class="voice__quote">{v.quote}</blockquote>
             <figcaption class="voice__caption">
-              <div class="voice__avatar" aria-hidden="true">
-                {v.photo ? (
-                  <img src={v.photo} alt="" loading="lazy" />
-                ) : (
-                  <span>{v.name.charAt(0)}</span>
-                )}
-              </div>
-              <div class="voice__meta">
-                <div class="voice__name">{v.name}</div>
-                <div class="voice__role">{v.role}</div>
-              </div>
+              <span class="voice__name">{v.name}</span>
+              <span class="voice__role">{v.role}</span>
             </figcaption>
           </figure>
         ))
@@ -57,15 +45,16 @@ import { voices } from '../lib/site';
   .voices {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-6);
+    gap: var(--space-5);
   }
 
   .voice {
     background-color: var(--color-paper);
     border-radius: var(--radius-lg);
-    padding: var(--space-7) var(--space-6) var(--space-6);
-    position: relative;
+    padding: var(--space-6);
     box-shadow: var(--shadow-soft);
+    border-top: 3px solid var(--color-terra-500);
+    margin: 0;
     transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
   }
 
@@ -74,65 +63,29 @@ import { voices } from '../lib/site';
     box-shadow: var(--shadow-card);
   }
 
-  .voice__quotemark {
-    position: absolute;
-    top: 16px;
-    left: 24px;
-    font-family: var(--font-serif);
-    font-size: 64px;
-    color: var(--color-terra-500);
-    opacity: 0.4;
-    line-height: 1;
-    pointer-events: none;
-  }
-
   .voice__quote {
-    position: relative;
-    z-index: 1;
-    margin-bottom: var(--space-6);
-    padding-top: var(--space-3);
-  }
-
-  .voice__quote p {
-    font-family: var(--font-serif);
-    font-size: 16px;
+    font-family: var(--font-hand);
+    font-size: 15px;
     line-height: 1.95;
     color: var(--color-ink);
     letter-spacing: 0.02em;
+    margin: 0 0 var(--space-5);
+    /* 日本語を文節単位で改行（「心強い」が「心強／い」と切れるのを防ぐ）。
+       未対応ブラウザでは normal にフォールバック。 */
+    line-break: strict;
+    word-break: auto-phrase;
   }
 
   .voice__caption {
     display: flex;
-    align-items: center;
-    gap: var(--space-3);
+    flex-direction: column;
+    gap: 2px;
     padding-top: var(--space-4);
     border-top: 1px solid var(--color-line-soft);
   }
 
-  .voice__avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--color-green-100), var(--color-terra-100));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-green-700);
-    font-family: var(--font-serif);
-    font-size: 20px;
-    font-weight: 600;
-    flex-shrink: 0;
-    overflow: hidden;
-  }
-
-  .voice__avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
   .voice__name {
-    font-family: var(--font-serif);
+    font-family: var(--font-hand);
     font-size: 15px;
     font-weight: 600;
     color: var(--color-green-900);
@@ -143,7 +96,6 @@ import { voices } from '../lib/site';
     color: var(--color-ink-soft);
     font-family: var(--font-mono);
     letter-spacing: 0.04em;
-    margin-top: 2px;
   }
 
   .voice-note { margin-top: var(--space-6); }

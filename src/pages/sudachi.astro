@@ -6,14 +6,14 @@ import Hero from '../components/Hero.astro';
 <BaseLayout
   title="地域生活支援の取り組み"
   description="NPO法人nestの地域生活支援の取り組み。日本財団助成事業として「生と性の視点から見た巣立ちを考える地域生活支援」に取り組んでいます。"
-  transparentHeader={true}
 >
   <Hero
     eyebrow="Community Life Support"
     title="巣立ちを支える、"
     titleSub="地域で支える。"
-    lead="障害のある人が地域で安心して暮らし、本人らしく生きていくための仕組みづくり。"
+    lead="障がいのある人が地域で安心して暮らし、本人らしく生きていくための仕組みづくり。"
     size="md"
+    image="/images/nest-image2/mori_subako5.png"
     placeholderLabel="SUDACHI — 地域活動 / 研修"
   />
 
@@ -34,7 +34,7 @@ import Hero from '../components/Hero.astro';
           生と性の視点から見た巣立ちを考える地域生活支援
         </h3>
         <p class="project__lead">
-          障害のある人が地域で安心して暮らし、本人らしく生きていくための意思決定支援と、
+          障がいのある人が地域で安心して暮らし、本人らしく生きていくための意思決定支援と、
           『生と性』というデリケートかつ重要なテーマに向き合いながら、
           地域生活支援の仕組みを構築することを目的として取り組んでいます。
         </p>
@@ -57,37 +57,184 @@ import Hero from '../components/Hero.astro';
         <span class="eyebrow">Past Projects</span>
         <h2 class="section__title" id="past-title">これまでの活動実績</h2>
         <p class="text-soft" style="margin-bottom:var(--space-6);">
-          以下の事業は現在終了しています。
+          日本財団の助成と北九州市の委託を受けて取り組んできた「巣立ちプロジェクト」の記録です。
+          報告書から主な活動を抜粋してご紹介します（これらの事業は現在終了しています）。
         </p>
       </div>
 
       <article class="project reveal">
         <div class="project__head">
           <span class="badge badge--closed">終了</span>
+          <span class="project__funder">2024年度 ／ 3年目 ・ 日本財団助成＋北九州市委託</span>
         </div>
-        <h3 class="project__title">巣立ちプロジェクトⅣ</h3>
-        <p class="project__lead">取り組んだ内容（5項目）</p>
-        <ol class="ordered ordered--detailed">
-          <li>成人の性的課題に係る調査と事業所との協働による研修プログラムの開発（日本財団助成）</li>
-          <li>「性的課題」にかかる先進地の視察（日本財団助成）</li>
-          <li>障害者の意思決定や意思決定支援に関する周知を図るための啓発活動<span class="text-soft">（北九州市委託：終了）</span></li>
-          <li>専門的人材の育成と活用<span class="text-soft">（北九州市委託：終了）</span></li>
-          <li>意思決定支援を行う支援者のフォロー体制整備<span class="text-soft">（北九州市委託：終了）</span></li>
-        </ol>
+        <h3 class="project__title">巣立ちプロジェクトⅢ（2024年度）</h3>
+        <p class="project__lead">
+          「生と性の視点から見た巣立ちを支える地域生活支援」を軸に、包括的性教育の学びと
+          意思決定支援者の養成を並行して実践しました。
+        </p>
+        <ul class="acts">
+          <li><strong>性と生の研修会</strong>「ゼロから学ぶ 障がいのある子ども・若者の生と性」（講師：中村まり子さん）に延べ81名が参加。希望のあった放課後等デイサービス8か所への個別訪問研修も実施（計79名）。</li>
+          <li><strong>啓発講演 全4回</strong>。玉木幸則さん（NHK「バリバラ」）を招いた「誰も取り残されないまちづくり〜合理的配慮」には114名が集いました。</li>
+          <li><strong>意思決定支援者養成講座</strong>（全11回）に18名が受講し、9名が修了。運営を担うフォローアップメンバーも育ちました。</li>
+          <li><strong>先進地視察</strong>として、share金沢・輪島KABULET など能登・金沢の4施設を訪問。</li>
+        </ul>
+        <div class="dl-block">
+          <a class="dl-cover js-pdf-view" href="/pdfs/newsletter-archive/%E5%B7%A3%E7%AB%8B%E3%81%A1%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%882024%E5%A0%B1%E5%91%8A%E6%9B%B8.pdf" target="_blank" rel="noopener" data-title="巣立ちプロジェクトⅢ 2024報告書" aria-label="巣立ちプロジェクトⅢ 2024報告書（PDF）を開いて読む">
+            <img src="/images/newsletter/2024-report-cover.jpg" alt="巣立ちプロジェクトⅢ 2024報告書 表紙" width="585" height="800" loading="lazy" />
+            <span class="dl-cover__hint" aria-hidden="true">クリックで読む</span>
+          </a>
+          <div class="dl-info">
+            <a class="btn btn--outline btn--sm" href="/pdfs/newsletter-archive/%E5%B7%A3%E7%AB%8B%E3%81%A1%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%882024%E5%A0%B1%E5%91%8A%E6%9B%B8.pdf" download>
+              2024 報告書をダウンロード
+              <span class="btn__icon" aria-hidden="true">↓</span>
+            </a>
+            <span class="dl-meta">PDF ・ 20ページ ・ 約10MB</span>
+          </div>
+        </div>
       </article>
 
-      <article class="project reveal" data-delay="1" style="margin-top:32px;">
-        <h3 class="project__title">プロジェクトの目的</h3>
-        <p class="project__lead" style="font-style:italic;">
-          障害児者の親(家族)が、本人が独立した個人として本人らしく生活していくための自立を促し、
-          本人の意志決定支援者のネットワークづくりを普通のもてなしと受け入れることで、
-          障害者の自立を社会全体で見守る意識づくりを行い、障害児本人の利益のために意思決定を支援することができる
-          人材の養成とネットワークづくりに行政が積極的に関与する社会の実現を目的としています。
+      <article class="project reveal" data-delay="1" style="margin-top:var(--space-6);">
+        <div class="project__head">
+          <span class="badge badge--closed">終了</span>
+          <span class="project__funder">2023年度 ／ 2年目 ・ 日本財団助成＋北九州市委託</span>
+        </div>
+        <h3 class="project__title">巣立ちプロジェクトⅡ（2023年度）</h3>
+        <p class="project__lead">
+          「性的課題の視点からの障がい者地域生活支援」をテーマに、調査・啓発・人材養成を
+          通じて「私たちのことを私たち抜きで決めないで」という当事者の思いを広げました。
         </p>
+        <ul class="acts">
+          <li><strong>先進地の調査・視察 5か所</strong>。浦河べてるの家（北海道）、南高愛隣会（長崎）など、性的課題に向き合う先駆的な実践に学びました。</li>
+          <li><strong>啓発講演 全6回・延べ339名</strong>。辻川圭乃弁護士「私たちのことを私たち抜きで決めないで」をはじめ、恋愛・結婚・性をめぐる多彩なテーマで開催。</li>
+          <li><strong>意思決定支援者養成講座</strong>（全15回）に22名が受講し、7名が修了。</li>
+          <li><strong>意思決定支援のリーフレット</strong>「こころをつなぐバトンパス」を制作（下記の声はこの冊子より）。</li>
+        </ul>
+        <div class="dl-block">
+          <a class="dl-cover js-pdf-view" href="/pdfs/newsletter-archive/%E5%B7%A3%E7%AB%8B%E3%81%A1%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%882023%E5%A0%B1%E5%91%8A%E6%9B%B8.pdf" target="_blank" rel="noopener" data-title="巣立ちプロジェクトⅡ 2023報告書" aria-label="巣立ちプロジェクトⅡ 2023報告書（PDF）を開いて読む">
+            <img src="/images/newsletter/2023-report-cover.jpg" alt="巣立ちプロジェクトⅡ 2023報告書 表紙" width="571" height="800" loading="lazy" />
+            <span class="dl-cover__hint" aria-hidden="true">クリックで読む</span>
+          </a>
+          <div class="dl-info">
+            <a class="btn btn--outline btn--sm" href="/pdfs/newsletter-archive/%E5%B7%A3%E7%AB%8B%E3%81%A1%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%882023%E5%A0%B1%E5%91%8A%E6%9B%B8.pdf" download>
+              2023 報告書をダウンロード
+              <span class="btn__icon" aria-hidden="true">↓</span>
+            </a>
+            <span class="dl-meta">PDF ・ 16ページ ・ 約8.5MB</span>
+          </div>
+        </div>
       </article>
+
+      <!-- 参加者の声（バトンパス） -->
+      <div class="reveal" style="margin-top:var(--space-8);">
+        <span class="eyebrow">Voices from the Baton</span>
+        <h3 class="section__title" style="font-size:26px;">「こころをつなぐバトンパス」に寄せられた、親の声</h3>
+        <p class="text-soft" style="margin-bottom:var(--space-6);">
+          障がいのある子を育ててきた親たちが、自身の子育てを振り返って綴った「バトンメッセージ」。
+          そのなかから、本人の意思決定を支えることの大切さが伝わる3つの声をご紹介します。
+        </p>
+      </div>
+
+      <div class="voices-grid">
+        <figure class="vc reveal">
+          <blockquote class="vc__quote">
+            娘宛に届いた「成人式の招待状」を、見せることなく捨ててしまった——。
+            娘の思いを勝手に想像し、自分で決める機会を奪い取ってしまったと、いまも後悔しています。
+            本当に本人もそう思っているのか、これからは娘の心の声をしっかり聴いていきたい。
+          </blockquote>
+          <figcaption class="vc__cap">
+            <span class="vc__name">サクラ さん</span>
+            <span class="vc__role">あかつき会家族会</span>
+          </figcaption>
+        </figure>
+
+        <figure class="vc reveal" data-delay="1">
+          <blockquote class="vc__quote">
+            障害年金などの収入も買い物の支出も、本人に通帳を渡さず全て私が管理していました。
+            でもそれは、本人の「失敗する権利」を奪ってしまうことでもあった。
+            子どもの将来を本当に心配するなら、失敗も見守っていかなければと思い、通帳を渡しました。
+          </blockquote>
+          <figcaption class="vc__cap">
+            <span class="vc__name">スミレ さん</span>
+            <span class="vc__role">あかつき会家族会</span>
+          </figcaption>
+        </figure>
+
+        <figure class="vc reveal" data-delay="2">
+          <blockquote class="vc__quote">
+            進路の選択は、ほとんど本人の意思を無視して親が決めてきました。
+            気づくと今も私の顔色を見て「お母さんはどっちがいいのかなぁ〜」と笑う息子（42歳）。
+            自分のことは自分で決めていけるように、親も変わらなければと思っています。
+          </blockquote>
+          <figcaption class="vc__cap">
+            <span class="vc__name">E.H さん</span>
+            <span class="vc__role">北九州市手をつなぐ育成会</span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <p class="text-soft text-center" style="margin-top:var(--space-6);">
+        ※ 掲載にあたっては仮名・イニシャルとし、冊子掲載時にご本人・ご家族の同意を得ています。
+        <a class="inline-link js-pdf-view" href="/pdfs/newsletter-archive/%E3%81%93%E3%81%93%E3%82%8D%E3%82%92%E3%81%A4%E3%81%AA%E3%81%90%E3%83%90%E3%83%88%E3%83%B3%E3%83%91%E3%82%B9_%E3%83%91%E3%83%B3%E3%83%95%E3%83%AC%E3%83%83%E3%83%88.pdf" target="_blank" rel="noopener" data-title="こころをつなぐバトンパス（パンフレット）">パンフレット「こころをつなぐバトンパス」（PDF）を読む</a>
+      </p>
     </div>
   </section>
+
+  <!-- PDF をその場で読むためのプレビュー モーダル -->
+  <div class="pdf-modal" id="pdfModal" hidden>
+    <div class="pdf-modal__backdrop" data-close></div>
+    <div class="pdf-modal__panel" role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle">
+      <div class="pdf-modal__bar">
+        <span class="pdf-modal__title" id="pdfModalTitle">報告書プレビュー</span>
+        <a class="pdf-modal__dl" id="pdfModalDl" href="#" download>
+          ダウンロード<span aria-hidden="true"> ↓</span>
+        </a>
+        <button class="pdf-modal__close" type="button" data-close aria-label="プレビューを閉じる">✕</button>
+      </div>
+      <iframe class="pdf-modal__frame" id="pdfModalFrame" title="報告書PDFプレビュー" src="about:blank"></iframe>
+    </div>
+  </div>
 </BaseLayout>
+
+<script>
+  const modal = document.getElementById('pdfModal');
+  if (modal) {
+    const frame = document.getElementById('pdfModalFrame');
+    const titleEl = document.getElementById('pdfModalTitle');
+    const dlEl = document.getElementById('pdfModalDl');
+    const closeBtn = modal.querySelector('.pdf-modal__close');
+    let lastFocus = null;
+
+    const openModal = (href, title) => {
+      if (!href) return;
+      lastFocus = document.activeElement;
+      frame.src = href;
+      titleEl.textContent = title || '報告書プレビュー';
+      dlEl.href = href;
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      closeBtn.focus();
+    };
+
+    const closeModal = () => {
+      modal.hidden = true;
+      frame.src = 'about:blank';
+      document.body.style.overflow = '';
+      if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+    };
+
+    document.querySelectorAll('.js-pdf-view').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal(el.getAttribute('href'), el.dataset.title);
+      });
+    });
+
+    modal.querySelectorAll('[data-close]').forEach((el) => el.addEventListener('click', closeModal));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.hidden) closeModal();
+    });
+  }
+</script>
 
 <style>
   .project {
@@ -158,6 +305,269 @@ import Hero from '../components/Hero.astro';
     display: inline-flex;
     align-items: center;
     justify-content: center;
+  }
+
+  /* 活動サマリー（箇条書き） */
+  .acts {
+    list-style: none;
+    padding-left: 0;
+    margin: 0 0 var(--space-5);
+  }
+
+  .acts li {
+    position: relative;
+    padding-left: 22px;
+    line-height: 1.9;
+    margin-bottom: var(--space-3);
+    color: var(--color-ink);
+  }
+
+  .acts li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 13px;
+    width: 7px;
+    height: 7px;
+    background: var(--color-terra-500);
+    border-radius: 50%;
+  }
+
+  .acts strong {
+    color: var(--color-green-900);
+    font-weight: 600;
+  }
+
+  /* ダウンロード（表紙＋ボタン） */
+  .dl-block {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+    flex-wrap: wrap;
+  }
+
+  .dl-cover {
+    display: block;
+    position: relative;
+    flex-shrink: 0;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--color-line);
+    transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+  }
+
+  .dl-cover img {
+    display: block;
+    width: 124px;
+    height: auto;
+  }
+
+  /* 表紙が「クリックで読める」と分かるヒント帯（モバイルでも常時表示） */
+  .dl-cover__hint {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 5px 4px;
+    background: rgba(26, 38, 32, 0.74);
+    color: #fff;
+    font-size: 11px;
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+
+  .dl-cover__hint::before {
+    content: '🔍 ';
+  }
+
+  .dl-cover:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .dl-cover:hover .dl-cover__hint {
+    background: var(--color-terra-500);
+  }
+
+  .dl-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .dl-info .btn__icon { transition: transform var(--dur-fast) var(--ease-out); }
+  .dl-info .btn:hover .btn__icon { transform: translateY(3px); }
+
+  .dl-meta {
+    font-size: var(--fs-small);
+    color: var(--color-ink-soft);
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+  }
+
+  /* PDF プレビュー モーダル */
+  .pdf-modal[hidden] { display: none; }
+
+  .pdf-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-5);
+  }
+
+  .pdf-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(26, 38, 32, 0.6);
+    backdrop-filter: blur(2px);
+  }
+
+  .pdf-modal__panel {
+    position: relative;
+    width: min(960px, 100%);
+    height: min(90vh, 100%);
+    display: flex;
+    flex-direction: column;
+    background: var(--color-paper);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-hi);
+    overflow: hidden;
+  }
+
+  .pdf-modal__bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-line);
+    background: var(--color-cream);
+  }
+
+  .pdf-modal__title {
+    flex: 1;
+    min-width: 0;
+    font-family: var(--font-hand);
+    font-size: 16px;
+    color: var(--color-green-900);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .pdf-modal__dl {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-green-700);
+    white-space: nowrap;
+  }
+
+  .pdf-modal__dl:hover { color: var(--color-terra-500); }
+
+  .pdf-modal__close {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--color-ink-mute);
+    background: transparent;
+    flex-shrink: 0;
+  }
+
+  .pdf-modal__close:hover {
+    background: var(--color-line-soft);
+    color: var(--color-green-900);
+  }
+
+  .pdf-modal__frame {
+    flex: 1;
+    width: 100%;
+    border: 0;
+    background: var(--color-sand);
+  }
+
+  @media (max-width: 768px) {
+    .pdf-modal { padding: 0; }
+    .pdf-modal__panel {
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+    }
+  }
+
+  /* 参加者の声カード */
+  .voices-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+    margin-top: var(--space-5);
+  }
+
+  .vc {
+    background: var(--color-paper);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-soft);
+    border-top: 3px solid var(--color-terra-500);
+    margin: 0;
+    transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+  }
+
+  .vc:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .vc__quote {
+    font-family: var(--font-hand);
+    font-size: 15px;
+    line-height: 1.95;
+    color: var(--color-ink);
+    letter-spacing: 0.02em;
+    margin: 0 0 var(--space-5);
+    line-break: strict;
+    word-break: auto-phrase;
+  }
+
+  .vc__cap {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-line-soft);
+  }
+
+  .vc__name {
+    font-family: var(--font-hand);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-green-900);
+  }
+
+  .vc__role {
+    font-size: 12px;
+    color: var(--color-ink-soft);
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+  }
+
+  .inline-link {
+    color: var(--color-terra-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .inline-link:hover { color: var(--color-terra-500); }
+
+  @media (max-width: 880px) {
+    .voices-grid { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 768px) {

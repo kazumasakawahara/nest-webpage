@@ -1,0 +1,22 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import MembersNav from '../components/members/MembersNav.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description } = Astro.props;
+// BaseLayout が組織名を付加するので、ここでは「会員ページ」までに留める
+const fullTitle = `${title}｜会員ページ`;
+---
+
+<BaseLayout title={fullTitle} description={description}>
+  <Fragment slot="head">
+    <meta name="robots" content="noindex, nofollow" />
+  </Fragment>
+  <MembersNav />
+  <main>
+    <slot />
+  </main>
+</BaseLayout>

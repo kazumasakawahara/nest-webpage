@@ -1,0 +1,72 @@
+---
+const member = Astro.locals.member;
+const path = Astro.url.pathname;
+
+interface NavItem { href: string; label: string; show: boolean; }
+
+const items: NavItem[] = [
+  { href: '/members/', label: 'ホーム', show: true },
+  { href: '/members/newsletter/', label: '機関誌「巣箱」', show: true },
+  { href: '/members/family/', label: '家族会', show: member?.role === 'family' },
+  { href: '/members/my-note/', label: '自分ノート', show: true },
+  { href: '/members/community/', label: 'コミュニティ', show: true },
+  { href: '/members/admin/', label: '管理', show: !!member?.is_staff },
+];
+
+function isCurrent(href: string) {
+  if (href === '/members/') return path === '/members/' || path === '/members';
+  return path === href || path.startsWith(href);
+}
+---
+
+<nav class="mnav" aria-label="会員メニュー">
+  <ul class="mnav__list">
+    {items.filter(i => i.show).map(i => (
+      <li class="mnav__item">
+        <a href={i.href} class={`mnav__link ${isCurrent(i.href) ? 'is-current' : ''}`}>
+          {i.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+  <form method="POST" action="/members/sign-out" class="mnav__signout">
+    <button type="submit" class="mnav__signout-btn">ログアウト</button>
+  </form>
+</nav>
+
+<style>
+  .mnav {
+    background: var(--color-sand);
+    border-bottom: 1px solid var(--color-ink-mute);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-4);
+  }
+  .mnav__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .mnav__link {
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+  .mnav__link.is-current { background: var(--color-green-700); color: var(--color-cream); }
+  .mnav__signout { margin-left: auto; }
+  .mnav__signout-btn {
+    background: none;
+    border: 1px solid var(--color-ink-mute);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font: inherit;
+    color: var(--color-ink);
+  }
+</style>

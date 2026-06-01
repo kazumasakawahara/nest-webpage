@@ -10,9 +10,21 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
-    "astro": "^6.3.7"
+    "@astrojs/cloudflare": "^13.5.4",
+    "@supabase/supabase-js": "^2.106.2",
+    "astro": "^6.3.7",
+    "resend": "^6.12.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^25.9.1",
+    "@vitest/coverage-v8": "^4.1.7",
+    "vitest": "^4.1.7"
   }
 }

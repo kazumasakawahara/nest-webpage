@@ -1,0 +1,132 @@
+---
+import MembersLayout from '../../../layouts/MembersLayout.astro';
+import { createServerClient } from '../../../lib/supabase';
+
+export const prerender = false;
+
+const supabase = createServerClient();
+let message: string | null = null;
+
+if (Astro.request.method === 'POST') {
+  const form = await Astro.request.formData();
+  const action = String(form.get('_action') ?? '');
+
+  if (action === 'create') {
+    const body = String(form.get('body_markdown') ?? '').trim();
+    const audience = String(form.get('audience') ?? 'member');
+    const published = form.get('published') === 'on';
+    if (!['member', 'family'].includes(audience)) {
+      message = '対象の指定が正しくありません。';
+    } else if (body) {
+      const { error } = await supabase.from('announcements').insert({ body_markdown: body, audience, published });
+      message = error ? `エラー：${error.message}` : '登録しました。';
+    } else {
+      message = '本文が空です。';
+    }
+  } else if (action === 'toggle_published') {
+    const id = String(form.get('id'));
+    const published = form.get('published') === 'true';
+    await supabase.from('announcements').update({ published: !published }).eq('id', id);
+    message = '公開状態を変更しました。';
+  } else if (action === 'delete') {
+    const id = String(form.get('id'));
+    await supabase.from('announcements').delete().eq('id', id);
+    message = '削除しました。';
+  }
+}
+
+const { data: list } = await supabase
+  .from('announcements')
+  .select('id, body_markdown, audience, published, created_at')
+  .order('created_at', { ascending: false });
+---
+
+<MembersLayout title="お知らせ管理">
+  <section class="section">
+    <div class="container">
+      <h1 class="section__title">お知らせ管理</h1>
+      {message && <p class="notice">{message}</p>}
+
+      <h2 class="section__title--sub">新規作成</h2>
+      <form method="POST" class="adminform">
+        <input type="hidden" name="_action" value="create" />
+        <label>本文（Markdown 可）<textarea name="body_markdown" rows="5" required></textarea></label>
+        <label>対象
+          <select name="audience">
+            <option value="member">全会員</option>
+            <option value="family">家族会員のみ</option>
+          </select>
+        </label>
+        <label class="adminform__check"><input type="checkbox" name="published" />すぐに公開する</label>
+        <button type="submit" class="btn btn--primary">登録</button>
+      </form>
+
+      <h2 class="section__title--sub">登録済み</h2>
+      {(!list || list.length === 0) ? (
+        <p class="text-soft">まだお知らせはありません。</p>
+      ) : (
+        <ul class="annlist">
+          {list.map(a => (
+            <li class="annlist__item">
+              <div class="annlist__meta">
+                {new Date(a.created_at).toLocaleString('ja-JP')}
+                ／ 対象: {a.audience === 'family' ? '家族会員' : '全会員'}
+                ／ {a.published ? '公開中' : '非公開'}
+              </div>
+              <pre class="annlist__body">{a.body_markdown}</pre>
+              <div class="annlist__actions">
+                <form method="POST" class="inline-form">
+                  <input type="hidden" name="_action" value="toggle_published" />
+                  <input type="hidden" name="id" value={a.id} />
+                  <input type="hidden" name="published" value={String(a.published)} />
+                  <button type="submit" class="btn btn--outline btn--sm">{a.published ? '非公開化' : '公開する'}</button>
+                </form>
+                <form method="POST" class="inline-form" onsubmit="return confirm('削除しますか？');">
+                  <input type="hidden" name="_action" value="delete" />
+                  <input type="hidden" name="id" value={a.id} />
+                  <button type="submit" class="btn btn--outline btn--sm">削除</button>
+                </form>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </section>
+</MembersLayout>
+
+<style>
+  .adminform { display: grid; gap: var(--space-3); max-width: 36rem; margin-block: var(--space-3); }
+  .adminform label { display: grid; gap: var(--space-1); font-weight: 600; }
+  .adminform input, .adminform select, .adminform textarea {
+    font: inherit;
+    padding: var(--space-2);
+    border: 1px solid var(--color-ink-mute);
+    border-radius: var(--radius-md);
+    background: var(--color-cream);
+  }
+  .adminform__check { grid-template-columns: auto 1fr; align-items: center; gap: var(--space-2); font-weight: 400; }
+  .annlist { list-style: none; padding: 0; }
+  .annlist__item {
+    padding: var(--space-3);
+    border: 1px solid var(--color-ink-mute);
+    border-radius: var(--radius-md);
+    margin-block: var(--space-3);
+  }
+  .annlist__meta { font-size: var(--fs-small); color: var(--color-ink-mute); }
+  .annlist__body {
+    white-space: pre-wrap;
+    font: inherit;
+    background: var(--color-cream);
+    padding: var(--space-2);
+    border-radius: var(--radius-md);
+  }
+  .annlist__actions { display: flex; gap: var(--space-2); margin-top: var(--space-2); }
+  .inline-form { display: inline; }
+  .notice {
+    padding: var(--space-2) var(--space-3);
+    background: var(--color-sand);
+    border-radius: var(--radius-md);
+    margin-block: var(--space-3);
+  }
+</style>

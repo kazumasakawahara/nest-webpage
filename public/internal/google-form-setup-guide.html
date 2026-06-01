@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>手順書：入会申込 Google Form の構築（事務局向け）— NPO法人 nest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --color-ink: #2a2620;
+      --color-ink-mute: #6b6358;
+      --color-line: #c8beae;
+      --color-green-900: #1a3d18;
+      --color-green-700: #2d5a27;
+      --color-green-100: #e6efd8;
+      --color-terra-500: #d97757;
+      --color-terra-100: #f5d5c4;
+      --color-paper: #ffffff;
+      --color-cream: #faf6ef;
+      --color-sand: #f0ead8;
+      --font-serif: 'Shippori Mincho', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+      --font-sans: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      color: var(--color-ink);
+      background: var(--color-cream);
+      line-height: 1.8;
+      padding: 32px 24px 64px;
+      font-size: 14px;
+      word-break: keep-all;
+      line-break: strict;
+      overflow-wrap: break-word;
+    }
+    .doc {
+      max-width: 860px;
+      margin: 0 auto;
+      background: var(--color-paper);
+      padding: 48px 56px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      border-radius: 8px;
+    }
+    .doc-header {
+      border-bottom: 3px solid var(--color-green-900);
+      padding-bottom: 18px;
+      margin-bottom: 28px;
+    }
+    .doc-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      color: var(--color-terra-500);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .doc-title {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--color-green-900);
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .doc-meta { font-size: 12px; color: var(--color-ink-mute); }
+
+    .summary {
+      background: var(--color-green-100);
+      border-left: 4px solid var(--color-green-700);
+      padding: 14px 18px;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 28px;
+      font-size: 13px;
+    }
+    .summary__title {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      color: var(--color-green-900);
+      margin-bottom: 6px;
+    }
+    .summary table { width: 100%; border-collapse: collapse; }
+    .summary td { padding: 3px 8px; vertical-align: top; }
+    .summary td:first-child { font-weight: 600; white-space: nowrap; width: 30%; color: var(--color-green-900); }
+
+    .step {
+      margin-bottom: 36px;
+      border-top: 1px solid var(--color-line);
+      padding-top: 20px;
+    }
+    .step__num {
+      display: inline-block;
+      background: var(--color-green-700);
+      color: var(--color-paper);
+      font-family: var(--font-serif);
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 32px;
+      font-size: 16px;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    .step__title {
+      font-family: var(--font-serif);
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--color-green-900);
+      display: inline;
+      vertical-align: middle;
+    }
+    .step__est {
+      font-size: 11px;
+      color: var(--color-ink-mute);
+      margin-left: 8px;
+    }
+    .step__body { margin-top: 14px; }
+
+    .sub-title {
+      font-family: var(--font-serif);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--color-green-700);
+      margin: 16px 0 6px;
+    }
+
+    p { margin-bottom: 10px; }
+    ul, ol { padding-left: 24px; margin-bottom: 10px; }
+    li { margin: 3px 0; }
+
+    code {
+      background: var(--color-cream);
+      border: 1px solid var(--color-line);
+      border-radius: 3px;
+      padding: 1px 5px;
+      font-family: 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 12px;
+      color: var(--color-green-900);
+    }
+    pre {
+      background: #1e2b22;
+      color: #e6efd8;
+      border-radius: 6px;
+      padding: 16px;
+      overflow-x: auto;
+      font-family: 'SF Mono', Menlo, Consolas, monospace;
+      font-size: 11.5px;
+      line-height: 1.65;
+      margin: 12px 0;
+    }
+    pre .cm { color: #8aa888; }
+    pre .st { color: #d9b777; }
+    pre .kw { color: #d99777; }
+
+    table.spec {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+      font-size: 12.5px;
+    }
+    table.spec th, table.spec td {
+      border: 1px solid var(--color-line);
+      padding: 7px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+    table.spec th {
+      background: var(--color-cream);
+      color: var(--color-green-900);
+      font-weight: 600;
+      font-family: var(--font-serif);
+    }
+    table.spec td.req { color: #8a2a1a; font-weight: 600; white-space: nowrap; }
+    table.spec td.opt { color: var(--color-ink-mute); white-space: nowrap; }
+
+    .callout {
+      border-left: 4px solid var(--color-terra-500);
+      background: var(--color-terra-100);
+      padding: 12px 16px;
+      margin: 14px 0;
+      border-radius: 0 6px 6px 0;
+      font-size: 13px;
+    }
+    .callout--warn { border-left-color: #b8860b; background: #fff8e6; }
+    .callout strong { color: var(--color-green-900); }
+
+    .copybox {
+      border: 1px dashed var(--color-green-700);
+      background: var(--color-cream);
+      padding: 12px 16px;
+      border-radius: 6px;
+      margin: 10px 0;
+      font-size: 13px;
+      white-space: pre-wrap;
+      line-height: 1.7;
+    }
+    .copybox__label {
+      font-size: 11px;
+      color: var(--color-green-700);
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .handoff {
+      background: var(--color-sand);
+      border: 1px solid var(--color-green-700);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-top: 32px;
+    }
+    .handoff__title {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      color: var(--color-green-900);
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    @media print {
+      body { padding: 0; background: #fff; font-size: 11px; }
+      .doc { max-width: none; margin: 0; padding: 14mm 16mm; box-shadow: none; border-radius: 0; }
+      .step { page-break-inside: avoid; }
+      pre { background: #f4f4f0; color: #1a1a1a; border: 1px solid #ccc; }
+      pre .cm { color: #707070; }
+      pre .st { color: #8a6d00; }
+      pre .kw { color: #9a3a1a; }
+      @page { size: A4; margin: 0; }
+    }
+    @media (max-width: 720px) {
+      .doc { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <article class="doc">
+
+    <header class="doc-header">
+      <div class="doc-eyebrow">Setup Guide for Office Staff</div>
+      <h1 class="doc-title">入会申込 Google Form 構築手順書</h1>
+      <div class="doc-meta">
+        作成日：2026-05-27 ／ 対象：事務局スタッフ ／ 所要：約 1〜1.5時間
+      </div>
+    </header>
+
+    <!-- 決定事項サマリー -->
+    <div class="summary">
+      <div class="summary__title">✅ 確定した仕様（林代表 承認済み）</div>
+      <table>
+        <tr><td>個人情報の越境移転</td><td>許容（Google 米国サーバ経由 → 同意文を Form に明示）</td></tr>
+        <tr><td>自動化レベル</td><td>Level 2（Apps Script で通知・自動返信・ステータス管理）</td></tr>
+        <tr><td>サイト動線</td><td>β（Web 申込と紙申込を並列で対等に案内）</td></tr>
+        <tr><td>会費</td><td>正会員：入会金 ¥1,000 ＋ 年会費 ¥2,000／賛助会員（個人・団体）：年会費 ¥2,000</td></tr>
+        <tr><td>納付方法</td><td>当面は現金持参（オンライン決済は今後対応）</td></tr>
+        <tr><td>アカウント</td><td>事務局共用 Google アカウント</td></tr>
+      </table>
+    </div>
+
+    <div class="callout">
+      この手順書は <strong>事務局スタッフが Google Form を実際に作る</strong>ための作業マニュアルです。
+      STEP 1〜6 を上から順に実施し、最後に <strong>STEP 7 で Form の URL を河原さんに伝える</strong>と、
+      サイトへの QR コード配置・動線実装（Claude 担当）に進めます。
+    </div>
+
+    <!-- STEP 1 -->
+    <section class="step">
+      <h2><span class="step__num">1</span><span class="step__title">Form を新規作成</span><span class="step__est">（5分）</span></h2>
+      <div class="step__body">
+        <ol>
+          <li><strong>事務局共用アカウント</strong>で Google にログイン</li>
+          <li><code>https://forms.google.com</code> を開く → 「空白のフォーム」（＋）</li>
+          <li>タイトル：<code>NPO法人 nest 入会申込フォーム</code></li>
+          <li>説明欄に以下を貼り付け：</li>
+        </ol>
+        <div class="copybox">
+          <span class="copybox__label">▼ フォーム説明欄にコピペ</span>NPO法人 nest の活動を支えてくださる会員を募集しています。
+下記フォームにご記入のうえ送信してください。
+ご不明な点は事務局（093-582-7018／平日 8:00〜20:00）まで。
+
+※ 紙の申込書をご希望の方は、こちらから印刷できます：
+https://www.nponest.org/pdfs/forms/membership-application.html</div>
+      </div>
+    </section>
+
+    <!-- STEP 2 -->
+    <section class="step">
+      <h2><span class="step__num">2</span><span class="step__title">質問を追加</span><span class="step__est">（25分）</span></h2>
+      <div class="step__body">
+        <p>以下の順に質問を追加します。「質問を追加」（＋ボタン）で1つずつ作成してください。<strong>質問文は Apps Script と完全一致させる必要がある</strong>ので、コピペ推奨です。</p>
+
+        <table class="spec">
+          <tr><th>質問文</th><th>種類</th><th>選択肢・設定</th><th>必須</th></tr>
+          <tr>
+            <td>会員区分</td>
+            <td>ラジオボタン</td>
+            <td>正会員（入会金¥1,000＋年会費¥2,000）<br>賛助会員（個人）（年会費¥2,000）<br>賛助会員（団体）（年会費¥2,000）</td>
+            <td class="req">必須</td>
+          </tr>
+          <tr><td>お名前（団体の場合は団体名）</td><td>記述式（短文）</td><td>—</td><td class="req">必須</td></tr>
+          <tr><td>お名前（ふりがな）</td><td>記述式（短文）</td><td>—</td><td class="req">必須</td></tr>
+          <tr><td>メールアドレス</td><td>記述式（短文）</td><td>回答の検証 → メールアドレス</td><td class="req">必須</td></tr>
+          <tr><td>電話番号</td><td>記述式（短文）</td><td>—</td><td class="req">必須</td></tr>
+          <tr><td>郵便番号</td><td>記述式（短文）</td><td>—</td><td class="req">必須</td></tr>
+          <tr><td>住所</td><td>記述式（短文）</td><td>—</td><td class="req">必須</td></tr>
+          <tr><td>生年月日</td><td>日付</td><td>年を含める</td><td class="opt">任意</td></tr>
+          <tr><td>ご職業・ご所属</td><td>記述式（短文）</td><td>—</td><td class="opt">任意</td></tr>
+          <tr><td>nest を知ったきっかけ</td><td>チェックボックス</td><td>Webサイト／知人の紹介／イベント・講演会／SNS／その他</td><td class="opt">任意</td></tr>
+          <tr><td>入会の動機・nest への期待</td><td>記述式（段落）</td><td>—</td><td class="opt">任意</td></tr>
+          <tr><td>ボランティア参加への意向</td><td>ラジオボタン</td><td>希望する／応相談／希望しない</td><td class="opt">任意</td></tr>
+          <tr><td>緊急連絡先（任意）</td><td>記述式（段落）</td><td>お名前・続柄・電話番号</td><td class="opt">任意</td></tr>
+          <tr><td>その他のご要望・ご質問</td><td>記述式（段落）</td><td>—</td><td class="opt">任意</td></tr>
+          <tr><td>個人情報の取り扱いへの同意</td><td>チェックボックス</td><td>「上記に同意します」1択</td><td class="req">必須</td></tr>
+        </table>
+
+        <div class="sub-title">最後の「個人情報の取り扱い」質問の説明文に貼り付け</div>
+        <div class="copybox">
+          <span class="copybox__label">▼ 同意質問の説明欄にコピペ（越境移転の明示）</span>本フォームに入力いただいた個人情報は、Google LLC（米国）が運営する
+Google Forms のサーバを経由して NPO法人 nest が受信・保管します。
+
+【利用目的】会員管理、会報誌の送付、行事のご案内
+【保管期間】会員として在籍している期間
+【第三者提供】法令に基づく場合を除き、行いません
+
+米国サーバを経由することへの同意が難しい場合は、紙の申込書をご利用ください：
+https://www.nponest.org/pdfs/forms/membership-application.html</div>
+      </div>
+    </section>
+
+    <!-- STEP 3 -->
+    <section class="step">
+      <h2><span class="step__num">3</span><span class="step__title">設定・デザイン</span><span class="step__est">（10分）</span></h2>
+      <div class="step__body">
+        <div class="sub-title">設定タブ</div>
+        <ul>
+          <li><strong>「回答」</strong>セクション → 「回答のコピーを送信」を <strong>「リクエストされた場合」</strong> または <strong>「常時」</strong> に設定（申込者が控えを受け取れる）</li>
+          <li>「メールアドレスを収集する」→ <strong>「確認済み」</strong> 推奨（なりすまし防止）</li>
+          <li>「ログインの要求」→ <strong>OFF</strong>（会員以外も申込できるように）</li>
+        </ul>
+
+        <div class="sub-title">デザイン（パレットアイコン）</div>
+        <ul>
+          <li>テーマカラー：カスタム → <code>#2D5A27</code>（nest 緑）</li>
+          <li>背景色：薄いグリーン or クリーム</li>
+          <li>ヘッダー画像：<code>NEST LOGO_01.png</code> をアップロード（任意）</li>
+          <li>フォント：基本フォント（日本語が読みやすいもの）</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- STEP 4 -->
+    <section class="step">
+      <h2><span class="step__num">4</span><span class="step__title">サンクスメッセージ（送信後の表示）</span><span class="step__est">（5分）</span></h2>
+      <div class="step__body">
+        <p>「設定」→「プレゼンテーション」→「確認メッセージ」を編集：</p>
+        <div class="copybox">
+          <span class="copybox__label">▼ 確認メッセージにコピペ</span>お申し込みありがとうございます。
+内容を確認のうえ、事務局よりご連絡いたします。
+
+【会費のお支払いについて】
+当面は現金でのお支払いをお願いしております。
+事務局へご持参いただくか、行事の際にお渡しください。
+（オンライン決済は今後対応予定です）
+
+・正会員：入会金 ¥1,000 ＋ 年会費 ¥2,000
+・賛助会員（個人・団体）：年会費 ¥2,000
+
+ご不明な点は事務局まで：093-582-7018（平日 8:00〜20:00）</div>
+      </div>
+    </section>
+
+    <!-- STEP 5 -->
+    <section class="step">
+      <h2><span class="step__num">5</span><span class="step__title">スプレッドシート連携</span><span class="step__est">（5分）</span></h2>
+      <div class="step__body">
+        <ol>
+          <li>「回答」タブ → スプレッドシートのアイコン（緑）をクリック</li>
+          <li>「新しいスプレッドシートを作成」→ 名前：<code>入会申込_回答</code></li>
+          <li>作成されたスプレッドシートを開く</li>
+          <li>質問列の右側に、以下の<strong>管理用列を手動で追加</strong>：</li>
+        </ol>
+        <table class="spec">
+          <tr><th>列名</th><th>用途</th></tr>
+          <tr><td>受付状況</td><td>未対応 / 確認中 / 完了（手動更新）</td></tr>
+          <tr><td>会費確認</td><td>未納 / 入金確認済 / 不要</td></tr>
+          <tr><td>nest登録日</td><td>会員管理画面で登録した日</td></tr>
+          <tr><td>会員番号</td><td>登録時に発番</td></tr>
+          <tr><td>事務局メモ</td><td>備考</td></tr>
+        </table>
+        <div class="callout">
+          「受付状況」列は Apps Script（STEP 6）が新規申込時に自動で「未対応」をセットします。手動で初期値を入れる必要はありません。
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 6 -->
+    <section class="step">
+      <h2><span class="step__num">6</span><span class="step__title">Apps Script で半自動化（Level 2）</span><span class="step__est">（20分）</span></h2>
+      <div class="step__body">
+        <p>申込があるたびに「①事務局への通知メール」「②申込者への会費案内メール」「③受付状況の初期化」を自動で行います。</p>
+        <ol>
+          <li>STEP 5 のスプレッドシートを開く</li>
+          <li>メニュー「拡張機能」→「Apps Script」</li>
+          <li>既存のコードを全削除し、以下を貼り付け</li>
+          <li><code>OFFICE_EMAIL</code> を事務局のメールアドレスに変更</li>
+          <li>保存（💾）</li>
+        </ol>
+
+        <pre><span class="cm">// ===== NPO nest 入会申込フォーム — 自動処理（Level 2） =====</span>
+<span class="cm">// ▼ 事務局のメールアドレスに変更してください</span>
+<span class="kw">const</span> OFFICE_EMAIL = <span class="st">'jimukyoku@nponest.org'</span>;
+
+<span class="kw">function</span> onFormSubmit(e) {
+  <span class="kw">const</span> r = e.namedValues;
+  <span class="kw">const</span> name  = (r[<span class="st">'お名前（団体の場合は団体名）'</span>] || [<span class="st">''</span>])[0];
+  <span class="kw">const</span> email = (r[<span class="st">'メールアドレス'</span>] || [<span class="st">''</span>])[0];
+  <span class="kw">const</span> type  = (r[<span class="st">'会員区分'</span>] || [<span class="st">''</span>])[0];
+
+  <span class="cm">// --- ① 事務局への通知 ---</span>
+  <span class="kw">const</span> lines = Object.keys(r).map(k =&gt; k + <span class="st">'：'</span> + r[k].join(<span class="st">', '</span>));
+  MailApp.sendEmail(
+    OFFICE_EMAIL,
+    <span class="st">'【入会申込】'</span> + name + <span class="st">' 様（'</span> + type + <span class="st">'）'</span>,
+    <span class="st">'新しい入会申込がありました。\n\n'</span> + lines.join(<span class="st">'\n'</span>) +
+    <span class="st">'\n\nスプレッドシートで詳細を確認してください。'</span>
+  );
+
+  <span class="cm">// --- ② 申込者への会費案内（自動返信） ---</span>
+  <span class="kw">if</span> (email) {
+    <span class="kw">const</span> fee = (type.indexOf(<span class="st">'正会員'</span>) &gt;= 0)
+      ? <span class="st">'入会金 ¥1,000 ＋ 年会費 ¥2,000（初年度 ¥3,000、次年度以降 ¥2,000）'</span>
+      : <span class="st">'年会費 ¥2,000'</span>;
+    MailApp.sendEmail(
+      email,
+      <span class="st">'【nest】入会申込を受け付けました'</span>,
+      name + <span class="st">' 様\n\n'</span> +
+      <span class="st">'この度は NPO法人 nest への入会をお申し込みいただき、ありがとうございます。\n'</span> +
+      <span class="st">'以下の内容で受け付けました。\n\n'</span> +
+      <span class="st">'■ 会員区分：'</span> + type + <span class="st">'\n'</span> +
+      <span class="st">'■ お支払い金額：'</span> + fee + <span class="st">'\n\n'</span> +
+      <span class="st">'【お支払い方法】\n'</span> +
+      <span class="st">'当面は現金でのお支払いをお願いしております。\n'</span> +
+      <span class="st">'事務局までご持参いただくか、行事の際にお渡しください。\n'</span> +
+      <span class="st">'（オンライン決済は今後対応予定です）\n\n'</span> +
+      <span class="st">'ご不明な点は事務局まで：093-582-7018（平日 8:00〜20:00）\n\n'</span> +
+      <span class="st">'NPO法人 nest'</span>
+    );
+  }
+
+  <span class="cm">// --- ③ 受付状況を「未対応」に初期化 ---</span>
+  <span class="kw">const</span> sheet = e.range.getSheet();
+  <span class="kw">const</span> row = e.range.getRow();
+  <span class="kw">const</span> headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  <span class="kw">let</span> col = headers.indexOf(<span class="st">'受付状況'</span>) + 1;
+  <span class="kw">if</span> (col === 0) { col = sheet.getLastColumn() + 1; sheet.getRange(1, col).setValue(<span class="st">'受付状況'</span>); }
+  sheet.getRange(row, col).setValue(<span class="st">'未対応'</span>);
+}</pre>
+
+        <div class="sub-title">トリガーの設定（重要）</div>
+        <ol>
+          <li>Apps Script 画面の左メニュー「トリガー」（⏰アイコン）</li>
+          <li>右下「トリガーを追加」</li>
+          <li>設定：
+            <ul>
+              <li>実行する関数：<code>onFormSubmit</code></li>
+              <li>イベントのソース：<strong>スプレッドシートから</strong></li>
+              <li>イベントの種類：<strong>フォーム送信時</strong></li>
+            </ul>
+          </li>
+          <li>保存 → Google アカウントの承認を求められるので許可</li>
+        </ol>
+        <div class="callout callout--warn">
+          <strong>承認画面で「このアプリは確認されていません」と出ます</strong>が、これは自作スクリプトのため正常です。「詳細」→「（プロジェクト名）に移動」→「許可」で進めてください。事務局共用アカウントの所有者が実施します。
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 7 -->
+    <section class="step">
+      <h2><span class="step__num">7</span><span class="step__title">テスト → URL を河原さんへ</span><span class="step__est">（10分）</span></h2>
+      <div class="step__body">
+        <div class="sub-title">テスト送信</div>
+        <ol>
+          <li>Form 右上「プレビュー」（👁）→ 自分で1件テスト申込</li>
+          <li>確認：
+            <ul>
+              <li>スプレッドシートに行が追加されたか</li>
+              <li>「受付状況」が自動で「未対応」になったか</li>
+              <li>事務局アドレスに通知メールが届いたか</li>
+              <li>申込者アドレス（テストで入れたもの）に会費案内メールが届いたか</li>
+            </ul>
+          </li>
+          <li>テスト行はスプレッドシートから削除しておく</li>
+        </ol>
+
+        <div class="sub-title">公開 URL の取得</div>
+        <ol>
+          <li>Form 右上「送信」ボタン → リンクアイコン（🔗）</li>
+          <li>「URL を短縮」にチェックを入れると短い URL になる</li>
+          <li>表示された URL をコピー</li>
+        </ol>
+
+        <div class="handoff">
+          <div class="handoff__title">📨 河原さんへ伝えること</div>
+          <p>以下を河原さん（または Claude）に伝えれば、QR コード生成とサイト動線（/join/ ページ）の実装に進めます：</p>
+          <ul>
+            <li><strong>Google Form の公開 URL</strong>（短縮版でOK）</li>
+            <li>テストが正常完了したかどうか</li>
+          </ul>
+          <p style="margin-top:8px;">サイト側の実装（QR 配置・β 並列レイアウト）は <code>docs/planning/google-form-membership.html</code> の §4・§7 に基づいて Claude が行います。</p>
+        </div>
+      </div>
+    </section>
+
+    <footer style="margin-top:40px; padding-top:20px; border-top:1px solid var(--color-line); font-size:11px; color:var(--color-ink-mute); text-align:center;">
+      📄 公開 URL：<code>https://www.nponest.org/internal/google-form-setup-guide.html</code>（noindex・限定公開）<br />
+      関連：紙申込書 <code>https://www.nponest.org/pdfs/forms/membership-application.html</code><br />
+      ブラウザで開く ／ Cmd+P で印刷して事務局に配布 ／ URL を事務局スタッフに共有
+    </footer>
+  </article>
+</body>
+</html>

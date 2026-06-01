@@ -1,0 +1,45 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  downloadHref: string;
+  thumbnailUrl?: string | null;
+}
+const { title, subtitle, downloadHref, thumbnailUrl } = Astro.props;
+---
+
+<article class="pdfc">
+  <div class="pdfc__thumb">
+    {thumbnailUrl
+      ? <img src={thumbnailUrl} alt="" loading="lazy" />
+      : <span class="pdfc__ph">PDF 表紙</span>}
+  </div>
+  <div class="pdfc__body">
+    <h3 class="pdfc__title">{title}</h3>
+    {subtitle && <p class="pdfc__sub">{subtitle}</p>}
+    <a href={downloadHref} class="btn btn--primary">PDFダウンロード</a>
+  </div>
+</article>
+
+<style>
+  .pdfc {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-cream);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+  }
+  .pdfc__thumb {
+    aspect-ratio: 3 / 4;
+    background: var(--color-sand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pdfc__thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .pdfc__ph { color: var(--color-ink-mute); font-size: var(--fs-small); }
+  .pdfc__body { padding: var(--space-4); display: grid; gap: var(--space-2); }
+  .pdfc__title { font-family: var(--font-heading); margin: 0; }
+  .pdfc__sub { color: var(--color-ink-mute); margin: 0; }
+</style>

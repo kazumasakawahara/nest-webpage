@@ -78,3 +78,30 @@ summary: 一覧用の要約（任意）
 - アクセント：Inter（数字・英字のみ）
 - すべてのアニメーションは `prefers-reduced-motion: reduce` を尊重
 - モバイルでは画面下に常設「電話 / お問い合わせ」スティッキーCTA
+
+---
+
+## 会員専用エリア（Phase 1）
+
+`/members/` 以下は認証付きの会員専用エリアです。
+
+### 開発時の動作確認
+1. `.env.example` を `.env.local` にコピーし、Supabase / Resend の認証情報を入れる
+2. Supabase Studio で `db/README.md` の手順に従ってマイグレーションを実行
+3. `npm run dev` で開発サーバ起動
+
+### 会員追加（事務局向け）
+1. `/members/admin/members/new` から新規会員を登録
+2. 会員ご本人がメアドを入力してログイン → メールに届くリンクをクリック
+
+### PDF アップロード
+1. Supabase Studio → Storage → `newsletters` / `family-minutes` バケットに PDF アップロード
+2. `/members/admin/newsletters` または `/members/admin/family` でメタ情報を登録
+
+### 詳細
+- 設計仕様: `docs/superpowers/specs/2026-05-24-members-area-phase1-design.md`
+- 実装計画: `docs/superpowers/plans/2026-05-25-members-area-phase1.md`
+- 引き継ぎ書: `HANDOVER-PHASE1.md`
+- デプロイ手順: `docs/operations/deployment.md`
+- UAT チェックリスト: `docs/operations/uat-checklist.md`
+- 会員管理 運用手順: `docs/operations/member-management.md`

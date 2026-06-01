@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+---
+
+<BaseLayout
+  title="親なき後"
+  description="NPO法人nestは、親なき後に向けて「お金」ではなく、親や家族の暗黙知と支援者の経験知を遺し、本人支援が続く仕組みづくりに取り組んでいます。"
+>
+  <Hero
+    eyebrow="Post-Parent Support"
+    title="親なき後"
+    lead="遺すのは、お金ではない。"
+    size="md"
+    placeholderLabel="POST-PARENT SUPPORT"
+  />
+
+  <!-- ===== 理念（主役） ===== -->
+  <section class="section">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">Our Belief</span>
+      <h2 class="section__title">お金より、遺すべきものがある</h2>
+      <p style="font-size:16px; line-height:2; color:var(--color-ink); margin-bottom:var(--space-5);">
+        「親がいなくなったら、この子のことを一番に考えてくれるのは誰だろう」——障がいのある子をもつ親にとって、これは切実な問いです。
+      </p>
+      <p style="font-size:16px; line-height:2; color:var(--color-ink); margin-bottom:var(--space-5);">
+        多くの場合、その備えとしてまず「お金」が考えられます。けれどもわたしたちは、お金を遺すことが必ずしも本人の幸せにつながるとは限らない、と考えています。
+        本当に必要なのは、親や家族が長い年月をかけて積み重ねてきた「我が子を守るための知恵」——どんなときに不安になるのか、何を大切にしているのか、誰が支えてくれるのか——そうした暗黙知を、言葉にして遺すことです。
+      </p>
+      <p style="font-size:16px; line-height:2; color:var(--color-ink);">
+        nest がめざすのは、その知恵と、支援者たちの経験を持ち寄り、親なき後も本人の暮らしを支え続けられる「仕組み」をつくることです。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== くらしサポートネット（人のネットワーク） ===== -->
+  <section class="section section--sand">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">People Network</span>
+      <h2 class="section__title">人と人とで、支え合う</h2>
+      <p style="font-size:16px; line-height:2; color:var(--color-ink);">
+        「nestくらしサポートネット」は、本人と家族、そして支援者がゆるやかにつながり、互いの経験を持ち寄って支え合うための取り組みです。
+        ひとつの家族だけで抱え込むのではなく、地域のネットワークとして本人の暮らしを見守っていく——その土台づくりを続けています。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 構想：暗黙知をデジタルで継承する ===== -->
+  <section class="section">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">Our Challenge</span>
+      <h2 class="section__title">知恵を、引き継げる形に</h2>
+      <p style="font-size:16px; line-height:2; color:var(--color-ink); margin-bottom:var(--space-5);">
+        わたしたちは、親や支援者が蓄積してきた知恵を、特定の誰かの記憶だけに頼らず、支援に関わる人たちみんなで引き継いでいけるようにする仕組みづくりに取り組んでいます。
+      </p>
+      <p style="font-size:16px; line-height:2; color:var(--color-ink); margin-bottom:var(--space-5);">
+        本人の医療・生活の情報、大切にしていること、緊急時に気をつけること、支えてくれる人のつながり——こうした情報を整理して残し、必要なときに必要な人へ確実に引き継げる形にする。
+        それが、親なき後も途切れない支援を実現するための、nest 発の挑戦です。
+      </p>
+      <p style="font-size:14px; line-height:1.9; color:var(--color-ink-mute);">
+        ※ この仕組みは現在開発中です。実際の利用者・ご家族の情報を本ウェブサイト上で扱うことはありません。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 問い合わせ動線 ===== -->
+  <section class="section">
+    <div class="container">
+      <CtaBlock
+        title="親なき後の備えについて"
+        body="ご家族の備えや、わたしたちの取り組みにご関心のある方は、お気軽にお問い合わせください。"
+        primary={{ label: 'お問い合わせフォーム', href: '/contact/' }}
+        secondary={{ label: 'nestについて', href: '/about/' }}
+        variant="dark"
+      />
+    </div>
+  </section>
+</BaseLayout>

@@ -61,7 +61,7 @@ npm run preview
 | ★★ | Googleフォーム埋め込みコード貼付 | 河原さん | contact / members ページ |
 | ★★ | Googleマップ埋め込みコード貼付 | 河原さん | access ページ |
 | ★★ | Googleカレンダー埋め込みコード貼付 | 河原さん | members ページ |
-| ★ | 寄付申込書PDF・峠を越えてバックナンバーPDF（Googleドライブリンク） | 河原さん | join / about / members ページ |
+| ★ | 寄付申込書PDF・巣箱バックナンバーPDF（Googleドライブリンク） | 河原さん | join / about / members ページ |
 | ★ | デプロイ先決定（Cloudflare Pages推奨 / Netlify / Vercel） | 河原さん判断 | 全て無料枠で可能 |
 | ★ | 独自ドメイン（nponest.org）の移管手配 | 河原さん | 公開時 |
 | ★ | OG画像（`/og-image.png`）の作成 | Claude（明日以降） | favicon と同じ世界観で |

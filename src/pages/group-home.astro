@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+
+const steps = [
+  {
+    name: 'STATION',
+    body: '世話人が常駐する拠点です。手厚い支援を受けながら、暮らしの基盤をつくります。',
+  },
+  {
+    name: 'BRANCH',
+    body: 'STATION の近くにある居室です。サポートを受けつつ、少しずつ自分のペースで暮らします。',
+  },
+  {
+    name: 'SATELLITE',
+    body: 'より一人暮らしに近い住まいです。自立した生活を見据えて、その人らしく過ごします。',
+  },
+];
+---
+
+<BaseLayout
+  title="グループホーム"
+  description="NPO法人nestのグループホームは、町内に点在する賃貸住宅の居室で、利用者が地域の一員として暮らすことを支えています。"
+>
+  <Hero
+    eyebrow="Group Home"
+    title="グループホーム"
+    lead="地域で暮らす、を支える住まい"
+    size="md"
+    placeholderLabel="GROUP HOME"
+  />
+
+  <!-- ===== 理念（主役） ===== -->
+  <section class="section">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">Our Approach</span>
+      <h2 class="section__title">施設ではなく、地域の暮らしの中で</h2>
+      <p style="font-size:16px; line-height:2; color:var(--color-ink); margin-bottom:var(--space-5);">
+        nest のグループホームは、ひとつの施設に利用者を集めて運営するものではありません。
+        わたしたちは、町内に点在する賃貸マンションの居室を法人で借り上げ、
+        そのひと部屋ひと部屋を利用者の住まいとしています。
+      </p>
+      <p style="font-size:16px; line-height:2; color:var(--color-ink); margin-bottom:var(--space-5);">
+        だからこそ、利用者は特別な場所に隔離されることなく、ご近所との何気ない挨拶や、
+        近くのお店での買い物といった、当たり前の地域の暮らしの中で日々を送ることができます。
+        「本人が地域で暮らす」——それが、わたしたち nest の願いです。
+      </p>
+      <p style="font-size:16px; line-height:2; color:var(--color-ink);">
+        また、利用者の中には強いこだわりを持つ方も少なくありません。
+        大人数での集団生活がむずかしい方も、分散した住まいであれば、
+        一人ひとりの個性とペースを尊重しながら、その人らしい暮らしを支えることができます。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 住まいの段階（概念） ===== -->
+  <section class="section section--sand">
+    <div class="container">
+      <div class="reveal" style="text-align:center; margin-bottom:var(--space-7);">
+        <span class="eyebrow eyebrow--center">Three Steps</span>
+        <h2 class="section__title section__title--center">自立度に応じた、3つの住まい方</h2>
+      </div>
+
+      <div class="grid-3">
+        {
+          steps.map((s, i) => (
+            <article class="card reveal" data-delay={(i % 3) + 1}>
+              <h3 class="card__title">{s.name}</h3>
+              <p class="card__text">{s.body}</p>
+            </article>
+          ))
+        }
+      </div>
+
+      <p class="reveal" style="text-align:center; margin-top:var(--space-6); font-size:14px; color:var(--color-ink-mute);">
+        現在、町内に <strong style="color:var(--color-green-900);">12の住まい</strong> を運営しています。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 問い合わせ動線 ===== -->
+  <section class="section">
+    <div class="container">
+      <CtaBlock
+        title="見学・ご相談について"
+        body="ご利用の検討・見学は個別にご対応します。お気軽にお問い合わせください。"
+        primary={{ label: 'お問い合わせフォーム', href: '/contact/' }}
+        secondary={{ label: 'nestについて', href: '/about/' }}
+        variant="dark"
+      />
+    </div>
+  </section>
+</BaseLayout>

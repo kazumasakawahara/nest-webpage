@@ -9,8 +9,6 @@ interface Props {
   title: string;
   description?: string;
   heroDark?: boolean;
-  /** When true, header overlays the page (transparent on top of hero) */
-  transparentHeader?: boolean;
   /** Override og image (relative to site root) */
   ogImage?: string;
 }
@@ -18,7 +16,6 @@ interface Props {
 const {
   title,
   description = site.description,
-  transparentHeader = false,
   ogImage = '/og-image.png',
 } = Astro.props;
 
@@ -56,7 +53,7 @@ const canonical = new URL(Astro.url.pathname, site.legacyUrl).toString();
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Shippori+Mincho+B1:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Shippori+Mincho+B1:wght@500;600;700&family=Zen+Kurenaido&family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
 
@@ -64,17 +61,23 @@ const canonical = new URL(Astro.url.pathname, site.legacyUrl).toString();
     <script is:inline>
       document.documentElement.classList.add('js-enabled');
     </script>
+
+    <!-- ページ側から head に追記するためのスロット（noindex メタ等） -->
+    <slot name="head" />
   </head>
   <body>
     <a href="#main" class="skip-link">メインコンテンツへスキップ</a>
 
-    <Header transparent={transparentHeader} />
+    <Header />
 
-    <main id="main">
-      <slot />
-    </main>
+    <div class="site-shell">
+      <main id="main">
+        <slot />
+      </main>
 
-    <Footer />
+      <Footer />
+    </div>
+
     <StickyCallBar />
 
     <script>
