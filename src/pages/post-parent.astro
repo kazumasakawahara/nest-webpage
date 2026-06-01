@@ -2,6 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import CtaBlock from '../components/CtaBlock.astro';
+
+// ゆるい公開入口の登録フォーム（用意でき次第 URL を設定。空文字なら「準備中」を表示）
+const NEWSLETTER_FORM_URL = '';
 ---
 
 <BaseLayout
@@ -58,8 +61,61 @@ import CtaBlock from '../components/CtaBlock.astro';
         本人の医療・生活の情報、大切にしていること、緊急時に気をつけること、支えてくれる人のつながり——こうした情報を整理して残し、必要なときに必要な人へ確実に引き継げる形にする。
         それが、親なき後も途切れない支援を実現するための、nest 発の挑戦です。
       </p>
+        <p style="margin-top:var(--space-4);">
+          <a href="/post-parent/tools/" class="inline-link">この取り組み（ツール・しくみ）を詳しく見る →</a>
+        </p>
       <p style="font-size:14px; line-height:1.9; color:var(--color-ink-mute);">
         ※ この仕組みは現在開発中です。実際の利用者・ご家族の情報を本ウェブサイト上で扱うことはありません。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== リソースへの入口 ===== -->
+  <section class="section section--cream" aria-labelledby="pp-resources-title">
+    <div class="container">
+      <div class="section-head section-head--center reveal">
+        <span class="eyebrow eyebrow--center">Resources</span>
+        <h2 class="section__title section__title--center" id="pp-resources-title">知恵と仕組みを、分かち合う</h2>
+        <p class="section__lead section__lead--center">
+          nestがこれまでに積み重ねてきた資料・しくみ・研修を、<br />
+          どなたでも無償でご活用いただけます。
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <a class="card pp-entry reveal" href="/post-parent/library/" data-delay="1">
+          <h3 class="card__title">資料室</h3>
+          <p class="card__text">年次報告（アニュアル）や各種資料を、無償でご覧・ダウンロードいただけます。</p>
+          <span class="pp-entry__more" aria-hidden="true">資料を見る →</span>
+        </a>
+        <a class="card pp-entry reveal" href="/post-parent/tools/" data-delay="2">
+          <h3 class="card__title">ツール・しくみ</h3>
+          <p class="card__text">暗黙知の継承や支援ネットワークの可視化に取り組む、nest発のしくみを紹介します。</p>
+          <span class="pp-entry__more" aria-hidden="true">しくみを見る →</span>
+        </a>
+        <a class="card pp-entry reveal" href="/post-parent/seminars/" data-delay="3">
+          <h3 class="card__title">研修アーカイブ</h3>
+          <p class="card__text">日本財団の助成を受けて実施した研修会の資料を、講師の許諾を得て公開しています。</p>
+          <span class="pp-entry__more" aria-hidden="true">研修を見る →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ゆるいつながり（公開コミュニティ入口） ===== -->
+  <section class="section section--sand" aria-labelledby="pp-community-title">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">Stay Connected</span>
+      <h2 class="section__title" id="pp-community-title">ゆるく、つながる</h2>
+      <p style="font-size:16px; line-height:2; color:var(--color-ink); margin-bottom:var(--space-5);">
+        「親なき後」について、一緒に考えていきませんか。勉強会のお知らせや、新しい資料の公開情報を、ゆるやかにお届けします。
+        登録は任意で、いつでも解除できます。
+      </p>
+      {NEWSLETTER_FORM_URL
+        ? <a href={NEWSLETTER_FORM_URL} class="btn btn--accent" rel="external" target="_blank">お知らせを受け取る</a>
+        : <p class="text-soft">※ 登録フォームは準備中です。当面は<a href="/contact/" class="inline-link">お問い合わせ</a>からご連絡ください。</p>}
+      <p style="margin-top:var(--space-5); font-size:14px; color:var(--color-ink-mute);">
+        もっと深く関わりたい方は、<a href="/join/" class="inline-link">入会のご案内</a>もご覧ください。
       </p>
     </div>
   </section>
@@ -77,3 +133,29 @@ import CtaBlock from '../components/CtaBlock.astro';
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .pp-entry { text-decoration: none; }
+  .pp-entry__more {
+    margin-top: auto;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-green-700);
+  }
+  .pp-entry:hover .pp-entry__more { color: var(--color-terra-500); }
+
+  .section-head--center {
+    max-width: 720px;
+    margin: 0 auto var(--space-7);
+    text-align: center;
+  }
+
+  /* (sudachi の .inline-link を踏襲) */
+  .inline-link {
+    color: var(--color-terra-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .inline-link:hover { color: var(--color-terra-500); }
+</style>

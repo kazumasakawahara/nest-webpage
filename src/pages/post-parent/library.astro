@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import PdfDocCard from '../../components/PdfDocCard.astro';
+import PdfPreview from '../../components/PdfPreview.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+import { annualReports, trainingDocs } from '../../lib/post-parent';
+---
+<BaseLayout
+  title="資料室｜親なき後"
+  description="NPO法人nestが作成・公開している年次報告や研修資料を、どなたでも無償でご覧いただけます。"
+>
+  <PageIntro
+    eyebrow="Library"
+    title="資料室"
+    lead="nestがこれまでに作成・公開してきた資料を、どなたでも無償でご覧・ダウンロードいただけます。"
+  />
+
+  <section class="section">
+    <div class="container container--narrow reveal">
+      <h2 class="section__title">年次報告（アニュアル）</h2>
+      {annualReports.length === 0
+        ? <p class="text-soft">現在準備中です。公開でき次第、こちらに掲載します。</p>
+        : <div class="doc-list">{annualReports.map((d) => <PdfDocCard {...d} />)}</div>}
+    </div>
+  </section>
+
+  <section class="section section--sand">
+    <div class="container container--narrow reveal">
+      <h2 class="section__title">研修資料・その他</h2>
+      {trainingDocs.length === 0
+        ? <p class="text-soft">現在準備中です。公開でき次第、こちらに掲載します。</p>
+        : <div class="doc-list">{trainingDocs.map((d) => <PdfDocCard {...d} />)}</div>}
+    </div>
+  </section>
+
+  <PdfPreview />
+
+  <section class="section">
+    <div class="container">
+      <CtaBlock
+        title="資料について"
+        body="掲載資料へのご質問や、活用のご相談はお気軽にどうぞ。"
+        primary={{ label: 'お問い合わせフォーム', href: '/contact/' }}
+        secondary={{ label: '親なき後トップへ', href: '/post-parent/' }}
+        variant="dark"
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .doc-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); }
+  @media (max-width: 768px) { .doc-list { grid-template-columns: 1fr; } }
+</style>
