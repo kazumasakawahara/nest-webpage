@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import PdfDocCard from '../../components/PdfDocCard.astro';
+import PdfPreview from '../../components/PdfPreview.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+import { seminars } from '../../lib/post-parent';
+---
+<BaseLayout
+  title="研修アーカイブ｜親なき後"
+  description="日本財団の助成を受けて実施した研修会の資料を、講師の許諾を得て無償で公開しています。"
+>
+  <PageIntro
+    eyebrow="Seminars"
+    title="研修アーカイブ"
+    lead="日本財団の助成を受けて実施した研修会の講師資料を、講師の許諾を得て公開しています。"
+  />
+
+  <section class="section">
+    <div class="container container--narrow">
+      {seminars.length === 0
+        ? <p class="text-soft reveal">現在準備中です。講師の許諾を得た資料から順次公開します。</p>
+        : seminars.map((s) => (
+            <article class="seminar reveal">
+              <p class="seminar__meta">{s.year} ・ 講師：{s.lecturer}</p>
+              <h2 class="section__title">{s.theme}</h2>
+              {s.materials.length > 0 && (
+                <div class="doc-list">
+                  {s.materials.map((m) => <PdfDocCard {...m} />)}
+                </div>
+              )}
+            </article>
+          ))}
+    </div>
+  </section>
+
+  <PdfPreview />
+
+  <section class="section section--sand">
+    <div class="container">
+      <CtaBlock
+        title="研修・講演のご相談"
+        body="親なき後の備えや支援の仕組みについて、研修・講演のご依頼も承っています。"
+        primary={{ label: 'お問い合わせフォーム', href: '/contact/' }}
+        secondary={{ label: '親なき後トップへ', href: '/post-parent/' }}
+        variant="dark"
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .seminar { margin-bottom: var(--space-8); }
+  .seminar__meta {
+    font-size: var(--fs-small);
+    color: var(--color-ink-soft);
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+    margin-bottom: var(--space-2);
+  }
+  .doc-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); margin-top: var(--space-5); }
+  @media (max-width: 768px) { .doc-list { grid-template-columns: 1fr; } }
+</style>
