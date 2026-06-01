@@ -1,0 +1,155 @@
+---
+// 公開ページ用 PDF プレビューモーダル。
+// 同一ページ内の `a.js-pdf-view`（href=PDF, data-title=表題）クリックでこのモーダルが開く。
+// 1ページにつき1回だけ設置する。
+---
+<div class="pdf-modal" id="pdfModal" hidden>
+  <div class="pdf-modal__backdrop" data-close></div>
+  <div class="pdf-modal__panel" role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle">
+    <div class="pdf-modal__bar">
+      <span class="pdf-modal__title" id="pdfModalTitle">資料プレビュー</span>
+      <a class="pdf-modal__dl" id="pdfModalDl" href="#" download>
+        ダウンロード<span aria-hidden="true"> ↓</span>
+      </a>
+      <button class="pdf-modal__close" type="button" data-close aria-label="プレビューを閉じる">✕</button>
+    </div>
+    <iframe class="pdf-modal__frame" id="pdfModalFrame" title="資料PDFプレビュー" src="about:blank"></iframe>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById('pdfModal');
+  if (modal) {
+    const frame = document.getElementById('pdfModalFrame');
+    const titleEl = document.getElementById('pdfModalTitle');
+    const dlEl = document.getElementById('pdfModalDl');
+    const closeBtn = modal.querySelector('.pdf-modal__close');
+    let lastFocus = null;
+
+    const openModal = (href, title) => {
+      if (!href) return;
+      lastFocus = document.activeElement;
+      frame.src = href;
+      titleEl.textContent = title || '資料プレビュー';
+      dlEl.href = href;
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      closeBtn.focus();
+    };
+
+    const closeModal = () => {
+      modal.hidden = true;
+      frame.src = 'about:blank';
+      document.body.style.overflow = '';
+      if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+    };
+
+    document.querySelectorAll('.js-pdf-view').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal(el.getAttribute('href'), el.dataset.title);
+      });
+    });
+
+    modal.querySelectorAll('[data-close]').forEach((el) => el.addEventListener('click', closeModal));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.hidden) closeModal();
+    });
+  }
+</script>
+
+<style>
+  .pdf-modal[hidden] { display: none; }
+
+  .pdf-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-5);
+  }
+
+  .pdf-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(26, 38, 32, 0.6);
+    backdrop-filter: blur(2px);
+  }
+
+  .pdf-modal__panel {
+    position: relative;
+    width: min(960px, 100%);
+    height: min(90vh, 100%);
+    display: flex;
+    flex-direction: column;
+    background: var(--color-paper);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-hi);
+    overflow: hidden;
+  }
+
+  .pdf-modal__bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-line);
+    background: var(--color-cream);
+  }
+
+  .pdf-modal__title {
+    flex: 1;
+    min-width: 0;
+    font-family: var(--font-hand);
+    font-size: 16px;
+    color: var(--color-green-900);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .pdf-modal__dl {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-green-700);
+    white-space: nowrap;
+  }
+
+  .pdf-modal__dl:hover { color: var(--color-terra-500); }
+
+  .pdf-modal__close {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--color-ink-mute);
+    background: transparent;
+    flex-shrink: 0;
+  }
+
+  .pdf-modal__close:hover {
+    background: var(--color-line-soft);
+    color: var(--color-green-900);
+  }
+
+  .pdf-modal__frame {
+    flex: 1;
+    width: 100%;
+    border: 0;
+    background: var(--color-sand);
+  }
+
+  @media (max-width: 768px) {
+    .pdf-modal { padding: 0; }
+    .pdf-modal__panel {
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+    }
+  }
+</style>
