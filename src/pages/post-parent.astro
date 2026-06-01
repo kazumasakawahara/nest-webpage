@@ -61,6 +61,9 @@ const NEWSLETTER_FORM_URL = '';
         本人の医療・生活の情報、大切にしていること、緊急時に気をつけること、支えてくれる人のつながり——こうした情報を整理して残し、必要なときに必要な人へ確実に引き継げる形にする。
         それが、親なき後も途切れない支援を実現するための、nest 発の挑戦です。
       </p>
+        <p style="margin-top:var(--space-4);">
+          <a href="/post-parent/tools/" class="inline-link">この取り組み（ツール・しくみ）を詳しく見る →</a>
+        </p>
       <p style="font-size:14px; line-height:1.9; color:var(--color-ink-mute);">
         ※ この仕組みは現在開発中です。実際の利用者・ご家族の情報を本ウェブサイト上で扱うことはありません。
       </p>
@@ -140,4 +143,19 @@ const NEWSLETTER_FORM_URL = '';
     color: var(--color-green-700);
   }
   .pp-entry:hover .pp-entry__more { color: var(--color-terra-500); }
+
+  .section-head--center {
+    max-width: 720px;
+    margin: 0 auto var(--space-7);
+    text-align: center;
+  }
+
+  /* (sudachi の .inline-link を踏襲) */
+  .inline-link {
+    color: var(--color-terra-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .inline-link:hover { color: var(--color-terra-500); }
 </style>
