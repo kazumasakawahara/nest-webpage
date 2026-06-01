@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+import { tools } from '../../lib/post-parent';
+---
+<BaseLayout
+  title="ツール・しくみ｜親なき後"
+  description="親の暗黙知の継承や、支援ネットワークの可視化に取り組む、nest発のしくみをご紹介します。"
+>
+  <PageIntro
+    eyebrow="Tools & Systems"
+    title="ツール・しくみ"
+    lead="親なき後も支援が途切れないために。nestが取り組んでいる、知恵をつなぐためのしくみです。"
+  />
+
+  <section class="section">
+    <div class="container container--narrow">
+      {tools.map((t, i) => (
+        <article class:list={['tool', { 'tool--alt': i % 2 === 1 }]} >
+          <div class="tool__media">
+            {t.image
+              ? <img src={t.image} alt={t.imageAlt ?? t.name} />
+              : <div class="tool__placeholder" aria-hidden="true">準備中</div>}
+          </div>
+          <div class="tool__body">
+            <p class="tool__for">{t.forWhom}</p>
+            <h2 class="tool__title">{t.name}</h2>
+            <p class="tool__tagline">{t.tagline}</p>
+            <p class="tool__text">{t.body}</p>
+            <div class="tool__links">
+              {t.links.map((l) => (
+                <a class="btn btn--outline" href={l.href} {...(l.external ? { rel: 'external', target: '_blank' } : {})}>
+                  {l.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section section--sand">
+    <div class="container">
+      <CtaBlock
+        title="しくみづくりにご関心のある方へ"
+        body="支援者・法人の方で、こうしたしくみの活用や共同にご関心があれば、お気軽にご相談ください。"
+        primary={{ label: 'お問い合わせフォーム', href: '/contact/' }}
+        secondary={{ label: '親なき後トップへ', href: '/post-parent/' }}
+        variant="dark"
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .tool {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: var(--space-6);
+    align-items: center;
+    margin-bottom: var(--space-8);
+  }
+  .tool--alt .tool__media { order: 2; }
+
+  .tool__media img,
+  .tool__placeholder {
+    width: 100%;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+    display: block;
+  }
+  .tool__placeholder {
+    aspect-ratio: 4 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-cream);
+    color: var(--color-ink-soft);
+    font-family: var(--font-mono);
+    letter-spacing: 0.1em;
+  }
+
+  .tool__for {
+    font-size: var(--fs-small);
+    color: var(--color-green-700);
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+    margin-bottom: var(--space-2);
+  }
+  .tool__title {
+    font-family: var(--font-hand);
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--color-green-900);
+    margin-bottom: var(--space-2);
+  }
+  .tool__tagline { font-size: 16px; color: var(--color-ink); margin-bottom: var(--space-4); }
+  .tool__text { font-size: 15px; line-height: var(--lh-normal); color: var(--color-ink-mute); margin-bottom: var(--space-5); }
+  .tool__links { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+  @media (max-width: 768px) {
+    .tool { grid-template-columns: 1fr; }
+    .tool--alt .tool__media { order: 0; }
+  }
+</style>
