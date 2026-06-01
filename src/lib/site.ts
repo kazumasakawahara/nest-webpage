@@ -1,13 +1,13 @@
 export const site = {
   name: '特定非営利活動法人nest',
   shortName: 'nest',
-  tagline: '巣立っても、いつでも帰ってこられる',
+  tagline: '本人の巣立ちを見守り、支援する。',
   description:
-    '特定非営利活動法人nestは、発達障害のある人とその家族の暮らしを支援するNPO法人です。北九州市小倉北区を拠点に、グループホーム・就労継続支援B型などの事業を展開しています。',
+    '特定非営利活動法人nestは、発達障がいのある人とその家族の暮らしを支援するNPO法人です。北九州市小倉北区を拠点に、グループホーム・就労継続支援B型などの事業を展開しています。',
   address: '〒803-0851 福岡県北九州市小倉北区木町3丁目6−7',
   tel: '093-582-7018',
   telHours: '平日 8:00 〜 20:00',
-  established: '平成18年（2006年）7月28日',
+  established: '平成18年（2006年）8月15日',
   representative: '林 澄江',
   instagram: 'https://instagram.com/kimachi_ya/',
   legacyUrl: 'https://www.nponest.org/',

@@ -59,6 +59,42 @@ const services = [
     imageAlt: '木町家の活動の一場面',
   },
 ];
+
+const promises = [
+  {
+    num: '01',
+    title: '本人のペースを尊重する',
+    body: '急かさない。できることから、少しずつ。一人ひとりの「やってみたい」を、いちばん大切にします。',
+  },
+  {
+    num: '02',
+    title: '家族とともに歩む',
+    body: 'ご本人だけでなく、ご家族の不安にも寄り添います。いつでも気軽に相談できる関係を、長く。',
+  },
+  {
+    num: '03',
+    title: '巣立った後も、つながり続ける',
+    body: '「巣立ち」はゴールではなく、はじまり。地域全体で支え合う仕組みを、ゆっくり育てています。',
+  },
+];
+
+const milestones = [
+  {
+    year: '2006',
+    title: '特定非営利活動法人nest 設立',
+    body: '発達障がいのある人とご家族の暮らしを支えるため、北九州市小倉北区に設立しました。',
+  },
+  {
+    year: 'これまで',
+    title: '地域とともに、少しずつ',
+    body: '就労継続支援B型「木町家」「nest Design」、共同生活援助、当事者活動へと、活動の輪を広げてきました。',
+  },
+  {
+    year: 'いま',
+    title: '12拠点のグループホームと、2つのB型事業所',
+    body: '設立から約20年。地域生活支援の取り組みも続けながら、巣立ちと安らぎの場所であり続けます。',
+  },
+];
 ---
 
 <BaseLayout
@@ -69,7 +105,7 @@ const services = [
     eyebrow="NPO法人 nest — since 2006"
     title="巣立っても、"
     titleSub="いつでも帰ってこられる。"
-    lead="飛び立っても羽を休める場所。発達障害のある人とご家族の暮らしを、地域とともに支えています。"
+    lead="飛び立っても羽を休める場所。知的や精神に障がいのある人とご家族の暮らしを、地域とともに支えています。"
     size="lg"
     image="/images/nest-image1/mori_subako2.jpg"
     imagePosition="74% center"
@@ -90,16 +126,16 @@ const services = [
       <div class="mission reveal">
         <span class="eyebrow eyebrow--center">Our Mission</span>
         <h2 class="mission__title" id="mission-title">
-          nestは【鳥の巣】。<br />
-          <span class="mission__title-sub">巣立ちと、安らぎの場所。</span>
+          <span class="title-underline">nestは【鳥の巣】。</span><br />
+          <span class="mission__title-sub is-hand">巣立ちと、安らぎの場所。</span>
         </h2>
         <div class="mission__body">
           <p>
-            特定非営利活動法人nestは、発達障害のある人、そしてその家族のそれぞれの生活や人生がより豊かになるよう、
+            特定非営利活動法人nestは、知的や精神に障がいのある人、そしてその家族のそれぞれの生活や人生がより豊かになるよう、
             個々のライフステージに応じた支援と、誰もが住みよい地域社会づくりをめざして事業を展開しています。
           </p>
           <p>
-            障害の有無にかかわらず、事業に参加したみんなが笑顔になれるような、
+            障がいの有無にかかわらず、事業に参加したみんなが笑顔になれるような、
             そんな楽しい活動をしていきたいと思っています。
           </p>
         </div>
@@ -111,11 +147,65 @@ const services = [
     </div>
   </section>
 
+  <!-- ===== 代表ごあいさつ ===== -->
+  <section class="section section--paper" aria-labelledby="rep-title">
+    <div class="container container--narrow">
+      <div class="rep reveal">
+        <span class="eyebrow eyebrow--center">Message</span>
+        <h2 class="section__title section__title--center" id="rep-title">代表ごあいさつ</h2>
+        <div class="rep__body">
+          <p>
+            知的や精神に障がいのある人も、ない人も。誰もが笑顔で暮らせる地域でありたい——
+            その願いから、nestははじまりました。
+          </p>
+          <p>
+            2006年の設立以来、私たちは「本人の巣立ち」を急かさず、ご家族とともに、
+            一人ひとりのペースに寄り添ってきました。完璧をめざすのではなく、
+            地域全体で支え合う仕組みを、少しずつ育てていく。それが、20年近くを通して
+            変わらないnestの姿勢です。
+          </p>
+        </div>
+        <p class="rep__sign">
+          <span class="rep__role">特定非営利活動法人nest 代表</span>
+          <span class="rep__name is-hand">{site.representative}</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== Stats ===== -->
   <StatsSection />
 
+  <!-- ===== 3つの約束 / 安心の理由 ===== -->
+  <section class="section" aria-labelledby="promise-title">
+    <div class="container">
+      <div class="section-head section-head--center reveal">
+        <span class="eyebrow eyebrow--center">Our Promise</span>
+        <h2 class="section__title section__title--center" id="promise-title">
+          nestがお約束する、3つのこと
+        </h2>
+        <p class="section__lead section__lead--center">
+          巣立ちは、ゴールではなく、はじまり。<br />
+          安心して任せていただくために、私たちが大切にしていることです。
+        </p>
+      </div>
+
+      <div class="grid-3">
+        {
+          promises.map((p, i) => (
+            <article class="card promise reveal" data-delay={i + 1}>
+              <span class="promise__num is-hand">{p.num}</span>
+              <h3 class="card__title">{p.title}</h3>
+              <p class="card__text">{p.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
   <!-- ===== Services ===== -->
-  <section class="section" aria-labelledby="services-title">
+  <section class="section section--cream" aria-labelledby="services-title">
     <div class="container">
       <div class="section-head reveal">
         <span class="eyebrow">Our Work</span>
@@ -132,7 +222,31 @@ const services = [
     </div>
   </section>
 
-  <!-- ===== Voice (NEW) ===== -->
+  <!-- ===== これまでの歩み ===== -->
+  <section class="section section--sand" aria-labelledby="history-title">
+    <div class="container container--narrow">
+      <div class="section-head section-head--center reveal">
+        <span class="eyebrow eyebrow--center">Our Story</span>
+        <h2 class="section__title section__title--center" id="history-title">これまでの歩み</h2>
+      </div>
+
+      <ol class="timeline">
+        {
+          milestones.map((m, i) => (
+            <li class="timeline__item reveal" data-delay={i + 1}>
+              <span class="timeline__year is-hand">{m.year}</span>
+              <div class="timeline__body">
+                <h3 class="timeline__title">{m.title}</h3>
+                <p class="timeline__text">{m.body}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== Voice ===== -->
   <VoiceSection />
 
   <!-- ===== News ===== -->
@@ -179,7 +293,7 @@ const services = [
   }
 
   .mission__title {
-    font-family: var(--font-serif);
+    font-family: var(--font-hand);
     font-size: 36px;
     font-weight: 600;
     color: var(--color-green-900);
@@ -217,7 +331,128 @@ const services = [
     border-color: var(--color-terra-500);
   }
 
+  /* ===== 代表ごあいさつ ===== */
+  .rep {
+    text-align: center;
+  }
+
+  .rep__body {
+    text-align: left;
+    color: var(--color-ink);
+    font-size: 16px;
+    line-height: 2;
+    margin-top: var(--space-2);
+  }
+
+  .rep__body p + p { margin-top: var(--space-4); }
+
+  .rep__sign {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    margin-top: var(--space-6);
+  }
+
+  .rep__role {
+    font-size: 13px;
+    color: var(--color-ink-mute);
+    letter-spacing: 0.05em;
+  }
+
+  .rep__name {
+    font-size: 28px;
+    color: var(--color-green-900);
+    letter-spacing: 0.08em;
+  }
+
+  /* ===== 3つの約束 ===== */
+  .promise {
+    position: relative;
+    gap: var(--space-3);
+  }
+
+  .promise__num {
+    font-size: 32px;
+    line-height: 1;
+    color: var(--color-terra-500);
+  }
+
+  /* ===== これまでの歩み（Timeline） ===== */
+  .timeline {
+    position: relative;
+    margin-top: var(--space-2);
+    padding-left: var(--space-6);
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(
+      180deg,
+      var(--color-terra-100),
+      var(--color-terra-500) 30%,
+      var(--color-green-500) 90%
+    );
+  }
+
+  .timeline__item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: var(--space-5);
+    align-items: baseline;
+  }
+
+  .timeline__item:not(:last-child) {
+    margin-bottom: var(--space-7);
+  }
+
+  .timeline__item::before {
+    content: '';
+    position: absolute;
+    left: calc(-1 * var(--space-6) + 1px);
+    top: 10px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--color-paper);
+    border: 3px solid var(--color-terra-500);
+  }
+
+  .timeline__year {
+    font-size: 22px;
+    color: var(--color-terra-700);
+    letter-spacing: 0.04em;
+  }
+
+  .timeline__title {
+    font-family: var(--font-hand);
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--color-green-900);
+    line-height: 1.5;
+    margin-bottom: var(--space-2);
+  }
+
+  .timeline__text {
+    color: var(--color-ink-mute);
+    font-size: 15px;
+    line-height: 1.85;
+  }
+
+  /* ===== Shared section heads ===== */
   .section-head { margin-bottom: var(--space-7); }
+
+  .section-head--center {
+    text-align: center;
+    max-width: 720px;
+    margin-inline: auto;
+  }
 
   .section-head__row {
     display: flex;
@@ -249,5 +484,13 @@ const services = [
   @media (max-width: 768px) {
     .mission__title { font-size: 26px; }
     .section-head__row { flex-direction: column; align-items: flex-start; }
+
+    .rep__sign { align-items: center; }
+
+    .timeline { padding-left: var(--space-5); }
+    .timeline__item {
+      grid-template-columns: 1fr;
+      gap: var(--space-1);
+    }
   }
 </style>

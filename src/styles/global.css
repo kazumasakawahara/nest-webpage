@@ -32,6 +32,7 @@
   --font-mono:  'Inter', 'Helvetica Neue', sans-serif;
   --font-heading: var(--font-serif); /* 見出し用の意味的エイリアス */
   --font-display: 'Cormorant Garamond', 'Shippori Mincho B1', serif; /* ロゴ・ラテン表示用の高コントラスト・セリフ */
+  --font-hand: 'Zen Kurenaido', 'Shippori Mincho B1', 'Hiragino Mincho ProN', serif; /* 見出し用の手書き（やわらかいペン書き）フォント。読込前は明朝にフォールバック */
 
   --fs-eyebrow: 12px;
   --fs-small:   13px;
@@ -250,6 +251,7 @@ p { line-height: var(--lh-normal); }
 }
 
 .section__title {
+  font-family: var(--font-hand);
   font-size: var(--fs-h2);
   font-weight: 600;
   color: var(--color-green-900);
@@ -260,6 +262,30 @@ p { line-height: var(--lh-normal); }
 .section__title--sub {
   font-size: var(--fs-h3);
   margin-top: var(--space-6);
+}
+
+/* 手書きフォントのワンポイント強調（語句・サブ見出しなど） */
+.is-hand {
+  font-family: var(--font-hand);
+  font-weight: 600;
+}
+
+/* 見出し下の手描き風アンダーライン（terraの波線）。
+   .title-underline を見出し要素に付与して使う。折り返す見出しにも追従。 */
+.title-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.title-underline::after {
+  content: '';
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  bottom: -0.34em;
+  height: 0.42em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 16' preserveAspectRatio='none'%3E%3Cpath d='M3 10 C 34 3, 56 14, 88 8 S 150 3, 197 9' stroke='%23d97757' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
+  pointer-events: none;
 }
 
 .section__lead {
@@ -425,7 +451,7 @@ p { line-height: var(--lh-normal); }
 }
 
 .card__title {
-  font-family: var(--font-serif);
+  font-family: var(--font-hand);
   font-size: 20px;
   font-weight: 600;
   color: var(--color-green-900);

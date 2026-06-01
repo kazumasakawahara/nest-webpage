@@ -32,6 +32,7 @@ pnpm-debug.log*
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+.playwright-mcp/
 
 # ローカル PDF 作業場（Supabase アップ前の整理用、git管理外）
 /.pdfs-staging/
