@@ -1,7 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
+import PdfPreview from '../components/PdfPreview.astro';
 import { site } from '../lib/site';
+
+// ニュースレター「巣箱」バックナンバー（新しい号から）。
+// PDF は public/pdfs/newsletter-archive/subako/ に、表紙画像は public/images/newsletter/ に配置。
+// 表紙は横長レイアウト（1241x800）。発行日は各号の表紙記載に基づく。
+const newsletters = [
+  { vol: 'vol.15', date: '2025年10月発行', file: '/pdfs/newsletter-archive/subako/subako15.pdf', cover: '/images/newsletter/subako-vol15-cover.jpg' },
+  { vol: 'vol.14', date: '2024年10月発行', file: '/pdfs/newsletter-archive/subako/subako14.pdf', cover: '/images/newsletter/subako-vol14-cover.jpg' },
+  { vol: 'vol.13', date: '2023年6月発行', file: '/pdfs/newsletter-archive/subako/subako13.pdf', cover: '/images/newsletter/subako-vol13-cover.jpg' },
+];
 ---
 
 <BaseLayout
@@ -123,20 +133,17 @@ import { site } from '../lib/site';
 
       <div class="grid-3">
         {
-          [
-            { vol: 'vol.13', date: '2023年6月発行' },
-            { vol: 'vol.12', date: 'バックナンバー' },
-            { vol: 'vol.11', date: 'バックナンバー' },
-          ].map((p, i) => (
+          newsletters.map((p, i) => (
             <article class="pdf-card reveal" data-delay={i + 1}>
-              <div class="ph ph--portrait image-rounded">
-                <span class="ph__label">PDF 表紙</span>
-              </div>
+              <a class="pdf-card__cover js-pdf-view" href={p.file} target="_blank" rel="noopener"
+                 data-title={`ニュースレター巣箱 ${p.vol}`} aria-label={`巣箱 ${p.vol}（PDF）を開いて読む`}>
+                <img src={p.cover} alt={`巣箱 ${p.vol} の表紙`} width="1241" height="800" loading="lazy" />
+                <span class="pdf-card__hint" aria-hidden="true">クリックで読む</span>
+              </a>
               <div class="pdf-card__body">
                 <h3 class="pdf-card__vol">巣箱 {p.vol}</h3>
-                <p class="pdf-card__date">{p.date}</p>
-                <a href="#" class="btn btn--outline">PDFダウンロード</a>
-                <p class="text-soft">※ 後でGoogleドライブリンクに差し替え</p>
+                {p.date && <p class="pdf-card__date">{p.date}</p>}
+                <a href={p.file} class="btn btn--outline" download>PDFダウンロード</a>
               </div>
             </article>
           ))
@@ -144,6 +151,8 @@ import { site } from '../lib/site';
       </div>
     </div>
   </section>
+
+  <PdfPreview />
 </BaseLayout>
 
 <style>
@@ -238,6 +247,45 @@ import { site } from '../lib/site';
     flex-direction: column;
     gap: var(--space-4);
   }
+
+  .pdf-card__cover {
+    display: block;
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--color-line);
+    box-shadow: var(--shadow-soft);
+    transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+  }
+
+  .pdf-card__cover img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .pdf-card__cover:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* 表紙が「クリックで読める」と分かるヒント帯 */
+  .pdf-card__hint {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 6px 4px;
+    background: rgba(26, 38, 32, 0.74);
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+
+  .pdf-card__hint::before { content: '🔍 '; }
+
+  .pdf-card__cover:hover .pdf-card__hint { background: var(--color-terra-500); }
 
   .pdf-card__body {
     display: flex;
