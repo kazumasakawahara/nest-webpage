@@ -50,6 +50,42 @@ const newsletters = [
     </div>
   </section>
 
+  <!-- ===== 理念 ===== -->
+  <section class="section section--cream" aria-labelledby="philosophy-title">
+    <div class="container container--narrow">
+      <div class="reveal text-center">
+        <span class="eyebrow eyebrow--center">Our Philosophy</span>
+        <h2 class="section__title section__title--center" id="philosophy-title">nestの理念</h2>
+      </div>
+
+      <div class="creed reveal">
+        <p class="creed__lead">自分のことは、自分で決める。</p>
+        <p class="creed__sub">——どんな障がいがあっても、それは変わらない。</p>
+      </div>
+
+      <div class="prose reveal" data-delay="1">
+        <p>
+          たとえどんな障がいがあろうとも、<strong>その人に関することを決める権利</strong>は、
+          ほかの誰でもなく、<strong>その人自身</strong>にあります。
+          これは特別なことではなく、だれにとっても当たり前のこと。
+          わたしたちは、まずこの当然のことを確認することから始めます。
+        </p>
+        <p>
+          そして nest の使命は、その当然の権利を、その人自身がきちんと行使できるように支えることにあります。
+          「本人に代わって決める」のではなく、<strong>「本人が決められるように、となりで支える」</strong>——
+          その一点を、すべての活動のまんなかに置いています。
+        </p>
+        <p>
+          同時に、「自分のことは自分で決める」権利は、まわりの人にも等しくあります。
+          だからこそ、誰かと関わるときには、相手の気持ちや決める権利を尊重し、
+          <strong>きちんと「同意」を得ること</strong>が欠かせません。
+          自分の意思を大切にすることと、相手の意思を大切にすること——その両方を本人とともに学び、
+          伝えていくことも、わたしたちの支援の大切な役割だと考えています。
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== 事業一覧 ===== -->
   <section class="section section--sand" aria-labelledby="services-title">
     <div class="container">
@@ -164,6 +200,33 @@ const newsletters = [
 
   .prose p + p { margin-top: var(--space-5); }
   .prose strong { color: var(--color-green-900); font-weight: 600; }
+
+  .creed {
+    text-align: center;
+    margin: var(--space-7) 0;
+    padding: var(--space-6) 0;
+    border-top: 1px solid var(--color-line);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .creed__lead {
+    font-family: var(--font-hand);
+    font-size: 34px;
+    font-weight: 600;
+    color: var(--color-green-900);
+    line-height: 1.5;
+  }
+
+  .creed__sub {
+    margin-top: var(--space-4);
+    font-size: 16px;
+    color: var(--color-terra-700);
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 768px) {
+    .creed__lead { font-size: 24px; }
+  }
 
   .biz-grid {
     display: flex;
