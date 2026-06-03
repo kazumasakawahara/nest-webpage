@@ -45,6 +45,101 @@ const services = [
     </div>
   </section>
 
+  <!-- ===== よくある質問 ===== -->
+  <section class="section section--cream" aria-labelledby="faq-title">
+    <div class="container container--narrow">
+      <div class="section-head reveal text-center">
+        <span class="eyebrow eyebrow--center">FAQ</span>
+        <h2 class="section__title section__title--center" id="faq-title">よくある質問コーナー</h2>
+      </div>
+      <p class="reveal text-center faq-lead">
+        見学・体験を考えている方から、よくいただくご質問をまとめました。
+      </p>
+
+      <div class="faq reveal">
+        <details class="faq__item">
+          <summary class="faq__q">
+            <span class="faq__q-text">どんな人が利用できますか？ 障害者手帳は必要ですか？</span>
+            <span class="faq__mark" aria-hidden="true"></span>
+          </summary>
+          <div class="faq__a">
+            <p>
+              就労継続支援B型は、年齢や体調などの理由で、企業に雇用される形での就労がいますぐは難しい方が、
+              自分のペースで働く経験を積める福祉サービスです。原則18歳以上の方が対象で、障害者手帳をお持ちでなくても、
+              医師の意見書や自治体の判断で利用できる場合があります。ご利用には、お住まいの市区町村が発行する
+              「障害福祉サービス受給者証」が必要です。まずは手帳の有無にかかわらず、お気軽にご相談・ご見学ください。
+            </p>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__q">
+            <span class="faq__q-text">どんな作業をするのですか？</span>
+            <span class="faq__mark" aria-hidden="true"></span>
+          </summary>
+          <div class="faq__a">
+            <p>nestのB型には、2つの作業部門があります。</p>
+            <ul class="faq__list">
+              <li><strong>カフェ・レストラン部門（キッチン＆マルシェ木町家）</strong>：接客、ドリンクづくり、調理補助、盛り付け、レジ、店内清掃など。</li>
+              <li><strong>デザイン・工作部門（nest Design）</strong>：デザイン制作、印刷物づくり、木工／雑貨の製作、袋詰め・ラッピングなど。</li>
+            </ul>
+            <p>
+              ご本人の得意なことや体調に合わせて作業を選べますし、「今日は別の作業がいい」というときに変えることもできます。
+              「人と話すのが得意」「黙々と手を動かすのが好き」など、それぞれに合った居場所を一緒に見つけていきます。
+            </p>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__q">
+            <span class="faq__q-text">工賃（お金）はもらえますか？ いくらくらいですか？</span>
+            <span class="faq__mark" aria-hidden="true"></span>
+          </summary>
+          <div class="faq__a">
+            <p>
+              B型は企業との雇用契約ではないため、「給料」ではなく「工賃」という形で、作業した内容・時間に応じてお支払いします。
+              昨年度のnestのB型における一ヶ月あたりの平均工賃は、約3万5000円でした。
+              工賃には個人差があるため、見学のときに実際の作業内容と合わせてご説明します。
+            </p>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__q">
+            <span class="faq__q-text">利用を始めるまでの流れを教えてください。</span>
+            <span class="faq__mark" aria-hidden="true"></span>
+          </summary>
+          <div class="faq__a">
+            <p>おおむね、次の流れになります。</p>
+            <ol class="faq__steps">
+              <li>見学：まず事業所の雰囲気を見ていただきます。</li>
+              <li>体験利用：実際に作業を少し試していただけます。</li>
+              <li>受給者証の申請：市区町村の窓口へ。相談支援事業所が「サービス等利用計画」の作成をお手伝いします。</li>
+              <li>契約・利用開始。</li>
+            </ol>
+            <p>
+              手続きが不安な方も多いので、申請から開始までは相談支援専門員や事業所スタッフがサポートします。
+            </p>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__q">
+            <span class="faq__q-text">週に何日くらい通えますか？ 送迎や昼食、体調に波があっても大丈夫ですか？</span>
+            <span class="faq__mark" aria-hidden="true"></span>
+          </summary>
+          <div class="faq__a">
+            <p>
+              通う日数や時間は、ご本人の体調や生活リズムに合わせて相談して決められます。送迎や昼食についても、見学時にご案内します。
+              体調に波がある方も多く通っておられますので、「今日はしんどい」というときに休んだり、短い時間から始めたりすることもできます。
+              無理なく続けられることを、いちばん大切にしています。
+            </p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <section class="section section--sand">
     <div class="container">
       <CtaBlock
@@ -57,3 +152,95 @@ const services = [
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .faq-lead {
+    color: var(--color-ink-mute);
+    font-size: 15px;
+    margin-bottom: var(--space-7);
+  }
+
+  .faq {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .faq__item {
+    background-color: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .faq__q {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-5) var(--space-6);
+    font-family: var(--font-serif);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-green-900);
+    line-height: 1.6;
+  }
+
+  .faq__q::-webkit-details-marker { display: none; }
+
+  .faq__q-text::before {
+    content: 'Q.';
+    margin-right: 0.5em;
+    color: var(--color-terra-500);
+    font-family: var(--font-mono);
+  }
+
+  .faq__mark {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  .faq__mark::before,
+  .faq__mark::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: var(--color-terra-500);
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+
+  .faq__mark::before { width: 14px; height: 2px; transform: translate(-50%, -50%); }
+  .faq__mark::after  { width: 2px; height: 14px; transform: translate(-50%, -50%); }
+
+  .faq__item[open] .faq__mark::after { transform: translate(-50%, -50%) scaleY(0); }
+
+  .faq__a {
+    padding: 0 var(--space-6) var(--space-6);
+    color: var(--color-ink);
+    font-size: 15px;
+    line-height: 1.95;
+  }
+
+  .faq__a p + p { margin-top: var(--space-4); }
+
+  .faq__list,
+  .faq__steps {
+    margin: var(--space-4) 0;
+    padding-left: 1.4em;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .faq__list { list-style: disc; }
+  .faq__steps { list-style: decimal; }
+
+  .faq__list strong { color: var(--color-green-900); }
+</style>
