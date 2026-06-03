@@ -10,12 +10,16 @@ const services = [
     title: 'キッチン＆マルシェ 木町家',
     body: '調理補助・製パン・製菓・接客・清掃・POP制作など、飲食店のお仕事を体験できます。',
     href: '/kimachiya/',
+    image: '/images/nest-image1/kimachiya_working2.png',
+    imageAlt: '木町家の厨房で調理に取り組む様子',
   },
   {
     icon: '🎨',
     title: 'nest Design',
     body: 'オリジナルグッズ製作、アート、テキスト入力、印刷物制作など創造性をテーマにしたクリエイティブワーク。',
     href: '/nest-design/',
+    image: '/images/nest-image2/nestdesign_working.png',
+    imageAlt: 'nest Design のアトリエで制作に取り組む様子',
   },
 ];
 ---
@@ -41,6 +45,17 @@ const services = [
         社会生活に必要なスキルを学んだり、日中の居場所づくりを行っています。
         まずは、見学・体験からお気軽にご連絡ください。
       </p>
+
+      <figure class="recruit-photo reveal" data-delay="1">
+        <img
+          src="/images/nest-image1/kimachiyayakei.png"
+          alt="夜、あたたかな灯りがともる木町家の外観"
+          width="1448"
+          height="1086"
+          loading="lazy"
+        />
+        <figcaption>南小倉駅のすぐそば。灯りのともる木町家で、あなたをお待ちしています。</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -65,3 +80,25 @@ const services = [
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .recruit-photo {
+    margin-top: var(--space-7);
+  }
+
+  .recruit-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .recruit-photo figcaption {
+    margin-top: var(--space-4);
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--color-ink-mute);
+    text-align: center;
+  }
+</style>
