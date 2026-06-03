@@ -4,7 +4,7 @@ import PageIntro from '../../components/PageIntro.astro';
 import PdfDocCard from '../../components/PdfDocCard.astro';
 import PdfPreview from '../../components/PdfPreview.astro';
 import CtaBlock from '../../components/CtaBlock.astro';
-import { annualReports, trainingDocs } from '../../lib/post-parent';
+import { annualReports, trainingDocs, sudachiReports } from '../../lib/post-parent';
 ---
 <BaseLayout
   title="資料室｜親なき後"
@@ -26,6 +26,17 @@ import { annualReports, trainingDocs } from '../../lib/post-parent';
   </section>
 
   <section class="section section--sand">
+    <div class="container container--narrow reveal">
+      <h2 class="section__title">地域生活支援 活動報告書</h2>
+      <p class="text-soft" style="margin-bottom:var(--space-6);">
+        日本財団の助成を受けて取り組んできた「巣立ちプロジェクト」の活動報告書です。
+        <a class="inline-link" href="/sudachi/">地域生活支援のページ</a>でも活動の詳細をご覧いただけます。
+      </p>
+      <div class="doc-list">{sudachiReports.map((d) => <PdfDocCard {...d} />)}</div>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container container--narrow reveal">
       <h2 class="section__title">研修資料・その他</h2>
       {trainingDocs.length === 0

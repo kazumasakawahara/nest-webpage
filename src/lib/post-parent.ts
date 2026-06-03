@@ -43,6 +43,29 @@ export const trainingDocs: PdfDoc[] = [
   // TODO(河原さん): 配布許諾済みの研修資料を追加（note に「講師の許諾を得て公開」など）
 ];
 
+// 地域生活支援（巣立ちプロジェクト）活動報告書
+// 実体は /pdfs/newsletter-archive/ に配置済み。地域生活支援ページと同じPDFを共有する。
+export const sudachiReports: PdfDoc[] = [
+  {
+    title: '巣立ちプロジェクトⅣ 2025報告書',
+    file: '/pdfs/newsletter-archive/%E5%B7%A3%E7%AB%8B%E3%81%A1%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%882025%E5%A0%B1%E5%91%8A%E6%9B%B8.pdf',
+    cover: '/images/newsletter/2025-report-cover.jpg',
+    meta: '2025年度 ・ PDF 24ページ ・ 約16MB',
+  },
+  {
+    title: '巣立ちプロジェクトⅢ 2024報告書',
+    file: '/pdfs/newsletter-archive/%E5%B7%A3%E7%AB%8B%E3%81%A1%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%882024%E5%A0%B1%E5%91%8A%E6%9B%B8.pdf',
+    cover: '/images/newsletter/2024-report-cover.jpg',
+    meta: '2024年度 ・ PDF 20ページ ・ 約10MB',
+  },
+  {
+    title: '巣立ちプロジェクトⅡ 2023報告書',
+    file: '/pdfs/newsletter-archive/%E5%B7%A3%E7%AB%8B%E3%81%A1%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%882023%E5%A0%B1%E5%91%8A%E6%9B%B8.pdf',
+    cover: '/images/newsletter/2023-report-cover.jpg',
+    meta: '2023年度 ・ PDF 16ページ ・ 約8.5MB',
+  },
+];
+
 // 研修会アーカイブ
 export const seminars: Seminar[] = [
   // TODO(河原さん): 研修会のメタ情報（年・テーマ・講師）と配布資料を追加
