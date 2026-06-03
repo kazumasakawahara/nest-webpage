@@ -125,40 +125,50 @@ const features = [
         <h2 class="section__title section__title--center">営業情報</h2>
       </div>
 
-      <div class="info-grid">
-        <div class="info-card reveal">
-          <div class="info-card__icon" aria-hidden="true">📞</div>
-          <div class="info-card__label">ご予約・お問い合わせ</div>
-          <div class="info-card__value">093-592-0331</div>
+      <a
+        href="https://www.google.com/maps/search/?api=1&query=福岡県北九州市小倉北区木町3丁目9-15"
+        target="_blank"
+        rel="noopener"
+        class="kimachiya-map reveal"
+        aria-label="Googleマップでキッチン＆マルシェ木町家の周辺を開く"
+      >
+        <img
+          src="/images/nest-image2/nestmap.gif"
+          alt="キッチン＆マルシェ木町家 周辺の案内地図。最寄りはJR南小倉駅。"
+          width="925"
+          height="745"
+          loading="lazy"
+        />
+      </a>
+
+      <div class="grid-2" style="margin-top:48px;">
+        <div class="info-box reveal">
+          <div class="info-box__title">☀️ 日中営業について</div>
+          <dl>
+            <dt>営業時間</dt>
+            <dd>AM11:00〜PM3:00</dd>
+            <dt>営業日</dt>
+            <dd>月・火・水・木・金・第3土曜日</dd>
+            <dt>ご予約・お問い合わせ</dt>
+            <dd><a href="tel:0935920331">093-592-0331</a></dd>
+            <dt>住所</dt>
+            <dd>北九州市小倉北区木町3丁目9-15<br>南小倉駅前 徒歩1分</dd>
+          </dl>
         </div>
 
-        <div class="info-card reveal" data-delay="1">
-          <div class="info-card__icon" aria-hidden="true">🕐</div>
-          <div class="info-card__label">営業時間</div>
-          <div class="info-card__value info-card__value--sm">AM11:00〜PM3:00</div>
-          <div class="info-card__note">月・火・水・木・金・第3土曜日</div>
+        <div class="info-box reveal" data-delay="1">
+          <div class="info-box__title">🌙 夜間営業について</div>
+          <dl>
+            <dt>営業時間</dt>
+            <dd>PM6:30〜PM9:00の間で <strong>90分</strong></dd>
+            <dt>ご利用条件</dt>
+            <dd>4名様以上・完全予約制・<strong>2日前まで</strong>に要予約</dd>
+            <dt>定休日</dt>
+            <dd>土曜日・日曜日（第3土曜日を除く）</dd>
+            <dt>郵便番号</dt>
+            <dd>〒803-0851</dd>
+          </dl>
         </div>
-
-        <div class="info-card reveal" data-delay="2">
-          <div class="info-card__icon" aria-hidden="true">📍</div>
-          <div class="info-card__label">住所</div>
-          <div class="info-card__value info-card__value--sm">北九州市小倉北区<br>木町3丁目9-15</div>
-          <div class="info-card__note">南小倉駅前 徒歩1分</div>
-        </div>
-      </div>
-
-      <div class="info-box reveal" style="margin-top:48px;">
-        <div class="info-box__title">🌙 夜間営業について</div>
-        <dl>
-          <dt>営業時間</dt>
-          <dd>PM6:30〜PM9:00の間で <strong>90分</strong></dd>
-          <dt>ご利用条件</dt>
-          <dd>4名様以上・完全予約制・<strong>2日前まで</strong>に要予約</dd>
-          <dt>定休日</dt>
-          <dd>土曜日・日曜日（第3土曜日を除く）</dd>
-          <dt>郵便番号</dt>
-          <dd>〒803-0851</dd>
-        </dl>
       </div>
     </div>
   </section>
@@ -223,64 +233,6 @@ const features = [
     font-size: 14px;
   }
 
-  .info-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-5);
-  }
-
-  .info-card {
-    background: var(--color-paper);
-    border: 1px solid var(--color-line);
-    border-radius: var(--radius-lg);
-    padding: var(--space-7) var(--space-5);
-    text-align: center;
-    transition: transform var(--dur-base) var(--ease-out);
-  }
-
-  .info-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-card);
-  }
-
-  .info-card__icon {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: var(--color-green-100);
-    margin: 0 auto var(--space-4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-  }
-
-  .info-card__label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--color-ink-soft);
-    margin-bottom: var(--space-3);
-  }
-
-  .info-card__value {
-    font-family: var(--font-serif);
-    font-size: 26px;
-    font-weight: 600;
-    color: var(--color-green-900);
-    letter-spacing: 0.02em;
-    line-height: 1.4;
-  }
-
-  .info-card__value--sm { font-size: 19px; }
-
-  .info-card__note {
-    margin-top: var(--space-3);
-    font-size: 12px;
-    color: var(--color-ink-mute);
-  }
-
   /* === Instagram 誘導 === */
   .ig-section {
     background-color: var(--color-cream);
@@ -337,9 +289,30 @@ const features = [
 
   .ig-cta__btn { pointer-events: none; }
 
+  .kimachiya-map {
+    display: block;
+    max-width: 760px;
+    margin: var(--space-6) auto 0;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    transition: transform var(--dur-base) var(--ease-out),
+                box-shadow var(--dur-base) var(--ease-out);
+  }
+
+  .kimachiya-map:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .kimachiya-map img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
   @media (max-width: 880px) {
     .features { grid-template-columns: 1fr; }
-    .info-grid { grid-template-columns: 1fr; }
     .ig-cta { padding: var(--space-7) var(--space-5); }
   }
 </style>
