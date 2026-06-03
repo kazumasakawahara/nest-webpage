@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
-import IframePlaceholder from '../components/IframePlaceholder.astro';
 import { site } from '../lib/site';
 ---
 
@@ -50,12 +49,25 @@ import { site } from '../lib/site';
         <div class="access-map reveal" data-delay="1">
           <span class="eyebrow">Map</span>
           <h2 class="access-map__title">地図</h2>
-          <IframePlaceholder
-            icon="📍"
-            title="Googleマップ"
-            note='Google Maps で「福岡県北九州市小倉北区木町3丁目6−7」を検索 → 「共有」→「地図を埋め込む」→ HTMLをコピー → このdivと置き換え。'
-            minHeight="440px"
-          />
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=福岡県北九州市小倉北区木町3丁目6-7"
+            target="_blank"
+            rel="noopener"
+            class="access-map__link"
+            aria-label="Googleマップで事務局周辺を開く"
+          >
+            <img
+              src="/images/nest-image2/nestmap.gif"
+              alt="事務局・キッチン＆マルシェ木町家・ネストデザイン周辺の案内地図。最寄りはJR南小倉駅。"
+              class="access-map__img"
+              loading="lazy"
+              width="950"
+              height="751"
+            />
+          </a>
+          <p class="access-map__note">
+            タップするとGoogleマップが開きます。お車の方は「木町家」の立札がある専用パーキングをご利用ください。
+          </p>
         </div>
 
       </div>
@@ -113,6 +125,32 @@ import { site } from '../lib/site';
     font-size: 24px;
     font-weight: 600;
     color: var(--color-green-900);
+  }
+
+  .access-map__link {
+    display: block;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .access-map__link:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lifted, var(--shadow-soft));
+  }
+
+  .access-map__img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .access-map__note {
+    margin-top: var(--space-4);
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--color-ink);
   }
 
   @media (max-width: 980px) {
