@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+---
+
+<BaseLayout
+  title="当事者活動支援"
+  description="NPO法人nestは、鉄道クラブや当事者研究など、本人が「やってみたい」と思える主体的な活動を、となりで伴走しています。"
+>
+  <Hero
+    eyebrow="Peer Activities"
+    title="当事者活動支援"
+    lead="本人が主役の活動を、となりで支える。"
+    size="md"
+    placeholderLabel="PEER ACTIVITIES"
+  />
+
+  <!-- ===== 理念（主役） ===== -->
+  <section class="section">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">Our Belief</span>
+      <h2 class="section__title">「支えられる」だけでなく、「やってみたい」から始める</h2>
+      <p style="font-size:16px; line-height:2; color:var(--color-ink); margin-bottom:var(--space-5);">
+        福祉の現場では、本人はしばしば「支援される側」に置かれがちです。
+        けれど nest が大切にしているのは、本人自身が「やってみたい」と思える活動の主役になること。
+        好きなこと・関心のあることを起点に、仲間とともに楽しみ、学び、考える——
+        そうした主体的な活動を、わたしたちはとなりで伴走しています。
+      </p>
+      <p style="font-size:16px; line-height:2; color:var(--color-ink);">
+        現在は「鉄道クラブ」と「当事者研究」を柱に活動を続けています。
+        どちらも、本人の声と関心を中心に置きながら、ゆっくりと育てている取り組みです。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 活動への入口 ===== -->
+  <section class="section section--cream" aria-labelledby="pa-entries-title">
+    <div class="container">
+      <div class="section-head section-head--center reveal">
+        <span class="eyebrow eyebrow--center">Activities</span>
+        <h2 class="section__title section__title--center" id="pa-entries-title">いま、取り組んでいる活動</h2>
+        <p class="section__lead section__lead--center">
+          本人の「好き」と「知りたい」から生まれた、<br />
+          2つの活動をご紹介します。
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <a class="card pa-entry reveal" href="/peer-activities/tojisha-kenkyu/" data-delay="1">
+          <h3 class="card__title">当事者研究</h3>
+          <p class="card__text">自分の困りごとや特性を、仲間とともに「研究」として持ち寄り、言葉にしながら理解を深めていく取り組みです。</p>
+          <span class="pa-entry__more" aria-hidden="true">当事者研究を見る →</span>
+        </a>
+        <a class="card pa-entry reveal" href="/peer-activities/railway-club/" data-delay="2">
+          <h3 class="card__title">鉄道クラブ</h3>
+          <p class="card__text">鉄道という「好き」でつながる仲間の活動。出かけたり、語り合ったりしながら、余暇と交流の輪を広げています。</p>
+          <span class="pa-entry__more" aria-hidden="true">鉄道クラブを見る →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 問い合わせ動線 ===== -->
+  <section class="section">
+    <div class="container">
+      <CtaBlock
+        title="当事者活動について"
+        body="活動への参加や見学、取り組みへのご関心がある方は、お気軽にお問い合わせください。"
+        primary={{ label: 'お問い合わせフォーム', href: '/contact/' }}
+        secondary={{ label: 'nestについて', href: '/about/' }}
+        variant="dark"
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .pa-entry { text-decoration: none; }
+  .pa-entry__more {
+    margin-top: auto;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-green-700);
+  }
+  .pa-entry:hover .pa-entry__more { color: var(--color-terra-500); }
+
+  .section-head--center {
+    max-width: 720px;
+    margin: 0 auto var(--space-7);
+    text-align: center;
+  }
+</style>

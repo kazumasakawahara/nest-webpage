@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+---
+
+<BaseLayout
+  title="当事者研究｜当事者活動支援"
+  description="nestの当事者研究は、自分の困りごとや特性を仲間とともに「研究」として持ち寄り、言葉にしながら理解を深めていく取り組みです。"
+>
+  <PageIntro
+    eyebrow="Tojisha-Kenkyu"
+    title="当事者研究"
+    lead="自分の「困りごと」を、ひとりで抱えず、みんなで研究する。"
+  />
+
+  <section class="section">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">About</span>
+      <h2 class="section__title">弱さを、分かち合える形に</h2>
+      <p style="font-size:16px; line-height:2; color:var(--color-ink); margin-bottom:var(--space-5);">
+        当事者研究は、自分の困りごとや特性を「問題のある自分」としてではなく、
+        ひとつの「研究テーマ」として外に出し、仲間とともに眺めてみる取り組みです。
+        「なぜ、あのとき不安になったのか」「どうすれば、もう少し楽になれるのか」——
+        本人が自分の専門家になり、仲間と知恵を持ち寄りながら、理解を少しずつ深めていきます。
+      </p>
+      <p style="font-size:16px; line-height:2; color:var(--color-ink);">
+        nest では、本人の声を中心に置きながら、この当事者研究の場を育てています。
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--sand">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">Coming Soon</span>
+      <h2 class="section__title">活動の記録は準備中です</h2>
+      <p class="text-soft">
+        具体的な活動の様子や、これまでの研究テーマについては、現在ページを準備しています。
+        公開でき次第、こちらでご紹介します。関心のある方は<a class="inline-link" href="/contact/">お問い合わせ</a>からご連絡ください。
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <CtaBlock
+        title="当事者研究について"
+        body="参加や見学、取り組みへのご関心がある方は、お気軽にお問い合わせください。"
+        primary={{ label: 'お問い合わせフォーム', href: '/contact/' }}
+        secondary={{ label: '当事者活動支援トップへ', href: '/peer-activities/' }}
+        variant="dark"
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .inline-link {
+    color: var(--color-terra-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .inline-link:hover { color: var(--color-terra-500); }
+</style>

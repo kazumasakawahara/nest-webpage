@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+---
+
+<BaseLayout
+  title="鉄道クラブ｜当事者活動支援"
+  description="nestの鉄道クラブは、鉄道という「好き」でつながる仲間の活動です。出かけたり語り合ったりしながら、余暇と交流の輪を広げています。"
+>
+  <PageIntro
+    eyebrow="Railway Club"
+    title="鉄道クラブ"
+    lead="「好き」でつながる。鉄道が、仲間と世界を広げる。"
+  />
+
+  <section class="section">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">About</span>
+      <h2 class="section__title">好きなことが、まんなかにある余暇</h2>
+      <p style="font-size:16px; line-height:2; color:var(--color-ink); margin-bottom:var(--space-5);">
+        鉄道クラブは、鉄道という共通の「好き」を起点につながる、本人主体の余暇活動です。
+        一緒に出かけたり、写真や思い出を語り合ったり——「好き」を分かち合える仲間がいることは、
+        日々の暮らしにハリと楽しみをもたらします。
+      </p>
+      <p style="font-size:16px; line-height:2; color:var(--color-ink);">
+        nest では、こうした本人の関心から生まれる活動を、となりで伴走しながら支えています。
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--sand">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">Coming Soon</span>
+      <h2 class="section__title">活動の記録は準備中です</h2>
+      <p class="text-soft">
+        これまでの活動の様子や、お出かけの記録については、現在ページを準備しています。
+        公開でき次第、こちらでご紹介します。関心のある方は<a class="inline-link" href="/contact/">お問い合わせ</a>からご連絡ください。
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <CtaBlock
+        title="鉄道クラブについて"
+        body="参加や見学、取り組みへのご関心がある方は、お気軽にお問い合わせください。"
+        primary={{ label: 'お問い合わせフォーム', href: '/contact/' }}
+        secondary={{ label: '当事者活動支援トップへ', href: '/peer-activities/' }}
+        variant="dark"
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .inline-link {
+    color: var(--color-terra-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .inline-link:hover { color: var(--color-terra-500); }
+</style>
