@@ -3,6 +3,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import IframePlaceholder from '../components/IframePlaceholder.astro';
 import { site } from '../lib/site';
+import { renderSVG } from 'uqr';
+
+// ───────────────────────────────────────────────────────────────
+// Google フォームの公開URL。
+// scripts/create-nest-inquiry-form.gs を実行すると発行される「公開URL」を
+// ここに貼り付けると、埋め込みフォームと QR コードが本番表示に切り替わります。
+// 例: 'https://docs.google.com/forms/d/e/XXXXXXXXXXXX/viewform'
+// 空のままなら「準備中」表示になります。
+const FORM_VIEW_URL = '';
+// ───────────────────────────────────────────────────────────────
+
+const isFormReady = FORM_VIEW_URL.length > 0;
+const formEmbedUrl = isFormReady
+  ? FORM_VIEW_URL + (FORM_VIEW_URL.includes('?') ? '&' : '?') + 'embedded=true'
+  : '';
+
+// QR コードをビルド時に SVG として生成（第三者サービス不使用・インライン埋め込み）
+const qrSvg = isFormReady
+  ? renderSVG(FORM_VIEW_URL, { blackColor: '#102211', whiteColor: 'transparent', border: 0 })
+  : '';
 ---
 
 <BaseLayout
@@ -44,6 +64,21 @@ import { site } from '../lib/site';
               <li>取材・講演のご依頼</li>
             </ul>
           </div>
+
+          <div class="contact-side__qr">
+            <h3 class="contact-side__topics-title">スマホで読み取る</h3>
+            {isFormReady ? (
+              <>
+                <div class="contact-side__qr-img"><Fragment set:html={qrSvg} /></div>
+                <p class="contact-side__qr-note">QRコードを読み取ると、お問い合わせフォームを開けます。</p>
+              </>
+            ) : (
+              <>
+                <div class="contact-side__qr-img contact-side__qr-img--ph" aria-hidden="true">準備中</div>
+                <p class="contact-side__qr-note">フォーム公開後、ここにQRコードを表示します。</p>
+              </>
+            )}
+          </div>
         </aside>
 
         <div class="contact-form reveal" data-delay="1">
@@ -52,12 +87,27 @@ import { site } from '../lib/site';
           <p class="contact-form__lead">
             下記フォームよりお問い合わせください。担当者より後日ご連絡いたします。
           </p>
-          <IframePlaceholder
-            icon="📋"
-            title="Googleフォーム"
-            note="ここにGoogleフォームのiframeコードを貼り付けてください。Googleフォーム → 「送信」→「&lt;&gt;埋め込み」→ HTMLをコピー → このdivと置き換え。"
-            minHeight="540px"
-          />
+          {isFormReady ? (
+            <div class="contact-form__embed">
+              <iframe
+                src={formEmbedUrl}
+                title="nest お問い合わせフォーム"
+                loading="lazy"
+                width="100%"
+                height="900"
+                frameborder="0"
+                marginheight="0"
+                marginwidth="0"
+              >読み込んでいます…</iframe>
+            </div>
+          ) : (
+            <IframePlaceholder
+              icon="📋"
+              title="お問い合わせフォーム（準備中）"
+              note="Googleフォームの公開URLを設定すると、ここにフォームが表示されます。設定方法は scripts/create-nest-inquiry-form.gs を参照。"
+              minHeight="540px"
+            />
+          )}
         </div>
 
       </div>
@@ -153,6 +203,47 @@ import { site } from '../lib/site';
     color: var(--color-green-700);
   }
 
+  .contact-side__qr {
+    margin-top: var(--space-6);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-line);
+  }
+
+  .contact-side__qr-img {
+    width: 148px;
+    height: 148px;
+    margin-top: var(--space-2);
+    padding: 12px;
+    background: #fff;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .contact-side__qr-img :global(svg) {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .contact-side__qr-img--ph {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-cream);
+    color: var(--color-ink-soft);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    box-shadow: none;
+  }
+
+  .contact-side__qr-note {
+    font-size: 12px;
+    color: var(--color-ink-mute);
+    line-height: 1.7;
+    margin-top: var(--space-3);
+  }
+
   .contact-form__title {
     font-family: var(--font-serif);
     font-size: 26px;
@@ -163,6 +254,19 @@ import { site } from '../lib/site';
   .contact-form__lead {
     color: var(--color-ink-mute);
     margin-bottom: var(--space-5);
+  }
+
+  .contact-form__embed {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    background: #fff;
+  }
+
+  .contact-form__embed iframe {
+    display: block;
+    width: 100%;
+    border: 0;
   }
 
   @media (max-width: 980px) {
