@@ -44,8 +44,15 @@ import Hero from '../components/Hero.astro';
           <ol class="ordered">
             <li>成人の性的課題に係る調査と事業所との協働による研修プログラムの開発</li>
             <li>「性的課題」にかかる先進地の視察</li>
+            <li>問題を抱える家族へのアウトリーチ</li>
           </ol>
         </div>
+
+        <p class="project__note">
+          頭ごなしに、ダメ🙅と叱ったり、見て見ぬふりをするのではなく、まずは、
+          どうして、そのような行動をとるのかを考え、からだの仕組みや体を大切にすることの意味を
+          教えることから始めなければならないことを痛感しています。
+        </p>
 
         <div class="dl-block">
           <a class="dl-cover js-pdf-view" href="/pdfs/newsletter-archive/%E5%B7%A3%E7%AB%8B%E3%81%A1%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%882025%E5%A0%B1%E5%91%8A%E6%9B%B8.pdf" target="_blank" rel="noopener" data-title="巣立ちプロジェクトⅣ 2025報告書" aria-label="巣立ちプロジェクトⅣ 2025報告書（PDF）を開いて読む">
@@ -286,6 +293,17 @@ import Hero from '../components/Hero.astro';
     color: var(--color-ink);
     line-height: 1.95;
     margin-bottom: var(--space-5);
+  }
+
+  .project__note {
+    color: var(--color-ink);
+    line-height: 1.95;
+    font-size: 15px;
+    margin: 0 0 var(--space-6);
+    padding: var(--space-5) var(--space-6);
+    background: var(--color-cream);
+    border-left: 3px solid var(--color-terra-500);
+    border-radius: var(--radius-md);
   }
 
   .ordered {
