@@ -30,6 +30,8 @@ export interface ToolIntro {
   body: string;
   image?: string;
   imageAlt?: string;
+  video?: string;   // 紹介動画（mp4）例: /videos/kurashi-support-ai.mp4
+  poster?: string;  // 動画のポスター画像（任意。未指定なら video の先頭フレーム）
   links: ToolLink[];
 }
 
@@ -78,7 +80,8 @@ export const tools: ToolIntro[] = [
     tagline: '親の暗黙知を、支援者みんなで引き継げる形に',
     forWhom: 'nest と、関心のある支援者・法人向け',
     body: '親や家族が積み重ねた「我が子を守る知恵」を、特定の誰かの記憶に頼らず継承するための仕組みです。本人の大切にしていること、緊急時の注意、支えてくれる人のつながりを整理し、必要なときに必要な人へ確実に引き継げる形にします。',
-    // image: '/images/post-parent/kurashisupport.png', // 用意でき次第
+    video: '/videos/kurashi-support-ai.mp4',
+    poster: '/videos/kurashi-support-ai-poster.jpg',
     links: [
       // GitHub公開可なら追加: { label: 'GitHub で見る', href: 'https://github.com/kazumasakawahara/nest-support', external: true },
       { label: 'この取り組みについて問い合わせる', href: '/contact/' },
@@ -89,7 +92,8 @@ export const tools: ToolIntro[] = [
     tagline: '本人を中心とした支援ネットワークを可視化',
     forWhom: '相談支援専門員・社会福祉士・行政職員向け',
     body: '医療・福祉・権利擁護など、本人を支える人と機関のつながりを、直感的な図として描き・共有できるツールです。支援者間の情報共有を円滑にします。',
-    // image: '/images/post-parent/ecomap.png', // 用意でき次第
+    image: '/images/post-parent/ecomap.png',
+    imageAlt: '本人を中心に、医療・福祉・権利擁護・家族などの支援ネットワークをノードとつながりで可視化したエコマップの例',
     links: [
       // フェーズ2でデモを有効化: { label: 'デモを見る（読み取り専用）', href: '/post-parent/tools/eco-map-demo/' },
       { label: 'この取り組みについて問い合わせる', href: '/contact/' },
