@@ -19,15 +19,17 @@ const steps = [
   title="グループホーム"
   description="NPO法人nestのグループホームは、町内に点在する賃貸住宅の居室で、利用者が地域の一員として暮らすことを支えています。"
 >
-  <Hero
-    eyebrow="Group Home"
-    title="グループホーム"
-    lead="地域で暮らす、を支える住まい"
-    size="md"
-    image="/images/grouphome-interior.png"
-    imagePosition="center"
-    placeholderLabel="GROUP HOME"
-  />
+  <div class="gh-hero">
+    <Hero
+      eyebrow="Group Home"
+      title="グループホーム"
+      lead="地域で暮らす、を支える住まい"
+      size="md"
+      image="/images/grouphome-interior.png"
+      imagePosition="center 32%"
+      placeholderLabel="GROUP HOME"
+    />
+  </div>
 
   <!-- ===== 理念（主役） ===== -->
   <section class="section">
@@ -90,3 +92,37 @@ const steps = [
     </div>
   </section>
 </BaseLayout>
+
+<!-- グループホームのHeroだけ、可読性オーバーレイを弱めて水彩のあたたかさを前に出す。
+     共有Heroコンポーネントには手を入れず、このページのラッパー配下のみに限定して上書きする。 -->
+<style is:global>
+  .gh-hero .hero__bg {
+    filter: brightness(1.06) saturate(1.06);
+  }
+
+  .gh-hero .hero__overlay {
+    background:
+      linear-gradient(100deg,
+        rgba(16, 34, 17, 0.70) 0%,
+        rgba(16, 34, 17, 0.52) 30%,
+        rgba(16, 34, 17, 0.28) 52%,
+        rgba(16, 34, 17, 0.10) 70%,
+        rgba(16, 34, 17, 0) 85%);
+  }
+
+  .gh-hero .hero__overlay::after {
+    background: linear-gradient(to top, rgba(16, 34, 17, 0.34), rgba(16, 34, 17, 0) 42%);
+  }
+
+  @media (max-width: 768px) {
+    .gh-hero .hero__overlay {
+      background: linear-gradient(
+        180deg,
+        rgba(16, 34, 17, 0.42) 0%,
+        rgba(16, 34, 17, 0.26) 38%,
+        rgba(16, 34, 17, 0.48) 100%
+      );
+    }
+    .gh-hero .hero__overlay::after { background: none; }
+  }
+</style>
