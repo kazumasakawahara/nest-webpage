@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageIntro from '../../components/PageIntro.astro';
+import Hero from '../../components/Hero.astro';
 import CtaBlock from '../../components/CtaBlock.astro';
 ---
 
@@ -8,10 +8,14 @@ import CtaBlock from '../../components/CtaBlock.astro';
   title="鉄道クラブ｜当事者活動支援"
   description="nestの鉄道クラブは、鉄道という「好き」でつながる仲間の活動です。出かけたり語り合ったりしながら、余暇と交流の輪を広げています。"
 >
-  <PageIntro
+  <Hero
     eyebrow="Railway Club"
     title="鉄道クラブ"
     lead="「好き」でつながる。鉄道が、仲間と世界を広げる。"
+    size="md"
+    image="/images/railway-club-hero.png"
+    imagePosition="center"
+    placeholderLabel="RAILWAY CLUB — 鉄道のある余暇"
   />
 
   <section class="section">
