@@ -5,7 +5,7 @@ import { recordAudit } from '../../../../lib/audit';
 
 export const prerender = false;
 
-export const GET: APIRoute = async ({ params, request, locals }) => {
+export const GET: APIRoute = async ({ params, request, locals, url }) => {
   const id = params.id;
   if (!id) return new Response('Bad Request', { status: 400 });
 
@@ -13,6 +13,9 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
   // 念のための型 narrowing & defense-in-depth として明示チェック
   const member = locals.member;
   if (!member) return new Response('Unauthorized', { status: 401 });
+
+  // ?inline=1 でブラウザ内閲覧、無ければダウンロード
+  const inline = url.searchParams.get('inline') === '1';
 
   const supabase = createServerClient();
   const { data: newsletter } = await supabase
@@ -25,12 +28,14 @@ export const GET: APIRoute = async ({ params, request, locals }) => {
     return new Response('Not Found', { status: 404 });
   }
 
-  const signedUrl = await createSignedPdfUrl('newsletters', newsletter.pdf_path);
+  const signedUrl = await createSignedPdfUrl('newsletters', newsletter.pdf_path, {
+    download: !inline,
+  });
 
   await recordAudit({
     memberId: member.id,
     event: 'pdf_download',
-    detail: { kind: 'newsletter', id, title: newsletter.title },
+    detail: { kind: 'newsletter', id, title: newsletter.title, mode: inline ? 'view' : 'download' },
     ip: request.headers.get('cf-connecting-ip'),
     userAgent: request.headers.get('user-agent'),
   });

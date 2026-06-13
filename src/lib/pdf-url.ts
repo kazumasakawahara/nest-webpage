@@ -5,17 +5,19 @@ const PDF_URL_TTL_SECONDS = 5 * 60;
 /**
  * Supabase Storage の private バケットから署名付き URL を発行する。
  * デフォルトは 5分の有効期限。
+ * download: true でダウンロード（添付）、false でブラウザ内インライン閲覧。
  */
 export async function createSignedPdfUrl(
   bucket: 'newsletters' | 'family-minutes',
   path: string,
+  { download = true }: { download?: boolean } = {},
 ): Promise<string> {
   const supabase = createServerClient();
   const { data, error } = await supabase
     .storage
     .from(bucket)
     .createSignedUrl(path, PDF_URL_TTL_SECONDS, {
-      download: true,
+      download,
     });
 
   if (error || !data) throw new Error(`Failed to sign URL: ${error?.message}`);

@@ -5,12 +5,24 @@ import PdfPreview from '../components/PdfPreview.astro';
 import { site } from '../lib/site';
 
 // ニュースレター「巣箱」バックナンバー（新しい号から）。
+// 公開ページには最新号のみ掲載し、過去号は会員ページ（/members/newsletter/）限定。
 // PDF は public/pdfs/newsletter-archive/subako/ に、表紙画像は public/images/newsletter/ に配置。
 // 表紙は横長レイアウト（1241x800）。発行日は各号の表紙記載に基づく。
 const newsletters = [
   { vol: 'vol.15', date: '2025年10月発行', file: '/pdfs/newsletter-archive/subako/subako15.pdf', cover: '/images/newsletter/subako-vol15-cover.jpg' },
-  { vol: 'vol.14', date: '2024年10月発行', file: '/pdfs/newsletter-archive/subako/subako14.pdf', cover: '/images/newsletter/subako-vol14-cover.jpg' },
-  { vol: 'vol.13', date: '2023年6月発行', file: '/pdfs/newsletter-archive/subako/subako13.pdf', cover: '/images/newsletter/subako-vol13-cover.jpg' },
+];
+const latest = newsletters[0];
+
+// 最新号（vol.15）の目次。号を更新したら、この内容も差し替える。
+const latestIndex = [
+  { cat: '巻頭特集', name: 'つくることが「生きる力」になる ネストデザイン', desc: 'ひとりひとりの色が光る作品づくり。支援員の想い、新人メンバー紹介、メンバーへのQ&A、イラスト傘や卵パックの湿気とりまで。' },
+  { cat: '木町家', name: '今日も「暖かさ」が漂う キッチン&マルシェ木町家', desc: '手づくりの味、お弁当・オードブル。料理長と支援員が語る、創作現場のいま。' },
+  { cat: 'イベント', name: '木町家のにぎわい', desc: '木町家寄席（七代目 柳亭燕路さん）、木町家誕生祭、小さな音楽室。地域とつながる催しの記録。' },
+  { cat: 'B型', name: 'B型のあゆみ', desc: '新メンバーを迎える入所式と、災害の擬似体験で学ぶ防災研修＆ランチ。' },
+  { cat: 'コグトレ', name: '小さな一歩から、大きな実感へ', desc: '身体を使った認知トレーニング2年目。「楽しい！だから続く」取り組みの様子。' },
+  { cat: '現場実習', name: '「はたらくってたのしい！」を体感できる場', desc: '実習生・野口ミホさんの2週間の体験と、見守るご家族の声。' },
+  { cat: 'グループホーム', name: '暮らしと健康を支える、もうひとつの我が家', desc: '年間行事、入居者それぞれの日々、鉄道倶楽部の活動、健康管理と支援者の声。' },
+  { cat: '活動・編集後記', name: 'ネストがんばれバザール ／ 会員募集 ／「峠を越えて」', desc: '活動を支えるバザールのご案内、会員募集、理事長による編集後記。' },
 ];
 ---
 
@@ -167,23 +179,37 @@ const newsletters = [
         </p>
       </div>
 
-      <div class="grid-3">
-        {
-          newsletters.map((p, i) => (
-            <article class="pdf-card reveal" data-delay={i + 1}>
-              <a class="pdf-card__cover js-pdf-view" href={p.file} target="_blank" rel="noopener"
-                 data-title={`ニュースレター巣箱 ${p.vol}`} aria-label={`巣箱 ${p.vol}（PDF）を開いて読む`}>
-                <img src={p.cover} alt={`巣箱 ${p.vol} の表紙`} width="1241" height="800" loading="lazy" />
-                <span class="pdf-card__hint" aria-hidden="true">クリックで読む</span>
-              </a>
-              <div class="pdf-card__body">
-                <h3 class="pdf-card__vol">巣箱 {p.vol}</h3>
-                {p.date && <p class="pdf-card__date">{p.date}</p>}
-                <a href={p.file} class="btn btn--outline" download>PDFダウンロード</a>
-              </div>
-            </article>
-          ))
-        }
+      <div class="nl-layout">
+        <article class="pdf-card nl-layout__cover reveal">
+          <a class="pdf-card__cover js-pdf-view" href={latest.file} target="_blank" rel="noopener"
+             data-title={`ニュースレター巣箱 ${latest.vol}`} aria-label={`巣箱 ${latest.vol}（PDF）を開いて読む`}>
+            <img src={latest.cover} alt={`巣箱 ${latest.vol} の表紙`} width="1241" height="800" loading="lazy" />
+            <span class="pdf-card__hint" aria-hidden="true">クリックで読む</span>
+          </a>
+          <div class="pdf-card__body">
+            <h3 class="pdf-card__vol">巣箱 {latest.vol}</h3>
+            {latest.date && <p class="pdf-card__date">{latest.date}</p>}
+            <a href={latest.file} class="btn btn--outline" download>PDFダウンロード</a>
+          </div>
+        </article>
+
+        <div class="nl-index reveal" data-delay="1">
+          <div class="nl-index__head">
+            <span class="nl-index__badge">{latest.vol}</span>
+            <span class="nl-index__title">この号の内容</span>
+          </div>
+          <ol class="nl-index__list">
+            {
+              latestIndex.map((item) => (
+                <li>
+                  <span class="nl-index__cat">{item.cat}</span>
+                  <p class="nl-index__name">{item.name}</p>
+                  <p class="nl-index__desc">{item.desc}</p>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
       </div>
     </div>
   </section>
@@ -368,6 +394,132 @@ const newsletters = [
     color: var(--color-ink-mute);
     font-family: var(--font-mono);
     letter-spacing: 0.05em;
+  }
+
+  /* ニュースレター：左カード ＋ 右に最新号の目次 */
+  .nl-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 340px) 1fr;
+    gap: var(--space-7);
+    align-items: start;
+  }
+
+  .nl-layout__cover {
+    position: sticky;
+    top: var(--space-6);
+  }
+
+  @media (max-width: 860px) {
+    .nl-layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+    .nl-layout__cover {
+      position: static;
+      max-width: 360px;
+      margin: 0 auto;
+    }
+  }
+
+  .nl-index {
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .nl-index__head {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    margin-bottom: var(--space-5);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .nl-index__badge {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 14px;
+    color: #fff;
+    background: var(--color-green-700);
+    padding: 3px 14px;
+    border-radius: var(--radius-pill);
+    white-space: nowrap;
+  }
+
+  .nl-index__title {
+    font-family: var(--font-serif);
+    font-size: var(--fs-h3);
+    color: var(--color-green-900);
+  }
+
+  .nl-index__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: nl;
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  @media (min-width: 861px) {
+    .nl-index__list {
+      grid-template-columns: 1fr 1fr;
+      column-gap: var(--space-6);
+    }
+  }
+
+  .nl-index__list li {
+    counter-increment: nl;
+    position: relative;
+    padding-left: 42px;
+  }
+
+  .nl-index__list li::before {
+    content: counter(nl, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--color-terra-100);
+    color: var(--color-terra-700);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+  }
+
+  .nl-index__cat {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--color-green-700);
+    background: var(--color-green-100);
+    padding: 2px 10px;
+    border-radius: var(--radius-pill);
+    margin-bottom: var(--space-1);
+  }
+
+  .nl-index__name {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--color-ink);
+    margin: 0 0 3px;
+  }
+
+  .nl-index__desc {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--color-ink-mute);
+    margin: 0;
   }
 
   @media (max-width: 768px) {

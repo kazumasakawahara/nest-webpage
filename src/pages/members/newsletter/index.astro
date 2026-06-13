@@ -28,7 +28,9 @@ const { data: newsletters } = await supabase
         {newsletters?.map(n => (
           <PdfCard
             title={n.title}
-            subtitle={new Date(n.published_on).toLocaleDateString('ja-JP', { year: 'numeric', month: 'long' })}
+            subtitle={new Date(n.published_on).toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })}
+            thumbnailUrl={n.cover_path}
+            viewHref={`/members/newsletter/${n.id}/download?inline=1`}
             downloadHref={`/members/newsletter/${n.id}/download`}
           />
         ))}
