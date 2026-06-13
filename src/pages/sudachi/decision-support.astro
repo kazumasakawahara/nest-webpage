@@ -1,0 +1,229 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+---
+
+<BaseLayout
+  title="意思決定支援｜地域生活支援"
+  description="「代わりに決めるのではなく、決める経験をサポートする」。nestは、本人が自分の人生を自分で選び、決める経験を重ねられるよう支える意思決定支援に取り組んでいます。"
+>
+  <!-- ===== キャッチコピー（ページを開くと最初に登場） ===== -->
+  <section class="ds-hero">
+    <div class="container container--narrow">
+      <span class="eyebrow ds-hero__eyebrow reveal">Supported Decision-Making ／ 意思決定支援</span>
+      <figure class="ds-statement reveal">
+        <blockquote class="ds-statement__quote">
+          代わりに決めるのではなく、<br />
+          決める経験を<em>サポート</em>する。
+        </blockquote>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== 意思決定支援とは ===== -->
+  <section class="section">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">About</span>
+      <h2 class="section__title">「決める」を、本人の手に</h2>
+      <p class="body-text">
+        「私たちのことを、私たち抜きで決めないで」——。意思決定支援とは、本人に代わって
+        周囲が決めてしまうのではなく、本人が自分のことを自分で選び、決められるように支える
+        考え方です。何を食べるか、どこで暮らすか、誰と過ごすか。大きなことも小さなことも、
+        本人の「こうしたい」を出発点に置きます。
+      </p>
+      <p class="body-text">
+        決めることには、迷いや失敗もついてきます。それでも、選び、決め、その結果を引き受ける
+        経験の積み重ねこそが、自分らしく生きる力を育てます。nest は、周囲が先回りして
+        決めてしまうのではなく、本人が「決める経験」を重ねられるよう、となりで伴走します。
+      </p>
+      <p class="body-text" style="margin-bottom:0;">
+        巣立ちプロジェクトでは、こうした意思決定支援の担い手を育てる養成講座にも取り組んで
+        きました。「決める経験をサポートする」——その姿勢を、地域全体で共有して
+        いくことを目指しています。
+      </p>
+
+      <figure class="ds-figure">
+        <a href="/images/post-parent/意思決定支援の核心.png" target="_blank" rel="noopener" aria-label="図解「意思決定支援の核心」を拡大して見る">
+          <img
+            src="/images/post-parent/意思決定支援の核心.png"
+            alt="図解「意思決定支援の核心：本人が人生の主語であるために」。意思決定支援とは本人の代わりに正しい選択をすることではなく、本人が自ら決めるプロセスを支え、奪われてきた決める権利を本人の手に返す営み。『代行から支援への転換』『善意による権利侵害を防ぐ』『憲法第13条に基づく権利』という誤解と正体、そして『小さな選択を育てる足場かけ』『結論ではなく過程を支える』『非対等性の自覚と暗黙知の継承』という実践の3つのアプローチを示す。"
+            width="2752"
+            height="1536"
+            loading="lazy"
+          />
+          <span class="ds-figure__hint" aria-hidden="true">クリックで拡大</span>
+        </a>
+      </figure>
+
+      <figure class="ds-video">
+        <video controls preload="metadata" playsinline width="2752" height="1536">
+          <source src="/images/post-parent/意思決定支援の真実と権利.mp4" type="video/mp4" />
+          お使いのブラウザは動画の再生に対応していません。
+        </video>
+        <figcaption class="ds-video__cap">解説動画：意思決定支援の真実と権利</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== 資料・文書（今後追加） ===== -->
+  <section class="section section--sand">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">Documents</span>
+      <h2 class="section__title">資料・文書</h2>
+      <div class="ds-docs">
+        <!--
+          資料を追加するときは、この中に dl-block（PDF）や guide-card（読みもの）と
+          同様のカードを並べてください。追加後、下のプレースホルダは削除します。
+        -->
+        <p class="ds-docs__empty">関連する資料・文書は、ここに順次追加していきます。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 問い合わせ動線 ===== -->
+  <section class="section">
+    <div class="container">
+      <CtaBlock
+        title="意思決定支援について"
+        body="取り組みへのご関心や、ご相談・お問い合わせはお気軽にどうぞ。"
+        primary={{ label: 'お問い合わせフォーム', href: '/contact/' }}
+        secondary={{ label: '地域生活支援トップへ', href: '/sudachi/' }}
+        variant="dark"
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .ds-hero {
+    padding-block: var(--space-8) var(--space-6);
+  }
+
+  .ds-hero__eyebrow {
+    display: block;
+    text-align: center;
+    margin-bottom: var(--space-5);
+  }
+
+  .ds-statement {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: var(--space-8) var(--space-6);
+    background: var(--color-green-900);
+    color: #fdfbf6;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+  }
+
+  .ds-statement::before {
+    content: '\201C';
+    position: absolute;
+    top: -0.08em;
+    left: 0.06em;
+    font-family: var(--font-display);
+    font-size: 200px;
+    line-height: 1;
+    color: var(--color-terra-500);
+    opacity: 0.24;
+    pointer-events: none;
+  }
+
+  .ds-statement__quote {
+    position: relative;
+    margin: 0;
+    text-align: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: clamp(24px, 5vw, 38px);
+    line-height: 1.6;
+    letter-spacing: 0.03em;
+  }
+
+  .ds-statement__quote em {
+    font-style: normal;
+    color: var(--color-terra-500);
+  }
+
+  .body-text {
+    font-size: 16px;
+    line-height: 2;
+    color: var(--color-ink);
+    margin-bottom: var(--space-5);
+  }
+
+  /* 図解（クリックで原寸表示） */
+  .ds-figure {
+    margin: var(--space-7) 0 0;
+  }
+
+  .ds-figure a {
+    display: block;
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--color-line);
+    box-shadow: var(--shadow-soft);
+    transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+  }
+
+  .ds-figure a:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .ds-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .ds-figure__hint {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background: rgba(26, 38, 32, 0.74);
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+    letter-spacing: 0.04em;
+  }
+
+  .ds-figure__hint::before { content: '🔍 '; }
+
+  .ds-figure a:hover .ds-figure__hint { background: var(--color-terra-500); }
+
+  /* 解説動画 */
+  .ds-video {
+    margin: var(--space-6) 0 0;
+  }
+
+  .ds-video video {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-line);
+    box-shadow: var(--shadow-soft);
+    background: #000;
+  }
+
+  .ds-video__cap {
+    margin-top: var(--space-3);
+    font-size: var(--fs-small);
+    color: var(--color-ink-mute);
+    text-align: center;
+  }
+
+  .ds-docs__empty {
+    margin: 0;
+    font-size: var(--fs-small);
+    color: var(--color-ink-soft);
+    padding: var(--space-6) var(--space-5);
+    border: 1px dashed var(--color-line);
+    border-radius: var(--radius-md);
+    text-align: center;
+    background: var(--color-paper);
+  }
+</style>

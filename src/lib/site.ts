@@ -40,7 +40,13 @@ export const navLinks: NavLink[] = [
       { label: '鉄道クラブ', href: '/peer-activities/railway-club/' },
     ],
   },
-  { label: '地域生活支援', href: '/sudachi/' },
+  {
+    label: '地域生活支援',
+    href: '/sudachi/',
+    children: [
+      { label: '意思決定支援', href: '/sudachi/decision-support/' },
+    ],
+  },
   { label: '親なき後', href: '/post-parent/' },
   { label: '利用者募集中', href: '/recruit/' },
   { label: 'nest News', href: '/news/' },

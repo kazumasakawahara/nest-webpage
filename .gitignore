@@ -36,3 +36,9 @@ pnpm-debug.log*
 
 # ローカル PDF 作業場（Supabase アップ前の整理用、git管理外）
 /.pdfs-staging/
+
+# ローカル原本PDF（Supabase newsletters バケットへアップロード済み・静的配信しない）
+pdf-source/
+
+# 大容量の動画オリジナル（公開用は public/ に圧縮版を配置）
+media-src/

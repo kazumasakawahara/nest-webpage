@@ -67,7 +67,59 @@ import Hero from '../components/Hero.astro';
             <span class="dl-meta">PDF ・ 24ページ ・ 約16MB</span>
           </div>
         </div>
+
+        <!-- ===== 関連：やさしい性教育ガイド（藤田英明さん原作の視覚的再構成） ===== -->
+        <div class="guide-card">
+          <a class="guide-card__visual" href="/internal/yasashii-sei-kyoiku.html" target="_blank" rel="noopener" aria-label="やさしい性教育ガイドを画面で読む">
+            <span class="guide-card__emoji" aria-hidden="true">🌷</span>
+            <span class="guide-card__hint" aria-hidden="true">クリックで読む</span>
+          </a>
+          <div class="guide-card__body">
+            <span class="guide-card__eyebrow">関連資料・読みもの</span>
+            <h4 class="guide-card__title">やさしい性教育ガイド</h4>
+            <p class="guide-card__lead">
+              知的障害・発達障害のある方とそのご家族・支援者に向けて、性のことを
+              やさしい言葉と図でまとめた読みものです。画面でそのまま読めます。
+            </p>
+            <p class="guide-card__credit">
+              原作：<strong>藤田英明（Hideaki Fujita）さん</strong>
+              「知的障害・発達障害のある方のためのやさしい性教育マニュアル」<br />
+              ＊原作をもとに、nest が読みやすいよう視覚的に再構成したものです。
+              内容の詳細はぜひ原作（note）をご覧ください。
+            </p>
+            <div class="guide-card__actions">
+              <a class="btn btn--outline btn--sm" href="/internal/yasashii-sei-kyoiku.html" target="_blank" rel="noopener">
+                画面で読む
+                <span class="btn__icon" aria-hidden="true">→</span>
+              </a>
+              <a class="guide-card__src" href="https://note.com/fujita_fukushi/n/na0ff56856e54" target="_blank" rel="noopener">
+                📖 原作（note）を読む
+              </a>
+            </div>
+          </div>
+        </div>
       </article>
+    </div>
+  </section>
+
+  <!-- ===== 意思決定支援（詳細は専用ページ） ===== -->
+  <section class="section" id="decision-support" aria-labelledby="decision-title">
+    <div class="container container--narrow">
+      <div class="reveal">
+        <span class="eyebrow">Supported Decision-Making</span>
+        <h2 class="section__title" id="decision-title">意思決定支援</h2>
+      </div>
+
+      <a class="card ds-entry reveal" href="/sudachi/decision-support/">
+        <p class="ds-entry__catch">
+          代わりに決めるのではなく、<br />
+          決める経験を<em>サポート</em>する。
+        </p>
+        <p class="card__text">
+          本人が「決める経験」を重ねられるよう支える、nest の意思決定支援の取り組みです。
+        </p>
+        <span class="ds-entry__more" aria-hidden="true">意思決定支援を見る →</span>
+      </a>
     </div>
   </section>
 
@@ -438,6 +490,143 @@ import Hero from '../components/Hero.astro';
     font-family: var(--font-mono);
     letter-spacing: 0.04em;
   }
+
+  /* 関連ガイドカード（藤田英明さん原作の視覚的再構成。再配布せず原作紹介＋リンク） */
+  .guide-card {
+    display: flex;
+    align-items: stretch;
+    gap: var(--space-5);
+    flex-wrap: wrap;
+    margin-top: var(--space-6);
+    padding: var(--space-5);
+    background: var(--color-green-100);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+  }
+
+  .guide-card__visual {
+    position: relative;
+    flex-shrink: 0;
+    width: 124px;
+    min-height: 150px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(160deg, #ffffff, var(--color-cream));
+    border: 1px solid var(--color-line);
+    box-shadow: var(--shadow-soft);
+    transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+  }
+
+  .guide-card__emoji { font-size: 52px; line-height: 1; }
+
+  .guide-card__hint {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 5px 4px;
+    background: rgba(26, 38, 32, 0.74);
+    color: #fff;
+    font-size: 11px;
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+
+  .guide-card__hint::before { content: '🔍 '; }
+
+  .guide-card__visual:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .guide-card__visual:hover .guide-card__hint {
+    background: var(--color-terra-500);
+  }
+
+  .guide-card__body { flex: 1; min-width: 220px; }
+
+  .guide-card__eyebrow {
+    display: inline-block;
+    font-size: var(--fs-eyebrow);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-green-700);
+    font-weight: 700;
+    margin-bottom: var(--space-2);
+  }
+
+  .guide-card__title {
+    font-family: var(--font-heading);
+    font-size: var(--fs-h3);
+    color: var(--color-green-900);
+    margin: 0 0 var(--space-2);
+  }
+
+  .guide-card__lead {
+    font-size: var(--fs-body);
+    color: var(--color-ink);
+    line-height: var(--lh-normal);
+    margin: 0 0 var(--space-3);
+  }
+
+  .guide-card__credit {
+    font-size: var(--fs-small);
+    color: var(--color-ink-mute);
+    line-height: var(--lh-snug);
+    margin: 0 0 var(--space-4);
+  }
+
+  .guide-card__credit strong { color: var(--color-ink); }
+
+  .guide-card__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .guide-card__src {
+    font-size: var(--fs-small);
+    color: var(--color-terra-700);
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 1px;
+  }
+
+  .guide-card__src:hover { color: var(--color-terra-500); }
+
+  /* 意思決定支援への導線カード（本体は /sudachi/decision-support/） */
+  .ds-entry {
+    display: block;
+    text-decoration: none;
+  }
+
+  .ds-entry__catch {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: clamp(19px, 3.4vw, 26px);
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+    color: var(--color-green-900);
+    margin: 0 0 var(--space-3);
+  }
+
+  .ds-entry__catch em {
+    font-style: normal;
+    color: var(--color-terra-500);
+  }
+
+  .ds-entry__more {
+    display: inline-block;
+    margin-top: var(--space-3);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-green-700);
+  }
+
+  .ds-entry:hover .ds-entry__more { color: var(--color-terra-500); }
 
   /* PDF プレビュー モーダル */
   .pdf-modal[hidden] { display: none; }
