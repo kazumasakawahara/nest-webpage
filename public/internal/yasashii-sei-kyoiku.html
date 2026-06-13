@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>やさしい性教育ガイド｜知的・発達障害のある方とご家族・支援者のために</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;600;700;800&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-900:#1a3d18; --green-700:#2d5a27; --green-500:#4a8c3f; --green-100:#e8efe6;
+    --cream:#faf6ef; --sand:#f0ead8; --paper:#ffffff;
+    --terra-700:#b85f3d; --terra-500:#d97757; --terra-100:#f9e8df;
+    --ink:#2a2620; --ink-mute:#6b665e; --ink-soft:#9a948a;
+    --line:#e6e0d4; --line-soft:#efebe1;
+    --teal-700:#2f6e6b; --teal-500:#3d8c88; --teal-100:#dcefed;
+    --gold-700:#a9791e; --gold-500:#caa13c; --gold-100:#f6edd2;
+    --rose-700:#a8456a; --rose-500:#c96a8a; --rose-100:#f7e3ea;
+
+    --serif:'Shippori Mincho B1','Hiragino Mincho ProN','Yu Mincho',serif;
+    --round:'Zen Maru Gothic','Hiragino Sans','Yu Gothic',sans-serif;
+
+    --r-md:16px; --r-lg:26px; --r-pill:999px;
+    --shadow-soft:0 6px 28px rgba(58,49,36,.07);
+    --shadow-card:0 12px 40px rgba(58,49,36,.10);
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:84px}
+  body{
+    font-family:var(--round);
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.95;
+    font-size:18px;
+    -webkit-font-smoothing:antialiased;
+    letter-spacing:.01em;
+    overflow-x:hidden;
+  }
+  @media (max-width:640px){ body{font-size:17px} }
+
+  /* soft paper texture / atmosphere */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:
+      radial-gradient(1200px 600px at 12% -8%, rgba(74,140,63,.07), transparent 60%),
+      radial-gradient(1100px 620px at 100% 4%, rgba(217,119,87,.07), transparent 58%),
+      radial-gradient(900px 700px at 50% 110%, rgba(202,161,60,.06), transparent 60%);
+  }
+
+  /* ===== Reading progress bar ===== */
+  #progress{position:fixed;top:0;left:0;height:5px;width:0;z-index:60;
+    background:linear-gradient(90deg,var(--green-500),var(--terra-500),var(--gold-500));}
+
+  /* ===== Top mini nav ===== */
+  .topbar{position:fixed;top:5px;left:0;right:0;z-index:50;
+    backdrop-filter:saturate(140%) blur(10px);
+    background:rgba(250,246,239,.82);
+    border-bottom:1px solid var(--line);}
+  .topbar .inner{max-width:1120px;margin:0 auto;padding:10px 20px;
+    display:flex;align-items:center;gap:14px;}
+  .brand{font-family:var(--serif);font-weight:800;color:var(--green-700);
+    font-size:18px;letter-spacing:.04em;white-space:nowrap;}
+  .brand small{display:block;font-family:var(--round);font-weight:500;
+    font-size:11px;color:var(--ink-soft);letter-spacing:.12em;margin-top:-2px;}
+  .topbar .spacer{flex:1}
+  .top-toc{font-size:14px;font-weight:700;color:var(--green-700);
+    border:2px solid var(--green-100);background:var(--paper);
+    padding:8px 16px;border-radius:var(--r-pill);cursor:pointer;
+    text-decoration:none;transition:.2s var(--ease);white-space:nowrap;}
+  .top-toc:hover{background:var(--green-100);border-color:var(--green-500)}
+  @media (max-width:640px){ .brand small{display:none} }
+
+  /* ===== Layout ===== */
+  .wrap{max-width:880px;margin:0 auto;padding:0 22px}
+
+  /* ===== Hero ===== */
+  .hero{padding:140px 0 56px;text-align:center;position:relative}
+  .hero .eyebrow{display:inline-block;font-weight:700;letter-spacing:.18em;
+    font-size:13px;color:var(--terra-700);background:var(--terra-100);
+    padding:7px 18px;border-radius:var(--r-pill);margin-bottom:26px;}
+  .hero h1{font-family:var(--serif);font-weight:800;line-height:1.4;
+    font-size:clamp(30px,6.4vw,52px);color:var(--green-900);
+    letter-spacing:.02em;margin-bottom:22px;}
+  .hero h1 .accent{color:var(--terra-500)}
+  .hero .sub{font-size:clamp(16px,2.4vw,20px);color:var(--ink-mute);
+    max-width:600px;margin:0 auto 30px;line-height:1.9;}
+  .audience{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:8px}
+  .audience span{background:var(--paper);border:2px solid var(--line);
+    border-radius:var(--r-pill);padding:9px 18px;font-size:14px;font-weight:700;
+    color:var(--green-700);box-shadow:var(--shadow-soft);}
+  .audience span b{font-size:18px;margin-right:4px}
+
+  .hero-note{margin:42px auto 0;max-width:680px;background:var(--green-100);
+    border-radius:var(--r-lg);padding:26px 30px;text-align:left;
+    border:1px solid rgba(74,140,63,.2);position:relative;}
+  .hero-note h2{font-family:var(--serif);font-size:20px;color:var(--green-900);
+    margin-bottom:10px;display:flex;align-items:center;gap:10px}
+  .hero-note p{font-size:16px;color:var(--ink);line-height:1.95}
+  .hero-note .small{font-size:14px;color:var(--ink-mute);margin-top:12px}
+
+  /* ===== TOC grid ===== */
+  .toc{padding:30px 0 8px}
+  .toc h2{font-family:var(--serif);text-align:center;font-size:26px;
+    color:var(--green-900);margin-bottom:6px}
+  .toc .lead{text-align:center;color:var(--ink-mute);font-size:15px;margin-bottom:30px}
+  .toc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media (max-width:560px){ .toc-grid{grid-template-columns:1fr} }
+  .toc-card{display:flex;align-items:center;gap:16px;text-decoration:none;
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--r-md);
+    padding:16px 18px;transition:.25s var(--ease);box-shadow:var(--shadow-soft);}
+  .toc-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-card);
+    border-color:var(--green-500)}
+  .toc-card .ic{font-size:30px;line-height:1;flex-shrink:0;
+    width:54px;height:54px;display:grid;place-items:center;border-radius:14px;
+    background:var(--cream);}
+  .toc-card .tx{display:flex;flex-direction:column}
+  .toc-card .n{font-size:12px;font-weight:700;color:var(--terra-700);letter-spacing:.08em}
+  .toc-card .t{font-family:var(--serif);font-weight:700;color:var(--ink);
+    font-size:16px;line-height:1.4}
+
+  /* ===== Chapter sections ===== */
+  .chapter{padding:60px 0 22px;scroll-margin-top:80px}
+  .chapter + .chapter{border-top:1px dashed var(--line)}
+  .ch-head{display:flex;align-items:center;gap:18px;margin-bottom:24px}
+  .ch-badge{flex-shrink:0;width:72px;height:72px;border-radius:20px;
+    display:grid;place-items:center;font-size:38px;line-height:1;
+    box-shadow:var(--shadow-soft);position:relative}
+  .ch-badge .num{position:absolute;top:-8px;left:-8px;width:30px;height:30px;
+    border-radius:50%;background:var(--green-700);color:#fff;font-size:14px;
+    font-weight:700;display:grid;place-items:center;font-family:var(--round)}
+  .ch-head h2{font-family:var(--serif);font-weight:800;color:var(--green-900);
+    font-size:clamp(22px,4vw,30px);line-height:1.45;letter-spacing:.01em}
+
+  .prose{font-size:17px;line-height:2.0;color:var(--ink)}
+  .prose p{margin:0 0 18px}
+  .prose p.lead{font-size:19px;font-weight:500;color:var(--green-900);
+    line-height:1.95;background:var(--cream);border-left:5px solid var(--green-500);
+    padding:14px 20px;border-radius:0 12px 12px 0;margin-bottom:24px}
+  .prose strong{color:var(--terra-700);font-weight:700}
+  .prose h3{font-family:var(--serif);font-size:20px;color:var(--green-700);
+    margin:30px 0 14px;padding-left:16px;border-left:4px solid var(--terra-500);
+    line-height:1.5}
+
+  /* ===== Callout boxes ===== */
+  .box{border-radius:var(--r-md);padding:22px 24px;margin:22px 0;
+    box-shadow:var(--shadow-soft);position:relative;border:1px solid}
+  .box .box-t{font-family:var(--serif);font-weight:700;font-size:17px;
+    display:flex;align-items:center;gap:10px;margin-bottom:12px}
+  .box .box-t .ic{font-size:24px}
+  .box p{margin:0 0 10px;font-size:16px;line-height:1.9}
+  .box p:last-child{margin-bottom:0}
+  .box ul{margin:6px 0 0;padding-left:0;list-style:none}
+  .box li{position:relative;padding-left:32px;margin-bottom:12px;font-size:16px;line-height:1.85}
+  .box li:last-child{margin-bottom:0}
+  .box li::before{position:absolute;left:0;top:0;font-size:20px}
+
+  .box.point{background:var(--green-100);border-color:rgba(74,140,63,.28)}
+  .box.point .box-t{color:var(--green-700)}
+  .box.point li::before{content:"🌱"}
+
+  .box.rule{background:var(--terra-100);border-color:rgba(184,95,61,.30)}
+  .box.rule .box-t{color:var(--terra-700)}
+  .box.rule li::before{content:"✅"}
+
+  .box.tip{background:var(--gold-100);border-color:rgba(169,121,30,.30)}
+  .box.tip .box-t{color:var(--gold-700)}
+  .box.tip li::before{content:"💡"}
+
+  .box.warn{background:var(--rose-100);border-color:rgba(168,69,106,.30)}
+  .box.warn .box-t{color:var(--rose-700)}
+  .box.warn li::before{content:"⚠️"}
+
+  .box.help{background:var(--teal-100);border-color:rgba(47,110,107,.30)}
+  .box.help .box-t{color:var(--teal-700)}
+  .box.help li::before{content:"🫶"}
+
+  /* ===== Steps (process) ===== */
+  .steps{counter-reset:step;margin:22px 0;display:grid;gap:12px}
+  .step{display:flex;gap:16px;align-items:flex-start;background:var(--paper);
+    border:1px solid var(--line);border-radius:14px;padding:16px 20px;box-shadow:var(--shadow-soft)}
+  .step::before{counter-increment:step;content:counter(step);flex-shrink:0;
+    width:38px;height:38px;border-radius:50%;background:var(--green-700);color:#fff;
+    font-weight:700;display:grid;place-items:center;font-size:17px}
+  .step .s-tx{padding-top:4px}
+  .step .s-tx b{color:var(--green-700)}
+
+  /* ===== YES / NO panel ===== */
+  .yn{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0}
+  @media (max-width:520px){ .yn{grid-template-columns:1fr} }
+  .yn .card{border-radius:var(--r-md);padding:20px;text-align:center;box-shadow:var(--shadow-soft)}
+  .yn .yes{background:var(--green-100);border:2px solid var(--green-500)}
+  .yn .no{background:var(--rose-100);border:2px solid var(--rose-500)}
+  .yn .big{font-size:40px;display:block;margin-bottom:6px}
+  .yn .lbl{font-family:var(--serif);font-weight:800;font-size:22px;margin-bottom:8px}
+  .yn .yes .lbl{color:var(--green-700)}
+  .yn .no .lbl{color:var(--rose-700)}
+  .yn p{font-size:15px;line-height:1.8;color:var(--ink);margin:0}
+
+  /* ===== Contact cards ===== */
+  .contacts{display:grid;gap:14px;margin:22px 0}
+  .contact{display:flex;gap:18px;align-items:center;background:var(--paper);
+    border:2px solid var(--teal-100);border-left:6px solid var(--teal-500);
+    border-radius:14px;padding:18px 22px;box-shadow:var(--shadow-soft)}
+  .contact .ic{font-size:32px;flex-shrink:0}
+  .contact .c-tx{flex:1}
+  .contact .c-name{font-family:var(--serif);font-weight:700;font-size:17px;color:var(--teal-700)}
+  .contact .c-desc{font-size:14px;color:var(--ink-mute);line-height:1.6;margin-top:2px}
+  .contact .c-num{font-family:var(--serif);font-weight:800;font-size:clamp(20px,5vw,28px);
+    color:var(--terra-700);letter-spacing:.02em;white-space:nowrap;margin-top:4px}
+  .contact .c-num a{color:inherit;text-decoration:none}
+
+  /* ===== Closing ===== */
+  .closing{margin:70px 0 30px;text-align:center;
+    background:linear-gradient(160deg,var(--green-700),var(--green-900));
+    color:#fdfbf6;border-radius:32px;padding:56px 30px;box-shadow:var(--shadow-card);
+    position:relative;overflow:hidden}
+  .closing::before{content:"";position:absolute;inset:0;opacity:.5;
+    background:radial-gradient(600px 300px at 80% -10%,rgba(217,119,87,.35),transparent 60%)}
+  .closing .em{font-size:52px;display:block;margin-bottom:16px;position:relative}
+  .closing h2{font-family:var(--serif);font-size:clamp(26px,6vw,40px);
+    line-height:1.5;margin-bottom:18px;position:relative;letter-spacing:.04em}
+  .closing p{font-size:17px;line-height:2;max-width:560px;margin:0 auto;
+    color:rgba(253,251,246,.9);position:relative}
+  .closing .motto{display:inline-block;margin-top:24px;font-family:var(--serif);
+    font-weight:800;font-size:22px;background:rgba(253,251,246,.14);
+    border:2px solid rgba(253,251,246,.3);padding:12px 28px;border-radius:var(--r-pill);
+    position:relative}
+
+  /* ===== Footer ===== */
+  footer{text-align:center;padding:40px 22px 70px;color:var(--ink-soft);font-size:13px}
+  footer .src{background:var(--paper);border:1px solid var(--line);border-radius:14px;
+    max-width:680px;margin:0 auto 24px;padding:20px 24px;text-align:left;color:var(--ink-mute)}
+  footer .src b{color:var(--ink);font-family:var(--serif)}
+  footer .tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
+  footer .tags span{background:var(--sand);color:var(--ink-mute);
+    padding:4px 12px;border-radius:var(--r-pill);font-size:12px}
+
+  /* ===== Back to top ===== */
+  #toTop{position:fixed;right:20px;bottom:24px;z-index:40;width:52px;height:52px;
+    border-radius:50%;border:none;background:var(--green-700);color:#fff;font-size:22px;
+    cursor:pointer;box-shadow:var(--shadow-card);opacity:0;pointer-events:none;
+    transition:.3s var(--ease)}
+  #toTop.show{opacity:1;pointer-events:auto}
+  #toTop:hover{background:var(--terra-500);transform:translateY(-3px)}
+
+  /* ===== Reveal animation ===== */
+  .reveal{opacity:0;transform:translateY(24px);transition:.7s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+  }
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header class="topbar">
+  <div class="inner">
+    <div class="brand">やさしい性教育ガイド<small>FOR EVERYONE · NPO nest</small></div>
+    <div class="spacer"></div>
+    <a href="#toc" class="top-toc">📖 もくじ</a>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">支援者・ご家族・ご本人へ</span>
+    <h1>自分の<span class="accent">こころ</span>と<span class="accent">からだ</span>を<br>大切にするための<br>やさしい性教育ガイド</h1>
+    <p class="sub">知的障害・発達障害のある方に向けて、「性（セクシュアリティ）」のことを、できるだけやさしい言葉で説明します。</p>
+    <div class="audience">
+      <span><b>🧑</b>ご本人（16歳以上）</span>
+      <span><b>👨‍👩‍👧</b>ご家族</span>
+      <span><b>🤝</b>福祉従事者</span>
+    </div>
+
+    <div class="hero-note reveal">
+      <h2>🌿 はじめに</h2>
+      <p>性に関する正しい知識を身につけることは、自分自身の心と体を守り、安心して生活するためにとても大切です。性教育は「セックス」だけの話ではありません。思春期の体や心の変化、好きという気持ち、自分を守る力まで、ぜんぶ含まれています。</p>
+      <p class="small">むずかしい言葉には（ ）でふりがなを付けています。自分のペースで読み進め、わからないところは信頼できる大人に質問してください。性のことを学ぶのに、遅すぎることはありません。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TOC ===== -->
+<section class="toc" id="toc">
+  <div class="wrap">
+    <h2>📖 もくじ（ぜんぶで12のおはなし）</h2>
+    <p class="lead">気になるところから読んでも大丈夫です。アイコンをタップしてください。</p>
+    <div class="toc-grid">
+      <a class="toc-card reveal" href="#ch1"><span class="ic">💗</span><span class="tx"><span class="n">CHAPTER 1</span><span class="t">性とは何でしょう？</span></span></a>
+      <a class="toc-card reveal" href="#ch2"><span class="ic">🛡️</span><span class="tx"><span class="n">CHAPTER 2</span><span class="t">体とプライベートゾーン</span></span></a>
+      <a class="toc-card reveal" href="#ch3"><span class="ic">🌈</span><span class="tx"><span class="n">CHAPTER 3</span><span class="t">性の多様性</span></span></a>
+      <a class="toc-card reveal" href="#ch4"><span class="ic">💞</span><span class="tx"><span class="n">CHAPTER 4</span><span class="t">恋愛とデート</span></span></a>
+      <a class="toc-card reveal" href="#ch5"><span class="ic">🤝</span><span class="tx"><span class="n">CHAPTER 5</span><span class="t">同意とコミュニケーション</span></span></a>
+      <a class="toc-card reveal" href="#ch6"><span class="ic">🚪</span><span class="tx"><span class="n">CHAPTER 6</span><span class="t">自慰行為とプライバシー</span></span></a>
+      <a class="toc-card reveal" href="#ch7"><span class="ic">👶</span><span class="tx"><span class="n">CHAPTER 7</span><span class="t">妊娠・出産と避妊</span></span></a>
+      <a class="toc-card reveal" href="#ch8"><span class="ic">🩺</span><span class="tx"><span class="n">CHAPTER 8</span><span class="t">性感染症について</span></span></a>
+      <a class="toc-card reveal" href="#ch9"><span class="ic">🚨</span><span class="tx"><span class="n">CHAPTER 9</span><span class="t">自分を守る（性被害の防止）</span></span></a>
+      <a class="toc-card reveal" href="#ch10"><span class="ic">✊</span><span class="tx"><span class="n">CHAPTER 10</span><span class="t">権利・自己決定と尊重</span></span></a>
+      <a class="toc-card reveal" href="#ch11"><span class="ic">☎️</span><span class="tx"><span class="n">CHAPTER 11</span><span class="t">相談先・支援制度</span></span></a>
+      <a class="toc-card reveal" href="#ch12"><span class="ic">🚦</span><span class="tx"><span class="n">CHAPTER 12</span><span class="t">社会のルールと安全</span></span></a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+
+<!-- ===== CH1 ===== -->
+<section class="chapter" id="ch1">
+  <div class="ch-head reveal">
+    <div class="ch-badge" style="background:var(--rose-100)"><span class="num">1</span>💗</div>
+    <h2>性とは何でしょうか？<br><span style="font-size:.7em;color:var(--ink-mute)">（セクシュアリティ）</span></h2>
+  </div>
+  <div class="prose reveal">
+    <p class="lead">「性」（セクシュアリティ）とは、人間にとってとても大切なもの。体の性別だけでなく、心の性、好きという気持ち、恋愛、性行為まで、いろいろな意味が含まれます。</p>
+    <p>思春期（ししゅんき）になると、体つきや心にいろいろな変化が起こります。男の子は声が低くなったりヒゲが生えたり、女の子は胸がふくらんだり月経（げっけい・生理）が始まったりします。誰かを「好きだな」と思う気持ちが芽生えることもあります。こうした体と心の成長も、性の大切な一部分です。</p>
+    <div class="box point">
+      <div class="box-t"><span class="ic">🌱</span>覚えておきたいポイント</div>
+      <p>性について正しく知ることは、恥ずかしいことではありません。性は人間の自然な一部であり、誰もが向き合うものです。自分の体と心について知ることは、<strong>自分らしく生きるための大切な一歩</strong>です。</p>
+    </div>
+    <p>世界では今、ジェンダーや性の多様性、自己決定の尊重まで含めて教える<strong>包括的性教育（ほうかつてきせいきょういく）</strong>の流れが広がっています。これから一緒に、一つひとつ学んでいきましょう。</p>
+  </div>
+</section>
+
+<!-- ===== CH2 ===== -->
+<section class="chapter" id="ch2">
+  <div class="ch-head reveal">
+    <div class="ch-badge" style="background:var(--terra-100)"><span class="num">2</span>🛡️</div>
+    <h2>体の部分と<br>プライベートゾーン</h2>
+  </div>
+  <div class="prose reveal">
+    <p class="lead">体の中には、他の人に見せたり触らせたりしてはいけない「特別で大切な部分」があります。それを<strong>プライベートゾーン</strong>と呼びます。</p>
+    <p>男性の体にはペニス（陰茎）と睾丸（こうがん）、女性の体には膣（ちつ）・子宮（しきゅう）・卵巣（らんそう）や胸（乳房）があります。男性と女性で体のつくりは違いますが、<strong>どちらの体も等しく大切</strong>です。</p>
+
+    <div class="box rule">
+      <div class="box-t"><span class="ic">🩲</span>プライベートゾーンは「水着でかくれる部分」と「口」</div>
+      <p>具体的には… <strong>口</strong>・<strong>胸（乳首をふくむ）</strong>・<strong>おしり（肛門まわり）</strong>・<strong>性器（男性のペニスと睾丸／女性の陰部）</strong>。とてもデリケートで大切な「自分だけの大事なところ」です。</p>
+    </div>
+
+    <h3>プライベートゾーンの守り方（4つのやくそく）</h3>
+    <div class="box rule">
+      <ul>
+        <li>プライベートゾーンは<strong>自分だけの大切な場所</strong>。他の人に見せたり触らせたりしてはいけません。</li>
+        <li>「見せて」「触らせて」と言われても、<strong>きっぱり断りましょう</strong>。「いやです」「だめです」とはっきり伝えて大丈夫。それは悪いことではありません。</li>
+        <li>もし無理に触られそうになったら、必ず<strong>信頼できる大人</strong>（家族・先生・支援者）に相談を。あなたは悪くありません。一人で抱え込まないで。</li>
+        <li>自分も、他の人のプライベートゾーンに触ってはいけません。相手が嫌がることは絶対にしないルールです。</li>
+      </ul>
+    </div>
+
+    <div class="box point">
+      <div class="box-t"><span class="ic">💚</span>「汚いから」ではなく「大切だから」</div>
+      <p>プライベートゾーンを守るのは、汚いからではありません。むしろ反対で、<strong>あなたの体がとても大切なものだから</strong>守るのです。「そこは汚いから隠しなさい」ではなく「大事なところだから大切にしようね」と伝えられると良いですね。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CH3 ===== -->
+<section class="chapter" id="ch3">
+  <div class="ch-head reveal">
+    <div class="ch-badge" style="background:linear-gradient(135deg,#f7e3ea,#dcefed,#f6edd2)"><span class="num">3</span>🌈</div>
+    <h2>ジェンダー・性自認・<br>性的指向の多様性</h2>
+  </div>
+  <div class="prose reveal">
+    <p class="lead">人の性のあり方は、体の違いだけではありません。心の性別（性自認）や、誰を好きになるか（性的指向）も、人それぞれ多様です。</p>
+
+    <h3>こころの性別 ＝ 性自認（せいじにん）</h3>
+    <p>自分が心の中で「自分は男だ」「女だ」「どちらでもない」と感じる気持ちを<strong>性自認</strong>といいます。多くの人は体の性と性自認が一致していますが、一致しない人もいます。生まれたときは体が男性でも心は女性だと感じる人を<strong>トランスジェンダー</strong>、男女どちらにも当てはまらない人を<strong>ノンバイナリー</strong>などと呼びます。</p>
+
+    <h3>誰を好きになるか ＝ 性的指向（せいてきしこう）</h3>
+    <div class="box tip">
+      <ul>
+        <li><strong>異性愛</strong>…異性を好きになる（男性が女性を、女性が男性を）</li>
+        <li><strong>レズビアン</strong>…女性が女性を好きになる</li>
+        <li><strong>ゲイ</strong>…男性が男性を好きになる</li>
+        <li><strong>バイセクシュアル</strong>…男性も女性もどちらも好きになる</li>
+        <li><strong>アセクシュアル／アロマンティック</strong>…誰に対しても恋愛感情や性的欲求を抱かない</li>
+      </ul>
+    </div>
+
+    <div class="box point">
+      <div class="box-t"><span class="ic">🌈</span>多様性を尊重しよう</div>
+      <p>性自認や性的指向は、自分で自由に選んだり変えたりできるものではなく、その人の大切な個性です。自分と違う人を「おかしい」と決めつけたり、からかったり差別したりしてはいけません。「自分は少し違うかも」と感じても、悪いことでも恥ずかしいことでもありません。<strong>自分も他人も、ありのままの性を大切に</strong>しましょう。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CH4 ===== -->
+<section class="chapter" id="ch4">
+  <div class="ch-head reveal">
+    <div class="ch-badge" style="background:var(--rose-100)"><span class="num">4</span>💞</div>
+    <h2>恋愛、好きになることと<br>デートについて</h2>
+  </div>
+  <div class="prose reveal">
+    <p class="lead">恋愛（れんあい）とは、特別に「好きだ」と思う相手に抱く気持ち。ドキドキしたり「ずっと一緒にいたい」と思う特別な感情です。障害のある方も、もちろん恋愛感情を抱きます。自然で、素敵なことです。</p>
+
+    <div class="box tip">
+      <div class="box-t"><span class="ic">💡</span>好きな人ができたら</div>
+      <p>恋愛は一人では成立しません。相手も自分を好きでいてくれて、初めて「付き合う」ことができます。断られたら悲しいけれど、相手の気持ちを受け入れましょう。<strong>何度もしつこくアプローチするのは、相手に恐怖や不快感を与えてしまいます</strong>。</p>
+    </div>
+
+    <h3>上手なアプローチの仕方</h3>
+    <div class="box point">
+      <ul>
+        <li>まずは<strong>仲の良い友達になること</strong>から。身だしなみを清潔に、笑顔であいさつ、相手の話を優しく聞く。</li>
+        <li>告白は、できれば<strong>二人きりのとき</strong>に。大勢の前で告白されると、相手は恥ずかしくて困ってしまいます。</li>
+      </ul>
+    </div>
+
+    <div class="box rule">
+      <div class="box-t"><span class="ic">🤲</span>お付き合いが始まったら</div>
+      <p>恋人だからといって、相手を思い通りにしていいわけではありません。<strong>お互いに対等（たいとう）な関係</strong>でいることが大切。デートに誘うときも相手の都合や希望を聞き、ケンカしたときは感情的にならず落ち着いて話し合いましょう。</p>
+      <p>「好きだから」と携帯を無断でチェックしたり、行動を監視したり、束縛しすぎるのは良い関係ではありません。<strong>恋愛は二人でするもの</strong>。お互いを思いやりましょう。</p>
+    </div>
+    <p>恋人同士でも、性的な行為は<strong>二人がよく話し合い、無理のない範囲で</strong>。どちらかが嫌がっているのに無理にするのは絶対にいけません。「断ったら嫌われるかな」と心配でも、本当にあなたを大切に思う相手なら、あなたの気持ちを尊重してくれるはずです。</p>
+  </div>
+</section>
+
+<!-- ===== CH5 ===== -->
+<section class="chapter" id="ch5">
+  <div class="ch-head reveal">
+    <div class="ch-badge" style="background:var(--green-100)"><span class="num">5</span>🤝</div>
+    <h2>同意と<br>コミュニケーション</h2>
+  </div>
+  <div class="prose reveal">
+    <p class="lead">同意（どうい）とは「相手のすることをよいと認めること」。性に関しては、<strong>お互いがやってもいいと納得している状態</strong>を指します。恋人でも夫婦でも、同意のない性的な行為はしてはいけません。</p>
+
+    <div class="yn">
+      <div class="card yes">
+        <span class="big">⭕</span>
+        <div class="lbl">YES = 同意</div>
+        <p>相手がはっきり「うん、いいよ」と言って、初めて同意があります。</p>
+      </div>
+      <div class="card no">
+        <span class="big">❌</span>
+        <div class="lbl">NO・だまっている</div>
+        <p>「NO」はもちろん、<b>黙っているのも同意ではありません</b>。途中で気が変わったら、すぐに中止します。</p>
+      </div>
+    </div>
+
+    <div class="box rule">
+      <div class="box-t"><span class="ic">🗣️</span>「Yes」も「No」も言葉で伝えよう</div>
+      <ul>
+        <li>スキンシップの前に「手をつないでもいい？」「キスしてもいいかな？」と<strong>確認する</strong>。</li>
+        <li>嫌なときは遠慮せず「今日は嫌です」「したくないです」と<strong>はっきり断る</strong>。それで嫌われることはありません。</li>
+        <li>一度「いいよ」と言っても、途中で「やめたい」と変わってOK。<strong>嫌ならいつでもやめていい</strong>のです。</li>
+      </ul>
+    </div>
+
+    <div class="box help">
+      <div class="box-t"><span class="ic">🫶</span>言葉で伝える習慣を</div>
+      <p>気持ちを言葉にするのが苦手でも、普段から「これ平気？大丈夫？」と確認し合うクセをつけておくと、大事な場面でも気持ちを話しやすくなります。信頼関係は、日頃の思いやりと会話から築かれます。</p>
+    </div>
+
+    <div class="box warn">
+      <div class="box-t"><span class="ic">⚖️</span>これは法律でも決まっています</div>
+      <p>2023年、日本の法律が改正され、<strong>相手の同意のない性交等は犯罪</strong>であることが明確化されました（不同意性交罪）。「Only YES means YES（イエスと言われないなら同意ではない）」。自分の気持ちも相手の気持ちも、大切にしてください。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CH6 ===== -->
+<section class="chapter" id="ch6">
+  <div class="ch-head reveal">
+    <div class="ch-badge" style="background:var(--gold-100)"><span class="num">6</span>🚪</div>
+    <h2>マスターベーション<br><span style="font-size:.7em;color:var(--ink-mute)">（自慰行為）とプライバシー</span></h2>
+  </div>
+  <div class="prose reveal">
+    <p class="lead">マスターベーション（自慰行為）は、自分で自分の性器に触れて性的な気持ちよさを得る行為。<strong>自然で普通の行動</strong>であり、男性でも女性でも行います。恥ずかしいことでも悪いことでもありません。</p>
+
+    <div class="box rule">
+      <div class="box-t"><span class="ic">🚪</span>大切な3つのルール「場所・清潔・安全」</div>
+      <ul>
+        <li><strong>場所</strong>…必ず一人のときに。自分の部屋（誰もいないとき）や鍵のかかるトイレ・お風呂など、プライベートな空間で。リビングや学校・施設では絶対にしない（人前ですると公然わいせつ罪になることも）。</li>
+        <li><strong>清潔</strong>…手をきれいにして、自分の手で優しく。爪は短く整える。終わったら手や触れた部分を洗う。</li>
+        <li><strong>安全</strong>…強くこすりすぎたり、硬いもの・尖ったものを使うのは危険。自分を傷つけないように。</li>
+      </ul>
+    </div>
+
+    <div class="box point">
+      <div class="box-t"><span class="ic">💚</span>注意されたら「マナーを教わっている」と受け止めて</div>
+      <p>大きくなると「人前ではダメだよ」と注意されることがあります。それは<strong>あなたの体が大人に近づいたからこそ守るべきルール</strong>。「自分が悪い子だから」ではなく「大人としてのマナーを教わっている」と受け止めてください。ご家族・支援者も、頭ごなしに叱らず、適切な場所ならOKなことを根気強く伝えてあげてください。</p>
+    </div>
+
+    <p>性的な欲求の強さや頻度は人それぞれで、どれが普通ということはありません。ただ、一日中そのことばかり考えてしまう・肌を傷めるほど繰り返すなど生活に支障が出るときは、スポーツや趣味で気を紛らわすのも効果的。心配なときは、お医者さんやカウンセラーに相談できます。</p>
+  </div>
+</section>
+
+<!-- ===== CH7 ===== -->
+<section class="chapter" id="ch7">
+  <div class="ch-head reveal">
+    <div class="ch-badge" style="background:var(--teal-100)"><span class="num">7</span>👶</div>
+    <h2>妊娠・出産と避妊</h2>
+  </div>
+  <div class="prose reveal">
+    <p class="lead">妊娠（にんしん）とは、女性の体の中に赤ちゃんが宿ること。出産（しゅっさん）とは、赤ちゃんが生まれてくることです。</p>
+
+    <h3>赤ちゃんができる仕組み</h3>
+    <div class="steps">
+      <div class="step"><div class="s-tx">男性のペニスを女性の膣に挿入して<b>射精</b>すると、精子（せいし）が女性の体内に放出されます。</div></div>
+      <div class="step"><div class="s-tx">女性の体内では月に一度<b>排卵</b>があり、卵子（らんし）が子宮へ送り出されます。</div></div>
+      <div class="step"><div class="s-tx">精子と卵子が出会って結合すると<b>受精</b>。受精卵が子宮に着床すると<b>妊娠成立</b>です。</div></div>
+      <div class="step"><div class="s-tx">約9〜10か月かけてお腹で成長し、陣痛のあと、赤ちゃんが生まれてきます。</div></div>
+    </div>
+    <p>ただし、性行為をしたからといって必ず妊娠するわけではありません。でも<strong>一回の性行為でもタイミングが合えば妊娠する可能性はあります</strong>。妊娠のサインで多いのは「月経が予定の日に来ない」こと。妊娠検査薬や産婦人科（さんふじんか）で確認できます。心配なときは一人で悩まず、信頼できる大人に相談を。</p>
+
+    <div class="box rule">
+      <div class="box-t"><span class="ic">🛡️</span>避妊（ひにん）＝望まない妊娠を防ぐこと</div>
+      <p>子どもを望まないうちは<strong>必ず避妊をする</strong>のが原則。日本で一般的なのは…</p>
+      <ul>
+        <li><strong>コンドーム</strong>…ペニスに装着するゴム製の袋。<strong>最初から必ず付ける</strong>のが鉄則。妊娠だけでなく性感染症の予防にも役立つ大事なアイテム。ドラッグストアやコンビニで買えます。</li>
+        <li><strong>ピル（経口避妊薬）</strong>…女性が飲むホルモン剤。産婦人科で処方してもらい、毎日決まった時間に飲みます。性感染症は防げないので、コンドームと併用する人もいます。</li>
+      </ul>
+    </div>
+
+    <div class="box point">
+      <div class="box-t"><span class="ic">🤝</span>避妊は二人の責任</div>
+      <p>避妊は「男性が用意するもの」ではなく、<strong>二人の共同の責任</strong>です。女性も「ちゃんとゴム持ってる？」と確認し、ないなら「今日はやめておこう」と断る勇気を。失敗したときは<strong>緊急避妊薬（アフターピル）</strong>という方法もあります（早めに産婦人科へ）。<strong>性の知識は、自分の未来を守る力</strong>になります。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CH8 ===== -->
+<section class="chapter" id="ch8">
+  <div class="ch-head reveal">
+    <div class="ch-badge" style="background:var(--teal-100)"><span class="num">8</span>🩺</div>
+    <h2>性感染症について<br><span style="font-size:.7em;color:var(--ink-mute)">（せいかんせんしょう・STI）</span></h2>
+  </div>
+  <div class="prose reveal">
+    <p class="lead">性感染症（STI）とは、性的な接触によってうつる病気の総称。クラミジア、淋病、梅毒（ばいどく）、HIV（エイズ）、性器ヘルペスなどがあり、放置すると体に深刻なダメージを与えます。</p>
+
+    <div class="box warn">
+      <div class="box-t"><span class="ic">⚠️</span>自覚症状がないことも多い</div>
+      <p>知らないうちに感染し、悪化させたりパートナーにうつしたりすることも。<strong>相手がどんなに健康そうでも、感染している可能性はゼロではありません</strong>。見た目では判断できません。近年は梅毒が急増しています。</p>
+    </div>
+
+    <div class="box rule">
+      <div class="box-t"><span class="ic">🛡️</span>いちばんの予防は「コンドーム」</div>
+      <p>感染経路は主に性行為。<strong>性行為の際は必ずコンドームを正しく装着する</strong>のが基本中の基本です。完全ではありませんが、何もしないより格段にリスクを下げられます。</p>
+    </div>
+
+    <div class="box help">
+      <div class="box-t"><span class="ic">🏥</span>「かかったかも」と思ったら早めに検査・治療</div>
+      <p>膿が出る・排尿時に痛い・かゆみや腫れ・発疹・原因不明の高熱などがあれば要注意。男性は<strong>泌尿器科</strong>、女性は<strong>婦人科</strong>へ。細菌が原因なら抗生物質で治せます。<strong>早期発見・早期治療</strong>が大切。恥ずかしくても、お医者さんはプロですから遠慮なく相談を。近くに信頼できる大人がいれば付き添ってもらいましょう。</p>
+    </div>
+    <p>「だらしないからかかる」という偏見は適切ではありません。誰でも感染リスクはあり、きちんと予防・検査・治療をすれば怖がる必要はありません。<strong>「自分は大丈夫」と思わず、しっかり予防する態度</strong>を身につけましょう。</p>
+  </div>
+</section>
+
+<!-- ===== CH9 ===== -->
+<section class="chapter" id="ch9">
+  <div class="ch-head reveal">
+    <div class="ch-badge" style="background:var(--rose-100)"><span class="num">9</span>🚨</div>
+    <h2>性的虐待・搾取の防止<br><span style="font-size:.7em;color:var(--ink-mute)">（自分を守るために）</span></h2>
+  </div>
+  <div class="prose reveal">
+    <p class="lead">世の中には、弱い立場の人につけ込んで性的に乱暴なこと（性的虐待）をしたり、利用（搾取）しようとする人がいます。知的障害・発達障害のある人は<strong>性被害に遭いやすい</strong>と言われています。</p>
+
+    <div class="box warn">
+      <div class="box-t"><span class="ic">💔</span>いちばん大切なこと</div>
+      <p>もし性被害に遭ってしまっても、<strong>それは決してあなたのせいではありません</strong>。「断れなかった」「ついて行ってしまった」から悪いのではなく、<strong>無理やり性的な行為をする方が100%悪い</strong>のです。自分を責めず、必ず周囲に助けを求めてください。</p>
+    </div>
+
+    <h3>性被害に遭わないために気をつけること</h3>
+    <div class="box rule">
+      <ul>
+        <li><strong>プライベートゾーンのルールを守る</strong>…知っている人（先生・親戚など）でも、診察以外で体を見たがる・触りたがる人がいたら、その人がおかしいのです。毅然と断り、「やめてください！」と大きな声で言って逃げて。</li>
+        <li><strong>おかしいと思ったら逃げる</strong>…「みんなやってるよ」と混乱させる人も。少しでも「嫌だな」と感じたら直感を信じ、その場を離れて安全な場所へ。</li>
+        <li><strong>甘い言葉やお金に注意</strong>…「お小遣いあげる」などで誘う人に要注意。<strong>自分の体をお金や物と交換に提供することは絶対にしない</strong>。「おいしい話には裏がある」。</li>
+        <li><strong>ネットやSNSでも注意</strong>…知り合った人とは基本的に会わない。<strong>裸の写真や性的な画像は絶対に送らない</strong>（脅迫に使われる危険。一度出回ると消せません）。恋人でも同じ。</li>
+        <li><strong>「変だな」と思ったら相談</strong>…一人で抱え込まず、信頼できる大人に。話すのが難しければ「困っています」とメモを書くのも手です。</li>
+      </ul>
+    </div>
+
+    <div class="box help">
+      <div class="box-t"><span class="ic">🫶</span>性被害に遭ってしまったら</div>
+      <p>決して自分を責めないで。悪いのはやった相手です。勇気を出して信頼できる人に話し、警察にも相談を。各地に<strong>性暴力被害者のワンストップ支援センター</strong>があり、診察・カウンセリング・警察への同行などを総合的に支援してくれます（女性スタッフが対応するところも多数）。泣き寝入りしないでください。</p>
+    </div>
+
+    <div class="contacts">
+      <div class="contact">
+        <span class="ic">🚓</span>
+        <div class="c-tx">
+          <div class="c-name">警察 性犯罪被害相談電話</div>
+          <div class="c-desc">「いますぐ110番は怖い」というときに。相談員が話を聞いてくれます。</div>
+          <div class="c-num"><a href="tel:#8103">#8103</a> <span style="font-size:.6em;color:var(--ink-mute)">（ハートさん）</span></div>
+        </div>
+      </div>
+      <div class="contact">
+        <span class="ic">📞</span>
+        <div class="c-tx">
+          <div class="c-name">性暴力被害者のためのワンストップ支援センター</div>
+          <div class="c-desc">全国共通・最寄りの支援センターにつながります。</div>
+          <div class="c-num"><a href="tel:#8891">#8891</a> <span style="font-size:.6em;color:var(--ink-mute)">（はやくワンストップ）</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box point">
+      <div class="box-t"><span class="ic">💚</span>自分を大切に</div>
+      <p>「自分なんてダメだ」と思っていると付け込まれやすくなります。そうではなく、<strong>「自分は守られるべき大事な存在なんだ」</strong>と思ってください。あなたには幸せになる権利があり、嫌なことを拒否する権利があります。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CH10 ===== -->
+<section class="chapter" id="ch10">
+  <div class="ch-head reveal">
+    <div class="ch-badge" style="background:var(--green-100)"><span class="num">10</span>✊</div>
+    <h2>権利・自己決定と尊重</h2>
+  </div>
+  <div class="prose reveal">
+    <p class="lead">障害のある人にも、恋愛や結婚、性に関する<strong>自己決定（じこけってい）の権利</strong>があります。「障害のある人も自分の人生を自分で決めていいんだ」という考え方が、今、社会に広がっています。</p>
+    <p>2023年には日本政府が各自治体に、知的障害者の<strong>結婚や子育てを支援するよう</strong>通知を出しました。障害があっても本人が望むなら、結婚や子育てを社会全体でサポートしようという動きです。</p>
+
+    <div class="box point">
+      <div class="box-t"><span class="ic">✊</span>あなたには権利がある</div>
+      <p>誰と恋愛し結婚するか、結婚しないか、子どもを持つか持たないか —— 最終的に<strong>どう生きるかを決めるのはあなた自身</strong>です。周りは、その意思をできる限り尊重し、支援するべきなのです。</p>
+    </div>
+
+    <div class="box rule">
+      <div class="box-t"><span class="ic">⚖️</span>自分も相手も尊重する</div>
+      <p>権利は「わがまま」とは違います。自分に「付き合うか決める権利」があるように、相手にも同じ権利があります。自分が「付き合いたい」と思っても、相手が「嫌だ」と言えば受け入れる。<strong>お互いの「NO」を尊重し合う</strong>こと —— それが人権をお互いに尊重するということです。</p>
+    </div>
+
+    <p>性に関する自己決定とは、裏を返せば<strong>自分の人生に責任を持つ</strong>ことでもあります。でも大丈夫、困ったときは<strong>周りのサポートを受けながら</strong>でいいのです。障害があってもなくても、みんな支え合って生きています。恐れずに、自分の望む道を選んでください。</p>
+  </div>
+</section>
+
+<!-- ===== CH11 ===== -->
+<section class="chapter" id="ch11">
+  <div class="ch-head reveal">
+    <div class="ch-badge" style="background:var(--teal-100)"><span class="num">11</span>☎️</div>
+    <h2>支援制度の利用<br><span style="font-size:.7em;color:var(--ink-mute)">（相談先や医療機関など）</span></h2>
+  </div>
+  <div class="prose reveal">
+    <p class="lead">性の悩みは一人で抱え込みがちですが、相談できる<strong>専門の窓口</strong>が全国にあります。困ったときは、ぜひ利用してください。「こんなこと相談して怒られないかな」と萎縮する必要はありません。</p>
+
+    <div class="box point">
+      <div class="box-t"><span class="ic">🏠</span>まずは身近な相談相手</div>
+      <p>お父さん・お母さん、兄弟姉妹、施設の職員さん、学校の先生、ヘルパーさんなど、あなたをよく知る信頼できる大人に率直に打ち明けてみましょう。話しづらい内容なら、外部の相談窓口を利用できます。</p>
+    </div>
+
+    <div class="contacts">
+      <div class="contact">
+        <span class="ic">💬</span>
+        <div class="c-tx">
+          <div class="c-name">よりそいホットライン</div>
+          <div class="c-desc">24時間・無料。性暴力やセクシュアリティ、LGBTQの悩みなど幅広く相談できます。</div>
+          <div class="c-num"><a href="tel:0120-279-338">0120-279-338</a></div>
+        </div>
+      </div>
+      <div class="contact">
+        <span class="ic">🏥</span>
+        <div class="c-tx">
+          <div class="c-name">性と健康の相談センター（各自治体）</div>
+          <div class="c-desc">医師・保健師・助産師に無料で相談。月経・妊娠・避妊・性病・性被害など。匿名OKのところも多数。「お住まいの地域名 + 性相談」で検索を。</div>
+        </div>
+      </div>
+      <div class="contact">
+        <span class="ic">🩺</span>
+        <div class="c-tx">
+          <div class="c-name">医療機関（産婦人科・泌尿器科）</div>
+          <div class="c-desc">女性は産婦人科、男性は泌尿器科。生理・避妊・妊娠・性の悩みは何でも相談できます。妊婦さんだけの場所ではありません。</div>
+        </div>
+      </div>
+      <div class="contact">
+        <span class="ic">🌐</span>
+        <div class="c-tx">
+          <div class="c-name">NPO・専門団体（ピルコン／日本家族計画協会など）</div>
+          <div class="c-desc">チャットや電話で恋愛・性の悩みを相談できるサービスがあります。正しい情報を載せたサイトも活用しましょう。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box help">
+      <div class="box-t"><span class="ic">🤝</span>周囲のサポートを受けよう</div>
+      <p>窓口の利用が一人で不安なときは、<strong>支援者に同行してもらう</strong>のも良い方法です（産婦人科に一緒に行く、電話相談を一緒にかける、など）。<strong>性の悩みは決して悪いことではありません</strong>。あなたを助けたいと思っている大人は必ずいます。孤独に思わないでください。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CH12 ===== -->
+<section class="chapter" id="ch12">
+  <div class="ch-head reveal">
+    <div class="ch-badge" style="background:var(--gold-100)"><span class="num">12</span>🚦</div>
+    <h2>性と人間関係に関する<br>社会のルールと安全</h2>
+  </div>
+  <div class="prose reveal">
+    <p class="lead">最後に、社会の中で性や人間関係について守るべきルールを確認しましょう。ルールは皆さんを縛るためではなく、<strong>皆さんと尊厳を守るため</strong>にあります。</p>
+
+    <div class="box rule">
+      <div class="box-t"><span class="ic">🚦</span>公共の場でのマナー</div>
+      <p>人前で服を脱いだり性器を露出しない、人前で性的な行為をしない —— これは法律（公然わいせつ罪など）でも禁じられています。<strong>裸になるのはお風呂や着替えのときだけ</strong>。人前での濃厚なスキンシップも、周囲を不快にさせることがあるので節度を持って。</p>
+    </div>
+
+    <div class="box warn">
+      <div class="box-t"><span class="ic">⚖️</span>年齢に関する法律（とても大切）</div>
+      <ul>
+        <li>大人が<strong>18歳未満</strong>の子と性的な関係を持つことは禁止されています（相手が同意していても大人側が処罰される）。</li>
+        <li>2023年の法改正で性交同意年齢が<strong>16歳</strong>に。16歳未満の人と性的行為をすること自体が犯罪です。</li>
+        <li>自分が未成年のうちは、年上の大人に誘われても絶対に乗らないこと。あなたは守られるべき立場です。</li>
+      </ul>
+    </div>
+
+    <div class="box point">
+      <div class="box-t"><span class="ic">🔒</span>プライバシーと秘密</div>
+      <p>恋人同士でも、相手の許可なくスマホを見るのはプライバシー侵害。二人だけの大事な秘密（特に性的な内容）を、面白半分に他人に話さないこと。自分が言われて嫌なことは、相手にも言わない・しない。</p>
+    </div>
+
+    <div class="box help">
+      <div class="box-t"><span class="ic">🕊️</span>人間関係のトラブル</div>
+      <p>振られたとき、ストーカーのようについて回ってはいけません（近づかない・連絡しない）。逆に自分がストーカー被害やリベンジポルノなどの被害に遭ったら、放置せず警察や大人に相談を。<strong>泣き寝入りしないでください</strong>。</p>
+    </div>
+
+    <p>どんな人にも性があり、学ぶ権利があります。周囲の理解が足りないと感じたら、「性の話をちゃんと教えてほしい」と声を上げていいのです。一人ひとりが、自分も他人も尊重しながら、安心して暮らせる社会になっていくことが理想です。</p>
+  </div>
+</section>
+
+</div><!-- /.wrap -->
+
+<!-- ===== Closing ===== -->
+<div class="wrap">
+  <section class="closing reveal">
+    <span class="em">🌷</span>
+    <h2>性は、命や人生に関わる<br>大切なことです</h2>
+    <p>正しい知識を持っていれば、自分自身を守れますし、相手のことも思いやることができます。性を隠すのではなく、正しく知り、上手につきあっていきましょう。皆さんが自分らしく幸せな人生を歩めるよう、心から応援しています。</p>
+    <span class="motto">自分も相手も大切に</span>
+  </section>
+</div>
+
+<footer>
+  <div class="src">
+    <b>📄 出典・もとになった資料</b><br>
+    「【支援者・ご家族向け】知的障害・発達障害のある方のためのやさしい性教育マニュアル」<br>
+    藤田英明（Hideaki Fujita）<br>
+    ＊本ページは、上記マニュアルを、ご本人・ご家族・支援者の皆さんが読みやすいよう、NPO nest が視覚的に再構成したものです。電話番号や制度は変わることがあります。利用前に最新情報をご確認ください。
+    <div class="tags">
+      <span>#性教育</span><span>#知的障害</span><span>#発達障害</span><span>#自己決定</span>
+      <span>#自分も相手も大切に</span><span>#相談</span>
+    </div>
+  </div>
+  © NPO nest — やさしい性教育ガイド（内部資料）
+</footer>
+
+<button id="toTop" aria-label="ページの先頭へ戻る">↑</button>
+
+<script>
+  // Reading progress bar
+  const bar=document.getElementById('progress');
+  const toTop=document.getElementById('toTop');
+  function onScroll(){
+    const h=document.documentElement;
+    const sc=h.scrollTop, max=h.scrollHeight-h.clientHeight;
+    bar.style.width=(max>0?(sc/max*100):0)+'%';
+    toTop.classList.toggle('show', sc>600);
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+  toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+  // Reveal on scroll
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
