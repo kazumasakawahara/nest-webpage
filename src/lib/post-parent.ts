@@ -88,6 +88,18 @@ export const tools: ToolIntro[] = [
     ],
   },
   {
+    name: '親なき後・引き継ぎテンプレート（Obsidian）',
+    tagline: '親の「我が子を守る知恵」を、無料で・誰でも残せる形に',
+    forWhom: '障がいのある子をもつご家族・相談支援専門員向け',
+    body: '専用システムがなくても、今日から始められる無料のテンプレートです。無料アプリ Obsidian に取り込むだけで、本人の「これだけは」を1枚にまとめたり、好き嫌い・関わり方・試行錯誤を記録できます。書いたメモは手元に残り、次の支援者へ引き継げます。「くらしサポート」の考え方を、誰もが手元で始められる軽量版にしたものです。',
+    image: '/images/post-parent/oya-inai-template.png',
+    imageAlt: '「親なき後・引き継ぎテンプレート」の画面例',
+    links: [
+      { label: 'GitHubで入手する（無料）', href: 'https://github.com/kazumasakawahara/oya-inai', external: true },
+      { label: 'この取り組みについて問い合わせる', href: '/contact/' },
+    ],
+  },
+  {
     name: '支援エコマップ',
     tagline: '本人を中心とした支援ネットワークを可視化',
     forWhom: '相談支援専門員・社会福祉士・行政職員向け',
