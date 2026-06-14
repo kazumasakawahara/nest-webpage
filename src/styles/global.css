@@ -33,6 +33,7 @@
   --font-heading: var(--font-serif); /* 見出し用の意味的エイリアス */
   --font-display: 'Cormorant Garamond', 'Shippori Mincho B1', serif; /* ロゴ・ラテン表示用の高コントラスト・セリフ */
   --font-hand: 'Zen Kurenaido', 'Shippori Mincho B1', 'Hiragino Mincho ProN', serif; /* 見出し用の手書き（やわらかいペン書き）フォント。読込前は明朝にフォールバック */
+  --font-round: 'Zen Maru Gothic', 'Hiragino Maru Gothic ProN', 'Noto Sans JP', sans-serif; /* 丸ゴシック。やわらかく親しみのある強調用 */
 
   --fs-eyebrow: 12px;
   --fs-small:   13px;
