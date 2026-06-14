@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>nest サイト公開手順 — Cloudflare で nponest.org に公開する</title>
+<style>
+  :root {
+    --ink: #2b2622;
+    --ink-soft: #6b625a;
+    --paper: #fffdf8;
+    --cream: #f6efe2;
+    --sand: #efe6d4;
+    --line: #e3d8c4;
+    --terra: #c2693f;
+    --terra-deep: #a8542f;
+    --green: #4a6b4a;
+    --green-deep: #2f4a2f;
+    --warn-bg: #fdf0e8;
+    --warn-line: #e6a173;
+    --ok-bg: #eef3ea;
+    --ok-line: #9bbf8f;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", system-ui, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 20px 80px; }
+
+  header {
+    background: linear-gradient(135deg, var(--green-deep), var(--green));
+    color: #fff;
+    padding: 48px 20px 40px;
+    text-align: center;
+  }
+  header .eyebrow {
+    font-size: 12px; letter-spacing: 0.25em; opacity: 0.85; margin: 0 0 10px;
+  }
+  header h1 { margin: 0 0 12px; font-size: 28px; line-height: 1.4; }
+  header p { margin: 0; opacity: 0.92; font-size: 15px; }
+  header .domain {
+    display: inline-block; margin-top: 16px; background: rgba(255,255,255,0.15);
+    padding: 6px 16px; border-radius: 999px; font-size: 14px; letter-spacing: 0.04em;
+  }
+
+  .lead {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 14px;
+    padding: 22px 26px; margin: 36px 0;
+  }
+  .lead h2 { margin: 0 0 8px; font-size: 17px; color: var(--terra-deep); }
+  .lead p { margin: 6px 0; font-size: 14.5px; }
+
+  .callout {
+    border-radius: 12px; padding: 16px 20px; margin: 22px 0; font-size: 14.5px;
+  }
+  .callout.warn { background: var(--warn-bg); border: 1px solid var(--warn-line); }
+  .callout.ok { background: var(--ok-bg); border: 1px solid var(--ok-line); }
+  .callout .tag { font-weight: 700; display: block; margin-bottom: 4px; }
+  .callout.warn .tag { color: var(--terra-deep); }
+  .callout.ok .tag { color: var(--green-deep); }
+
+  .step {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 14px;
+    padding: 24px 26px; margin: 18px 0; position: relative;
+  }
+  .step__num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--terra); color: #fff; font-weight: 700; font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .step h3 { margin: 0 0 12px; font-size: 19px; color: var(--green-deep); }
+  .step h3 small { display:block; font-size: 12px; color: var(--ink-soft); font-weight: 400; letter-spacing: 0.08em; margin-top: 2px; }
+  .step ol, .step ul { margin: 8px 0; padding-left: 22px; }
+  .step li { margin: 7px 0; font-size: 14.5px; }
+  .step p { font-size: 14.5px; }
+
+  .branch {
+    border-left: 3px solid var(--terra); background: var(--cream);
+    padding: 12px 16px; margin: 12px 0; border-radius: 0 8px 8px 0;
+  }
+  .branch b { color: var(--terra-deep); }
+
+  code {
+    background: var(--sand); padding: 2px 7px; border-radius: 5px;
+    font-family: "SF Mono", "Consolas", monospace; font-size: 13px; color: var(--green-deep);
+  }
+  table {
+    width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13.5px;
+    background: var(--paper);
+  }
+  th, td { border: 1px solid var(--line); padding: 9px 12px; text-align: left; }
+  th { background: var(--sand); color: var(--green-deep); }
+  .secret { color: var(--terra-deep); font-weight: 700; }
+
+  .check { list-style: none; padding-left: 0; }
+  .check li { padding-left: 28px; position: relative; }
+  .check li::before {
+    content: "✓"; position: absolute; left: 0; top: 0;
+    color: var(--green); font-weight: 700;
+  }
+
+  .map { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 14px 0; font-size: 13px; }
+  .map .node { background: var(--green-deep); color:#fff; padding: 7px 13px; border-radius: 8px; }
+  .map .node.alt { background: var(--terra); }
+  .map .arrow { color: var(--ink-soft); font-size: 18px; }
+
+  footer { text-align: center; color: var(--ink-soft); font-size: 12.5px; margin-top: 40px; }
+  h2.section-title {
+    font-size: 15px; letter-spacing: 0.15em; color: var(--terra-deep);
+    border-bottom: 2px solid var(--line); padding-bottom: 8px; margin: 40px 0 6px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">DEPLOY GUIDE — 特定非営利活動法人 nest</p>
+  <h1>このサイトを Cloudflare で<br />法人ドメインに公開する手順</h1>
+  <p>ローカルで作成中のサイトを、インターネットに公開するまでの全工程</p>
+  <span class="domain">公開先（予定）：www.nponest.org</span>
+</header>
+
+<div class="wrap">
+
+  <div class="lead">
+    <h2>このサイトの仕組み（最初に知っておくこと）</h2>
+    <p>このサイトは <b>Astro</b> という仕組みで作られ、公開先として <b>Cloudflare</b> を使う設定が既に入っています（<code>astro.config.mjs</code> に <code>www.nponest.org</code> も設定済み）。</p>
+    <p>サイトは2種類のページでできています：</p>
+    <ul>
+      <li><b>公開ページ</b>（トップ・親なき後・各事業所など）… 誰でも見られる。動作が軽く、設定だけで公開できる。</li>
+      <li><b>会員ページ</b>（<code>/members/</code>）… ログインが必要。Supabase という外部サービスと「鍵（パスワード的な情報）」が必要で、これを Cloudflare に登録しないと動きません。</li>
+    </ul>
+  </div>
+
+  <div class="callout warn">
+    <span class="tag">⚠ 重要な分かれ道</span>
+    会員ページを今すぐ動かすには「鍵」の登録（Step 4）が必須です。まず<b>公開ページだけ先に出して、会員ページは後日</b>にする選択もできます。急がないなら後者がおすすめ（準備が少なくて済みます）。
+  </div>
+
+  <h2 class="section-title">全体の流れ</h2>
+  <div class="map">
+    <span class="node">① ドメイン準備</span>
+    <span class="arrow">→</span>
+    <span class="node">② GitHub連携</span>
+    <span class="arrow">→</span>
+    <span class="node">③ ビルド設定</span>
+    <span class="arrow">→</span>
+    <span class="node alt">④ 鍵の登録</span>
+    <span class="arrow">→</span>
+    <span class="node">⑤ ドメイン割当</span>
+    <span class="arrow">→</span>
+    <span class="node">⑥ 確認</span>
+  </div>
+  <p style="font-size:13.5px; color:var(--ink-soft);">※ ④は会員ページを動かす場合のみ必須。公開ページだけなら飛ばせます。</p>
+
+  <!-- STEP 1 -->
+  <div class="step">
+    <div class="step__num">1</div>
+    <h3>ドメイン nponest.org を Cloudflare に載せる<small>DNS を Cloudflare に管理させる</small></h3>
+    <p>独自ドメインで公開するには、まず <code>nponest.org</code> の「住所管理（DNS）」を Cloudflare に任せます。今の状況で2つに分かれます。</p>
+
+    <div class="branch">
+      <b>A. nponest.org をまだ取得していない場合</b><br />
+      Cloudflare の <b>「Registrar（ドメイン登録）」</b>で <code>nponest.org</code> を新規取得します。取得と同時に自動で Cloudflare 管理になるので、一番シンプルです（料金は実費のみ・上乗せなし）。
+    </div>
+
+    <div class="branch">
+      <b>B. すでに他社で取得済みの場合</b>（お名前.com・ムームードメイン・Xserver など）<br />
+      ① Cloudflare で「Websites → Add a site」から <code>nponest.org</code> を追加 →
+      ② Cloudflare が示す<b>2つのネームサーバー</b>を、今の登録業者の管理画面で設定（ネームサーバー変更）→
+      ③ 反映を待つ（数時間〜最大48時間）。
+    </div>
+
+    <div class="callout warn" style="margin-top:14px;">
+      <span class="tag">先に確認</span>
+      nponest.org が「誰の名義で・どこの業者で登録されているか」を把握しておいてください。法人名義の管理情報（ログイン）が必要になります。
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step">
+    <div class="step__num">2</div>
+    <h3>サイトと Cloudflare をつなぐ<small>GitHub のコードを自動で公開する設定</small></h3>
+    <ol>
+      <li>Cloudflare ダッシュボード →
+        <b>「Workers &amp; Pages」→「Create」→「Pages」→「Connect to Git」</b></li>
+      <li>GitHub へのアクセスを許可し、リポジトリ <code>kazumasakawahara/nest-webpage</code> を選ぶ</li>
+      <li>公開の元にするブランチ＝ <code>main</code> を指定（最新版は既にここに入っています）</li>
+    </ol>
+    <div class="callout ok">
+      <span class="tag">この設定の良いところ</span>
+      一度つなげば、今後 <code>main</code> が更新されるたびに<b>自動で公開サイトも更新</b>されます。手作業のアップロードは不要です。
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step">
+    <div class="step__num">3</div>
+    <h3>ビルド設定を入力する<small>サイトの組み立て方を Cloudflare に教える</small></h3>
+    <p>連携時の設定画面で、以下をそのまま入力します。</p>
+    <table>
+      <tr><th>項目</th><th>入力する値</th></tr>
+      <tr><td>フレームワーク（Framework preset）</td><td><code>Astro</code></td></tr>
+      <tr><td>ビルドコマンド（Build command）</td><td><code>npm run build</code></td></tr>
+      <tr><td>出力フォルダ（Build output directory）</td><td><code>dist</code></td></tr>
+    </table>
+    <p style="font-size:13.5px; color:var(--ink-soft);">※ もし「Node のバージョン」で失敗したら、環境変数に <code>NODE_VERSION</code> ＝ <code>20</code> を追加してください。</p>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step" style="border-color: var(--warn-line);">
+    <div class="step__num" style="background:var(--terra-deep);">4</div>
+    <h3>鍵（環境変数）を登録する<small>会員ページを動かす場合のみ必須</small></h3>
+    <p><b>「Settings → Environment variables → Production」</b>に、ローカルの <code>.env</code> と同じ値を登録します。</p>
+    <table>
+      <tr><th>名前（キー）</th><th>種別</th></tr>
+      <tr><td><code>SUPABASE_URL</code></td><td>通常</td></tr>
+      <tr><td><code>SUPABASE_ANON_KEY</code></td><td>通常</td></tr>
+      <tr><td><code>SUPABASE_SERVICE_ROLE_KEY</code></td><td class="secret">秘密（暗号化）</td></tr>
+      <tr><td><code>RESEND_API_KEY</code></td><td class="secret">秘密（暗号化）</td></tr>
+      <tr><td><code>MAIL_FROM</code></td><td>通常</td></tr>
+      <tr><td><code>PUBLIC_SITE_URL</code></td><td><code>https://www.nponest.org</code></td></tr>
+    </table>
+    <div class="callout warn">
+      <span class="tag">⚠ 注意</span>
+      「秘密」の2つは必ず暗号化（Encrypt / Secret）で登録してください。<b>これを入れないと会員ページがエラーになります</b>（公開ページは鍵なしでも問題なく表示されます）。
+    </div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="step">
+    <div class="step__num">5</div>
+    <h3>独自ドメインを割り当てる<small>www.nponest.org で見られるようにする</small></h3>
+    <ol>
+      <li>作成した Pages プロジェクト → <b>「Custom domains」→「Set up a custom domain」</b></li>
+      <li><code>www.nponest.org</code> を追加（Step 1 が済んでいれば、住所設定とSSL証明書は自動）</li>
+      <li><code>nponest.org</code>（www なし）でアクセスされたら <code>www</code> 付きへ転送する設定（リダイレクト）を追加</li>
+    </ol>
+    <p style="font-size:13.5px; color:var(--ink-soft);">※ サイトは <code>www</code> 付きを正式アドレスとして設定済みなので、www に揃えます。</p>
+  </div>
+
+  <!-- STEP 6 -->
+  <div class="step">
+    <div class="step__num">6</div>
+    <h3>公開を確認する<small>ちゃんと表示されるかチェック</small></h3>
+    <ul class="check">
+      <li><code>https://www.nponest.org/</code> でトップページ（LP）が表示される</li>
+      <li><code>/post-parent/</code>（親なき後ハブ）と配下の資料室・ツール・研修ページが開く</li>
+      <li>アドレスバーに鍵マーク（HTTPS）が出ている</li>
+      <li>（会員ページを動かす場合）<code>/members/sign-in/</code> がエラーにならない</li>
+    </ul>
+  </div>
+
+  <h2 class="section-title">公開前のチェックポイント</h2>
+  <div class="callout warn">
+    <span class="tag">会員ページの未完成箇所</span>
+    会員ページのコミュニティ画面に、まだ仮の値（<code>LINE_OC_URL = 'REPLACE_ME'</code> ＝ LINEグループの招待URL未設定）が残っています。会員ページを公開するなら、実際のURLに差し替えるか、会員ページを当面は非公開にする判断が必要です。
+  </div>
+
+  <h2 class="section-title">費用の目安</h2>
+  <ul>
+    <li><b>Cloudflare Pages（サイトの公開）</b>：無料枠で十分動きます。</li>
+    <li><b>ドメイン nponest.org</b>：登録の実費のみ（年額。Cloudflare は手数料の上乗せなし）。</li>
+    <li><b>Supabase / Resend（会員機能・メール）</b>：それぞれ無料枠あり。利用量に応じて従量。</li>
+  </ul>
+
+  <div class="callout ok">
+    <span class="tag">おすすめの進め方</span>
+    ① まず公開ページだけを <code>www.nponest.org</code> で公開（Step 4 を飛ばす）→ ② サイトの中身を仕上げる → ③ 会員ページの準備（鍵・LINE URL）が整ってから会員機能を有効化。段階を分けると安全で、つまずきにくいです。
+  </div>
+
+  <footer>
+    特定非営利活動法人 nest ｜ Cloudflare 公開手順書<br />
+    このファイルはブラウザで開いて読めます（印刷も可）。
+  </footer>
+
+</div>
+</body>
+</html>

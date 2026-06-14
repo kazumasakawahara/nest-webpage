@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>はじめてのセットアップ手順書 — NPO法人 nest 公式サイト</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --green: #2f5d50;
+    --green-soft: #4a7c6c;
+    --cream: #f7f1e3;
+    --sand: #eaddc7;
+    --terracotta: #c66a4a;
+    --terracotta-soft: #e2a489;
+    --ink: #2b2926;
+    --ink-soft: #5e5950;
+    --line: #e0d5bf;
+    --card: #fffdf7;
+    --code-bg: #2b2926;
+    --code-ink: #f3ecdc;
+    --radius: 14px;
+    --shadow: 0 6px 22px rgba(47, 93, 80, 0.10);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: "Noto Sans JP", system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 20px 80px; }
+
+  /* ヘッダー */
+  header.hero {
+    background: linear-gradient(135deg, var(--green) 0%, var(--green-soft) 100%);
+    color: var(--cream);
+    padding: 56px 20px 64px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header.hero::after {
+    content: "";
+    position: absolute; left: 0; right: 0; bottom: -1px; height: 28px;
+    background: var(--cream);
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  }
+  .hero .eyebrow {
+    font-family: "Inter", sans-serif;
+    letter-spacing: .18em;
+    font-size: .72rem;
+    text-transform: uppercase;
+    opacity: .85;
+    margin: 0 0 14px;
+  }
+  .hero h1 {
+    font-family: "Shippori Mincho B1", serif;
+    font-weight: 700;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    margin: 0 0 12px;
+    line-height: 1.4;
+  }
+  .hero p { margin: 0 auto; max-width: 540px; font-size: .98rem; opacity: .94; }
+
+  /* できること */
+  .goalbox {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 22px 26px;
+    margin: -34px 0 40px;
+    position: relative; z-index: 2;
+  }
+  .goalbox h2 {
+    font-family: "Shippori Mincho B1", serif;
+    font-size: 1.05rem; margin: 0 0 10px; color: var(--green);
+  }
+  .goalbox ul { margin: 0; padding-left: 1.2em; }
+  .goalbox li { margin: 4px 0; }
+  .goalbox .note { font-size: .86rem; color: var(--ink-soft); margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--line); }
+
+  /* 目次 */
+  nav.toc {
+    background: var(--sand);
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    margin-bottom: 46px;
+  }
+  nav.toc h2 { font-size: .8rem; letter-spacing: .08em; margin: 0 0 10px; color: var(--green); }
+  nav.toc ol { margin: 0; padding-left: 1.4em; columns: 2; column-gap: 28px; }
+  nav.toc li { margin: 5px 0; }
+  nav.toc a { color: var(--ink); text-decoration: none; border-bottom: 1px solid transparent; }
+  nav.toc a:hover { border-bottom-color: var(--terracotta); color: var(--terracotta); }
+  @media (max-width: 560px){ nav.toc ol { columns: 1; } }
+
+  /* ステップ */
+  section.step { margin-bottom: 44px; }
+  .step-head { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+  .step-num {
+    flex: 0 0 auto;
+    width: 46px; height: 46px;
+    background: var(--green);
+    color: var(--cream);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-family: "Inter", sans-serif; font-weight: 700; font-size: 1.15rem;
+    box-shadow: var(--shadow);
+  }
+  .step-head h2 {
+    font-family: "Shippori Mincho B1", serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin: 0;
+    color: var(--ink);
+  }
+  .step-body { padding-left: 62px; }
+  @media (max-width: 560px){ .step-body { padding-left: 0; } }
+  h3 { font-size: 1.02rem; margin: 22px 0 8px; color: var(--green); }
+  p { margin: 10px 0; }
+
+  /* コマンドブロック */
+  .cmd {
+    position: relative;
+    background: var(--code-bg);
+    color: var(--code-ink);
+    border-radius: 10px;
+    padding: 16px 54px 16px 18px;
+    margin: 14px 0;
+    font-family: "SF Mono", "Menlo", monospace;
+    font-size: .9rem;
+    line-height: 1.7;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .cmd .prompt { color: var(--terracotta-soft); user-select: none; }
+  .cmd .comment { color: #9aa89f; }
+  .copy-btn {
+    position: absolute; top: 10px; right: 10px;
+    background: rgba(255,255,255,.12);
+    color: var(--code-ink);
+    border: none; border-radius: 7px;
+    padding: 5px 11px; font-size: .74rem; cursor: pointer;
+    font-family: "Noto Sans JP", sans-serif;
+    transition: background .15s;
+  }
+  .copy-btn:hover { background: rgba(255,255,255,.25); }
+  .copy-btn.done { background: var(--terracotta); color: #fff; }
+
+  /* コールアウト */
+  .callout { border-radius: 10px; padding: 14px 18px; margin: 16px 0; font-size: .93rem; }
+  .callout .tag { font-weight: 700; }
+  .callout.tip  { background: #eef5f0; border-left: 4px solid var(--green-soft); }
+  .callout.warn { background: #fbefe9; border-left: 4px solid var(--terracotta); }
+  .callout.ok   { background: #eef5f0; border-left: 4px solid var(--green); }
+
+  /* テーブル */
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: .92rem; background: var(--card); border-radius: 10px; overflow: hidden; }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { background: var(--green); color: var(--cream); font-weight: 500; font-size: .86rem; }
+  tr:last-child td { border-bottom: none; }
+  code.inline { background: var(--sand); padding: 1px 7px; border-radius: 5px; font-family: "SF Mono", monospace; font-size: .85em; }
+
+  /* セクション区切りライン */
+  .divider { border: none; border-top: 1px solid var(--line); margin: 40px 0; }
+
+  /* フッター */
+  footer { text-align: center; color: var(--ink-soft); font-size: .85rem; padding-top: 30px; border-top: 1px solid var(--line); }
+  .leaf { color: var(--green-soft); }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <p class="eyebrow">NPO法人 nest — Web Setup Guide</p>
+  <h1>はじめてのセットアップ手順書</h1>
+  <p>別の Mac でこのサイトを動かし、編集できるようにするための手順です。<br />上から順番にコピー＆ペーストすれば大丈夫。プログラミング未経験でも進められます。</p>
+</header>
+
+<div class="wrap">
+
+  <div class="goalbox">
+    <h2>📌 この手順でできるようになること</h2>
+    <ul>
+      <li>GitHub からサイトのデータを自分の Mac にコピーする</li>
+      <li>自分の Mac でサイトを表示して、文章・お知らせ・画像を編集する</li>
+      <li>編集した結果をブラウザで確認する</li>
+    </ul>
+    <p class="note">会員専用エリア（<code class="inline">/members/</code>）を動かす方法は、最後の「上級編」で概要だけ触れます。公開ページの編集だけなら不要です。</p>
+  </div>
+
+  <nav class="toc">
+    <h2>目次</h2>
+    <ol>
+      <li><a href="#s0">用語ミニ辞典</a></li>
+      <li><a href="#s1">準備するもの（最初の1回）</a></li>
+      <li><a href="#s2">データを Mac にコピー（clone）</a></li>
+      <li><a href="#s3">必要な部品をインストール</a></li>
+      <li><a href="#s4">サイトを表示してみる</a></li>
+      <li><a href="#s5">編集してみる</a></li>
+      <li><a href="#s6">本番用に書き出す</a></li>
+      <li><a href="#s7">困ったときは</a></li>
+      <li><a href="#s8">上級編：会員エリア</a></li>
+      <li><a href="#s9">変更を GitHub に戻す</a></li>
+    </ol>
+  </nav>
+
+  <!-- 0 -->
+  <section class="step" id="s0">
+    <div class="step-head"><div class="step-num">0</div><h2>用語ミニ辞典（読み飛ばしてOK）</h2></div>
+    <div class="step-body">
+      <table>
+        <tr><th>言葉</th><th>かんたんな意味</th></tr>
+        <tr><td><b>リポジトリ</b></td><td>プロジェクトのデータ一式が入った「フォルダ」。GitHub 上にあります。</td></tr>
+        <tr><td><b>clone</b></td><td>GitHub 上のリポジトリを、自分の Mac に丸ごとコピーすること。</td></tr>
+        <tr><td><b>ターミナル</b></td><td>文字でコマンドを打って Mac を操作するアプリ。最初から入っています。</td></tr>
+        <tr><td><b>Node.js</b></td><td>このサイトを動かすために必要なソフト。</td></tr>
+        <tr><td><b>npm</b></td><td>Node.js に付いてくる「部品をまとめてインストールする道具」。</td></tr>
+        <tr><td><b>開発サーバ</b></td><td>編集中のサイトを自分の Mac の中だけで表示する仕組み。<code class="inline">http://localhost:4321</code> で見られます。</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- 1 -->
+  <section class="step" id="s1">
+    <div class="step-head"><div class="step-num">1</div><h2>準備するもの（最初の1回だけ）</h2></div>
+    <div class="step-body">
+      <h3>1-1. ターミナルを開く</h3>
+      <p><code class="inline">⌘</code> + <code class="inline">スペース</code> で Spotlight を出し、「ターミナル」と入力して <code class="inline">Enter</code>。文字入力の画面が出ればOKです。</p>
+      <div class="callout tip"><span class="tag">💡 ヒント：</span>以下の「ターミナルで実行」は、<b>コマンドをコピーして貼り付け → Enter</b> という意味です。各コマンド右上の「コピー」ボタンが使えます。</div>
+
+      <h3>1-2. Git が入っているか確認</h3>
+      <div class="cmd"><button class="copy-btn">コピー</button><span class="prompt">$ </span>git --version</div>
+      <p><code class="inline">git version 2.xx.x</code> と出れば <b>OK</b>。インストールを促す画面が出たら、指示に従って「インストール」してから再実行してください。</p>
+
+      <h3>1-3. Node.js をインストール（バージョン 22.12.0 以上が必須）</h3>
+      <p>いちばんかんたんな方法：</p>
+      <ol>
+        <li>ブラウザで <a href="https://nodejs.org/" target="_blank" rel="noopener">https://nodejs.org/</a> を開く</li>
+        <li>「<b>LTS</b>」と書かれた安定版ボタンをクリックしてダウンロード</li>
+        <li>ダウンロードした <code class="inline">.pkg</code> をダブルクリックし、「続ける」を押すだけ</li>
+      </ol>
+      <p>入ったか確認：</p>
+      <div class="cmd"><button class="copy-btn">コピー</button><span class="prompt">$ </span>node -v</div>
+      <div class="callout warn"><span class="tag">⚠️ 注意：</span><code class="inline">v22.12.0</code> 以上（例 <code class="inline">v22.14.0</code> / <code class="inline">v24.x.x</code>）が出ればOK。<code class="inline">v20</code> など古い番号なら入れ直してください。</div>
+
+      <h3>1-4. エディタ（VS Code）※推奨</h3>
+      <p>文章やコードの編集が楽になります。<a href="https://code.visualstudio.com/" target="_blank" rel="noopener">code.visualstudio.com</a> からどうぞ。</p>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="step" id="s2">
+    <div class="step-head"><div class="step-num">2</div><h2>データを自分の Mac にコピーする（clone）</h2></div>
+    <div class="step-body">
+      <h3>2-1. 置き場所を決める</h3>
+      <p>例として、ホーム直下に <code class="inline">Projects</code> フォルダを作ってその中へ：</p>
+      <div class="cmd"><button class="copy-btn">コピー</button><span class="prompt">$ </span>mkdir -p ~/Projects
+<span class="prompt">$ </span>cd ~/Projects</div>
+
+      <h3>2-2. clone する</h3>
+      <p>このリポジトリは<b>公開</b>なので、ログインなしでコピーできます。</p>
+      <div class="cmd"><button class="copy-btn">コピー</button><span class="prompt">$ </span>git clone https://github.com/kazumasakawahara/nest-webpage.git
+<span class="prompt">$ </span>cd nest-webpage</div>
+      <div class="callout ok"><span class="tag">✅ 完了：</span><code class="inline">~/Projects/nest-webpage</code> にサイト一式が入りました。</div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="step" id="s3">
+    <div class="step-head"><div class="step-num">3</div><h2>必要な部品をインストールする</h2></div>
+    <div class="step-body">
+      <p><code class="inline">nest-webpage</code> フォルダの中にいる状態で：</p>
+      <div class="cmd"><button class="copy-btn">コピー</button><span class="prompt">$ </span>npm install</div>
+      <div class="callout tip"><span class="tag">💡 ヒント：</span>数分かかることがあります。<code class="inline">warn</code>（警告）が出ても、最後にエラーで止まらなければ大丈夫。最初の1回だけでOKです。</div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="step" id="s4">
+    <div class="step-head"><div class="step-num">4</div><h2>サイトを表示してみる（開発サーバ）</h2></div>
+    <div class="step-body">
+      <div class="cmd"><button class="copy-btn">コピー</button><span class="prompt">$ </span>npm run dev</div>
+      <p>次のような表示が出ます：</p>
+      <div class="cmd"><span class="comment">  astro  v6.x.x ready in xxx ms
+  ┃ Local    http://localhost:4321/</span></div>
+      <p>ブラウザのアドレス欄に <code class="inline">http://localhost:4321</code> と入力して <code class="inline">Enter</code>。サイトが表示されたら成功です！🎉</p>
+      <div class="callout tip"><span class="tag">💡 止め方：</span>ターミナルで <code class="inline">control（^）</code> + <code class="inline">C</code>。再開は <code class="inline">npm run dev</code> をもう一度。</div>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="step" id="s5">
+    <div class="step-head"><div class="step-num">5</div><h2>編集してみる</h2></div>
+    <div class="step-body">
+      <p><code class="inline">npm run dev</code> を動かしたままファイルを編集して保存すると、<b>ブラウザが自動で更新</b>されます。</p>
+      <table>
+        <tr><th>やりたいこと</th><th>編集する場所</th></tr>
+        <tr><td>ページの文章を変える</td><td><code class="inline">src/pages/</code> の中の <code class="inline">.astro</code></td></tr>
+        <tr><td>「お知らせ」を追加</td><td><code class="inline">src/content/news/</code> に <code class="inline">.md</code> を新規作成</td></tr>
+        <tr><td>サイト名・ナビ・数値</td><td><code class="inline">src/lib/site.ts</code></td></tr>
+        <tr><td>色やフォント（デザイン）</td><td><code class="inline">src/styles/global.css</code></td></tr>
+        <tr><td>写真・画像の差し替え</td><td><code class="inline">public/images/</code></td></tr>
+      </table>
+
+      <h3>お知らせを1件追加する例</h3>
+      <p><code class="inline">src/content/news/</code> に <code class="inline">2026-06-10-test.md</code> を作り、以下を貼り付けます：</p>
+      <div class="cmd"><button class="copy-btn">コピー</button>---
+title: テストのお知らせ
+date: 2026-06-10
+tag: お知らせ
+summary: 一覧に出る短い要約（任意）
+---
+
+ここに本文を書きます。**強調**や [リンク](/contact/) も使えます。</div>
+      <div class="callout tip"><span class="tag">📝 メモ：</span>ファイル名は <code class="inline">YYYY-MM-DD-スラッグ.md</code> 推奨。<code class="inline">tag</code> は <b>お知らせ / イベント / 事業所 / メディア</b> のいずれか。</div>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="step" id="s6">
+    <div class="step-head"><div class="step-num">6</div><h2>本番用に書き出して確認（任意）</h2></div>
+    <div class="step-body">
+      <div class="cmd"><button class="copy-btn">コピー</button><span class="prompt">$ </span>npm run build    <span class="comment"># dist/ に完成版を書き出す</span>
+<span class="prompt">$ </span>npm run preview  <span class="comment"># 完成版をブラウザで確認</span></div>
+      <p><code class="inline">build</code> がエラーなく終われば、公開できる状態です。</p>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="step" id="s7">
+    <div class="step-head"><div class="step-num">7</div><h2>困ったときは（トラブル対処）</h2></div>
+    <div class="step-body">
+      <table>
+        <tr><th>症状</th><th>対処</th></tr>
+        <tr><td><code class="inline">command not found: npm</code></td><td>Node.js が未インストール。「1-3」をやり直す。</td></tr>
+        <tr><td><code class="inline">command not found: git</code></td><td>「1-2」をやり直す。</td></tr>
+        <tr><td>ポートが使えないと出る</td><td>すでに起動中かも。<code class="inline">control + C</code> で止めて再実行。</td></tr>
+        <tr><td><code class="inline">npm install</code> が赤いエラー</td><td>Node が古いかも。<code class="inline">node -v</code> で 22.12.0 以上か確認。</td></tr>
+        <tr><td>ブラウザに何も出ない</td><td>アドレスが <code class="inline">http://localhost:4321</code> か、<code class="inline">npm run dev</code> が動いたままか確認。</td></tr>
+        <tr><td>今どこにいるか不安</td><td><code class="inline">pwd</code> で確認。末尾が <code class="inline">/nest-webpage</code> ならOK。違えば <code class="inline">cd ~/Projects/nest-webpage</code>。</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="step" id="s8">
+    <div class="step-head"><div class="step-num">8</div><h2>上級編：会員専用エリアを動かす場合</h2></div>
+    <div class="step-body">
+      <p>公開ページの編集だけなら不要です。<code class="inline">/members/</code> は<b>ログイン認証付き</b>で、外部サービス（Supabase / Resend）の鍵が必要です。鍵は GitHub には含まれていません。</p>
+      <ol>
+        <li><code class="inline">.env.example</code> を <code class="inline">.env.local</code> という名前でコピー：
+          <div class="cmd"><button class="copy-btn">コピー</button><span class="prompt">$ </span>cp .env.example .env.local</div>
+        </li>
+        <li><code class="inline">.env.local</code> を開き、<b>Supabase / Resend の認証情報</b>を記入（管理者の河原さんから受け取る）</li>
+        <li>データベースの初期設定は <code class="inline">db/README.md</code> の手順に従う</li>
+        <li>その後 <code class="inline">npm run dev</code> で会員エリアも動作します</li>
+      </ol>
+      <div class="callout tip"><span class="tag">📚 詳細：</span><code class="inline">HANDOVER-PHASE1.md</code> ／ <code class="inline">docs/operations/deployment.md</code> ／ <code class="inline">docs/operations/member-management.md</code></div>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="step" id="s9">
+    <div class="step-head"><div class="step-num">9</div><h2>編集を GitHub に戻したい場合（概要）</h2></div>
+    <div class="step-body">
+      <p>自分の Mac で編集しただけでは、GitHub 上のサイトは変わりません。反映（push）には<b>リポジトリへの書き込み権限</b>が必要です（管理者の河原さんに依頼）。権限がある場合の基本の流れ：</p>
+      <div class="cmd"><button class="copy-btn">コピー</button><span class="prompt">$ </span>git checkout -b my-edit       <span class="comment"># 作業用ブランチを作る</span>
+<span class="prompt">$ </span>git add -A                    <span class="comment"># 変更をまとめる</span>
+<span class="prompt">$ </span>git commit -m "お知らせを更新"   <span class="comment"># 変更を記録</span>
+<span class="prompt">$ </span>git push -u origin my-edit    <span class="comment"># GitHub に送る</span></div>
+      <p>その後、GitHub 上で「Pull Request」を作成し、河原さんに確認してもらいます。</p>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section class="step">
+    <div class="step-head"><div class="step-num">★</div><h2>まとめ（2回目以降はこれだけ）</h2></div>
+    <div class="step-body">
+      <div class="cmd"><button class="copy-btn">コピー</button><span class="prompt">$ </span>cd ~/Projects/nest-webpage   <span class="comment"># フォルダに移動</span>
+<span class="prompt">$ </span>git pull                     <span class="comment"># 最新を取り込む（必要に応じて）</span>
+<span class="prompt">$ </span>npm install                  <span class="comment"># 部品が増えていたら</span>
+<span class="prompt">$ </span>npm run dev                  <span class="comment"># 編集スタート → http://localhost:4321</span></div>
+      <p>おつかれさまでした！<span class="leaf">🌿</span></p>
+    </div>
+  </section>
+
+  <footer>
+    NPO法人 nest 公式サイト — セットアップ手順書 ／ 同内容のテキスト版は <code class="inline">SETUP.md</code> にあります。
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll(".copy-btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      // ボタン自身のテキストを除いた、コマンドブロックの中身を取得
+      var block = btn.closest(".cmd").cloneNode(true);
+      var b = block.querySelector(".copy-btn");
+      if (b) b.remove();
+      var text = block.innerText.replace(/^\s*\$\s?/gm, "").trim();
+      navigator.clipboard.writeText(text).then(function () {
+        var orig = btn.textContent;
+        btn.textContent = "コピー済み";
+        btn.classList.add("done");
+        setTimeout(function () { btn.textContent = orig; btn.classList.remove("done"); }, 1500);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
