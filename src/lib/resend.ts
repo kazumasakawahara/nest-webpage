@@ -1,7 +1,8 @@
 import { Resend } from 'resend';
+import { getEnv } from './runtime-env';
 
 function getResend(): Resend {
-  const key = import.meta.env.RESEND_API_KEY;
+  const key = getEnv('RESEND_API_KEY');
   if (!key) throw new Error('RESEND_API_KEY is not set');
   return new Resend(key);
 }
@@ -15,7 +16,7 @@ export interface MagicLinkEmailParams {
 
 export async function sendMagicLinkEmail(p: MagicLinkEmailParams): Promise<void> {
   const resend = getResend();
-  const from = import.meta.env.MAIL_FROM;
+  const from = getEnv('MAIL_FROM');
   if (!from) throw new Error('MAIL_FROM is not set');
 
   const greeting = p.displayName ? `${p.displayName} 様` : 'nest 会員の皆様';
