@@ -13,6 +13,10 @@ interface Props {
   imagePosition?: string;
   /** Placeholder label when no image */
   placeholderLabel?: string;
+  /** Brighten the photo by softening the overlay (image unchanged) */
+  bright?: boolean;
+  /** Mirror the photo horizontally */
+  flip?: boolean;
 }
 
 const {
@@ -24,10 +28,12 @@ const {
   image,
   imagePosition = 'center',
   placeholderLabel = 'HERO IMAGE',
+  bright = false,
+  flip = false,
 } = Astro.props;
 ---
 
-<section class:list={['hero', `hero--${size}`]} aria-label="ヒーロー">
+<section class:list={['hero', `hero--${size}`, bright && 'hero--bright', flip && 'hero--flip']} aria-label="ヒーロー">
   {
     image ? (
       <div class="hero__bg" style={`background-image:url(${image}); background-position:${imagePosition};`} aria-hidden="true" />
@@ -126,6 +132,30 @@ const {
     position: absolute;
     inset: 0;
     background: linear-gradient(to top, rgba(16, 34, 17, 0.5), rgba(16, 34, 17, 0) 42%);
+  }
+
+  /* bright: 写真はそのままに、オーバーレイを薄めて明るく見せる（左端は文字可読性のため濃度を残す） */
+  .hero--bright .hero__bg {
+    filter: brightness(1.1) saturate(1.05);
+  }
+
+  /* flip: 写真だけ左右反転（オーバーレイは反転せず可読性を維持） */
+  .hero--flip .hero__bg {
+    transform: scaleX(-1);
+  }
+
+  .hero--bright .hero__overlay {
+    background:
+      linear-gradient(100deg,
+        rgba(16, 34, 17, 0.66) 0%,
+        rgba(16, 34, 17, 0.5) 30%,
+        rgba(16, 34, 17, 0.28) 52%,
+        rgba(16, 34, 17, 0.08) 70%,
+        rgba(16, 34, 17, 0) 85%);
+  }
+
+  .hero--bright .hero__overlay::after {
+    background: linear-gradient(to top, rgba(16, 34, 17, 0.32), rgba(16, 34, 17, 0) 42%);
   }
 
   .hero__inner {
