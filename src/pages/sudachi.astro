@@ -54,17 +54,34 @@ import Hero from '../components/Hero.astro';
           教えることから始めなければならないことを痛感しています。
         </p>
 
-        <div class="dl-block">
-          <a class="dl-cover js-pdf-view" href="/pdfs/newsletter-archive/%E5%B7%A3%E7%AB%8B%E3%81%A1%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%882025%E5%A0%B1%E5%91%8A%E6%9B%B8.pdf" target="_blank" rel="noopener" data-title="巣立ちプロジェクトⅣ 2025報告書" aria-label="巣立ちプロジェクトⅣ 2025報告書（PDF）を開いて読む">
-            <img src="/images/newsletter/2025-report-cover.jpg" alt="巣立ちプロジェクトⅣ 2025報告書 表紙" width="566" height="800" loading="lazy" />
-            <span class="dl-cover__hint" aria-hidden="true">クリックで読む</span>
-          </a>
-          <div class="dl-info">
-            <a class="btn btn--outline btn--sm" href="/pdfs/newsletter-archive/%E5%B7%A3%E7%AB%8B%E3%81%A1%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%882025%E5%A0%B1%E5%91%8A%E6%9B%B8.pdf" download>
-              2025 報告書をダウンロード
-              <span class="btn__icon" aria-hidden="true">↓</span>
+        <div class="dl-row">
+          <div class="dl-block">
+            <a class="dl-cover js-pdf-view" href="/pdfs/newsletter-archive/%E5%B7%A3%E7%AB%8B%E3%81%A1%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%882025%E5%A0%B1%E5%91%8A%E6%9B%B8.pdf" target="_blank" rel="noopener" data-title="巣立ちプロジェクトⅣ 2025報告書" aria-label="巣立ちプロジェクトⅣ 2025報告書（PDF）を開いて読む">
+              <img src="/images/newsletter/2025-report-cover.jpg" alt="巣立ちプロジェクトⅣ 2025報告書 表紙" width="566" height="800" loading="lazy" />
+              <span class="dl-cover__hint" aria-hidden="true">クリックで読む</span>
             </a>
-            <span class="dl-meta">PDF ・ 24ページ ・ 約16MB</span>
+            <div class="dl-info">
+              <a class="btn btn--outline btn--sm" href="/pdfs/newsletter-archive/%E5%B7%A3%E7%AB%8B%E3%81%A1%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%882025%E5%A0%B1%E5%91%8A%E6%9B%B8.pdf" download>
+                2025 報告書をダウンロード
+                <span class="btn__icon" aria-hidden="true">↓</span>
+              </a>
+              <span class="dl-meta">PDF ・ 24ページ ・ 約16MB</span>
+            </div>
+          </div>
+
+          <div class="dl-block">
+            <a class="dl-cover js-pdf-view" href="/pdfs/newsletter-archive/%E7%8F%BE%E5%A0%B4%E3%81%A7%E3%81%AE%E9%96%A2%E3%82%8F%E3%82%8A%E5%AE%9F%E9%9A%9B%E3%83%81%E3%83%A9%E3%82%B7.pdf" target="_blank" rel="noopener" data-title="現場での関わりの実際（初回研修チラシ）" aria-label="現場での関わりの実際 初回研修チラシ（PDF）を開いて読む">
+              <img src="/images/newsletter/genba-flyer-cover.jpg" alt="現場での関わりの実際 初回研修チラシ" width="566" height="800" loading="lazy" />
+              <span class="dl-cover__hint" aria-hidden="true">クリックで読む</span>
+            </a>
+            <div class="dl-info">
+              <p class="dl-desc">今年度実施する裾野を広げる取組の初回研修のチラシ</p>
+              <a class="btn btn--outline btn--sm" href="/pdfs/newsletter-archive/%E7%8F%BE%E5%A0%B4%E3%81%A7%E3%81%AE%E9%96%A2%E3%82%8F%E3%82%8A%E5%AE%9F%E9%9A%9B%E3%83%81%E3%83%A9%E3%82%B7.pdf" download>
+                チラシをダウンロード
+                <span class="btn__icon" aria-hidden="true">↓</span>
+              </a>
+              <span class="dl-meta">PDF ・ 1ページ ・ 約0.9MB</span>
+            </div>
           </div>
         </div>
 
@@ -423,11 +440,26 @@ import Hero from '../components/Hero.astro';
   }
 
   /* ダウンロード（表紙＋ボタン） */
+  .dl-row {
+    display: flex;
+    gap: var(--space-7);
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
   .dl-block {
     display: flex;
     align-items: center;
     gap: var(--space-5);
     flex-wrap: wrap;
+  }
+
+  .dl-desc {
+    font-size: var(--fs-small);
+    line-height: 1.7;
+    color: var(--color-ink);
+    margin: 0;
+    max-width: 18em;
   }
 
   .dl-cover {
