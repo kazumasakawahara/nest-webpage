@@ -10,7 +10,7 @@ export const site = {
   established: '平成18年（2006年）8月15日',
   representative: '林 澄江',
   instagram: 'https://instagram.com/kimachi_ya/',
-  legacyUrl: 'https://www.nponest.org/',
+  legacyUrl: 'https://www.nponest.com/',
   copyright: '©2019 by 特定非営利活動法人（NPO法人）nest',
 } as const;
 

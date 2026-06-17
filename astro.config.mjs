@@ -4,7 +4,7 @@ import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://www.nponest.org',
+  site: 'https://www.nponest.com',
   output: 'static',
   adapter: cloudflare({
     platformProxy: { enabled: true },
