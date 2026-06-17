@@ -21,14 +21,24 @@ import CtaBlock from '../components/CtaBlock.astro';
   <!-- ===== コンセプト ===== -->
   <section class="section">
     <div class="container container--narrow reveal">
-      <img
-        src="/images/nest-image2/nestdesign-logo.png"
-        alt="nest Design"
-        width="3087"
-        height="2002"
-        style="display:block; width:220px; height:auto; margin:0 auto var(--space-5);"
-        loading="lazy"
-      />
+      <div class="nd-logo-row">
+        <img
+          class="nd-logo"
+          src="/images/nest-image2/nestdesign-logo.png"
+          alt="nest Design"
+          width="3087"
+          height="2002"
+          loading="lazy"
+        />
+        <img
+          class="nd-mentor"
+          src="/images/nestdesign-mentor.jpg"
+          alt="nestDesignで利用者を指導するベテランデザイナー"
+          width="1024"
+          height="1536"
+          loading="lazy"
+        />
+      </div>
       <span class="eyebrow eyebrow--center">Our Concept</span>
       <h2 class="section__title section__title--center">nest Design のコンセプト</h2>
       <div class="prose">
@@ -131,5 +141,28 @@ import CtaBlock from '../components/CtaBlock.astro';
   .works-gallery__note {
     line-height: 1.9;
     font-size: 15px;
+  }
+
+  /* ロゴと、指導役のベテランデザイナー（人形）を横並びに */
+  .nd-logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-5);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-5);
+  }
+
+  .nd-logo-row .nd-logo {
+    display: block;
+    width: 220px;
+    height: auto;
+  }
+
+  /* 約3cm四方（≒120px）。縦長画像なので高さ基準で揃える。 */
+  .nd-logo-row .nd-mentor {
+    display: block;
+    width: auto;
+    height: 120px;
   }
 </style>
