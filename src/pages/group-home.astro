@@ -2,6 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import CtaBlock from '../components/CtaBlock.astro';
+import PdfDocCard from '../components/PdfDocCard.astro';
+import PdfPreview from '../components/PdfPreview.astro';
 
 const steps = [
   {
@@ -13,6 +15,14 @@ const steps = [
     body: 'より一人暮らしに近い住まいです。自立した生活を見据えて、その人らしく過ごします。',
   },
 ];
+
+// グループホーム紹介ガイド（B6リーフレット）。開いて読む／ダウンロードできる。
+const guide = {
+  title: 'グループホームガイド（共同生活援助）',
+  file: '/pdfs/group-home/nest-grouphome-guide-2026.pdf',
+  meta: '2026年版 ・ PDF ・ 約1MB',
+  note: '見学・体験のご相談はお気軽にどうぞ。',
+};
 ---
 
 <BaseLayout
@@ -79,6 +89,29 @@ const steps = [
     </div>
   </section>
 
+  <!-- ===== 紹介ガイド（PDF資料） ===== -->
+  <section class="section">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">Guide</span>
+      <h2 class="section__title">グループホームガイド</h2>
+      <p style="font-size:16px; line-height:2; color:var(--color-ink); margin-bottom:var(--space-5);">
+        nest のグループホームについて、運営の考え方から日々の支援、暮らしのリズム、入居までの流れまでをまとめた紹介ガイドです。
+        下のカードから、その場で開いて読む・ダウンロードしていただけます。
+      </p>
+      <ul class="gh-guide-points">
+        <li><strong>運営のコンセプト</strong> — 利用者を一つの施設に集めず、nest木町STATION をハブに、徒歩圏内に点在する住まいで「自分なりの暮らし方」を支えます。仲間と食事を共にすることを大切にしています。</li>
+        <li><strong>支援の概要</strong> — 金銭・服薬の管理、地域医療機関との連携や訪問看護、通院・行政手続きの同行、日中／夜間の支援、自立・意思決定支援。</li>
+        <li><strong>グループホームでの暮らし</strong> — 規則正しい1日のリズム（起床〜通所〜帰舎〜夕食・入浴）と、「みんなの会（自治会活動）」「できることふやし隊」などの年間の取り組み。</li>
+        <li><strong>入居までの流れ</strong> — 相談 → 見学 → 面談 → 内容説明 → 体験入居 → 市町村への申請 → 利用契約 → 入居開始。</li>
+      </ul>
+      <div style="margin-top:var(--space-6);">
+        <PdfDocCard {...guide} />
+      </div>
+    </div>
+  </section>
+
+  <PdfPreview />
+
   <!-- ===== 問い合わせ動線 ===== -->
   <section class="section">
     <div class="container">
@@ -125,4 +158,35 @@ const steps = [
     }
     .gh-hero .hero__overlay::after { background: none; }
   }
+</style>
+
+<style>
+  .gh-guide-points {
+    list-style: none;
+    display: grid;
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+  }
+
+  .gh-guide-points li {
+    position: relative;
+    padding-left: 1.4em;
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--color-ink);
+  }
+
+  .gh-guide-points li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-terra-500);
+  }
+
+  .gh-guide-points strong { color: var(--color-green-900); }
 </style>
