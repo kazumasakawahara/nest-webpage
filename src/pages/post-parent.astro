@@ -41,15 +41,36 @@ const NEWSLETTER_FORM_URL = '';
     </div>
   </section>
 
-  <!-- ===== くらしサポートネット（人のネットワーク） ===== -->
+  <!-- ===== 親なき後問題への15年の取り組み（記事） ===== -->
   <section class="section section--sand">
     <div class="container container--narrow reveal">
-      <span class="eyebrow">People Network</span>
-      <h2 class="section__title">人と人とで、支え合う</h2>
-      <p style="font-size:16px; line-height:2; color:var(--color-ink);">
-        「nestくらしサポートネット」は、本人と家族、そして支援者がゆるやかにつながり、互いの経験を持ち寄って支え合うための取り組みです。
-        ひとつの家族だけで抱え込むのではなく、地域のネットワークとして本人の暮らしを見守っていく——その土台づくりを続けています。
-      </p>
+      <span class="eyebrow">Our 15 Years</span>
+      <h2 class="section__title">「親なき後」を希望に変える</h2>
+      <p class="pp-article__subtitle">NPO法人nestが歩んだ15年の挑戦と、これから</p>
+
+      <div class="pp-article">
+        <p>「親が元気なうちに、子どもが成人した後の暮らしをどう設計するか」。これは、知的障害や発達障害のある子を持つすべての親が抱える、切実な問いです。</p>
+        <p>NPO法人nestは、まさにこの「親なき後問題」に真正面から取り組むために誕生しました。設立から15年。積み重ねてきた活動は、単なる福祉サービスの提供を超え、親たちが不安を共有し、地域を巻き込みながら「安心のネットワーク」を創り上げる物語そのものです。</p>
+
+        <h3>「本気」のスタートが切り開いた自立への道</h3>
+        <p>2011年、親たちの「子どもが成人した後も、この街で自分らしく生きてほしい」という切実な願いから始まった「本気プロジェクト」。ここからすべては始まりました。</p>
+        <p>既存の施設に預けるのではなく、自分たちの手で暮らしの場を作る。その目標に向け、保護者たちが毎月話し合いを重ね、2012年に「木町STATION」を開設しました。ここでの自立体験プログラムは、親元を離れることへの恐怖を、自立への自信へと変える第一歩となりました。</p>
+
+        <h3>実践の中で深まる支援の形</h3>
+        <p>nestの強みは、常に現場の声から次の施策を生み出してきたことにあります。</p>
+        <ul class="pp-milestones">
+          <li><strong>グループホームの実現（2013年〜）</strong>自立体験プログラムを経て、実際に「原町STATION」「木町BRANCH」といった地域生活の場を開設。スタッフの支援を受けながら、当事者が「その人らしい暮らし」を送れるようになりました。</li>
+          <li><strong>KAREI（華麗＆加齢）プロジェクト（2014年度〜）</strong>子どもの衣食住だけでなく、親自身の老後や法律上の手続き、家財の処分といった、避けて通れない「親の身仕舞い」まで含めた具体的な議論をスタート。専門家を交えたサポートネットワークの礎を築きました。</li>
+          <li><strong>巣立ちネットの始動（近年）</strong>不安を抱える親子が共に話し合う「あんしん親子会議」や、会員相互の助け合いを目指す互助会「巣立ちネット」を立ち上げました。</li>
+        </ul>
+
+        <h3>「拠点」から「地域」へ――これからの展望</h3>
+        <p>nestの取り組みは、今や一つのNPOの枠を超え、地域全体を耕すフェーズへと移行しています。</p>
+        <p>直近の「nest巣立ちネット」の運営や、日本財団助成事業「巣立ちプロジェクト」を通じて、意思決定支援の重要性を広め、支援者ネットワークを構築しています。また、カフェ「キッチン＆マルシェ木町家」のように、障害のある人が働く場でありながら、地域住民が気軽に立ち寄れる拠点を運営することで、「障害のある人が地域で役割を担う」という共生の形を実現しています。</p>
+
+        <p>nestの歩みは、親の「願い」を、当事者の「力」に変え、それを地域の「支え合い」という形に昇華させる過程でした。</p>
+        <p class="pp-article__close">「親なき後」は、一人で抱えれば深い闇ですが、仲間とともに仕組みを作れば、それは未来への希望になります。nestがこれまで紡いできたネットワークと、これから創り出す仕組みは、同じ悩みを抱える多くの家族にとって、確かな灯火となるはずです。</p>
+      </div>
     </div>
   </section>
 
@@ -165,4 +186,67 @@ const NEWSLETTER_FORM_URL = '';
   }
 
   .inline-link:hover { color: var(--color-terra-500); }
+
+  /* 15年の歩み（記事レイアウト） */
+  .pp-article__subtitle {
+    margin: 0 0 var(--space-6);
+    font-size: 15px;
+    color: var(--color-ink-mute);
+    letter-spacing: 0.02em;
+  }
+
+  .pp-article > p {
+    font-size: 16px;
+    line-height: 2;
+    color: var(--color-ink);
+    margin-bottom: var(--space-5);
+  }
+
+  .pp-article h3 {
+    margin: var(--space-7) 0 var(--space-4);
+    padding-left: var(--space-3);
+    border-left: 4px solid var(--color-terra-500);
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.6;
+    color: var(--color-green-900);
+  }
+
+  .pp-milestones {
+    list-style: none;
+    margin: 0 0 var(--space-5);
+    padding: 0;
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .pp-milestones li {
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--color-ink);
+  }
+
+  .pp-milestones strong {
+    display: block;
+    margin-bottom: var(--space-2);
+    font-family: var(--font-hand);
+    font-size: 17px;
+    color: var(--color-green-900);
+  }
+
+  .pp-article__close {
+    margin-top: var(--space-6);
+    padding: var(--space-5);
+    background: var(--color-paper);
+    border-left: 4px solid var(--color-terra-500);
+    border-radius: var(--radius-sm);
+    font-size: 16px;
+    line-height: 2;
+    color: var(--color-ink);
+  }
 </style>
