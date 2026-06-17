@@ -32,11 +32,44 @@ import CtaBlock from '../../components/CtaBlock.astro';
 
   <section class="section section--sand">
     <div class="container container--narrow reveal">
-      <span class="eyebrow">Coming Soon</span>
-      <h2 class="section__title">活動の記録は準備中です</h2>
-      <p class="text-soft">
-        具体的な活動の様子や、これまでの研究テーマについては、現在ページを準備しています。
-        公開でき次第、こちらでご紹介します。関心のある方は<a class="inline-link" href="/contact/">お問い合わせ</a>からご連絡ください。
+      <span class="eyebrow">Our Practice</span>
+      <h2 class="section__title">学び、分かち合い、社会へ届ける</h2>
+      <p style="font-size:16px; line-height:2; color:var(--color-ink); margin-bottom:var(--space-6);">
+        これまで nest では、当事者研究を次のような営みとして育ててきました。
+      </p>
+      <ul class="tk-points">
+        <li>
+          <strong>先駆者から学ぶ</strong>
+          <span>
+            「Neccoカフェ」の創設者や「浦河べてるの家」の方々をお招きした講演会を重ねてきました。
+            苦労を個人の問題に閉じ込めず客観的に捉え直す「脱病理化」、専門家任せにしない「当事者主体の援助」——
+            その柔軟で力強い考え方から、多くを学んでいます。
+          </span>
+        </li>
+        <li>
+          <strong>自分を守り、仲間と分かち合う</strong>
+          <span>
+            本人会などの場では、「自分の取扱説明書」をつくります。つらさや困りごとを言葉や図に整理して
+            自分を客観的に見つめ、仲間に語る。「私もそうだよ」と響き合うなかで、一人で抱えていた苦労が、
+            みんなで知恵を出し合える“共有財産”へと変わっていきます。
+          </span>
+        </li>
+        <li>
+          <strong>社会へのメッセージとして</strong>
+          <span>
+            深めた自己理解は、コミュニティの中だけにとどめません。講演の場では
+            「支援者にこうしてほしかった／してほしくなかった」という願いを取扱説明書の言葉で伝え、
+            専門家と当事者が対等に理解し合える関係への架け橋となることを目指しています。
+          </span>
+        </li>
+      </ul>
+      <p style="font-size:16px; line-height:2; color:var(--color-ink); margin-top:var(--space-6);">
+        nest の当事者研究は、特別な専門技術を身につけることではなく、自分自身と仲間を大切に思い、
+        その経験を社会へのポジティブなメッセージへと変えていく、日々の営みそのものです。
+      </p>
+      <p style="font-size:16px; line-height:2; color:var(--color-ink); margin-top:var(--space-5);">
+        この活動は、コロナ禍の影響でいまはほぼ休止しています。それでも、ここで積み重ねてきた学びと対話を、
+        これからまた少しずつ再開していきたい——わたしたちは、そう願っています。
       </p>
     </div>
   </section>
@@ -55,10 +88,32 @@ import CtaBlock from '../../components/CtaBlock.astro';
 </BaseLayout>
 
 <style>
-  .inline-link {
-    color: var(--color-terra-700);
-    text-decoration: underline;
-    text-underline-offset: 3px;
+  /* 当事者研究の3つの営み。サイト共通の「左にテラコッタ罫」のエディトリアル様式。 */
+  .tk-points {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-5);
   }
-  .inline-link:hover { color: var(--color-terra-500); }
+
+  .tk-points li {
+    padding-left: var(--space-5);
+    border-left: 3px solid var(--color-terra-500);
+  }
+
+  .tk-points strong {
+    display: block;
+    font-family: var(--font-hand);
+    font-size: 18px;
+    color: var(--color-green-900);
+    margin-bottom: var(--space-2);
+  }
+
+  .tk-points span {
+    display: block;
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--color-ink);
+  }
 </style>
