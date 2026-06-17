@@ -40,19 +40,31 @@ import CtaBlock from '../components/CtaBlock.astro';
         />
       </div>
       <span class="eyebrow eyebrow--center">Our Concept</span>
-      <h2 class="section__title section__title--center">nest Design のコンセプト</h2>
+      <h2 class="section__title section__title--center">個性を描く、おもちゃ箱のアトリエ</h2>
       <div class="prose">
         <p>
-          他の作業所とは一味違うnest独自の支援がネストデザインです。
-          単純な軽作業になってしまいがちな就労継続支援B型ではなく、
-          常に<strong>創造性をテーマとしたワークスペース</strong>です。
-        </p>
-        <p>
-          絵やデザインが大好きなのに今まであきらめていた方のお手伝いをしたり、
-          自分の才能に気づいてない方の感性を引き出せることもあります。
-          デザイン実務豊富なスタッフが<strong>基礎から指導できる</strong>こともネストデザインの特徴です。
+          nest Design は、福祉という枠組みを超え、一人ひとりの感性をアートとして社会へ届ける
+          <strong>クリエイティブ・アトリエ</strong>です。「福祉の事業所だから」という応援ではなく、
+          作品そのものが持つ力で、見る人の心を動かす——私たちは、そんな新しい福祉の価値を創造しています。
         </p>
       </div>
+      <ul class="nd-points">
+        <li>
+          <strong>唯一無二の感性を、デザインの力で</strong>
+          <span>
+            メンバーが紡ぎ出す、個性あふれる線や色。そこにプロの視点で「少しの工夫」を添え、
+            日常を彩るアートへと昇華させます。オリジナリティを尊重し、手に取った人の心に温かな驚きを届ける——
+            デザイン実務豊富なスタッフが、基礎から伴走します。
+          </span>
+        </li>
+        <li>
+          <strong>自然体でいられる「おもちゃ箱」</strong>
+          <span>
+            アトリエに堅苦しさはありません。BGMが流れ、誰もが自分のペースで創作を楽しむ。
+            そんな心地よい「居場所」から、枠にとらわれない自由な創造性が生まれています。
+          </span>
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -63,11 +75,26 @@ import CtaBlock from '../components/CtaBlock.astro';
         <span class="eyebrow eyebrow--center">Our Works</span>
         <h2 class="section__title section__title--center">制作作業</h2>
         <p class="section__lead section__lead--center">
-          オリジナルグッズやアート作品の企画・製作販売、テキスト入力〜校正、
+          オリジナルグッズやアート作品の企画・制作販売、テキスト入力〜校正、
           ネスト〜木町家の販促物・各種印刷物の企画制作、SNS対応まで——
-          クリエイティブワーク全般に取り組んでいます。
+          創作の輪を広げながら、日常に小さなアートを届けています。
         </p>
       </div>
+
+      <ul class="nd-points nd-points--works reveal">
+        <li>
+          <strong>イラスト傘</strong>
+          <span>一点ずつメンバーが手描きする、世界に一つだけのパートナー。</span>
+        </li>
+        <li>
+          <strong>卵パックの湿気取り</strong>
+          <span>コーヒーかすとリサイクル紙でつくる、エコで愛らしい暮らしの相棒。</span>
+        </li>
+        <li>
+          <strong>日常を彩る創作活動</strong>
+          <span>カレンダー制作や空間装飾など、暮らしの中に小さなアートを広げています。</span>
+        </li>
+      </ul>
 
       <figure class="works-photo reveal">
         <img
@@ -106,6 +133,48 @@ import CtaBlock from '../components/CtaBlock.astro';
   .prose p { font-size: 16px; line-height: 2; color: var(--color-ink); }
   .prose p + p { margin-top: var(--space-4); }
   .prose strong { color: var(--color-green-900); font-weight: 600; }
+
+  /* CONCEPT / WORKS の要点。左にテラコッタの罫を引いたエディトリアルなリスト。 */
+  .nd-points {
+    list-style: none;
+    max-width: 760px;
+    margin: var(--space-6) auto 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .nd-points li {
+    padding-left: var(--space-5);
+    border-left: 3px solid var(--color-terra-500);
+  }
+
+  .nd-points strong {
+    display: block;
+    font-family: var(--font-hand);
+    font-size: 18px;
+    color: var(--color-green-900);
+    margin-bottom: var(--space-2);
+  }
+
+  .nd-points span {
+    display: block;
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--color-ink);
+  }
+
+  /* WORKS は3点を横並びのカード状に。狭い画面では縦積み。 */
+  .nd-points--works {
+    max-width: 920px;
+    margin-bottom: var(--space-7);
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  @media (max-width: 720px) {
+    .nd-points--works { grid-template-columns: 1fr; }
+  }
 
   .works-photo {
     max-width: 900px;
