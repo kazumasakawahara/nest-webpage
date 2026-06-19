@@ -46,7 +46,8 @@ import { site, navLinks } from '../lib/site';
           <p>{site.address}</p>
           <p>
             TEL/FAX <a href={`tel:${site.tel.replaceAll('-', '')}`}>{site.tel}</a><br>
-            <span class="text-soft">電話受付 {site.telHours}</span>
+            <span class="text-soft">電話受付 {site.telHours}</span><br>
+            <span class="footer-holiday">{site.telHoliday}</span>
           </p>
         </address>
       </div>
@@ -138,6 +139,11 @@ import { site, navLinks } from '../lib/site';
     border-bottom: 1px dotted rgba(250, 246, 239, 0.5);
   }
   .site-footer__address a:hover { color: var(--color-terra-500); }
+
+  .footer-holiday {
+    color: var(--color-terra-500);
+    font-weight: 600;
+  }
 
   .site-footer__base {
     display: flex;

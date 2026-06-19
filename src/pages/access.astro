@@ -42,7 +42,10 @@ import { site } from '../lib/site';
             </dd>
 
             <dt>電話受付</dt>
-            <dd>{site.telHours}</dd>
+            <dd>
+              {site.telHours}<br />
+              <span class="access-holiday">{site.telHoliday}</span>
+            </dd>
 
             <dt>最寄り</dt>
             <dd>
@@ -131,6 +134,11 @@ import { site } from '../lib/site';
     font-size: 24px;
     font-weight: 600;
     color: var(--color-green-900);
+  }
+
+  .access-holiday {
+    color: var(--color-terra-500);
+    font-weight: 600;
   }
 
   .access-map__link {

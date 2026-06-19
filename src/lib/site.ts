@@ -7,6 +7,7 @@ export const site = {
   address: '〒803-0851 福岡県北九州市小倉北区木町3丁目6−7',
   tel: '093-582-7018',
   telHours: '平日 9:00 〜 18:00',
+  telHoliday: '祝日も営業しています。',
   established: '平成18年（2006年）8月15日',
   representative: '林 澄江',
   instagram: 'https://instagram.com/kimachi_ya/',

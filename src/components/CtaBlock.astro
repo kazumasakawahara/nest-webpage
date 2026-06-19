@@ -35,6 +35,7 @@ const {
           </svg>
           <span class="cta__tel-num">{site.tel}</span>
           <span class="cta__tel-hours">{site.telHours}</span>
+          <span class="cta__tel-holiday">{site.telHoliday}</span>
         </a>
       )
     }
@@ -159,6 +160,12 @@ const {
     font-family: var(--font-mono);
     letter-spacing: 0.05em;
     opacity: 0.75;
+  }
+
+  .cta__tel-holiday {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-terra-500);
   }
 
   .cta__actions {

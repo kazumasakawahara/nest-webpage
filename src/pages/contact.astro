@@ -53,6 +53,7 @@ const qrSvg = isFormReady
             <span class="contact-side__tel-num">{site.tel}</span>
           </a>
           <p class="contact-side__hours">電話受付：{site.telHours}</p>
+          <p class="contact-side__holiday">{site.telHoliday}</p>
           <p class="contact-side__fax">FAX：{site.tel}</p>
 
           <div class="contact-side__topics">
@@ -163,6 +164,13 @@ const qrSvg = isFormReady
   .contact-side__fax {
     font-size: 13px;
     color: var(--color-ink-mute);
+    margin: 4px 0;
+  }
+
+  .contact-side__holiday {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-terra-500);
     margin: 4px 0;
   }
 
