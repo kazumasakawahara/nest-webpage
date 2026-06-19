@@ -14,6 +14,7 @@ const features = [
     image: '/images/kimachiya-bread.jpg',
     title: 'ヘルシー！オリジナル米粉パン',
     body: '北九州ではここだけのオリジナル米粉パン。油の吸収率が低く、消化しやすいのが特徴です。',
+    note: '現在休止中',
   },
   {
     image: '/images/kimachiya-sweets.jpg',
@@ -86,6 +87,7 @@ const features = [
               </div>
               <div class="feature__text">
                 <h3 class="feature__title">{f.title}</h3>
+                {f.note && <p class="feature__note">{f.note}</p>}
                 <p class="feature__body">{f.body}</p>
               </div>
             </article>
@@ -201,6 +203,13 @@ const features = [
   .holiday-note {
     color: var(--color-terra-500);
     font-weight: 600;
+  }
+
+  .feature__note {
+    color: #2b6cb0;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 4px;
   }
 
   .features {
