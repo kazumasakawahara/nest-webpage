@@ -157,7 +157,7 @@ const features = [
             <dt>営業時間</dt>
             <dd>AM11:00〜PM3:00</dd>
             <dt>営業日</dt>
-            <dd>月・火・水・木・金・第3土曜日</dd>
+            <dd>月・火・水・木・金・第3土曜日<br><span class="holiday-note">{site.telHoliday}</span></dd>
             <dt>ご予約・お問い合わせ</dt>
             <dd><a href="tel:0935920331">093-592-0331</a></dd>
             <dt>住所</dt>
@@ -198,6 +198,11 @@ const features = [
 </BaseLayout>
 
 <style>
+  .holiday-note {
+    color: var(--color-terra-500);
+    font-weight: 600;
+  }
+
   .features {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
