@@ -28,9 +28,14 @@ import { site, navLinks } from '../lib/site';
       <div class="site-footer__col">
         <h4 class="site-footer__heading">事業所</h4>
         <ul class="site-footer__list">
-          <li><a href="/kimachiya/">キッチン＆マルシェ 木町家</a></li>
-          <li><a href="/nest-design/">nestDesign</a></li>
-          <li><a href="/group-home/">グループホーム</a></li>
+          <li>
+            <a href="/b-type/">nestワークSTATION</a>
+            <ul class="site-footer__sublist">
+              <li><a href="/kimachiya/">キッチン＆マルシェ 木町家</a></li>
+              <li><a href="/nest-design/">nestDesign</a></li>
+            </ul>
+          </li>
+          <li><a href="/group-home/">nest地域生活サポートSTATION（グループホーム）</a></li>
         </ul>
       </div>
 
@@ -104,6 +109,20 @@ import { site, navLinks } from '../lib/site';
     color: rgba(250, 246, 239, 0.85);
   }
   .site-footer__list a:hover { color: var(--color-terra-500); }
+
+  .site-footer__sublist {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-top: var(--space-3);
+    padding-left: var(--space-4);
+    border-left: 1px solid rgba(250, 246, 239, 0.2);
+  }
+  .site-footer__sublist a {
+    font-size: 13px;
+    color: rgba(250, 246, 239, 0.7);
+  }
+  .site-footer__sublist a:hover { color: var(--color-terra-500); }
 
   .site-footer__address {
     font-style: normal;
