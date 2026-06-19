@@ -33,7 +33,7 @@ export async function sendMagicLinkEmail(p: MagicLinkEmailParams): Promise<void>
     '',
     '——',
     'NPO法人 nest',
-    '093-582-7018（平日 8:00〜20:00）',
+    '093-582-7018（平日 9:00〜18:00）',
   ].join('\n');
 
   const { error } = await resend.emails.send({

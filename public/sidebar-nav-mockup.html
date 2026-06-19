@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nest — サイドバー 案C リファイン（French editorial）</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Sans+JP:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green-900: #1a3d18;
+      --green-700: #2d5a27;
+      --green-100: #e8efe6;
+      --cream:     #faf6ef;
+      --ivory:     #f1ebdd;
+      --sand:      #f0ead8;
+      --paper:     #ffffff;
+      --terra:     #d97757;
+      --terra-700: #b85f3d;
+      --ink:       #2a2620;
+      --ink-mute:  #6b665e;
+      --ink-soft:  #9a948a;
+      --line:      #e6e0d4;
+
+      --serif-jp: 'Shippori Mincho B1', serif;
+      --serif-fr: 'Cormorant Garamond', 'Shippori Mincho B1', serif; /* high-contrast Didone-ish, very Parisian */
+      --sans:     'Noto Sans JP', sans-serif;
+      --mono:     'Inter', sans-serif;
+
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --dur: 360ms;
+      --hero: url('/images/nest-image1/mori_subako2.jpg');
+      --panel-w: 236px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--sans); background: #e7e1d4; color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+    /* ===== chooser chrome ===== */
+    .chooser {
+      position: sticky; top: 0; z-index: 1000;
+      background: #1c1d18; color: #f4efe5;
+      padding: 14px 24px; display: flex; align-items: center; gap: 22px; flex-wrap: wrap;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+    }
+    .chooser__title { font-family: var(--serif-fr); font-size: 19px; font-weight: 500; letter-spacing: 0.02em; white-space: nowrap; }
+    .chooser__title small { display: block; font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: #a9a293; font-weight: 400; margin-top: 3px; }
+    .tabs { display: flex; gap: 8px; }
+    .tab {
+      font-family: var(--mono); font-size: 12px; font-weight: 400; letter-spacing: 0.08em;
+      color: #d9d3c6; background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.16); border-radius: 999px;
+      padding: 9px 18px; cursor: pointer; transition: all 180ms var(--ease); white-space: nowrap;
+    }
+    .tab:hover { background: rgba(255,255,255,0.12); }
+    .tab.is-active { background: var(--cream); border-color: var(--cream); color: #1c1d18; }
+    .chooser__hint { margin-left: auto; font-size: 11.5px; letter-spacing: 0.04em; color: #8f897b; white-space: nowrap; }
+
+    /* ===== caption ===== */
+    .caption { max-width: 1120px; margin: 26px auto 6px; padding: 0 24px; }
+    .caption .ey { font-family: var(--mono); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--terra); }
+    .caption h2 { font-family: var(--serif-fr); font-size: 30px; font-weight: 500; color: var(--green-900); margin: 8px 0 10px; letter-spacing: 0.01em; }
+    .caption p { font-size: 13.5px; line-height: 1.85; color: var(--ink-mute); max-width: 720px; }
+
+    /* ===== stage ===== */
+    .stage-wrap { max-width: 1120px; margin: 16px auto 64px; padding: 0 24px; }
+    .stage {
+      position: relative; height: 660px; border-radius: 4px; overflow: hidden;
+      box-shadow: 0 30px 70px rgba(40,33,25,0.22); background: var(--cream);
+      border: 1px solid rgba(40,33,25,0.08);
+    }
+    .stage[hidden] { display: none; }
+
+    .scroll { position: absolute; inset: 0 0 0 var(--panel-w); overflow-y: auto; }
+    .hero {
+      position: relative; min-height: 100%; display: flex; align-items: center;
+      overflow: hidden;
+      background-image: var(--hero);
+      background-size: cover;
+      background-position: 74% center; /* 巣箱を右寄りに見せ、文字側は静かな樹幹側に */
+    }
+    /* 文字が乗る左側だけを暗く沈め、右の写真は明るいまま残す（=可読性を担保しつつ写真を活かす） */
+    .hero__scrim { position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        linear-gradient(100deg,
+          rgba(16,34,17,0.86) 0%,
+          rgba(16,34,17,0.66) 26%,
+          rgba(16,34,17,0.30) 48%,
+          rgba(16,34,17,0.04) 66%,
+          rgba(16,34,17,0) 80%);
+    }
+    .hero__scrim::after { content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(16,34,17,0.5), rgba(16,34,17,0) 42%); }
+    .hero__inner { position: relative; z-index: 1; padding: 0 9% 0 8%; color: var(--cream); max-width: 560px; }
+
+    /* すりガラス（フロスト）方式：文字ブロックの背後だけを曇らせる */
+    body.frost .hero__scrim {
+      background: linear-gradient(100deg, rgba(16,34,17,0.34) 0%, rgba(16,34,17,0.10) 55%, rgba(16,34,17,0) 80%);
+    }
+    body.frost .hero__scrim::after { background: none; }
+    body.frost .hero { align-items: center; }
+    body.frost .scroll .hero__inner {
+      margin-left: 6%;
+      padding: 42px 46px;
+      max-width: 520px;
+      background: rgba(20,36,22,0.30);
+      -webkit-backdrop-filter: blur(8px) saturate(1.1);
+      backdrop-filter: blur(8px) saturate(1.1);
+      border: 1px solid rgba(250,246,239,0.20);
+      border-radius: 3px;
+    }
+    .hero__eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; opacity: 0.9; margin-bottom: 26px; display: flex; align-items: center; gap: 14px; }
+    .hero__eyebrow::before { content: ''; width: 34px; height: 1px; background: currentColor; opacity: 0.7; }
+    .hero__title { font-family: var(--serif-jp); font-weight: 500; font-size: clamp(32px, 4.6vw, 52px); line-height: 1.32; letter-spacing: 0.04em; text-shadow: 0 2px 24px rgba(0,0,0,0.28); }
+    .hero__lead { margin-top: 26px; font-size: 14px; line-height: 2; max-width: 430px; opacity: 0.95; letter-spacing: 0.02em; }
+    .hero__actions { margin-top: 36px; display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
+    .btn-line {
+      font-family: var(--mono); font-size: 12px; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--cream); text-decoration: none; padding: 15px 30px;
+      border: 1px solid rgba(250,246,239,0.6); border-radius: 0; transition: all var(--dur) var(--ease);
+    }
+    .btn-line:hover { background: var(--cream); color: var(--green-900); border-color: var(--cream); }
+    .btn-text {
+      font-family: var(--mono); font-size: 12px; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--cream); text-decoration: none; position: relative; padding-bottom: 4px;
+    }
+    .btn-text::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 1px; background: currentColor; opacity: 0.5; transition: opacity var(--dur) var(--ease); }
+    .btn-text:hover::after { opacity: 1; }
+    .hero__edge { position: absolute; left: 20px; bottom: 28px; writing-mode: vertical-rl; font-family: var(--mono); font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--cream); opacity: 0.6; }
+
+    /* ===== panel (shared, narrow, editorial) ===== */
+    .panel {
+      position: absolute; top: 0; left: 0; bottom: 0; width: var(--panel-w);
+      display: flex; flex-direction: column; padding: 34px 24px 26px; z-index: 5;
+    }
+    .panel__brand { text-decoration: none; display: block; margin-bottom: 4px; }
+    .panel__kicker { display: block; font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.3em; text-transform: uppercase; }
+    .panel__mark { display: block; font-family: var(--serif-fr); font-weight: 500; font-size: 40px; line-height: 1; letter-spacing: 0.01em; margin-top: 10px; }
+    .panel__rule { height: 1px; margin: 22px 0 18px; }
+
+    .sommaire { list-style: none; flex: 1; }
+    .sommaire > li > a {
+      display: grid; grid-template-columns: 26px 1fr auto; align-items: baseline; gap: 4px;
+      text-decoration: none; font-family: var(--serif-jp); font-size: 15px; letter-spacing: 0.06em;
+      padding: 9px 0; transition: all 220ms var(--ease);
+    }
+    .sommaire .num { font-family: var(--mono); font-size: 10px; font-weight: 400; letter-spacing: 0.06em; transform: translateY(-1px); }
+    .sommaire .lbl { transition: transform 220ms var(--ease); }
+    .sommaire > li > a:hover .lbl { transform: translateX(3px); }
+    .sommaire > li { border-top: 1px solid; }
+    .sommaire > li:first-child { border-top: none; }
+    .sub { list-style: none; padding: 0 0 8px 26px; }
+    .sub a { display: block; text-decoration: none; font-family: var(--sans); font-size: 12px; letter-spacing: 0.04em; padding: 5px 0; }
+
+    .panel__foot { margin-top: auto; }
+    .panel__foot .ft-rule { height: 1px; margin-bottom: 16px; }
+    .panel__foot .ft-k { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.26em; text-transform: uppercase; margin-bottom: 7px; }
+    .panel__foot .tel { font-family: var(--serif-fr); font-size: 21px; font-weight: 500; letter-spacing: 0.04em; text-decoration: none; display: block; }
+    .panel__foot .member { display: inline-block; margin-top: 16px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; padding-bottom: 3px; border-bottom: 1px solid; }
+
+    /* ---- C-1 Forêt : deep green panel ---- */
+    #foret .panel { background: var(--green-900); }
+    #foret .panel__kicker { color: rgba(250,246,239,0.55); }
+    #foret .panel__mark { color: var(--cream); }
+    #foret .panel__rule, #foret .sommaire > li, #foret .panel__foot .ft-rule { background-color: rgba(250,246,239,0.16); border-color: rgba(250,246,239,0.14); }
+    #foret .sommaire .num { color: rgba(250,246,239,0.4); }
+    #foret .sommaire .lbl { color: rgba(250,246,239,0.82); }
+    #foret .sommaire > li > a:hover .lbl { color: #fff; }
+    #foret .sommaire a.on .lbl { color: #fff; }
+    #foret .sommaire a.on .num { color: var(--terra); }
+    #foret .sub a { color: rgba(250,246,239,0.5); }
+    #foret .sub a:hover { color: #fff; }
+    #foret .panel__foot .ft-k { color: rgba(250,246,239,0.5); }
+    #foret .panel__foot .tel { color: var(--cream); }
+    #foret .panel__foot .member { color: rgba(250,246,239,0.7); border-color: rgba(250,246,239,0.3); }
+
+    /* ---- C-2 Ivoire : warm ivory panel ---- */
+    #ivoire .panel { background: var(--ivory); border-right: 1px solid var(--line); }
+    #ivoire .panel__kicker { color: var(--terra); }
+    #ivoire .panel__mark { color: var(--green-900); }
+    #ivoire .panel__rule, #ivoire .sommaire > li, #ivoire .panel__foot .ft-rule { background-color: rgba(40,33,25,0.12); border-color: rgba(40,33,25,0.1); }
+    #ivoire .sommaire .num { color: var(--ink-soft); }
+    #ivoire .sommaire .lbl { color: var(--ink); }
+    #ivoire .sommaire > li > a:hover .lbl { color: var(--green-700); }
+    #ivoire .sommaire a.on .lbl { color: var(--green-900); }
+    #ivoire .sommaire a.on .num { color: var(--terra); }
+    #ivoire .sub a { color: var(--ink-mute); }
+    #ivoire .sub a:hover { color: var(--green-700); }
+    #ivoire .panel__foot .ft-k { color: var(--ink-soft); }
+    #ivoire .panel__foot .tel { color: var(--green-900); }
+    #ivoire .panel__foot .member { color: var(--ink-mute); border-color: rgba(40,33,25,0.25); }
+
+    @media (max-width: 720px) {
+      .chooser__hint { display: none; }
+      .stage { height: 560px; }
+      .scroll { left: 0; }
+      .panel { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="chooser">
+    <div class="chooser__title">案C — リファイン<small>narrow panel · french editorial</small></div>
+    <div class="tabs">
+      <button class="tab is-active" data-target="foret">C-1 Forêt（濃緑）</button>
+      <button class="tab" data-target="ivoire">C-2 Ivoire（アイボリー）</button>
+    </div>
+    <div class="tabs" style="margin-left:6px;">
+      <button class="tab is-active" data-treat="scrim">視認性：スクリム</button>
+      <button class="tab" data-treat="frost">視認性：フロスト</button>
+    </div>
+    <div class="chooser__hint">文字側だけ暗く沈め、巣箱は明るいまま</div>
+  </div>
+
+  <!-- ============ C-1 Forêt ============ -->
+  <div data-pane="foret">
+    <div class="caption">
+      <p class="ey">Plan C-1 · Forêt</p>
+      <h2>濃緑パネル × エディトリアル</h2>
+      <p>ブランドの濃緑を踏襲しつつ、幅を236pxに絞って余白を効かせた構成。Cormorant Garamond の高コントラスト・セリフ、01〜の番号付き目次、極細ヘアラインで、フランスの装丁・モード誌のような端正さを出しています。テラコッタは番号の点アクセントのみ。</p>
+    </div>
+    <div class="stage-wrap">
+      <div class="stage" id="foret">
+        <aside class="panel">
+          <a href="#" class="panel__brand">
+            <span class="panel__kicker">NPO Nest</span>
+            <span class="panel__mark">nest</span>
+          </a>
+          <div class="panel__rule"></div>
+          <ul class="sommaire">
+            <li><a href="#" class="on"><span class="num">01</span><span class="lbl">TOP</span></a></li>
+            <li><a href="#"><span class="num">02</span><span class="lbl">nestについて</span></a></li>
+            <li>
+              <a href="#"><span class="num">03</span><span class="lbl">就労継続支援B型</span></a>
+              <ul class="sub"><li><a href="#">— 木町家</a></li><li><a href="#">— nestDesign</a></li></ul>
+            </li>
+            <li><a href="#"><span class="num">04</span><span class="lbl">地域生活支援</span></a></li>
+            <li><a href="#"><span class="num">05</span><span class="lbl">利用者募集中</span></a></li>
+            <li><a href="#"><span class="num">06</span><span class="lbl">nest News</span></a></li>
+            <li><a href="#"><span class="num">07</span><span class="lbl">入会・寄付</span></a></li>
+            <li><a href="#"><span class="num">08</span><span class="lbl">お問い合わせ</span></a></li>
+            <li><a href="#"><span class="num">09</span><span class="lbl">アクセス</span></a></li>
+          </ul>
+          <div class="panel__foot">
+            <div class="ft-rule"></div>
+            <p class="ft-k">Contact</p>
+            <a href="tel:0935827018" class="tel">093 582 7018</a>
+            <a href="#" class="member">会員の方へ</a>
+          </div>
+        </aside>
+        <div class="scroll">
+          <section class="hero">
+            <div class="hero__scrim"></div>
+            <div class="hero__inner">
+              <p class="hero__eyebrow">Depuis 2006</p>
+              <h1 class="hero__title">巣立っても、<br>いつでも帰ってこられる。</h1>
+              <p class="hero__lead">飛び立っても羽を休める場所。発達障害のある人とご家族の暮らしを、地域とともに支えています。</p>
+              <div class="hero__actions">
+                <a href="#" class="btn-line">nestについて</a>
+                <a href="#" class="btn-text">見学を申し込む →</a>
+              </div>
+            </div>
+            <span class="hero__edge">Est. 2006 · Kitakyushu</span>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ C-2 Ivoire ============ -->
+  <div data-pane="ivoire" hidden>
+    <div class="caption">
+      <p class="ey">Plan C-2 · Ivoire</p>
+      <h2>アイボリーパネル × クチュール</h2>
+      <p>同じ構造をアイボリー地＋黒インク文字に。パリの白い壁のような、より明るく軽やかな“クチュール”寄りの解釈です。本文と地続きで上品にまとまり、写真の緑がより鮮やかに引き立ちます。濃緑が強すぎると感じる場合の代替案。</p>
+    </div>
+    <div class="stage-wrap">
+      <div class="stage" id="ivoire">
+        <aside class="panel">
+          <a href="#" class="panel__brand">
+            <span class="panel__kicker">NPO Nest</span>
+            <span class="panel__mark">nest</span>
+          </a>
+          <div class="panel__rule"></div>
+          <ul class="sommaire">
+            <li><a href="#" class="on"><span class="num">01</span><span class="lbl">TOP</span></a></li>
+            <li><a href="#"><span class="num">02</span><span class="lbl">nestについて</span></a></li>
+            <li>
+              <a href="#"><span class="num">03</span><span class="lbl">就労継続支援B型</span></a>
+              <ul class="sub"><li><a href="#">— 木町家</a></li><li><a href="#">— nestDesign</a></li></ul>
+            </li>
+            <li><a href="#"><span class="num">04</span><span class="lbl">地域生活支援</span></a></li>
+            <li><a href="#"><span class="num">05</span><span class="lbl">利用者募集中</span></a></li>
+            <li><a href="#"><span class="num">06</span><span class="lbl">nest News</span></a></li>
+            <li><a href="#"><span class="num">07</span><span class="lbl">入会・寄付</span></a></li>
+            <li><a href="#"><span class="num">08</span><span class="lbl">お問い合わせ</span></a></li>
+            <li><a href="#"><span class="num">09</span><span class="lbl">アクセス</span></a></li>
+          </ul>
+          <div class="panel__foot">
+            <div class="ft-rule"></div>
+            <p class="ft-k">Contact</p>
+            <a href="tel:0935827018" class="tel">093 582 7018</a>
+            <a href="#" class="member">会員の方へ</a>
+          </div>
+        </aside>
+        <div class="scroll">
+          <section class="hero">
+            <div class="hero__scrim"></div>
+            <div class="hero__inner">
+              <p class="hero__eyebrow">Depuis 2006</p>
+              <h1 class="hero__title">巣立っても、<br>いつでも帰ってこられる。</h1>
+              <p class="hero__lead">飛び立っても羽を休める場所。発達障害のある人とご家族の暮らしを、地域とともに支えています。</p>
+              <div class="hero__actions">
+                <a href="#" class="btn-line">nestについて</a>
+                <a href="#" class="btn-text">見学を申し込む →</a>
+              </div>
+            </div>
+            <span class="hero__edge">Est. 2006 · Kitakyushu</span>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const toneTabs = document.querySelectorAll('[data-target]');
+    const panes = document.querySelectorAll('[data-pane]');
+    toneTabs.forEach((tab) => tab.addEventListener('click', () => {
+      toneTabs.forEach((t) => t.classList.remove('is-active'));
+      tab.classList.add('is-active');
+      panes.forEach((p) => { p.hidden = p.dataset.pane !== tab.dataset.target; });
+    }));
+
+    const treatTabs = document.querySelectorAll('[data-treat]');
+    treatTabs.forEach((tab) => tab.addEventListener('click', () => {
+      treatTabs.forEach((t) => t.classList.remove('is-active'));
+      tab.classList.add('is-active');
+      document.body.classList.toggle('frost', tab.dataset.treat === 'frost');
+    }));
+  </script>
+</body>
+</html>
