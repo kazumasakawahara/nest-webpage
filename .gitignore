@@ -42,3 +42,7 @@ pdf-source/
 
 # 大容量の動画オリジナル（公開用は public/ に圧縮版を配置）
 media-src/
+
+# Local-only scratch/mockup files
+nest-rebuild-status.html
+public/sidebar-nav-mockup.html
