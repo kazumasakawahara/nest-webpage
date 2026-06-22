@@ -1,0 +1,255 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageIntro from '../../../components/PageIntro.astro';
+import CtaBlock from '../../../components/CtaBlock.astro';
+
+const repoUrl = 'https://github.com/kazumasakawahara/oya-inai';
+
+// ダウンロード手順。img を設定すると、その手順にスクリーンショットが表示されます。
+const steps = [
+  {
+    title: 'ダウンロードのページを開く',
+    body: '下のボタンから、テンプレートの配布ページ（GitHub）を開きます。GitHub への登録やログインは必要ありません。下のような画面が開きます。',
+    img: '/images/post-parent/guide/guide-01-repo.png',
+    alt: '配布ページ（GitHub）の画面。右上に緑色の「Code」ボタンがある。',
+  },
+  {
+    title: '緑色の「Code」ボタンを押す',
+    body: 'ページの右のほうにある、緑色の「＜＞ Code」ボタンを押します。小さなメニューが開きます。',
+    img: '/images/post-parent/guide/guide-02-code-button.png',
+    alt: '「Go to file」欄の右にある、緑色の「Code」ボタン',
+  },
+  {
+    title: '「Download ZIP」を選ぶ',
+    body: '開いたメニューのいちばん下にある「Download ZIP」を押すと、テンプレート一式が ZIP（圧縮ファイル）としてパソコンに保存されます。',
+    img: '/images/post-parent/guide/guide-03-download-zip.png',
+    alt: '開いたメニュー。いちばん下に「Download ZIP」がある。',
+  },
+  {
+    title: 'ファイルを解凍する',
+    body: '保存された「oya-inai-main.zip」を開きます。Mac はダブルクリック、Windows は右クリックして「すべて展開」を選ぶと、中身のフォルダが取り出せます。',
+    img: undefined as string | undefined,
+    alt: 'ダウンロードした ZIP ファイルを解凍する様子',
+  },
+];
+---
+<BaseLayout
+  title="入手のしかた｜親なき後・引き継ぎテンプレート"
+  description="「親なき後・引き継ぎテンプレート（Obsidian）」を、パソコンが苦手な方でも迷わず入手できるよう、画像つきで手順をご案内します。GitHub のアカウントは不要・無料です。"
+>
+  <PageIntro
+    eyebrow="How to start"
+    title="テンプレートの入手のしかた"
+    lead="パソコンの操作に自信がなくても大丈夫。下の手順どおりに進めれば、4ステップで入手できます。GitHub への登録・ログインはいりません。"
+  />
+
+  <section class="section">
+    <div class="container container--narrow reveal">
+      <div class="note">
+        <p class="note__title">はじめに</p>
+        <ul class="note__list">
+          <li><strong>無料</strong>で、どなたでもお使いいただけます。</li>
+          <li>GitHub の<strong>アカウント登録はいりません</strong>。</li>
+          <li>ダウンロードしたメモは<strong>ずっとお手元のパソコン</strong>に残ります。</li>
+        </ul>
+      </div>
+
+      <ol class="steps">
+        {steps.map((s, i) => (
+          <li class="step">
+            <div class="step__num" aria-hidden="true">{i + 1}</div>
+            <div class="step__body">
+              <h2 class="step__title">{s.title}</h2>
+              <p class="step__text">{s.body}</p>
+              {s.img && (
+                <figure class="step__figure">
+                  <img src={s.img} alt={s.alt} loading="lazy" />
+                </figure>
+              )}
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <div class="cta-inline">
+        <a class="btn btn--accent btn--lg" href={repoUrl} rel="external" target="_blank">
+          配布ページ（GitHub）を開く
+          <span class="btn__icon" aria-hidden="true">→</span>
+        </a>
+        <p class="cta-inline__note">別のタブで開きます。上の手順を見ながら進めてください。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--sand">
+    <div class="container container--narrow reveal">
+      <h2 class="section__title">そのあと：Obsidian で開く</h2>
+      <p class="text-soft" style="margin-bottom:var(--space-6);">
+        ダウンロードしたテンプレートは、無料のメモアプリ「Obsidian（オブシディアン）」で開いて使います。
+      </p>
+      <ol class="steps steps--compact">
+        <li class="step">
+          <div class="step__num" aria-hidden="true">1</div>
+          <div class="step__body">
+            <h3 class="step__title">Obsidian をインストールする</h3>
+            <p class="step__text">
+              はじめての方は、まず無料アプリ「Obsidian」をパソコンに入れます。公式サイト
+              <a class="inline-link" href="https://obsidian.md/" rel="external" target="_blank">obsidian.md</a>
+              から入手できます。
+            </p>
+          </div>
+        </li>
+        <li class="step">
+          <div class="step__num" aria-hidden="true">2</div>
+          <div class="step__body">
+            <h3 class="step__title">フォルダを「Vault」として開く</h3>
+            <p class="step__text">
+              Obsidian を起動し、「Open folder as vault（フォルダを Vault として開く）」を選びます。
+            </p>
+          </div>
+        </li>
+        <li class="step">
+          <div class="step__num" aria-hidden="true">3</div>
+          <div class="step__body">
+            <h3 class="step__title">解凍したフォルダを選ぶ</h3>
+            <p class="step__text">
+              さきほど解凍したフォルダを選ぶと、テンプレートが開きます。あとは画面の案内に沿って、書き込んでいくだけです。
+            </p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <CtaBlock
+        title="うまくいかないときは"
+        body="「ボタンが見つからない」「Obsidian の使い方がわからない」など、どんな小さなことでもお気軽にご相談ください。"
+        primary={{ label: 'お問い合わせフォーム', href: '/contact/' }}
+        secondary={{ label: 'ツール・しくみへ戻る', href: '/post-parent/tools/' }}
+        variant="dark"
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* はじめに（補足ボックス） */
+  .note {
+    background: var(--color-sand);
+    border-radius: var(--radius-md);
+    padding: var(--space-5) var(--space-6);
+    margin-bottom: var(--space-8);
+  }
+  .note__title {
+    font-family: var(--font-hand);
+    font-size: 18px;
+    color: var(--color-green-900);
+    margin-bottom: var(--space-3);
+  }
+  .note__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-2);
+  }
+  .note__list li {
+    position: relative;
+    padding-left: 1.5em;
+    font-size: 15px;
+    line-height: var(--lh-normal);
+    color: var(--color-ink);
+  }
+  .note__list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-green-500);
+    font-weight: 700;
+  }
+
+  /* ステップ */
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-6);
+  }
+  .step {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-4);
+    align-items: start;
+  }
+  .step__num {
+    width: 40px;
+    height: 40px;
+    flex: none;
+    border-radius: 50%;
+    background: var(--color-green-700);
+    color: var(--color-cream);
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .steps--compact .step__num {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+  .step__title {
+    font-family: var(--font-hand);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-green-900);
+    margin-bottom: var(--space-2);
+    padding-top: 4px;
+  }
+  .step__text {
+    font-size: 15px;
+    line-height: var(--lh-normal);
+    color: var(--color-ink-mute);
+  }
+  .step__figure {
+    margin: var(--space-4) 0 0;
+  }
+  .step__figure img {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    border: 1px solid var(--color-sand);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+    display: block;
+  }
+
+  /* ステップ途中のボタン */
+  .cta-inline {
+    margin-top: var(--space-8);
+    text-align: center;
+  }
+  .cta-inline__note {
+    margin-top: var(--space-3);
+    font-size: var(--fs-small);
+    color: var(--color-ink-soft);
+  }
+
+  /* 本文中リンク（sudachi の .inline-link を踏襲） */
+  .inline-link {
+    color: var(--color-green-700);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .inline-link:hover { color: var(--color-terra-500); }
+
+  @media (max-width: 768px) {
+    .step__num { width: 34px; height: 34px; font-size: 18px; }
+    .step__title { font-size: 18px; }
+  }
+</style>

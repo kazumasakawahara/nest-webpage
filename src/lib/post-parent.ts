@@ -95,6 +95,7 @@ export const tools: ToolIntro[] = [
     image: '/images/post-parent/oya-inai-template.png',
     imageAlt: '「親なき後・引き継ぎテンプレート」の画面例',
     links: [
+      { label: '入手のしかた（画像つき手順）', href: '/post-parent/tools/oya-inai-start/' },
       { label: 'GitHubで入手する（無料）', href: 'https://github.com/kazumasakawahara/oya-inai', external: true },
       { label: 'この取り組みについて問い合わせる', href: '/contact/' },
     ],
