@@ -97,6 +97,60 @@ const features = [
     </div>
   </section>
 
+  <!-- ===== nest ワークSTATION（お仕事内容） ===== -->
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="section-head reveal text-center">
+        <span class="eyebrow eyebrow--center">nest Work STATION</span>
+        <h2 class="section__title section__title--center">木町家でのお仕事</h2>
+      </div>
+      <p class="reveal work-lead">
+        木町家は、B型事業所としての役割と同時に、美味しい料理やお飲物を楽しみながら
+        地域の方々との対話や学びの場として利用できる場所です。店頭メニューのほか、
+        お弁当・惣菜・スイーツの製造や利用者の食事まで、nestの「食」の中枢を担っています。
+        積み木を使ったオーダー方法は、TV・ラジオ・新聞でも話題になりました。
+      </p>
+      <ul class="work-tags reveal" data-delay="1">
+        <li class="work-tag">調理補助</li>
+        <li class="work-tag">喫茶業務</li>
+        <li class="work-tag">接客業務</li>
+        <li class="work-tag">店内外清掃作業</li>
+        <li class="work-tag">店内販売物陳列作業</li>
+        <li class="work-tag">スイーツ各種の企画製造</li>
+        <li class="work-tag">弁当調理</li>
+        <li class="work-tag">ネスト利用者の食事調理</li>
+      </ul>
+
+      <div class="photo-grid reveal" data-delay="1">
+        <figure class="photo">
+          <img src="/images/kimachiya-work-shitagoshirae.jpg" alt="木町家の厨房で下ごしらえに取り組む利用者" width="760" height="603" loading="lazy" />
+          <figcaption>下ごしらえと言えども、手抜き無し</figcaption>
+        </figure>
+        <figure class="photo">
+          <img src="/images/kimachiya-work-chef.jpg" alt="盛り付けの仕上げをするシェフ" width="536" height="760" loading="lazy" />
+          <figcaption>仕上げにシェフのひと手間</figcaption>
+        </figure>
+        <figure class="photo">
+          <img src="/images/kimachiya-work-drink.jpg" alt="喫茶のドリンクをつくる利用者" width="475" height="760" loading="lazy" />
+          <figcaption>ドリンクづくりも一杯ずつ</figcaption>
+        </figure>
+        <figure class="photo">
+          <img src="/images/kimachiya-work-hall.jpg" alt="ホールで配膳する利用者" width="481" height="760" loading="lazy" />
+          <figcaption>ホール業務は多彩</figcaption>
+        </figure>
+        <figure class="photo">
+          <img src="/images/kimachiya-work-clean.jpg" alt="店内を清掃する利用者" width="420" height="760" loading="lazy" />
+          <figcaption>店内清掃も大切に</figcaption>
+        </figure>
+        <figure class="photo">
+          <img src="/images/kimachiya-work-bento.jpg" alt="お弁当を盛り付ける作業" width="589" height="760" loading="lazy" />
+          <figcaption>お弁当の盛り付け作業</figcaption>
+        </figure>
+      </div>
+      <p class="photo-note reveal">※ 掲載している写真は、ご本人の了解を得て掲載しています。</p>
+    </div>
+  </section>
+
   <!-- ===== Instagram ===== -->
   <section class="section ig-section">
     <div class="container container--narrow">
@@ -212,6 +266,85 @@ const features = [
     font-weight: 700;
     font-size: 14px;
     margin-bottom: 4px;
+  }
+
+  /* お仕事内容（作業種別チップ） */
+  .work-lead {
+    max-width: 720px;
+    margin: 0 auto var(--space-7);
+    text-align: center;
+    font-size: 16px;
+    line-height: 2;
+    color: var(--color-ink);
+  }
+
+  .work-tags {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 760px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+
+  .work-tag {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--color-green-900);
+    background: var(--color-green-100);
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    padding: 8px 18px;
+  }
+
+  /* 仕事風景ギャラリー */
+  .photo-grid {
+    max-width: 900px;
+    margin: var(--space-7) auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+  }
+
+  .photo {
+    margin: 0;
+    background: var(--color-paper);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+  }
+
+  .photo:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
+
+  .photo img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .photo figcaption {
+    padding: var(--space-3) var(--space-4);
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--color-ink-mute);
+    text-align: center;
+  }
+
+  .photo-note {
+    max-width: 900px;
+    margin: var(--space-4) auto 0;
+    font-size: 12px;
+    color: var(--color-ink-mute);
+    text-align: right;
+  }
+
+  @media (max-width: 720px) {
+    .photo-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
   .features {

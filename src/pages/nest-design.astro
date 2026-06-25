@@ -81,6 +81,15 @@ import CtaBlock from '../components/CtaBlock.astro';
         </p>
       </div>
 
+      <ul class="work-tags reveal">
+        <li class="work-tag">オリジナルグッズ企画製作販売</li>
+        <li class="work-tag">アート作品製作販売</li>
+        <li class="work-tag">テキスト入力〜校正作業</li>
+        <li class="work-tag">ネスト全体の販促物企画制作</li>
+        <li class="work-tag">各種印刷物企画制作</li>
+        <li class="work-tag">クリエイティブワーク全般</li>
+      </ul>
+
       <ul class="nd-points nd-points--works reveal">
         <li>
           <strong>イラスト傘</strong>
@@ -96,13 +105,33 @@ import CtaBlock from '../components/CtaBlock.astro';
         </li>
       </ul>
 
-      <figure class="works-photo reveal">
-        <img
-          src="/images/nestdesign-working.png"
-          alt="nestDesign のアトリエで制作に取り組む利用者の様子"
-          loading="lazy"
-        />
-      </figure>
+      <div class="photo-grid reveal">
+        <figure class="photo">
+          <img src="/images/nestdesign-work-atelier.jpg" alt="傘の作品が飾られたnestDesignのアトリエで制作する利用者たち" width="760" height="620" loading="lazy" />
+          <figcaption>ここはnestのビジュアル発信基地</figcaption>
+        </figure>
+        <figure class="photo">
+          <img src="/images/nestdesign-work-umbrella.jpg" alt="イラスト傘に絵付けをする利用者" width="687" height="760" loading="lazy" />
+          <figcaption>世界に一つだけのイラスト傘</figcaption>
+        </figure>
+        <figure class="photo">
+          <img src="/images/nestdesign-work-create.jpg" alt="作品に色を塗る利用者" width="485" height="760" loading="lazy" />
+          <figcaption>集中した作業から、思いがけない作品が誕生</figcaption>
+        </figure>
+        <figure class="photo">
+          <img src="/images/nestdesign-work-brush.jpg" alt="さまざまな画材と制作中の作品" width="760" height="489" loading="lazy" />
+          <figcaption>さまざまな画材を使って</figcaption>
+        </figure>
+        <figure class="photo">
+          <img src="/images/nestdesign-work-art.jpg" alt="利用者が描いた女性の顔のアート作品" width="760" height="738" loading="lazy" />
+          <figcaption>作者の個性が現れる、その個人差が楽しい</figcaption>
+        </figure>
+        <figure class="photo">
+          <img src="/images/nestdesign-work-motto.jpg" alt="「ていねいはいちばんの近道」と書かれた黒板とライオンのアート作品" width="760" height="480" loading="lazy" />
+          <figcaption>“ていねい”は、いちばんの近道</figcaption>
+        </figure>
+      </div>
+      <p class="photo-note reveal">※ 掲載している写真は、ご本人の了解を得て掲載しています。</p>
 
       <!-- 作品集（利用者の作品を後日掲載予定） -->
       <div class="works-gallery reveal">
@@ -164,6 +193,29 @@ import CtaBlock from '../components/CtaBlock.astro';
     color: var(--color-ink);
   }
 
+  /* お仕事内容（業務種別チップ）。PDF パンフレットの業務一覧に対応。 */
+  .work-tags {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto var(--space-7);
+    max-width: 760px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+
+  .work-tag {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--color-green-900);
+    background: var(--color-green-100);
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    padding: 8px 18px;
+  }
+
   /* WORKS は3点を横並びのカード状に。狭い画面では縦積み。 */
   .nd-points--works {
     max-width: 920px;
@@ -176,18 +228,51 @@ import CtaBlock from '../components/CtaBlock.astro';
     .nd-points--works { grid-template-columns: 1fr; }
   }
 
-  .works-photo {
+  /* 制作風景ギャラリー */
+  .photo-grid {
     max-width: 900px;
     margin: 0 auto var(--space-7);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-card);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
   }
 
-  .works-photo img {
+  .photo {
+    margin: 0;
+    background: var(--color-paper);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+  }
+
+  .photo:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
+
+  .photo img {
     display: block;
     width: 100%;
-    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .photo figcaption {
+    padding: var(--space-3) var(--space-4);
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--color-ink-mute);
+    text-align: center;
+  }
+
+  .photo-note {
+    max-width: 900px;
+    margin: var(--space-4) auto 0;
+    font-size: 12px;
+    color: var(--color-ink-mute);
+    text-align: right;
+  }
+
+  @media (max-width: 720px) {
+    .photo-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
   .works-gallery {
