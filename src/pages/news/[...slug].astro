@@ -121,6 +121,36 @@ const fmtDate = (d: Date) =>
     color: var(--color-green-900);
     font-weight: 600;
   }
+  .news-article__body :global(img) {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* 記事内フォトギャラリー（マソンリー） */
+  .news-article__body :global(.news-gallery) {
+    columns: 2;
+    column-gap: var(--space-4);
+    margin: var(--space-7) 0;
+  }
+  .news-article__body :global(.news-gallery figure) {
+    break-inside: avoid;
+    margin: 0 0 var(--space-4);
+  }
+  .news-article__body :global(.news-gallery img) {
+    display: block;
+    width: 100%;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+  }
+  .news-article__body :global(.news-gallery figcaption) {
+    margin-top: var(--space-2);
+    font-size: 13px;
+    color: var(--color-ink-mute);
+    line-height: 1.6;
+  }
+  @media (max-width: 600px) {
+    .news-article__body :global(.news-gallery) { columns: 1; }
+  }
 
   .news-article__foot {
     margin-top: var(--space-8);
