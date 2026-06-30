@@ -296,7 +296,8 @@ function setNotifyEmailOnly() {
 }
 
 // ▼▼▼ 作成済みフォームのID（作成時ログの「フォームID」を入れる） ▼▼▼
-var INQUIRY_FORM_ID = '1mxsWMv0HbbuSvncmnwbahJueadEGCW85ZekVb21F8ho';
+// npo-nest.com（共有ドライブ）の本番フォーム
+var INQUIRY_FORM_ID = '1JzpovVL_3uGQcfL1hU0_uxY7PM6ibB9ItcEHh5BygFg';
 // ▲▲▲
 
 /**
