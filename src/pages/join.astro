@@ -2,6 +2,22 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import CtaBlock from '../components/CtaBlock.astro';
+import { renderSVG } from 'uqr';
+
+// ───────────────────────────────────────────────────────────────
+// 入会申込 Google フォームの公開URL。
+// scripts/create-nest-membership-form.gs を実行すると発行される「公開URL」を
+// ここに貼り付けると、入会ボタンとQRコードが本番表示に切り替わります。
+// 空のままなら入会ボタンはお問い合わせページへの誘導になります。
+const MEMBERSHIP_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScN1ZHmkIkSVD047G5IA37rJmmnbkM2gQTb1BRYom6On_3VDA/viewform';
+// ───────────────────────────────────────────────────────────────
+
+const isFormReady = MEMBERSHIP_FORM_URL.length > 0;
+
+// QR コードをビルド時に SVG として生成（第三者サービス不使用・インライン埋め込み）
+const qrSvg = isFormReady
+  ? renderSVG(MEMBERSHIP_FORM_URL, { blackColor: '#102211', whiteColor: 'transparent', border: 0 })
+  : '';
 ---
 
 <BaseLayout
@@ -40,7 +56,25 @@ import CtaBlock from '../components/CtaBlock.astro';
             </dl>
           </div>
 
-          <a href="/contact/" class="btn btn--primary">入会フォームへ</a>
+          {isFormReady ? (
+            <>
+              <a
+                href={MEMBERSHIP_FORM_URL}
+                class="btn btn--primary"
+                target="_blank"
+                rel="noopener"
+              >入会フォームへ</a>
+              <div class="support__qr">
+                <div class="support__qr-img"><Fragment set:html={qrSvg} /></div>
+                <p class="support__qr-note">
+                  スマホの方はQRコードからも開けます。<br />
+                  紙の申込書は<a href="/pdfs/forms/membership-application.html" target="_blank" rel="noopener">こちらから印刷</a>できます。
+                </p>
+              </div>
+            </>
+          ) : (
+            <a href="/contact/" class="btn btn--primary">入会フォームへ</a>
+          )}
         </article>
 
         <article class="support reveal" data-delay="1">
@@ -198,6 +232,40 @@ import CtaBlock from '../components/CtaBlock.astro';
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-2);
+  }
+
+  .support__qr {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-top: var(--space-2);
+  }
+
+  .support__qr-img {
+    flex-shrink: 0;
+    width: 96px;
+    height: 96px;
+    padding: 8px;
+    background: #fff;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .support__qr-img :global(svg) {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .support__qr-note {
+    font-size: 12px;
+    color: var(--color-ink-mute);
+    line-height: 1.7;
+  }
+
+  .support__qr-note a {
+    color: var(--color-green-700);
+    text-decoration: underline;
   }
 
   .volunteer-list li {
