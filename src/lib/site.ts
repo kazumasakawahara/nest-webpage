@@ -51,6 +51,7 @@ export const navLinks: NavLink[] = [
   { label: '親なき後', href: '/post-parent/' },
   { label: '利用者募集中', href: '/recruit/' },
   { label: 'nest News', href: '/news/' },
+  { label: '教えてAIさん', href: '/ai-tips/' },
   { label: '入会・寄付', href: '/join/' },
   { label: 'お問い合わせ', href: '/contact/' },
   { label: 'アクセス', href: '/access/' },

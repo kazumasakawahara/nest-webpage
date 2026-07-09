@@ -13,4 +13,15 @@ const news = defineCollection({
   }),
 });
 
-export const collections = { news };
+const aiTips = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/ai-tips' }),
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    summary: z.string().optional(),
+    image: z.string().optional(),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { news, aiTips };
