@@ -267,6 +267,28 @@ const fmtDate = (d: Date) =>
     color: var(--color-terra-500);
     margin-bottom: var(--space-2);
   }
+
+  /* 補足ボックス（中級者向け・参考／注意など） */
+  .tip-article__body :global(.callout) {
+    margin: var(--space-5) 0;
+    padding: var(--space-4) var(--space-5);
+    background: var(--color-cream);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+  }
+  .tip-article__body :global(.callout > :last-child) { margin-bottom: 0; }
+  .tip-article__body :global(.callout__label) {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #fff;
+    background: var(--color-terra-500);
+    padding: 3px 12px;
+    border-radius: var(--radius-pill);
+    margin-bottom: var(--space-3);
+  }
   .tip-article__body :global(.mockup figcaption) {
     margin-top: var(--space-2);
     font-size: 12px;
