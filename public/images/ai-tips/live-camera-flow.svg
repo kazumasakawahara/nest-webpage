@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 210" width="600" height="210" role="img" aria-label="スマホのカメラをエラー表示にかざし、声で質問すると、AIがその場で答えてくれる流れの図">
+  <defs>
+    <style>.lbl{font-family:system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;}</style>
+  </defs>
+
+  <!-- ① かざす（複合機＋スマホ） -->
+  <g>
+    <!-- 複合機 -->
+    <rect x="34" y="56" width="76" height="66" rx="8" fill="#b7ac97"/>
+    <rect x="42" y="44" width="60" height="18" rx="4" fill="#9a907c"/>
+    <rect x="46" y="70" width="28" height="16" rx="3" fill="#faf6ef"/>
+    <!-- エラー表示 -->
+    <text x="60" y="82" text-anchor="middle" class="lbl" font-size="10" font-weight="700" fill="#c0492c">E-04</text>
+    <rect x="82" y="70" width="20" height="16" rx="3" fill="#8b8271"/>
+    <!-- スマホ（かざす） -->
+    <rect x="96" y="86" width="42" height="72" rx="8" fill="#2b3a2c" transform="rotate(12 117 122)"/>
+    <rect x="101" y="92" width="32" height="58" rx="4" fill="#faf6ef" transform="rotate(12 117 121)"/>
+    <text x="88" y="182" text-anchor="middle" class="lbl" font-size="15" font-weight="700" fill="#102211">① かざす</text>
+  </g>
+
+  <!-- 矢印 -->
+  <g fill="#faf6ef">
+    <path d="M168 90 h34 v-9 l18 15 -18 15 v-9 h-34 Z" opacity="0.9"/>
+  </g>
+
+  <!-- ② 話す（声の波形） -->
+  <g>
+    <circle cx="290" cy="86" r="40" fill="#faf6ef" stroke="#4a8c3f" stroke-width="3"/>
+    <g stroke="#2f5d3a" stroke-width="5" stroke-linecap="round">
+      <line x1="268" y1="78" x2="268" y2="94"/>
+      <line x1="280" y1="68" x2="280" y2="104"/>
+      <line x1="292" y1="74" x2="292" y2="98"/>
+      <line x1="304" y1="64" x2="304" y2="108"/>
+      <line x1="314" y1="78" x2="314" y2="94"/>
+    </g>
+    <text x="290" y="182" text-anchor="middle" class="lbl" font-size="15" font-weight="700" fill="#102211">② 声で聞く</text>
+    <text x="290" y="150" text-anchor="middle" class="lbl" font-size="11" fill="#3a4a3c">「これ、どうすればいい？」</text>
+  </g>
+
+  <!-- 矢印 -->
+  <g fill="#faf6ef">
+    <path d="M366 90 h34 v-9 l18 15 -18 15 v-9 h-34 Z" opacity="0.9"/>
+  </g>
+
+  <!-- ③ AIがその場で答える -->
+  <g transform="translate(432,28)">
+    <line x1="52" y1="16" x2="52" y2="2" stroke="#2f5d3a" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="52" cy="-4" r="8" fill="#ffd15c"/>
+    <rect x="12" y="16" width="80" height="70" rx="20" fill="#faf6ef" stroke="#2f5d3a" stroke-width="4"/>
+    <rect x="26" y="32" width="52" height="40" rx="12" fill="#1f3a26"/>
+    <circle cx="42" cy="50" r="7" fill="#8fe0b0"/>
+    <circle cx="62" cy="50" r="7" fill="#8fe0b0"/>
+    <path d="M44 62 Q52 70 60 62" fill="none" stroke="#8fe0b0" stroke-width="4" stroke-linecap="round"/>
+    <!-- 声（音波） -->
+    <g stroke="#d97757" stroke-width="3" stroke-linecap="round" fill="none">
+      <path d="M100 40 q8 11 0 22"/>
+      <path d="M110 32 q14 19 0 38"/>
+    </g>
+    <text x="52" y="126" text-anchor="middle" class="lbl" font-size="11" fill="#3a4a3c">「緑のレバーを</text>
+    <text x="52" y="141" text-anchor="middle" class="lbl" font-size="11" fill="#3a4a3c">手前に起こしてください」</text>
+    <text x="52" y="154" text-anchor="middle" class="lbl" font-size="15" font-weight="700" fill="#102211" dy="14">③ その場で教わる</text>
+  </g>
+</svg>
