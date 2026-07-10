@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" width="640" height="320" role="img" aria-label="これまで（専門業者に依頼：見積り・数十万円・数か月）と、これから（AIと自分で：その場で試作・低コスト・すぐ）の対比図">
+  <defs>
+    <style>.lbl{font-family:system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;}</style>
+  </defs>
+
+  <!-- これまで -->
+  <rect x="20" y="26" width="276" height="272" rx="16" fill="#efe9dd" stroke="#ddd3c1" stroke-width="1.5"/>
+  <!-- 建物アイコン -->
+  <g transform="translate(48,52)">
+    <rect x="0" y="6" width="40" height="42" rx="3" fill="#b7ac97"/>
+    <rect x="7" y="14" width="8" height="8" rx="1.5" fill="#efe9dd"/>
+    <rect x="25" y="14" width="8" height="8" rx="1.5" fill="#efe9dd"/>
+    <rect x="7" y="30" width="8" height="8" rx="1.5" fill="#efe9dd"/>
+    <rect x="25" y="30" width="8" height="8" rx="1.5" fill="#efe9dd"/>
+  </g>
+  <text x="100" y="72" class="lbl" font-size="20" font-weight="700" fill="#7c7360">これまで</text>
+  <text x="100" y="94" class="lbl" font-size="13" fill="#9a907c">専門業者に依頼</text>
+  <g class="lbl" font-size="14.5" fill="#5f5847">
+    <g><circle cx="48" cy="132" r="4" fill="#b7ac97"/><text x="64" y="137">要件を伝えて見積り</text></g>
+    <g><circle cx="48" cy="168" r="4" fill="#b7ac97"/><text x="64" y="173">数十万円〜の費用</text></g>
+    <g><circle cx="48" cy="204" r="4" fill="#b7ac97"/><text x="64" y="209">数か月の待ち時間</text></g>
+    <g><circle cx="48" cy="240" r="4" fill="#b7ac97"/><text x="64" y="245">変更のたび追加費用</text></g>
+  </g>
+
+  <!-- 矢印 -->
+  <g transform="translate(300,150)">
+    <circle cx="20" cy="12" r="22" fill="#d97757"/>
+    <path d="M12 12 h14 M20 4 l10 8 -10 8" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- これから -->
+  <rect x="344" y="26" width="276" height="272" rx="16" fill="#eaf2e5" stroke="#bcd7b3" stroke-width="2"/>
+  <!-- ロボットアイコン -->
+  <g transform="translate(372,50)">
+    <line x1="20" y1="8" x2="20" y2="2" stroke="#2f5d3a" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="20" cy="0" r="4" fill="#ffd15c"/>
+    <rect x="2" y="8" width="36" height="30" rx="9" fill="#faf6ef" stroke="#2f5d3a" stroke-width="2.5"/>
+    <rect x="10" y="15" width="20" height="16" rx="5" fill="#1f3a26"/>
+    <circle cx="16" cy="23" r="3.2" fill="#8fe0b0"/>
+    <circle cx="24" cy="23" r="3.2" fill="#8fe0b0"/>
+  </g>
+  <text x="424" y="72" class="lbl" font-size="20" font-weight="700" fill="#2f5d3a">これから</text>
+  <text x="424" y="94" class="lbl" font-size="13" fill="#4a8c3f">AIと自分で</text>
+  <g class="lbl" font-size="14.5" fill="#264a2c" font-weight="600">
+    <g><path d="M368 128 l5 5 9 -10" fill="none" stroke="#4a8c3f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><text x="390" y="137">その場で試作できる</text></g>
+    <g><path d="M368 164 l5 5 9 -10" fill="none" stroke="#4a8c3f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><text x="390" y="173">ほぼ無料〜低コスト</text></g>
+    <g><path d="M368 200 l5 5 9 -10" fill="none" stroke="#4a8c3f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><text x="390" y="209">すぐに形になる</text></g>
+    <g><path d="M368 236 l5 5 9 -10" fill="none" stroke="#4a8c3f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><text x="390" y="245">自分で微調整できる</text></g>
+  </g>
+</svg>
