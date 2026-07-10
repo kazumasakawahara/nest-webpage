@@ -295,6 +295,32 @@ const fmtDate = (d: Date) =>
     color: var(--color-ink-mute);
   }
 
+  /* できあがったスライドの一覧（2列グリッド） */
+  .tip-article__body :global(.slide-gallery) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+    margin: var(--space-6) 0;
+  }
+  .tip-article__body :global(.slide-gallery figure) { margin: 0; }
+  .tip-article__body :global(.slide-gallery img) {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-line);
+    box-shadow: var(--shadow-soft);
+  }
+  .tip-article__body :global(.slide-gallery figcaption) {
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--color-ink-mute);
+    text-align: center;
+  }
+  @media (max-width: 560px) {
+    .tip-article__body :global(.slide-gallery) { grid-template-columns: 1fr; }
+  }
+
   .tip-article__foot {
     margin-top: var(--space-8);
     text-align: center;
