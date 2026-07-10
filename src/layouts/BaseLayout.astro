@@ -93,7 +93,11 @@ const canonical = new URL(Astro.url.pathname, site.legacyUrl).toString();
               }
             });
           },
-          { rootMargin: '0px 0px -80px 0px', threshold: 0.1 }
+          // threshold 0: fire as soon as any part enters view. A larger
+          // threshold can never be met by elements taller than ~10x the
+          // viewport (e.g. long articles on mobile), leaving them stuck at
+          // opacity:0 — a blank page. See long ai-tips articles on phones.
+          { rootMargin: '0px 0px -80px 0px', threshold: 0 }
         );
         document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
       } else {
