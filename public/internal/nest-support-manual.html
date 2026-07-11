@@ -1394,5 +1394,56 @@ cd $env:USERPROFILE\Documents\nest-support; .\setup.ps1 -Skills
 </blockquote>
 <p class="footer-note">nest-support — Claude-Native 親なき後支援データベース ｜ このマニュアルの内容は docs/COMPLETE_MANUAL.md と同一です</p>
 </div>
+
+<style>
+/* コードブロックのワンクリックコピー */
+pre { position: relative; }
+.copy-btn {
+  position: absolute; top: 8px; right: 8px;
+  font: 500 0.8em/1 "Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif;
+  color: #cfe6de; background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.28); border-radius: 6px;
+  padding: 5px 11px; cursor: pointer;
+  opacity: 0; transition: opacity .15s ease, background .15s ease, color .15s ease;
+}
+pre:hover .copy-btn, .copy-btn:focus-visible { opacity: 1; }
+.copy-btn:hover { background: rgba(255, 255, 255, 0.2); color: #fff; }
+.copy-btn.copied { background: #1c9a7c; border-color: #1c9a7c; color: #fff; opacity: 1; }
+@media (hover: none) { .copy-btn { opacity: 1; } } /* タッチ端末では常時表示 */
+@media print { .copy-btn { display: none; } }
+</style>
+<script>
+(function () {
+  function fallback(text, done) {
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.top = '-1000px'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.focus(); ta.select();
+    try { document.execCommand('copy'); done(true); } catch (e) { done(false); }
+    document.body.removeChild(ta);
+  }
+  document.querySelectorAll('pre').forEach(function (pre) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'copy-btn';
+    btn.textContent = 'コピー';
+    btn.setAttribute('aria-label', 'コードをコピー');
+    btn.addEventListener('click', function () {
+      var code = pre.querySelector('code');
+      var text = (code || pre).innerText;
+      var done = function (ok) {
+        btn.textContent = ok ? 'コピーしました' : 'コピー失敗';
+        if (ok) btn.classList.add('copied');
+        setTimeout(function () { btn.textContent = 'コピー'; btn.classList.remove('copied'); }, 1600);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { done(true); }, function () { fallback(text, done); });
+      } else {
+        fallback(text, done);
+      }
+    });
+    pre.appendChild(btn);
+  });
+})();
+</script>
 </body>
 </html>
