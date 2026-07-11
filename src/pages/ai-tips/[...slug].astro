@@ -321,6 +321,76 @@ const fmtDate = (d: Date) =>
     .tip-article__body :global(.slide-gallery) { grid-template-columns: 1fr; }
   }
 
+  /* プロンプト配布ボックス（コピー・保存つき） */
+  .tip-article__body :global(.prompt-share) {
+    margin: var(--space-6) 0;
+    border: 1px solid var(--color-green-700);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: #fff;
+  }
+  .tip-article__body :global(.prompt-share__cap) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-2) var(--space-4);
+    padding: var(--space-4) var(--space-5);
+    background: rgba(74, 140, 63, 0.1);
+    border-bottom: 1px solid rgba(74, 140, 63, 0.25);
+  }
+  .tip-article__body :global(.prompt-share__title) {
+    font-weight: 600;
+    color: var(--color-green-900);
+    font-size: 15px;
+  }
+  .tip-article__body :global(.prompt-share__meta) {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-ink-mute);
+  }
+  .tip-article__body :global(.prompt-share__body) {
+    margin: 0;
+    padding: var(--space-4) var(--space-5);
+    max-height: 300px;
+    overflow: auto;
+    background: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .tip-article__body :global(.prompt-share__actions) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    border-top: 1px solid var(--color-line);
+  }
+  .tip-article__body :global(.prompt-share__btn) {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    border: 1px solid var(--color-green-700);
+    background: var(--color-green-700);
+    color: #fff;
+    transition: background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .tip-article__body :global(.prompt-share__btn:hover) { background: var(--color-green-900); border-color: var(--color-green-900); }
+  .tip-article__body :global(.prompt-share__btn.copied) { background: var(--color-terra-500); border-color: var(--color-terra-500); }
+  .tip-article__body :global(.prompt-share__btn--ghost) {
+    background: transparent;
+    color: var(--color-green-700);
+    border-bottom: 1px solid var(--color-green-700);
+  }
+  .tip-article__body :global(.prompt-share__btn--ghost:hover) { background: rgba(74, 140, 63, 0.08); color: var(--color-green-900); }
+
   .tip-article__foot {
     margin-top: var(--space-8);
     text-align: center;
@@ -331,3 +401,61 @@ const fmtDate = (d: Date) =>
     .tip-article__body :global(.qa__bubble) { max-width: 100%; }
   }
 </style>
+
+<script>
+  // プロンプト配布ボックス：本文プレビューの読み込みと、コピー／保存ボタン
+  const promptCache = new Map<string, Promise<string>>();
+  const fetchPrompt = (src: string) => {
+    if (!promptCache.has(src)) {
+      promptCache.set(src, fetch(src).then((r) => (r.ok ? r.text() : Promise.reject(r.status))));
+    }
+    return promptCache.get(src)!;
+  };
+
+  const copyText = (text: string): Promise<boolean> => {
+    if (navigator.clipboard?.writeText) {
+      return navigator.clipboard.writeText(text).then(() => true, () => fallbackCopy(text));
+    }
+    return Promise.resolve(fallbackCopy(text));
+  };
+  const fallbackCopy = (text: string): boolean => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.cssText = 'position:fixed;top:-1000px;opacity:0';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  };
+
+  // 本文プレビューを読み込む
+  document.querySelectorAll<HTMLElement>('[data-prompt-src]').forEach((el) => {
+    const src = el.dataset.promptSrc!;
+    fetchPrompt(src).then(
+      (text) => { el.textContent = text; },
+      () => { el.textContent = 'プレビューを読み込めませんでした。下の「テキストで保存」からダウンロードしてご利用ください。'; }
+    );
+  });
+
+  // コピーボタン
+  document.querySelectorAll<HTMLButtonElement>('[data-copy-src]').forEach((btn) => {
+    const src = btn.dataset.copySrc!;
+    const label = btn.textContent;
+    btn.addEventListener('click', () => {
+      fetchPrompt(src)
+        .then((text) => copyText(text))
+        .then((ok) => {
+          btn.textContent = ok ? 'コピーしました' : 'コピーできませんでした';
+          if (ok) btn.classList.add('copied');
+          setTimeout(() => { btn.textContent = label; btn.classList.remove('copied'); }, 1800);
+        })
+        .catch(() => {
+          btn.textContent = 'コピーできませんでした';
+          setTimeout(() => { btn.textContent = label; }, 1800);
+        });
+    });
+  });
+</script>
