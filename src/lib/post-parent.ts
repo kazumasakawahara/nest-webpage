@@ -23,6 +23,13 @@ export interface ToolLink {
   external?: boolean;
 }
 
+export interface ToolManual {
+  intro: string;    // 福祉職に配慮した、ハードルを下げる導入紹介文
+  href: string;     // 例: /internal/nest-support-manual.html
+  label: string;    // ボタン文言
+  meta?: string;    // 例: 画面でそのまま読めます（別ページで開きます）
+}
+
 export interface ToolIntro {
   name: string;
   tagline: string;
@@ -32,6 +39,7 @@ export interface ToolIntro {
   imageAlt?: string;
   video?: string;   // 紹介動画（mp4）例: /videos/kurashi-support-ai.mp4
   poster?: string;  // 動画のポスター画像（任意。未指定なら video の先頭フレーム）
+  manual?: ToolManual; // 導入マニュアルへの誘導（任意）
   links: ToolLink[];
 }
 
@@ -82,6 +90,13 @@ export const tools: ToolIntro[] = [
     body: '親や家族が積み重ねた「我が子を守る知恵」を、特定の誰かの記憶に頼らず継承するための仕組みです。本人の大切にしていること、緊急時の注意、支えてくれる人のつながりを整理し、必要なときに必要な人へ確実に引き継げる形にします。',
     video: '/videos/kurashi-support-ai.mp4',
     poster: '/videos/kurashi-support-ai-poster.jpg',
+    manual: {
+      intro:
+        '「システム」や「データベース」と聞くと、少し身構えてしまうかもしれません。でも、心配はいりません。この導入マニュアルは、パソコンの操作に不慣れな支援員・相談員の方を想定して、ゼロから一歩ずつ、画面のとおりに進められるように書いています。Mac・Windows のどちらにも対応し、導入の目安は30分〜1時間ほど。応用的な機能は、必要になったときに読めば大丈夫です。まずは目次をのぞいてみるところから、はじめてみてください。',
+      href: '/internal/nest-support-manual.html',
+      label: '導入マニュアルを読む',
+      meta: '画面でそのまま読めます（別ページで開きます）',
+    },
     links: [
       // GitHub公開可なら追加: { label: 'GitHub で見る', href: 'https://github.com/kazumasakawahara/nest-support', external: true },
       { label: 'この取り組みについて問い合わせる', href: '/contact/' },
