@@ -177,6 +177,104 @@ const fmtDate = (d: Date) =>
     border-top-right-radius: 4px;
   }
 
+  /* qa話者バリエーション（連載用）：アバター＋名札の縦積みと、Gemini/Claude の配色 */
+  .tip-article__body :global(.qa__who) {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+  .tip-article__body :global(.qa__name) {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    color: var(--color-ink-mute);
+  }
+  .tip-article__body :global(.qa__row--ai.qa__row--claude .qa__avatar) {
+    background: var(--color-green-700);
+  }
+  .tip-article__body :global(.qa__row--ai.qa__row--gemini .qa__avatar) {
+    background: var(--color-terra-500);
+  }
+  .tip-article__body :global(.qa__row--ai.qa__row--gemini .qa__bubble) {
+    background: rgba(217, 119, 87, 0.1);
+    border-color: rgba(217, 119, 87, 0.3);
+  }
+
+  /* AI回答の引用ボックス（ふきだしでは長すぎる要旨引用用） */
+  .tip-article__body :global(.ai-answer) {
+    margin: var(--space-6) 0;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: #fff;
+  }
+  .tip-article__body :global(.ai-answer__head) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-3);
+    padding: var(--space-3) var(--space-5);
+    background: var(--color-cream);
+    border-bottom: 1px solid var(--color-line);
+  }
+  .tip-article__body :global(.ai-answer__ai) {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--color-green-900);
+  }
+  .tip-article__body :global(.ai-answer__cond) {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-ink-mute);
+    padding: 2px 10px;
+    background: #fff;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-pill);
+  }
+  .tip-article__body :global(.ai-answer__body) {
+    padding: var(--space-4) var(--space-5);
+    font-size: 15px;
+    line-height: 1.9;
+  }
+  .tip-article__body :global(.ai-answer__body > :last-child) { margin-bottom: 0; }
+  .tip-article__body :global(.ai-answer--gemini) {
+    border-color: rgba(217, 119, 87, 0.35);
+  }
+  .tip-article__body :global(.ai-answer--gemini .ai-answer__head) {
+    background: var(--color-terra-100);
+    border-bottom-color: rgba(217, 119, 87, 0.3);
+  }
+  .tip-article__body :global(.ai-answer--gemini .ai-answer__ai) {
+    color: var(--color-terra-700);
+  }
+  .tip-article__body :global(.ai-answer--claude) {
+    border-color: rgba(74, 140, 63, 0.35);
+  }
+  .tip-article__body :global(.ai-answer--claude .ai-answer__head) {
+    background: rgba(74, 140, 63, 0.1);
+    border-bottom-color: rgba(74, 140, 63, 0.25);
+  }
+
+  /* 連載ナビ（callout流用）の回リスト */
+  .tip-article__body :global(.series-nav__list) {
+    margin: var(--space-3) 0 0;
+    padding-left: 1.6em;
+    list-style: decimal;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .tip-article__body :global(.series-nav__list li) { margin-bottom: 4px; }
+  .tip-article__body :global(.series-nav__list .is-current) {
+    font-weight: 600;
+    color: var(--color-green-900);
+  }
+  .tip-article__body :global(.series-nav__list .is-upcoming) {
+    color: var(--color-ink-mute);
+  }
+
   /* キーボードのキー表示 */
   .tip-article__body :global(.kbd) {
     display: inline-flex;
