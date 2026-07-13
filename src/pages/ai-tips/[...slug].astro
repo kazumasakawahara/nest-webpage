@@ -125,6 +125,26 @@ const fmtDate = (d: Date) =>
     max-width: 100%;
     height: auto;
   }
+  .tip-article__body :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--space-5) 0;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .tip-article__body :global(th),
+  .tip-article__body :global(td) {
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--color-line);
+    text-align: left;
+    vertical-align: top;
+  }
+  .tip-article__body :global(th) {
+    background: var(--color-cream);
+    color: var(--color-green-900);
+    font-weight: 600;
+    white-space: nowrap;
+  }
 
   /* AIとの会話ふきだし */
   .tip-article__body :global(.qa) {
@@ -273,6 +293,49 @@ const fmtDate = (d: Date) =>
   }
   .tip-article__body :global(.series-nav__list .is-upcoming) {
     color: var(--color-ink-mute);
+  }
+
+  /* 連載ページャー（各回末尾の回番号ボタン） */
+  .tip-article__body :global(.series-pager) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    margin: var(--space-7) 0 0;
+  }
+  .tip-article__body :global(.series-pager__label) {
+    flex-basis: 100%;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    color: var(--color-ink-mute);
+    margin-bottom: var(--space-2);
+  }
+  .tip-article__body :global(.series-pager__btn) {
+    display: flex;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-family: var(--font-mono);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-green-700);
+    background: #fff;
+    border: 1px solid var(--color-green-700);
+    transition: background .15s ease, color .15s ease;
+  }
+  .tip-article__body :global(a.series-pager__btn:hover) {
+    background: var(--color-green-700);
+    color: #fff;
+  }
+  .tip-article__body :global(.series-pager__btn.is-current) {
+    background: var(--color-green-700);
+    color: #fff;
+    cursor: default;
   }
 
   /* キーボードのキー表示 */

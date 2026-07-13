@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" width="640" height="320" role="img" aria-label="AIに持たせる3つの“手”の図。①外から取ってくる手（Webやオープンデータからの取得）、②手元のファイルを扱う手（ExcelやPDFの読み書き）、③台帳を出し入れする手（貯めてきた情報の照会）">
+  <defs>
+    <style>.lbl{font-family:system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;}</style>
+  </defs>
+
+  <text x="24" y="44" class="lbl" font-size="18" font-weight="700" fill="#2f5d3a">AIに持たせる、3つの“手”</text>
+
+  <!-- ロボット -->
+  <g transform="translate(56,150)">
+    <line x1="18" y1="7" x2="18" y2="2" stroke="#2f5d3a" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="18" cy="0" r="3.2" fill="#ffd15c"/>
+    <rect x="2" y="7" width="32" height="26" rx="8" fill="#faf6ef" stroke="#2f5d3a" stroke-width="2.2"/>
+    <rect x="9" y="13" width="18" height="14" rx="4.5" fill="#1f3a26"/>
+    <circle cx="14.5" cy="20" r="2.6" fill="#8fe0b0"/>
+    <circle cx="21.5" cy="20" r="2.6" fill="#8fe0b0"/>
+  </g>
+
+  <!-- つなぐ線 -->
+  <path d="M104 164 C136 130 148 108 176 100" fill="none" stroke="#bcd7b3" stroke-width="2.4"/>
+  <path d="M104 170 h72" fill="none" stroke="#bcd7b3" stroke-width="2.4"/>
+  <path d="M104 176 C136 212 148 234 176 242" fill="none" stroke="#bcd7b3" stroke-width="2.4"/>
+
+  <!-- カード① -->
+  <rect x="176" y="64" width="440" height="72" rx="14" fill="#ffffff" stroke="#ddd3c1" stroke-width="1.5"/>
+  <circle cx="216" cy="100" r="20" fill="#eaf2e5" stroke="#bcd7b3" stroke-width="1.5"/>
+  <g transform="translate(204,90)">
+    <path d="M6 10 a5 5 0 0 1 1 -9.8 a6.5 6.5 0 0 1 12.6 1.6 a4.4 4.4 0 0 1 -1.4 8.2 Z" fill="#4a8c3f"/>
+    <path d="M12 12 v7 M8.5 15.5 l3.5 4 3.5 -4" fill="none" stroke="#d97757" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="252" y="95" class="lbl" font-size="14" font-weight="700" fill="#2f5d3a">外から取ってくる手</text>
+  <text x="252" y="117" class="lbl" font-size="12" fill="#7c7360">Webやオープンデータから、資料やデータを取得する</text>
+
+  <!-- カード② -->
+  <rect x="176" y="148" width="440" height="72" rx="14" fill="#ffffff" stroke="#ddd3c1" stroke-width="1.5"/>
+  <circle cx="216" cy="184" r="20" fill="#eaf2e5" stroke="#bcd7b3" stroke-width="1.5"/>
+  <g transform="translate(206,174)">
+    <rect x="0" y="0" width="20" height="20" rx="3" fill="none" stroke="#4a8c3f" stroke-width="2"/>
+    <line x1="0" y1="7" x2="20" y2="7" stroke="#4a8c3f" stroke-width="1.6"/>
+    <line x1="0" y1="13.5" x2="20" y2="13.5" stroke="#4a8c3f" stroke-width="1.6"/>
+    <line x1="10" y1="7" x2="10" y2="20" stroke="#4a8c3f" stroke-width="1.6"/>
+  </g>
+  <text x="252" y="179" class="lbl" font-size="14" font-weight="700" fill="#2f5d3a">手元のファイルを扱う手</text>
+  <text x="252" y="201" class="lbl" font-size="12" fill="#7c7360">ExcelやPDFを読んだり、書いたり、整えたりする</text>
+
+  <!-- カード③ -->
+  <rect x="176" y="232" width="440" height="72" rx="14" fill="#ffffff" stroke="#ddd3c1" stroke-width="1.5"/>
+  <circle cx="216" cy="268" r="20" fill="#eaf2e5" stroke="#bcd7b3" stroke-width="1.5"/>
+  <g transform="translate(207,257)">
+    <rect x="0" y="0" width="18" height="22" rx="2.5" fill="#4a8c3f"/>
+    <rect x="3.5" y="0" width="2.2" height="22" fill="#2f5d3a"/>
+    <line x1="9" y1="6" x2="15" y2="6" stroke="#eaf2e5" stroke-width="1.7" stroke-linecap="round"/>
+    <line x1="9" y1="11" x2="15" y2="11" stroke="#eaf2e5" stroke-width="1.7" stroke-linecap="round"/>
+    <line x1="9" y1="16" x2="15" y2="16" stroke="#eaf2e5" stroke-width="1.7" stroke-linecap="round"/>
+  </g>
+  <text x="252" y="263" class="lbl" font-size="14" font-weight="700" fill="#2f5d3a">台帳を出し入れする手</text>
+  <text x="252" y="285" class="lbl" font-size="12" fill="#7c7360">貯めてきた情報を、その場ですぐに照会する</text>
+</svg>

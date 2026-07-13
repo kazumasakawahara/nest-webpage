@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-label="人が「この地域で対応できるところを一覧にして」と一言頼むと、舞台裏でAIが道具・手順書・台帳の三点セットを連携させ、一覧表と関係図が出てくる図。道具×手順書×台帳、だから一言で終わる">
+  <defs>
+    <style>.lbl{font-family:system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;}</style>
+  </defs>
+
+  <!-- 頼む人 -->
+  <circle cx="102" cy="106" r="15" fill="#f2d9ae" stroke="#d9c497" stroke-width="1.5"/>
+  <circle cx="96.5" cy="103" r="2" fill="#5f5847"/><circle cx="107.5" cy="103" r="2" fill="#5f5847"/>
+  <path d="M96 110 Q102 114.5 108 110" fill="none" stroke="#5f5847" stroke-width="1.7" stroke-linecap="round"/>
+
+  <rect x="24" y="134" width="156" height="86" rx="12" fill="#ffffff" stroke="#ddd3c1" stroke-width="1.2"/>
+  <text x="102" y="160" text-anchor="middle" class="lbl" font-size="12.5" fill="#5f5847">この地域で</text>
+  <text x="102" y="179" text-anchor="middle" class="lbl" font-size="12.5" fill="#5f5847">対応できるところを、</text>
+  <text x="102" y="198" text-anchor="middle" class="lbl" font-size="12.5" font-weight="700" fill="#5f5847">一覧にして！</text>
+
+  <!-- 矢印1 -->
+  <path d="M192 176 h30 M212 168 l12 8 -12 8" fill="none" stroke="#d97757" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- 舞台裏ボックス -->
+  <rect x="244" y="52" width="216" height="292" rx="16" fill="#eaf2e5" stroke="#bcd7b3" stroke-width="2"/>
+  <g transform="translate(334,68)">
+    <line x1="18" y1="7" x2="18" y2="2" stroke="#2f5d3a" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="18" cy="0" r="3.2" fill="#ffd15c"/>
+    <rect x="2" y="7" width="32" height="26" rx="8" fill="#faf6ef" stroke="#2f5d3a" stroke-width="2.2"/>
+    <rect x="9" y="13" width="18" height="14" rx="4.5" fill="#1f3a26"/>
+    <circle cx="14.5" cy="20" r="2.6" fill="#8fe0b0"/>
+    <circle cx="21.5" cy="20" r="2.6" fill="#8fe0b0"/>
+  </g>
+
+  <!-- チップ：道具 -->
+  <rect x="266" y="120" width="172" height="54" rx="12" fill="#ffffff" stroke="#bcd7b3" stroke-width="1.4"/>
+  <g transform="translate(284,136)">
+    <rect x="0" y="4" width="24" height="13" rx="3" fill="#d97757"/>
+    <path d="M7 4 v-2.6 h10 v2.6" fill="none" stroke="#d97757" stroke-width="2.2"/>
+    <rect x="9.5" y="7.5" width="5" height="4" rx="1" fill="#ffffff"/>
+  </g>
+  <text x="322" y="143" class="lbl" font-size="13.5" font-weight="700" fill="#2f5d3a">道具</text>
+  <text x="322" y="162" class="lbl" font-size="11" fill="#7c7360">外とつながる“手足”</text>
+
+  <text x="352" y="192" text-anchor="middle" class="lbl" font-size="17" font-weight="700" fill="#4a8c3f">＋</text>
+
+  <!-- チップ：手順書 -->
+  <rect x="266" y="202" width="172" height="54" rx="12" fill="#ffffff" stroke="#bcd7b3" stroke-width="1.4"/>
+  <g transform="translate(288,214)">
+    <rect x="0" y="0" width="22" height="28" rx="3" fill="#faf6ef" stroke="#4a8c3f" stroke-width="1.8"/>
+    <line x1="5" y1="8" x2="17" y2="8" stroke="#4a8c3f" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="5" y1="14" x2="17" y2="14" stroke="#4a8c3f" stroke-width="1.5" stroke-linecap="round"/>
+    <line x1="5" y1="20" x2="12" y2="20" stroke="#4a8c3f" stroke-width="1.5" stroke-linecap="round"/>
+  </g>
+  <text x="322" y="225" class="lbl" font-size="13.5" font-weight="700" fill="#2f5d3a">手順書</text>
+  <text x="322" y="244" class="lbl" font-size="11" fill="#7c7360">“うちのやり方”のメモ</text>
+
+  <text x="352" y="274" text-anchor="middle" class="lbl" font-size="17" font-weight="700" fill="#4a8c3f">＋</text>
+
+  <!-- チップ：台帳 -->
+  <rect x="266" y="284" width="172" height="54" rx="12" fill="#ffffff" stroke="#bcd7b3" stroke-width="1.4"/>
+  <g transform="translate(290,297)">
+    <rect x="0" y="0" width="18" height="24" rx="2.5" fill="#4a8c3f"/>
+    <rect x="3.5" y="0" width="2.2" height="24" fill="#2f5d3a"/>
+    <line x1="9" y1="7" x2="15" y2="7" stroke="#eaf2e5" stroke-width="1.7" stroke-linecap="round"/>
+    <line x1="9" y1="12" x2="15" y2="12" stroke="#eaf2e5" stroke-width="1.7" stroke-linecap="round"/>
+    <line x1="9" y1="17" x2="15" y2="17" stroke="#eaf2e5" stroke-width="1.7" stroke-linecap="round"/>
+  </g>
+  <text x="322" y="307" class="lbl" font-size="13.5" font-weight="700" fill="#2f5d3a">台帳</text>
+  <text x="322" y="326" class="lbl" font-size="11" fill="#7c7360">貯めてきた情報</text>
+
+  <!-- 矢印2 -->
+  <path d="M472 176 h30 M492 168 l12 8 -12 8" fill="none" stroke="#d97757" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- 出力 -->
+  <rect x="516" y="104" width="100" height="130" rx="10" fill="#ffffff" stroke="#ddd3c1" stroke-width="1.5"/>
+  <rect x="516" y="104" width="100" height="26" rx="10" fill="#eaf2e5"/>
+  <rect x="516" y="118" width="100" height="12" fill="#eaf2e5"/>
+  <line x1="530" y1="146" x2="602" y2="146" stroke="#ddd3c1" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="530" y1="162" x2="602" y2="162" stroke="#ddd3c1" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="530" y1="178" x2="602" y2="178" stroke="#ddd3c1" stroke-width="1.6" stroke-linecap="round"/>
+  <g stroke="#4a8c3f" stroke-width="1.6">
+    <line x1="546" y1="208" x2="566" y2="198"/>
+    <line x1="566" y1="198" x2="586" y2="210"/>
+    <line x1="546" y1="208" x2="586" y2="210"/>
+  </g>
+  <circle cx="546" cy="208" r="5" fill="#d97757"/>
+  <circle cx="566" cy="198" r="5" fill="#4a8c3f"/>
+  <circle cx="586" cy="210" r="5" fill="#4a8c3f"/>
+  <text x="566" y="258" text-anchor="middle" class="lbl" font-size="12.5" font-weight="700" fill="#2f5d3a">一覧表＋関係図</text>
+
+  <!-- 締めのピル -->
+  <rect x="108" y="360" width="424" height="32" rx="16" fill="#d97757"/>
+  <text x="320" y="381" text-anchor="middle" class="lbl" font-size="13" font-weight="700" fill="#ffffff">道具 × 手順書 × 台帳 ―― だから、一言で終わる</text>
+</svg>

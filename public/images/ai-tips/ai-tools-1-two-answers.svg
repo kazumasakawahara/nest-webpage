@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 430" width="640" height="430" role="img" aria-label="同じ質問を、素のまま（道具なし）のGeminiと、道具と台帳を持たせたClaudeに聞いたときの対比図。Geminiは調べ方を丁寧に案内してくれる道案内の先生、Claudeは自分でデータを取ってくる一緒に動く相棒。差は頭の良さではなく持ち物のちがい">
+  <defs>
+    <style>.lbl{font-family:system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;}</style>
+  </defs>
+
+  <!-- 質問する人 -->
+  <g>
+    <circle cx="320" cy="34" r="15" fill="#f2d9ae" stroke="#d9c497" stroke-width="1.5"/>
+    <circle cx="314.5" cy="31" r="2" fill="#5f5847"/><circle cx="325.5" cy="31" r="2" fill="#5f5847"/>
+    <path d="M314 38 Q320 42.5 326 38" fill="none" stroke="#5f5847" stroke-width="1.7" stroke-linecap="round"/>
+  </g>
+  <rect x="112" y="58" width="416" height="38" rx="12" fill="#ffffff" stroke="#ddd3c1" stroke-width="1.3"/>
+  <text x="320" y="82" text-anchor="middle" class="lbl" font-size="13.5" fill="#5f5847">行動障害に対応できるグループホームを、地域を絞って一覧にできる？</text>
+
+  <!-- 分岐矢印 -->
+  <path d="M300 104 Q240 116 190 126" fill="none" stroke="#d97757" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M196 118 l-8 9 12 1" fill="none" stroke="#d97757" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M340 104 Q400 116 450 126" fill="none" stroke="#d97757" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M440 117 L451 126 L437 131" fill="none" stroke="#d97757" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- 左：Gemini（素のまま） -->
+  <rect x="20" y="136" width="290" height="238" rx="16" fill="#efe9dd" stroke="#ddd3c1" stroke-width="1.5"/>
+  <text x="48" y="176" class="lbl" font-size="19" font-weight="700" fill="#7c7360">Gemini</text>
+  <text x="48" y="197" class="lbl" font-size="12.5" fill="#9a907c">素のまま（道具なし）</text>
+
+  <!-- Geminiロボット（手ぶら・案内板つき） -->
+  <g transform="translate(44,214)">
+    <line x1="18" y1="7" x2="18" y2="2" stroke="#7c7360" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="18" cy="0" r="3.2" fill="#ffd15c"/>
+    <rect x="2" y="7" width="32" height="26" rx="8" fill="#faf6ef" stroke="#7c7360" stroke-width="2.2"/>
+    <rect x="9" y="13" width="18" height="14" rx="4.5" fill="#4a443a"/>
+    <circle cx="14.5" cy="20" r="2.6" fill="#f2d9ae"/>
+    <circle cx="21.5" cy="20" r="2.6" fill="#f2d9ae"/>
+  </g>
+  <rect x="92" y="212" width="192" height="52" rx="12" fill="#ffffff" stroke="#ddd3c1" stroke-width="1.2"/>
+  <text x="188" y="233" text-anchor="middle" class="lbl" font-size="12.5" fill="#5f5847">WAM NETでの調べ方を、</text>
+  <text x="188" y="251" text-anchor="middle" class="lbl" font-size="12.5" fill="#5f5847">ご案内しますね</text>
+
+  <g class="lbl" font-size="13.5" fill="#5f5847">
+    <g><circle cx="50" cy="290" r="4" fill="#b7ac97"/><text x="64" y="295">調べる手順を丁寧に教えてくれる</text></g>
+    <g><circle cx="50" cy="320" r="4" fill="#b7ac97"/><text x="64" y="325">実際の作業は、人間が行う</text></g>
+  </g>
+  <text x="165" y="356" text-anchor="middle" class="lbl" font-size="14" font-weight="700" fill="#7c7360">AI ＝ 道案内の先生</text>
+
+  <!-- 右：Claude（道具と台帳あり） -->
+  <rect x="330" y="136" width="290" height="238" rx="16" fill="#eaf2e5" stroke="#bcd7b3" stroke-width="2"/>
+  <text x="358" y="176" class="lbl" font-size="19" font-weight="700" fill="#2f5d3a">Claude</text>
+  <text x="358" y="197" class="lbl" font-size="12.5" fill="#4a8c3f">道具と台帳を持たせてある</text>
+
+  <!-- Claudeロボット（道具箱と台帳つき） -->
+  <g transform="translate(354,214)">
+    <line x1="18" y1="7" x2="18" y2="2" stroke="#2f5d3a" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="18" cy="0" r="3.2" fill="#ffd15c"/>
+    <rect x="2" y="7" width="32" height="26" rx="8" fill="#faf6ef" stroke="#2f5d3a" stroke-width="2.2"/>
+    <rect x="9" y="13" width="18" height="14" rx="4.5" fill="#1f3a26"/>
+    <circle cx="14.5" cy="20" r="2.6" fill="#8fe0b0"/>
+    <circle cx="21.5" cy="20" r="2.6" fill="#8fe0b0"/>
+    <!-- 道具箱 -->
+    <g transform="translate(-6,38)">
+      <rect x="0" y="4" width="26" height="14" rx="3" fill="#d97757"/>
+      <path d="M8 4 v-3 h10 v3" fill="none" stroke="#d97757" stroke-width="2.4"/>
+      <rect x="10.5" y="8" width="5" height="4" rx="1" fill="#ffffff"/>
+    </g>
+    <!-- 台帳 -->
+    <g transform="translate(26,38)">
+      <rect x="0" y="0" width="16" height="18" rx="2" fill="#4a8c3f"/>
+      <rect x="3" y="0" width="2" height="18" fill="#2f5d3a"/>
+      <line x1="8" y1="5" x2="13" y2="5" stroke="#eaf2e5" stroke-width="1.6" stroke-linecap="round"/>
+      <line x1="8" y1="9" x2="13" y2="9" stroke="#eaf2e5" stroke-width="1.6" stroke-linecap="round"/>
+      <line x1="8" y1="13" x2="13" y2="13" stroke="#eaf2e5" stroke-width="1.6" stroke-linecap="round"/>
+    </g>
+  </g>
+  <rect x="410" y="212" width="184" height="52" rx="12" fill="#ffffff" stroke="#bcd7b3" stroke-width="1.2"/>
+  <text x="502" y="233" text-anchor="middle" class="lbl" font-size="12.5" fill="#264a2c">では、私がデータを</text>
+  <text x="502" y="251" text-anchor="middle" class="lbl" font-size="12.5" fill="#264a2c">取ってきますね</text>
+
+  <g class="lbl" font-size="13.5" fill="#264a2c" font-weight="600">
+    <g><path d="M356 285 l5 5 9 -10" fill="none" stroke="#4a8c3f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><text x="378" y="295">自分でデータを取ってくる</text></g>
+    <g><path d="M356 315 l5 5 9 -10" fill="none" stroke="#4a8c3f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><text x="378" y="325">貯めてきた台帳と突き合わせる</text></g>
+  </g>
+  <text x="475" y="356" text-anchor="middle" class="lbl" font-size="14" font-weight="700" fill="#2f5d3a">AI ＝ 一緒に動く相棒</text>
+
+  <!-- 締めのピル -->
+  <rect x="164" y="392" width="312" height="30" rx="15" fill="#d97757"/>
+  <text x="320" y="412" text-anchor="middle" class="lbl" font-size="13" font-weight="700" fill="#ffffff">差は“頭の良さ”ではなく、持ち物のちがい</text>
+</svg>

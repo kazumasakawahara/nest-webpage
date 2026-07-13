@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 430" width="640" height="430" role="img" aria-label="一覧表ができるまでの6つの工程図。①地域を決める、②事業所データを取得、③加算の届出と突合、④詳細ページで補完、⑤現場の声を重ねる、⑥一覧表・関係図へ出力。6つの工程をつなぐ鍵は10桁の事業所番号">
+  <defs>
+    <style>.lbl{font-family:system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;}</style>
+  </defs>
+
+  <text x="24" y="40" class="lbl" font-size="18" font-weight="700" fill="#2f5d3a">“一覧表”ができるまで ― 道具の連携プレー</text>
+
+  <!-- ①〜③（上段） -->
+  <g>
+    <rect x="24" y="64" width="184" height="104" rx="14" fill="#ffffff" stroke="#ddd3c1" stroke-width="1.5"/>
+    <circle cx="46" cy="88" r="13" fill="#d97757"/>
+    <text x="46" y="93" text-anchor="middle" class="lbl" font-size="13" font-weight="700" fill="#ffffff">1</text>
+    <text x="68" y="93" class="lbl" font-size="13.5" font-weight="700" fill="#2f5d3a">地域を決める</text>
+    <text x="46" y="122" class="lbl" font-size="11.5" fill="#7c7360">市区町村を指定して</text>
+    <text x="46" y="140" class="lbl" font-size="11.5" fill="#7c7360">対象エリアを確定</text>
+  </g>
+  <g>
+    <rect x="228" y="64" width="184" height="104" rx="14" fill="#ffffff" stroke="#ddd3c1" stroke-width="1.5"/>
+    <circle cx="250" cy="88" r="13" fill="#d97757"/>
+    <text x="250" y="93" text-anchor="middle" class="lbl" font-size="13" font-weight="700" fill="#ffffff">2</text>
+    <text x="272" y="93" class="lbl" font-size="13.5" font-weight="700" fill="#2f5d3a">事業所データを取得</text>
+    <text x="250" y="122" class="lbl" font-size="11.5" fill="#7c7360">国のオープンデータから</text>
+    <text x="250" y="140" class="lbl" font-size="11.5" fill="#7c7360">グループホームの一覧を入手</text>
+  </g>
+  <g>
+    <rect x="432" y="64" width="184" height="104" rx="14" fill="#ffffff" stroke="#ddd3c1" stroke-width="1.5"/>
+    <circle cx="454" cy="88" r="13" fill="#d97757"/>
+    <text x="454" y="93" text-anchor="middle" class="lbl" font-size="13" font-weight="700" fill="#ffffff">3</text>
+    <text x="476" y="93" class="lbl" font-size="13.5" font-weight="700" fill="#2f5d3a">加算の届出と突合</text>
+    <text x="454" y="122" class="lbl" font-size="11.5" fill="#7c7360">自治体が公表するExcelで</text>
+    <text x="454" y="140" class="lbl" font-size="11.5" fill="#7c7360">“体制”のしるしを付ける</text>
+  </g>
+
+  <!-- 上段の矢印 -->
+  <path d="M209 116 h16 M219 110 l7 6 -7 6" fill="none" stroke="#d97757" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M413 116 h16 M423 110 l7 6 -7 6" fill="none" stroke="#d97757" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- ③→④ の折り返し -->
+  <path d="M524 170 C524 214 116 200 116 228" fill="none" stroke="#d97757" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M110 219 l6 10 7 -9" fill="none" stroke="#d97757" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- ④〜⑥（下段） -->
+  <g>
+    <rect x="24" y="236" width="184" height="104" rx="14" fill="#ffffff" stroke="#ddd3c1" stroke-width="1.5"/>
+    <circle cx="46" cy="260" r="13" fill="#d97757"/>
+    <text x="46" y="265" text-anchor="middle" class="lbl" font-size="13" font-weight="700" fill="#ffffff">4</text>
+    <text x="68" y="265" class="lbl" font-size="13.5" font-weight="700" fill="#2f5d3a">詳細ページで補完</text>
+    <text x="46" y="294" class="lbl" font-size="11.5" fill="#7c7360">運営方針・特色などを</text>
+    <text x="46" y="312" class="lbl" font-size="11.5" fill="#7c7360">読み取って書き足す</text>
+  </g>
+  <g>
+    <rect x="228" y="236" width="184" height="104" rx="14" fill="#ffffff" stroke="#ddd3c1" stroke-width="1.5"/>
+    <circle cx="250" cy="260" r="13" fill="#d97757"/>
+    <text x="250" y="265" text-anchor="middle" class="lbl" font-size="13" font-weight="700" fill="#ffffff">5</text>
+    <text x="272" y="265" class="lbl" font-size="13.5" font-weight="700" fill="#2f5d3a">現場の声を重ねる</text>
+    <text x="250" y="294" class="lbl" font-size="11.5" fill="#7c7360">口コミや受入れの実際で</text>
+    <text x="250" y="312" class="lbl" font-size="11.5" fill="#7c7360">“実態”を補正する</text>
+  </g>
+  <g>
+    <rect x="432" y="236" width="184" height="104" rx="14" fill="#eaf2e5" stroke="#bcd7b3" stroke-width="2"/>
+    <circle cx="454" cy="260" r="13" fill="#4a8c3f"/>
+    <text x="454" y="265" text-anchor="middle" class="lbl" font-size="13" font-weight="700" fill="#ffffff">6</text>
+    <text x="476" y="265" class="lbl" font-size="13.5" font-weight="700" fill="#2f5d3a">一覧表・関係図へ</text>
+    <text x="454" y="294" class="lbl" font-size="11.5" fill="#4a8c3f">Excelやエコマップに</text>
+    <text x="454" y="312" class="lbl" font-size="11.5" fill="#4a8c3f">出力して、みんなで共有</text>
+  </g>
+
+  <!-- 下段の矢印 -->
+  <path d="M209 288 h16 M219 282 l7 6 -7 6" fill="none" stroke="#d97757" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M413 288 h16 M423 282 l7 6 -7 6" fill="none" stroke="#d97757" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- 鍵ピル -->
+  <rect x="118" y="376" width="404" height="34" rx="17" fill="#4a8c3f"/>
+  <g transform="translate(140,384)">
+    <circle cx="7" cy="9" r="6" fill="none" stroke="#ffffff" stroke-width="2.4"/>
+    <path d="M12 9 h14 M22 9 v6 M26 9 v4" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round"/>
+  </g>
+  <text x="336" y="398" text-anchor="middle" class="lbl" font-size="13" font-weight="700" fill="#ffffff">6つの工程をつなぐ鍵は、10桁の「事業所番号」</text>
+</svg>

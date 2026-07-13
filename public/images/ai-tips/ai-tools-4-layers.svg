@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 330" width="640" height="330" role="img" aria-label="貯めておきたい3つの層の図。①構造のデータ（事業所の台帳：住所・定員・加算の有無など）、②現場の実感（照会したときの反応、実際の受入れ、口コミ）、③失敗と教訓（うまくいかなかった調べ方や切れたリンクも、次に効く）">
+  <defs>
+    <style>.lbl{font-family:system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;}</style>
+  </defs>
+
+  <text x="24" y="44" class="lbl" font-size="18" font-weight="700" fill="#2f5d3a">貯めておきたい、3つの“層”</text>
+
+  <rect x="24" y="68" width="592" height="72" rx="14" fill="#ffffff" stroke="#ddd3c1" stroke-width="1.5"/>
+  <circle cx="58" cy="104" r="14" fill="#d97757"/>
+  <text x="58" y="109" text-anchor="middle" class="lbl" font-size="13.5" font-weight="700" fill="#ffffff">1</text>
+  <text x="90" y="99" class="lbl" font-size="14.5" font-weight="700" fill="#2f5d3a">構造のデータ</text>
+  <text x="90" y="121" class="lbl" font-size="12.5" fill="#7c7360">事業所の台帳そのもの ― 住所・定員・加算の有無など</text>
+
+  <rect x="24" y="156" width="592" height="72" rx="14" fill="#ffffff" stroke="#ddd3c1" stroke-width="1.5"/>
+  <circle cx="58" cy="192" r="14" fill="#d97757"/>
+  <text x="58" y="197" text-anchor="middle" class="lbl" font-size="13.5" font-weight="700" fill="#ffffff">2</text>
+  <text x="90" y="187" class="lbl" font-size="14.5" font-weight="700" fill="#2f5d3a">現場の実感</text>
+  <text x="90" y="209" class="lbl" font-size="12.5" fill="#7c7360">照会したときの反応、実際の受入れ、見学のときの気づき</text>
+
+  <rect x="24" y="244" width="592" height="72" rx="14" fill="#ffffff" stroke="#ddd3c1" stroke-width="1.5"/>
+  <circle cx="58" cy="280" r="14" fill="#d97757"/>
+  <text x="58" y="285" text-anchor="middle" class="lbl" font-size="13.5" font-weight="700" fill="#ffffff">3</text>
+  <text x="90" y="275" class="lbl" font-size="14.5" font-weight="700" fill="#2f5d3a">失敗と教訓</text>
+  <text x="90" y="297" class="lbl" font-size="12.5" fill="#7c7360">うまくいかなかった調べ方・切れたリンクも、次に効く“財産”</text>
+</svg>
