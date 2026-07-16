@@ -103,13 +103,17 @@
         color: var(--ink-soft);
       }
 
-      /* Home: theme grid */
+      /* Home: theme grid.
+         minmax(0,1fr) + min-width:0 on items: grid children default to
+         min-width:auto, so a long unwrappable label would widen the column
+         past the track and overflow the viewport on narrow phones. */
       .theme-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 12px;
       }
       .theme-btn {
+        min-width: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -132,6 +136,8 @@
         font-size: 22px;
         font-weight: 700;
         color: var(--green-dark);
+        max-width: 100%;
+        overflow-wrap: anywhere;
       }
 
       /* Cards */
@@ -149,10 +155,11 @@
       }
       .card-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 12px;
       }
       .card-btn {
+        min-width: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -179,6 +186,8 @@
         font-size: 20px;
         font-weight: 700;
         color: var(--ink);
+        max-width: 100%;
+        overflow-wrap: anywhere;
       }
       .card-btn.text .card-label {
         font-size: 28px;
