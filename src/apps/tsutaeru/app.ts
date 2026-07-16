@@ -9,7 +9,10 @@ import {
   clearHistory,
   deleteHistory,
   listHistory,
+  loadSettings,
   loadThemes,
+  resetAll,
+  saveSettings,
   saveThemes,
   setHistoryMark,
 } from './store';
@@ -59,6 +62,7 @@ export function initApp(root: HTMLElement): void {
   let supportTab: SupportTab = 'history';
   let supportPeriod: Period = 'all';
   let confirmingClear = false;
+  let confirmingReset = false;
   let editingMarkId: string | null = null;
 
   // へんしゅう (editor) sub-state.
@@ -101,6 +105,7 @@ export function initApp(root: HTMLElement): void {
     supportTab = 'history';
     supportPeriod = 'all';
     confirmingClear = false;
+    confirmingReset = false;
     editingMarkId = null;
     resetEditState();
     go({ name: 'support' });
@@ -327,10 +332,44 @@ export function initApp(root: HTMLElement): void {
               commitThemes(next);
             },
           },
+          settings: {
+            speech: loadSettings().speech,
+            confirmingReset,
+            onToggleSpeech: () => {
+              const s = loadSettings();
+              saveSettings({ speech: !s.speech });
+              render();
+            },
+            onRequestReset: () => {
+              confirmingReset = true;
+              render();
+            },
+            onCancelReset: () => {
+              confirmingReset = false;
+              render();
+            },
+            onConfirmReset: () => {
+              // Sweep every stored photo blob before wiping localStorage, so a
+              // reset leaves no orphaned blobs behind in IndexedDB.
+              dropPhotos(
+                themes.flatMap((t) =>
+                  t.questions.flatMap((q) =>
+                    q.cards.map((card) => card.photoId).filter((p): p is string => !!p),
+                  ),
+                ),
+              );
+              resetAll();
+              themes = loadThemes();
+              confirmingReset = false;
+              go({ name: 'home' });
+              showToast('しょきか しました');
+            },
+          },
           onBack: () => go({ name: 'home' }),
           onTab: (t) => {
             supportTab = t;
             confirmingClear = false;
+            confirmingReset = false;
             editingMarkId = null;
             resetEditState();
             render();

@@ -244,6 +244,17 @@ export function renderResult(root: HTMLElement, ctx: ResultCtx): void {
 
 export type SupportTab = 'history' | 'edit' | 'settings';
 
+// せってい pane state + callbacks. speech mirrors settings.speech; the reset
+// is a two-step in-page confirm (same pattern as history's 全削除).
+export interface SettingsCtx {
+  speech: boolean;
+  confirmingReset: boolean;
+  onToggleSpeech(): void;
+  onRequestReset(): void;
+  onCancelReset(): void;
+  onConfirmReset(): void;
+}
+
 export interface SupportCtx {
   entries: HistoryEntry[]; // full list, newest-first
   tab: SupportTab;
@@ -251,6 +262,7 @@ export interface SupportCtx {
   confirmingClear: boolean;
   editingMarkId: string | null;
   edit: EditCtx;
+  settings: SettingsCtx;
   onBack(): void;
   onTab(tab: SupportTab): void;
   onPeriod(p: Period): void;
@@ -263,8 +275,7 @@ export interface SupportCtx {
   onSaveMark(id: string, mark: string): void;
 }
 
-// 支援者ゾーン. Tabs りれき／へんしゅう／せってい. Only りれき is real here;
-// the other two show a placeholder pane filled in by later tasks.
+// 支援者ゾーン. Tabs りれき／へんしゅう／せってい.
 export function renderSupport(root: HTMLElement, ctx: SupportCtx): void {
   const screen = el('div', 'screen');
 
@@ -298,7 +309,7 @@ export function renderSupport(root: HTMLElement, ctx: SupportCtx): void {
   } else if (ctx.tab === 'edit') {
     renderEditPane(screen, ctx.edit);
   } else {
-    screen.appendChild(el('p', 'note', 'じゅんびちゅう'));
+    renderSettingsPane(screen, ctx.settings);
   }
 
   root.appendChild(screen);
@@ -403,6 +414,46 @@ function historyRow(e: HistoryEntry, ctx: SupportCtx): HTMLElement {
   }
 
   return row;
+}
+
+// ── せってい (settings) ────────────────────────────────────────────────────
+
+function renderSettingsPane(screen: HTMLElement, ctx: SettingsCtx): void {
+  // よみあげ toggle. speak() re-reads settings at call time, so flipping this
+  // is all that is needed to turn card readout on/off.
+  const speechRow = el('div', 'settings-row');
+  speechRow.appendChild(el('span', 'settings-label', 'タップで よみあげ'));
+  const toggle = el('button', 'settings-toggle', ctx.speech ? 'ON' : 'OFF');
+  toggle.type = 'button';
+  if (ctx.speech) toggle.classList.add('on');
+  toggle.setAttribute('aria-pressed', String(ctx.speech));
+  toggle.addEventListener('click', () => ctx.onToggleSpeech());
+  speechRow.appendChild(toggle);
+  screen.appendChild(speechRow);
+  screen.appendChild(el('p', 'settings-note', 'カードを おしたとき こえで よみあげます'));
+
+  // アプリを しょきか: two-step in-page confirm (no window.confirm).
+  const resetWrap = el('div', 'settings-reset');
+  if (ctx.confirmingReset) {
+    resetWrap.appendChild(el('span', 'settings-reset-text', 'ぜんぶ もとに もどしますか？'));
+    const yes = el('button', 'clear-btn danger', 'しょきか する');
+    yes.type = 'button';
+    yes.addEventListener('click', () => ctx.onConfirmReset());
+    const no = el('button', 'clear-btn', 'やめる');
+    no.type = 'button';
+    no.addEventListener('click', () => ctx.onCancelReset());
+    resetWrap.appendChild(yes);
+    resetWrap.appendChild(no);
+  } else {
+    const reset = el('button', 'clear-btn', 'アプリを しょきか');
+    reset.type = 'button';
+    reset.addEventListener('click', () => ctx.onRequestReset());
+    resetWrap.appendChild(reset);
+  }
+  screen.appendChild(resetWrap);
+  screen.appendChild(
+    el('p', 'settings-note', 'テーマ・りれき・しゃしん・せってい を すべて けします'),
+  );
 }
 
 // ── へんしゅう (editor) ────────────────────────────────────────────────────

@@ -175,6 +175,15 @@ describe('settings', () => {
     expect(loadSettings()).toEqual({ speech: true });
   });
 
+  it('toggling speech via load→save flips and persists both directions', () => {
+    // Mirrors the せってい pane's onToggleSpeech wiring.
+    const toggle = (): void => saveSettings({ speech: !loadSettings().speech });
+    toggle();
+    expect(loadSettings().speech).toBe(false);
+    toggle();
+    expect(loadSettings().speech).toBe(true);
+  });
+
   it('corrupted settings JSON falls back to default without throwing', () => {
     mem._raw(SETTINGS_KEY, '<<broken');
     let result: ReturnType<typeof loadSettings>;

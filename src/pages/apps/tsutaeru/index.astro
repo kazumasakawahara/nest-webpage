@@ -505,6 +505,56 @@
         color: var(--terra);
       }
 
+      /* せってい (settings) */
+      .settings-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px 4px;
+      }
+      .settings-label {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--ink);
+      }
+      .settings-toggle {
+        flex-shrink: 0;
+        min-width: 72px;
+        min-height: 44px;
+        padding: 0 18px;
+        border: 2px solid var(--line);
+        border-radius: 22px;
+        background: #fff;
+        color: var(--ink-soft);
+        font-size: 16px;
+        font-weight: 700;
+      }
+      .settings-toggle.on {
+        border-color: var(--green);
+        background: var(--green);
+        color: #fff;
+      }
+      .settings-note {
+        margin: 0;
+        font-size: 13px;
+        color: var(--ink-soft);
+        text-align: left;
+      }
+      .settings-reset {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+      .settings-reset-text {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--terra);
+      }
+
       /* へんしゅう (editor) */
       .edit-list {
         display: flex;
