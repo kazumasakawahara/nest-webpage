@@ -6,6 +6,236 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>つたえるカード</title>
+    <style is:global>
+      /* This page deliberately does NOT import the site global.css; the app owns
+         its own small palette derived from the site's editorial colours. */
+      :root {
+        --cream: #faf6ef;
+        --ink: #333333;
+        --ink-soft: #5f5847;
+        --green: #4a8c3f;
+        --green-dark: #2f5d3a;
+        --terra: #d97757;
+        --line: #e6ddca;
+        --neutral: #efe9dc;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+      }
+      body {
+        background: var(--cream);
+        color: var(--ink);
+        font-family: system-ui, -apple-system, 'Hiragino Kaku Gothic ProN',
+          'Yu Gothic', 'Meiryo', sans-serif;
+        text-align: center;
+        -webkit-text-size-adjust: 100%;
+      }
+      #app {
+        max-width: 640px;
+        margin: 0 auto;
+        min-height: 100vh;
+        padding: 16px;
+      }
+
+      .screen {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        animation: fade 0.15s ease-in;
+      }
+      @keyframes fade {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Buttons: shared reset. Only opacity animates (per spec). */
+      button {
+        font-family: inherit;
+        color: inherit;
+        cursor: pointer;
+        transition: opacity 0.15s ease;
+      }
+      button:active {
+        opacity: 0.6;
+      }
+
+      /* Top bars */
+      .app-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .app-title {
+        font-size: 15px;
+        color: var(--ink-soft);
+      }
+      .gear {
+        width: 40px;
+        height: 40px;
+        border: none;
+        border-radius: 50%;
+        background: transparent;
+        font-size: 22px;
+        line-height: 1;
+        color: var(--ink-soft);
+      }
+      .card-bar {
+        display: flex;
+        align-items: center;
+        min-height: 40px;
+      }
+      .back {
+        width: 48px;
+        height: 48px;
+        border: 2px solid var(--line);
+        border-radius: 12px;
+        background: #fff;
+        font-size: 24px;
+        line-height: 1;
+        color: var(--ink-soft);
+      }
+
+      /* Home: theme grid */
+      .theme-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .theme-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-height: 128px;
+        padding: 16px;
+        border: 2px solid var(--line);
+        border-radius: 18px;
+        background: #fff;
+      }
+      .theme-btn .art {
+        width: 64px;
+        height: 64px;
+        object-fit: contain;
+        background: var(--neutral);
+        border-radius: 12px;
+      }
+      .theme-title {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--green-dark);
+      }
+
+      /* Cards */
+      .prompt {
+        margin: 0;
+        font-size: 26px;
+        font-weight: 700;
+        line-height: 1.4;
+        color: var(--ink);
+      }
+      .note {
+        margin: 0;
+        font-size: 18px;
+        color: var(--ink-soft);
+      }
+      .card-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .card-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 96px;
+        padding: 12px;
+        border: 2px solid var(--line);
+        border-radius: 16px;
+        background: #fff;
+      }
+      .card-btn.selected {
+        outline: 4px solid var(--terra);
+        outline-offset: -2px;
+      }
+      .card-btn .art {
+        width: 56px;
+        height: 56px;
+        object-fit: contain;
+        background: var(--neutral);
+        border-radius: 10px;
+      }
+      .card-label {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--ink);
+      }
+      .card-btn.text .card-label {
+        font-size: 28px;
+      }
+
+      /* Result */
+      .result-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+      }
+      .result-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-width: 120px;
+        min-height: 120px;
+        padding: 16px;
+        border: 2px solid var(--line);
+        border-radius: 16px;
+        background: #fff;
+      }
+      .result-card .art {
+        width: 72px;
+        height: 72px;
+        object-fit: contain;
+        background: var(--neutral);
+        border-radius: 12px;
+      }
+      .result-card.text .card-label {
+        font-size: 26px;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+      }
+      .action-btn {
+        min-height: 56px;
+        padding: 0 28px;
+        border: none;
+        border-radius: 14px;
+        background: var(--green);
+        color: #fff;
+        font-size: 20px;
+        font-weight: 700;
+      }
+      .action-btn.secondary {
+        background: #fff;
+        color: var(--green-dark);
+        border: 2px solid var(--green);
+      }
+    </style>
   </head>
   <body>
     <div id="app"></div>
