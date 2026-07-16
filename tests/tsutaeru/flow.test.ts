@@ -199,6 +199,63 @@ describe('next branch', () => {
     expect(ids).not.toContain('_none');
   });
 
+  it('does NOT insert the next question when it is already queued (rev-body enabled)', () => {
+    // The editor can turn rev-body ON; it is then queued up-front. Committing
+    // rev-karada (next:'rev-body') must not insert it a second time.
+    const t = structuredClone(theme('review'));
+    t.questions.find((q) => q.id === 'rev-body')!.enabled = true;
+    const s0 = createSession(t);
+    expect(s0.queue.map((q) => q.id)).toEqual(['rev-day', 'rev-what', 'rev-body']);
+
+    const day = s0.queue[0].cards[0].id;
+    const atWhat = tap(tap(s0, day), day);
+    const branched = tap(tap(atWhat, 'rev-karada'), 'rev-karada');
+
+    expect(branched.queue.map((q) => q.id)).toEqual(['rev-day', 'rev-what', 'rev-body']);
+    expect(currentQuestion(branched)?.id).toBe('rev-body');
+
+    // Finish: rev-body must be asked (and recorded) exactly once.
+    const body = branched.queue[2].cards[0].id;
+    const done = tap(tap(branched, body), body);
+    expect(done.done).toBe(true);
+    expect(done.picks.filter((p) => p.questionId === 'rev-body')).toHaveLength(1);
+  });
+
+  it('does NOT re-insert a next question that was already asked', () => {
+    // Synthetic theme: q2's card branches back to q1, which was already asked.
+    const t: Theme = {
+      id: 'loop',
+      title: 'loop',
+      icon: 'icon-loop',
+      display: 'text',
+      builtin: false,
+      questions: [
+        {
+          id: 'q1',
+          prompt: 'one?',
+          enabled: true,
+          escape: false,
+          shuffle: false,
+          cards: [{ id: 'c1', label: 'c1' }],
+        },
+        {
+          id: 'q2',
+          prompt: 'two?',
+          enabled: true,
+          escape: false,
+          shuffle: false,
+          cards: [{ id: 'c2', label: 'c2', next: 'q1' }],
+        },
+      ],
+    };
+    const s0 = createSession(t);
+    const s1 = tap(tap(s0, 'c1'), 'c1');
+    const s2 = tap(tap(s1, 'c2'), 'c2');
+    expect(s2.queue.map((q) => q.id)).toEqual(['q1', 'q2']);
+    expect(s2.done).toBe(true);
+    expect(s2.picks.map((p) => p.questionId)).toEqual(['q1', 'q2']);
+  });
+
   it('never queues a question that is only reachable and disabled (body-where)', () => {
     // body-where is enabled:false and nothing branches to it.
     const s0 = createSession(theme('body'));

@@ -65,8 +65,11 @@ export function tap(s: Session, cardId: string): Session {
   // Second tap on the same card: commit.
   const picks = [...s.picks, { questionId: question.id, cardId: card.id, label: card.label }];
 
+  // Insert the branch target after the current question — unless that question
+  // is already anywhere in the queue (asked earlier or still pending, e.g. the
+  // editor enabled rev-body up-front): never ask twice, never double-record.
   let queue = s.queue;
-  if (card.next) {
+  if (card.next && !queue.some((q) => q.id === card.next)) {
     const nextQ = s.theme.questions.find((q) => q.id === card.next);
     if (nextQ) {
       const view = buildView(nextQ, s.rng);
