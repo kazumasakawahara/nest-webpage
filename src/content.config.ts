@@ -21,6 +21,8 @@ const aiTips = defineCollection({
     summary: z.string().optional(),
     image: z.string().optional(),
     draft: z.boolean().default(false),
+    // 一覧のグルーピング用。series=連載本編 / practice=実践編。未指定は単発Tips
+    kind: z.enum(['series', 'practice']).optional(),
   }),
 });
 
