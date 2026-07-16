@@ -9,9 +9,24 @@ import {
   deleteHistory,
   listHistory,
   loadThemes,
+  saveThemes,
   setHistoryMark,
 } from './store';
-import type { Theme } from './types';
+import {
+  addCard,
+  addTheme,
+  editCardField,
+  moveCard,
+  moveTheme,
+  restorePreset,
+  setThemeDisplay,
+  toggleCardHidden,
+  toggleQuestionEnabled,
+  toggleQuestionEscape,
+  toggleQuestionShuffle,
+  toggleThemeHidden,
+} from './editor';
+import type { Display, Theme } from './types';
 import {
   buildHistoryEntry,
   renderCards,
@@ -29,7 +44,9 @@ type Screen =
   | { name: 'support' };
 
 export function initApp(root: HTMLElement): void {
-  const themes = loadThemes();
+  // Mutable: editor mutations reassign this and persist via saveThemes(), so
+  // the home grid (which reads `themes`) reflects saved edits on return.
+  let themes = loadThemes();
   let screen: Screen = { name: 'home' };
   // 本人モード (kiosk). In-memory only: a page reload exits it.
   let kiosk = false;
@@ -39,6 +56,28 @@ export function initApp(root: HTMLElement): void {
   let supportPeriod: Period = 'all';
   let confirmingClear = false;
   let editingMarkId: string | null = null;
+
+  // へんしゅう (editor) sub-state.
+  let openThemeId: string | null = null;
+  let addingTheme = false;
+  let addingCardQ: string | null = null;
+  let editingCardId: string | null = null;
+  let confirmingRestore = false;
+
+  function resetEditState(): void {
+    openThemeId = null;
+    addingTheme = false;
+    addingCardQ = null;
+    editingCardId = null;
+    confirmingRestore = false;
+  }
+
+  // Apply a pure editor mutation, persist, and re-render.
+  function commitThemes(next: Theme[]): void {
+    themes = next;
+    saveThemes(themes);
+    render();
+  }
 
   function go(next: Screen): void {
     screen = next;
@@ -50,6 +89,7 @@ export function initApp(root: HTMLElement): void {
     supportPeriod = 'all';
     confirmingClear = false;
     editingMarkId = null;
+    resetEditState();
     go({ name: 'support' });
   }
 
@@ -159,11 +199,109 @@ export function initApp(root: HTMLElement): void {
           period: supportPeriod,
           confirmingClear,
           editingMarkId,
+          edit: {
+            themes,
+            openThemeId,
+            addingTheme,
+            addingCardQ,
+            editingCardId,
+            confirmingRestore,
+            onOpenTheme: (id) => {
+              openThemeId = id;
+              addingCardQ = null;
+              editingCardId = null;
+              confirmingRestore = false;
+              render();
+            },
+            onBackToList: () => {
+              openThemeId = null;
+              addingCardQ = null;
+              editingCardId = null;
+              confirmingRestore = false;
+              render();
+            },
+            onToggleThemeHidden: (id) => commitThemes(toggleThemeHidden(themes, id)),
+            onMoveTheme: (id, dir) => commitThemes(moveTheme(themes, id, dir)),
+            onSetDisplay: (id, display: Display) => commitThemes(setThemeDisplay(themes, id, display)),
+            onAddThemeStart: () => {
+              addingTheme = true;
+              render();
+            },
+            onAddThemeCancel: () => {
+              addingTheme = false;
+              render();
+            },
+            onAddThemeSave: (title, prompt) => {
+              addingTheme = false;
+              commitThemes(
+                addTheme(themes, {
+                  id: crypto.randomUUID(),
+                  title,
+                  prompt,
+                  questionId: crypto.randomUUID(),
+                }),
+              );
+            },
+            onToggleEnabled: (qid) => commitThemes(toggleQuestionEnabled(themes, openThemeId!, qid)),
+            onToggleEscape: (qid) => commitThemes(toggleQuestionEscape(themes, openThemeId!, qid)),
+            onToggleShuffle: (qid) => commitThemes(toggleQuestionShuffle(themes, openThemeId!, qid)),
+            onEditCardStart: (cardId) => {
+              editingCardId = cardId;
+              addingCardQ = null;
+              render();
+            },
+            onEditCardCancel: () => {
+              editingCardId = null;
+              render();
+            },
+            onEditCardSave: (qid, cardId, label, speech) => {
+              editingCardId = null;
+              let next = editCardField(themes, openThemeId!, qid, cardId, 'label', label);
+              next = editCardField(next, openThemeId!, qid, cardId, 'speech', speech);
+              commitThemes(next);
+            },
+            onToggleCardHidden: (qid, cardId) =>
+              commitThemes(toggleCardHidden(themes, openThemeId!, qid, cardId)),
+            onMoveCard: (qid, cardId, dir) =>
+              commitThemes(moveCard(themes, openThemeId!, qid, cardId, dir)),
+            onAddCardStart: (qid) => {
+              addingCardQ = qid;
+              editingCardId = null;
+              render();
+            },
+            onAddCardCancel: () => {
+              addingCardQ = null;
+              render();
+            },
+            onAddCardSave: (qid, label, art) => {
+              addingCardQ = null;
+              commitThemes(
+                addCard(themes, openThemeId!, qid, {
+                  id: crypto.randomUUID(),
+                  label,
+                  art: art ?? undefined,
+                }),
+              );
+            },
+            onRequestRestore: () => {
+              confirmingRestore = true;
+              render();
+            },
+            onCancelRestore: () => {
+              confirmingRestore = false;
+              render();
+            },
+            onConfirmRestore: (id) => {
+              confirmingRestore = false;
+              commitThemes(restorePreset(themes, id));
+            },
+          },
           onBack: () => go({ name: 'home' }),
           onTab: (t) => {
             supportTab = t;
             confirmingClear = false;
             editingMarkId = null;
+            resetEditState();
             render();
           },
           onPeriod: (p) => {

@@ -1,0 +1,84 @@
+// Every preset card id that ships with an art asset. Each preset card mirrors
+// its id into `art` (see presets.ts `c`), so this is the full set of built-in
+// art ids the editor's 絵ピッカー can offer.
+//
+// This list is written out by hand rather than computed from PRESET_THEMES at
+// runtime: Tasks 11-13 add generic art ids (not tied to any preset card) here,
+// so the picker's inventory is a deliberate, edited list — not a projection of
+// the presets. Keep it in sync with presets.ts by hand.
+export const ART_IDS: string[] = [
+  // きもち
+  'emo-ureshii',
+  'emo-tanoshii',
+  'emo-okotteru',
+  'emo-kanashii',
+  'emo-kowai',
+  'emo-tsukareta',
+  'emo-sukoshi',
+  'emo-totemo',
+  // こまった
+  'trb-urusai',
+  'trb-mabushii',
+  'trb-atsui-samui',
+  'trb-hito-ooi',
+  'trb-onaka-suita',
+  'trb-nemui',
+  'trb-yaru-koto-wakaranai',
+  'trb-matsu-iya',
+  // いやだった
+  'dsl-oto',
+  'dsl-nioi',
+  'dsl-aji',
+  'dsl-hajimete',
+  'dsl-junban-chigau',
+  'dsl-mae-iya',
+  // はい・いいえ
+  'yn-hai',
+  'yn-iie',
+  'yn-wakaranai',
+  'yn-docchimo-iya',
+  // おねがい
+  'req-tetsudatte',
+  'req-yasumitai',
+  'req-toire',
+  'req-omizu',
+  'req-shizuka',
+  'req-yametai',
+  // ふりかえり
+  'rev-tanoshikatta',
+  'rev-futsuu',
+  'rev-iyadatta',
+  'rev-shigoto',
+  'rev-gohan',
+  'rev-oyatsu',
+  'rev-odekake',
+  'rev-hito',
+  'rev-karada',
+  'rev-nemurenakatta',
+  'rev-atama-itai',
+  'rev-onaka-itai',
+  'rev-tsukareteiru',
+  'rev-mukamuka',
+  // からだ
+  'loc-atama',
+  'loc-onaka',
+  'loc-mune',
+  'loc-nodo',
+  'loc-ha',
+  'loc-ude',
+  'loc-ashi',
+  'pain-zukizuki',
+  'pain-kirikiri',
+  'pain-chikuchiku',
+  'pain-gangan',
+  'pain-hirihiri',
+  'pain-doon-omoi',
+  'pain-mukamuka',
+  'pain-umaku-ienai',
+  'since-kyou',
+  'since-kinou',
+  'since-sukoshi-mae',
+  'since-zutto-mae',
+  'str-sukoshi',
+  'str-totemo',
+];

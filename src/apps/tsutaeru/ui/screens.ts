@@ -1,7 +1,8 @@
 import type { Session } from '../flow';
 import { currentQuestion } from '../flow';
 import { filterByPeriod, formatRow, type Period } from '../history';
-import type { Card, HistoryEntry, Theme } from '../types';
+import type { Card, Display, HistoryEntry, Question, Theme } from '../types';
+import { ART_IDS } from '../art';
 
 const ART_BASE = '/apps/tsutaeru/art';
 
@@ -205,6 +206,7 @@ export interface SupportCtx {
   period: Period;
   confirmingClear: boolean;
   editingMarkId: string | null;
+  edit: EditCtx;
   onBack(): void;
   onTab(tab: SupportTab): void;
   onPeriod(p: Period): void;
@@ -249,6 +251,8 @@ export function renderSupport(root: HTMLElement, ctx: SupportCtx): void {
 
   if (ctx.tab === 'history') {
     renderHistoryPane(screen, ctx);
+  } else if (ctx.tab === 'edit') {
+    renderEditPane(screen, ctx.edit);
   } else {
     screen.appendChild(el('p', 'note', 'じゅんびちゅう'));
   }
@@ -355,6 +359,365 @@ function historyRow(e: HistoryEntry, ctx: SupportCtx): HTMLElement {
   }
 
   return row;
+}
+
+// ── へんしゅう (editor) ────────────────────────────────────────────────────
+
+export interface EditCtx {
+  themes: Theme[];
+  openThemeId: string | null; // null → theme list; else → that theme's detail
+  addingTheme: boolean;
+  addingCardQ: string | null; // questionId whose add-card form is open
+  editingCardId: string | null;
+  confirmingRestore: boolean;
+  // theme list
+  onOpenTheme(themeId: string): void;
+  onBackToList(): void;
+  onToggleThemeHidden(themeId: string): void;
+  onMoveTheme(themeId: string, dir: -1 | 1): void;
+  onSetDisplay(themeId: string, display: Display): void;
+  onAddThemeStart(): void;
+  onAddThemeCancel(): void;
+  onAddThemeSave(title: string, prompt: string): void;
+  // theme detail
+  onToggleEnabled(questionId: string): void;
+  onToggleEscape(questionId: string): void;
+  onToggleShuffle(questionId: string): void;
+  onEditCardStart(cardId: string): void;
+  onEditCardCancel(): void;
+  onEditCardSave(questionId: string, cardId: string, label: string, speech: string): void;
+  onToggleCardHidden(questionId: string, cardId: string): void;
+  onMoveCard(questionId: string, cardId: string, dir: -1 | 1): void;
+  onAddCardStart(questionId: string): void;
+  onAddCardCancel(): void;
+  onAddCardSave(questionId: string, label: string, art: string | null): void;
+  onRequestRestore(): void;
+  onCancelRestore(): void;
+  onConfirmRestore(themeId: string): void;
+}
+
+const DISPLAY_OPTS: [Display, string][] = [
+  ['text', '文字だけ'],
+  ['art', 'えとことば'],
+  ['photo', 'しゃしん'],
+];
+
+function renderEditPane(screen: HTMLElement, ctx: EditCtx): void {
+  if (ctx.openThemeId === null) renderThemeList(screen, ctx);
+  else renderThemeDetail(screen, ctx);
+}
+
+function renderThemeList(screen: HTMLElement, ctx: EditCtx): void {
+  const list = el('div', 'edit-list');
+  for (const theme of ctx.themes) {
+    list.appendChild(themeRow(theme, ctx));
+  }
+  screen.appendChild(list);
+
+  if (ctx.addingTheme) {
+    screen.appendChild(addThemeForm(ctx));
+  } else {
+    const add = el('button', 'edit-add-btn', 'あたらしいテーマ');
+    add.type = 'button';
+    add.addEventListener('click', () => ctx.onAddThemeStart());
+    screen.appendChild(add);
+  }
+}
+
+function themeRow(theme: Theme, ctx: EditCtx): HTMLElement {
+  const row = el('div', 'edit-row');
+
+  const top = el('div', 'edit-row-top');
+  const open = el('button', 'edit-title-btn', theme.title);
+  open.type = 'button';
+  open.addEventListener('click', () => ctx.onOpenTheme(theme.id));
+  top.appendChild(open);
+
+  const hide = el('button', 'edit-mini', theme.hidden === true ? '非表示' : '表示');
+  hide.type = 'button';
+  if (theme.hidden === true) hide.classList.add('off');
+  hide.addEventListener('click', () => ctx.onToggleThemeHidden(theme.id));
+  top.appendChild(hide);
+
+  top.appendChild(reorderButtons(() => ctx.onMoveTheme(theme.id, -1), () => ctx.onMoveTheme(theme.id, 1)));
+  row.appendChild(top);
+
+  const disp = el('div', 'edit-display');
+  for (const [id, label] of DISPLAY_OPTS) {
+    const b = el('button', 'edit-seg', label);
+    b.type = 'button';
+    if (theme.display === id) b.classList.add('active');
+    b.addEventListener('click', () => ctx.onSetDisplay(theme.id, id));
+    disp.appendChild(b);
+  }
+  row.appendChild(disp);
+
+  return row;
+}
+
+function addThemeForm(ctx: EditCtx): HTMLElement {
+  const form = el('div', 'edit-form');
+  const title = el('input', 'edit-input');
+  title.type = 'text';
+  title.placeholder = 'テーマの なまえ';
+  title.setAttribute('aria-label', 'テーマの なまえ');
+  title.maxLength = 20;
+  const prompt = el('input', 'edit-input');
+  prompt.type = 'text';
+  prompt.placeholder = 'さいしょの しつもん';
+  prompt.setAttribute('aria-label', 'さいしょの しつもん');
+  prompt.maxLength = 40;
+  form.appendChild(title);
+  form.appendChild(prompt);
+
+  const actions = el('div', 'edit-form-actions');
+  const save = el('button', 'edit-save', 'つくる');
+  save.type = 'button';
+  save.disabled = true;
+  const sync = (): void => {
+    save.disabled = title.value.trim() === '' || prompt.value.trim() === '';
+  };
+  title.addEventListener('input', sync);
+  prompt.addEventListener('input', sync);
+  save.addEventListener('click', () => {
+    if (save.disabled) return;
+    ctx.onAddThemeSave(title.value.trim(), prompt.value.trim());
+  });
+  const cancel = el('button', 'edit-cancel', 'やめる');
+  cancel.type = 'button';
+  cancel.addEventListener('click', () => ctx.onAddThemeCancel());
+  actions.appendChild(save);
+  actions.appendChild(cancel);
+  form.appendChild(actions);
+
+  setTimeout(() => title.focus(), 0);
+  return form;
+}
+
+function renderThemeDetail(screen: HTMLElement, ctx: EditCtx): void {
+  const theme = ctx.themes.find((t) => t.id === ctx.openThemeId);
+  if (!theme) {
+    ctx.onBackToList();
+    return;
+  }
+
+  const head = el('div', 'edit-detail-head');
+  const back = el('button', 'edit-mini', '← いちらん');
+  back.type = 'button';
+  back.addEventListener('click', () => ctx.onBackToList());
+  head.appendChild(back);
+  head.appendChild(el('span', 'edit-detail-title', theme.title));
+  screen.appendChild(head);
+
+  for (const q of theme.questions) {
+    screen.appendChild(questionBlock(theme, q, ctx));
+  }
+
+  if (theme.builtin) {
+    screen.appendChild(restoreRow(theme, ctx));
+  }
+}
+
+function questionBlock(theme: Theme, q: Question, ctx: EditCtx): HTMLElement {
+  const block = el('div', 'edit-question');
+  block.appendChild(el('p', 'edit-prompt', q.prompt));
+
+  const toggles = el('div', 'edit-toggles');
+  toggles.appendChild(toggleChip(q.enabled ? 'ON' : 'OFF', q.enabled, () => ctx.onToggleEnabled(q.id)));
+  toggles.appendChild(toggleChip('よけい', q.escape, () => ctx.onToggleEscape(q.id)));
+  toggles.appendChild(toggleChip('シャッフル', q.shuffle, () => ctx.onToggleShuffle(q.id)));
+  block.appendChild(toggles);
+
+  const cards = el('div', 'edit-cards');
+  for (const card of q.cards) {
+    cards.appendChild(cardRow(q, card, ctx));
+  }
+  block.appendChild(cards);
+
+  if (ctx.addingCardQ === q.id) {
+    block.appendChild(addCardForm(q, ctx));
+  } else {
+    const add = el('button', 'edit-add-card', 'あたらしいカード');
+    add.type = 'button';
+    add.addEventListener('click', () => ctx.onAddCardStart(q.id));
+    block.appendChild(add);
+  }
+
+  return block;
+}
+
+function cardRow(q: Question, card: Card, ctx: EditCtx): HTMLElement {
+  if (ctx.editingCardId === card.id) return editCardForm(q, card, ctx);
+
+  const row = el('div', 'edit-card-row');
+  const info = el('div', 'edit-card-info');
+  info.appendChild(el('span', 'edit-card-label', card.label));
+  if (card.speech) info.appendChild(el('span', 'edit-card-speech', `よみあげ: ${card.speech}`));
+  row.appendChild(info);
+
+  const controls = el('div', 'edit-card-controls');
+  const edit = el('button', 'edit-mini', 'ことば');
+  edit.type = 'button';
+  edit.addEventListener('click', () => ctx.onEditCardStart(card.id));
+  controls.appendChild(edit);
+
+  const hide = el('button', 'edit-mini', card.hidden === true ? '非表示' : '表示');
+  hide.type = 'button';
+  if (card.hidden === true) hide.classList.add('off');
+  hide.addEventListener('click', () => ctx.onToggleCardHidden(q.id, card.id));
+  controls.appendChild(hide);
+
+  controls.appendChild(
+    reorderButtons(() => ctx.onMoveCard(q.id, card.id, -1), () => ctx.onMoveCard(q.id, card.id, 1)),
+  );
+  row.appendChild(controls);
+  return row;
+}
+
+function editCardForm(q: Question, card: Card, ctx: EditCtx): HTMLElement {
+  const form = el('div', 'edit-form');
+  const label = el('input', 'edit-input');
+  label.type = 'text';
+  label.value = card.label;
+  label.placeholder = 'ことば';
+  label.setAttribute('aria-label', 'ことば');
+  label.maxLength = 30;
+  const speech = el('input', 'edit-input');
+  speech.type = 'text';
+  speech.value = card.speech ?? '';
+  speech.placeholder = 'よみあげ文（なくてもよい）';
+  speech.setAttribute('aria-label', 'よみあげ文');
+  speech.maxLength = 60;
+  form.appendChild(label);
+  form.appendChild(speech);
+
+  const actions = el('div', 'edit-form-actions');
+  const save = el('button', 'edit-save', 'ほぞん');
+  save.type = 'button';
+  const sync = (): void => {
+    save.disabled = label.value.trim() === '';
+  };
+  label.addEventListener('input', sync);
+  save.addEventListener('click', () => {
+    if (save.disabled) return;
+    ctx.onEditCardSave(q.id, card.id, label.value.trim(), speech.value.trim());
+  });
+  const cancel = el('button', 'edit-cancel', 'やめる');
+  cancel.type = 'button';
+  cancel.addEventListener('click', () => ctx.onEditCardCancel());
+  actions.appendChild(save);
+  actions.appendChild(cancel);
+  form.appendChild(actions);
+
+  setTimeout(() => label.focus(), 0);
+  return form;
+}
+
+function addCardForm(q: Question, ctx: EditCtx): HTMLElement {
+  const form = el('div', 'edit-form');
+  const label = el('input', 'edit-input');
+  label.type = 'text';
+  label.placeholder = 'ことば';
+  label.setAttribute('aria-label', 'ことば');
+  label.maxLength = 30;
+  form.appendChild(label);
+
+  // 絵ピッカー: self-contained. Selection lives in the DOM (a local variable +
+  // an 'on' class) so typing the label never triggers an app re-render.
+  let selected: string | null = null;
+  const picker = el('div', 'edit-picker');
+  const none = el('button', 'edit-pick edit-pick-none on', 'えなし');
+  none.type = 'button';
+  const tiles: HTMLButtonElement[] = [none];
+  const highlight = (chosen: HTMLButtonElement): void => {
+    for (const t of tiles) t.classList.toggle('on', t === chosen);
+  };
+  none.addEventListener('click', () => {
+    selected = null;
+    highlight(none);
+  });
+  picker.appendChild(none);
+  for (const id of ART_IDS) {
+    const tile = el('button', 'edit-pick');
+    tile.type = 'button';
+    tile.setAttribute('aria-label', id);
+    tile.appendChild(artImg(id));
+    tile.addEventListener('click', () => {
+      selected = id;
+      highlight(tile);
+    });
+    tiles.push(tile);
+    picker.appendChild(tile);
+  }
+  form.appendChild(picker);
+
+  const actions = el('div', 'edit-form-actions');
+  const save = el('button', 'edit-save', 'ついか');
+  save.type = 'button';
+  save.disabled = true;
+  label.addEventListener('input', () => {
+    save.disabled = label.value.trim() === '';
+  });
+  save.addEventListener('click', () => {
+    if (save.disabled) return;
+    ctx.onAddCardSave(q.id, label.value.trim(), selected);
+  });
+  const cancel = el('button', 'edit-cancel', 'やめる');
+  cancel.type = 'button';
+  cancel.addEventListener('click', () => ctx.onAddCardCancel());
+  actions.appendChild(save);
+  actions.appendChild(cancel);
+  form.appendChild(actions);
+
+  setTimeout(() => label.focus(), 0);
+  return form;
+}
+
+function restoreRow(theme: Theme, ctx: EditCtx): HTMLElement {
+  const wrap = el('div', 'edit-restore');
+  if (ctx.confirmingRestore) {
+    wrap.appendChild(el('span', 'edit-restore-text', 'へんしゅうを 消して もとに もどしますか？'));
+    const yes = el('button', 'edit-mini danger', 'もどす');
+    yes.type = 'button';
+    yes.addEventListener('click', () => ctx.onConfirmRestore(theme.id));
+    const no = el('button', 'edit-mini', 'やめる');
+    no.type = 'button';
+    no.addEventListener('click', () => ctx.onCancelRestore());
+    wrap.appendChild(yes);
+    wrap.appendChild(no);
+  } else {
+    const b = el('button', 'edit-mini', 'もとにもどす');
+    b.type = 'button';
+    b.addEventListener('click', () => ctx.onRequestRestore());
+    wrap.appendChild(b);
+  }
+  return wrap;
+}
+
+// Small shared up/down reorder control.
+function reorderButtons(onUp: () => void, onDown: () => void): HTMLElement {
+  const wrap = el('div', 'edit-reorder');
+  const up = el('button', 'edit-arrow', '↑');
+  up.type = 'button';
+  up.setAttribute('aria-label', 'うえへ');
+  up.addEventListener('click', onUp);
+  const down = el('button', 'edit-arrow', '↓');
+  down.type = 'button';
+  down.setAttribute('aria-label', 'したへ');
+  down.addEventListener('click', onDown);
+  wrap.appendChild(up);
+  wrap.appendChild(down);
+  return wrap;
+}
+
+// A labelled on/off chip. `on` paints the active (green) state.
+function toggleChip(label: string, on: boolean, onClick: () => void): HTMLButtonElement {
+  const b = el('button', 'edit-chip', label);
+  b.type = 'button';
+  if (on) b.classList.add('on');
+  b.setAttribute('aria-pressed', String(on));
+  b.addEventListener('click', onClick);
+  return b;
 }
 
 // Transient bottom toast; auto-removes. Used to confirm leaving 本人モード.
