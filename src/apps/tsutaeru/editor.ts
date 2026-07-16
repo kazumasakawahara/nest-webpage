@@ -153,6 +153,29 @@ export function moveCard(
   );
 }
 
+// Set (or clear) a card's photoId. `null` removes the property entirely so the
+// card falls back to art/label, mirroring editCardField's clearing of speech.
+// The stored blob is dropped separately via deletePhoto() by the caller.
+export function setCardPhoto(
+  themes: Theme[],
+  themeId: string,
+  questionId: string,
+  cardId: string,
+  photoId: string | null,
+): Theme[] {
+  return mapTheme(themes, themeId, (t) =>
+    mapQuestion(t, questionId, (q) =>
+      mapCard(q, cardId, (c) => {
+        if (photoId === null) {
+          const { photoId: _drop, ...rest } = c;
+          return rest;
+        }
+        return { ...c, photoId };
+      }),
+    ),
+  );
+}
+
 // Append a new card to a question. `id` is injected (uuid). Art is optional —
 // any ART_IDS entry or none.
 export function addCard(

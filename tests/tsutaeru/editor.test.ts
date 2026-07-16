@@ -16,6 +16,7 @@ import {
   toggleCardHidden,
   moveCard,
   addCard,
+  setCardPhoto,
 } from '~/apps/tsutaeru/editor';
 
 // A fresh, independent copy of the preset set for each test.
@@ -211,6 +212,32 @@ describe('addCard', () => {
     const added = cards[cards.length - 1];
     expect(added).toEqual({ id: 'new-2', label: 'むり' });
     expect('art' in added).toBe(false);
+  });
+});
+
+describe('setCardPhoto', () => {
+  it('sets photoId on a card', () => {
+    const out = setCardPhoto(themes(), 'yesno', 'yn-main', 'yn-hai', 'photo-1');
+    const c = out.find((x) => x.id === 'yesno')!.questions[0].cards.find((c) => c.id === 'yn-hai')!;
+    expect(c.photoId).toBe('photo-1');
+  });
+  it('clearing photoId (null) removes the property', () => {
+    let out = setCardPhoto(themes(), 'yesno', 'yn-main', 'yn-hai', 'photo-1');
+    out = setCardPhoto(out, 'yesno', 'yn-main', 'yn-hai', null);
+    const c = out.find((x) => x.id === 'yesno')!.questions[0].cards.find((c) => c.id === 'yn-hai')!;
+    expect('photoId' in c).toBe(false);
+  });
+  it('does not mutate the input', () => {
+    const t = themes();
+    setCardPhoto(t, 'yesno', 'yn-main', 'yn-hai', 'photo-1');
+    expect('photoId' in t.find((x) => x.id === 'yesno')!.questions[0].cards[0]).toBe(false);
+  });
+  it('leaves other cards untouched', () => {
+    const out = setCardPhoto(themes(), 'yesno', 'yn-main', 'yn-hai', 'photo-1');
+    const other = out
+      .find((x) => x.id === 'yesno')!
+      .questions[0].cards.find((c) => c.id === 'yn-iie')!;
+    expect('photoId' in other).toBe(false);
   });
 });
 

@@ -3,6 +3,7 @@ import { currentQuestion } from '../flow';
 import { filterByPeriod, formatRow, type Period } from '../history';
 import type { Card, Display, HistoryEntry, Question, Theme } from '../types';
 import { ART_IDS } from '../art';
+import { getPhotoURL, resizeToBlob, savePhoto } from '../photos';
 
 const ART_BASE = '/apps/tsutaeru/art';
 
@@ -23,6 +24,19 @@ function artImg(artId: string): HTMLImageElement {
   const img = el('img', 'art');
   img.src = `${ART_BASE}/${artId}.svg`;
   img.alt = '';
+  return img;
+}
+
+// Photo image for a card. getPhotoURL is async and screens re-render by
+// clearing the root, so the element can be detached before the URL resolves —
+// guard with isConnected so a stale promise never throws or sets src on an
+// orphan. A missing photo (null) simply leaves the placeholder blank.
+function photoImg(photoId: string): HTMLImageElement {
+  const img = el('img', 'photo');
+  img.alt = '';
+  void getPhotoURL(photoId).then((url) => {
+    if (url && img.isConnected) img.src = url;
+  });
   return img;
 }
 
@@ -143,8 +157,9 @@ export function renderCards(root: HTMLElement, ctx: CardsCtx): void {
   root.appendChild(screen);
 }
 
-// 'text' → label only (larger); 'art'/'photo' → art image + label.
-// 'photo' falls back to art until photo rendering lands (Task 10).
+// 'text' → label only (larger); 'art' → art image + label. 'photo' → the card's
+// stored photo when it has a photoId, otherwise it falls back to art (a photo
+// theme can still hold cards nobody has attached a picture to yet).
 function cardButton(
   card: Card,
   display: Theme['display'],
@@ -155,7 +170,9 @@ function cardButton(
   btn.type = 'button';
   if (display === 'text') btn.classList.add('text');
   if (selected) btn.classList.add('selected');
-  if (display !== 'text') {
+  if (display === 'photo' && card.photoId) {
+    btn.appendChild(photoImg(card.photoId));
+  } else if (display !== 'text') {
     btn.appendChild(artImg(card.art ?? artIdForCard(card.id)));
   }
   btn.appendChild(el('span', 'card-label', card.label));
@@ -386,6 +403,8 @@ export interface EditCtx {
   onEditCardStart(cardId: string): void;
   onEditCardCancel(): void;
   onEditCardSave(questionId: string, cardId: string, label: string, speech: string): void;
+  onSetCardPhoto(questionId: string, cardId: string, photoId: string): void;
+  onRemoveCardPhoto(questionId: string, cardId: string, photoId: string): void;
   onToggleCardHidden(questionId: string, cardId: string): void;
   onMoveCard(questionId: string, cardId: string, dir: -1 | 1): void;
   onAddCardStart(questionId: string): void;
@@ -591,6 +610,8 @@ function editCardForm(q: Question, card: Card, ctx: EditCtx): HTMLElement {
   form.appendChild(label);
   form.appendChild(speech);
 
+  form.appendChild(photoControl(q, card, ctx));
+
   const actions = el('div', 'edit-form-actions');
   const save = el('button', 'edit-save', 'ほぞん');
   save.type = 'button';
@@ -611,6 +632,65 @@ function editCardForm(q: Question, card: Card, ctx: EditCtx): HTMLElement {
 
   setTimeout(() => label.focus(), 0);
   return form;
+}
+
+// しゃしん: pick a photo (resized + stored locally on the device) for a card, or
+// remove the current one. The file input carries `capture=environment` so phones
+// offer the camera. Photos never leave the device — no upload (design spec §5).
+function photoControl(q: Question, card: Card, ctx: EditCtx): HTMLElement {
+  const wrap = el('div', 'edit-photo');
+
+  if (card.photoId) {
+    const thumb = el('img', 'edit-photo-thumb');
+    thumb.alt = '';
+    const pid = card.photoId;
+    void getPhotoURL(pid).then((url) => {
+      if (url && thumb.isConnected) thumb.src = url;
+    });
+    wrap.appendChild(thumb);
+  }
+
+  const pickLabel = el('label', 'edit-mini', card.photoId ? 'しゃしんを かえる' : 'しゃしんを えらぶ');
+  const file = el('input', 'edit-photo-input');
+  file.type = 'file';
+  file.accept = 'image/*';
+  file.setAttribute('capture', 'environment');
+  file.setAttribute('aria-label', 'しゃしんを えらぶ');
+  file.addEventListener('change', () => {
+    const chosen = file.files?.[0];
+    if (chosen) void handlePhotoPick(chosen, q.id, card.id, ctx);
+  });
+  pickLabel.appendChild(file);
+  wrap.appendChild(pickLabel);
+
+  if (card.photoId) {
+    const pid = card.photoId;
+    const remove = el('button', 'edit-mini off', 'しゃしんを けす');
+    remove.type = 'button';
+    remove.addEventListener('click', () => ctx.onRemoveCardPhoto(q.id, card.id, pid));
+    wrap.appendChild(remove);
+  }
+
+  wrap.appendChild(el('p', 'edit-photo-note', 'しゃしんは この端末の中だけに保存されます'));
+  return wrap;
+}
+
+// Resize + store the picked file, then hand the new id to the app. Any failure
+// (unsupported file, decode/canvas error) surfaces as a toast — never a silent
+// drop, never a broken editor.
+async function handlePhotoPick(
+  file: File,
+  questionId: string,
+  cardId: string,
+  ctx: EditCtx,
+): Promise<void> {
+  try {
+    const blob = await resizeToBlob(file);
+    const photoId = await savePhoto(blob);
+    ctx.onSetCardPhoto(questionId, cardId, photoId);
+  } catch {
+    showToast('しゃしんを よみこめませんでした');
+  }
 }
 
 function addCardForm(q: Question, ctx: EditCtx): HTMLElement {

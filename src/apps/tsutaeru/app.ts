@@ -2,6 +2,7 @@ import { formatEntries } from './export';
 import { createSession, tap, type Session } from './flow';
 import { filterByPeriod, type Period } from './history';
 import { createLongPress } from './kiosk';
+import { deletePhoto } from './photos';
 import { speak } from './speech';
 import {
   addHistory,
@@ -19,6 +20,7 @@ import {
   moveCard,
   moveTheme,
   restorePreset,
+  setCardPhoto,
   setThemeDisplay,
   toggleCardHidden,
   toggleQuestionEnabled,
@@ -259,6 +261,13 @@ export function initApp(root: HTMLElement): void {
               let next = editCardField(themes, openThemeId!, qid, cardId, 'label', label);
               next = editCardField(next, openThemeId!, qid, cardId, 'speech', speech);
               commitThemes(next);
+            },
+            onSetCardPhoto: (qid, cardId, photoId) =>
+              commitThemes(setCardPhoto(themes, openThemeId!, qid, cardId, photoId)),
+            onRemoveCardPhoto: (qid, cardId, photoId) => {
+              // Drop the stored blob (fire-and-forget) then clear the reference.
+              void deletePhoto(photoId);
+              commitThemes(setCardPhoto(themes, openThemeId!, qid, cardId, null));
             },
             onToggleCardHidden: (qid, cardId) =>
               commitThemes(toggleCardHidden(themes, openThemeId!, qid, cardId)),
