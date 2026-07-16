@@ -138,6 +138,12 @@ describe('settings', () => {
     expect(loadSettings()).toEqual({ speech: false });
   });
 
+  it('mutating the returned default does not corrupt later loads', () => {
+    const s = loadSettings();
+    s.speech = false;
+    expect(loadSettings()).toEqual({ speech: true });
+  });
+
   it('corrupted settings JSON falls back to default without throwing', () => {
     mem._raw(SETTINGS_KEY, '<<broken');
     let result: ReturnType<typeof loadSettings>;

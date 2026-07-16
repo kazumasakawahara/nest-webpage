@@ -57,7 +57,9 @@ export function clearHistory(): void {
 }
 
 export function loadSettings(): Settings {
-  return read<Settings>(SETTINGS_KEY, DEFAULT_SETTINGS);
+  // Copy the default so callers mutating the result never corrupt the
+  // module-level constant.
+  return read<Settings>(SETTINGS_KEY, { ...DEFAULT_SETTINGS });
 }
 
 export function saveSettings(s: Settings): void {
