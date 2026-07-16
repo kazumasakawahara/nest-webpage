@@ -8,6 +8,7 @@ import {
   listHistory,
   deleteHistory,
   clearHistory,
+  setHistoryMark,
   loadSettings,
   saveSettings,
   resetAll,
@@ -116,6 +117,36 @@ describe('history', () => {
     addHistory(makeEntry('b'));
     clearHistory();
     expect(listHistory()).toEqual([]);
+  });
+
+  it('setHistoryMark sets a mark on the matching entry only', () => {
+    addHistory(makeEntry('a'));
+    addHistory(makeEntry('b'));
+    setHistoryMark('a', 'め');
+    const byId = Object.fromEntries(listHistory().map((e) => [e.id, e.mark]));
+    expect(byId).toEqual({ a: 'め', b: undefined });
+  });
+
+  it('setHistoryMark with an empty string clears an existing mark', () => {
+    addHistory(makeEntry('a'));
+    setHistoryMark('a', 'め');
+    setHistoryMark('a', '');
+    const entry = listHistory().find((e) => e.id === 'a')!;
+    expect('mark' in entry).toBe(false);
+  });
+
+  it('setHistoryMark preserves newest-first order', () => {
+    addHistory(makeEntry('a'));
+    addHistory(makeEntry('b'));
+    addHistory(makeEntry('c'));
+    setHistoryMark('a', 'め');
+    expect(listHistory().map((e) => e.id)).toEqual(['c', 'b', 'a']);
+  });
+
+  it('setHistoryMark is a no-op for a missing id', () => {
+    addHistory(makeEntry('a'));
+    expect(() => setHistoryMark('zzz', 'め')).not.toThrow();
+    expect(listHistory().map((e) => e.id)).toEqual(['a']);
   });
 
   it('corrupted history JSON falls back to empty list without throwing', () => {

@@ -293,6 +293,199 @@
         color: var(--green-dark);
         border: 2px solid var(--green);
       }
+
+      /* 支援者ゾーン (support zone) */
+      .support-title {
+        margin-left: 12px;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--green-dark);
+      }
+      .support-tabs {
+        display: flex;
+        gap: 8px;
+      }
+      .support-tab {
+        flex: 1;
+        min-width: 0;
+        min-height: 44px;
+        padding: 0 8px;
+        border: 2px solid var(--line);
+        border-radius: 12px 12px 0 0;
+        background: #fff;
+        color: var(--ink-soft);
+        font-size: 16px;
+        font-weight: 700;
+      }
+      .support-tab.active {
+        border-color: var(--green);
+        background: var(--green);
+        color: #fff;
+      }
+
+      /* Period filter */
+      .period-row {
+        display: flex;
+        gap: 8px;
+      }
+      .period-btn {
+        flex: 1;
+        min-width: 0;
+        min-height: 40px;
+        border: 2px solid var(--line);
+        border-radius: 20px;
+        background: #fff;
+        color: var(--ink-soft);
+        font-size: 15px;
+        font-weight: 700;
+      }
+      .period-btn.active {
+        border-color: var(--green);
+        background: var(--green);
+        color: #fff;
+      }
+
+      .copy-btn {
+        min-height: 48px;
+        border: none;
+        border-radius: 12px;
+        background: var(--green);
+        color: #fff;
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .support-empty {
+        margin: 0;
+        padding: 24px 0;
+        font-size: 16px;
+        color: var(--ink-soft);
+      }
+
+      /* History list */
+      .history-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .history-row {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 12px;
+        border: 2px solid var(--line);
+        border-radius: 12px;
+        background: #fff;
+        text-align: left;
+      }
+      .history-top {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .history-line {
+        flex: 1;
+        min-width: 0;
+        font-size: 16px;
+        color: var(--ink);
+        overflow-wrap: anywhere;
+      }
+      .row-delete {
+        flex-shrink: 0;
+        min-height: 36px;
+        padding: 0 14px;
+        border: 2px solid var(--terra);
+        border-radius: 10px;
+        background: #fff;
+        color: var(--terra);
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .mark-btn {
+        align-self: flex-start;
+        min-height: 34px;
+        padding: 0 12px;
+        border: 2px dashed var(--line);
+        border-radius: 10px;
+        background: var(--cream);
+        color: var(--ink-soft);
+        font-size: 14px;
+      }
+      .mark-btn.set {
+        border-style: solid;
+        border-color: var(--green);
+        color: var(--green-dark);
+      }
+      .mark-editor {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+      }
+      .mark-input {
+        flex: 1;
+        min-width: 0;
+        min-height: 40px;
+        padding: 0 10px;
+        border: 2px solid var(--green);
+        border-radius: 10px;
+        background: #fff;
+        color: var(--ink);
+        font-family: inherit;
+        font-size: 16px;
+      }
+      .mark-save {
+        flex-shrink: 0;
+        min-height: 40px;
+        padding: 0 16px;
+        border: none;
+        border-radius: 10px;
+        background: var(--green);
+        color: #fff;
+        font-size: 15px;
+        font-weight: 700;
+      }
+      .mark-note {
+        flex-basis: 100%;
+        margin: 0;
+        font-size: 13px;
+        color: var(--terra);
+        font-weight: 700;
+      }
+
+      /* 全削除 (two-step confirm) */
+      .clear-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 8px;
+      }
+      .clear-btn {
+        min-height: 44px;
+        padding: 0 20px;
+        border: 2px solid var(--line);
+        border-radius: 12px;
+        background: #fff;
+        color: var(--ink-soft);
+        font-size: 16px;
+        font-weight: 700;
+      }
+      .clear-btn:disabled {
+        opacity: 0.4;
+        cursor: default;
+      }
+      .clear-btn.danger {
+        border-color: var(--terra);
+        background: var(--terra);
+        color: #fff;
+      }
+      .clear-confirm-text {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--terra);
+      }
     </style>
   </head>
   <body>

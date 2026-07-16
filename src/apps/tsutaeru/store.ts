@@ -56,6 +56,17 @@ export function clearHistory(): void {
   localStorage.removeItem(HISTORY_KEY);
 }
 
+// Set (or clear) the めじるし on one existing entry. Empty string removes the
+// mark entirely. A missing id is a silent no-op. Order is preserved.
+export function setHistoryMark(id: string, mark: string): void {
+  const entries = listHistory();
+  const entry = entries.find((e) => e.id === id);
+  if (!entry) return;
+  if (mark === '') delete entry.mark;
+  else entry.mark = mark;
+  write(HISTORY_KEY, entries);
+}
+
 export function loadSettings(): Settings {
   // Copy the default so callers mutating the result never corrupt the
   // module-level constant.

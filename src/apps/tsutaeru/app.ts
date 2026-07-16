@@ -1,7 +1,16 @@
+import { formatEntries } from './export';
 import { createSession, tap, type Session } from './flow';
+import { filterByPeriod, type Period } from './history';
 import { createLongPress } from './kiosk';
 import { speak } from './speech';
-import { addHistory, loadThemes } from './store';
+import {
+  addHistory,
+  clearHistory,
+  deleteHistory,
+  listHistory,
+  loadThemes,
+  setHistoryMark,
+} from './store';
 import type { Theme } from './types';
 import {
   buildHistoryEntry,
@@ -10,6 +19,7 @@ import {
   renderResult,
   renderSupport,
   showToast,
+  type SupportTab,
 } from './ui/screens';
 
 type Screen =
@@ -24,9 +34,36 @@ export function initApp(root: HTMLElement): void {
   // 本人モード (kiosk). In-memory only: a page reload exits it.
   let kiosk = false;
 
+  // 支援者ゾーン sub-state (in-memory; reset each time the zone is entered).
+  let supportTab: SupportTab = 'history';
+  let supportPeriod: Period = 'all';
+  let confirmingClear = false;
+  let editingMarkId: string | null = null;
+
   function go(next: Screen): void {
     screen = next;
     render();
+  }
+
+  function openSupport(): void {
+    supportTab = 'history';
+    supportPeriod = 'all';
+    confirmingClear = false;
+    editingMarkId = null;
+    go({ name: 'support' });
+  }
+
+  async function copyHistory(): Promise<void> {
+    const text = formatEntries(filterByPeriod(listHistory(), supportPeriod, new Date()));
+    try {
+      if (!navigator.clipboard) throw new Error('clipboard API unavailable');
+      await navigator.clipboard.writeText(text);
+      showToast('コピーしました');
+    } catch {
+      // Never let a clipboard rejection throw out of the screen; always tell
+      // the supporter it failed rather than failing silently.
+      showToast('コピーできませんでした');
+    }
   }
 
   function enableKiosk(): void {
@@ -94,7 +131,7 @@ export function initApp(root: HTMLElement): void {
           themes,
           kiosk,
           onSelectTheme: selectTheme,
-          onOpenSupport: () => go({ name: 'support' }),
+          onOpenSupport: openSupport,
           onEnableKiosk: enableKiosk,
         });
         break;
@@ -116,7 +153,54 @@ export function initApp(root: HTMLElement): void {
         break;
       }
       case 'support':
-        renderSupport(root, () => go({ name: 'home' }));
+        renderSupport(root, {
+          entries: listHistory(),
+          tab: supportTab,
+          period: supportPeriod,
+          confirmingClear,
+          editingMarkId,
+          onBack: () => go({ name: 'home' }),
+          onTab: (t) => {
+            supportTab = t;
+            confirmingClear = false;
+            editingMarkId = null;
+            render();
+          },
+          onPeriod: (p) => {
+            supportPeriod = p;
+            render();
+          },
+          onCopy: copyHistory,
+          onDelete: (id) => {
+            deleteHistory(id);
+            if (editingMarkId === id) editingMarkId = null;
+            render();
+          },
+          onRequestClear: () => {
+            confirmingClear = true;
+            render();
+          },
+          onCancelClear: () => {
+            confirmingClear = false;
+            render();
+          },
+          onConfirmClear: () => {
+            clearHistory();
+            confirmingClear = false;
+            editingMarkId = null;
+            render();
+            showToast('ぜんぶ 消しました');
+          },
+          onEditMark: (id) => {
+            editingMarkId = id;
+            render();
+          },
+          onSaveMark: (id, mark) => {
+            setHistoryMark(id, mark);
+            editingMarkId = null;
+            render();
+          },
+        });
         break;
     }
   }
