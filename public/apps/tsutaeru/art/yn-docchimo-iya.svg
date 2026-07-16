@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: yn-docchimo-iya / どっちもいや (circle + cross both struck out) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="どっちも いや">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <circle cx="40" cy="60" r="15" fill="none" stroke="#4a8c3f" stroke-width="6"/>
+  <g fill="none" stroke="#d97757" stroke-width="6" stroke-linecap="round">
+    <path d="M68 48 L92 72"/>
+    <path d="M92 48 L68 72"/>
+  </g>
+  <path d="M22 84 L100 34" fill="none" stroke="#5f5847" stroke-width="7" stroke-linecap="round"/>
+</svg>

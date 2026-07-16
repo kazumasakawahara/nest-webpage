@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: emo-totemo / とても (large fill filling the full-size ring = a lot) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="とても">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <circle cx="60" cy="60" r="36" fill="none" stroke="#5f5847" stroke-width="2.5" stroke-dasharray="4 6" opacity="0.4"/>
+  <circle cx="60" cy="60" r="33" fill="#d97757" stroke="#5f5847" stroke-width="2.5"/>
+</svg>

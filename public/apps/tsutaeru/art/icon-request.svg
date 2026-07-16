@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: icon-request / おねがい theme (raised hand with green sleeve) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="おねがい て">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <g fill="#f7efdf" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="45" y="30" width="7.5" height="34" rx="3.7"/>
+    <rect x="54" y="26" width="7.5" height="38" rx="3.7"/>
+    <rect x="63" y="28" width="7.5" height="36" rx="3.7"/>
+    <rect x="72" y="34" width="7.5" height="30" rx="3.7"/>
+    <path d="M42 56 q-8 1 -8 9 l0 6 q0 14 15 18 q12 3 22 -3 q9 -6 9 -18 l0 -12 z"/>
+  </g>
+  <rect x="42" y="84" width="38" height="16" rx="6" fill="#4a8c3f" stroke="#5f5847" stroke-width="2.5"/>
+</svg>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: emo-ureshii / うれしい (glad, round eyes + big smile + cheeks) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="うれしい かお">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <circle cx="60" cy="62" r="35" fill="#ffd15c" stroke="#5f5847" stroke-width="2.5"/>
+  <circle cx="41" cy="71" r="6.5" fill="#d97757" opacity="0.55"/>
+  <circle cx="79" cy="71" r="6.5" fill="#d97757" opacity="0.55"/>
+  <g fill="#5f5847">
+    <circle cx="48" cy="56" r="4.6"/>
+    <circle cx="72" cy="56" r="4.6"/>
+  </g>
+  <g fill="none" stroke="#5f5847" stroke-width="3" stroke-linecap="round">
+    <path d="M44 45 q6 -5 12 -1"/>
+    <path d="M64 44 q6 -4 12 1"/>
+    <path d="M43 71 q17 20 34 0"/>
+  </g>
+</svg>

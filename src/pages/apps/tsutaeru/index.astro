@@ -1,0 +1,929 @@
+---
+---
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>つたえるカード</title>
+    <link rel="manifest" href="/apps/tsutaeru/manifest.webmanifest" />
+    <meta name="theme-color" content="#4a8c3f" />
+    <link rel="apple-touch-icon" href="/apps/tsutaeru/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="つたえる" />
+    <style is:global>
+      /* This page deliberately does NOT import the site global.css; the app owns
+         its own small palette derived from the site's editorial colours. */
+      :root {
+        --cream: #faf6ef;
+        --ink: #333333;
+        --ink-soft: #5f5847;
+        --green: #4a8c3f;
+        --green-dark: #2f5d3a;
+        --terra: #d97757;
+        --line: #e6ddca;
+        --neutral: #efe9dc;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+      }
+      body {
+        background: var(--cream);
+        color: var(--ink);
+        font-family: system-ui, -apple-system, 'Hiragino Kaku Gothic ProN',
+          'Yu Gothic', 'Meiryo', sans-serif;
+        text-align: center;
+        -webkit-text-size-adjust: 100%;
+      }
+      #app {
+        max-width: 640px;
+        margin: 0 auto;
+        min-height: 100vh;
+        padding: 16px;
+        /* Kiosk hardening: a text selection / iOS loupe on a long-press would
+           fire pointercancel and make the 3-second 本人モード exit impossible on
+           text. Suppress selection app-wide (copy uses the clipboard API, not
+           manual selection, so nothing here depends on selectable text). */
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-touch-callout: none;
+      }
+      /* Inputs must stay editable/selectable despite the root-wide guard. */
+      input,
+      textarea {
+        -webkit-user-select: text;
+        user-select: text;
+      }
+
+      .screen {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        animation: fade 0.15s ease-in;
+      }
+      @keyframes fade {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Buttons: shared reset. Only opacity animates (per spec). */
+      button {
+        font-family: inherit;
+        color: inherit;
+        cursor: pointer;
+        transition: opacity 0.15s ease;
+        /* Kill iOS double-tap-to-zoom / the 300ms click delay so the two-stage
+           same-card double tap registers as two clean taps. */
+        touch-action: manipulation;
+      }
+      button:active {
+        opacity: 0.6;
+      }
+
+      /* Top bars */
+      .app-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .app-title {
+        font-size: 15px;
+        color: var(--ink-soft);
+      }
+      .gear {
+        width: 40px;
+        height: 40px;
+        border: none;
+        border-radius: 50%;
+        background: transparent;
+        font-size: 22px;
+        line-height: 1;
+        color: var(--ink-soft);
+      }
+      .card-bar {
+        display: flex;
+        align-items: center;
+        min-height: 40px;
+      }
+      .back {
+        width: 48px;
+        height: 48px;
+        border: 2px solid var(--line);
+        border-radius: 12px;
+        background: #fff;
+        font-size: 24px;
+        line-height: 1;
+        color: var(--ink-soft);
+      }
+
+      /* 本人モード (kiosk) control on home */
+      .kiosk-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+      }
+      .kiosk-toggle {
+        min-height: 44px;
+        padding: 0 20px;
+        border: 2px solid var(--green);
+        border-radius: 22px;
+        background: #fff;
+        color: var(--green-dark);
+        font-size: 16px;
+        font-weight: 700;
+      }
+      .kiosk-badge {
+        padding: 6px 16px;
+        border-radius: 22px;
+        background: var(--green);
+        color: #fff;
+        font-size: 16px;
+        font-weight: 700;
+      }
+      .kiosk-hint {
+        font-size: 13px;
+        color: var(--ink-soft);
+      }
+
+      /* Transient toast (confirms leaving 本人モード) */
+      .toast {
+        position: fixed;
+        left: 50%;
+        bottom: 32px;
+        transform: translateX(-50%);
+        max-width: calc(100% - 32px);
+        padding: 12px 20px;
+        border-radius: 12px;
+        background: var(--green-dark);
+        color: #fff;
+        font-size: 16px;
+        font-weight: 700;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        animation: fade 0.15s ease-in;
+        z-index: 10;
+      }
+
+      /* Home: theme grid.
+         minmax(0,1fr) + min-width:0 on items: grid children default to
+         min-width:auto, so a long unwrappable label would widen the column
+         past the track and overflow the viewport on narrow phones. */
+      .theme-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .theme-btn {
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-height: 128px;
+        padding: 16px;
+        border: 2px solid var(--line);
+        border-radius: 18px;
+        background: #fff;
+      }
+      .theme-btn .art {
+        width: 64px;
+        height: 64px;
+        object-fit: contain;
+        background: var(--neutral);
+        border-radius: 12px;
+      }
+      .theme-title {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--green-dark);
+        max-width: 100%;
+        overflow-wrap: anywhere;
+      }
+
+      /* Cards */
+      .prompt {
+        margin: 0;
+        font-size: 26px;
+        font-weight: 700;
+        line-height: 1.4;
+        color: var(--ink);
+      }
+      .note {
+        margin: 0;
+        font-size: 18px;
+        color: var(--ink-soft);
+      }
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .card-btn {
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 96px;
+        padding: 12px;
+        border: 2px solid var(--line);
+        border-radius: 16px;
+        background: #fff;
+      }
+      .card-btn.selected {
+        outline: 4px solid var(--terra);
+        outline-offset: -2px;
+      }
+      .card-btn .art {
+        width: 56px;
+        height: 56px;
+        object-fit: contain;
+        background: var(--neutral);
+        border-radius: 10px;
+      }
+      .card-btn .photo {
+        width: 72px;
+        height: 72px;
+        object-fit: cover;
+        background: var(--neutral);
+        border-radius: 10px;
+      }
+      .card-label {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--ink);
+        max-width: 100%;
+        overflow-wrap: anywhere;
+      }
+      .card-btn.text .card-label {
+        font-size: 28px;
+      }
+
+      /* Result */
+      .result-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+      }
+      .result-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-width: 120px;
+        min-height: 120px;
+        padding: 16px;
+        border: 2px solid var(--line);
+        border-radius: 16px;
+        background: #fff;
+      }
+      .result-card .art,
+      .result-card .photo {
+        width: 72px;
+        height: 72px;
+        object-fit: contain;
+        background: var(--neutral);
+        border-radius: 12px;
+      }
+      .result-card .photo {
+        object-fit: cover;
+      }
+      .result-card.text .card-label {
+        font-size: 26px;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+      }
+      .action-btn {
+        min-height: 56px;
+        padding: 0 28px;
+        border: none;
+        border-radius: 14px;
+        background: var(--green);
+        color: #fff;
+        font-size: 20px;
+        font-weight: 700;
+      }
+      .action-btn.secondary {
+        background: #fff;
+        color: var(--green-dark);
+        border: 2px solid var(--green);
+      }
+
+      /* 支援者ゾーン (support zone) */
+      .support-title {
+        margin-left: 12px;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--green-dark);
+      }
+      .support-tabs {
+        display: flex;
+        gap: 8px;
+      }
+      .support-tab {
+        flex: 1;
+        min-width: 0;
+        min-height: 44px;
+        padding: 0 8px;
+        border: 2px solid var(--line);
+        border-radius: 12px 12px 0 0;
+        background: #fff;
+        color: var(--ink-soft);
+        font-size: 16px;
+        font-weight: 700;
+      }
+      .support-tab.active {
+        border-color: var(--green);
+        background: var(--green);
+        color: #fff;
+      }
+
+      /* Period filter */
+      .period-row {
+        display: flex;
+        gap: 8px;
+      }
+      .period-btn {
+        flex: 1;
+        min-width: 0;
+        min-height: 40px;
+        border: 2px solid var(--line);
+        border-radius: 20px;
+        background: #fff;
+        color: var(--ink-soft);
+        font-size: 15px;
+        font-weight: 700;
+      }
+      .period-btn.active {
+        border-color: var(--green);
+        background: var(--green);
+        color: #fff;
+      }
+
+      .copy-btn {
+        min-height: 48px;
+        border: none;
+        border-radius: 12px;
+        background: var(--green);
+        color: #fff;
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .support-empty {
+        margin: 0;
+        padding: 24px 0;
+        font-size: 16px;
+        color: var(--ink-soft);
+      }
+
+      /* History list */
+      .history-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .history-row {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 12px;
+        border: 2px solid var(--line);
+        border-radius: 12px;
+        background: #fff;
+        text-align: left;
+      }
+      .history-top {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .history-line {
+        flex: 1;
+        min-width: 0;
+        font-size: 16px;
+        color: var(--ink);
+        overflow-wrap: anywhere;
+      }
+      .row-delete {
+        flex-shrink: 0;
+        min-height: 36px;
+        padding: 0 14px;
+        border: 2px solid var(--terra);
+        border-radius: 10px;
+        background: #fff;
+        color: var(--terra);
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .mark-btn {
+        align-self: flex-start;
+        min-height: 34px;
+        padding: 0 12px;
+        border: 2px dashed var(--line);
+        border-radius: 10px;
+        background: var(--cream);
+        color: var(--ink-soft);
+        font-size: 14px;
+      }
+      .mark-btn.set {
+        border-style: solid;
+        border-color: var(--green);
+        color: var(--green-dark);
+      }
+      .mark-editor {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+      }
+      .mark-input {
+        flex: 1;
+        min-width: 0;
+        min-height: 40px;
+        padding: 0 10px;
+        border: 2px solid var(--green);
+        border-radius: 10px;
+        background: #fff;
+        color: var(--ink);
+        font-family: inherit;
+        font-size: 16px;
+      }
+      .mark-save {
+        flex-shrink: 0;
+        min-height: 40px;
+        padding: 0 16px;
+        border: none;
+        border-radius: 10px;
+        background: var(--green);
+        color: #fff;
+        font-size: 15px;
+        font-weight: 700;
+      }
+      .mark-note {
+        flex-basis: 100%;
+        margin: 0;
+        font-size: 13px;
+        color: var(--terra);
+        font-weight: 700;
+      }
+
+      /* 全削除 (two-step confirm) */
+      .clear-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 8px;
+      }
+      .clear-btn {
+        min-height: 44px;
+        padding: 0 20px;
+        border: 2px solid var(--line);
+        border-radius: 12px;
+        background: #fff;
+        color: var(--ink-soft);
+        font-size: 16px;
+        font-weight: 700;
+      }
+      .clear-btn:disabled {
+        opacity: 0.4;
+        cursor: default;
+      }
+      .clear-btn.danger {
+        border-color: var(--terra);
+        background: var(--terra);
+        color: #fff;
+      }
+      .clear-confirm-text {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--terra);
+      }
+
+      /* せってい (settings) */
+      .settings-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px 4px;
+      }
+      .settings-label {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--ink);
+      }
+      .settings-toggle {
+        flex-shrink: 0;
+        min-width: 72px;
+        min-height: 44px;
+        padding: 0 18px;
+        border: 2px solid var(--line);
+        border-radius: 22px;
+        background: #fff;
+        color: var(--ink-soft);
+        font-size: 16px;
+        font-weight: 700;
+      }
+      .settings-toggle.on {
+        border-color: var(--green);
+        background: var(--green);
+        color: #fff;
+      }
+      .settings-note {
+        margin: 0;
+        font-size: 13px;
+        color: var(--ink-soft);
+        text-align: left;
+      }
+      .settings-reset {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+      .settings-reset-text {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--terra);
+      }
+
+      /* へんしゅう (editor) */
+      .edit-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .edit-row {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 12px;
+        border: 2px solid var(--line);
+        border-radius: 12px;
+        background: #fff;
+        text-align: left;
+      }
+      .edit-row-top {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .edit-title-btn {
+        flex: 1;
+        min-width: 0;
+        min-height: 44px;
+        padding: 0 12px;
+        border: none;
+        border-radius: 10px;
+        background: var(--cream);
+        color: var(--green-dark);
+        font-size: 18px;
+        font-weight: 700;
+        text-align: left;
+        overflow-wrap: anywhere;
+      }
+      .edit-mini {
+        flex-shrink: 0;
+        min-height: 36px;
+        padding: 0 12px;
+        border: 2px solid var(--green);
+        border-radius: 10px;
+        background: #fff;
+        color: var(--green-dark);
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .edit-mini.off {
+        border-color: var(--line);
+        color: var(--ink-soft);
+      }
+      .edit-mini.danger {
+        border-color: var(--terra);
+        background: var(--terra);
+        color: #fff;
+      }
+      .edit-reorder {
+        display: flex;
+        flex-shrink: 0;
+        gap: 4px;
+      }
+      .edit-arrow {
+        width: 36px;
+        min-height: 36px;
+        border: 2px solid var(--line);
+        border-radius: 10px;
+        background: #fff;
+        color: var(--ink-soft);
+        font-size: 16px;
+        line-height: 1;
+      }
+      .edit-display {
+        display: flex;
+        gap: 6px;
+      }
+      .edit-seg {
+        flex: 1;
+        min-width: 0;
+        min-height: 38px;
+        padding: 0 6px;
+        border: 2px solid var(--line);
+        border-radius: 10px;
+        background: #fff;
+        color: var(--ink-soft);
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .edit-seg.active {
+        border-color: var(--green);
+        background: var(--green);
+        color: #fff;
+      }
+      .edit-add-btn {
+        min-height: 48px;
+        border: 2px dashed var(--green);
+        border-radius: 12px;
+        background: #fff;
+        color: var(--green-dark);
+        font-size: 17px;
+        font-weight: 700;
+      }
+
+      /* Add/edit forms (theme, card) */
+      .edit-form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 12px;
+        border: 2px solid var(--green);
+        border-radius: 12px;
+        background: #fff;
+      }
+      .edit-input {
+        min-height: 44px;
+        padding: 0 12px;
+        border: 2px solid var(--line);
+        border-radius: 10px;
+        background: #fff;
+        color: var(--ink);
+        font-family: inherit;
+        font-size: 16px;
+      }
+      .edit-form-actions {
+        display: flex;
+        gap: 8px;
+      }
+      .edit-save {
+        flex: 1;
+        min-height: 44px;
+        border: none;
+        border-radius: 10px;
+        background: var(--green);
+        color: #fff;
+        font-size: 16px;
+        font-weight: 700;
+      }
+      .edit-save:disabled {
+        opacity: 0.4;
+        cursor: default;
+      }
+      .edit-cancel {
+        flex: 1;
+        min-height: 44px;
+        border: 2px solid var(--line);
+        border-radius: 10px;
+        background: #fff;
+        color: var(--ink-soft);
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      /* Theme detail */
+      .edit-detail-head {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .edit-detail-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--green-dark);
+        overflow-wrap: anywhere;
+      }
+      .edit-question {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 12px;
+        border: 2px solid var(--line);
+        border-radius: 12px;
+        background: #fff;
+        text-align: left;
+      }
+      .edit-prompt {
+        margin: 0;
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--ink);
+        overflow-wrap: anywhere;
+      }
+      .edit-toggles {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .edit-chip {
+        min-height: 36px;
+        padding: 0 14px;
+        border: 2px solid var(--line);
+        border-radius: 18px;
+        background: #fff;
+        color: var(--ink-soft);
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .edit-chip.on {
+        border-color: var(--green);
+        background: var(--green);
+        color: #fff;
+      }
+      .edit-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .edit-card-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--cream);
+      }
+      .edit-card-info {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .edit-card-label {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--ink);
+        overflow-wrap: anywhere;
+      }
+      .edit-card-speech {
+        font-size: 12px;
+        color: var(--ink-soft);
+        overflow-wrap: anywhere;
+      }
+      .edit-card-controls {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        gap: 6px;
+      }
+      .edit-add-card {
+        align-self: flex-start;
+        min-height: 40px;
+        padding: 0 16px;
+        border: 2px dashed var(--green);
+        border-radius: 10px;
+        background: #fff;
+        color: var(--green-dark);
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      /* 絵ピッカー */
+      .edit-picker {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 8px;
+        max-height: 260px;
+        overflow-y: auto;
+        padding: 4px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--cream);
+      }
+      .edit-pick {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 56px;
+        padding: 4px;
+        border: 2px solid var(--line);
+        border-radius: 10px;
+        background: #fff;
+      }
+      .edit-pick.on {
+        border-color: var(--terra);
+        outline: 2px solid var(--terra);
+        outline-offset: -2px;
+      }
+      .edit-pick .art {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+      }
+      .edit-pick-none {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--ink-soft);
+      }
+
+      /* しゃしん (per-card photo) */
+      .edit-photo {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      /* The pick control is a <label>, so give it the button's box behaviour. */
+      label.edit-mini {
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
+      }
+      .edit-photo-thumb {
+        width: 48px;
+        height: 48px;
+        object-fit: cover;
+        border-radius: 8px;
+        background: var(--neutral);
+      }
+      /* The <label> is the visible button; the real input sits off-screen. */
+      .edit-photo-input {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        opacity: 0;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+      }
+      .edit-photo-note {
+        flex-basis: 100%;
+        margin: 0;
+        font-size: 12px;
+        color: var(--ink-soft);
+      }
+
+      /* もとにもどす */
+      .edit-restore {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 4px;
+      }
+      .edit-restore-text {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--terra);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      import { initApp } from '../../../apps/tsutaeru/app';
+      initApp(document.getElementById('app')!);
+    </script>
+    <script>
+      // Register the service worker (scope: /apps/tsutaeru/) for offline use.
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker
+            .register('/apps/tsutaeru/sw.js')
+            .catch(() => {});
+        });
+      }
+    </script>
+  </body>
+</html>

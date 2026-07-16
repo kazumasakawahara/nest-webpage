@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: emo-okotteru / おこってる (angry, brows slanted down-in + frown + anger mark) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="おこってる かお">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <circle cx="60" cy="62" r="35" fill="#ffd15c" stroke="#5f5847" stroke-width="2.5"/>
+  <g fill="#5f5847">
+    <circle cx="49" cy="60" r="4.4"/>
+    <circle cx="71" cy="60" r="4.4"/>
+  </g>
+  <g fill="none" stroke="#5f5847" stroke-width="4" stroke-linecap="round">
+    <path d="M43 50 L58 57"/>
+    <path d="M77 50 L62 57"/>
+  </g>
+  <path d="M46 80 q14 -11 28 0" fill="none" stroke="#5f5847" stroke-width="3.2" stroke-linecap="round"/>
+  <g fill="none" stroke="#d97757" stroke-width="2.6" stroke-linecap="round">
+    <path d="M84 30 q7 0 7 7"/>
+    <path d="M93 30 q0 7 -7 7"/>
+  </g>
+</svg>

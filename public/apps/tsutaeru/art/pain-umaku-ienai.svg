@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: pain-umaku-ienai / うまくいえない (haze / mist) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="うまく いえない">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <g fill="none" stroke="#5f5847" stroke-width="4.5" stroke-linecap="round" opacity="0.45">
+    <path d="M30 42 q15 -9 30 0 q15 9 30 0"/>
+    <path d="M28 58 q15 -9 30 0 q15 9 30 0"/>
+    <path d="M32 74 q14 -9 28 0 q14 9 28 0"/>
+  </g>
+</svg>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: req-shizuka / しずかなところにいきたい (shhh finger over lips) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="しずかな ところに いきたい">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <circle cx="60" cy="58" r="34" fill="#ffd15c" stroke="#5f5847" stroke-width="2.5"/>
+  <g fill="none" stroke="#5f5847" stroke-width="3" stroke-linecap="round">
+    <path d="M42 50 q7 -5 14 0"/>
+    <path d="M64 50 q7 -5 14 0"/>
+    <path d="M54 76 q6 3 12 0"/>
+  </g>
+  <rect x="55" y="52" width="10" height="36" rx="5" fill="#f7efdf" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round"/>
+  <g fill="none" stroke="#4a8c3f" stroke-width="2.4" stroke-linecap="round">
+    <path d="M88 40 l7 -3"/>
+    <path d="M90 50 l7 0"/>
+  </g>
+</svg>

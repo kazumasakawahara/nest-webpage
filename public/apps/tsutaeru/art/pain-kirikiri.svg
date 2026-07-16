@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: pain-kirikiri / キリキリ (wrung twisted cloth) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="キリキリ">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <path d="M40 22 q-6 6 4 12 h32 q10 -6 4 -12 z" fill="#f7efdf" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M40 98 q-6 -6 4 -12 h32 q10 6 4 12 z" fill="#f7efdf" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round"/>
+  <g fill="none" stroke="#5f5847" stroke-width="6" stroke-linecap="round">
+    <path d="M44 32 q22 12 0 28 q-22 16 0 28"/>
+    <path d="M76 32 q-22 12 0 28 q22 16 0 28"/>
+  </g>
+  <g fill="none" stroke="#d97757" stroke-width="2.4" stroke-linecap="round">
+    <path d="M48 40 q14 8 0 16"/>
+    <path d="M46 66 q16 8 0 16"/>
+  </g>
+</svg>

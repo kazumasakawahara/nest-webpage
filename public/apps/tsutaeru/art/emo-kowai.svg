@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: emo-kowai / こわい (scared, raised brows + wide eyes + small open mouth) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="こわい かお">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <circle cx="60" cy="62" r="35" fill="#ffd15c" stroke="#5f5847" stroke-width="2.5"/>
+  <g fill="none" stroke="#5f5847" stroke-width="2.8" stroke-linecap="round">
+    <path d="M43 47 q7 -5 14 -1"/>
+    <path d="M63 46 q7 -4 14 1"/>
+  </g>
+  <g stroke="#5f5847" stroke-width="2">
+    <circle cx="48" cy="58" r="7" fill="#fffdf8"/>
+    <circle cx="72" cy="58" r="7" fill="#fffdf8"/>
+  </g>
+  <g fill="#5f5847">
+    <circle cx="48" cy="59.5" r="3"/>
+    <circle cx="72" cy="59.5" r="3"/>
+  </g>
+  <ellipse cx="60" cy="80" rx="6" ry="5.5" fill="#5f5847"/>
+  <g fill="none" stroke="#4a8c3f" stroke-width="2.2" stroke-linecap="round">
+    <path d="M30 52 l-3 9"/>
+    <path d="M37 50 l-3 9"/>
+  </g>
+</svg>

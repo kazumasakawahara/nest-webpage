@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: req-omizu / おみず (glass of water + droplet) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="おみず">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <path d="M60 14 c-5 7 -7 10 -7 14 a7 7 0 0 0 14 0 c0 -4 -2 -7 -7 -14 z"
+        fill="#4a8c3f" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M42 40 h36 l-4 51 q-1 7 -14 7 q-13 0 -14 -7 z"
+        fill="#fffdf8" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M45 58 q15 6 30 0 l-2.4 33 q-1 6 -12.6 6 q-11.6 0 -12.6 -6 z" fill="#4a8c3f" opacity="0.45"/>
+  <path d="M45 58 q15 6 30 0" fill="none" stroke="#5f5847" stroke-width="2"/>
+</svg>

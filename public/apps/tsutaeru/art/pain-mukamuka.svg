@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: pain-mukamuka / ムカムカ (abstract stomach swirl) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="ムカムカ">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <path d="M60 64 q-8 -8 2 -16 q12 -10 24 4 q12 16 -6 30 q-22 16 -40 -4 q-16 -22 8 -40" fill="none" stroke="#4a8c3f" stroke-width="4.5" stroke-linecap="round"/>
+  <g fill="none" stroke="#4a8c3f" stroke-width="3" stroke-linecap="round" opacity="0.8">
+    <path d="M40 28 q5 -6 0 -12"/>
+    <path d="M56 24 q6 -7 0 -14"/>
+  </g>
+</svg>

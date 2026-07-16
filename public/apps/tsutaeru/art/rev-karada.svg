@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: rev-karada / からだのこと (body + attention mark) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="からだの こと">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <g fill="#f7efdf" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round">
+    <circle cx="52" cy="31" r="12"/>
+    <rect x="41" y="46" width="22" height="32" rx="11"/>
+    <rect x="24" y="50" width="20" height="8" rx="4" transform="rotate(22 34 54)"/>
+    <rect x="60" y="50" width="20" height="8" rx="4" transform="rotate(-22 70 54)"/>
+    <rect x="44" y="74" width="8" height="24" rx="4" transform="rotate(7 48 86)"/>
+    <rect x="53" y="74" width="8" height="24" rx="4" transform="rotate(-7 57 86)"/>
+  </g>
+  <g fill="#d97757">
+    <rect x="84" y="42" width="8" height="22" rx="4"/>
+    <circle cx="88" cy="73" r="4.4"/>
+  </g>
+</svg>

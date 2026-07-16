@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: req-yasumitai / やすみたい (bed + pillow + zzz) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="やすみたい">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <g fill="none" stroke="#4a8c3f" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M54 46 h7 l-7 7 h7"/>
+    <path d="M64 34 h9 l-9 9 h9"/>
+  </g>
+  <rect x="18" y="46" width="10" height="42" rx="4" fill="#4a8c3f" stroke="#5f5847" stroke-width="2.5"/>
+  <rect x="20" y="60" width="80" height="28" rx="6" fill="#f7efdf" stroke="#5f5847" stroke-width="2.5"/>
+  <rect x="30" y="64" width="21" height="14" rx="5" fill="#fffdf8" stroke="#5f5847" stroke-width="2.5"/>
+  <path d="M53 88 v-16 q0 -6 8 -6 h33 q6 0 6 6 v16 z" fill="#d97757" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round"/>
+  <g stroke="#5f5847" stroke-width="2.5" stroke-linecap="round">
+    <path d="M24 88 v8"/><path d="M96 88 v8"/>
+  </g>
+</svg>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: rev-nemurenakatta / ねむれなかった (in bed, eyes open + moon) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="ねむれ なかった">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <path d="M96 28 a13 13 0 1 0 5 22 a16 16 0 0 1 -5 -22 z" fill="#ffd15c" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round"/>
+  <rect x="20" y="68" width="80" height="20" rx="5" fill="#f7efdf" stroke="#5f5847" stroke-width="2.5"/>
+  <path d="M52 68 v20" stroke="#5f5847" stroke-width="2.5"/>
+  <rect x="24" y="60" width="24" height="13" rx="5" fill="#fffdf8" stroke="#5f5847" stroke-width="2.5"/>
+  <circle cx="38" cy="52" r="12" fill="#ffd15c" stroke="#5f5847" stroke-width="2.5"/>
+  <g fill="#5f5847"><circle cx="33" cy="50" r="2.6"/><circle cx="43" cy="50" r="2.6"/></g>
+  <path d="M22 90 h96" stroke="none"/>
+</svg>

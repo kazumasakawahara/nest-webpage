@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: emo-tsukareta / つかれた (tired, half-lidded droopy eyes + bags + sigh) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="つかれた かお">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <circle cx="60" cy="62" r="35" fill="#ffd15c" stroke="#5f5847" stroke-width="2.5"/>
+  <g fill="none" stroke="#5f5847" stroke-width="3" stroke-linecap="round">
+    <path d="M42 55 q7 6 14 1"/>
+    <path d="M64 56 q7 5 14 -1"/>
+  </g>
+  <g fill="none" stroke="#5f5847" stroke-width="1.8" stroke-linecap="round" opacity="0.7">
+    <path d="M44 63 q5 4 11 1"/>
+    <path d="M65 64 q5 4 11 -1"/>
+  </g>
+  <path d="M52 80 q8 4 16 0" fill="none" stroke="#5f5847" stroke-width="3" stroke-linecap="round"/>
+  <g fill="none" stroke="#4a8c3f" stroke-width="2.2" stroke-linecap="round" opacity="0.85">
+    <path d="M84 44 q7 3 4 10 q-3 5 3 9"/>
+  </g>
+</svg>

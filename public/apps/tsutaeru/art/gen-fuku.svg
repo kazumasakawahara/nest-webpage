@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: gen-fuku / clothes / t-shirt -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="ふく">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <path d="M46 32 l-20 12 l9 15 l11 -6 v33 h28 v-33 l11 6 l9 -15 l-20 -12 q-9 9 -18 0 z" fill="#4a8c3f" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M46 32 q14 12 28 0" fill="none" stroke="#5f5847" stroke-width="2.2" stroke-linecap="round"/>
+</svg>

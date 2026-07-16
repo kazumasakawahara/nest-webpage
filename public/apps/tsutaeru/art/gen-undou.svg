@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: gen-undou / ball / exercise -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="うんどう">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <circle cx="60" cy="62" r="30" fill="#fffdf8" stroke="#5f5847" stroke-width="2.5"/>
+  <g fill="none" stroke="#5f5847" stroke-width="2.5" stroke-linecap="round">
+    <path d="M60 32 v60"/>
+    <path d="M33 50 q27 12 54 0"/>
+    <path d="M33 74 q27 -12 54 0"/>
+  </g>
+  <g stroke="#d97757" stroke-width="3" stroke-linecap="round"><path d="M96 40 l7 -5"/><path d="M98 54 h8"/></g>
+</svg>

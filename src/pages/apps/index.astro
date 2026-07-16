@@ -1,0 +1,398 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+
+const appUrl = '/apps/tsutaeru/';
+const appFullUrl = 'https://www.nponest.com/apps/tsutaeru/';
+---
+
+<BaseLayout
+  title="つたえるカード｜スマホで気持ちを伝えるアプリ"
+  description="「つたえるカード」は、知的障がいのある方が、支援者や家族のスマホに並んだカードを指さして、気持ち・困りごと・体調・通院での症状を伝えられる無料アプリです。インストール不要・アカウント不要・データは端末の中だけ。意思決定支援の考え方から生まれました。"
+>
+  <Hero
+    eyebrow="つたえるカード ／ Tsutaeru Card"
+    title="指さしで、<br />気持ちを伝えるアプリ"
+    lead="スマホに並んだカードを指でさすだけ。「いま、どんな気持ち？」「どこがつらい？」——ことばにしにくい思いを、本人のペースで伝えられます。支援者・家族のためのご案内ページです。"
+    size="md"
+    placeholderLabel="TSUTAERU CARD"
+  />
+
+  <!-- ===== アプリ紹介（意思決定支援の文脈） ===== -->
+  <section class="section">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">About</span>
+      <h2 class="section__title">「知らないから伝えられない」を、断ち切る</h2>
+      <p class="prose">
+        「つたえるカード」は、知的障がいのある方が、支援者や家族のスマホに並んだカードを
+        指さすことで、いまの<strong>気持ち</strong>・<strong>困りごと</strong>・<strong>体調</strong>、
+        そして<strong>通院での症状</strong>を伝えられる、シンプルなアプリです。
+      </p>
+      <p class="prose">
+        nest は、本人に代わって周囲が決めてしまうのではなく、本人が自分のことを自分で選び、
+        決められるように支える<a href="/sudachi/decision-support/">意思決定支援</a>に取り組んできました。
+        その根っこにあるのは、「知らないから伝えられない」という負の連鎖を、私たちの側から
+        断ち切りたいという思いです。選ぶための<em>手がかり</em>が目の前にあれば、
+        「こうしたい」「これがつらい」を、本人が自分の指で示すことができます。
+        このアプリは、その小さな手がかりのひとつです。
+      </p>
+
+      <ul class="feature-list">
+        <li class="feature-list__item">
+          <span class="feature-list__mark" aria-hidden="true">◯</span>
+          <span><strong>一度ひらけば、電波がなくても使えます。</strong>
+            外出先や通院の待合室、電波の弱い場所でも大丈夫です。</span>
+        </li>
+        <li class="feature-list__item">
+          <span class="feature-list__mark" aria-hidden="true">◯</span>
+          <span><strong>アカウントも、ログインも要りません。</strong>
+            メールアドレスや電話番号の登録は一切ありません。</span>
+        </li>
+        <li class="feature-list__item">
+          <span class="feature-list__mark" aria-hidden="true">◯</span>
+          <span><strong>入力したことは、その端末の中だけに残ります。</strong>
+            記録がインターネットのどこかに送られることはありません。</span>
+        </li>
+      </ul>
+
+      <p class="prose prose--soft">
+        カードの中身や並びは、事業所やご家庭に合わせて自由に編集できます。よく使う言葉、
+        その人だけの言い回し、本人の顔になじんだ写真——使いながら、少しずつ育てていってください。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== QR＋URL ===== -->
+  <section class="section section--sand">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">Open</span>
+      <h2 class="section__title">アプリをひらく</h2>
+      <div class="open-box">
+        <div class="open-box__qr">
+          <img
+            src="/images/apps/tsutaeru-qr.svg"
+            alt="つたえるカードを開くためのQRコード。スマホのカメラで読み取ると www.nponest.com/apps/tsutaeru/ が開きます"
+            width="180"
+            height="180"
+            loading="lazy"
+          />
+          <p class="open-box__qr-cap">スマホのカメラでQRコードを読み取ってください</p>
+        </div>
+        <div class="open-box__body">
+          <p class="open-box__lead">
+            下のQRコードをスマホのカメラで読み取るか、このアドレスをブラウザに入力すると開きます。
+          </p>
+          <p class="open-box__url"><code>{appFullUrl}</code></p>
+          <a href={appUrl} class="btn btn--primary open-box__btn">このスマホで開く</a>
+          <p class="open-box__note">
+            ※ はじめて開くときだけ、電波のよい場所でひらいてください。一度ひらけば、
+            次からはオフラインでも使えます。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ホーム画面に追加 ===== -->
+  <section class="section">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">Install</span>
+      <h2 class="section__title">「ホーム画面に追加」しておくと便利です</h2>
+      <p class="prose">
+        ホーム画面にアイコンを置いておくと、毎回ブラウザで開かなくても、ふつうのアプリのように
+        ワンタップで起動できます。全画面で表示され、動きも軽くなります。お使いの機種に合わせて、
+        次の手順を試してみてください。
+      </p>
+
+      <figure class="howto">
+        <img
+          src="/images/apps/add-home-iphone.svg"
+          alt="iPhone（Safari）でホーム画面に追加する3ステップ。1. 画面下の共有ボタン（四角に上向き矢印）をタップ。2. メニューを少し下にたどって「ホーム画面に追加」をタップ。3. 右上の「追加」をタップすると、ホーム画面にアイコンができる。"
+          width="640"
+          height="320"
+          loading="lazy"
+        />
+        <figcaption class="howto__cap">iPhone をお使いのとき（Safari）</figcaption>
+      </figure>
+
+      <figure class="howto">
+        <img
+          src="/images/apps/add-home-android.svg"
+          alt="Android（Chrome）でホーム画面に追加する3ステップ。1. 画面右上の「点が縦に3つ」のメニューをタップ。2. 「ホーム画面に追加」（または「アプリをインストール」）をタップ。3. 「追加」をタップすると、ホーム画面にアイコンができる。"
+          width="640"
+          height="320"
+          loading="lazy"
+        />
+        <figcaption class="howto__cap">Android をお使いのとき（Chrome）</figcaption>
+      </figure>
+
+      <p class="prose prose--soft">
+        ※ 画面の言葉や並びは、機種やアプリのバージョンによって少し違うことがあります。
+        「共有」や「メニュー」から「ホーム画面に追加」を探す、と覚えておけば見つけやすいです。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 支援者向け注意 ===== -->
+  <section class="section section--sand">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">For Supporters</span>
+      <h2 class="section__title">支援者・ご家族へ、5つのお願い</h2>
+      <p class="prose">
+        安心して使っていただくために、運用のうえで気をつけたいことをまとめました。
+        どれも、本人の尊厳とプライバシーを守るための、大切な約束ごとです。
+      </p>
+
+      <div class="notes">
+        <div class="note-card">
+          <h3 class="note-card__title">本人が写る写真は、同意を確かめてから</h3>
+          <p>
+            カードには写真も使えますが、本人が写った写真を登録するときは、
+            「これを使ってもいい？」と本人に確かめることを基本にしてください。
+            嫌がるそぶりがあれば、無理に使わず、絵や文字のカードで代えられます。
+            誰の写真かによっては、その人の同意も必要です。
+          </p>
+        </div>
+
+        <div class="note-card">
+          <h3 class="note-card__title">記録は端末の中だけ。サーバーには送りません</h3>
+          <p>
+            入力した内容や写真は、そのスマホ・タブレットの中にだけ保存され、
+            インターネット上のサーバーに送られることはありません。だからこそ、
+            端末そのものの管理——画面ロックや、他の人に貸すときの配慮——が大切になります。
+          </p>
+        </div>
+
+        <div class="note-card">
+          <h3 class="note-card__title">端末を替えると、データは引き継がれません</h3>
+          <p>
+            データが端末の中だけにあるということは、スマホを機種変更したり、
+            別の端末で開いたりすると、それまでの記録やカードの編集内容は引き継がれない、
+            ということでもあります。端末を替えるときは、新しい端末でまた設定し直してください。
+          </p>
+        </div>
+
+        <div class="note-card">
+          <h3 class="note-card__title">「めじるし」に、本名は書かないでください</h3>
+          <p>
+            記録には、あとで見返すための「めじるし」を付けられます。ただし、ここに
+            利用者の本名を書くのは避けてください。イニシャルやニックネーム、席の番号など、
+            その場の人だけが分かる書き方にしておくと、万一画面を見られても本人が特定されません。
+          </p>
+        </div>
+
+        <div class="note-card">
+          <h3 class="note-card__title">iPhone なら「アクセスガイド」との併用がおすすめ</h3>
+          <p>
+            このアプリには、本人が操作に集中できる「本人モード」があります。あわせて、
+            iPhone の<strong>アクセスガイド（ガイド付きアクセス）</strong>を使うと、
+            一つのアプリだけを表示したまま画面を固定でき、ホームボタンやサイドボタンの
+            誤操作で別の画面に移ってしまうことも防げます。
+            「設定 → アクセシビリティ → アクセスガイド」からオンにできます。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 既製AACアプリの併記 ===== -->
+  <section class="section">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">Note</span>
+      <h2 class="section__title">ほかの意思疎通アプリとの、すみ分け</h2>
+      <p class="prose">
+        絵カードや音声で意思を伝える支援は、AAC（補助・代替コミュニケーション）と呼ばれ、
+        <strong>DropTalk</strong> や <strong>えこみゅ</strong> のような、すぐれた既製アプリが
+        すでにいくつもあります。日々の会話を幅広く支えたい場合は、そうしたアプリのほうが
+        向いていることも多く、「つたえるカード」はそれらを置きかえるものではありません。
+      </p>
+      <p class="prose prose--soft">
+        このアプリが力を入れているのは、<strong>その場の選択</strong>、
+        <strong>「なぜ？」の理由さぐり</strong>、そして<strong>通院での症状の伝達</strong>という、
+        限られた場面です。事業所やご家庭ごとにカードをカスタムして、その人と場面に
+        ぴったり合わせて使う——そんな、小さくて具体的な道具を目指しています。
+      </p>
+    </div>
+  </section>
+
+  <CtaBlock
+    title="使い方や導入のご相談は、お気軽に"
+    body="「うちの利用者さんに合うかな？」「カードの作り方を知りたい」——どんなことでも、遠慮なくお問い合わせください。"
+    variant="cream"
+  />
+</BaseLayout>
+
+<style>
+  /* === 本文プロース === */
+  .prose {
+    font-size: 16px;
+    line-height: 2;
+    color: var(--color-ink);
+    margin-bottom: var(--space-4);
+  }
+  .prose strong {
+    color: var(--color-green-900);
+    font-weight: 700;
+  }
+  .prose em {
+    font-style: normal;
+    color: var(--color-terra-700);
+    font-weight: 700;
+  }
+  .prose a {
+    color: var(--color-green-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .prose--soft {
+    font-size: 14px;
+    color: var(--color-ink-mute);
+  }
+
+  /* === 特長リスト === */
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-6) 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .feature-list__item {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+    padding: var(--space-4);
+    border: 1px solid var(--color-line);
+    border-radius: 14px;
+    background: var(--color-paper, #fff);
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--color-ink);
+  }
+  .feature-list__item strong {
+    color: var(--color-green-900);
+  }
+  .feature-list__mark {
+    flex: none;
+    color: var(--color-green-700);
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  /* === QR＋URL === */
+  .open-box {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-6);
+    align-items: center;
+    margin-top: var(--space-5);
+    padding: var(--space-6);
+    border: 1px solid var(--color-line);
+    border-radius: 16px;
+    background: var(--color-paper, #fff);
+  }
+  .open-box__qr {
+    text-align: center;
+  }
+  .open-box__qr img {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--color-line);
+    border-radius: 12px;
+    background: #fff;
+    padding: 8px;
+  }
+  .open-box__qr-cap {
+    margin: var(--space-3) 0 0;
+    font-size: 12px;
+    color: var(--color-ink-soft);
+  }
+  .open-box__lead {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--color-ink);
+    margin: 0 0 var(--space-3);
+  }
+  .open-box__url {
+    margin: 0 0 var(--space-4);
+  }
+  .open-box__url code {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--color-green-900);
+    word-break: break-all;
+  }
+  .open-box__btn {
+    display: inline-block;
+  }
+  .open-box__note {
+    margin: var(--space-4) 0 0;
+    font-size: 13px;
+    color: var(--color-ink-mute);
+    line-height: 1.7;
+  }
+
+  /* === ホーム画面に追加 === */
+  .howto {
+    margin: var(--space-6) 0 0;
+  }
+  .howto img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--color-line);
+    border-radius: 14px;
+    background: #fff;
+  }
+  .howto__cap {
+    margin-top: var(--space-3);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-green-900);
+    text-align: center;
+  }
+
+  /* === 支援者向け注意 === */
+  .notes {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-top: var(--space-5);
+  }
+  .note-card {
+    padding: var(--space-5);
+    border: 1px solid var(--color-line);
+    border-left: 4px solid var(--color-terra-500);
+    border-radius: 0 14px 14px 0;
+    background: var(--color-paper, #fff);
+  }
+  .note-card__title {
+    font-family: var(--font-heading);
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--color-green-900);
+    margin: 0 0 var(--space-2);
+  }
+  .note-card p {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--color-ink);
+    margin: 0;
+  }
+  .note-card strong {
+    color: var(--color-terra-700);
+    font-weight: 700;
+  }
+
+  @media (max-width: 640px) {
+    .open-box {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+      padding: var(--space-5);
+    }
+    .open-box__qr {
+      order: 2;
+    }
+  }
+</style>

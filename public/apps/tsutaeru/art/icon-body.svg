@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: icon-body / からだ theme (simple person outline) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="からだ">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <g fill="#f7efdf" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round">
+    <circle cx="60" cy="31" r="13"/>
+    <rect x="48" y="47" width="24" height="35" rx="12"/>
+    <rect x="29" y="51" width="24" height="9" rx="4.5" transform="rotate(22 41 55)"/>
+    <rect x="67" y="51" width="24" height="9" rx="4.5" transform="rotate(-22 79 55)"/>
+    <rect x="50" y="77" width="9" height="27" rx="4.5" transform="rotate(7 54 90)"/>
+    <rect x="61" y="77" width="9" height="27" rx="4.5" transform="rotate(-7 66 90)"/>
+  </g>
+</svg>

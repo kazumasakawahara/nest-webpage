@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: trb-matsu-iya / まつのがいや (clock + impatience marks) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="まつのが いや">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <rect x="52" y="26" width="12" height="7" rx="2" fill="#4a8c3f" stroke="#5f5847" stroke-width="2"/>
+  <circle cx="58" cy="62" r="30" fill="#fffdf8" stroke="#5f5847" stroke-width="2.5"/>
+  <g stroke="#5f5847" stroke-width="2.5" stroke-linecap="round">
+    <path d="M58 37 v6"/><path d="M83 62 h-6"/><path d="M58 87 v-6"/><path d="M33 62 h6"/>
+  </g>
+  <g stroke="#5f5847" stroke-width="3" stroke-linecap="round">
+    <path d="M58 62 L58 45"/>
+    <path d="M58 62 L72 66"/>
+  </g>
+  <circle cx="58" cy="62" r="3" fill="#5f5847"/>
+  <g fill="none" stroke="#d97757" stroke-width="2.6" stroke-linecap="round">
+    <path d="M94 47 q5 6 0 12"/>
+    <path d="M101 41 q8 10 0 24"/>
+  </g>
+</svg>

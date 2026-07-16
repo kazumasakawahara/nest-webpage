@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: gen-hon / book -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="ほん">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <path d="M60 40 q-14 -8 -28 -4 v44 q14 -4 28 4 q14 -8 28 -4 v-44 q-14 -4 -28 4 z" fill="#fffdf8" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M60 40 v48" stroke="#5f5847" stroke-width="2.5"/>
+  <g fill="none" stroke="#5f5847" stroke-width="1.8" stroke-linecap="round" opacity="0.55">
+    <path d="M38 52 q10 -3 18 0"/><path d="M38 62 q10 -3 18 0"/>
+    <path d="M64 52 q10 -3 18 0"/><path d="M64 62 q10 -3 18 0"/>
+  </g>
+</svg>

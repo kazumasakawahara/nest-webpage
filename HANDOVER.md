@@ -1,7 +1,11 @@
-# HANDOVER — 2026-07-16 main（番外編第2弾「共有フォルダ」公開）
+# HANDOVER — 2026-07-16（教えてAIさん公開 ＋ つたえるカード開発）
 
 > 次回開始時はこのファイルを最初に読み込んでから作業を再開してください。
 > ※ 旧版（2026-05-22・サイト全面リニューアル期）の内容は git 履歴参照。サイトは公開運用中（nponest.com）。
+>
+> **このセッションは2系統が並走しています。**
+> 1. **教えてAIさん記事ストリーム**（main、公開運用中）— 以下「現在地」以降。
+> 2. **つたえるカード PWA 開発**（`feature/tsutaeru-app` ブランチ、**未マージ**）— 直後の専用セクション。
 
 ## 再開コマンド（コピペで動く）
 
@@ -12,6 +16,68 @@ npm run build      # 本番ビルド（dist/）
 npm run preview    # ビルド結果プレビュー
 # デプロイ: main へ push すると Cloudflare Workers が自動反映（約1〜2分）
 ```
+
+---
+
+# つたえるカード PWA（`feature/tsutaeru-app`・未マージ）
+
+言葉での意思表示が難しい方が、絵カードを2タップ（1タップ目=選択、2タップ目=確定）で選んで
+「きもち・こまった・おねがい」等を伝えるための、完全ローカル動作の PWA。写真も履歴も端末内のみ。
+
+## 現在地
+
+- **Task 1〜16 まですべて完了**（`feature/tsutaeru-app` ブランチ）。**main へは未マージ**（下記「公開ゲート」が河原さんの判断待ち）。
+- コード: `src/apps/tsutaeru/`（ロジック）＋ `src/pages/apps/tsutaeru/index.astro`（画面・CSS）＋ `public/apps/tsutaeru/`（manifest / sw.js / アイコン / art SVG 85本）。
+- 案内ページ: `src/pages/apps/index.astro`（Task 15）。
+- テスト: `tests/tsutaeru/*.test.ts`（vitest・単体）＋ `tests/tsutaeru/smoke.spec.ts`（Playwright・本番ビルド相手のE2E 5シナリオ、Task 16）。
+- 参照ドキュメント:
+  - 設計スペック: `docs/superpowers/specs/2026-07-16-tsutaeru-choice-app-design.md`
+  - 作業計画: `docs/superpowers/plans/2026-07-16-tsutaeru-app.md`
+  - 進捗ログ（Task 1〜16 の逐次記録）: `.superpowers/sdd/progress.md` ＋ `.superpowers/sdd/task-*-report.md`
+    — **注意: `.superpowers/` は gitignore 対象のスクラッチ**（コミットされない作業ノート。参照はローカルのみ）。
+
+## ローカルで動かす・テストする
+
+```bash
+cd /Users/k-kawahara/Projects/nest-webpage
+git switch feature/tsutaeru-app
+
+# 開発サーバで画面を触る
+npm run dev            # → http://localhost:4321/apps/tsutaeru/
+
+# 単体テスト（全体で136・つたえるは tests/tsutaeru/*.test.ts）
+npx vitest run
+
+# スモークE2E（本番ビルド相手・必ず build を先に）
+npm run build
+npx playwright test --config tests/tsutaeru/playwright.config.ts
+```
+
+スモークは dist/client を素の Node 静的サーバ（:5099、spec の beforeAll で起動/afterAll で停止）で配信し、
+mobile 390×844 で ①home表示 ②きもち完走→result ③履歴1件 ④コピー文面 ⑤ふりかえり分岐 を検証する。
+（`astro preview` は本環境では dev サーバを返すため E2E の対象にしない — Task 14 の教訓。）
+
+## 公開ゲート（河原さんの判断待ち）
+
+- [ ] **① 実機チェックリスト**（iPhone Safari / Android Chrome の両方で）:
+  - ホーム画面に追加 → **機内モードで起動**してオフライン動作を確認
+  - **本人モード（kiosk）解除の 3 秒長押し**が効くこと（誤操作で抜けないこと）
+  - **OS の文字サイズを最大**にしてレイアウトが崩れず操作できること
+  - **読み上げ**（Web Speech / 日本語音声）が鳴ること・鳴らない端末でも無音で正常動作すること
+  - **カードを素早く2回タップしてもズームしない**（iOS。二段階タップ確定を阻害しないこと）
+  - **文字の上でも3秒長押しで本人モードを解除できる**（テキスト選択・ルーペに乗っ取られないこと）
+- [ ] **② アプリ名の確定**（現在は仮称「つたえるカード」）→ 確定後、`manifest.webmanifest` の `name` / `short_name`、案内ページ、アプリヘッダー（index.astro の `app-title` / `apple-mobile-web-app-title`）を更新
+- [ ] **③ サイトナビからのリンク位置**（トップ／メニューのどこから `/apps/` または `/apps/tsutaeru/` へ導線を張るか）
+- [ ] **④ main へマージ → 自動デプロイ**（マージは河原さんの判断後。実装エージェントは行わない）
+
+## 運用の罠（つたえるカード）
+
+- **⚠️ Service Worker の `VERSION` 定数バンプ**: `public/apps/tsutaeru/sw.js` の `VERSION` を、
+  **アプリに影響するデプロイのたびに手で上げること**。上げ忘れると、
+  **一度ホーム画面に追加したオフライン利用者は旧バージョンのまま更新されない**（activate で旧キャッシュを破棄する設計のため、
+  VERSION が変わって初めて新シェル／新バンドルを取り込む）。オンライン閲覧者は常に最新なので、この取りこぼしは気づきにくい。
+
+---
 
 ## 現在地
 
@@ -53,6 +119,7 @@ npm run preview    # ビルド結果プレビュー
 - `draft: true` の記事は dev サーバーでも表示されない（`getStaticPaths` と一覧の両方で除外）。表示確認は一時的に `draft: false` にして戻す
 - Playwright の fullPage スクショは lazy-load 画像（SVG挿絵）が空白に写ることがある。要素までスクロールしてviewport撮影で確認
 - 稀に `.git/index.lock` が0バイトで残留してgit操作が失敗する（プロセス不在を確認して手動削除でOK）
+- **つたえるカードのスモークE2Eは「本番ビルドの静的配信（dist/client）」を対象にすること**。`astro preview` は本環境では dev サーバを返し `/_astro/` ハッシュ資産を持たないため、SW/オフライン挙動が本番とずれる。専用 config（`tests/tsutaeru/playwright.config.ts`）が spec 内で静的サーバを起動する。`.spec.ts` / `.config.ts` は vitest の include（`*.test.ts`）に拾われない命名
 
 ## 教えてAIさん一覧の再構成（2026-07-16）
 
