@@ -90,6 +90,8 @@ const PRECACHE = [
   '/apps/tsutaeru/art/since-kyou.svg',
   '/apps/tsutaeru/art/since-sukoshi-mae.svg',
   '/apps/tsutaeru/art/since-zutto-mae.svg',
+  '/apps/tsutaeru/art/str-sukoshi.svg',
+  '/apps/tsutaeru/art/str-totemo.svg',
   '/apps/tsutaeru/art/trb-atsui-samui.svg',
   '/apps/tsutaeru/art/trb-hito-ooi.svg',
   '/apps/tsutaeru/art/trb-mabushii.svg',
