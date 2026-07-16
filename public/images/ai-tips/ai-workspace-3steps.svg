@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" width="640" height="300" role="img" aria-label="共有フォルダを持つ3ステップの図。①専用フォルダを作る（AI相談室）、②設定のコネクタでFilesystemを追加してつなぐ、③「フォルダに何がある？」と聞いて接続を確かめる">
+  <defs>
+    <style>.lbl{font-family:system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;}</style>
+  </defs>
+
+  <text x="320" y="36" text-anchor="middle" class="lbl" font-size="16" font-weight="700" fill="#5f5847">作る ・ つなぐ ・ 確かめる</text>
+
+  <!-- ① 作る -->
+  <rect x="20" y="58" width="180" height="196" rx="14" fill="#efe9dd" stroke="#ddd3c1" stroke-width="1.5"/>
+  <circle cx="46" cy="86" r="14" fill="#d97757"/>
+  <text x="46" y="91" text-anchor="middle" class="lbl" font-size="14" font-weight="700" fill="#ffffff">1</text>
+  <text x="68" y="91" class="lbl" font-size="14.5" font-weight="700" fill="#5f5847">専用フォルダを作る</text>
+  <g transform="translate(72,116)">
+    <path d="M0 8 q0 -6 6 -6 h16 l6 6 h28 q6 0 6 6 v28 q0 6 -6 6 h-50 q-6 0 -6 -6 z" fill="#ffffff" stroke="#7c7360" stroke-width="2.2"/>
+    <text x="31" y="34" text-anchor="middle" class="lbl" font-size="10.5" fill="#7c7360">AI相談室</text>
+  </g>
+  <text x="110" y="200" text-anchor="middle" class="lbl" font-size="11.5" fill="#9a907c">名前は自由。大事なのは</text>
+  <text x="110" y="218" text-anchor="middle" class="lbl" font-size="11.5" font-weight="700" fill="#b05a3e">“専用”にすること</text>
+
+  <!-- 矢印 -->
+  <g fill="none" stroke="#b7ac97" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M206 156 h18"/><path d="M218 149 l9 7 -9 7"/>
+    <path d="M416 156 h18"/><path d="M428 149 l9 7 -9 7"/>
+  </g>
+
+  <!-- ② つなぐ -->
+  <rect x="230" y="58" width="180" height="196" rx="14" fill="#eaf2e5" stroke="#bcd7b3" stroke-width="2"/>
+  <circle cx="256" cy="86" r="14" fill="#4a8c3f"/>
+  <text x="256" y="91" text-anchor="middle" class="lbl" font-size="14" font-weight="700" fill="#ffffff">2</text>
+  <text x="278" y="91" class="lbl" font-size="14.5" font-weight="700" fill="#2f5d3a">コネクタでつなぐ</text>
+  <g transform="translate(258,112)">
+    <rect x="0" y="0" width="124" height="26" rx="7" fill="#ffffff" stroke="#bcd7b3" stroke-width="1.4"/>
+    <text x="62" y="17" text-anchor="middle" class="lbl" font-size="11" fill="#264a2c">設定 → コネクタ</text>
+    <rect x="0" y="34" width="124" height="26" rx="7" fill="#ffffff" stroke="#bcd7b3" stroke-width="1.4"/>
+    <text x="62" y="51" text-anchor="middle" class="lbl" font-size="11" fill="#264a2c">Filesystem を追加</text>
+  </g>
+  <text x="320" y="200" text-anchor="middle" class="lbl" font-size="11.5" fill="#4a8c3f">つなぐのは、さっき作った</text>
+  <text x="320" y="218" text-anchor="middle" class="lbl" font-size="11.5" font-weight="700" fill="#2f5d3a">専用フォルダだけ</text>
+
+  <!-- ③ 確かめる -->
+  <rect x="440" y="58" width="180" height="196" rx="14" fill="#efe9dd" stroke="#ddd3c1" stroke-width="1.5"/>
+  <circle cx="466" cy="86" r="14" fill="#d97757"/>
+  <text x="466" y="91" text-anchor="middle" class="lbl" font-size="14" font-weight="700" fill="#ffffff">3</text>
+  <text x="488" y="91" class="lbl" font-size="14.5" font-weight="700" fill="#5f5847">聞いて確かめる</text>
+  <g transform="translate(458,114)">
+    <rect x="0" y="0" width="144" height="40" rx="12" fill="#ffffff" stroke="#ddd3c1" stroke-width="1.4"/>
+    <path d="M20 40 l-6 10 14 -10 z" fill="#ffffff" stroke="#ddd3c1" stroke-width="1.4"/>
+    <text x="72" y="17" text-anchor="middle" class="lbl" font-size="11" fill="#5f5847">「共有フォルダの中に、</text>
+    <text x="72" y="32" text-anchor="middle" class="lbl" font-size="11" fill="#5f5847">いま何がある？」</text>
+  </g>
+  <text x="530" y="200" text-anchor="middle" class="lbl" font-size="11.5" fill="#9a907c">中身を答えてくれたら</text>
+  <text x="530" y="218" text-anchor="middle" class="lbl" font-size="11.5" font-weight="700" fill="#b05a3e">接続成功</text>
+
+  <text x="320" y="284" text-anchor="middle" class="lbl" font-size="12.5" fill="#9a907c">プログラミングは、どこにも出てきません</text>
+</svg>

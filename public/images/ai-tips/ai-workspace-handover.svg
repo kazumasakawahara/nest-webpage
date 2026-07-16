@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 340" width="640" height="340" role="img" aria-label="交代勤務の職員が申し送りノートで支援をつなぐ図と、毎回“勤務交代”してしまうAIが共有フォルダで文脈を引き継ぐ図の対比。記憶は頭の中ではなく共有の棚に置く、という共通の原理">
+  <defs>
+    <style>.lbl{font-family:system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;}</style>
+  </defs>
+
+  <!-- 左：人の現場 -->
+  <rect x="20" y="26" width="286" height="288" rx="16" fill="#efe9dd" stroke="#ddd3c1" stroke-width="1.5"/>
+  <text x="44" y="64" class="lbl" font-size="18" font-weight="700" fill="#7c7360">人の現場</text>
+  <text x="44" y="86" class="lbl" font-size="12" fill="#9a907c">交代勤務でも、支援は途切れない</text>
+
+  <!-- 日勤者 -->
+  <g transform="translate(52,116)">
+    <circle cx="16" cy="10" r="10" fill="#f2d9ae" stroke="#7c7360" stroke-width="2"/>
+    <path d="M2 42 q14 -16 28 0" fill="#faf6ef" stroke="#7c7360" stroke-width="2"/>
+    <text x="16" y="62" text-anchor="middle" class="lbl" font-size="11.5" fill="#5f5847">日勤</text>
+  </g>
+  <!-- 夜勤者 -->
+  <g transform="translate(238,116)">
+    <circle cx="16" cy="10" r="10" fill="#f2d9ae" stroke="#7c7360" stroke-width="2"/>
+    <path d="M2 42 q14 -16 28 0" fill="#faf6ef" stroke="#7c7360" stroke-width="2"/>
+    <text x="16" y="62" text-anchor="middle" class="lbl" font-size="11.5" fill="#5f5847">夜勤</text>
+  </g>
+
+  <!-- 申し送りノート（中央の棚） -->
+  <g transform="translate(126,120)">
+    <rect x="0" y="0" width="74" height="52" rx="8" fill="#ffffff" stroke="#d97757" stroke-width="2.4"/>
+    <rect x="8" y="-8" width="58" height="14" rx="7" fill="#d97757"/>
+    <line x1="12" y1="16" x2="62" y2="16" stroke="#ddd3c1" stroke-width="2" stroke-linecap="round"/>
+    <line x1="12" y1="28" x2="62" y2="28" stroke="#ddd3c1" stroke-width="2" stroke-linecap="round"/>
+    <line x1="12" y1="40" x2="46" y2="40" stroke="#ddd3c1" stroke-width="2" stroke-linecap="round"/>
+    <text x="37" y="72" text-anchor="middle" class="lbl" font-size="12.5" font-weight="700" fill="#b05a3e">申し送りノート</text>
+  </g>
+
+  <!-- 矢印：書く→読む -->
+  <g fill="none" stroke="#b7ac97" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M94 142 h24"/><path d="M112 136 l8 6 -8 6"/>
+    <path d="M208 142 h24"/><path d="M226 136 l8 6 -8 6"/>
+  </g>
+  <text x="103" y="128" class="lbl" font-size="10.5" fill="#9a907c">書く</text>
+  <text x="215" y="128" class="lbl" font-size="10.5" fill="#9a907c">読む</text>
+
+  <text x="163" y="256" text-anchor="middle" class="lbl" font-size="13.5" font-weight="700" fill="#7c7360">記憶は頭の中でなく、共有の棚に</text>
+  <text x="163" y="292" text-anchor="middle" class="lbl" font-size="12" fill="#9a907c">だから誰が出勤しても、つながる</text>
+
+  <!-- 中央イコール -->
+  <g transform="translate(300,152)">
+    <circle cx="20" cy="12" r="20" fill="#d97757"/>
+    <path d="M12 7 h16 M12 17 h16" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/>
+  </g>
+
+  <!-- 右：AI -->
+  <rect x="334" y="26" width="286" height="288" rx="16" fill="#eaf2e5" stroke="#bcd7b3" stroke-width="2"/>
+  <text x="358" y="64" class="lbl" font-size="18" font-weight="700" fill="#2f5d3a">AIとの相談</text>
+  <text x="358" y="86" class="lbl" font-size="12" fill="#4a8c3f">毎回“勤務交代”しても、話は途切れない</text>
+
+  <!-- 前回のAI -->
+  <g transform="translate(366,116)">
+    <line x1="16" y1="5" x2="16" y2="0" stroke="#2f5d3a" stroke-width="2.2" stroke-linecap="round"/>
+    <circle cx="16" cy="-2" r="2.8" fill="#ffd15c"/>
+    <rect x="2" y="5" width="28" height="23" rx="7" fill="#faf6ef" stroke="#2f5d3a" stroke-width="2"/>
+    <rect x="8" y="10" width="16" height="13" rx="4" fill="#1f3a26"/>
+    <circle cx="12.5" cy="16.5" r="2.3" fill="#8fe0b0"/>
+    <circle cx="19.5" cy="16.5" r="2.3" fill="#8fe0b0"/>
+    <text x="16" y="62" text-anchor="middle" class="lbl" font-size="11.5" fill="#264a2c">前回のAI</text>
+  </g>
+  <!-- 今回のAI -->
+  <g transform="translate(552,116)">
+    <line x1="16" y1="5" x2="16" y2="0" stroke="#2f5d3a" stroke-width="2.2" stroke-linecap="round"/>
+    <circle cx="16" cy="-2" r="2.8" fill="#ffd15c"/>
+    <rect x="2" y="5" width="28" height="23" rx="7" fill="#faf6ef" stroke="#2f5d3a" stroke-width="2"/>
+    <rect x="8" y="10" width="16" height="13" rx="4" fill="#1f3a26"/>
+    <circle cx="12.5" cy="16.5" r="2.3" fill="#8fe0b0"/>
+    <circle cx="19.5" cy="16.5" r="2.3" fill="#8fe0b0"/>
+    <text x="16" y="62" text-anchor="middle" class="lbl" font-size="11.5" fill="#264a2c">今回のAI</text>
+  </g>
+
+  <!-- 共有フォルダ（中央の棚） -->
+  <g transform="translate(440,120)">
+    <path d="M0 8 q0 -6 6 -6 h20 l6 6 h36 q6 0 6 6 v32 q0 6 -6 6 h-62 q-6 0 -6 -6 z" fill="#ffffff" stroke="#4a8c3f" stroke-width="2.4"/>
+    <line x1="12" y1="24" x2="62" y2="24" stroke="#bcd7b3" stroke-width="2" stroke-linecap="round"/>
+    <line x1="12" y1="36" x2="52" y2="36" stroke="#bcd7b3" stroke-width="2" stroke-linecap="round"/>
+    <text x="37" y="72" text-anchor="middle" class="lbl" font-size="12.5" font-weight="700" fill="#2f5d3a">共有フォルダ</text>
+  </g>
+
+  <!-- 矢印：書く→読む -->
+  <g fill="none" stroke="#8bbf82" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M406 142 h24"/><path d="M424 136 l8 6 -8 6"/>
+    <path d="M520 142 h24"/><path d="M538 136 l8 6 -8 6"/>
+  </g>
+  <text x="415" y="128" class="lbl" font-size="10.5" fill="#4a8c3f">書く</text>
+  <text x="527" y="128" class="lbl" font-size="10.5" fill="#4a8c3f">読む</text>
+
+  <text x="477" y="256" text-anchor="middle" class="lbl" font-size="13.5" font-weight="700" fill="#2f5d3a">原理は、申し送りノートと同じ</text>
+  <text x="477" y="292" text-anchor="middle" class="lbl" font-size="12" fill="#4a8c3f">だから“別のスタッフ”でも、続きから</text>
+</svg>
