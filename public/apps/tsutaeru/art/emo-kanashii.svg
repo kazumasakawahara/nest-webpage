@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: emo-kanashii / かなしい (sad, inner-up brows + frown + tear) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="かなしい かお">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <circle cx="60" cy="62" r="35" fill="#ffd15c" stroke="#5f5847" stroke-width="2.5"/>
+  <g fill="#5f5847">
+    <circle cx="48" cy="58" r="4.4"/>
+    <circle cx="72" cy="58" r="4.4"/>
+  </g>
+  <g fill="none" stroke="#5f5847" stroke-width="3.2" stroke-linecap="round">
+    <path d="M45 55 Q52 49 59 53"/>
+    <path d="M75 55 Q68 49 61 53"/>
+    <path d="M46 82 Q60 70 74 82"/>
+  </g>
+  <path d="M45 62 c-4 6 -4 10 0 12 c4 -2 4 -6 0 -12 z" fill="#fffdf8" stroke="#5f5847" stroke-width="1.6"/>
+</svg>

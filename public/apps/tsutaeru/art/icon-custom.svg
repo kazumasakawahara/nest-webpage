@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: icon-custom / supporter custom theme fallback (two overlapping cards) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="カード">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <rect x="34" y="42" width="42" height="54" rx="9" fill="#f7efdf" stroke="#5f5847" stroke-width="2.5" transform="rotate(-9 55 69)"/>
+  <rect x="48" y="34" width="42" height="54" rx="9" fill="#ffd15c" stroke="#5f5847" stroke-width="2.5" transform="rotate(9 69 61)"/>
+</svg>

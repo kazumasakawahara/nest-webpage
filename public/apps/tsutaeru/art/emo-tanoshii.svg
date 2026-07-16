@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: emo-tanoshii / たのしい (laughing, closed ^ ^ eyes + open mouth) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="たのしい かお">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <circle cx="60" cy="62" r="35" fill="#ffd15c" stroke="#5f5847" stroke-width="2.5"/>
+  <circle cx="40" cy="70" r="6.5" fill="#d97757" opacity="0.55"/>
+  <circle cx="80" cy="70" r="6.5" fill="#d97757" opacity="0.55"/>
+  <g fill="none" stroke="#5f5847" stroke-width="3.2" stroke-linecap="round">
+    <path d="M42 56 q6 -8 13 0"/>
+    <path d="M65 56 q6 -8 13 0"/>
+  </g>
+  <path d="M43 68 q17 5 34 0 q-5 20 -17 20 q-12 0 -17 -20 z" fill="#5f5847"/>
+  <path d="M50 84 q10 7 20 0 q-10 -5 -20 0 z" fill="#d97757"/>
+</svg>

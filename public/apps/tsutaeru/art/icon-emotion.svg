@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: icon-emotion / きもち theme (heart) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="きもち ハート">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <path d="M60 92 C 26 68, 28 40, 47 40 C 56 40, 60 48, 60 53 C 60 48, 64 40, 73 40 C 92 40, 94 68, 60 92 Z"
+        fill="#d97757" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round"/>
+</svg>

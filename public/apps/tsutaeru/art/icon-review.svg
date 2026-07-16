@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: icon-review / ふりかえり theme (looking-back curved arrow) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="ふりかえり やじるし">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <path d="M78 44 C 60 30, 42 34, 38 54 C 35 68, 43 80, 56 84"
+        fill="none" stroke="#4a8c3f" stroke-width="6.5" stroke-linecap="round"/>
+  <g fill="none" stroke="#4a8c3f" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M78 44 L61 41"/>
+    <path d="M78 44 L72 60"/>
+  </g>
+</svg>

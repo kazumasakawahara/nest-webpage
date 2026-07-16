@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: icon-dislike / いやだった theme (face turned away + frown + motion lines) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="いやだった かお">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <circle cx="56" cy="62" r="34" fill="#ffd15c" stroke="#5f5847" stroke-width="2.5"/>
+  <g fill="none" stroke="#5f5847" stroke-width="3.2" stroke-linecap="round">
+    <path d="M40 49 q7 -3 13 -1"/>
+    <path d="M42 59 q6 5 12 0"/>
+    <path d="M62 58 q5 4 10 0"/>
+    <path d="M42 80 q11 -8 22 0"/>
+  </g>
+  <g fill="none" stroke="#d97757" stroke-width="2.6" stroke-linecap="round">
+    <path d="M96 50 q7 7 0 16"/>
+    <path d="M105 46 q8 9 0 22"/>
+  </g>
+</svg>
