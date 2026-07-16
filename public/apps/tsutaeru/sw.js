@@ -13,7 +13,6 @@ const CACHE = `tsutaeru-${VERSION}`;
 const SHELL_URL = '/apps/tsutaeru/';
 
 const PRECACHE = [
-  SHELL_URL,
   '/apps/tsutaeru/manifest.webmanifest',
   '/apps/tsutaeru/icons/icon-192.png',
   '/apps/tsutaeru/icons/icon-512.png',
@@ -107,22 +106,20 @@ const PRECACHE = [
 
 // The hashed JS/CSS bundle names change per build and are unknown here, so we
 // discover them at install time by parsing the shell HTML for /_astro/ URLs.
-async function astroAssetUrls() {
-  try {
-    const res = await fetch(SHELL_URL, { cache: 'no-cache' });
-    const html = await res.text();
-    const found = html.match(/\/_astro\/[A-Za-z0-9._-]+\.(?:js|css)/g) || [];
-    return [...new Set(found)];
-  } catch {
-    return [];
-  }
-}
-
+// The SAME response is both cached as the shell and parsed for its assets, so
+// the cached HTML can never reference bundles other than the ones we cache.
+// If no bundle is found the install throws (and retries on a later visit) —
+// caching HTML without its JS would mean a white page offline.
 self.addEventListener('install', (event) => {
   event.waitUntil(
     (async () => {
       const cache = await caches.open(CACHE);
-      const assets = await astroAssetUrls();
+      const res = await fetch(SHELL_URL, { cache: 'no-cache' });
+      if (!res.ok) throw new Error(`shell fetch failed: ${res.status}`);
+      const html = await res.clone().text();
+      const assets = [...new Set(html.match(/\/_astro\/[A-Za-z0-9._-]+\.(?:js|css)/g) || [])];
+      if (assets.length === 0) throw new Error('no /_astro/ assets found in shell HTML');
+      await cache.put(SHELL_URL, res);
       await cache.addAll([...PRECACHE, ...assets]);
       await self.skipWaiting();
     })()
