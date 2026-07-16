@@ -1,0 +1,257 @@
+import type { Card, Theme } from './types';
+
+// Each card's `id` doubles as its art asset id (`<prefix>-<romaji>`), so `c`
+// mirrors the id into `art`. Pass `extra` for the rare card that needs `next`.
+function c(id: string, label: string, extra?: Partial<Card>): Card {
+  return { id, label, art: id, ...extra };
+}
+
+export const PRESET_THEMES: Theme[] = [
+  {
+    id: 'emotion',
+    title: 'きもち',
+    icon: 'icon-emotion',
+    display: 'art',
+    builtin: true,
+    questions: [
+      {
+        id: 'emo-which',
+        prompt: 'いま、どんな きもち？',
+        enabled: true,
+        escape: true,
+        shuffle: true,
+        cards: [
+          c('emo-ureshii', 'うれしい'),
+          c('emo-tanoshii', 'たのしい'),
+          c('emo-okotteru', 'おこってる'),
+          c('emo-kanashii', 'かなしい'),
+          c('emo-kowai', 'こわい'),
+          c('emo-tsukareta', 'つかれた'),
+        ],
+      },
+      {
+        id: 'emo-strength',
+        prompt: 'どのくらい？',
+        enabled: true,
+        escape: false,
+        shuffle: true,
+        cards: [
+          c('emo-sukoshi', 'すこし'),
+          c('emo-totemo', 'とても'),
+        ],
+      },
+    ],
+  },
+  {
+    id: 'trouble',
+    title: 'こまった',
+    icon: 'icon-trouble',
+    display: 'art',
+    builtin: true,
+    questions: [
+      {
+        id: 'trb-main',
+        prompt: 'なにが こまってる？',
+        enabled: true,
+        escape: true,
+        shuffle: true,
+        cards: [
+          c('trb-urusai', 'うるさい'),
+          c('trb-mabushii', 'まぶしい'),
+          c('trb-atsui-samui', 'あつい/さむい'),
+          c('trb-hito-ooi', '人がおおい'),
+          c('trb-onaka-suita', 'おなかすいた'),
+          c('trb-nemui', 'ねむい'),
+          c('trb-yaru-koto-wakaranai', 'やることがわからない'),
+          c('trb-matsu-iya', 'まつのがいや'),
+        ],
+      },
+    ],
+  },
+  {
+    id: 'dislike',
+    title: 'いやだった',
+    icon: 'icon-dislike',
+    display: 'art',
+    builtin: true,
+    questions: [
+      {
+        id: 'dsl-main',
+        prompt: 'なにが いやだった？',
+        enabled: true,
+        escape: true,
+        shuffle: true,
+        cards: [
+          c('dsl-oto', 'おと'),
+          c('dsl-nioi', 'におい'),
+          c('dsl-aji', 'あじ'),
+          c('dsl-hajimete', 'はじめて'),
+          c('dsl-junban-chigau', 'じゅんばんがちがう'),
+          c('dsl-mae-iya', 'まえにいやなことがあった'),
+        ],
+      },
+    ],
+  },
+  {
+    id: 'yesno',
+    title: 'はい・いいえ',
+    icon: 'icon-yesno',
+    display: 'art',
+    builtin: true,
+    questions: [
+      {
+        id: 'yn-main',
+        prompt: 'はい？ いいえ？',
+        enabled: true,
+        escape: false,
+        shuffle: false,
+        cards: [
+          c('yn-hai', 'はい'),
+          c('yn-iie', 'いいえ'),
+          c('yn-wakaranai', 'わからない'),
+          c('yn-docchimo-iya', 'どっちもいや'),
+        ],
+      },
+    ],
+  },
+  {
+    id: 'request',
+    title: 'おねがい',
+    icon: 'icon-request',
+    display: 'art',
+    builtin: true,
+    questions: [
+      {
+        id: 'req-main',
+        prompt: 'なにを してほしい？',
+        enabled: true,
+        escape: true,
+        shuffle: true,
+        cards: [
+          c('req-tetsudatte', 'てつだって'),
+          c('req-yasumitai', 'やすみたい'),
+          c('req-toire', 'トイレ'),
+          c('req-omizu', 'おみず'),
+          c('req-shizuka', 'しずかなところにいきたい'),
+          c('req-yametai', 'やめたい'),
+        ],
+      },
+    ],
+  },
+  {
+    id: 'review',
+    title: 'ふりかえり',
+    icon: 'icon-review',
+    display: 'art',
+    builtin: true,
+    questions: [
+      {
+        id: 'rev-day',
+        prompt: 'きょうは どうだった？',
+        enabled: true,
+        escape: true,
+        shuffle: true,
+        cards: [
+          c('rev-tanoshikatta', 'たのしかった'),
+          c('rev-futsuu', 'ふつう'),
+          c('rev-iyadatta', 'いやだった'),
+        ],
+      },
+      {
+        id: 'rev-what',
+        prompt: 'なにが あった？',
+        enabled: true,
+        escape: true,
+        shuffle: true,
+        cards: [
+          c('rev-shigoto', 'しごと'),
+          c('rev-gohan', 'ごはん'),
+          c('rev-oyatsu', 'おやつ'),
+          c('rev-odekake', 'おでかけ'),
+          c('rev-hito', 'ひと'),
+          c('rev-karada', 'からだのこと', { next: 'rev-body' }),
+        ],
+      },
+      {
+        id: 'rev-body',
+        prompt: 'からだは どうだった？',
+        enabled: false,
+        escape: false,
+        shuffle: true,
+        cards: [
+          c('rev-nemurenakatta', 'ねむれなかった'),
+          c('rev-atama-itai', 'あたまがいたい'),
+          c('rev-onaka-itai', 'おなかがいたい'),
+          c('rev-tsukareteiru', 'つかれている'),
+          c('rev-mukamuka', 'ムカムカする'),
+        ],
+      },
+    ],
+  },
+  {
+    id: 'body',
+    title: 'からだ',
+    icon: 'icon-body',
+    display: 'art',
+    builtin: true,
+    questions: [
+      {
+        id: 'body-where',
+        prompt: 'どこが いたい？',
+        enabled: false,
+        escape: false,
+        shuffle: true,
+        cards: [
+          c('loc-atama', 'あたま'),
+          c('loc-onaka', 'おなか'),
+          c('loc-mune', 'むね'),
+          c('loc-nodo', 'のど'),
+          c('loc-ha', 'は'),
+          c('loc-ude', 'うで'),
+          c('loc-ashi', 'あし'),
+        ],
+      },
+      {
+        id: 'body-how',
+        prompt: 'どんな いたさ？',
+        enabled: true,
+        escape: true,
+        shuffle: true,
+        cards: [
+          c('pain-zukizuki', 'ズキズキ'),
+          c('pain-kirikiri', 'キリキリ'),
+          c('pain-chikuchiku', 'チクチク'),
+          c('pain-gangan', 'ガンガン'),
+          c('pain-hirihiri', 'ヒリヒリ'),
+          c('pain-doon-omoi', 'ドーンとおもい'),
+          c('pain-mukamuka', 'ムカムカ'),
+          c('pain-umaku-ienai', 'うまくいえない'),
+        ],
+      },
+      {
+        id: 'body-since',
+        prompt: 'いつから？',
+        enabled: true,
+        escape: false,
+        shuffle: true,
+        cards: [
+          c('since-kyou', 'きょう'),
+          c('since-kinou', 'きのう'),
+          c('since-sukoshi-mae', 'すこしまえ'),
+          c('since-zutto-mae', 'ずっとまえ'),
+        ],
+      },
+      {
+        id: 'body-strength',
+        prompt: 'どのくらい？',
+        enabled: true,
+        escape: false,
+        shuffle: true,
+        cards: [
+          c('str-sukoshi', 'すこし'),
+          c('str-totemo', 'とても'),
+        ],
+      },
+    ],
+  },
+];
