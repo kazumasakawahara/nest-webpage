@@ -103,6 +103,55 @@
         color: var(--ink-soft);
       }
 
+      /* 本人モード (kiosk) control on home */
+      .kiosk-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+      }
+      .kiosk-toggle {
+        min-height: 44px;
+        padding: 0 20px;
+        border: 2px solid var(--green);
+        border-radius: 22px;
+        background: #fff;
+        color: var(--green-dark);
+        font-size: 16px;
+        font-weight: 700;
+      }
+      .kiosk-badge {
+        padding: 6px 16px;
+        border-radius: 22px;
+        background: var(--green);
+        color: #fff;
+        font-size: 16px;
+        font-weight: 700;
+      }
+      .kiosk-hint {
+        font-size: 13px;
+        color: var(--ink-soft);
+      }
+
+      /* Transient toast (confirms leaving 本人モード) */
+      .toast {
+        position: fixed;
+        left: 50%;
+        bottom: 32px;
+        transform: translateX(-50%);
+        max-width: calc(100% - 32px);
+        padding: 12px 20px;
+        border-radius: 12px;
+        background: var(--green-dark);
+        color: #fff;
+        font-size: 16px;
+        font-weight: 700;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        animation: fade 0.15s ease-in;
+        z-index: 10;
+      }
+
       /* Home: theme grid.
          minmax(0,1fr) + min-width:0 on items: grid children default to
          min-width:auto, so a long unwrappable label would widen the column

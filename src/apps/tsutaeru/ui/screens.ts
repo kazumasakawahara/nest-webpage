@@ -49,8 +49,10 @@ export function buildHistoryEntry(session: Session, now: string, uuid: string): 
 
 export interface HomeCtx {
   themes: Theme[];
+  kiosk: boolean;
   onSelectTheme(theme: Theme): void;
   onOpenSupport(): void;
+  onEnableKiosk(): void;
 }
 
 export function renderHome(root: HTMLElement, ctx: HomeCtx): void {
@@ -58,13 +60,31 @@ export function renderHome(root: HTMLElement, ctx: HomeCtx): void {
 
   const bar = el('header', 'app-bar');
   bar.appendChild(el('span', 'app-title', 'つたえるカード'));
-  const gear = el('button', 'gear');
-  gear.type = 'button';
-  gear.setAttribute('aria-label', '支援者ゾーン');
-  gear.textContent = '⚙';
-  gear.addEventListener('click', () => ctx.onOpenSupport());
-  bar.appendChild(gear);
+  // In 本人モード the gear is the escape hatch to the support zone, so hide it.
+  if (!ctx.kiosk) {
+    const gear = el('button', 'gear');
+    gear.type = 'button';
+    gear.setAttribute('aria-label', '支援者ゾーン');
+    gear.textContent = '⚙';
+    gear.addEventListener('click', () => ctx.onOpenSupport());
+    bar.appendChild(gear);
+  }
   screen.appendChild(bar);
+
+  // 本人モード control. OFF: a toggle that turns it on. ON: a static badge —
+  // no tap can leave kiosk mode; exit is the 3-second long-press only.
+  const kioskRow = el('div', 'kiosk-row');
+  if (ctx.kiosk) {
+    kioskRow.appendChild(el('span', 'kiosk-badge', 'ほんにんモード'));
+    kioskRow.appendChild(el('span', 'kiosk-hint', 'かいじょは がめんを 3びょう ながおし'));
+  } else {
+    const toggle = el('button', 'kiosk-toggle', 'ほんにんモード');
+    toggle.type = 'button';
+    toggle.addEventListener('click', () => ctx.onEnableKiosk());
+    kioskRow.appendChild(toggle);
+    kioskRow.appendChild(el('span', 'kiosk-hint', 'せっていボタンを かくします'));
+  }
+  screen.appendChild(kioskRow);
 
   const grid = el('div', 'theme-grid');
   for (const theme of ctx.themes) {
@@ -83,6 +103,7 @@ export function renderHome(root: HTMLElement, ctx: HomeCtx): void {
 
 export interface CardsCtx {
   session: Session;
+  kiosk: boolean;
   onTap(cardId: string): void;
   onBack(): void;
 }
@@ -97,7 +118,8 @@ export function renderCards(root: HTMLElement, ctx: CardsCtx): void {
   const bar = el('header', 'card-bar');
   // Back is offered only on the first question (abandons the session → home).
   // Later questions have no back — the design gives no mid-session undo.
-  if (session.index === 0) {
+  // In 本人モード it is hidden too: no route back to home escape.
+  if (session.index === 0 && !ctx.kiosk) {
     const back = el('button', 'back');
     back.type = 'button';
     back.setAttribute('aria-label', 'もどる');
@@ -191,4 +213,11 @@ export function renderSupport(root: HTMLElement, onBack: () => void): void {
   screen.appendChild(el('p', 'note', 'じゅんびちゅう'));
 
   root.appendChild(screen);
+}
+
+// Transient bottom toast; auto-removes. Used to confirm leaving 本人モード.
+export function showToast(message: string): void {
+  const toast = el('div', 'toast', message);
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 2200);
 }
