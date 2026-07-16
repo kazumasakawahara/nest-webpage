@@ -16,6 +16,7 @@ import {
 import {
   addCard,
   addTheme,
+  discardedPhotoIds,
   editCardField,
   moveCard,
   moveTheme,
@@ -31,6 +32,7 @@ import {
 import type { Display, Theme } from './types';
 import {
   buildHistoryEntry,
+  findCard,
   renderCards,
   renderHome,
   renderResult,
@@ -79,6 +81,15 @@ export function initApp(root: HTMLElement): void {
     themes = next;
     saveThemes(themes);
     render();
+  }
+
+  // Delete stored photo blobs, fire-and-forget. Failure (blocked IndexedDB,
+  // private mode) is surfaced once as a toast — never an unhandled rejection.
+  function dropPhotos(ids: string[]): void {
+    if (ids.length === 0) return;
+    Promise.all(ids.map((id) => deletePhoto(id))).catch(() =>
+      showToast('しゃしんを けせませんでした'),
+    );
   }
 
   function go(next: Screen): void {
@@ -262,11 +273,16 @@ export function initApp(root: HTMLElement): void {
               next = editCardField(next, openThemeId!, qid, cardId, 'speech', speech);
               commitThemes(next);
             },
-            onSetCardPhoto: (qid, cardId, photoId) =>
-              commitThemes(setCardPhoto(themes, openThemeId!, qid, cardId, photoId)),
+            onSetCardPhoto: (qid, cardId, photoId) => {
+              // Replacing a photo must not orphan the previous blob: drop the
+              // card's current photo (if any) before committing the new id.
+              const theme = themes.find((t) => t.id === openThemeId);
+              const old = theme ? findCard(theme, cardId)?.photoId : undefined;
+              if (old) dropPhotos([old]);
+              commitThemes(setCardPhoto(themes, openThemeId!, qid, cardId, photoId));
+            },
             onRemoveCardPhoto: (qid, cardId, photoId) => {
-              // Drop the stored blob (fire-and-forget) then clear the reference.
-              void deletePhoto(photoId);
+              dropPhotos([photoId]);
               commitThemes(setCardPhoto(themes, openThemeId!, qid, cardId, null));
             },
             onToggleCardHidden: (qid, cardId) =>
@@ -302,7 +318,13 @@ export function initApp(root: HTMLElement): void {
             },
             onConfirmRestore: (id) => {
               confirmingRestore = false;
-              commitThemes(restorePreset(themes, id));
+              const next = restorePreset(themes, id);
+              // もとにもどす replaces the theme wholesale — sweep any photo
+              // blobs the discarded edits referenced (presets carry none).
+              const before = themes.find((t) => t.id === id);
+              const after = next.find((t) => t.id === id);
+              if (before && after) dropPhotos(discardedPhotoIds(before, after));
+              commitThemes(next);
             },
           },
           onBack: () => go({ name: 'home' }),

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { buildHistoryEntry } from '~/apps/tsutaeru/ui/screens';
+import { buildHistoryEntry, findCard } from '~/apps/tsutaeru/ui/screens';
 import { createSession, tap } from '~/apps/tsutaeru/flow';
 import { PRESET_THEMES } from '~/apps/tsutaeru/presets';
 import type { Session } from '~/apps/tsutaeru/flow';
@@ -51,5 +51,19 @@ describe('buildHistoryEntry', () => {
 
     entry.picks[0].label = 'CHANGED';
     expect(s.picks[0].label).toBe('いいえ');
+  });
+});
+
+describe('findCard', () => {
+  it('resolves a card id across a theme\'s questions', () => {
+    const t = theme('emotion');
+    const card = findCard(t, 'emo-totemo');
+    expect(card?.label).toBe('とても');
+  });
+  it('returns undefined for escape-card ids (they live in flow, not the theme)', () => {
+    expect(findCard(theme('yesno'), '_none')).toBeUndefined();
+  });
+  it('returns undefined for an unknown id', () => {
+    expect(findCard(theme('yesno'), 'nope')).toBeUndefined();
   });
 });

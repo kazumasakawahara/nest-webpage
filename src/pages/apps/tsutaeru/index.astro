@@ -269,12 +269,16 @@
         border-radius: 16px;
         background: #fff;
       }
-      .result-card .art {
+      .result-card .art,
+      .result-card .photo {
         width: 72px;
         height: 72px;
         object-fit: contain;
         background: var(--neutral);
         border-radius: 12px;
+      }
+      .result-card .photo {
+        object-fit: cover;
       }
       .result-card.text .card-label {
         font-size: 26px;

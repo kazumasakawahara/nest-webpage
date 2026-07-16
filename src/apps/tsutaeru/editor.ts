@@ -176,6 +176,16 @@ export function setCardPhoto(
   );
 }
 
+// Pure: photoIds referenced in `before` but nowhere in `after`. Callers use
+// this to sweep IndexedDB blobs orphaned by an edit (e.g. もとにもどす replacing
+// a theme that had photos with its photo-less preset).
+export function discardedPhotoIds(before: Theme, after: Theme): string[] {
+  const ids = (t: Theme): string[] =>
+    t.questions.flatMap((q) => q.cards.map((c) => c.photoId).filter((p): p is string => !!p));
+  const kept = new Set(ids(after));
+  return [...new Set(ids(before))].filter((p) => !kept.has(p));
+}
+
 // Append a new card to a question. `id` is injected (uuid). Art is optional —
 // any ART_IDS entry or none.
 export function addCard(

@@ -17,6 +17,7 @@ import {
   moveCard,
   addCard,
   setCardPhoto,
+  discardedPhotoIds,
 } from '~/apps/tsutaeru/editor';
 
 // A fresh, independent copy of the preset set for each test.
@@ -238,6 +239,40 @@ describe('setCardPhoto', () => {
       .find((x) => x.id === 'yesno')!
       .questions[0].cards.find((c) => c.id === 'yn-iie')!;
     expect('photoId' in other).toBe(false);
+  });
+});
+
+describe('discardedPhotoIds', () => {
+  const base = (): Theme => themes().find((x) => x.id === 'yesno')!;
+
+  it('lists photoIds present before but absent after', () => {
+    const before = structuredClone(base());
+    before.questions[0].cards[0].photoId = 'p-1';
+    before.questions[0].cards[1].photoId = 'p-2';
+    const after = structuredClone(before);
+    delete after.questions[0].cards[0].photoId;
+    expect(discardedPhotoIds(before, after)).toEqual(['p-1']);
+  });
+  it('restoring a preset (no photos) discards every photoId', () => {
+    const before = structuredClone(base());
+    before.questions[0].cards[0].photoId = 'p-1';
+    before.questions[0].cards[1].photoId = 'p-2';
+    expect(discardedPhotoIds(before, base()).sort()).toEqual(['p-1', 'p-2']);
+  });
+  it('returns empty when nothing changes', () => {
+    const before = structuredClone(base());
+    before.questions[0].cards[0].photoId = 'p-1';
+    expect(discardedPhotoIds(before, structuredClone(before))).toEqual([]);
+  });
+  it('a photoId still referenced anywhere after is kept, even on another card', () => {
+    const before = structuredClone(base());
+    before.questions[0].cards[0].photoId = 'p-1';
+    const after = structuredClone(base());
+    after.questions[0].cards[1].photoId = 'p-1';
+    expect(discardedPhotoIds(before, after)).toEqual([]);
+  });
+  it('returns empty when neither side has photos', () => {
+    expect(discardedPhotoIds(base(), base())).toEqual([]);
   });
 });
 

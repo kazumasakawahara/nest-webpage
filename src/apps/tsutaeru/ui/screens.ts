@@ -30,14 +30,40 @@ function artImg(artId: string): HTMLImageElement {
 // Photo image for a card. getPhotoURL is async and screens re-render by
 // clearing the root, so the element can be detached before the URL resolves —
 // guard with isConnected so a stale promise never throws or sets src on an
-// orphan. A missing photo (null) simply leaves the placeholder blank.
+// orphan. A missing photo (null) or a storage failure (private mode, blocked
+// IndexedDB) degrades to the blank placeholder — never an unhandled rejection.
 function photoImg(photoId: string): HTMLImageElement {
   const img = el('img', 'photo');
   img.alt = '';
-  void getPhotoURL(photoId).then((url) => {
-    if (url && img.isConnected) img.src = url;
-  });
+  getPhotoURL(photoId)
+    .then((url) => {
+      if (url && img.isConnected) img.src = url;
+    })
+    .catch(() => {});
   return img;
+}
+
+// The visual (photo or art) for a card, shared by the cards screen and the
+// result screen. null for text-only display. Photo wins when the theme shows
+// photos and the card has one; otherwise art (a photo theme can still hold
+// cards nobody has attached a picture to yet).
+function cardMedia(card: Card, display: Display): HTMLElement | null {
+  if (display === 'text') return null;
+  if (display === 'photo' && card.photoId) return photoImg(card.photoId);
+  return artImg(card.art ?? artIdForCard(card.id));
+}
+
+/**
+ * Pure: resolve a card id across a theme's questions. Escape-card ids
+ * (_none/_unknown) live in flow.ts session views, not the theme, so they
+ * resolve to undefined — callers fall back to artIdForCard.
+ */
+export function findCard(theme: Theme, cardId: string): Card | undefined {
+  for (const q of theme.questions) {
+    const card = q.cards.find((c) => c.id === cardId);
+    if (card) return card;
+  }
+  return undefined;
 }
 
 // Escape cards keep their _none/_unknown ids in picks but paint esc-* art;
@@ -157,9 +183,7 @@ export function renderCards(root: HTMLElement, ctx: CardsCtx): void {
   root.appendChild(screen);
 }
 
-// 'text' → label only (larger); 'art' → art image + label. 'photo' → the card's
-// stored photo when it has a photoId, otherwise it falls back to art (a photo
-// theme can still hold cards nobody has attached a picture to yet).
+// 'text' → label only (larger); otherwise cardMedia (photo or art) + label.
 function cardButton(
   card: Card,
   display: Theme['display'],
@@ -170,11 +194,8 @@ function cardButton(
   btn.type = 'button';
   if (display === 'text') btn.classList.add('text');
   if (selected) btn.classList.add('selected');
-  if (display === 'photo' && card.photoId) {
-    btn.appendChild(photoImg(card.photoId));
-  } else if (display !== 'text') {
-    btn.appendChild(artImg(card.art ?? artIdForCard(card.id)));
-  }
+  const media = cardMedia(card, display);
+  if (media) btn.appendChild(media);
   btn.appendChild(el('span', 'card-label', card.label));
   btn.addEventListener('click', () => onTap(card.id));
   return btn;
@@ -193,11 +214,17 @@ export function renderResult(root: HTMLElement, ctx: ResultCtx): void {
   const row = el('div', 'result-row');
   const display = session.theme.display;
   for (const pick of session.picks) {
-    const card = el('div', 'result-card');
-    if (display === 'text') card.classList.add('text');
-    if (display !== 'text') card.appendChild(artImg(artIdForCard(pick.cardId)));
-    card.appendChild(el('span', 'card-label', pick.label));
-    row.appendChild(card);
+    const box = el('div', 'result-card');
+    if (display === 'text') box.classList.add('text');
+    if (display !== 'text') {
+      // Resolve the pick back to its card so photos and explicit art render
+      // exactly as they did on the cards screen. Escape cards (_none/_unknown)
+      // are not in the theme — fall back to their fixed art ids.
+      const card = findCard(session.theme, pick.cardId);
+      box.appendChild(card ? cardMedia(card, display)! : artImg(artIdForCard(pick.cardId)));
+    }
+    box.appendChild(el('span', 'card-label', pick.label));
+    row.appendChild(box);
   }
   screen.appendChild(row);
 
@@ -644,9 +671,11 @@ function photoControl(q: Question, card: Card, ctx: EditCtx): HTMLElement {
     const thumb = el('img', 'edit-photo-thumb');
     thumb.alt = '';
     const pid = card.photoId;
-    void getPhotoURL(pid).then((url) => {
-      if (url && thumb.isConnected) thumb.src = url;
-    });
+    getPhotoURL(pid)
+      .then((url) => {
+        if (url && thumb.isConnected) thumb.src = url;
+      })
+      .catch(() => {});
     wrap.appendChild(thumb);
   }
 
