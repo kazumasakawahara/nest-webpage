@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: gen-ongaku / music notes -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="おんがく">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <path d="M48 78 v-42 l30 -8 v40" fill="none" stroke="#5f5847" stroke-width="3.4" stroke-linecap="round"/>
+  <path d="M48 36 l30 -8" fill="none" stroke="#5f5847" stroke-width="3.4" stroke-linecap="round"/>
+  <ellipse cx="42" cy="78" rx="9" ry="7" fill="#4a8c3f" stroke="#5f5847" stroke-width="2.5" transform="rotate(-18 42 78)"/>
+  <ellipse cx="72" cy="70" rx="9" ry="7" fill="#4a8c3f" stroke="#5f5847" stroke-width="2.5" transform="rotate(-18 72 70)"/>
+</svg>

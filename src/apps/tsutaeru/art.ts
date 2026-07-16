@@ -81,4 +81,15 @@ export const ART_IDS: string[] = [
   'since-zutto-mae',
   'str-sukoshi',
   'str-totemo',
+  // 汎用（プリセット外・事業所のカスタムカード用）
+  'gen-hon',
+  'gen-ongaku',
+  'gen-terebi',
+  'gen-soto',
+  'gen-kuruma',
+  'gen-denwa',
+  'gen-e',
+  'gen-undou',
+  'gen-ofuro',
+  'gen-fuku',
 ];

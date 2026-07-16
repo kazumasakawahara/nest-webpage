@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: since-zutto-mae / ずっとまえ (crescent moon + stars) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="ずっと まえ">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <path d="M70 26 a30 30 0 1 0 12 52 a34 34 0 0 1 -12 -52 z" fill="#ffd15c" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round"/>
+  <g fill="#d97757" stroke="#5f5847" stroke-width="1.4" stroke-linejoin="round">
+    <path d="M34 40 l3 7 l7 1 l-5 5 l1 7 l-6 -3 l-6 3 l1 -7 l-5 -5 l7 -1 z"/>
+    <path d="M40 78 l2 5 l5 1 l-4 4 l1 5 l-4 -2 l-5 2 l1 -5 l-3 -4 l5 -1 z"/>
+  </g>
+</svg>

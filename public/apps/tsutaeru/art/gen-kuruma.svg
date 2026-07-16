@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: gen-kuruma / car -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="くるま">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <rect x="20" y="58" width="80" height="20" rx="8" fill="#d97757" stroke="#5f5847" stroke-width="2.5"/>
+  <path d="M34 58 l10 -16 h32 l10 16 z" fill="#d97757" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M46 55 l6 -10 h16 l6 10 z" fill="#fffdf8" stroke="#5f5847" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M60 45 v10" stroke="#5f5847" stroke-width="2"/>
+  <g fill="#5f5847"><circle cx="40" cy="80" r="9"/><circle cx="80" cy="80" r="9"/></g>
+  <g fill="#efe9dd"><circle cx="40" cy="80" r="3.4"/><circle cx="80" cy="80" r="3.4"/></g>
+</svg>

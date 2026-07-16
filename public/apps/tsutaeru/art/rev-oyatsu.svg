@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: rev-oyatsu / おやつ (cookie) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="おやつ">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <circle cx="60" cy="62" r="30" fill="#ffd15c" stroke="#5f5847" stroke-width="2.5"/>
+  <g fill="#d97757">
+    <circle cx="50" cy="53" r="4.2"/>
+    <circle cx="70" cy="57" r="4.6"/>
+    <circle cx="57" cy="70" r="4"/>
+    <circle cx="72" cy="73" r="3.6"/>
+    <circle cx="46" cy="68" r="3.6"/>
+  </g>
+</svg>

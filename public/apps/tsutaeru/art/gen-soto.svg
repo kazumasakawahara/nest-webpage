@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: gen-soto / outdoors / tree -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="そと">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <path d="M22 92 h76" stroke="#5f5847" stroke-width="2.5" stroke-linecap="round"/>
+  <rect x="55" y="64" width="10" height="28" rx="3" fill="#d97757" stroke="#5f5847" stroke-width="2.5"/>
+  <circle cx="60" cy="48" r="26" fill="#4a8c3f" stroke="#5f5847" stroke-width="2.5"/>
+  <circle cx="86" cy="32" r="9" fill="#ffd15c" stroke="#5f5847" stroke-width="2.5"/>
+</svg>

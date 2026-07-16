@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: gen-terebi / television -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="テレビ">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <rect x="24" y="34" width="72" height="50" rx="8" fill="#f7efdf" stroke="#5f5847" stroke-width="2.5"/>
+  <rect x="33" y="42" width="54" height="34" rx="4" fill="#fffdf8" stroke="#5f5847" stroke-width="2"/>
+  <path d="M56 51 l14 8 l-14 8 z" fill="#d97757" stroke="#5f5847" stroke-width="1.6" stroke-linejoin="round"/>
+  <g stroke="#5f5847" stroke-width="3" stroke-linecap="round"><path d="M44 84 l-7 9"/><path d="M76 84 l7 9"/></g>
+</svg>

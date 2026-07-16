@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: since-kinou / きのう (setting sun at horizon) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="きのう">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <path d="M18 82 h84" stroke="#5f5847" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M60 82 a18 18 0 0 1 -18 -18 a18 18 0 0 1 36 0 a18 18 0 0 1 -18 18 z" fill="#ffd15c" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M42 64 a18 18 0 0 1 36 0" fill="#ffd15c" stroke="#5f5847" stroke-width="2.5"/>
+  <g stroke="#d97757" stroke-width="3" stroke-linecap="round">
+    <path d="M60 40 v-8"/><path d="M34 54 l-8 -3"/><path d="M86 54 l8 -3"/>
+  </g>
+  <g stroke="#5f5847" stroke-width="2" stroke-linecap="round" opacity="0.6">
+    <path d="M26 88 h16"/><path d="M78 88 h16"/>
+  </g>
+</svg>

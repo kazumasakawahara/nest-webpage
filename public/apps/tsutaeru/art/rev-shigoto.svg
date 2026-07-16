@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: rev-shigoto / しごと (briefcase) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="しごと">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <rect x="30" y="48" width="60" height="42" rx="7" fill="#ffd15c" stroke="#5f5847" stroke-width="2.5"/>
+  <path d="M48 48 v-8 a4 4 0 0 1 4 -4 h16 a4 4 0 0 1 4 4 v8" fill="none" stroke="#5f5847" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M30 66 h60" stroke="#5f5847" stroke-width="2.2"/>
+  <rect x="52" y="60" width="16" height="12" rx="3" fill="#efe9dd" stroke="#5f5847" stroke-width="2.2"/>
+</svg>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: rev-mukamuka / ムカムカする (queasy figure holding stomach) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="ムカムカ する">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <circle cx="60" cy="40" r="20" fill="#ffd15c" stroke="#5f5847" stroke-width="2.5"/>
+  <path d="M42 40 a20 20 0 0 0 36 0" fill="#4a8c3f" opacity="0.35"/>
+  <g fill="#5f5847"><circle cx="52" cy="38" r="3.2"/><circle cx="68" cy="38" r="3.2"/></g>
+  <path d="M52 50 q4 -4 8 0 q4 4 8 0" fill="none" stroke="#5f5847" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M44 66 q16 -8 32 0 q6 18 -16 20 q-22 -2 -16 -20 z" fill="#f7efdf" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M52 76 q4 4 8 -1 q4 -5 8 -1" fill="none" stroke="#4a8c3f" stroke-width="2.6" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: pain-gangan / ガンガン (hammer strike) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="ガンガン">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <g stroke="#d97757" stroke-width="3.6" stroke-linecap="round">
+    <path d="M40 80 l-9 8"/>
+    <path d="M46 86 l-4 11"/>
+    <path d="M55 87 l3 11"/>
+  </g>
+  <path d="M44 78 l8 -4 l6 8 l-8 5 z" fill="#d97757" stroke="#5f5847" stroke-width="2" stroke-linejoin="round"/>
+  <g transform="rotate(38 66 46)">
+    <rect x="61" y="30" width="10" height="46" rx="4.5" fill="#f7efdf" stroke="#5f5847" stroke-width="2.5"/>
+    <rect x="46" y="22" width="40" height="18" rx="4" fill="#5f5847"/>
+  </g>
+</svg>

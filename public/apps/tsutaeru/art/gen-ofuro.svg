@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: gen-ofuro / bath -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="おふろ">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <path d="M24 62 h72 v8 q0 14 -14 14 h-44 q-14 0 -14 -14 z" fill="#f7efdf" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M30 68 q30 6 60 0" fill="none" stroke="#4a8c3f" stroke-width="2.2" stroke-linecap="round" opacity="0.7"/>
+  <path d="M96 62 v-10 h-9" fill="none" stroke="#5f5847" stroke-width="2.5" stroke-linecap="round"/>
+  <g stroke="#5f5847" stroke-width="3" stroke-linecap="round"><path d="M36 84 v9"/><path d="M84 84 v9"/></g>
+  <g fill="none" stroke="#d97757" stroke-width="2.6" stroke-linecap="round">
+    <path d="M46 50 q5 -6 0 -12"/><path d="M60 48 q5 -7 0 -14"/><path d="M74 50 q5 -6 0 -12"/>
+  </g>
+</svg>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: pain-doon-omoi / ドーンとおもい (heavy stone pressing down) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="ドーンと おもい">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <path d="M32 40 q28 -16 56 0 q9 24 -6 32 h-44 q-15 -8 -6 -32 z" fill="#f7efdf" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M46 52 q14 -6 28 0" fill="none" stroke="#5f5847" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  <path d="M28 84 q32 10 64 0" fill="none" stroke="#5f5847" stroke-width="3" stroke-linecap="round"/>
+  <g stroke="#d97757" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M30 80 v14 M30 94 l-5 -5 M30 94 l5 -5"/>
+    <path d="M90 80 v14 M90 94 l-5 -5 M90 94 l5 -5"/>
+  </g>
+</svg>

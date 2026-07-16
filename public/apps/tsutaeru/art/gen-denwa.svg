@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: gen-denwa / smartphone -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="でんわ">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <rect x="42" y="24" width="36" height="72" rx="9" fill="#f7efdf" stroke="#5f5847" stroke-width="2.5"/>
+  <rect x="47" y="35" width="26" height="47" rx="3" fill="#fffdf8" stroke="#5f5847" stroke-width="1.8"/>
+  <path d="M54 30 h12" stroke="#5f5847" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="60" cy="89" r="3.4" fill="none" stroke="#5f5847" stroke-width="2"/>
+  <path d="M54 48 q0 -4 4 -3 l3 6 l-3 3 q4 6 10 8 l3 -3 l6 3 q1 4 -3 4 q-20 -1 -23 -22 z" fill="#4a8c3f" stroke="#5f5847" stroke-width="1.6" stroke-linejoin="round"/>
+</svg>

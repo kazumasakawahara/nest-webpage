@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: rev-onaka-itai / おなかがいたい (belly + pain flashes) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="おなかが いたい">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <path d="M40 42 q20 -12 40 0 q10 22 -4 40 q-16 12 -32 0 q-14 -18 -4 -40 z" fill="#f7efdf" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M52 66 q4 -6 9 -2 q5 4 9 -1" fill="none" stroke="#5f5847" stroke-width="2.6" stroke-linecap="round"/>
+  <g stroke="#d97757" stroke-width="3.4" stroke-linecap="round">
+    <path d="M60 36 v-10"/>
+    <path d="M84 44 l9 -6"/>
+    <path d="M36 44 l-9 -6"/>
+  </g>
+</svg>

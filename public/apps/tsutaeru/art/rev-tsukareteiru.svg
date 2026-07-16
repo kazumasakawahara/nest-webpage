@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: rev-tsukareteiru / つかれている (drooping figure + sweat) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="つかれて いる">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <g transform="rotate(9 58 60)">
+    <g fill="#f7efdf" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round">
+      <circle cx="58" cy="34" r="13"/>
+      <rect x="46" y="50" width="24" height="34" rx="12"/>
+      <rect x="28" y="58" width="22" height="9" rx="4.5" transform="rotate(38 39 62)"/>
+      <rect x="66" y="58" width="22" height="9" rx="4.5" transform="rotate(-38 77 62)"/>
+    </g>
+  </g>
+  <g fill="none" stroke="#5f5847" stroke-width="2.6" stroke-linecap="round">
+    <path d="M50 34 q6 5 12 0"/>
+    <path d="M60 36 q6 5 12 0"/>
+  </g>
+  <path d="M84 42 q6 8 0 14 q-4 -2 -6 -6" fill="#4a8c3f" stroke="#5f5847" stroke-width="2" stroke-linejoin="round"/>
+</svg>

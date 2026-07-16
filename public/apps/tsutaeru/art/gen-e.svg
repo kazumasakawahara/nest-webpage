@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: gen-e / painter palette -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="おえかき">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <path d="M58 32 q34 0 34 26 q0 13 -14 13 q-9 0 -9 7 q0 8 -12 8 q-33 0 -33 -29 q0 -25 34 -25 z" fill="#f7efdf" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round"/>
+  <circle cx="64" cy="72" r="6" fill="#efe9dd" stroke="#5f5847" stroke-width="2"/>
+  <g stroke="#5f5847" stroke-width="1.5">
+    <circle cx="44" cy="50" r="6" fill="#d97757"/>
+    <circle cx="60" cy="45" r="6" fill="#4a8c3f"/>
+    <circle cx="76" cy="52" r="6" fill="#ffd15c"/>
+  </g>
+</svg>

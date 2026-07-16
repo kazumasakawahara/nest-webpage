@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: pain-zukizuki / ズキズキ (pulsing throb rings) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="ズキズキ">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <g fill="none" stroke="#d97757" stroke-linecap="round">
+    <circle cx="60" cy="62" r="46" stroke-width="3" opacity="0.28"/>
+    <circle cx="60" cy="62" r="33" stroke-width="3.5" opacity="0.5"/>
+    <circle cx="60" cy="62" r="20" stroke-width="4" opacity="0.8"/>
+  </g>
+  <circle cx="60" cy="62" r="8" fill="#d97757"/>
+</svg>

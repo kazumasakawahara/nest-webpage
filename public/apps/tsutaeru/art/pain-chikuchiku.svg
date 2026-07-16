@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: pain-chikuchiku / チクチク (needles / thorns) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="チクチク">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <g fill="#d97757" stroke="#5f5847" stroke-width="1.6" stroke-linejoin="round">
+    <path d="M60 62 L44 22 L52 60 z"/>
+    <path d="M60 62 L86 26 L66 58 z"/>
+    <path d="M60 62 L98 58 L64 66 z"/>
+    <path d="M60 62 L88 92 L64 68 z"/>
+    <path d="M60 62 L52 100 L56 66 z"/>
+    <path d="M60 62 L24 82 L58 68 z"/>
+    <path d="M60 62 L22 50 L58 60 z"/>
+  </g>
+  <circle cx="60" cy="62" r="5.5" fill="#5f5847"/>
+</svg>
