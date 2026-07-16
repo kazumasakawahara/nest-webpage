@@ -162,6 +162,37 @@ import CtaBlock from '../../components/CtaBlock.astro';
     </div>
   </section>
 
+  <!-- ===== つたえるカード（意思決定支援から生まれた道具） ===== -->
+  <section class="section">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">A New Tool</span>
+      <h2 class="section__title">「つたえるカード」——指さしで、気持ちを伝える</h2>
+      <p class="body-text">
+        意思決定支援の考え方から、ひとつの小さな道具が生まれました。仮称「つたえるカード」は、
+        スマホの画面に並んだカードを指さすことで、そのときの気持ちや体調、困りごとを伝えられる
+        無料のアプリです。
+      </p>
+      <p class="body-text">
+        「分かる形で選択肢を見せる（意思形成の支援）」と「指させる（意思表明の支援）」を、
+        その場ですぐ使える形にしました。入力したことはすべて端末の中だけに残り、
+        アカウント登録もログインもいりません。
+      </p>
+      <div class="ds-app__cards" aria-hidden="true">
+        <img src="/apps/tsutaeru/art/emo-ureshii.svg" width="120" height="120" alt="" loading="lazy" />
+        <img src="/apps/tsutaeru/art/pain-zukizuki.svg" width="120" height="120" alt="" loading="lazy" />
+        <img src="/apps/tsutaeru/art/req-omizu.svg" width="120" height="120" alt="" loading="lazy" />
+        <img src="/apps/tsutaeru/art/req-toire.svg" width="120" height="120" alt="" loading="lazy" />
+        <img src="/apps/tsutaeru/art/yn-hai.svg" width="120" height="120" alt="" loading="lazy" />
+      </div>
+      <p class="ds-app__cta">
+        <a class="btn btn--primary" href="/apps/">
+          アプリの紹介・つかい方を見る
+          <span class="btn__icon" aria-hidden="true">→</span>
+        </a>
+      </p>
+    </div>
+  </section>
+
   <!-- ===== 資料・文書（今後追加） ===== -->
   <section class="section section--sand">
     <div class="container container--narrow reveal">
@@ -337,6 +368,25 @@ import CtaBlock from '../../components/CtaBlock.astro';
     font-size: var(--fs-small);
     color: var(--color-ink-mute);
     text-align: center;
+  }
+
+  /* つたえるカード紹介 */
+  .ds-app__cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin: var(--space-6) 0;
+  }
+
+  .ds-app__cards img {
+    width: 72px;
+    height: 72px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .ds-app__cta {
+    margin: 0;
   }
 
   .ds-docs__empty {
