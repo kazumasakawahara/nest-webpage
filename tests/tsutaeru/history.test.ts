@@ -22,14 +22,19 @@ function entry(
 }
 
 describe('formatRow', () => {
-  it('renders short date + time + picks joined with an arrow', () => {
-    const e = entry(2026, 7, 16, 14, 3, ['きもち', 'おこってる', 'とても']);
+  it('renders short date + time + theme title + picks joined with an arrow (spec §4)', () => {
+    const e = entry(2026, 7, 16, 14, 3, ['おこってる', 'とても']);
     expect(formatRow(e)).toBe('7/16 14:03 きもち → おこってる → とても');
   });
 
   it('does not zero-pad month/day but zero-pads hour/minute', () => {
     const e = entry(2026, 1, 5, 9, 5, ['あ']);
-    expect(formatRow(e)).toBe('1/5 09:05 あ');
+    expect(formatRow(e)).toBe('1/5 09:05 きもち → あ');
+  });
+
+  it('renders an empty-picks entry as date + time + theme title, no trailing arrow', () => {
+    const e = entry(2026, 7, 16, 14, 3, []);
+    expect(formatRow(e)).toBe('7/16 14:03 きもち');
   });
 });
 

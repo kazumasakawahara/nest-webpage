@@ -23,19 +23,24 @@ function entry(
 }
 
 describe('formatEntry', () => {
-  it('renders datetime + picks joined with an arrow', () => {
-    const e = entry(2026, 7, 16, 14, 3, ['きもち', 'おこってる', 'とても']);
+  it('renders datetime + theme title + picks joined with an arrow (spec §4)', () => {
+    const e = entry(2026, 7, 16, 14, 3, ['おこってる', 'とても']);
     expect(formatEntry(e)).toBe('2026/07/16 14:03 きもち → おこってる → とても');
   });
 
   it('zero-pads month, day, hour, and minute', () => {
     const e = entry(2026, 1, 5, 9, 5, ['あ']);
-    expect(formatEntry(e)).toBe('2026/01/05 09:05 あ');
+    expect(formatEntry(e)).toBe('2026/01/05 09:05 きもち → あ');
   });
 
   it('prefixes the line with [mark] when mark is set', () => {
-    const e = entry(2026, 7, 16, 14, 3, ['きもち'], 'め');
-    expect(formatEntry(e)).toBe('[め] 2026/07/16 14:03 きもち');
+    const e = entry(2026, 7, 16, 14, 3, ['おこってる'], 'め');
+    expect(formatEntry(e)).toBe('[め] 2026/07/16 14:03 きもち → おこってる');
+  });
+
+  it('renders an empty-picks entry as datetime + theme title, no trailing arrow', () => {
+    const e = entry(2026, 7, 16, 14, 3, []);
+    expect(formatEntry(e)).toBe('2026/07/16 14:03 きもち');
   });
 });
 
@@ -45,7 +50,7 @@ describe('formatEntries', () => {
   });
 
   it('renders a single entry under its date heading', () => {
-    const e = entry(2026, 7, 16, 14, 3, ['きもち', 'おこってる']);
+    const e = entry(2026, 7, 16, 14, 3, ['おこってる']);
     expect(formatEntries([e])).toBe(
       '■ 2026/07/16\n2026/07/16 14:03 きもち → おこってる',
     );
@@ -61,11 +66,11 @@ describe('formatEntries', () => {
     expect(formatEntries(list)).toBe(
       [
         '■ 2026/07/17',
-        '2026/07/17 08:00 あさ',
+        '2026/07/17 08:00 きもち → あさ',
         '',
         '■ 2026/07/16',
-        '2026/07/16 14:03 ひる',
-        '2026/07/16 09:05 あさ',
+        '2026/07/16 14:03 きもち → ひる',
+        '2026/07/16 09:05 きもち → あさ',
       ].join('\n'),
     );
   });

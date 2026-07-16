@@ -118,10 +118,9 @@ test('3. history shows exactly one entry with the picked labels', async ({ page 
   // りれき is the default tab. Exactly one row for the single session.
   await expect(page.locator('.support-tab.active')).toHaveText('りれき');
   await expect(page.locator('.history-row')).toHaveCount(1);
-  // NOTE: the on-screen row is formatRow() = `M/D HH:MM <picks>` — it does NOT
-  // include the theme title (きもち); that is a Task 8 design decision (flat
-  // list). We assert the picked labels, which are what the row actually shows.
-  await expect(page.locator('.history-line')).toContainText('うれしい → とても');
+  // Row is formatRow() = `M/D HH:MM <theme> → <picks>` (design spec §4: the
+  // theme title is required — a bare 「はい」 is ambiguous in a 支援記録).
+  await expect(page.locator('.history-line')).toContainText('きもち → うれしい → とても');
   await expect(page.locator('.row-delete')).toBeVisible();
 });
 
@@ -135,9 +134,10 @@ test('4. copy produces the ■-date heading and picks line', async ({ page }) =>
   await expect(page.locator('.toast')).toHaveText('コピーしました');
 
   const clip = await page.evaluate(() => navigator.clipboard.readText());
-  // export.ts formatEntries(): `■ YYYY/MM/DD` heading + `YYYY/MM/DD HH:MM <picks>`.
+  // export.ts formatEntries(): `■ YYYY/MM/DD` heading + per-entry line
+  // `YYYY/MM/DD HH:MM <theme> → <picks>` (theme title required, spec §4).
   expect(clip).toMatch(/■ \d{4}\/\d{2}\/\d{2}/);
-  expect(clip).toContain('うれしい → とても');
+  expect(clip).toContain('きもち → うれしい → とても');
 });
 
 test('5. ふりかえり branch inserts the からだ follow-up question', async ({ page }) => {
