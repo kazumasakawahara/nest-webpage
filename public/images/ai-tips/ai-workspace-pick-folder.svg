@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" width="640" height="320" role="img" aria-label="フォルダ選択画面のイメージ図。「Filesystemに任せるフォルダを選ぶ」ダイアログで、デスクトップ・書類・ダウンロードではなく、①で作った専用フォルダ「AI相談室」を選んで指定する">
+  <defs>
+    <style>.lbl{font-family:system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;}</style>
+  </defs>
+
+  <!-- ダイアログ本体 -->
+  <rect x="90" y="24" width="380" height="272" rx="14" fill="#ffffff" stroke="#ddd3c1" stroke-width="2"/>
+  <!-- タイトルバー -->
+  <rect x="90" y="24" width="380" height="44" rx="14" fill="#efe9dd"/>
+  <rect x="90" y="52" width="380" height="16" fill="#efe9dd"/>
+  <circle cx="112" cy="46" r="5" fill="#d97757"/>
+  <circle cx="128" cy="46" r="5" fill="#e8c66a"/>
+  <circle cx="144" cy="46" r="5" fill="#8bbf82"/>
+  <text x="280" y="51" text-anchor="middle" class="lbl" font-size="13.5" font-weight="700" fill="#5f5847">任せるフォルダを選んでください</text>
+
+  <!-- フォルダ一覧 -->
+  <g class="lbl" font-size="13">
+    <!-- デスクトップ -->
+    <g transform="translate(114,86)">
+      <path d="M0 5 q0 -3 3 -3 h9 l3 3 h18 q3 0 3 -0 v0" fill="none"/>
+      <path d="M0 6 q0 -4 4 -4 h10 l4 4 h14 q4 0 4 4 v12 q0 4 -4 4 h-28 q-4 0 -4 -4 z" fill="#efe9dd" stroke="#b7ac97" stroke-width="1.6"/>
+      <text x="48" y="18" fill="#5f5847">デスクトップ</text>
+    </g>
+    <!-- 書類 -->
+    <g transform="translate(114,124)">
+      <path d="M0 6 q0 -4 4 -4 h10 l4 4 h14 q4 0 4 4 v12 q0 4 -4 4 h-28 q-4 0 -4 -4 z" fill="#efe9dd" stroke="#b7ac97" stroke-width="1.6"/>
+      <text x="48" y="18" fill="#5f5847">書類</text>
+    </g>
+    <!-- AI相談室（選択中） -->
+    <g transform="translate(102,158)">
+      <rect x="0" y="-4" width="356" height="38" rx="9" fill="#eaf2e5" stroke="#4a8c3f" stroke-width="2"/>
+      <g transform="translate(12,4)">
+        <path d="M0 6 q0 -4 4 -4 h10 l4 4 h14 q4 0 4 4 v12 q0 4 -4 4 h-28 q-4 0 -4 -4 z" fill="#ffffff" stroke="#4a8c3f" stroke-width="1.8"/>
+        <text x="48" y="18" font-weight="700" fill="#2f5d3a">AI相談室</text>
+      </g>
+      <path d="M320 8 l6 6 12 -12" fill="none" stroke="#4a8c3f" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <!-- ダウンロード -->
+    <g transform="translate(114,204)">
+      <path d="M0 6 q0 -4 4 -4 h10 l4 4 h14 q4 0 4 4 v12 q0 4 -4 4 h-28 q-4 0 -4 -4 z" fill="#efe9dd" stroke="#b7ac97" stroke-width="1.6"/>
+      <text x="48" y="18" fill="#5f5847">ダウンロード</text>
+    </g>
+  </g>
+
+  <!-- 選択ボタン -->
+  <rect x="352" y="244" width="98" height="34" rx="17" fill="#4a8c3f"/>
+  <text x="401" y="266" text-anchor="middle" class="lbl" font-size="13.5" font-weight="700" fill="#ffffff">選択</text>
+
+  <!-- 注記（左側） -->
+  <g transform="translate(486,96)">
+    <rect x="0" y="0" width="136" height="104" rx="12" fill="#efe9dd" stroke="#ddd3c1" stroke-width="1.5"/>
+    <text x="14" y="26" class="lbl" font-size="12" font-weight="700" fill="#b05a3e">選ぶのは</text>
+    <text x="14" y="44" class="lbl" font-size="12" font-weight="700" fill="#b05a3e">①で作った</text>
+    <text x="14" y="62" class="lbl" font-size="12" font-weight="700" fill="#b05a3e">専用フォルダ</text>
+    <text x="14" y="88" class="lbl" font-size="11" fill="#7c7360">だけ、でOK</text>
+  </g>
+  <path d="M486 148 h-20" fill="none" stroke="#d97757" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M474 142 l-8 6 8 6" fill="none" stroke="#d97757" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <text x="280" y="313" text-anchor="middle" class="lbl" font-size="11.5" fill="#9a907c">※ イメージ図。実際の画面はバージョンにより異なります</text>
+</svg>
