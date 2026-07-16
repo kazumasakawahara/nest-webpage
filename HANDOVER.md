@@ -24,6 +24,7 @@ npm run preview    # ビルド結果プレビュー
   - [x] 本番URL全5本・挿絵SVG・一覧の並びを確認済み
   - [x] **番外編「ブラウザにAIが“住み込み”で働く ― Claude in Chrome」を執筆・公開（2026-07-14）**。企画書 `docs/superpowers/specs/2026-07-14-claude-in-chrome-article-plan.md`。第2回「身近な第一歩」節末尾に関連記事リンクを追記。連載ナビ・ページャーには加えていない（企画どおり）
   - [x] **番外編第2弾「AIと“申し送りノート”を持つ ― 共有フォルダ」を改稿・画像実装（2026-07-16、draft: true のまま）**。指示書＋設計メモ `docs/planning/2026-07-16-ai-shared-workspace-article-spec.md` §6。スクショ加工 webp 5点＋図解 SVG 2点（`ai-workspace-*`）。原本PNGと加工中間物は `media-src/ai-shared-workspace/`（gitignore対象）。build成功・preview目視・リンク疎通・太字残骸ゼロ確認済み
+  - [x] **指示書#2: 同記事に節「GeminiやChatGPTでも、できるの？」を追加（2026-07-16）**。一次情報での再検証結果と設計判断は `docs/planning/2026-07-16-ai-shared-workspace-part2-other-ais-spec.md` §7。比較図 `ai-workspace-three-shelves.svg` 追加。要点: ChatGPT=公式にMCPサーバー設定UI（OS別断定は回避）／Gemini=ドライブ連携は**読み取り専用**と公式明記→「読むのはAI・書くのは人間」と正直に記述
 - 詳細な進捗表: `docs/superpowers/plans/2026-07-13-ai-tips-series.md` §5
 - 設計書・作業指示書・reviewスクショは**河原さんの明示指示（2026-07-13）で公開リポジトリにコミット済み**（9829c67。設計書にAI会話ログ全文と内部ツール名が含まれる点は河原さん認識済み）
 
