@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: dsl-junban-chigau / じゅんばんがちがう (numbered blocks + swap arrows) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="じゅんばんが ちがう">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <rect x="25" y="47" width="26" height="26" rx="5" fill="#ffd15c" stroke="#5f5847" stroke-width="2.5"/>
+  <path d="M32 55 q0 -5 6 -5 q6 0 6 5 q0 4 -6 8 l-6 5 h12"
+        fill="none" stroke="#5f5847" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="69" y="47" width="26" height="26" rx="5" fill="#4a8c3f" stroke="#5f5847" stroke-width="2.5"/>
+  <path d="M79 54 l4 -2 v16" fill="none" stroke="#fffdf8" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="none" stroke="#d97757" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M53 53 h14"/><path d="M63 49 l4 4 l-4 4"/>
+    <path d="M67 67 h-14"/><path d="M57 63 l-4 4 l4 4"/>
+  </g>
+</svg>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: rev-iyadatta / いやだった (graded face: unhappy, frown) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="いやだった">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <circle cx="60" cy="60" r="35" fill="#ffd15c" stroke="#5f5847" stroke-width="2.5"/>
+  <g fill="#5f5847">
+    <circle cx="46" cy="55" r="4.6"/>
+    <circle cx="74" cy="55" r="4.6"/>
+  </g>
+  <path d="M42 80 q18 -18 36 0" fill="none" stroke="#5f5847" stroke-width="3.2" stroke-linecap="round"/>
+</svg>

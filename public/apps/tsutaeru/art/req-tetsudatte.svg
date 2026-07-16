@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: req-tetsudatte / てつだって (two arms clasping = help) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="てつだって">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <g fill="#f7efdf" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round">
+    <rect x="4" y="72" width="52" height="16" rx="8" transform="rotate(-30 30 80)"/>
+    <rect x="64" y="72" width="52" height="16" rx="8" transform="rotate(30 90 80)"/>
+  </g>
+  <g fill="#4a8c3f" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round">
+    <rect x="2" y="70" width="12" height="20" rx="5" transform="rotate(-30 8 80)"/>
+    <rect x="106" y="70" width="12" height="20" rx="5" transform="rotate(30 112 80)"/>
+  </g>
+  <ellipse cx="60" cy="56" rx="17" ry="14" fill="#f7efdf" stroke="#5f5847" stroke-width="2.5"/>
+  <g fill="none" stroke="#5f5847" stroke-width="2" stroke-linecap="round">
+    <path d="M50 50 l6 5"/><path d="M55 46 l6 6"/><path d="M61 45 l6 6"/><path d="M67 47 l5 6"/>
+  </g>
+</svg>

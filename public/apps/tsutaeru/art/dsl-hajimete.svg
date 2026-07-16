@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: dsl-hajimete / はじめて (new tag with star + sparkles) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="はじめて">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <g transform="rotate(-12 60 62)">
+    <path d="M46 40 h34 v34 h-34 l-15 -17 z" fill="#d97757" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round"/>
+    <circle cx="42" cy="57" r="4" fill="#efe9dd" stroke="#5f5847" stroke-width="2.5"/>
+    <path d="M62 45 l3.2 7 l7.8 0.6 l-6 5 l2 7.6 l-7 -4.2 l-7 4.2 l2 -7.6 l-6 -5 l7.8 -0.6 z"
+          fill="#ffd15c" stroke="#5f5847" stroke-width="1.8" stroke-linejoin="round"/>
+  </g>
+  <g fill="#ffd15c" stroke="#5f5847" stroke-width="1.5" stroke-linejoin="round">
+    <path d="M92 40 q1 5 6 6 q-5 1 -6 6 q-1 -5 -6 -6 q5 -1 6 -6 z"/>
+    <path d="M34 84 q0.7 4 5 5 q-4.3 1 -5 5 q-0.7 -4 -5 -5 q4.3 -1 5 -5 z"/>
+  </g>
+</svg>

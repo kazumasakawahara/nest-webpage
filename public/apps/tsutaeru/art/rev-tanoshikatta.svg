@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: rev-tanoshikatta / たのしかった (graded face: happy) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="たのしかった">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <circle cx="60" cy="60" r="35" fill="#ffd15c" stroke="#5f5847" stroke-width="2.5"/>
+  <circle cx="43" cy="66" r="6" fill="#d97757" opacity="0.5"/>
+  <circle cx="77" cy="66" r="6" fill="#d97757" opacity="0.5"/>
+  <g fill="#5f5847">
+    <circle cx="46" cy="53" r="4.6"/>
+    <circle cx="74" cy="53" r="4.6"/>
+  </g>
+  <path d="M42 66 q18 22 36 0" fill="none" stroke="#5f5847" stroke-width="3.2" stroke-linecap="round"/>
+</svg>

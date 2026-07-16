@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: req-toire / トイレ (simplified toilet) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="トイレ">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <rect x="42" y="26" width="36" height="18" rx="4" fill="#f7efdf" stroke="#5f5847" stroke-width="2.5"/>
+  <circle cx="60" cy="35" r="3.5" fill="#4a8c3f" stroke="#5f5847" stroke-width="2"/>
+  <path d="M42 60 q6 30 18 30 q12 0 18 -30 z" fill="#f7efdf" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round"/>
+  <ellipse cx="60" cy="54" rx="27" ry="12" fill="#fffdf8" stroke="#5f5847" stroke-width="2.5"/>
+  <ellipse cx="60" cy="55" rx="14" ry="6" fill="#efe9dd" stroke="#5f5847" stroke-width="2"/>
+  <rect x="46" y="88" width="28" height="8" rx="3" fill="#f7efdf" stroke="#5f5847" stroke-width="2.5"/>
+</svg>

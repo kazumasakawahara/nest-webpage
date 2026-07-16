@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: dsl-nioi / におい (nose + rising smell waves) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="においが いや">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <g fill="none" stroke="#d97757" stroke-width="2.6" stroke-linecap="round">
+    <path d="M48 46 q6 -6 0 -13 q-6 -7 0 -14"/>
+    <path d="M60 44 q6 -6 0 -13 q-6 -7 0 -14"/>
+    <path d="M72 46 q6 -6 0 -13 q-6 -7 0 -14"/>
+  </g>
+  <path d="M60 48 C52 66 44 74 44 82 C44 90 76 90 76 82 C76 74 68 66 60 48 Z"
+        fill="#ffd15c" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M60 66 v14" fill="none" stroke="#5f5847" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="52" cy="80" r="2.8" fill="#5f5847"/>
+  <circle cx="68" cy="80" r="2.8" fill="#5f5847"/>
+</svg>

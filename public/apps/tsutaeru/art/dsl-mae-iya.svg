@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: dsl-mae-iya / まえにいやなことがあった (thought bubble + dark storm cloud) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="まえに いやなことが あった">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <circle cx="30" cy="94" r="3.5" fill="#fffdf8" stroke="#5f5847" stroke-width="2.5"/>
+  <circle cx="38" cy="82" r="6" fill="#fffdf8" stroke="#5f5847" stroke-width="2.5"/>
+  <ellipse cx="63" cy="50" rx="36" ry="26" fill="#fffdf8" stroke="#5f5847" stroke-width="2.5"/>
+  <path d="M48 54 a8 8 0 0 1 8 -8 a10 10 0 0 1 18 2 a7 7 0 0 1 1 14 h-26 a7 7 0 0 1 -1 -8 z" fill="#5f5847"/>
+  <path d="M62 60 l-6 9 h6 l-5 9 l12 -13 h-6 l5 -5 z" fill="#ffd15c" stroke="#5f5847" stroke-width="1.5" stroke-linejoin="round"/>
+</svg>

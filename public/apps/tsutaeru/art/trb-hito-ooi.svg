@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: trb-hito-ooi / 人がおおい (crowd of head silhouettes) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="ひとが おおい">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <g fill="#f7efdf" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round">
+    <path d="M23 75 q0 -16 15 -16 q15 0 15 16 z"/><circle cx="38" cy="48" r="8.5"/>
+    <path d="M45 75 q0 -16 15 -16 q15 0 15 16 z"/><circle cx="60" cy="48" r="8.5"/>
+    <path d="M67 75 q0 -16 15 -16 q15 0 15 16 z"/><circle cx="82" cy="48" r="8.5"/>
+  </g>
+  <g stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round">
+    <g fill="#4a8c3f"><path d="M13 91 q0 -16 15 -16 q15 0 15 16 z"/><circle cx="28" cy="64" r="8.5"/></g>
+    <g fill="#d97757"><path d="M35 91 q0 -16 15 -16 q15 0 15 16 z"/><circle cx="50" cy="64" r="8.5"/></g>
+    <g fill="#4a8c3f"><path d="M57 91 q0 -16 15 -16 q15 0 15 16 z"/><circle cx="72" cy="64" r="8.5"/></g>
+    <g fill="#d97757"><path d="M79 91 q0 -16 15 -16 q15 0 15 16 z"/><circle cx="94" cy="64" r="8.5"/></g>
+  </g>
+</svg>

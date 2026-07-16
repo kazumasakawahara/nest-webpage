@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: trb-yaru-koto-wakaranai / やることがわからない (task sheet + question) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="やることが わからない">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <g transform="rotate(-4 54 58)">
+    <rect x="32" y="28" width="44" height="60" rx="6" fill="#fffdf8" stroke="#5f5847" stroke-width="2.5"/>
+    <g stroke="#5f5847" stroke-width="2" fill="none" stroke-linecap="round">
+      <rect x="39" y="40" width="7" height="7" rx="1.5"/>
+      <path d="M52 44 h16"/>
+      <rect x="39" y="54" width="7" height="7" rx="1.5"/>
+      <path d="M52 58 h16"/>
+      <rect x="39" y="68" width="7" height="7" rx="1.5"/>
+      <path d="M52 72 h16"/>
+    </g>
+  </g>
+  <path d="M74 58 a11 11 0 1 1 20 6 c-4 5 -9 6 -9 13" fill="none" stroke="#d97757" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="84" cy="90" r="4.3" fill="#d97757"/>
+</svg>

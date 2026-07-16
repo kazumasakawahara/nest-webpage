@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: trb-mabushii / まぶしい (sun with rays + squinting eyes) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="まぶしい">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <g stroke="#d97757" stroke-width="3.5" stroke-linecap="round">
+    <path d="M93 62 L102 62"/>
+    <path d="M83.3 85.3 L89.7 91.7"/>
+    <path d="M60 95 L60 104"/>
+    <path d="M36.7 85.3 L30.3 91.7"/>
+    <path d="M27 62 L18 62"/>
+    <path d="M36.7 38.7 L30.3 32.3"/>
+    <path d="M60 29 L60 20"/>
+    <path d="M83.3 38.7 L89.7 32.3"/>
+  </g>
+  <circle cx="60" cy="62" r="30" fill="#ffd15c" stroke="#5f5847" stroke-width="2.5"/>
+  <g fill="none" stroke="#5f5847" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M46 59 l6 4 l6 -4"/>
+    <path d="M62 59 l6 4 l6 -4"/>
+  </g>
+  <path d="M50 80 q10 -4 20 0" fill="none" stroke="#5f5847" stroke-width="3" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: trb-urusai / うるさい (ear + big loud sound arcs) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="うるさい">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <path d="M58 34 c-18 0 -30 14 -30 31 c0 14 9 25 21 25 c8 0 12 -6 12 -13 c0 -7 -7 -7 -7 -14 c0 -6 8 -6 13 -11"
+        fill="#f7efdf" stroke="#5f5847" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M46 54 c7 -5 16 0 13 10" fill="none" stroke="#5f5847" stroke-width="2.3" stroke-linecap="round"/>
+  <g fill="none" stroke="#d97757" stroke-width="4" stroke-linecap="round">
+    <path d="M78 48 q10 12 0 24"/>
+    <path d="M89 41 q16 19 0 38"/>
+    <path d="M100 34 q22 26 0 52"/>
+  </g>
+</svg>

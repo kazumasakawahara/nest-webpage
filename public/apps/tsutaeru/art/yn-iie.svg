@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: yn-iie / いいえ (bold terracotta cross, paired with icon-yesno) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="いいえ">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <g fill="none" stroke="#d97757" stroke-width="9" stroke-linecap="round">
+    <path d="M39 39 L81 81"/>
+    <path d="M81 39 L39 81"/>
+  </g>
+</svg>

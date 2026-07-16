@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: dsl-aji / あじ (sour taste: pinched eyes + puckered mouth + tongue) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="あじが いや">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <circle cx="60" cy="60" r="34" fill="#ffd15c" stroke="#5f5847" stroke-width="2.5"/>
+  <g fill="none" stroke="#5f5847" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M42 50 l8 4 l-8 4"/>
+    <path d="M78 50 l-8 4 l8 4"/>
+  </g>
+  <path d="M50 72 q10 -8 20 0 q-2 13 -10 13 q-8 0 -10 -13 z"
+        fill="#d97757" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round"/>
+  <g fill="none" stroke="#4a8c3f" stroke-width="2.4" stroke-linecap="round">
+    <path d="M30 46 q4 5 0 10"/>
+    <path d="M90 46 q-4 5 0 10"/>
+  </g>
+</svg>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- つたえるカード art: trb-onaka-suita / おなかすいた (empty bowl + rumble) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="おなかが すいた">
+  <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
+  <g fill="none" stroke="#d97757" stroke-width="2.6" stroke-linecap="round">
+    <path d="M80 40 q4 4 0 8 q-4 4 0 8"/>
+    <path d="M92 34 q5 5 0 10 q-5 5 0 10"/>
+  </g>
+  <ellipse cx="58" cy="58" rx="30" ry="8" fill="#f7efdf" stroke="#5f5847" stroke-width="2.5"/>
+  <path d="M28 58 a30 24 0 0 0 60 0" fill="#f7efdf" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M40 58 q18 9 36 0" fill="none" stroke="#5f5847" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/>
+  <rect x="49" y="84" width="18" height="7" rx="3" fill="#f7efdf" stroke="#5f5847" stroke-width="2.5"/>
+</svg>
