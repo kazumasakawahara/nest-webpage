@@ -1,0 +1,26 @@
+{
+  "name": "つたえるカード",
+  "short_name": "つたえる",
+  "lang": "ja",
+  "dir": "ltr",
+  "start_url": "/apps/tsutaeru/",
+  "scope": "/apps/tsutaeru/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#faf6ef",
+  "theme_color": "#4a8c3f",
+  "icons": [
+    {
+      "src": "/apps/tsutaeru/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/apps/tsutaeru/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

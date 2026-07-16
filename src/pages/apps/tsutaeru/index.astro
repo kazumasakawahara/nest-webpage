@@ -6,6 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>つたえるカード</title>
+    <link rel="manifest" href="/apps/tsutaeru/manifest.webmanifest" />
+    <meta name="theme-color" content="#4a8c3f" />
+    <link rel="apple-touch-icon" href="/apps/tsutaeru/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="つたえる" />
     <style is:global>
       /* This page deliberately does NOT import the site global.css; the app owns
          its own small palette derived from the site's editorial colours. */
@@ -841,6 +848,16 @@
     <script>
       import { initApp } from '../../../apps/tsutaeru/app';
       initApp(document.getElementById('app')!);
+    </script>
+    <script>
+      // Register the service worker (scope: /apps/tsutaeru/) for offline use.
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker
+            .register('/apps/tsutaeru/sw.js')
+            .catch(() => {});
+        });
+      }
     </script>
   </body>
 </html>
