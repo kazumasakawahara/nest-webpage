@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 340" width="640" height="340" role="img" aria-label="2つの流儀の対比図。左は納品型：チャットでお願いすると完成したWord・Excel・PDFファイルが机に届く。右は同席型：GoogleドキュメントなどのソフトのなかにAIが同席していて、書きかけの書類をその場で手伝う">
+  <defs>
+    <style>.lbl{font-family:system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;}</style>
+  </defs>
+
+  <!-- 左：納品型 -->
+  <rect x="20" y="26" width="290" height="288" rx="16" fill="#ffffff" stroke="#d97757" stroke-width="2"/>
+  <text x="46" y="66" class="lbl" font-size="19" font-weight="700" fill="#b05a3e">納品型</text>
+  <text x="46" y="88" class="lbl" font-size="12.5" fill="#c98a72">完成ファイルを届けてくれる</text>
+
+  <!-- ロボット（別室の事務スタッフ） -->
+  <g transform="translate(46,110)">
+    <line x1="18" y1="7" x2="18" y2="2" stroke="#b05a3e" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="18" cy="0" r="3.2" fill="#ffd15c"/>
+    <rect x="2" y="7" width="32" height="26" rx="8" fill="#faf6ef" stroke="#b05a3e" stroke-width="2.2"/>
+    <rect x="9" y="13" width="18" height="14" rx="4.5" fill="#4a3227"/>
+    <circle cx="14.5" cy="20" r="2.6" fill="#f6c3ad"/>
+    <circle cx="21.5" cy="20" r="2.6" fill="#f6c3ad"/>
+  </g>
+  <!-- 納品の矢印 -->
+  <path d="M96 128 h34 M120 120 l12 8 -12 8" fill="none" stroke="#d97757" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- 届くファイル群 -->
+  <g transform="translate(146,100)">
+    <rect x="0" y="10" width="40" height="52" rx="4" fill="#faf6ef" stroke="#b05a3e" stroke-width="2.2"/>
+    <text x="20" y="42" text-anchor="middle" class="lbl" font-size="11" font-weight="700" fill="#b05a3e">W</text>
+    <rect x="48" y="4" width="40" height="52" rx="4" fill="#faf6ef" stroke="#4a8c3f" stroke-width="2.2"/>
+    <text x="68" y="36" text-anchor="middle" class="lbl" font-size="11" font-weight="700" fill="#2f5d3a">X</text>
+    <rect x="96" y="10" width="40" height="52" rx="4" fill="#faf6ef" stroke="#7c7360" stroke-width="2.2"/>
+    <text x="116" y="42" text-anchor="middle" class="lbl" font-size="10" font-weight="700" fill="#5f5847">PDF</text>
+    <!-- ダウンロード印 -->
+    <g transform="translate(56,62)">
+      <circle cx="12" cy="12" r="12" fill="#d97757"/>
+      <path d="M12 5 v9 M7 10 l5 5 5 -5" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </g>
+
+  <g class="lbl" font-size="13" fill="#5f5847">
+    <g><path d="M48 219 l5 5 9 -10" fill="none" stroke="#d97757" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><text x="70" y="229">Word・Excel・PDFをそのまま受け取る</text></g>
+    <g><path d="M48 247 l5 5 9 -10" fill="none" stroke="#d97757" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><text x="70" y="257">どんな環境の事業所でも使える</text></g>
+  </g>
+  <text x="165" y="294" text-anchor="middle" class="lbl" font-size="14" font-weight="700" fill="#b05a3e">代表選手：Claude</text>
+
+  <!-- 右：同席型 -->
+  <rect x="330" y="26" width="290" height="288" rx="16" fill="#ffffff" stroke="#4a8c3f" stroke-width="2"/>
+  <text x="356" y="66" class="lbl" font-size="19" font-weight="700" fill="#2f5d3a">同席型</text>
+  <text x="356" y="88" class="lbl" font-size="12.5" fill="#4a8c3f">いつものソフトの隣の席に</text>
+
+  <!-- 書類ソフトの画面＋サイドパネル -->
+  <g transform="translate(356,102)">
+    <rect x="0" y="0" width="238" height="98" rx="8" fill="#faf6ef" stroke="#bcd7b3" stroke-width="2"/>
+    <rect x="0" y="0" width="238" height="20" rx="8" fill="#eaf2e5"/>
+    <rect x="0" y="12" width="238" height="8" fill="#eaf2e5"/>
+    <circle cx="12" cy="10" r="3" fill="#4a8c3f"/>
+    <text x="24" y="14" class="lbl" font-size="9.5" fill="#2f5d3a">書きかけの書類</text>
+    <!-- 本文行 -->
+    <line x1="14" y1="36" x2="140" y2="36" stroke="#b7ac97" stroke-width="2.4" stroke-linecap="round"/>
+    <line x1="14" y1="50" x2="150" y2="50" stroke="#ddd3c1" stroke-width="2.4" stroke-linecap="round"/>
+    <line x1="14" y1="64" x2="128" y2="64" stroke="#ddd3c1" stroke-width="2.4" stroke-linecap="round"/>
+    <line x1="14" y1="78" x2="96" y2="78" stroke="#ddd3c1" stroke-width="2.4" stroke-linecap="round"/>
+    <!-- サイドパネル -->
+    <rect x="166" y="20" width="72" height="78" fill="#eaf2e5" stroke="#bcd7b3" stroke-width="1.5"/>
+    <g transform="translate(188,30)">
+      <line x1="13" y1="5" x2="13" y2="1.5" stroke="#2f5d3a" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="13" cy="0" r="2.6" fill="#ffd15c"/>
+      <rect x="1.5" y="5" width="23" height="19" rx="6" fill="#faf6ef" stroke="#2f5d3a" stroke-width="1.8"/>
+      <rect x="6.5" y="9.5" width="13" height="10" rx="3.4" fill="#1f3a26"/>
+      <circle cx="10.5" cy="14.5" r="1.9" fill="#8fe0b0"/>
+      <circle cx="15.5" cy="14.5" r="1.9" fill="#8fe0b0"/>
+    </g>
+    <text x="202" y="74" text-anchor="middle" class="lbl" font-size="8.5" fill="#2f5d3a">続きを</text>
+    <text x="202" y="86" text-anchor="middle" class="lbl" font-size="8.5" fill="#2f5d3a">書きますね</text>
+  </g>
+
+  <g class="lbl" font-size="13" fill="#264a2c">
+    <g><path d="M358 219 l5 5 9 -10" fill="none" stroke="#4a8c3f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><text x="380" y="229">開いている書類を、その場で手伝う</text></g>
+    <g><path d="M358 247 l5 5 9 -10" fill="none" stroke="#4a8c3f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><text x="380" y="257">ファイルの受け渡し自体が不要に</text></g>
+  </g>
+  <text x="475" y="294" text-anchor="middle" class="lbl" font-size="14" font-weight="700" fill="#2f5d3a">代表選手：Gemini（Workspace）</text>
+</svg>
