@@ -26,7 +26,7 @@ npm run preview    # ビルド結果プレビュー
 
 ## 現在地
 
-- **Task 1〜16 まですべて完了**（`feature/tsutaeru-app` ブランチ）。**main へは未マージ**（下記「公開ゲート」が河原さんの判断待ち）。
+- **Task 1〜16 完了＋最終ブランチレビュー修正済み → 2026-07-16 に main へマージ・本番反映済み（静かな公開）**。ナビ未リンク。入口は意思決定支援ページの紹介セクション（`/sudachi/decision-support/` → `/apps/`）のみ。本番でSW registration・オフライン起動（precache 95件）を確認済み。
 - コード: `src/apps/tsutaeru/`（ロジック）＋ `src/pages/apps/tsutaeru/index.astro`（画面・CSS）＋ `public/apps/tsutaeru/`（manifest / sw.js / アイコン / art SVG 85本）。
 - 案内ページ: `src/pages/apps/index.astro`（Task 15）。
 - テスト: `tests/tsutaeru/*.test.ts`（vitest・単体）＋ `tests/tsutaeru/smoke.spec.ts`（Playwright・本番ビルド相手のE2E 5シナリオ、Task 16）。
@@ -57,8 +57,11 @@ npx playwright test --config tests/tsutaeru/playwright.config.ts
 mobile 390×844 で ①home表示 ②きもち完走→result ③履歴1件 ④コピー文面 ⑤ふりかえり分岐 を検証する。
 （`astro preview` は本環境では dev サーバを返すため E2E の対象にしない — Task 14 の教訓。）
 
-## 公開ゲート（河原さんの判断待ち）
+## 公開ゲート（進行状況: 静かな公開まで完了・2026-07-16）
 
+- [x] **④ main へマージ → 自動デプロイ**（河原さん承認済み。静かな公開＝ナビ未リンクで本番稼働中）
+- [x] **③ サイトナビからのリンク位置** → 当面ナビには張らず、**意思決定支援ページ内の紹介セクションを唯一の導線**とする（河原さん決定）。反応を見てナビ昇格を検討
+- [ ] **挿絵の差し替え**: 分かりづらい絵は河原さんが後日提供 → `public/apps/tsutaeru/art/<id>.svg` を差し替え（形式は何でも可・変換はClaude側で）。**差し替え時は sw.js の VERSION を上げる**
 - [ ] **① 実機チェックリスト**（iPhone Safari / Android Chrome の両方で）:
   - ホーム画面に追加 → **機内モードで起動**してオフライン動作を確認
   - **本人モード（kiosk）解除の 3 秒長押し**が効くこと（誤操作で抜けないこと）
