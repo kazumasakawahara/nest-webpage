@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { speak } from '~/apps/tsutaeru/speech';
+import { speak, stopSpeech } from '~/apps/tsutaeru/speech';
 import { saveSettings } from '~/apps/tsutaeru/store';
 
 // node env has no localStorage; minimal in-memory stub so store.loadSettings works.
@@ -79,5 +79,21 @@ describe('speak', () => {
   it('no-ops (no throw) when the speechSynthesis API is unavailable', () => {
     // No stub installed → API absent, as during SSR/build.
     expect(() => speak('だれもいない')).not.toThrow();
+  });
+});
+
+describe('stopSpeech', () => {
+  afterEach(() => {
+    clearSynthStub();
+  });
+
+  it('cancels any in-progress utterance when the API is present', () => {
+    const { calls } = installSynthStub();
+    stopSpeech();
+    expect(calls).toEqual(['cancel']);
+  });
+
+  it('no-ops (no throw) when the speechSynthesis API is unavailable', () => {
+    expect(() => stopSpeech()).not.toThrow();
   });
 });

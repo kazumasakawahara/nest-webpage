@@ -46,6 +46,19 @@
         margin: 0 auto;
         min-height: 100vh;
         padding: 16px;
+        /* Kiosk hardening: a text selection / iOS loupe on a long-press would
+           fire pointercancel and make the 3-second 本人モード exit impossible on
+           text. Suppress selection app-wide (copy uses the clipboard API, not
+           manual selection, so nothing here depends on selectable text). */
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-touch-callout: none;
+      }
+      /* Inputs must stay editable/selectable despite the root-wide guard. */
+      input,
+      textarea {
+        -webkit-user-select: text;
+        user-select: text;
       }
 
       .screen {
@@ -69,6 +82,9 @@
         color: inherit;
         cursor: pointer;
         transition: opacity 0.15s ease;
+        /* Kill iOS double-tap-to-zoom / the 300ms click delay so the two-stage
+           same-card double tap registers as two clean taps. */
+        touch-action: manipulation;
       }
       button:active {
         opacity: 0.6;

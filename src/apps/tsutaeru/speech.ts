@@ -21,3 +21,14 @@ export function speak(text: string): void {
   utterance.lang = 'ja-JP';
   synth.speak(utterance);
 }
+
+/**
+ * Stop any in-progress utterance. Called on screen transitions (session end,
+ * navigation home) so speech does not bleed across screens. No-ops when the
+ * API is unavailable (SSR/build, or a browser without speechSynthesis).
+ */
+export function stopSpeech(): void {
+  const synth = globalThis.speechSynthesis as SpeechSynthesis | undefined;
+  if (synth == null) return;
+  synth.cancel();
+}

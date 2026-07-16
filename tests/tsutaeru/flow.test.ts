@@ -85,6 +85,26 @@ describe('createSession', () => {
     const s = createSession(theme('emotion'), mulberry32(7));
     expect(s.queue[0].cards.slice(-2).map((c) => c.id)).toEqual(ESCAPE_IDS);
   });
+
+  it('yields an empty queue when every question is disabled', () => {
+    // A theme whose questions are all disabled must not enter the cards screen;
+    // the app-level guard keys off queue.length === 0 (and currentQuestion null).
+    const allOff: Theme = {
+      id: 'empty',
+      title: 'から',
+      icon: 'icon-emotion',
+      display: 'art',
+      builtin: false,
+      questions: [
+        { id: 'q1', prompt: 'a', cards: [{ id: 'c1', label: 'a', art: 'gen-e' }], enabled: false, escape: false, shuffle: false },
+        { id: 'q2', prompt: 'b', cards: [{ id: 'c2', label: 'b', art: 'gen-e' }], enabled: false, escape: false, shuffle: false },
+      ],
+    };
+    const s = createSession(allOff);
+    expect(s.queue).toEqual([]);
+    expect(s.done).toBe(false);
+    expect(currentQuestion(s)).toBeNull();
+  });
 });
 
 describe('tap', () => {

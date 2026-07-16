@@ -3,7 +3,7 @@ import { createSession, tap, type Session } from './flow';
 import { filterByPeriod, type Period } from './history';
 import { createLongPress } from './kiosk';
 import { deletePhoto } from './photos';
-import { speak } from './speech';
+import { speak, stopSpeech } from './speech';
 import {
   addHistory,
   clearHistory,
@@ -154,7 +154,15 @@ export function initApp(root: HTMLElement): void {
   root.addEventListener('pointercancel', () => longPress.cancel());
 
   function selectTheme(theme: Theme): void {
-    go({ name: 'cards', session: createSession(theme) });
+    const session = createSession(theme);
+    // Guard: a theme whose questions are all disabled yields an empty queue.
+    // Entering the cards screen would render nothing with no way back (kiosk
+    // has no back button) — only an app restart recovers. Stay home instead.
+    if (session.queue.length === 0) {
+      showToast('このテーマには しつもんが ありません');
+      return;
+    }
+    go({ name: 'cards', session });
   }
 
   function onTap(cardId: string): void {
@@ -170,6 +178,8 @@ export function initApp(root: HTMLElement): void {
     const next = tap(before, cardId);
     if (next.done) {
       // Reaching done commits exactly one history entry, then shows result.
+      // Cut any lingering readout so speech does not bleed into the result.
+      stopSpeech();
       addHistory(buildHistoryEntry(next, new Date().toISOString(), crypto.randomUUID()));
       go({ name: 'result', session: next });
     } else {
@@ -198,7 +208,10 @@ export function initApp(root: HTMLElement): void {
           session: screen.session,
           kiosk,
           onTap,
-          onBack: () => go({ name: 'home' }),
+          onBack: () => {
+            stopSpeech();
+            go({ name: 'home' });
+          },
         });
         break;
       case 'result': {
@@ -206,7 +219,10 @@ export function initApp(root: HTMLElement): void {
         renderResult(root, {
           session: screen.session,
           onAgain: () => selectTheme(theme),
-          onHome: () => go({ name: 'home' }),
+          onHome: () => {
+            stopSpeech();
+            go({ name: 'home' });
+          },
         });
         break;
       }
