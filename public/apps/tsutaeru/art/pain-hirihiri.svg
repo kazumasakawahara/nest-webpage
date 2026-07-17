@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- つたえるカード art: pain-hirihiri / ヒリヒリ (flame / burning) -->
+<!-- つたえるカード art: pain-hirihiri / ヒリヒリ (scraped skin stinging) -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="ヒリヒリ">
   <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
-  <path d="M60 24 q20 20 10 40 q-2 -9 -9 -12 q6 16 -8 22 q-22 -8 -18 -32 q4 9 11 7 q-6 -18 14 -25 z" fill="#d97757" stroke="#5f5847" stroke-width="2.5" stroke-linejoin="round"/>
-  <path d="M60 46 q10 12 4 24 q-2 -6 -7 -8 q3 10 -6 13 q-11 -6 -8 -19 q3 6 8 3 q-3 -9 9 -13 z" fill="#ffd15c" stroke="#5f5847" stroke-width="2" stroke-linejoin="round"/>
+  <!-- 腕（皮膚） -->
+  <path d="M16 88 q0 -16 16 -16 l56 0 q16 0 16 16 l0 16 l-88 0 z" fill="#f2d9ae" stroke="#5f5847" stroke-width="2.8" stroke-linejoin="round"/>
+  <!-- すりむけて赤くなった部分 -->
+  <ellipse cx="60" cy="82" rx="18" ry="8" fill="#e8a08a"/>
+  <ellipse cx="60" cy="82" rx="18" ry="8" fill="none" stroke="#d97757" stroke-width="1.6" opacity="0.7"/>
+  <!-- ひっかき傷の線 -->
+  <g fill="none" stroke="#b05a3e" stroke-width="2.4" stroke-linecap="round">
+    <path d="M50 80 l8 -1.5"/>
+    <path d="M55 85 l10 -1"/>
+    <path d="M64 80 l7 1"/>
+  </g>
+  <!-- まわりが、ちりちり痛む -->
+  <g fill="none" stroke="#d97757" stroke-width="2.6" stroke-linecap="round">
+    <line x1="60" y1="67" x2="60" y2="59"/>
+    <line x1="51" y1="68.5" x2="48" y2="60.5"/>
+    <line x1="69" y1="68.5" x2="72" y2="60.5"/>
+    <line x1="43" y1="71" x2="38" y2="64"/>
+    <line x1="77" y1="71" x2="82" y2="64"/>
+    <line x1="38" y1="77" x2="30" y2="74"/>
+    <line x1="82" y1="77" x2="90" y2="74"/>
+  </g>
 </svg>

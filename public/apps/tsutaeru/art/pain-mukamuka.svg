@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- つたえるカード art: pain-mukamuka / ムカムカ (abstract stomach swirl) -->
+<!-- つたえるカード art: pain-mukamuka / ムカムカ (person, churning belly) -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="ムカムカ">
   <rect x="6" y="6" width="108" height="108" rx="22" fill="#efe9dd"/>
-  <path d="M60 64 q-8 -8 2 -16 q12 -10 24 4 q12 16 -6 30 q-22 16 -40 -4 q-16 -22 8 -40" fill="none" stroke="#4a8c3f" stroke-width="4.5" stroke-linecap="round"/>
-  <g fill="none" stroke="#4a8c3f" stroke-width="3" stroke-linecap="round" opacity="0.8">
-    <path d="M40 28 q5 -6 0 -12"/>
-    <path d="M56 24 q6 -7 0 -14"/>
+  <!-- 頭 -->
+  <circle cx="60" cy="25" r="13" fill="#f2d9ae" stroke="#5f5847" stroke-width="2.5"/>
+  <!-- 困り顔 -->
+  <g fill="none" stroke="#5f5847" stroke-width="2" stroke-linecap="round">
+    <path d="M50 23 q2.5 -2 5 0"/>
+    <path d="M65 23 q2.5 -2 5 0"/>
+    <path d="M53 32 q3.5 3 7 0 q3.5 -3 7 0"/>
+  </g>
+  <!-- からだ -->
+  <path d="M28 104 q0 -38 10 -50 q8 -12 22 -12 q14 0 22 12 q10 12 10 50 z" fill="#faf6ef" stroke="#5f5847" stroke-width="2.8" stroke-linejoin="round"/>
+  <!-- おなかの中でぐるぐる -->
+  <path d="M62 78 q7 -7 14 0 q6 8 -4 14 q-14 8 -25 -4 q-8 -12 4 -21" fill="none" stroke="#4a8c3f" stroke-width="4.2" stroke-linecap="round"/>
+  <!-- こみ上げる波 -->
+  <g fill="none" stroke="#4a8c3f" stroke-width="2.8" stroke-linecap="round" opacity="0.85">
+    <path d="M84 56 q5 -6 0 -12"/>
+    <path d="M93 62 q5 -6 0 -12"/>
   </g>
 </svg>
