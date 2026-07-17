@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" width="640" height="300" role="img" aria-label="組み合わせの図。目覚まし時計（定期実行）＋合鍵（カレンダー・メール）＋レシピカード（スキル）が重なると、毎朝決まった時刻に、自分の予定とメールを踏まえた、うちのやり方どおりのブリーフィングが自動で届く。三つの道具の重なりの中心に「毎朝の秘書」">
+  <defs>
+    <style>.lbl{font-family:system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;}</style>
+  </defs>
+
+  <text x="24" y="36" class="lbl" font-size="16" font-weight="700" fill="#2f5d3a">三つが重なると、「毎朝の秘書」になる</text>
+
+  <!-- ベン図：3円 -->
+  <g fill-opacity="0.32">
+    <circle cx="270" cy="128" r="76" fill="#d97757" stroke="#d97757" stroke-width="2" fill-opacity="0.18"/>
+    <circle cx="370" cy="128" r="76" fill="#4a8c3f" stroke="#4a8c3f" stroke-width="2" fill-opacity="0.18"/>
+    <circle cx="320" cy="206" r="76" fill="#c9a227" stroke="#c9a227" stroke-width="2" fill-opacity="0.18"/>
+  </g>
+
+  <!-- 目覚まし時計（左上・オレンジ） -->
+  <g transform="translate(212,96)">
+    <circle cx="14" cy="14" r="12" fill="#ffffff" stroke="#d97757" stroke-width="2.4"/>
+    <line x1="14" y1="14" x2="14" y2="7" stroke="#d97757" stroke-width="2" stroke-linecap="round"/>
+    <line x1="14" y1="14" x2="19" y2="16" stroke="#d97757" stroke-width="2" stroke-linecap="round"/>
+    <line x1="5" y1="4" x2="8" y2="7" stroke="#d97757" stroke-width="2.2" stroke-linecap="round"/>
+    <line x1="23" y1="4" x2="20" y2="7" stroke="#d97757" stroke-width="2.2" stroke-linecap="round"/>
+  </g>
+  <text x="196" y="70" class="lbl" font-size="12.5" font-weight="700" fill="#b05a3e">目覚まし時計</text>
+  <text x="196" y="86" class="lbl" font-size="10" fill="#c98a72">定期実行</text>
+
+  <!-- 合鍵（右上・緑） -->
+  <g transform="translate(396,92)" stroke="#4a8c3f" stroke-width="2.6" fill="none" stroke-linecap="round">
+    <circle cx="10" cy="10" r="8"/>
+    <line x1="16" y1="16" x2="36" y2="36"/>
+    <line x1="29" y1="29" x2="24" y2="34"/>
+    <line x1="36" y1="36" x2="31" y2="41"/>
+  </g>
+  <text x="392" y="70" class="lbl" font-size="12.5" font-weight="700" fill="#2f5d3a">合鍵</text>
+  <text x="392" y="86" class="lbl" font-size="10" fill="#4a8c3f">手帳とメール</text>
+
+  <!-- レシピカード（下・黄） -->
+  <g transform="translate(306,236)">
+    <rect x="0" y="0" width="22" height="28" rx="3" fill="#ffffff" stroke="#c9a227" stroke-width="2.2"/>
+    <line x1="4.5" y1="7" x2="17.5" y2="7" stroke="#c9a227" stroke-width="2" stroke-linecap="round"/>
+    <line x1="4.5" y1="13" x2="17.5" y2="13" stroke="#e3cf8a" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="4.5" y1="18" x2="17.5" y2="18" stroke="#e3cf8a" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="4.5" y1="23" x2="13" y2="23" stroke="#e3cf8a" stroke-width="1.8" stroke-linecap="round"/>
+  </g>
+  <text x="346" y="252" class="lbl" font-size="12.5" font-weight="700" fill="#8a6d1f">レシピカード</text>
+  <text x="346" y="268" class="lbl" font-size="10" fill="#b09344">スキル＝うちのやり方</text>
+
+  <!-- 中心 -->
+  <circle cx="320" cy="152" r="34" fill="#ffffff" stroke="#2f5d3a" stroke-width="2.4"/>
+  <g transform="translate(307,132)">
+    <line x1="13" y1="5" x2="13" y2="1.5" stroke="#2f5d3a" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="13" cy="0" r="2.6" fill="#ffd15c"/>
+    <rect x="1.5" y="5" width="23" height="18" rx="6" fill="#faf6ef" stroke="#2f5d3a" stroke-width="1.8"/>
+    <rect x="6.5" y="9" width="13" height="10" rx="3.4" fill="#1f3a26"/>
+    <circle cx="10.5" cy="14" r="1.9" fill="#8fe0b0"/>
+    <circle cx="15.5" cy="14" r="1.9" fill="#8fe0b0"/>
+  </g>
+  <text x="320" y="174" text-anchor="middle" class="lbl" font-size="11" font-weight="700" fill="#2f5d3a">毎朝の秘書</text>
+
+  <!-- 右側の説明 -->
+  <g class="lbl" font-size="11.5" fill="#5f5847">
+    <text x="480" y="140">毎朝決まった時刻に、</text>
+    <text x="480" y="158">自分の予定とメールを踏まえた、</text>
+    <text x="480" y="176">うちのやり方どおりのまとめが</text>
+    <text x="480" y="194" font-weight="700" fill="#2f5d3a">自動で届く</text>
+  </g>
+
+  <text x="24" y="288" class="lbl" font-size="11" fill="#9a907c">＝ 連載の三点セット（道具・台帳・手順書）が、時間の軸を手に入れた姿</text>
+</svg>
