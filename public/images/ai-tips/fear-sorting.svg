@@ -9,26 +9,61 @@
   <!-- 背景 -->
   <rect width="640" height="360" rx="16" fill="#faf6ef"/>
 
-  <!-- 人（左）：こわごわ画面をのぞく -->
+  <!-- 人（左）：トップページのマスコット（白髪・金縁メガネ・紺フリース・カップ）。表情だけ不安げに -->
   <g>
-    <circle cx="110" cy="120" r="34" fill="#f9e8df" stroke="#b85f3d" stroke-width="2.5"/>
-    <!-- 前髪 -->
-    <path d="M82 106 q28 -22 56 0 q-6 -16 -28 -16 t-28 16z" fill="#b85f3d" opacity="0.85"/>
-    <!-- 目（不安げな点目と眉） -->
-    <circle cx="99" cy="122" r="3" fill="#2a2620"/>
-    <circle cx="123" cy="122" r="3" fill="#2a2620"/>
-    <path d="M93 112 q6 -4 12 -1" fill="none" stroke="#2a2620" stroke-width="2" stroke-linecap="round"/>
-    <path d="M117 111 q6 -3 12 1" fill="none" stroke="#2a2620" stroke-width="2" stroke-linecap="round"/>
-    <!-- 口（へにゃ） -->
-    <path d="M104 136 q7 -4 14 0" fill="none" stroke="#2a2620" stroke-width="2" stroke-linecap="round"/>
-    <!-- 首と体（頭の下端 y≈154 に肩が重なるように配置） -->
-    <rect x="102" y="148" width="16" height="22" rx="6" fill="#f9e8df" stroke="#b85f3d" stroke-width="2"/>
-    <path d="M78 186 q32 -44 64 0 v22 h-64 z" fill="#4a8c3f" opacity="0.85"/>
+    <g transform="translate(108,132) scale(0.35)">
+      <!-- あぐらの下半身 -->
+      <path d="M-64 250 C-72 302 -18 320 10 302 C-4 326 -66 322 -72 286 Z" fill="#1c2942"/>
+      <path d="M64 250 C72 302 18 320 -10 302 C4 326 66 322 72 286 Z" fill="#243654"/>
+      <!-- 首 -->
+      <rect x="-14" y="48" width="28" height="22" rx="7" fill="#e6b892"/>
+      <!-- 胴体（紺フリース） -->
+      <path d="M-66 252 C-78 168 -58 80 -18 64 C-8 58 8 58 18 64 C58 80 78 168 66 252 Z" fill="#22314f"/>
+      <!-- 襟・インナー -->
+      <path d="M-30 70 Q0 56 30 70 L22 98 Q0 84 -22 98 Z" fill="#2c3c5e"/>
+      <path d="M-17 78 Q0 68 17 78 L11 100 Q0 92 -11 100 Z" fill="#e9eef5"/>
+      <line x1="0" y1="96" x2="0" y2="244" stroke="#33456b" stroke-width="3"/>
+      <!-- 髪（後ろ・白髪ウェーブ） -->
+      <path d="M-72 6 C-88 -66 -44 -100 0 -100 C44 -100 88 -66 72 6 C64 -6 54 -4 48 8 C40 -8 30 -6 24 8 C16 -8 4 -8 -2 8 C-10 -8 -22 -8 -28 8 C-36 -6 -48 -6 -54 10 C-60 2 -66 2 -72 6 Z" fill="#8c908c"/>
+      <!-- 顔 -->
+      <circle cx="0" cy="0" r="60" fill="#f0c9a8"/>
+      <path d="M-52 -52 C-30 -74 30 -74 52 -50" stroke="#a9ada8" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <path d="M-44 -34 C-30 -50 -6 -52 6 -40" stroke="#7d817d" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <path d="M46 -30 C34 -46 14 -48 4 -38" stroke="#7d817d" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <!-- ほほ -->
+      <circle cx="-38" cy="24" r="10" fill="#e79a78" opacity="0.5"/>
+      <circle cx="38" cy="24" r="10" fill="#e79a78" opacity="0.5"/>
+      <!-- 不安げな眉と目（開いた点目） -->
+      <path d="M-40 -12 Q-26 -20 -14 -14" stroke="#4a3b2f" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+      <path d="M14 -14 Q26 -20 40 -12" stroke="#4a3b2f" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+      <circle cx="-26" cy="8" r="6" fill="#4a3b2f"/>
+      <circle cx="26" cy="8" r="6" fill="#4a3b2f"/>
+      <!-- 金縁メガネ -->
+      <g stroke="#c9a44a" stroke-width="3.5" fill="#ffffff" fill-opacity="0.14">
+        <ellipse cx="-26" cy="6" rx="22" ry="15"/>
+        <ellipse cx="26" cy="6" rx="22" ry="15"/>
+      </g>
+      <path d="M-4 4 Q0 -1 4 4" stroke="#c9a44a" stroke-width="3.5" fill="none"/>
+      <line x1="-48" y1="2" x2="-64" y2="-4" stroke="#c9a44a" stroke-width="3"/>
+      <line x1="48" y1="2" x2="64" y2="-4" stroke="#c9a44a" stroke-width="3"/>
+      <!-- 口（心配そうにきゅっと） -->
+      <path d="M-12 40 Q0 33 12 40" stroke="#9e4a3a" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <!-- 腕（カップを持つ） -->
+      <path d="M-56 132 C-64 178 -32 198 -8 198" fill="none" stroke="#22314f" stroke-width="30" stroke-linecap="round"/>
+      <path d="M56 132 C64 178 32 198 8 198" fill="none" stroke="#243654" stroke-width="30" stroke-linecap="round"/>
+      <!-- カップ -->
+      <path d="M-17 176 h34 a4 4 0 0 1 4 4 v13 a13 13 0 0 1 -13 13 h-16 a13 13 0 0 1 -13 -13 v-13 a4 4 0 0 1 4 -4 Z" fill="#ffffff" stroke="#d9cfbb" stroke-width="1.5"/>
+      <path d="M21 182 a9 9 0 0 1 0 18" fill="none" stroke="#d9cfbb" stroke-width="3"/>
+      <ellipse cx="0" cy="180" rx="15" ry="4.5" fill="#8a5a3c"/>
+      <!-- 手 -->
+      <circle cx="-12" cy="198" r="13" fill="#f0c9a8"/>
+      <circle cx="12" cy="198" r="13" fill="#f0c9a8"/>
+    </g>
     <!-- ふきだし -->
     <g>
-      <rect x="52" y="34" width="120" height="40" rx="12" fill="#ffffff" stroke="#e6e0d4" stroke-width="2"/>
-      <path d="M96 74 l8 12 l4 -12 z" fill="#ffffff" stroke="#e6e0d4" stroke-width="2"/>
-      <text x="112" y="60" text-anchor="middle" class="cap" font-size="19" fill="#2a2620">なんだか怖い…</text>
+      <rect x="52" y="24" width="120" height="40" rx="12" fill="#ffffff" stroke="#e6e0d4" stroke-width="2"/>
+      <path d="M96 64 l8 12 l4 -12 z" fill="#ffffff" stroke="#e6e0d4" stroke-width="2"/>
+      <text x="112" y="50" text-anchor="middle" class="cap" font-size="19" fill="#2a2620">なんだか怖い…</text>
     </g>
   </g>
 
