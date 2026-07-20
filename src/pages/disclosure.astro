@@ -1,0 +1,195 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import { site } from '../lib/site';
+
+// 掲載書類。年度の決算書類は配列に追記していく（新しい年度を先頭に）
+const teikan = {
+  title: '定款',
+  meta: '平成31年（2019年）4月23日 認証',
+  file: '/pdfs/disclosure/nest-teikan.pdf',
+};
+
+const fiscalYears = [
+  {
+    label: '令和7年度（2025年4月1日〜2026年3月31日）',
+    docs: [
+      {
+        title: '活動計算書',
+        meta: '監査報告付き（令和8年6月8日 監査）',
+        file: '/pdfs/disclosure/nest-r7-katsudo-keisansho.pdf',
+      },
+      // 貸借対照表は原本スキャンの到着待ち。届いたらここに1件追加するだけで掲載される
+    ],
+    pending: ['貸借対照表'],
+  },
+];
+---
+
+<BaseLayout
+  title="情報公開"
+  description="特定非営利活動法人nestの定款・事業報告・決算報告（活動計算書・貸借対照表）を公開しています。"
+>
+  <Hero
+    eyebrow="Disclosure"
+    title="情報公開"
+    lead="定款・決算報告などの法人情報を公開しています"
+    size="sm"
+    placeholderLabel="DISCLOSURE"
+  />
+
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="disclosure reveal">
+
+        <p class="disclosure__intro">
+          特定非営利活動法人nestは、特定非営利活動促進法（NPO法）の趣旨に基づき、
+          法人運営の透明性を大切にしています。定款および各年度の決算報告書類を、
+          このページで公開します。これらの書類は所轄庁（北九州市）にも提出しています。
+        </p>
+
+        <section class="disclosure__section">
+          <h2>定款</h2>
+          <div class="doc-row">
+            <div class="doc-row__info">
+              <h3 class="doc-row__title">{teikan.title}</h3>
+              <p class="doc-row__meta">{teikan.meta}</p>
+            </div>
+            <div class="doc-row__actions">
+              <a class="btn btn--primary btn--sm" href={teikan.file} target="_blank" rel="noopener">読む（PDF）</a>
+              <a class="btn btn--outline btn--sm" href={teikan.file} download>ダウンロード</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="disclosure__section">
+          <h2>決算報告</h2>
+          {fiscalYears.map((year) => (
+            <div class="year-block">
+              <h3 class="year-block__label">{year.label}</h3>
+              {year.docs.map((doc) => (
+                <div class="doc-row">
+                  <div class="doc-row__info">
+                    <h3 class="doc-row__title">{doc.title}</h3>
+                    {doc.meta && <p class="doc-row__meta">{doc.meta}</p>}
+                  </div>
+                  <div class="doc-row__actions">
+                    <a class="btn btn--primary btn--sm" href={doc.file} target="_blank" rel="noopener">読む（PDF）</a>
+                    <a class="btn btn--outline btn--sm" href={doc.file} download>ダウンロード</a>
+                  </div>
+                </div>
+              ))}
+              {year.pending && year.pending.length > 0 && (
+                <p class="year-block__pending">
+                  {year.pending.join('・')}は準備が整い次第、掲載します。
+                </p>
+              )}
+            </div>
+          ))}
+        </section>
+
+        <section class="disclosure__contact">
+          <h2>書類に関するお問い合わせ</h2>
+          <div class="info-box">
+            <dl>
+              <dt>法人名</dt>
+              <dd>{site.name}</dd>
+              <dt>所在地</dt>
+              <dd>{site.address}</dd>
+              <dt>TEL / FAX</dt>
+              <dd><strong>{site.tel}</strong>（電話受付 {site.telHours}）</dd>
+            </dl>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .disclosure { color: var(--color-ink); }
+
+  .disclosure__intro {
+    background: var(--color-paper);
+    border-left: 3px solid var(--color-terra-500);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: var(--space-5) var(--space-6);
+    margin-bottom: var(--space-7);
+    line-height: 1.95;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .disclosure__section {
+    margin-bottom: var(--space-7);
+  }
+
+  .disclosure__section h2 {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    color: var(--color-green-900);
+    padding-bottom: var(--space-3);
+    margin-bottom: var(--space-5);
+    border-bottom: 2px solid var(--color-green-700);
+  }
+
+  .year-block {
+    margin-bottom: var(--space-6);
+  }
+
+  .year-block__label {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-ink-mute);
+    margin-bottom: var(--space-4);
+  }
+
+  .year-block__pending {
+    font-size: 13px;
+    color: var(--color-ink-soft);
+    margin-top: var(--space-3);
+  }
+
+  .doc-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3) var(--space-5);
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-5);
+    margin-bottom: var(--space-3);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .doc-row__title {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    color: var(--color-green-900);
+  }
+
+  .doc-row__meta {
+    font-size: 13px;
+    color: var(--color-ink-mute);
+    margin-top: 2px;
+  }
+
+  .doc-row__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .disclosure__contact {
+    margin-top: var(--space-8);
+  }
+
+  .disclosure__contact h2 {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    color: var(--color-green-900);
+    margin-bottom: var(--space-4);
+  }
+</style>
