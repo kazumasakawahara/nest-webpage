@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-label="「怖い」と書かれた札を、人とAIさんが一緒に「だいじょうぶ」と「気をつければOK」の2つのトレイに仕分けている図">
+  <defs>
+    <style>
+      .cap { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; }
+      .label { font-family: 'Noto Sans JP', sans-serif; }
+    </style>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="640" height="360" rx="16" fill="#faf6ef"/>
+
+  <!-- 人（左）：こわごわ画面をのぞく -->
+  <g>
+    <circle cx="110" cy="120" r="34" fill="#f9e8df" stroke="#b85f3d" stroke-width="2.5"/>
+    <!-- 前髪 -->
+    <path d="M82 106 q28 -22 56 0 q-6 -16 -28 -16 t-28 16z" fill="#b85f3d" opacity="0.85"/>
+    <!-- 目（不安げな点目と眉） -->
+    <circle cx="99" cy="122" r="3" fill="#2a2620"/>
+    <circle cx="123" cy="122" r="3" fill="#2a2620"/>
+    <path d="M93 112 q6 -4 12 -1" fill="none" stroke="#2a2620" stroke-width="2" stroke-linecap="round"/>
+    <path d="M117 111 q6 -3 12 1" fill="none" stroke="#2a2620" stroke-width="2" stroke-linecap="round"/>
+    <!-- 口（へにゃ） -->
+    <path d="M104 136 q7 -4 14 0" fill="none" stroke="#2a2620" stroke-width="2" stroke-linecap="round"/>
+    <!-- 体 -->
+    <path d="M78 200 q32 -36 64 0 v26 h-64 z" fill="#4a8c3f" opacity="0.85"/>
+    <!-- ふきだし -->
+    <g>
+      <rect x="52" y="34" width="120" height="40" rx="12" fill="#ffffff" stroke="#e6e0d4" stroke-width="2"/>
+      <path d="M96 74 l8 12 l4 -12 z" fill="#ffffff" stroke="#e6e0d4" stroke-width="2"/>
+      <text x="112" y="60" text-anchor="middle" class="cap" font-size="19" fill="#2a2620">なんだか怖い…</text>
+    </g>
+  </g>
+
+  <!-- AIさん（右）：おだやか -->
+  <g>
+    <rect x="486" y="88" width="68" height="58" rx="14" fill="#2d5a27"/>
+    <line x1="520" y1="78" x2="520" y2="88" stroke="#2d5a27" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="520" cy="74" r="5" fill="#d97757"/>
+    <!-- 目（にこにこ） -->
+    <path d="M500 112 q6 6 12 0" fill="none" stroke="#faf6ef" stroke-width="3" stroke-linecap="round"/>
+    <path d="M528 112 q6 6 12 0" fill="none" stroke="#faf6ef" stroke-width="3" stroke-linecap="round"/>
+    <path d="M510 130 q10 7 20 0" fill="none" stroke="#faf6ef" stroke-width="3" stroke-linecap="round"/>
+    <!-- 体 -->
+    <rect x="494" y="152" width="52" height="42" rx="10" fill="#4a8c3f" opacity="0.9"/>
+    <!-- ふきだし -->
+    <g>
+      <rect x="418" y="18" width="200" height="42" rx="12" fill="#ffffff" stroke="#e6e0d4" stroke-width="2"/>
+      <path d="M540 60 l-4 12 l-8 -12 z" fill="#ffffff" stroke="#e6e0d4" stroke-width="2"/>
+      <text x="518" y="45" text-anchor="middle" class="cap" font-size="19" fill="#2a2620">一緒に並べてみましょう</text>
+    </g>
+  </g>
+
+  <!-- 中央：怖さの札（仕分け前） -->
+  <g class="cap" font-size="15">
+    <g transform="translate(232 96) rotate(-6)">
+      <rect width="90" height="34" rx="8" fill="#ffffff" stroke="#d97757" stroke-width="2"/>
+      <text x="45" y="23" text-anchor="middle" fill="#2a2620">こわしそう</text>
+    </g>
+    <g transform="translate(330 88) rotate(4)">
+      <rect width="96" height="34" rx="8" fill="#ffffff" stroke="#d97757" stroke-width="2"/>
+      <text x="48" y="23" text-anchor="middle" fill="#2a2620">まちがえそう</text>
+    </g>
+    <g transform="translate(268 140) rotate(2)">
+      <rect width="110" height="34" rx="8" fill="#ffffff" stroke="#d97757" stroke-width="2"/>
+      <text x="55" y="23" text-anchor="middle" fill="#2a2620">はずかしい…</text>
+    </g>
+  </g>
+
+  <!-- 矢印（札 → 2つのトレイ） -->
+  <path d="M270 196 q-30 30 -66 44" fill="none" stroke="#9a948a" stroke-width="2.5" stroke-dasharray="6 5" stroke-linecap="round" marker-end="none"/>
+  <path d="M370 196 q30 30 66 44" fill="none" stroke="#9a948a" stroke-width="2.5" stroke-dasharray="6 5" stroke-linecap="round"/>
+
+  <!-- トレイ左：だいじょうぶ -->
+  <g>
+    <rect x="120" y="248" width="180" height="72" rx="12" fill="#e8efe6" stroke="#2d5a27" stroke-width="2.5"/>
+    <text x="210" y="292" text-anchor="middle" class="cap" font-size="22" fill="#1a3d18">だいじょうぶ</text>
+  </g>
+
+  <!-- トレイ右：気をつければOK -->
+  <g>
+    <rect x="340" y="248" width="180" height="72" rx="12" fill="#f9e8df" stroke="#b85f3d" stroke-width="2.5"/>
+    <text x="430" y="285" text-anchor="middle" class="cap" font-size="20" fill="#b85f3d">気をつければ</text>
+    <text x="430" y="308" text-anchor="middle" class="cap" font-size="20" fill="#b85f3d">OK</text>
+  </g>
+</svg>
