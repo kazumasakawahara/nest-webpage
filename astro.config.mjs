@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
@@ -9,6 +10,13 @@ export default defineConfig({
   adapter: cloudflare({
     platformProxy: { enabled: true },
   }),
+  integrations: [
+    sitemap({
+      filter: (page) =>
+        // 会員ページ（noindex）と、静かな公開中のアプリはサイトマップに載せない
+        !page.includes('/members/') && !page.includes('/apps/'),
+    }),
+  ],
   build: {
     inlineStylesheets: 'auto',
   },
