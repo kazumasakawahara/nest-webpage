@@ -19,6 +19,14 @@ const {
   ogImage = '/og-image.png',
 } = Astro.props;
 
+// ───────────────────────────────────────────────────────────────
+// Cloudflare Web Analytics のビーコントークン。
+// ダッシュボード（Analytics & Logs → Web Analytics → サイト追加）で
+// 発行される data-cf-beacon の token をここに貼ると計測が始まります。
+// 空のままなら何も出力されません（Cookieなし・個人を追跡しない計測）。
+const CF_BEACON_TOKEN = '';
+// ───────────────────────────────────────────────────────────────
+
 const fullTitle = title === site.shortName ? site.name : `${title} | ${site.name}`;
 const canonical = new URL(Astro.url.pathname, site.legacyUrl).toString();
 const ogImageUrl = new URL(ogImage, Astro.site ?? site.legacyUrl).toString();
@@ -110,6 +118,17 @@ const jsonLd = {
     </div>
 
     <StickyCallBar />
+
+    {
+      CF_BEACON_TOKEN && (
+        <script
+          is:inline
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={JSON.stringify({ token: CF_BEACON_TOKEN })}
+        />
+      )
+    }
 
     <script>
       // Intersection Observer for fade-up reveals
