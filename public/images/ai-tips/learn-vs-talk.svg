@@ -45,12 +45,27 @@
   <!-- 右：AIの場合 -->
   <text x="480" y="52" text-anchor="middle" class="cap" font-size="21" fill="#6b665e">AIの場合</text>
 
-  <!-- マスコット（頭部のみ・にっこり） -->
-  <g transform="translate(432,208) scale(0.42)">
+  <!-- マスコット（全身・Aの挿絵と同一。表情は元の笑顔） -->
+  <g transform="translate(480,200) scale(0.32)">
+    <!-- あぐらの下半身 -->
+    <path d="M-64 250 C-72 302 -18 320 10 302 C-4 326 -66 322 -72 286 Z" fill="#1c2942"/>
+    <path d="M64 250 C72 302 18 320 -10 302 C4 326 66 322 72 286 Z" fill="#243654"/>
+    <!-- 首 -->
+    <rect x="-14" y="48" width="28" height="22" rx="7" fill="#e6b892"/>
+    <!-- 胴体（紺フリース） -->
+    <path d="M-66 252 C-78 168 -58 80 -18 64 C-8 58 8 58 18 64 C58 80 78 168 66 252 Z" fill="#22314f"/>
+    <!-- 襟・インナー -->
+    <path d="M-30 70 Q0 56 30 70 L22 98 Q0 84 -22 98 Z" fill="#2c3c5e"/>
+    <path d="M-17 78 Q0 68 17 78 L11 100 Q0 92 -11 100 Z" fill="#e9eef5"/>
+    <line x1="0" y1="96" x2="0" y2="244" stroke="#33456b" stroke-width="3"/>
     <!-- 髪（後ろ・白髪ウェーブ） -->
     <path d="M-72 6 C-88 -66 -44 -100 0 -100 C44 -100 88 -66 72 6 C64 -6 54 -4 48 8 C40 -8 30 -6 24 8 C16 -8 4 -8 -2 8 C-10 -8 -22 -8 -28 8 C-36 -6 -48 -6 -54 10 C-60 2 -66 2 -72 6 Z" fill="#8c908c"/>
+    <!-- 顔 -->
     <circle cx="0" cy="0" r="60" fill="#f0c9a8"/>
     <path d="M-52 -52 C-30 -74 30 -74 52 -50" stroke="#a9ada8" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M-44 -34 C-30 -50 -6 -52 6 -40" stroke="#7d817d" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <path d="M46 -30 C34 -46 14 -48 4 -38" stroke="#7d817d" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <!-- ほほ -->
     <circle cx="-38" cy="24" r="10" fill="#e79a78" opacity="0.5"/>
     <circle cx="38" cy="24" r="10" fill="#e79a78" opacity="0.5"/>
     <!-- 笑顔の目（閉じた弧） -->
@@ -64,15 +79,26 @@
     <path d="M-4 4 Q0 -1 4 4" stroke="#c9a44a" stroke-width="3.5" fill="none"/>
     <line x1="-48" y1="2" x2="-64" y2="-4" stroke="#c9a44a" stroke-width="3"/>
     <line x1="48" y1="2" x2="64" y2="-4" stroke="#c9a44a" stroke-width="3"/>
-    <!-- にっこりの口 -->
-    <path d="M-16 34 Q0 46 16 34" stroke="#9e4a3a" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <!-- 大きな笑顔 -->
+    <path d="M-26 30 Q0 40 26 30 Q0 68 -26 30 Z" fill="#9e4a3a"/>
+    <path d="M-21 32 Q0 40 21 32 Q0 35 -21 32 Z" fill="#faf6ef"/>
+    <!-- 腕（カップを持つ） -->
+    <path d="M-56 132 C-64 178 -32 198 -8 198" fill="none" stroke="#22314f" stroke-width="30" stroke-linecap="round"/>
+    <path d="M56 132 C64 178 32 198 8 198" fill="none" stroke="#243654" stroke-width="30" stroke-linecap="round"/>
+    <!-- カップ -->
+    <path d="M-17 176 h34 a4 4 0 0 1 4 4 v13 a13 13 0 0 1 -13 13 h-16 a13 13 0 0 1 -13 -13 v-13 a4 4 0 0 1 4 -4 Z" fill="#ffffff" stroke="#d9cfbb" stroke-width="1.5"/>
+    <path d="M21 182 a9 9 0 0 1 0 18" fill="none" stroke="#d9cfbb" stroke-width="3"/>
+    <ellipse cx="0" cy="180" rx="15" ry="4.5" fill="#8a5a3c"/>
+    <!-- 手 -->
+    <circle cx="-12" cy="198" r="13" fill="#f0c9a8"/>
+    <circle cx="12" cy="198" r="13" fill="#f0c9a8"/>
   </g>
 
   <!-- ふきだし（1つだけ） -->
   <g>
-    <rect x="466" y="118" width="140" height="46" rx="14" fill="#ffffff" stroke="#2d5a27" stroke-width="2.5"/>
-    <path d="M496 164 l-6 16 l16 -10 z" fill="#ffffff" stroke="#2d5a27" stroke-width="2.5"/>
-    <text x="536" y="148" text-anchor="middle" class="cap" font-size="20" fill="#1a3d18">話しかけるだけ</text>
+    <rect x="410" y="88" width="140" height="46" rx="14" fill="#ffffff" stroke="#2d5a27" stroke-width="2.5"/>
+    <path d="M470 134 l-4 16 l14 -10 z" fill="#ffffff" stroke="#2d5a27" stroke-width="2.5"/>
+    <text x="480" y="118" text-anchor="middle" class="cap" font-size="20" fill="#1a3d18">話しかけるだけ</text>
   </g>
 
   <text x="480" y="330" text-anchor="middle" class="cap" font-size="17" fill="#2d5a27">おぼえる操作は、ひとつ</text>
