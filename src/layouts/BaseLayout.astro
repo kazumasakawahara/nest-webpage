@@ -21,6 +21,30 @@ const {
 
 const fullTitle = title === site.shortName ? site.name : `${title} | ${site.name}`;
 const canonical = new URL(Astro.url.pathname, site.legacyUrl).toString();
+const ogImageUrl = new URL(ogImage, Astro.site ?? site.legacyUrl).toString();
+
+// 構造化データ（NGO = NPO法人。住所・連絡先は site.ts が唯一の情報源）
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'NGO',
+  name: site.name,
+  alternateName: site.shortName,
+  url: site.legacyUrl,
+  logo: new URL('/images/nest-image2/nest-logo-01.png', site.legacyUrl).toString(),
+  image: ogImageUrl,
+  description: site.description,
+  foundingDate: '2006-08-15',
+  telephone: site.tel,
+  address: {
+    '@type': 'PostalAddress',
+    postalCode: '803-0851',
+    addressRegion: '福岡県',
+    addressLocality: '北九州市小倉北区',
+    streetAddress: '木町3丁目6−7',
+    addressCountry: 'JP',
+  },
+  sameAs: [site.instagram],
+};
 ---
 
 <!doctype html>
@@ -39,15 +63,22 @@ const canonical = new URL(Astro.url.pathname, site.legacyUrl).toString();
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={new URL(ogImage, Astro.site ?? site.legacyUrl).toString()} />
+    <meta property="og:image" content={ogImageUrl} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:locale" content="ja_JP" />
+
+    <!-- Twitter Card（title/description/image は og:* にフォールバック） -->
+    <meta name="twitter:card" content="summary_large_image" />
 
     <!-- Theme color -->
     <meta name="theme-color" content="#faf6ef" media="(prefers-color-scheme: light)" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- 構造化データ（Organization / NGO） -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
