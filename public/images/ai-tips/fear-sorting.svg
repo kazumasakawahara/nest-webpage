@@ -21,8 +21,9 @@
     <path d="M117 111 q6 -3 12 1" fill="none" stroke="#2a2620" stroke-width="2" stroke-linecap="round"/>
     <!-- 口（へにゃ） -->
     <path d="M104 136 q7 -4 14 0" fill="none" stroke="#2a2620" stroke-width="2" stroke-linecap="round"/>
-    <!-- 体 -->
-    <path d="M78 200 q32 -36 64 0 v26 h-64 z" fill="#4a8c3f" opacity="0.85"/>
+    <!-- 首と体（頭の下端 y≈154 に肩が重なるように配置） -->
+    <rect x="102" y="148" width="16" height="22" rx="6" fill="#f9e8df" stroke="#b85f3d" stroke-width="2"/>
+    <path d="M78 186 q32 -44 64 0 v22 h-64 z" fill="#4a8c3f" opacity="0.85"/>
     <!-- ふきだし -->
     <g>
       <rect x="52" y="34" width="120" height="40" rx="12" fill="#ffffff" stroke="#e6e0d4" stroke-width="2"/>
