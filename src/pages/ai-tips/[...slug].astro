@@ -18,6 +18,9 @@ const fmtDate = (d: Date) =>
 ---
 
 <BaseLayout title={item.data.title} description={item.data.summary ?? item.data.title}>
+  <Fragment slot="head">
+    <link rel="alternate" type="application/rss+xml" title="教えてAIさん" href="/ai-tips/rss.xml" />
+  </Fragment>
   <article class="tip-article">
     <div class="container container--narrow">
       <header class="tip-article__head reveal">

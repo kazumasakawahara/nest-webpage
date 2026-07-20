@@ -33,6 +33,9 @@ const fmtDate = (d: Date) =>
   title="教えてAIさん"
   description="福祉の現場で役立つ、PC・AIの便利な使い方を「AIに聞いてみた」かたちでご紹介します。"
 >
+  <Fragment slot="head">
+    <link rel="alternate" type="application/rss+xml" title="教えてAIさん" href="/ai-tips/rss.xml" />
+  </Fragment>
   <Hero
     eyebrow="教えてAIさん"
     title="AIに聞いてみた、<br />現場のちょっとした便利ワザ"
