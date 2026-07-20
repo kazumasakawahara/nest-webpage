@@ -1,0 +1,65 @@
+---
+// ───────────────────────────────────────────────────────────────
+// 教えてAIさん 質問箱の公開URL。
+// scripts/create-ai-tips-question-form.gs を実行すると発行される「公開URL」を
+// ここに貼り付けると、一覧・各記事に質問募集ボックスが表示されます。
+// 例: 'https://docs.google.com/forms/d/e/XXXXXXXXXXXX/viewform'
+// 空のままなら何も表示されません（準備中はこのままでOK）。
+const FORM_VIEW_URL = '';
+// ───────────────────────────────────────────────────────────────
+
+const isFormReady = FORM_VIEW_URL.length > 0;
+---
+
+{
+  isFormReady && (
+    <aside class="question-box reveal" aria-labelledby="question-box-title">
+      <p class="question-box__eyebrow">Question Box</p>
+      <h2 id="question-box-title" class="question-box__title">
+        AIさんに聞いてみたいこと、ありませんか？
+      </h2>
+      <p class="question-box__lead">
+        「こんなことできるの？」「ここで困っている」——ひとことで大丈夫です。
+        いただいた質問は、個人がわからない形にして記事でお答えしていきます。
+      </p>
+      <a class="btn btn--accent" href={FORM_VIEW_URL} target="_blank" rel="noopener">
+        質問を送ってみる（匿名OK）
+      </a>
+    </aside>
+  )
+}
+
+<style>
+  .question-box {
+    margin-top: var(--space-8);
+    padding: var(--space-6) var(--space-5);
+    text-align: center;
+    background: var(--color-terra-100);
+    border: 1px dashed var(--color-terra-500);
+    border-radius: var(--radius-lg);
+  }
+
+  .question-box__eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--fs-eyebrow);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-terra-700);
+    margin-bottom: var(--space-3);
+  }
+
+  .question-box__title {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    color: var(--color-green-900);
+    margin-bottom: var(--space-3);
+  }
+
+  .question-box__lead {
+    max-width: 34em;
+    margin: 0 auto var(--space-5);
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--color-ink-mute);
+  }
+</style>

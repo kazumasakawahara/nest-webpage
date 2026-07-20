@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import AiTipsQuestionBox from '../../components/AiTipsQuestionBox.astro';
 
 export async function getStaticPaths() {
   const items = await getCollection('aiTips', ({ data }) => !data.draft);
@@ -37,6 +38,8 @@ const fmtDate = (d: Date) =>
       <div class="tip-article__body reveal">
         <Content />
       </div>
+
+      <AiTipsQuestionBox />
 
       <div class="tip-article__foot reveal">
         <a href="/ai-tips/" class="btn btn--outline">一覧に戻る</a>
