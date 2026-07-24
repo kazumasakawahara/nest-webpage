@@ -1,0 +1,354 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Hero from '../../../components/Hero.astro';
+import CtaBlock from '../../../components/CtaBlock.astro';
+
+const appUrl = '/apps/kizuki/';
+const appFullUrl = 'https://www.nponest.com/apps/kizuki/';
+---
+
+<BaseLayout
+  title="支援者の気づきノート｜意思決定支援セルフチェックアプリ"
+  description="「支援者の気づきノート」は、月にいちど、9つの問いと2つの自由記述で自分の支援を意思決定支援の観点からふりかえる無料アプリです。点数も合否もありません。アカウント不要・記録は端末の中だけ。事業者が職員を評定するためのものではありません。"
+>
+  <Hero
+    eyebrow="支援者の気づきノート ／ Kizuki Note"
+    title="月にいちど、<br />自分の支援をふりかえる"
+    lead="「今月、本人が選んだ場面を思い出せますか」——9つの問いと2つの自由記述で、自分の支援を意思決定支援の観点から静かにふりかえるためのノートです。支援のしごとに関わる、すべての方へ。"
+    size="md"
+    placeholderLabel="KIZUKI NOTE"
+  />
+
+  <!-- ===== アプリ紹介（意思決定支援の文脈） ===== -->
+  <section class="section">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">About</span>
+      <h2 class="section__title">非難ではなく、気づきを</h2>
+      <p class="prose">
+        「決めること」は、能力ではなく権利。代わりに決めるのではなく、決める経験をサポートする——
+        nest が取り組む<a href="/sudachi/decision-support/">意思決定支援</a>の考え方を、
+        月にいちどの小さなふりかえりにしたのが「支援者の気づきノート」です。
+      </p>
+      <p class="prose">
+        <strong>えらぶ機会をつくれたか。つたえるのを待てたか。かなえるのを支えられたか。ことばの外をよみとろうとしたか。</strong>
+        ——4つのまとまり・9つの問いに、思い出しながら答えていきます。最後に、
+        「いちばん本人らしさが出た瞬間」と「次に試してみたいこと」を、じぶんのことばで書きます。5分ほどで書けます。
+      </p>
+
+      <p class="pledge-box">
+        これは、事業者が職員を評定する際に利用するためのものではありません。
+        <strong>支援者お一人お一人が、自らを振り返る材料とするためのもの</strong>です。
+      </p>
+
+      <ul class="feature-list">
+        <li class="feature-list__item">
+          <span class="feature-list__mark" aria-hidden="true">◯</span>
+          <span><strong>点数も、合否もありません。</strong>
+            答えを採点する仕組みは、意図してつくっていません。「思い出せない」も大切な気づきです。</span>
+        </li>
+        <li class="feature-list__item">
+          <span class="feature-list__mark" aria-hidden="true">◯</span>
+          <span><strong>書いたことは、端末の中にだけ残ります。</strong>
+            アカウントもログインも不要で、記録がインターネットのどこかに送られることはありません。</span>
+        </li>
+        <li class="feature-list__item">
+          <span class="feature-list__mark" aria-hidden="true">◯</span>
+          <span><strong>前回の自分のことばと、再会できます。</strong>
+            次のふりかえりを書くとき、前回の「本人らしさ」「試したいこと」が最初に表示されます。
+            ひと月前の自分との対話が、このノートの核です。</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== QR＋URL ===== -->
+  <section class="section section--sand">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">Open</span>
+      <h2 class="section__title">アプリをひらく</h2>
+      <div class="open-box">
+        <div class="open-box__qr">
+          <img
+            src="/images/apps/kizuki-qr.svg"
+            alt="支援者の気づきノートを開くためのQRコード。スマホのカメラで読み取ると www.nponest.com/apps/kizuki/ が開きます"
+            width="180"
+            height="180"
+            loading="lazy"
+          />
+          <p class="open-box__qr-cap">スマホのカメラでQRコードを読み取ってください</p>
+        </div>
+        <div class="open-box__body">
+          <p class="open-box__lead">
+            QRコードをスマホのカメラで読み取るか、このアドレスをブラウザに入力すると開きます。
+            研修や事業所内での配布にも、このQRコードをご自由にお使いください。
+          </p>
+          <p class="open-box__url"><code>{appFullUrl}</code></p>
+          <a href={appUrl} class="btn btn--primary open-box__btn">この端末で開く</a>
+          <p class="open-box__note">
+            ※ はじめて開くときだけ、電波のよい場所でひらいてください。一度ひらけば、
+            次からはオフラインでも使えます。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ホーム画面に追加 ===== -->
+  <section class="section">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">Install</span>
+      <h2 class="section__title">「ホーム画面に追加」しておくと便利です</h2>
+      <p class="prose">
+        月にいちど開くものだからこそ、ホーム画面にアイコンを置いておくのがおすすめです。
+        ふつうのアプリのようにワンタップで起動でき、アイコンを見かけることが「そろそろ書こうかな」の
+        きっかけにもなります。
+      </p>
+
+      <figure class="howto">
+        <img
+          src="/images/apps/add-home-iphone.svg"
+          alt="iPhone（Safari）でホーム画面に追加する3ステップ。1. 画面下の共有ボタン（四角に上向き矢印）をタップ。2. メニューを少し下にたどって「ホーム画面に追加」をタップ。3. 右上の「追加」をタップすると、ホーム画面にアイコンができる。"
+          width="640"
+          height="320"
+          loading="lazy"
+        />
+        <figcaption class="howto__cap">iPhone をお使いのとき（Safari）</figcaption>
+      </figure>
+
+      <figure class="howto">
+        <img
+          src="/images/apps/add-home-android.svg"
+          alt="Android（Chrome）でホーム画面に追加する3ステップ。1. 画面右上の「点が縦に3つ」のメニューをタップ。2. 「ホーム画面に追加」（または「アプリをインストール」）をタップ。3. 「追加」をタップすると、ホーム画面にアイコンができる。"
+          width="640"
+          height="320"
+          loading="lazy"
+        />
+        <figcaption class="howto__cap">Android をお使いのとき（Chrome）</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== 運用上のお願い ===== -->
+  <section class="section section--sand">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">Please</span>
+      <h2 class="section__title">お使いいただくうえでの、お願い</h2>
+
+      <div class="notes">
+        <div class="note-card">
+          <h3 class="note-card__title">管理者の方へ——提出を求めないでください</h3>
+          <p>
+            このノートは、正直に書けることがすべての前提です。記入内容の提出・報告を求めたり、
+            評定や指導の材料にしたりすると、正直な内省は失われ、道具として機能しなくなります。
+            事業所で紹介いただくときは、「書いた内容は誰にも見せなくてよい」ことも、
+            あわせて伝えてください。
+          </p>
+        </div>
+
+        <div class="note-card">
+          <h3 class="note-card__title">共有するかどうかは、書いた本人が決めます</h3>
+          <p>
+            記録には「文章をコピーする」ボタンがあります。振り返りの内容をミーティングなどで
+            話したいと思ったとき、本人の意思で共有できるようにするためのものです。
+            共有の主導権は、いつでも書いた本人にあります。
+          </p>
+        </div>
+
+        <div class="note-card">
+          <h3 class="note-card__title">記録は端末の中だけ。機種変更では引き継がれません</h3>
+          <p>
+            記録はお使いのスマホ・タブレットの中にだけ保存され、サーバーには送られません。
+            そのため、機種変更や別の端末で開いた場合、それまでの記録は引き継がれません。
+            残しておきたい記録は「文章をコピーする」でご自身のメモアプリなどに控えてください。
+          </p>
+        </div>
+
+        <div class="note-card">
+          <h3 class="note-card__title">利用者さんの本名は書かないでください</h3>
+          <p>
+            自由記述に具体的な場面を書くとき、利用者さんの本名は避け、イニシャルや
+            「Aさん」のような書き方にしてください。端末を紛失した場合などに、
+            本人が特定されないようにするためです。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBlock
+    title="研修・事業所での活用のご相談は、お気軽に"
+    body="「うちの職員会議で紹介したい」「意思決定支援の研修とあわせて使いたい」——どんなことでも、遠慮なくお問い合わせください。"
+    variant="cream"
+  />
+</BaseLayout>
+
+<style>
+  .prose {
+    font-size: 16px;
+    line-height: 2;
+    color: var(--color-ink);
+    margin-bottom: var(--space-4);
+  }
+  .prose strong {
+    color: var(--color-green-900);
+    font-weight: 700;
+  }
+  .prose a {
+    color: var(--color-green-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .pledge-box {
+    margin: var(--space-5) 0;
+    padding: var(--space-4) var(--space-5);
+    border: 1px solid var(--color-line);
+    border-left: 4px solid var(--color-terra-500);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    background: var(--color-paper);
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--color-ink);
+  }
+  .pledge-box strong {
+    color: var(--color-green-900);
+    font-weight: 700;
+  }
+
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-6) 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .feature-list__item {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+    padding: var(--space-4);
+    border: 1px solid var(--color-line);
+    border-radius: 14px;
+    background: var(--color-paper, #fff);
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--color-ink);
+  }
+  .feature-list__item strong {
+    color: var(--color-green-900);
+  }
+  .feature-list__mark {
+    flex: none;
+    color: var(--color-green-700);
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .open-box {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-6);
+    align-items: center;
+    margin-top: var(--space-5);
+    padding: var(--space-6);
+    border: 1px solid var(--color-line);
+    border-radius: 16px;
+    background: var(--color-paper, #fff);
+  }
+  .open-box__qr {
+    text-align: center;
+  }
+  .open-box__qr img {
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--color-line);
+    border-radius: 12px;
+    background: #fff;
+    padding: 8px;
+  }
+  .open-box__qr-cap {
+    margin: var(--space-3) 0 0;
+    font-size: 12px;
+    color: var(--color-ink-soft);
+  }
+  .open-box__lead {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--color-ink);
+    margin: 0 0 var(--space-3);
+  }
+  .open-box__url {
+    margin: 0 0 var(--space-4);
+  }
+  .open-box__url code {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--color-green-900);
+    word-break: break-all;
+  }
+  .open-box__btn {
+    display: inline-block;
+  }
+  .open-box__note {
+    margin: var(--space-4) 0 0;
+    font-size: 13px;
+    color: var(--color-ink-mute);
+    line-height: 1.7;
+  }
+
+  .howto {
+    margin: var(--space-6) 0 0;
+  }
+  .howto img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--color-line);
+    border-radius: 14px;
+    background: #fff;
+  }
+  .howto__cap {
+    margin-top: var(--space-3);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-green-900);
+    text-align: center;
+  }
+
+  .notes {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-top: var(--space-5);
+  }
+  .note-card {
+    padding: var(--space-5);
+    border: 1px solid var(--color-line);
+    border-left: 4px solid var(--color-terra-500);
+    border-radius: 0 14px 14px 0;
+    background: var(--color-paper, #fff);
+  }
+  .note-card__title {
+    font-family: var(--font-heading);
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--color-green-900);
+    margin: 0 0 var(--space-2);
+  }
+  .note-card p {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--color-ink);
+    margin: 0;
+  }
+
+  @media (max-width: 640px) {
+    .open-box {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+    }
+    .open-box__qr {
+      order: 2;
+    }
+  }
+</style>

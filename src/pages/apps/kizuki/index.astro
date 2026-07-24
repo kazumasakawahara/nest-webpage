@@ -1,0 +1,972 @@
+---
+---
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>支援者の気づきノート</title>
+    <meta
+      name="description"
+      content="意思決定支援の観点から、月にいちど自分の支援をふりかえるセルフチェックアプリ。点数も合否もありません。記録は端末の中だけに残ります。"
+    />
+    <link rel="manifest" href="/apps/kizuki/manifest.webmanifest" />
+    <meta name="theme-color" content="#4a8c3f" />
+    <link rel="apple-touch-icon" href="/apps/kizuki/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="きづき" />
+    <style is:global>
+      /* Standalone app: does NOT import the site global.css.
+         Palette is shared with つたえるカード (sibling app). */
+      :root {
+        --cream: #faf6ef;
+        --ink: #333333;
+        --ink-soft: #5f5847;
+        --green: #4a8c3f;
+        --green-dark: #2f5d3a;
+        --green-pale: #eef4ea;
+        --terra: #d97757;
+        --terra-dark: #b4552d;
+        --line: #e6ddca;
+        --neutral: #efe9dc;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; }
+      body {
+        background: var(--cream);
+        color: var(--ink);
+        font-family: system-ui, -apple-system, 'Hiragino Kaku Gothic ProN',
+          'Yu Gothic', 'Meiryo', sans-serif;
+        -webkit-text-size-adjust: 100%;
+        line-height: 1.8;
+      }
+      #app {
+        max-width: 640px;
+        margin: 0 auto;
+        min-height: 100vh;
+        padding: 20px 16px 48px;
+      }
+      .screen {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        animation: fade 0.15s ease-in;
+      }
+      @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+      @media (prefers-reduced-motion: reduce) {
+        * { animation: none !important; transition: none !important; }
+      }
+
+      button {
+        font-family: inherit;
+        color: inherit;
+        cursor: pointer;
+        transition: opacity 0.15s ease;
+        touch-action: manipulation;
+      }
+      button:active { opacity: 0.7; }
+      button:focus-visible, a:focus-visible, textarea:focus-visible {
+        outline: 3px solid var(--terra);
+        outline-offset: 2px;
+      }
+
+      /* ===== app bar ===== */
+      .app-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        min-height: 44px;
+      }
+      .app-title {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--ink-soft);
+        letter-spacing: 0.04em;
+      }
+      .back {
+        min-width: 48px;
+        min-height: 44px;
+        padding: 0 14px;
+        border: 2px solid var(--line);
+        border-radius: 12px;
+        background: #fff;
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--ink-soft);
+      }
+
+      /* ===== home ===== */
+      .home-head { text-align: center; }
+      .home-mark {
+        width: 72px;
+        height: 72px;
+        margin: 8px auto 4px;
+        display: block;
+      }
+      .home-title {
+        margin: 0;
+        font-size: 26px;
+        font-weight: 700;
+        line-height: 1.4;
+        color: var(--green-dark);
+      }
+      .home-lead {
+        margin: 12px 0 0;
+        font-size: 16px;
+        color: var(--ink);
+        text-align: left;
+      }
+      .pledge {
+        margin: 0;
+        padding: 16px 18px;
+        border: 2px solid var(--line);
+        border-left: 5px solid var(--terra);
+        border-radius: 0 14px 14px 0;
+        background: #fff;
+        font-size: 15px;
+        line-height: 1.9;
+        color: var(--ink);
+        text-align: left;
+      }
+      .pledge strong { color: var(--green-dark); }
+      .privacy {
+        margin: 0;
+        font-size: 13px;
+        color: var(--ink-soft);
+        text-align: center;
+      }
+      .home-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .primary-btn {
+        min-height: 56px;
+        border: none;
+        border-radius: 14px;
+        background: var(--green);
+        color: #fff;
+        font-size: 19px;
+        font-weight: 700;
+      }
+      .secondary-btn {
+        min-height: 52px;
+        border: 2px solid var(--green);
+        border-radius: 14px;
+        background: #fff;
+        color: var(--green-dark);
+        font-size: 17px;
+        font-weight: 700;
+      }
+      .home-foot {
+        margin: 0;
+        font-size: 13px;
+        color: var(--ink-soft);
+        text-align: center;
+      }
+      .home-foot a { color: var(--green-dark); }
+
+      /* ===== form ===== */
+      .prev-words {
+        padding: 16px 18px;
+        border: 2px solid var(--line);
+        border-radius: 14px;
+        background: #fff;
+        text-align: left;
+      }
+      .prev-words__head {
+        margin: 0 0 8px;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--terra-dark);
+        letter-spacing: 0.03em;
+      }
+      .prev-words__quote {
+        margin: 0;
+        padding-left: 12px;
+        border-left: 3px solid var(--neutral);
+        font-size: 15px;
+        color: var(--ink-soft);
+        overflow-wrap: anywhere;
+      }
+      .prev-words__quote + .prev-words__quote { margin-top: 8px; }
+      .prev-words__label { font-weight: 700; color: var(--ink); }
+
+      .form-note {
+        margin: 0;
+        font-size: 14px;
+        color: var(--ink-soft);
+      }
+      .block { text-align: left; }
+      .block-head {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        margin-bottom: 10px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid var(--line);
+      }
+      .block-key {
+        font-size: 14px;
+        font-weight: 700;
+        color: #fff;
+        background: var(--green);
+        border-radius: 8px;
+        padding: 2px 10px;
+        flex-shrink: 0;
+      }
+      .block-title {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--green-dark);
+        line-height: 1.5;
+      }
+      .block-sub {
+        font-size: 12px;
+        color: var(--ink-soft);
+        margin-left: auto;
+        flex-shrink: 0;
+      }
+      .q-card {
+        padding: 16px;
+        border: 2px solid var(--line);
+        border-radius: 14px;
+        background: #fff;
+      }
+      .q-card + .q-card { margin-top: 12px; }
+      .q-text {
+        margin: 0 0 12px;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.7;
+        color: var(--ink);
+      }
+      .opts {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .opt {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-height: 48px;
+        padding: 8px 14px;
+        border: 2px solid var(--line);
+        border-radius: 12px;
+        background: var(--cream);
+        font-size: 16px;
+        font-weight: 500;
+        text-align: left;
+        line-height: 1.5;
+      }
+      .opt .mark {
+        flex-shrink: 0;
+        width: 22px;
+        height: 22px;
+        border: 2px solid var(--line);
+        border-radius: 50%;
+        background: #fff;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        color: transparent;
+      }
+      .opt.selected {
+        border-color: var(--green);
+        background: var(--green-pale);
+        font-weight: 700;
+        color: var(--green-dark);
+      }
+      .opt.selected .mark {
+        border-color: var(--green);
+        background: var(--green);
+        color: #fff;
+      }
+
+      .free-card {
+        padding: 16px;
+        border: 2px solid var(--line);
+        border-radius: 14px;
+        background: #fff;
+        text-align: left;
+      }
+      .free-card + .free-card { margin-top: 12px; }
+      .free-label {
+        display: block;
+        margin: 0 0 10px;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.7;
+        color: var(--ink);
+      }
+      .free-input {
+        width: 100%;
+        min-height: 96px;
+        padding: 10px 12px;
+        border: 2px solid var(--line);
+        border-radius: 10px;
+        background: repeating-linear-gradient(
+          to bottom, #fff 0, #fff 31px, var(--neutral) 31px, var(--neutral) 32px
+        );
+        color: var(--ink);
+        font-family: inherit;
+        font-size: 16px;
+        line-height: 32px;
+        resize: vertical;
+      }
+      .save-btn {
+        min-height: 56px;
+        border: none;
+        border-radius: 14px;
+        background: var(--green);
+        color: #fff;
+        font-size: 19px;
+        font-weight: 700;
+      }
+      .save-note {
+        margin: -8px 0 0;
+        font-size: 13px;
+        color: var(--ink-soft);
+        text-align: center;
+      }
+
+      /* ===== done ===== */
+      .done-box {
+        padding: 28px 20px;
+        border: 2px solid var(--line);
+        border-radius: 16px;
+        background: #fff;
+        text-align: center;
+      }
+      .done-title {
+        margin: 0 0 12px;
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--green-dark);
+      }
+      .done-text {
+        margin: 0;
+        font-size: 15px;
+        color: var(--ink);
+        text-align: left;
+      }
+
+      /* ===== history ===== */
+      .history-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .history-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        min-height: 56px;
+        padding: 12px 14px;
+        border: 2px solid var(--line);
+        border-radius: 12px;
+        background: #fff;
+        font-size: 16px;
+        text-align: left;
+      }
+      .history-date {
+        flex-shrink: 0;
+        font-weight: 700;
+        color: var(--green-dark);
+      }
+      .history-peek {
+        flex: 1;
+        min-width: 0;
+        font-size: 14px;
+        color: var(--ink-soft);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .history-empty {
+        margin: 24px 0;
+        font-size: 15px;
+        color: var(--ink-soft);
+        text-align: center;
+      }
+
+      /* ===== detail ===== */
+      .detail-date {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--green-dark);
+        text-align: left;
+      }
+      .detail-block { text-align: left; }
+      .detail-q {
+        padding: 12px 14px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: #fff;
+      }
+      .detail-q + .detail-q { margin-top: 8px; }
+      .detail-q__text {
+        margin: 0 0 4px;
+        font-size: 14px;
+        color: var(--ink-soft);
+        line-height: 1.6;
+      }
+      .detail-q__ans {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--green-dark);
+      }
+      .detail-q__ans.blank { color: var(--ink-soft); font-weight: 500; }
+      .detail-free {
+        padding: 14px 16px;
+        border: 2px solid var(--line);
+        border-left: 5px solid var(--terra);
+        border-radius: 0 12px 12px 0;
+        background: #fff;
+      }
+      .detail-free + .detail-free { margin-top: 10px; }
+      .detail-free__label {
+        margin: 0 0 4px;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--terra-dark);
+      }
+      .detail-free__text {
+        margin: 0;
+        font-size: 16px;
+        color: var(--ink);
+        overflow-wrap: anywhere;
+        white-space: pre-wrap;
+      }
+      .detail-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .copy-btn {
+        flex: 1;
+        min-height: 52px;
+        border: none;
+        border-radius: 12px;
+        background: var(--green);
+        color: #fff;
+        font-size: 17px;
+        font-weight: 700;
+      }
+      .delete-btn {
+        flex-shrink: 0;
+        min-height: 52px;
+        padding: 0 18px;
+        border: 2px solid var(--terra);
+        border-radius: 12px;
+        background: #fff;
+        color: var(--terra-dark);
+        font-size: 15px;
+        font-weight: 700;
+      }
+      .delete-btn.danger {
+        background: var(--terra);
+        color: #fff;
+      }
+      .detail-note {
+        margin: 0;
+        font-size: 13px;
+        color: var(--ink-soft);
+        text-align: center;
+      }
+
+      .toast {
+        position: fixed;
+        left: 50%;
+        bottom: 32px;
+        transform: translateX(-50%);
+        max-width: calc(100% - 32px);
+        padding: 12px 20px;
+        border-radius: 12px;
+        background: var(--green-dark);
+        color: #fff;
+        font-size: 16px;
+        font-weight: 700;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        animation: fade 0.15s ease-in;
+        z-index: 10;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      // ======================================================================
+      // 支援者の気づきノート
+      // 意思決定支援の観点から、支援者が月にいちど自分の支援をふりかえる
+      // セルフチェック。点数・合否・集計は意図的に持たない。
+      // データは localStorage のみ（サーバー送信なし）。
+      // ======================================================================
+
+      type Answers = Record<string, number>;
+      interface Entry {
+        id: string;
+        ts: number;
+        answers: Answers;
+        free1: string;
+        free2: string;
+      }
+
+      const STORE_KEY = 'kizuki-entries-v1';
+
+      interface Question { id: string; text: string; opts: string[] }
+      interface Block { key: string; title: string; sub: string; qs: Question[] }
+
+      const BLOCKS: Block[] = [
+        {
+          key: 'A',
+          title: 'えらぶ機会を、つくれたか',
+          sub: '意思形成',
+          qs: [
+            {
+              id: 'q1',
+              text: 'この1か月で、本人が「自分で選んだ」場面をひとつ思い出せますか。どんな工夫で選べるようにしましたか。',
+              opts: ['工夫まで思い出せる', '場面はあった気がする', '思い出せない'],
+            },
+            {
+              id: 'q2',
+              text: '選択肢を、本人にわかる形（実物・写真・実際にためす）で示せましたか。',
+              opts: ['示せた', 'ことばだけの時もあった', 'ほとんど ことばだけ'],
+            },
+          ],
+        },
+        {
+          key: 'B',
+          title: 'つたえるのを、待てたか',
+          sub: '意思表明',
+          qs: [
+            {
+              id: 'q3',
+              text: '本人の返事を待てずに、先にこちらが答えを出してしまった場面はありましたか。',
+              opts: ['なかったと思う', 'あったかもしれない', 'あった'],
+            },
+            {
+              id: 'q4',
+              text: '「いつもと同じでいいよね」と、確認せずに進めた場面はありましたか。',
+              opts: ['なかったと思う', 'あったかもしれない', 'あった'],
+            },
+            {
+              id: 'q5',
+              text: '自分の表情・言い方・選択肢の並べ方が、本人の答えを誘導していませんでしたか。',
+              opts: ['意識して気をつけた', '考えたことがなかった', '誘導していたかも'],
+            },
+            {
+              id: 'q6',
+              text: '本人が気持ちを表しやすい状況（体調のよい時間・落ちつける場所・急かさない雰囲気）を用意できましたか。',
+              opts: ['用意できた', 'ときどき', 'できなかった'],
+            },
+          ],
+        },
+        {
+          key: 'C',
+          title: 'かなえるのを、支えられたか',
+          sub: '意思実現',
+          qs: [
+            {
+              id: 'q7',
+              text: '「危ないから」「時間がないから」と止めたことは、本人の危険のためでしたか。それとも、自分や事業所の都合・不安のためでしたか。',
+              opts: ['止める場面はなかった', '本人の危険のため', '都合や不安もあったかも'],
+            },
+            {
+              id: 'q8',
+              text: '本人が失敗しそうな選択を、止めずに見守れましたか。',
+              opts: ['見守れた', '迷いながら', '止めてしまった'],
+            },
+          ],
+        },
+        {
+          key: 'D',
+          title: 'ことばの外を、よみとろうとしたか',
+          sub: '読み取り',
+          qs: [
+            {
+              id: 'q9',
+              text: 'ことば以外（表情・しぐさ・行動の変化）から、本人の気持ちを読みとろうとした場面はありましたか。',
+              opts: ['あった', 'すこしある', '思い出せない'],
+            },
+          ],
+        },
+      ];
+
+      const FREE = [
+        { id: 'free1' as const, label: 'この1か月で、いちばん「本人らしさ」が出た瞬間は？' },
+        { id: 'free2' as const, label: '次に、試してみたいことは？' },
+      ];
+
+      // ---------- storage ----------
+      function loadEntries(): Entry[] {
+        try {
+          const raw = localStorage.getItem(STORE_KEY);
+          if (!raw) return [];
+          const parsed = JSON.parse(raw);
+          return Array.isArray(parsed) ? parsed : [];
+        } catch {
+          return [];
+        }
+      }
+      function saveEntries(entries: Entry[]) {
+        try {
+          localStorage.setItem(STORE_KEY, JSON.stringify(entries));
+        } catch {
+          /* quota exceeded etc. — the UI keeps working in-memory */
+        }
+      }
+
+      // ---------- helpers ----------
+      const app = document.getElementById('app')!;
+      function esc(s: string): string {
+        return s
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+      function fmtDate(ts: number): string {
+        const d = new Date(ts);
+        return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
+      }
+      let toastTimer = 0;
+      function toast(msg: string) {
+        document.querySelectorAll('.toast').forEach((el) => el.remove());
+        const el = document.createElement('div');
+        el.className = 'toast';
+        el.setAttribute('role', 'status');
+        el.textContent = msg;
+        document.body.appendChild(el);
+        clearTimeout(toastTimer);
+        toastTimer = window.setTimeout(() => el.remove(), 2200);
+      }
+
+      // ---------- draft state (form) ----------
+      let draftAnswers: Answers = {};
+
+      // ---------- views ----------
+      function renderHome() {
+        const count = loadEntries().length;
+        app.innerHTML = `
+          <div class="screen">
+            <div class="home-head">
+              <svg class="home-mark" viewBox="0 0 72 72" aria-hidden="true">
+                <rect x="14" y="12" width="44" height="52" rx="6" fill="#fff" stroke="#4a8c3f" stroke-width="3"/>
+                <line x1="24" y1="28" x2="48" y2="28" stroke="#e6ddca" stroke-width="3" stroke-linecap="round"/>
+                <line x1="24" y1="38" x2="48" y2="38" stroke="#e6ddca" stroke-width="3" stroke-linecap="round"/>
+                <line x1="24" y1="48" x2="40" y2="48" stroke="#e6ddca" stroke-width="3" stroke-linecap="round"/>
+                <path d="M50 52 C50 44 56 40 62 40 C62 48 56 52 50 52 Z" fill="#4a8c3f"/>
+                <path d="M50 52 C48 46 44 44 41 44" fill="none" stroke="#2f5d3a" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+              <h1 class="home-title">支援者の気づきノート</h1>
+            </div>
+            <p class="home-lead">
+              「決めること」は、能力ではなく権利。代わりに決めるのではなく、決める経験をサポートする——
+              そのための、月にいちどの小さなふりかえりです。9つの問いと、2つの自由記述。5分ほどで書けます。
+            </p>
+            <p class="pledge">
+              これは、事業者が職員を評定する際に利用するためのものではありません。
+              <strong>支援者お一人お一人が、自らを振り返る材料とするためのもの</strong>です。
+              点数も、合否もありません。
+            </p>
+            <div class="home-actions">
+              <button class="primary-btn" data-act="start">ふりかえりを書く</button>
+              <button class="secondary-btn" data-act="history">これまでの記録${count ? `（${count}件）` : ''}</button>
+            </div>
+            <p class="privacy">書いたことは、この端末の中にだけ残ります。どこにも送信されません。</p>
+            <p class="home-foot">
+              意思決定支援について詳しくは
+              <a href="/sudachi/decision-support/">nestの意思決定支援のページ</a> へ
+            </p>
+          </div>`;
+        app.querySelector('[data-act="start"]')!.addEventListener('click', renderForm);
+        app.querySelector('[data-act="history"]')!.addEventListener('click', renderHistory);
+      }
+
+      function renderForm() {
+        draftAnswers = {};
+        const entries = loadEntries();
+        const last = entries.length ? entries[entries.length - 1] : null;
+        const prevHtml =
+          last && (last.free1 || last.free2)
+            ? `
+          <section class="prev-words" aria-label="前回のあなたのことば">
+            <p class="prev-words__head">前回（${fmtDate(last.ts)}）の、あなたのことば</p>
+            ${last.free1 ? `<p class="prev-words__quote"><span class="prev-words__label">本人らしさ：</span>${esc(last.free1)}</p>` : ''}
+            ${last.free2 ? `<p class="prev-words__quote"><span class="prev-words__label">試したいこと：</span>${esc(last.free2)}</p>` : ''}
+          </section>`
+            : '';
+
+        const blocksHtml = BLOCKS.map(
+          (b) => `
+          <section class="block">
+            <div class="block-head">
+              <span class="block-key">${b.key}</span>
+              <h2 class="block-title">${b.title}</h2>
+              <span class="block-sub">${b.sub}</span>
+            </div>
+            ${b.qs
+              .map(
+                (q) => `
+              <div class="q-card">
+                <p class="q-text">${q.text}</p>
+                <div class="opts" role="group" aria-label="回答の選択肢">
+                  ${q.opts
+                    .map(
+                      (o, i) => `
+                    <button type="button" class="opt" data-q="${q.id}" data-i="${i}" aria-pressed="false">
+                      <span class="mark" aria-hidden="true">✓</span>${o}
+                    </button>`
+                    )
+                    .join('')}
+                </div>
+              </div>`
+              )
+              .join('')}
+          </section>`
+        ).join('');
+
+        const freeHtml = FREE.map(
+          (f) => `
+          <div class="free-card">
+            <label class="free-label" for="${f.id}">${f.label}</label>
+            <textarea class="free-input" id="${f.id}"></textarea>
+          </div>`
+        ).join('');
+
+        app.innerHTML = `
+          <div class="screen">
+            <div class="app-bar">
+              <button class="back" data-act="home">← もどる</button>
+              <p class="app-title">支援者の気づきノート</p>
+            </div>
+            ${prevHtml}
+            <p class="form-note">
+              思い出しながら、当てはまるものを選んでください。無理に全部答えなくても大丈夫です。
+              「思い出せない」も、大切な気づきです。
+            </p>
+            ${blocksHtml}
+            <section class="block">
+              <div class="block-head">
+                <span class="block-key">✎</span>
+                <h2 class="block-title">じぶんのことばで</h2>
+              </div>
+              ${freeHtml}
+            </section>
+            <button class="save-btn" data-act="save">保存する</button>
+            <p class="save-note">保存した内容は、この端末の中にだけ残ります。</p>
+          </div>`;
+
+        app.querySelector('[data-act="home"]')!.addEventListener('click', renderHome);
+        app.querySelectorAll<HTMLButtonElement>('.opt').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const q = btn.dataset.q!;
+            const i = Number(btn.dataset.i);
+            draftAnswers[q] = i;
+            app
+              .querySelectorAll<HTMLButtonElement>(`.opt[data-q="${q}"]`)
+              .forEach((b) => {
+                const on = b === btn;
+                b.classList.toggle('selected', on);
+                b.setAttribute('aria-pressed', String(on));
+              });
+          });
+        });
+        app.querySelector('[data-act="save"]')!.addEventListener('click', () => {
+          const free1 = (document.getElementById('free1') as HTMLTextAreaElement).value.trim();
+          const free2 = (document.getElementById('free2') as HTMLTextAreaElement).value.trim();
+          const entry: Entry = {
+            id: `e${Date.now()}`,
+            ts: Date.now(),
+            answers: { ...draftAnswers },
+            free1,
+            free2,
+          };
+          const list = loadEntries();
+          list.push(entry);
+          saveEntries(list);
+          renderDone();
+        });
+      }
+
+      function renderDone() {
+        app.innerHTML = `
+          <div class="screen">
+            <div class="done-box">
+              <p class="done-title">保存しました。おつかれさまでした。</p>
+              <p class="done-text">
+                答えに、正解や点数はありません。<br />
+                思い出せなかった問いがあれば、それは来月の「見どころ」です。
+                次のふりかえりのとき、今日のあなたのことばがここで待っています。
+              </p>
+            </div>
+            <div class="home-actions">
+              <button class="primary-btn" data-act="home">ホームにもどる</button>
+              <button class="secondary-btn" data-act="history">記録を見る</button>
+            </div>
+          </div>`;
+        app.querySelector('[data-act="home"]')!.addEventListener('click', renderHome);
+        app.querySelector('[data-act="history"]')!.addEventListener('click', renderHistory);
+      }
+
+      function renderHistory() {
+        const entries = loadEntries().slice().reverse();
+        const listHtml = entries.length
+          ? `<div class="history-list">${entries
+              .map((e) => {
+                const peek = e.free1 || e.free2 || '';
+                return `
+                <button class="history-row" data-id="${e.id}">
+                  <span class="history-date">${fmtDate(e.ts)}</span>
+                  <span class="history-peek">${esc(peek)}</span>
+                </button>`;
+              })
+              .join('')}</div>`
+          : `<p class="history-empty">まだ記録がありません。<br />最初のふりかえりを書いてみましょう。</p>`;
+
+        app.innerHTML = `
+          <div class="screen">
+            <div class="app-bar">
+              <button class="back" data-act="home">← もどる</button>
+              <p class="app-title">これまでの記録</p>
+            </div>
+            ${listHtml}
+          </div>`;
+        app.querySelector('[data-act="home"]')!.addEventListener('click', renderHome);
+        app.querySelectorAll<HTMLButtonElement>('.history-row').forEach((row) => {
+          row.addEventListener('click', () => renderDetail(row.dataset.id!));
+        });
+      }
+
+      function entryToText(e: Entry): string {
+        const lines: string[] = [`支援者の気づきノート ${fmtDate(e.ts)}`];
+        for (const b of BLOCKS) {
+          lines.push('', `【${b.key}. ${b.title}】`);
+          for (const q of b.qs) {
+            const i = e.answers[q.id];
+            lines.push(`・${q.text}`, `　→ ${i === undefined ? '（無回答）' : q.opts[i]}`);
+          }
+        }
+        lines.push('', '【じぶんのことばで】');
+        lines.push(`・${FREE[0].label}`, `　${e.free1 || '（記入なし）'}`);
+        lines.push(`・${FREE[1].label}`, `　${e.free2 || '（記入なし）'}`);
+        return lines.join('\n');
+      }
+
+      function renderDetail(id: string) {
+        const entries = loadEntries();
+        const e = entries.find((x) => x.id === id);
+        if (!e) return renderHistory();
+
+        const blocksHtml = BLOCKS.map(
+          (b) => `
+          <section class="detail-block">
+            <div class="block-head">
+              <span class="block-key">${b.key}</span>
+              <h2 class="block-title">${b.title}</h2>
+            </div>
+            ${b.qs
+              .map((q) => {
+                const i = e.answers[q.id];
+                return `
+                <div class="detail-q">
+                  <p class="detail-q__text">${q.text}</p>
+                  <p class="detail-q__ans${i === undefined ? ' blank' : ''}">${
+                    i === undefined ? '（無回答）' : esc(q.opts[i])
+                  }</p>
+                </div>`;
+              })
+              .join('')}
+          </section>`
+        ).join('');
+
+        app.innerHTML = `
+          <div class="screen">
+            <div class="app-bar">
+              <button class="back" data-act="back">← 記録一覧</button>
+              <p class="app-title">支援者の気づきノート</p>
+            </div>
+            <h1 class="detail-date">${fmtDate(e.ts)} のふりかえり</h1>
+            ${
+              e.free1
+                ? `<div class="detail-free"><p class="detail-free__label">いちばん「本人らしさ」が出た瞬間</p><p class="detail-free__text">${esc(e.free1)}</p></div>`
+                : ''
+            }
+            ${
+              e.free2
+                ? `<div class="detail-free"><p class="detail-free__label">次に試してみたいこと</p><p class="detail-free__text">${esc(e.free2)}</p></div>`
+                : ''
+            }
+            ${blocksHtml}
+            <div class="detail-actions">
+              <button class="copy-btn" data-act="copy">文章をコピーする</button>
+              <button class="delete-btn" data-act="del">削除</button>
+            </div>
+            <p class="detail-note">
+              コピーは、あなたが共有したいと思ったときだけ使ってください。共有するかどうかも、あなたが決めることです。
+            </p>
+          </div>`;
+
+        app.querySelector('[data-act="back"]')!.addEventListener('click', renderHistory);
+        app.querySelector('[data-act="copy"]')!.addEventListener('click', async () => {
+          const text = entryToText(e);
+          try {
+            await navigator.clipboard.writeText(text);
+            toast('コピーしました');
+          } catch {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            ta.remove();
+            toast('コピーしました');
+          }
+        });
+
+        const delBtn = app.querySelector<HTMLButtonElement>('[data-act="del"]')!;
+        let armed = false;
+        let disarmTimer = 0;
+        delBtn.addEventListener('click', () => {
+          if (!armed) {
+            armed = true;
+            delBtn.classList.add('danger');
+            delBtn.textContent = 'ほんとうに削除する';
+            disarmTimer = window.setTimeout(() => {
+              armed = false;
+              delBtn.classList.remove('danger');
+              delBtn.textContent = '削除';
+            }, 4000);
+            return;
+          }
+          clearTimeout(disarmTimer);
+          saveEntries(loadEntries().filter((x) => x.id !== e.id));
+          toast('削除しました');
+          renderHistory();
+        });
+      }
+
+      renderHome();
+    </script>
+    <script>
+      // Register the service worker (scope: /apps/kizuki/) for offline use.
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/apps/kizuki/sw.js').catch(() => {});
+        });
+      }
+    </script>
+  </body>
+</html>

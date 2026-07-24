@@ -201,9 +201,21 @@ import CtaBlock from '../../components/CtaBlock.astro';
       <div class="ds-docs">
         <!--
           資料を追加するときは、この中に dl-block（PDF）や guide-card（読みもの）と
-          同様のカードを並べてください。追加後、下のプレースホルダは削除します。
+          同様のカードを並べてください。
         -->
-        <p class="ds-docs__empty">関連する資料・文書は、ここに順次追加していきます。</p>
+        <a class="ds-app-card" href="/apps/kizuki/">
+          <span class="ds-app-card__eyebrow">セルフチェックアプリ</span>
+          <span class="ds-app-card__title">支援者の気づきノート</span>
+          <span class="ds-app-card__lead">
+            月にいちど、9つの問いと2つの自由記述で、自分の支援を意思決定支援の観点からふりかえる無料アプリです。
+            点数も合否もありません。アカウント不要・記録は端末の中だけに残り、どこにも送信されません。
+          </span>
+          <span class="ds-app-card__note">
+            これは、事業者が職員を評定する際に利用するためのものではありません。
+            支援者お一人お一人が、自らを振り返る材料とするためのものです。
+          </span>
+          <span class="ds-app-card__more" aria-hidden="true">アプリをひらく →</span>
+        </a>
       </div>
     </div>
   </section>
@@ -389,14 +401,64 @@ import CtaBlock from '../../components/CtaBlock.astro';
     margin: 0;
   }
 
-  .ds-docs__empty {
-    margin: 0;
-    font-size: var(--fs-small);
-    color: var(--color-ink-soft);
-    padding: var(--space-6) var(--space-5);
-    border: 1px dashed var(--color-line);
-    border-radius: var(--radius-md);
-    text-align: center;
+  /* セルフチェックアプリへの導線カード */
+  .ds-app-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-6);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
     background: var(--color-paper);
+    box-shadow: var(--shadow-soft);
+    text-decoration: none;
+    transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+  }
+
+  .ds-app-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .ds-app-card__eyebrow {
+    font-size: var(--fs-eyebrow);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-green-700);
+    font-weight: 700;
+  }
+
+  .ds-app-card__title {
+    font-family: var(--font-heading);
+    font-size: clamp(20px, 3.4vw, 26px);
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--color-green-900);
+  }
+
+  .ds-app-card__lead {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--color-ink);
+  }
+
+  .ds-app-card__note {
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--color-ink);
+    padding: var(--space-3) var(--space-4);
+    border-left: 3px solid var(--color-terra-500);
+    background: var(--color-cream);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  }
+
+  .ds-app-card__more {
+    align-self: flex-start;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-green-700);
+  }
+
+  .ds-app-card:hover .ds-app-card__more {
+    color: var(--color-terra-500);
   }
 </style>

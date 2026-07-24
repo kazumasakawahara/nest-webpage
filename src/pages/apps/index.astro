@@ -217,6 +217,23 @@ const appFullUrl = 'https://www.nponest.com/apps/tsutaeru/';
     </div>
   </section>
 
+  <!-- ===== 支援者向けアプリのご案内 ===== -->
+  <section class="section section--sand">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">Other Apps</span>
+      <h2 class="section__title">支援者向けのアプリもあります</h2>
+      <a class="cross-app" href="/apps/kizuki/about/">
+        <span class="cross-app__eyebrow">セルフチェックアプリ</span>
+        <span class="cross-app__title">支援者の気づきノート</span>
+        <span class="cross-app__lead">
+          月にいちど、9つの問いで自分の支援を意思決定支援の観点からふりかえるセルフチェックアプリです。
+          点数も合否もなく、記録は端末の中だけ。事業者が職員を評定するためのものではありません。
+        </span>
+        <span class="cross-app__more" aria-hidden="true">くわしく見る →</span>
+      </a>
+    </div>
+  </section>
+
   <CtaBlock
     title="使い方や導入のご相談は、お気軽に"
     body="「うちの利用者さんに合うかな？」「カードの作り方を知りたい」——どんなことでも、遠慮なくお問い合わせください。"
@@ -395,5 +412,50 @@ const appFullUrl = 'https://www.nponest.com/apps/tsutaeru/';
     .open-box__qr {
       order: 2;
     }
+  }
+
+  /* === 支援者向けアプリへの導線 === */
+  .cross-app {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-top: var(--space-5);
+    padding: var(--space-6);
+    border: 1px solid var(--color-line);
+    border-radius: 16px;
+    background: var(--color-paper, #fff);
+    text-decoration: none;
+    transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+  }
+  .cross-app:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+  }
+  .cross-app__eyebrow {
+    font-size: var(--fs-eyebrow);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-green-700);
+    font-weight: 700;
+  }
+  .cross-app__title {
+    font-family: var(--font-heading);
+    font-size: clamp(20px, 3.4vw, 24px);
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--color-green-900);
+  }
+  .cross-app__lead {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--color-ink);
+  }
+  .cross-app__more {
+    align-self: flex-start;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-green-700);
+  }
+  .cross-app:hover .cross-app__more {
+    color: var(--color-terra-500);
   }
 </style>
