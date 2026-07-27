@@ -9,22 +9,18 @@ const all = await getCollection('aiTips', ({ data }) => !data.draft);
 const byDateDesc = (a: (typeof all)[number], b: (typeof all)[number]) =>
   b.data.date.getTime() - a.data.date.getTime() || a.id.localeCompare(b.id);
 
-// まず読むならこれ（編集部ピック。差し替えはこの3行を書き換えるだけ）
-const pickDefs = [
-  { id: '2026-07-20-not-scary-anatomy-of-fear', role: 'まずはこの話から' },
-  { id: '2026-07-09-clipboard-history', role: '今日から使える小ワザ' },
-  { id: '2026-07-16-ai-shared-workspace', role: '一歩ふみこむ実践' },
-];
-const picks = pickDefs
-  .map((p) => ({ ...p, entry: all.find((e) => e.id === p.id) }))
-  .filter((p) => p.entry);
+// あんしん編（読む順＝古い順。土台→守りの順に積み上がる）
+const anshinItems = all
+  .filter((e) => e.data.kind === 'anshin')
+  .sort((a, b) => a.data.date.getTime() - b.data.date.getTime() || a.id.localeCompare(b.id));
 
-// 連載本編（ファイル名の連番順）と実践編（日付順）
+// 便利ワザ編（kind未指定。新しい順）
+const wazaItems = all.filter((e) => !e.data.kind).sort(byDateDesc);
+
+// 相棒編：読みもの＋連載本編（ファイル名の連番順）＋実践編（日付順）
+const aibouIntro = all.find((e) => e.data.kind === 'aibou');
 const seriesItems = all.filter((e) => e.data.kind === 'series').sort((a, b) => a.id.localeCompare(b.id));
 const practiceItems = all.filter((e) => e.data.kind === 'practice').sort((a, b) => byDateDesc(b, a));
-
-// 単発Tips（kind未指定。新しい順）
-const standalone = all.filter((e) => !e.data.kind).sort(byDateDesc);
 
 const fmtDate = (d: Date) =>
   `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
@@ -47,16 +43,59 @@ const fmtDate = (d: Date) =>
     bright={true}
   />
 
-  {picks.length > 0 && (
-    <section class="section">
+  <section class="section">
+    <div class="container container--narrow">
+      <h2 class="section__title">3つの棚から、どうぞ</h2>
+      <p class="series-lead">
+        はじめての方は 🌱 あんしん編 を上から順に。慣れてきたら、💡 と 🤝 へ。
+      </p>
+      <ul class="picks reveal">
+        <li class="picks__item">
+          <a href="#anshin" class="picks__link">
+            <span class="picks__role">🌱 あんしん編・全{anshinItems.length}本</span>
+            <span class="picks__title">こわくない、から始める</span>
+            <span class="picks__desc">不安の正体、まちがいや個人情報・詐欺への備え。AIとつきあう土台の話。</span>
+          </a>
+        </li>
+        <li class="picks__item">
+          <a href="#waza" class="picks__link">
+            <span class="picks__role">💡 便利ワザ編・全{wazaItems.length}本</span>
+            <span class="picks__title">今日から、ひとつ試す</span>
+            <span class="picks__desc">読みきりの便利ワザ集。気になったものから、どれでも。</span>
+          </a>
+        </li>
+        <li class="picks__item">
+          <a href="#aibou" class="picks__link">
+            <span class="picks__role">🤝 相棒編・全{seriesItems.length + practiceItems.length + (aibouIntro ? 1 : 0)}本</span>
+            <span class="picks__title">AIを、うちの“相棒”に育てる</span>
+            <span class="picks__desc">AIに道具と記憶を持たせる連載と、その実践編。</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  {anshinItems.length > 0 && (
+    <section class="section section--sand" id="anshin">
       <div class="container container--narrow">
-        <h2 class="section__title">まず読むなら、これ</h2>
-        <ul class="picks reveal">
-          {picks.map((p) => (
-            <li class="picks__item">
-              <a href={`/ai-tips/${p.entry!.id}/`} class="picks__link">
-                <span class="picks__role">{p.role}</span>
-                <span class="picks__title">{p.entry!.data.title}</span>
+        <h2 class="section__title">🌱 あんしん編 ― こわくない、から始める</h2>
+        <p class="series-lead">
+          AIとのつきあい方の“土台”になる5本。不安の正体、まちがいとのつきあい方、個人情報の線引き、詐欺への備え。はじめての方は、上から順にどうぞ。
+        </p>
+        <ul class="tips-list">
+          {anshinItems.map((item, i) => (
+            <li class="tips-list__item reveal" data-delay={(i % 3) + 1}>
+              <a href={`/ai-tips/${item.id}/`} class="tips-list__link tips-list__link--num">
+                <span class="tips-list__num" aria-hidden="true">{i + 1}</span>
+                <h3 class="tips-list__title">{item.data.title}</h3>
+                {item.data.summary && (
+                  <p class="tips-list__summary">{item.data.summary}</p>
+                )}
+                <span class="tips-list__arrow" aria-hidden="true">
+                  <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+                    <path d="M1 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
               </a>
             </li>
           ))}
@@ -65,14 +104,55 @@ const fmtDate = (d: Date) =>
     </section>
   )}
 
+  <section class="section" id="waza">
+    <div class="container container--narrow">
+      <h2 class="section__title">💡 便利ワザ編 ― 今日から、ひとつ試す</h2>
+      <p class="series-lead">
+        読みきりの便利ワザ集。順番はありません。気になったものから、ひとつ試してみてください。
+      </p>
+      {wazaItems.length > 0 ? (
+        <ul class="tips-list">
+          {wazaItems.map((item, i) => (
+            <li class="tips-list__item reveal" data-delay={(i % 3) + 1}>
+              <a href={`/ai-tips/${item.id}/`} class="tips-list__link">
+                <time class="tips-list__date" datetime={item.data.date.toISOString()}>
+                  {fmtDate(item.data.date)}
+                </time>
+                <h3 class="tips-list__title">{item.data.title}</h3>
+                {item.data.summary && (
+                  <p class="tips-list__summary">{item.data.summary}</p>
+                )}
+                <span class="tips-list__arrow" aria-hidden="true">
+                  <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+                    <path d="M1 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="text-soft text-center">記事は準備中です。もうしばらくお待ちください。</p>
+      )}
+    </div>
+  </section>
+
   {seriesItems.length > 0 && (
-    <section class="section section--sand">
+    <section class="section section--sand" id="aibou">
       <div class="container container--narrow">
-        <h2 class="section__title">連載でじっくり ―「AIに道具を持たせる」</h2>
+        <h2 class="section__title">🤝 相棒編 ― AIを、うちの“相棒”に育てる</h2>
         <p class="series-lead">
-          同じ質問でも、道具の有無でAIの答えは変わります。AIに“手足”を持たせる考え方を、全5回で。少し歯ごたえのある中級者編です。
+          AIに道具と記憶を持たせて、毎日の仕事を任せられる“相棒”に育てていく話。連載「AIに道具を持たせる」全5回と、その実践編です。
         </p>
         <div class="series-box reveal">
+          {aibouIntro && (
+            <p class="series-box__intro">
+              <span class="series-box__badge">はじめに</span>
+              <a href={`/ai-tips/${aibouIntro.id}/`} class="series-box__link series-box__link--intro">
+                <span class="series-box__title">{aibouIntro.data.title}</span>
+              </a>
+            </p>
+          )}
           <ol class="series-box__list">
             {seriesItems.map((item) => (
               <li class="series-box__item">
@@ -104,32 +184,6 @@ const fmtDate = (d: Date) =>
 
   <section class="section">
     <div class="container container--narrow">
-      <h2 class="section__title">読みきりで、気軽に</h2>
-      {standalone.length > 0 ? (
-        <ul class="tips-list">
-          {standalone.map((item, i) => (
-            <li class="tips-list__item reveal" data-delay={(i % 3) + 1}>
-              <a href={`/ai-tips/${item.id}/`} class="tips-list__link">
-                <time class="tips-list__date" datetime={item.data.date.toISOString()}>
-                  {fmtDate(item.data.date)}
-                </time>
-                <h3 class="tips-list__title">{item.data.title}</h3>
-                {item.data.summary && (
-                  <p class="tips-list__summary">{item.data.summary}</p>
-                )}
-                <span class="tips-list__arrow" aria-hidden="true">
-                  <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
-                    <path d="M1 5h12M9 1l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p class="text-soft text-center">記事は準備中です。もうしばらくお待ちください。</p>
-      )}
-
       <AiTipsQuestionBox />
 
       <p class="text-soft text-center" style="margin-top:var(--space-7);">
@@ -140,7 +194,11 @@ const fmtDate = (d: Date) =>
 </BaseLayout>
 
 <style>
-  /* === まず読むなら、これ === */
+  /* === 3つの棚ナビ === */
+  #anshin, #waza, #aibou {
+    scroll-margin-top: 96px;
+  }
+
   .picks {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -181,6 +239,12 @@ const fmtDate = (d: Date) =>
     font-weight: 500;
     color: var(--color-green-900);
     line-height: 1.6;
+  }
+
+  .picks__desc {
+    font-size: 12px;
+    color: var(--color-ink-mute);
+    line-height: 1.7;
   }
 
   /* === 連載ボックス === */
@@ -281,7 +345,21 @@ const fmtDate = (d: Date) =>
     padding: 1px 8px;
   }
 
-  /* === 単発リスト（従来どおり） === */
+  /* === 相棒編：はじめに読む1本 === */
+  .series-box__intro {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding-bottom: var(--space-3);
+    margin-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .series-box__link--intro {
+    padding: var(--space-2);
+  }
+
+  /* === 記事リスト === */
   .tips-list {
     display: flex;
     flex-direction: column;
@@ -334,6 +412,24 @@ const fmtDate = (d: Date) =>
     font-size: 13px;
     color: var(--color-ink-mute);
     margin-top: var(--space-2);
+  }
+
+  /* あんしん編は読む順の番号つき */
+  .tips-list__link--num {
+    grid-template-columns: 40px 1fr auto;
+  }
+
+  .tips-list__num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: var(--color-green-700);
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 13px;
   }
 
   .tips-list__arrow {

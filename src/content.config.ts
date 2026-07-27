@@ -21,8 +21,9 @@ const aiTips = defineCollection({
     summary: z.string().optional(),
     image: z.string().optional(),
     draft: z.boolean().default(false),
-    // 一覧のグルーピング用。series=連載本編 / practice=実践編。未指定は単発Tips
-    kind: z.enum(['series', 'practice']).optional(),
+    // 一覧の棚分け用。anshin=あんしん編 / series=相棒編・連載本編 / practice=相棒編・実践編 /
+    // aibou=相棒編・読みもの。未指定は便利ワザ編
+    kind: z.enum(['series', 'practice', 'anshin', 'aibou']).optional(),
   }),
 });
 
