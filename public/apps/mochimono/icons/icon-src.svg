@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="96" fill="#4a8c3f"/>
+  <!-- リュック -->
+  <g>
+    <!-- 背負いひも風の取っ手 -->
+    <path d="M196 150 q60 -64 120 0" fill="none" stroke="#2f5d3a" stroke-width="34" stroke-linecap="round"/>
+    <!-- 本体 -->
+    <rect x="116" y="140" width="280" height="248" rx="64" fill="#faf6ef"/>
+    <rect x="116" y="140" width="280" height="248" rx="64" fill="none" stroke="#2f5d3a" stroke-width="14"/>
+    <!-- 前ポケット -->
+    <rect x="176" y="264" width="160" height="104" rx="36" fill="#d97757" stroke="#2f5d3a" stroke-width="12"/>
+    <!-- チェックマーク -->
+    <path d="M208 214 l34 34 l62 -62" fill="none" stroke="#4a8c3f" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

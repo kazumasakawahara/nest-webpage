@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="96" fill="#4a8c3f"/>
+  <!-- 買い物かご -->
+  <g>
+    <!-- 持ち手 -->
+    <path d="M196 168 q60 -70 120 0" fill="none" stroke="#2f5d3a" stroke-width="30" stroke-linecap="round"/>
+    <!-- かご本体（台形） -->
+    <path d="M110 176 h292 l-34 196 a28 28 0 0 1 -28 24 h-168 a28 28 0 0 1 -28 -24 Z" fill="#faf6ef" stroke="#2f5d3a" stroke-width="14" stroke-linejoin="round"/>
+    <!-- かごの縦線 -->
+    <path d="M186 200 l14 168 M256 200 v168 M326 200 l-14 168" stroke="#e0d6c2" stroke-width="12" stroke-linecap="round"/>
+    <!-- 値札風のチェックタグ -->
+    <g transform="translate(296 268) rotate(8)">
+      <rect x="-72" y="-52" width="144" height="110" rx="24" fill="#d97757" stroke="#2f5d3a" stroke-width="12"/>
+      <path d="M-36 4 l26 26 l48 -48" fill="none" stroke="#faf6ef" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </g>
+</svg>
