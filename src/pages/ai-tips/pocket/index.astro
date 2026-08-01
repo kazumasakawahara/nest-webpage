@@ -1,0 +1,371 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import AiTipsQuestionBox from '../../../components/AiTipsQuestionBox.astro';
+
+// 1道具＝1スキット。me=困りごとのセリフ / call=AIさんの掛け声 / tool=出てくる道具
+type Tool = {
+  href: string;
+  title: string;
+  desc: string;
+  icon?: string; // アプリのときだけ
+  action?: string;
+};
+const skits: {
+  id: string;
+  emoji: string;
+  tag: string;
+  me: string;
+  call: string;
+  tool: Tool;
+  prompt?: string;
+}[] = [
+  {
+    id: 'letter', emoji: '📄', tag: '書類',
+    me: '役所からの手紙……なんて書いてあるか、分からん！',
+    call: 'しょるいの翻訳係！',
+    tool: { href: '/ai-tips/2026-07-29-ai-letter-translator/', title: '役所からの手紙、AIに読んでもらう', desc: '撮って見せれば「①何のお知らせ ②何をすればいい ③いつまで」をやさしく説明してくれます', action: '読む' },
+    prompt: 'この書類を、やさしい言葉で説明してください。①何のお知らせか　②私は何をすればいいか　③それはいつまでか、の順でお願いします。',
+  },
+  {
+    id: 'scam', emoji: '😱', tag: 'あやしいメール',
+    me: 'へんなメールが来た！　押していいのか！？',
+    call: 'さぎよけの盾！',
+    tool: { href: '/ai-tips/2026-07-28-ai-scam-shield/', title: 'あやしいメール、AIさんに見せてみて', desc: '合言葉は「押す前に、貼る」。迷ったら消費者ホットライン188へ', action: '読む' },
+    prompt: '次のメッセージが届きました。詐欺の可能性はありますか？　あやしいと思うポイントがあれば、理由つきで教えてください。（ここに文面を貼る）',
+  },
+  {
+    id: 'flyer', emoji: '🎨', tag: 'チラシの絵',
+    me: 'チラシに載せる絵が、見つからないの……',
+    call: '1行おえかき係！',
+    tool: { href: '/ai-tips/2026-07-29-ai-flyer-illustration/', title: 'チラシの挿絵、1行で描いてもらう', desc: 'コツは3つ。画風を言う・入れたい人や物を言う・「文字なし」と言う', action: '読む' },
+    prompt: '夏祭りの盆踊りのイラストを描いてください。やさしい水彩風、高齢の方も子どもも一緒に踊っていて、明るい色で。文字は入れないでください。',
+  },
+  {
+    id: 'receipt', emoji: '🧾', tag: 'レシート',
+    me: 'レシートの山、もう打ち込みたくない……',
+    call: 'レシートまとめ係！',
+    tool: { href: '/ai-tips/2026-07-09-receipt-to-spreadsheet/', title: 'レシートの山、もう手入力しない', desc: 'スマホで撮ってAIに渡すと、日付・店名・金額が表になります', action: '読む' },
+  },
+  {
+    id: 'canvas', emoji: '📝', tag: '文書づくり',
+    me: 'お知らせの文章が、まとまらない！',
+    call: '文書づくりの相棒！',
+    tool: { href: '/ai-tips/2026-07-10-gemini-canvas/', title: 'Gemini Canvasで“その場で”仕上げる', desc: '話しかけるだけで下書きができて、その場で直せます', action: '読む' },
+  },
+  {
+    id: 'slides', emoji: '📊', tag: 'スライド',
+    me: 'あしたまでにスライド！？　むりむり！',
+    call: '1行スライド係！',
+    tool: { href: '/ai-tips/2026-07-10-notebooklm-slides/', title: 'NotebookLMで資料づくり', desc: '資料を渡して「スライドにして」の1行で、たたき台が完成', action: '読む' },
+  },
+  {
+    id: 'kaimono', emoji: '🛒', tag: '買い忘れ',
+    me: '買ってくるのを忘れちゃった！',
+    call: 'かいものチェッカー！',
+    tool: { href: '/apps/kaimono/', icon: '/apps/kaimono/icons/icon-192.png', title: 'かいものチェッカー', desc: 'スーパー・コンビニ・ドラッグストア。決めたものだけ買う、いちばん身近な節約に', action: '開く' },
+  },
+  {
+    id: 'mochimono', emoji: '🎒', tag: '忘れ物',
+    me: '朝の準備が、いつもバタバタ！',
+    call: 'もちものチェッカー！',
+    tool: { href: '/apps/mochimono/', icon: '/apps/mochimono/icons/icon-192.png', title: 'もちものチェッカー', desc: '通所の日・通院の日・おでかけ。「忘れ物ないかな？」を指一本で', action: '開く' },
+  },
+  {
+    id: 'roleplay', emoji: '📞', tag: '練習',
+    me: 'あしたの電話応対、うまくやれるか不安……',
+    call: 'なりきり練習相手！',
+    tool: { href: '/ai-tips/2026-07-11-ai-roleplay/', title: 'AIは“相手役”にもなれる', desc: '「◯◯の役をやって」で、電話応対も面談も予行演習できます', action: '読む' },
+  },
+  {
+    id: 'camera', emoji: '📷', tag: '機械のこと',
+    me: 'この機械のエラー、だれにも聞けない……',
+    call: 'カメラで相談係！',
+    tool: { href: '/ai-tips/2026-07-12-gemini-live-camera/', title: 'カメラで見せながらAIに教わる', desc: 'スマホをかざして、声で会話。隣に“詳しい人”が来てくれます', action: '読む' },
+  },
+  {
+    id: 'anshin', emoji: '😟', tag: 'AIがこわい',
+    me: 'そもそもAIが、なんだかこわい……',
+    call: 'あんしん編、まるごと！',
+    tool: { href: '/ai-tips/#anshin', title: '🌱 あんしん編（5本の棚）', desc: '不安の正体、まちがい・個人情報・詐欺への備え。上から順にどうぞ', action: '棚へ' },
+  },
+  {
+    id: 'request', emoji: '🙋', tag: '道具がない',
+    me: 'ほしい道具が、ポケットにない！',
+    call: 'ぜひ、リクエストを！',
+    tool: { href: '/contact/', title: 'お問い合わせフォーム', desc: '「こんなことを記事にしてほしい」の声、大歓迎です。次の「教えてAIさん」のヒントになります', action: 'リクエスト' },
+  },
+];
+---
+
+<BaseLayout
+  title="AIさんのポケット ― こまりごとから、さがす"
+  description="「買ってくるのを忘れちゃった！」——こまりごとを言うと、AIさんがエプロンのポケットから道具を出してくれます。教えてAIさんの記事とアプリを、こまりごとから逆引きできる劇場ページです。"
+>
+  <article class="pocket">
+    <div class="container container--narrow">
+      <header class="pocket__head reveal">
+        <a href="/ai-tips/" class="pocket__back"><span aria-hidden="true">←</span> 教えてAIさん 一覧へ</a>
+        <h1 class="pocket__title">👝 AIさんのポケット</h1>
+        <p class="pocket__lead">
+          こまりごとを言うと、AIさんがエプロンの「AI」ポケットから道具を出してくれます。<br />
+          気になる場面から、どうぞ。
+        </p>
+      </header>
+
+      <figure class="pocket__hero reveal">
+        <img src="/images/ai-tips/pocket-stage.svg" alt="人形劇の舞台で、代表マスコットが「買ってくるのを忘れちゃった！」と困り、大きなエプロンに「AI」と書かれたポケットをつけたAIさんが「かいものチェッカー！」と道具カードを取り出している図" width="640" height="360" loading="eager" decoding="async" />
+      </figure>
+
+      <nav class="pocket__chips reveal" aria-label="こまりごとの目次">
+        {skits.map((s) => (
+          <a href={`#${s.id}`} class="pocket__chip">{s.emoji} {s.tag}</a>
+        ))}
+      </nav>
+
+      <div class="skits">
+        {skits.map((s, i) => (
+          <section class="skit reveal" id={s.id} data-delay={(i % 3) + 1}>
+            <div class="skit__row skit__row--me">
+              <div class="skit__avatar" aria-hidden="true">🙂</div>
+              <p class="skit__bubble">{s.me}</p>
+            </div>
+            <div class="skit__row skit__row--ai">
+              <div class="skit__avatar" aria-hidden="true">🤖</div>
+              <p class="skit__bubble skit__bubble--call">{s.call}</p>
+            </div>
+            <a class="skit__tool" href={s.tool.href}>
+              {s.tool.icon ? (
+                <img src={s.tool.icon} alt="" width="52" height="52" loading="lazy" decoding="async" />
+              ) : (
+                <span class="skit__tool-emoji" aria-hidden="true">{s.emoji}</span>
+              )}
+              <span class="skit__tool-body">
+                <span class="skit__tool-title">{s.tool.title}</span>
+                <span class="skit__tool-desc">{s.tool.desc}</span>
+              </span>
+              <span class={`skit__tool-open${s.tool.action === '開く' ? ' skit__tool-open--blue' : ''}${s.tool.action === '棚へ' ? ' skit__tool-open--orange' : ''}`}>{s.tool.action ?? '開く'}</span>
+            </a>
+            {s.prompt && (
+              <div class="skit__prompt">
+                <span class="skit__prompt-label">そのままコピペで使える頼み方</span>
+                {s.prompt}
+              </div>
+            )}
+          </section>
+        ))}
+      </div>
+
+      <AiTipsQuestionBox />
+
+      <div class="pocket__foot reveal">
+        <a href="/ai-tips/" class="btn btn--outline">教えてAIさん 一覧に戻る</a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .pocket { padding-block: var(--space-9) var(--space-8); }
+
+  .pocket__head { text-align: center; }
+
+  .pocket__back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 13px;
+    color: var(--color-ink-mute);
+    font-family: var(--font-mono);
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-5);
+  }
+  .pocket__back:hover { color: var(--color-terra-500); }
+
+  .pocket__title {
+    font-family: var(--font-serif);
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--color-green-900);
+    margin-block: var(--space-3);
+  }
+
+  .pocket__lead {
+    font-size: 15px;
+    line-height: 2;
+    color: var(--color-ink-mute);
+  }
+
+  .pocket__hero { margin: var(--space-6) 0; }
+  .pocket__hero img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+  }
+
+  .pocket__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: var(--space-7);
+  }
+  .pocket__chip {
+    font-size: 13px;
+    font-weight: 700;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1.5px solid var(--color-line);
+    background: #fff;
+    color: var(--color-ink);
+  }
+  .pocket__chip:hover { border-color: var(--color-green-700); color: var(--color-green-900); }
+
+  .skits {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-7);
+  }
+
+  .skit {
+    scroll-margin-top: 96px;
+    border-bottom: 1px dashed var(--color-line);
+    padding-bottom: var(--space-6);
+  }
+  .skit:last-child { border-bottom: none; }
+
+  .skit__row {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+  }
+  .skit__row--ai { flex-direction: row-reverse; }
+
+  .skit__avatar {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid var(--color-line);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+
+  .skit__bubble {
+    max-width: 78%;
+    padding: 12px 18px;
+    border-radius: 16px;
+    background: #fff;
+    border: 1px solid var(--color-line);
+    font-size: 16px;
+    line-height: 1.8;
+    margin: 0;
+  }
+  .skit__row--me .skit__bubble { border-bottom-left-radius: 4px; }
+  .skit__row--ai .skit__bubble { border-bottom-right-radius: 4px; }
+
+  .skit__bubble--call {
+    background: var(--color-green-700);
+    border-color: var(--color-green-700);
+    color: #fff;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: 0.02em;
+  }
+
+  .skit__tool {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    margin-top: var(--space-4);
+    background: #fff;
+    border: 1px solid var(--color-line);
+    border-radius: 16px;
+    box-shadow: var(--shadow-soft);
+    color: var(--color-ink);
+  }
+  .skit__tool:hover { border-color: var(--color-green-700); color: var(--color-ink); }
+  .skit__tool img {
+    flex: none;
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+  }
+  .skit__tool-emoji {
+    flex: none;
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: var(--color-cream, #faf6ef);
+    border: 1px solid var(--color-line);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+  }
+  .skit__tool-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+  .skit__tool-title {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--color-green-900);
+    line-height: 1.5;
+  }
+  .skit__tool-desc {
+    font-size: 13px;
+    color: var(--color-ink-mute);
+    line-height: 1.6;
+  }
+  .skit__tool-open {
+    flex: none;
+    margin-left: auto;
+    padding: 7px 15px;
+    border-radius: 999px;
+    background: var(--color-green-700);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  /* アクション別の色分け：開く=青（アプリ）／棚へ=オレンジ（棚案内）。読む・注文するは緑 */
+  .skit__tool-open--blue { background: #3a6ea5; }
+  .skit__tool-open--orange { background: var(--color-terra-500); }
+
+  .skit__prompt {
+    margin-top: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background: rgba(74, 140, 63, 0.08);
+    border-left: 4px solid var(--color-green-700);
+    border-radius: 0 var(--radius-md, 10px) var(--radius-md, 10px) 0;
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--color-ink);
+  }
+  .skit__prompt-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--color-terra-500);
+    margin-bottom: var(--space-1, 4px);
+  }
+
+  .pocket__foot {
+    text-align: center;
+    margin-top: var(--space-7);
+  }
+
+  @media (max-width: 720px) {
+    .pocket__title { font-size: 26px; }
+    .skit__bubble { max-width: 86%; font-size: 15px; }
+    .skit__bubble--call { font-size: 16px; }
+  }
+</style>

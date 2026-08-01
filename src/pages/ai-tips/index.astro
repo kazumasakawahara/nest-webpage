@@ -72,6 +72,15 @@ const fmtDate = (d: Date) =>
           </a>
         </li>
       </ul>
+
+      <a href="/ai-tips/pocket/" class="pocket-door reveal">
+        <span class="pocket-door__emoji" aria-hidden="true">👝</span>
+        <span class="pocket-door__body">
+          <span class="pocket-door__title">AIさんのポケット ― こまりごとから、さがす</span>
+          <span class="pocket-door__desc">「買ってくるのを忘れちゃった！」——こまりごとを言うと、AIさんがポケットから道具を出してくれる劇場ページです。</span>
+        </span>
+        <span class="pocket-door__arrow" aria-hidden="true">→</span>
+      </a>
     </div>
   </section>
 
@@ -344,6 +353,34 @@ const fmtDate = (d: Date) =>
     border-radius: 999px;
     padding: 1px 8px;
   }
+
+  /* === ポケットへの入口 === */
+  .pocket-door {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+    padding: var(--space-4) var(--space-5);
+    border: 2px solid var(--color-green-700);
+    border-radius: 16px;
+    background: rgba(74, 140, 63, 0.05);
+    color: var(--color-ink);
+    transition: background-color var(--dur-fast) var(--ease-out);
+  }
+  .pocket-door:hover {
+    background: rgba(74, 140, 63, 0.1);
+    color: var(--color-ink);
+  }
+  .pocket-door__emoji { font-size: 30px; flex: none; }
+  .pocket-door__body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .pocket-door__title {
+    font-family: var(--font-hand);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-green-900);
+  }
+  .pocket-door__desc { font-size: 13px; color: var(--color-ink-mute); line-height: 1.6; }
+  .pocket-door__arrow { margin-left: auto; flex: none; color: var(--color-green-700); font-weight: 700; }
 
   /* === 相棒編：はじめに読む1本 === */
   .series-box__intro {
