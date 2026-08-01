@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" width="640" height="300" role="img" aria-label="賛成メーターの前後比較。暮らしの主体性は80から35へ大きく低下、体のリスクは75から80へ上昇、手続きは85から60へ低下、環境から考えるは70から80へ上昇、現場が回るかは65から75へ上昇">
+  <defs>
+    <style>.lbl{font-family:system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;}</style>
+  </defs>
+
+  <text x="24" y="32" class="lbl" font-size="16" font-weight="700" fill="#2f5d3a">ひとつの事実が判明したあと ── 賛成メーターの動き</text>
+
+  <!-- 凡例 -->
+  <rect x="440" y="18" width="16" height="10" rx="2" fill="#ddd3c1"/>
+  <text x="462" y="27" class="lbl" font-size="11" fill="#9a907c">前</text>
+  <rect x="486" y="18" width="16" height="10" rx="2" fill="#4a8c3f"/>
+  <text x="508" y="27" class="lbl" font-size="11" fill="#5f5847">後</text>
+
+  <!-- 目盛り -->
+  <line x1="190" y1="52" x2="190" y2="266" stroke="#ddd3c1" stroke-width="1"/>
+  <line x1="450" y1="52" x2="450" y2="266" stroke="#f0eae0" stroke-width="1"/>
+  <text x="450" y="284" text-anchor="middle" class="lbl" font-size="10" fill="#c3b9a5">100</text>
+  <text x="190" y="284" text-anchor="middle" class="lbl" font-size="10" fill="#c3b9a5">0</text>
+
+  <!-- 1. 暮らしの主体性 80 → 35 -->
+  <text x="178" y="72" text-anchor="end" class="lbl" font-size="12" font-weight="700" fill="#5f5847">暮らしの主体性</text>
+  <rect x="190" y="60" width="208" height="9" rx="4.5" fill="#ddd3c1"/>
+  <rect x="190" y="72" width="91" height="11" rx="5.5" fill="#b8543a"/>
+  <text x="408" y="69" class="lbl" font-size="10.5" fill="#9a907c">80</text>
+  <text x="291" y="82" class="lbl" font-size="11" font-weight="700" fill="#b8543a">35</text>
+  <text x="330" y="82" class="lbl" font-size="10.5" font-weight="700" fill="#b8543a">← 封筒の条件が満たされた</text>
+
+  <!-- 2. 体のリスク 75 → 80 -->
+  <text x="178" y="118" text-anchor="end" class="lbl" font-size="12" font-weight="700" fill="#5f5847">体のリスク</text>
+  <rect x="190" y="106" width="195" height="9" rx="4.5" fill="#ddd3c1"/>
+  <rect x="190" y="118" width="208" height="11" rx="5.5" fill="#4a8c3f"/>
+  <text x="395" y="115" class="lbl" font-size="10.5" fill="#9a907c">75</text>
+  <text x="408" y="128" class="lbl" font-size="11" font-weight="700" fill="#4a8c3f">80</text>
+
+  <!-- 3. 手続き 85 → 60 -->
+  <text x="178" y="164" text-anchor="end" class="lbl" font-size="12" font-weight="700" fill="#5f5847">手続き</text>
+  <rect x="190" y="152" width="221" height="9" rx="4.5" fill="#ddd3c1"/>
+  <rect x="190" y="164" width="156" height="11" rx="5.5" fill="#7c9c56"/>
+  <text x="421" y="161" class="lbl" font-size="10.5" fill="#9a907c">85</text>
+  <text x="356" y="174" class="lbl" font-size="11" font-weight="700" fill="#7c9c56">60</text>
+
+  <!-- 4. 環境から考える 70 → 80 -->
+  <text x="178" y="210" text-anchor="end" class="lbl" font-size="12" font-weight="700" fill="#5f5847">環境から考える</text>
+  <rect x="190" y="198" width="182" height="9" rx="4.5" fill="#ddd3c1"/>
+  <rect x="190" y="210" width="208" height="11" rx="5.5" fill="#4a8c3f"/>
+  <text x="382" y="207" class="lbl" font-size="10.5" fill="#9a907c">70</text>
+  <text x="408" y="220" class="lbl" font-size="11" font-weight="700" fill="#4a8c3f">80</text>
+
+  <!-- 5. 現場が回るか 65 → 75 -->
+  <text x="178" y="256" text-anchor="end" class="lbl" font-size="12" font-weight="700" fill="#5f5847">現場が回るか</text>
+  <rect x="190" y="244" width="169" height="9" rx="4.5" fill="#ddd3c1"/>
+  <rect x="190" y="256" width="195" height="11" rx="5.5" fill="#4a8c3f"/>
+  <text x="369" y="253" class="lbl" font-size="10.5" fill="#9a907c">65</text>
+  <text x="395" y="266" class="lbl" font-size="11" font-weight="700" fill="#4a8c3f">75</text>
+</svg>
