@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import CtaBlock from '../components/CtaBlock.astro';
+import { site } from '../lib/site';
 ---
 
 <BaseLayout
@@ -141,6 +142,37 @@ import CtaBlock from '../components/CtaBlock.astro';
           利用者一人ひとりが生み出した作品を、近日こちらでご紹介します。どうぞお楽しみに。
         </p>
       </div>
+    </div>
+  </section>
+
+  <!-- ===== Instagram ===== -->
+  <section class="section ig-section">
+    <div class="container container--narrow">
+      <a
+        href={site.instagramNestDesign}
+        class="ig-cta reveal"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="nestDesign の Instagram（@nestdesign.inc）を新しいタブで開く"
+      >
+        <span class="ig-cta__glyph" aria-hidden="true">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6" />
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6" />
+            <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" />
+          </svg>
+        </span>
+        <span class="eyebrow eyebrow--center">Instagram</span>
+        <h2 class="ig-cta__title">作品づくりの日々はこちら</h2>
+        <p class="ig-cta__lead">
+          アトリエで生まれる作品やオリジナルグッズ、制作の様子を発信しています。
+          フォローして、最新の情報をチェックしてください。
+        </p>
+        <span class="btn btn--accent btn--lg ig-cta__btn">
+          @nestdesign.inc をフォロー
+          <span class="btn__icon" aria-hidden="true">→</span>
+        </span>
+      </a>
     </div>
   </section>
 
@@ -295,6 +327,66 @@ import CtaBlock from '../components/CtaBlock.astro';
   .works-gallery__note {
     line-height: 1.9;
     font-size: 15px;
+  }
+
+  /* === Instagram 誘導（木町家ページと同様式） === */
+  .ig-section {
+    background-color: var(--color-cream);
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(217, 119, 87, 0.08), transparent 42%),
+      radial-gradient(circle at 88% 82%, rgba(74, 140, 63, 0.08), transparent 42%);
+  }
+
+  .ig-cta {
+    display: block;
+    max-width: 620px;
+    margin: 0 auto;
+    background: var(--color-paper);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: var(--space-8) var(--space-7);
+    text-align: center;
+    transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+  }
+
+  .ig-cta:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hi);
+  }
+
+  .ig-cta:hover .btn__icon { transform: translateX(4px); }
+
+  .ig-cta__glyph {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    margin: 0 auto var(--space-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background: linear-gradient(135deg, var(--color-green-700), var(--color-terra-500));
+  }
+
+  .ig-cta__title {
+    font-family: var(--font-serif);
+    font-size: var(--fs-h3);
+    color: var(--color-green-900);
+    line-height: 1.5;
+    margin-bottom: var(--space-3);
+  }
+
+  .ig-cta__lead {
+    color: var(--color-ink-mute);
+    line-height: 1.9;
+    font-size: 15px;
+    margin-bottom: var(--space-6);
+  }
+
+  .ig-cta__btn { pointer-events: none; }
+
+  @media (max-width: 880px) {
+    .ig-cta { padding: var(--space-7) var(--space-5); }
   }
 
   /* ロゴと、指導役のベテランデザイナー（人形）を横並びに */
