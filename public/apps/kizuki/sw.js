@@ -7,7 +7,7 @@
  *    cache-first, populated at install by parsing the shell HTML.
  *  Bump VERSION to invalidate; activate() deletes older caches.
  */
-const VERSION = 'v1';
+const VERSION = 'v2';
 const CACHE = `kizuki-${VERSION}`;
 const SHELL_URL = '/apps/kizuki/';
 

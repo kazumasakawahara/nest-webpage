@@ -30,6 +30,7 @@
         --terra: #d97757;
         --terra-dark: #b4552d;
         --line: #e6ddca;
+        --line-strong: #c9bda1;
         --neutral: #efe9dc;
       }
       * { box-sizing: border-box; }
@@ -120,6 +121,75 @@
         color: var(--ink);
         text-align: left;
       }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        margin: 12px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+      .badge-chip {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--green-dark);
+        background: var(--green-pale);
+        border: 1px solid var(--green);
+        border-radius: 999px;
+        padding: 3px 12px;
+      }
+
+      /* ===== install (app-ness) ===== */
+      .install-card {
+        padding: 16px 18px;
+        border: 2px solid var(--green);
+        border-radius: 14px;
+        background: #fff;
+        text-align: left;
+      }
+      .install-card__title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 6px;
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--green-dark);
+      }
+      .install-card__text {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.8;
+        color: var(--ink-soft);
+      }
+      .install-btn {
+        margin-top: 12px;
+        width: 100%;
+        min-height: 52px;
+        border: none;
+        border-radius: 12px;
+        background: var(--terra);
+        color: #fff;
+        font-size: 16px;
+        font-weight: 700;
+      }
+      .install-steps { margin: 4px 0 0; }
+      .install-steps summary {
+        display: flex;
+        align-items: center;
+        min-height: 44px;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--green-dark);
+        cursor: pointer;
+      }
+      .install-steps p {
+        margin: 4px 0 0;
+        font-size: 14px;
+        color: var(--ink);
+      }
+      .install-steps p strong { color: var(--green-dark); }
       .pledge {
         margin: 0;
         padding: 16px 18px;
@@ -254,10 +324,10 @@
       .opt {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 12px;
         min-height: 48px;
         padding: 8px 14px;
-        border: 2px solid var(--line);
+        border: 2px solid var(--line-strong);
         border-radius: 12px;
         background: var(--cream);
         font-size: 16px;
@@ -265,17 +335,23 @@
         text-align: left;
         line-height: 1.5;
       }
+      @media (hover: hover) {
+        .opt:hover { border-color: var(--green); }
+      }
+      /* チェックボックス然とした四角いマーク。空でも「選ぶ欄」だと伝わるように */
       .opt .mark {
         flex-shrink: 0;
-        width: 22px;
-        height: 22px;
-        border: 2px solid var(--line);
-        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        border: 2px solid var(--line-strong);
+        border-radius: 6px;
         background: #fff;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        font-size: 14px;
+        font-size: 15px;
+        font-weight: 700;
         color: transparent;
       }
       .opt.selected {
@@ -308,19 +384,20 @@
       }
       .free-input {
         width: 100%;
-        min-height: 96px;
-        padding: 10px 12px;
-        border: 2px solid var(--line);
+        min-height: 110px;
+        padding: 12px 14px;
+        border: 2px solid var(--line-strong);
         border-radius: 10px;
-        background: repeating-linear-gradient(
-          to bottom, #fff 0, #fff 31px, var(--neutral) 31px, var(--neutral) 32px
-        );
+        background: #fff;
+        box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.06);
         color: var(--ink);
         font-family: inherit;
         font-size: 16px;
-        line-height: 32px;
+        line-height: 1.8;
         resize: vertical;
       }
+      .free-input::placeholder { color: #a89e88; }
+      .free-input:focus { border-color: var(--green); }
       .save-btn {
         min-height: 56px;
         border: none;
@@ -605,8 +682,16 @@
       ];
 
       const FREE = [
-        { id: 'free1' as const, label: 'この1か月で、いちばん「本人らしさ」が出た瞬間は？' },
-        { id: 'free2' as const, label: '次に、試してみたいことは？' },
+        {
+          id: 'free1' as const,
+          label: 'この1か月で、いちばん「本人らしさ」が出た瞬間は？',
+          placeholder: 'ここをタップして書いてください（例：散歩の行き先を、写真を見て自分で選んだ）',
+        },
+        {
+          id: 'free2' as const,
+          label: '次に、試してみたいことは？',
+          placeholder: 'ここをタップして書いてください（例：朝の飲みものを、実物を見せて選んでもらう）',
+        },
       ];
 
       // ---------- storage ----------
@@ -656,6 +741,27 @@
       // ---------- draft state (form) ----------
       let draftAnswers: Answers = {};
 
+      // ---------- install (PWA) ----------
+      // Chrome系は beforeinstallprompt を捕まえてワンタップ追加。
+      // それ以外（iOS Safari等）は手順の折りたたみを見せる。
+      let installPrompt: Event | null = null;
+      const isStandalone = () =>
+        matchMedia('(display-mode: standalone)').matches ||
+        (navigator as { standalone?: boolean }).standalone === true;
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        installPrompt = e;
+        const btn = document.querySelector<HTMLButtonElement>('[data-act="install"]');
+        const steps = document.querySelector<HTMLElement>('.install-steps');
+        if (btn) btn.hidden = false;
+        if (steps) steps.hidden = true;
+      });
+      window.addEventListener('appinstalled', () => {
+        installPrompt = null;
+        document.querySelector<HTMLElement>('.install-card')?.remove();
+        toast('ホーム画面に追加しました');
+      });
+
       // ---------- views ----------
       function renderHome() {
         const count = loadEntries().length;
@@ -671,6 +777,11 @@
                 <path d="M50 52 C48 46 44 44 41 44" fill="none" stroke="#2f5d3a" stroke-width="2.5" stroke-linecap="round"/>
               </svg>
               <h1 class="home-title">支援者の気づきノート</h1>
+              <ul class="badges" aria-label="このアプリの特徴">
+                <li class="badge-chip">無料アプリ</li>
+                <li class="badge-chip">登録・ログイン不要</li>
+                <li class="badge-chip">オフラインOK</li>
+              </ul>
             </div>
             <p class="home-lead">
               「決めること」は、能力ではなく権利。代わりに決めるのではなく、決める経験をサポートする——
@@ -686,6 +797,31 @@
               <button class="secondary-btn" data-act="history">これまでの記録${count ? `（${count}件）` : ''}</button>
             </div>
             <p class="privacy">書いたことは、この端末の中にだけ残ります。どこにも送信されません。</p>
+            ${
+              isStandalone()
+                ? ''
+                : `
+            <section class="install-card" aria-label="アプリとして使う">
+              <p class="install-card__title">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="6" y="2.5" width="12" height="19" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+                  <line x1="10" y1="18.5" x2="14" y2="18.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                  <path d="M12 7v6M9.5 10.5 12 13l2.5-2.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                これは、スマホに入れられる「アプリ」です
+              </p>
+              <p class="install-card__text">
+                ホーム画面に追加しておくと、アイコンからいつでもすぐ開けます。
+                インストールは無料で、電波のない場所でも使えます。
+              </p>
+              <button class="install-btn" data-act="install" hidden>ホーム画面に追加する</button>
+              <details class="install-steps">
+                <summary>ホーム画面への追加のしかた</summary>
+                <p><strong>iPhone・iPad：</strong>Safariの共有ボタン（四角に↑）→「ホーム画面に追加」</p>
+                <p><strong>Android：</strong>Chromeのメニュー（︙）→「ホーム画面に追加」または「アプリをインストール」</p>
+              </details>
+            </section>`
+            }
             <p class="home-foot">
               意思決定支援について詳しくは
               <a href="/sudachi/decision-support/">nestの意思決定支援のページ</a> へ
@@ -693,6 +829,20 @@
           </div>`;
         app.querySelector('[data-act="start"]')!.addEventListener('click', renderForm);
         app.querySelector('[data-act="history"]')!.addEventListener('click', renderHistory);
+
+        const installBtn = app.querySelector<HTMLButtonElement>('[data-act="install"]');
+        if (installBtn) {
+          if (installPrompt) {
+            installBtn.hidden = false;
+            app.querySelector<HTMLElement>('.install-steps')!.hidden = true;
+          }
+          installBtn.addEventListener('click', async () => {
+            if (!installPrompt) return;
+            const ev = installPrompt as Event & { prompt(): Promise<void> };
+            installPrompt = null;
+            await ev.prompt();
+          });
+        }
       }
 
       function renderForm() {
@@ -742,7 +892,7 @@
           (f) => `
           <div class="free-card">
             <label class="free-label" for="${f.id}">${f.label}</label>
-            <textarea class="free-input" id="${f.id}"></textarea>
+            <textarea class="free-input" id="${f.id}" placeholder="${f.placeholder}"></textarea>
           </div>`
         ).join('');
 
