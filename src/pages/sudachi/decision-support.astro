@@ -203,19 +203,40 @@ import CtaBlock from '../../components/CtaBlock.astro';
           資料を追加するときは、この中に dl-block（PDF）や guide-card（読みもの）と
           同様のカードを並べてください。
         -->
-        <a class="ds-app-card" href="/apps/kizuki/">
-          <span class="ds-app-card__eyebrow">セルフチェックアプリ</span>
-          <span class="ds-app-card__title">支援者の気づきノート</span>
-          <span class="ds-app-card__lead">
-            月にいちど、9つの問いと2つの自由記述で、自分の支援を意思決定支援の観点からふりかえる無料アプリです。
-            点数も合否もありません。アカウント不要・記録は端末の中だけに残り、どこにも送信されません。
-          </span>
-          <span class="ds-app-card__note">
+        <div class="ds-app-card">
+          <div class="ds-app-card__head">
+            <img
+              class="ds-app-card__icon"
+              src="/apps/kizuki/icons/icon-192.png"
+              alt=""
+              width="192"
+              height="192"
+              loading="lazy"
+            />
+            <div class="ds-app-card__id">
+              <span class="ds-app-card__eyebrow">セルフチェックアプリ</span>
+              <span class="ds-app-card__title">支援者の気づきノート</span>
+              <span class="ds-app-card__chips" aria-label="このアプリの特徴">
+                <span>無料</span><span>登録・ログイン不要</span><span>オフラインOK</span><span>記録は端末内だけ</span>
+              </span>
+            </div>
+          </div>
+          <p class="ds-app-card__lead">
+            月にいちど、9つの問いと2つの自由記述で、自分の支援を意思決定支援の観点からふりかえるアプリです。
+            点数も合否もありません。ホーム画面に追加すれば、いつものアプリと同じように使えます。
+          </p>
+          <p class="ds-app-card__note">
             これは、事業者が職員を評定する際に利用するためのものではありません。
             支援者お一人お一人が、自らを振り返る材料とするためのものです。
-          </span>
-          <span class="ds-app-card__more" aria-hidden="true">アプリをひらく →</span>
-        </a>
+          </p>
+          <div class="ds-app-card__actions">
+            <a class="btn btn--primary" href="/apps/kizuki/">
+              アプリをひらく
+              <span class="btn__icon" aria-hidden="true">→</span>
+            </a>
+            <a class="ds-app-card__sub" href="/apps/kizuki/about/">くわしい紹介・QRコード・使い方 →</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -401,23 +422,38 @@ import CtaBlock from '../../components/CtaBlock.astro';
     margin: 0;
   }
 
-  /* セルフチェックアプリへの導線カード */
+  /* セルフチェックアプリへの導線カード（ストア風） */
   .ds-app-card {
     display: flex;
     flex-direction: column;
-    gap: var(--space-3);
+    gap: var(--space-4);
     padding: var(--space-6);
     border: 1px solid var(--color-line);
     border-radius: var(--radius-lg);
     background: var(--color-paper);
     box-shadow: var(--shadow-soft);
-    text-decoration: none;
-    transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
   }
 
-  .ds-app-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-card);
+  .ds-app-card__head {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .ds-app-card__icon {
+    flex: none;
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
+    border: 1px solid var(--color-line);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .ds-app-card__id {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
   }
 
   .ds-app-card__eyebrow {
@@ -431,17 +467,36 @@ import CtaBlock from '../../components/CtaBlock.astro';
     font-family: var(--font-heading);
     font-size: clamp(20px, 3.4vw, 26px);
     font-weight: 700;
-    line-height: 1.5;
+    line-height: 1.4;
     color: var(--color-green-900);
   }
 
+  .ds-app-card__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 2px;
+  }
+
+  .ds-app-card__chips span {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-green-900);
+    background: var(--color-green-100);
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    padding: 2px 10px;
+  }
+
   .ds-app-card__lead {
+    margin: 0;
     font-size: 15px;
     line-height: 1.9;
     color: var(--color-ink);
   }
 
   .ds-app-card__note {
+    margin: 0;
     font-size: 14px;
     line-height: 1.9;
     color: var(--color-ink);
@@ -451,14 +506,28 @@ import CtaBlock from '../../components/CtaBlock.astro';
     border-radius: 0 var(--radius-md) var(--radius-md) 0;
   }
 
-  .ds-app-card__more {
-    align-self: flex-start;
+  .ds-app-card__actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+
+  .ds-app-card__sub {
     font-size: 14px;
     font-weight: 600;
     color: var(--color-green-700);
   }
 
-  .ds-app-card:hover .ds-app-card__more {
+  .ds-app-card__sub:hover {
     color: var(--color-terra-500);
+  }
+
+  @media (max-width: 560px) {
+    .ds-app-card__head {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .ds-app-card__actions .btn { width: 100%; }
   }
 </style>
