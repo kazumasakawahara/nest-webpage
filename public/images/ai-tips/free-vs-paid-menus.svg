@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-label="代表マスコットが「タダって、あとが怖くない…？」と心配し、AIさんが「まず無料で、十分です」と答えている図。0円の大きな無料定食メニューと月3,000円くらいの小さなメニューが並び、下に「自分で申し込まない限り、請求は来ません」と書かれている">
+  <defs>
+    <style>
+      .cap { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; }
+    </style>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="640" height="360" rx="16" fill="#faf6ef"/>
+
+  <!-- 人（左）：トップページのマスコット（白髪・金縁メガネ・紺フリース・カップ）。表情は心配顔 -->
+  <g>
+    <g transform="translate(96,150) scale(0.33)">
+      <!-- あぐらの下半身 -->
+      <path d="M-64 250 C-72 302 -18 320 10 302 C-4 326 -66 322 -72 286 Z" fill="#1c2942"/>
+      <path d="M64 250 C72 302 18 320 -10 302 C4 326 66 322 72 286 Z" fill="#243654"/>
+      <!-- 首 -->
+      <rect x="-14" y="48" width="28" height="22" rx="7" fill="#e6b892"/>
+      <!-- 胴体（紺フリース） -->
+      <path d="M-66 252 C-78 168 -58 80 -18 64 C-8 58 8 58 18 64 C58 80 78 168 66 252 Z" fill="#22314f"/>
+      <!-- 襟・インナー -->
+      <path d="M-30 70 Q0 56 30 70 L22 98 Q0 84 -22 98 Z" fill="#2c3c5e"/>
+      <path d="M-17 78 Q0 68 17 78 L11 100 Q0 92 -11 100 Z" fill="#e9eef5"/>
+      <line x1="0" y1="96" x2="0" y2="244" stroke="#33456b" stroke-width="3"/>
+      <!-- 髪（後ろ・白髪ウェーブ） -->
+      <path d="M-72 6 C-88 -66 -44 -100 0 -100 C44 -100 88 -66 72 6 C64 -6 54 -4 48 8 C40 -8 30 -6 24 8 C16 -8 4 -8 -2 8 C-10 -8 -22 -8 -28 8 C-36 -6 -48 -6 -54 10 C-60 2 -66 2 -72 6 Z" fill="#8c908c"/>
+      <!-- 顔 -->
+      <circle cx="0" cy="0" r="60" fill="#f0c9a8"/>
+      <path d="M-52 -52 C-30 -74 30 -74 52 -50" stroke="#a9ada8" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <path d="M-44 -34 C-30 -50 -6 -52 6 -40" stroke="#7d817d" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <path d="M46 -30 C34 -46 14 -48 4 -38" stroke="#7d817d" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <!-- ほほ -->
+      <circle cx="-38" cy="24" r="10" fill="#e79a78" opacity="0.5"/>
+      <circle cx="38" cy="24" r="10" fill="#e79a78" opacity="0.5"/>
+      <!-- 心配顔の眉と目 -->
+      <path d="M-40 -16 Q-26 -8 -14 -14" stroke="#4a3b2f" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+      <path d="M14 -14 Q26 -8 40 -16" stroke="#4a3b2f" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+      <circle cx="-26" cy="8" r="6" fill="#4a3b2f"/>
+      <circle cx="26" cy="8" r="6" fill="#4a3b2f"/>
+      <!-- 金縁メガネ -->
+      <g stroke="#c9a44a" stroke-width="3.5" fill="#ffffff" fill-opacity="0.14">
+        <ellipse cx="-26" cy="6" rx="22" ry="15"/>
+        <ellipse cx="26" cy="6" rx="22" ry="15"/>
+      </g>
+      <path d="M-4 4 Q0 -1 4 4" stroke="#c9a44a" stroke-width="3.5" fill="none"/>
+      <line x1="-48" y1="2" x2="-64" y2="-4" stroke="#c9a44a" stroke-width="3"/>
+      <line x1="48" y1="2" x2="64" y2="-4" stroke="#c9a44a" stroke-width="3"/>
+      <!-- 口（不安そう） -->
+      <path d="M-10 42 Q0 48 10 42" stroke="#9e4a3a" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <!-- 腕（財布を胸に抱える） -->
+      <path d="M-56 132 C-64 178 -32 198 -8 198" fill="none" stroke="#22314f" stroke-width="30" stroke-linecap="round"/>
+      <path d="M56 132 C64 178 32 198 8 198" fill="none" stroke="#243654" stroke-width="30" stroke-linecap="round"/>
+      <!-- 財布 -->
+      <g transform="translate(-30 168)">
+        <rect width="60" height="42" rx="8" fill="#8a5a3c"/>
+        <rect y="14" width="60" height="6" fill="#6b4a2f"/>
+        <circle cx="48" cy="30" r="5" fill="#c9a44a"/>
+      </g>
+      <!-- 手 -->
+      <circle cx="-12" cy="198" r="13" fill="#f0c9a8"/>
+      <circle cx="12" cy="198" r="13" fill="#f0c9a8"/>
+    </g>
+    <!-- ふきだし -->
+    <g>
+      <rect x="24" y="22" width="252" height="40" rx="12" fill="#ffffff" stroke="#e6e0d4" stroke-width="2"/>
+      <path d="M104 62 l8 12 l4 -12 z" fill="#ffffff" stroke="#e6e0d4" stroke-width="2"/>
+      <text x="150" y="48" text-anchor="middle" class="cap" font-size="17" fill="#2a2620">タダって、あとが怖くない…？</text>
+    </g>
+  </g>
+
+  <!-- AIさん（右）：にっこり安心 -->
+  <g>
+    <rect x="500" y="96" width="68" height="58" rx="14" fill="#2d5a27"/>
+    <line x1="534" y1="86" x2="534" y2="96" stroke="#2d5a27" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="534" cy="82" r="5" fill="#d97757"/>
+    <!-- にこにこの目と口 -->
+    <path d="M514 120 q6 6 12 0" fill="none" stroke="#faf6ef" stroke-width="3" stroke-linecap="round"/>
+    <path d="M542 120 q6 6 12 0" fill="none" stroke="#faf6ef" stroke-width="3" stroke-linecap="round"/>
+    <path d="M524 138 q10 7 20 0" fill="none" stroke="#faf6ef" stroke-width="3" stroke-linecap="round"/>
+    <!-- 体 -->
+    <rect x="508" y="160" width="52" height="42" rx="10" fill="#4a8c3f" opacity="0.9"/>
+    <!-- ふきだし -->
+    <g>
+      <rect x="396" y="24" width="226" height="42" rx="12" fill="#ffffff" stroke="#e6e0d4" stroke-width="2"/>
+      <path d="M548 66 l-4 12 l-8 -12 z" fill="#ffffff" stroke="#e6e0d4" stroke-width="2"/>
+      <text x="509" y="51" text-anchor="middle" class="cap" font-size="18" fill="#2a2620">まず無料で、十分です</text>
+    </g>
+  </g>
+
+  <!-- メニュー左：むりょう定食（大きい） -->
+  <g transform="translate(172 118)">
+    <rect width="246" height="164" rx="12" fill="#e8efe6" stroke="#2d5a27" stroke-width="3"/>
+    <rect x="14" y="12" width="218" height="34" rx="8" fill="#2d5a27"/>
+    <text x="123" y="35" text-anchor="middle" class="cap" font-size="18" fill="#faf6ef">無料定食　0円</text>
+    <g class="cap" font-size="15" fill="#2a2620">
+      <text x="24" y="72">・相談／文章の下書き</text>
+      <text x="24" y="96">・手紙やレシートの読み取り</text>
+      <text x="24" y="120">・翻訳／要約</text>
+      <text x="24" y="144">・練習相手／詐欺チェック</text>
+    </g>
+  </g>
+
+  <!-- メニュー右：有料（小さめ） -->
+  <g transform="translate(434 150)">
+    <rect width="170" height="132" rx="12" fill="#f9e8df" stroke="#b85f3d" stroke-width="3"/>
+    <rect x="8" y="10" width="154" height="32" rx="8" fill="#b85f3d"/>
+    <text x="85" y="31" text-anchor="middle" class="cap" font-size="13" fill="#faf6ef">有料　月3,000円くらい</text>
+    <g class="cap" font-size="14" fill="#2a2620">
+      <text x="20" y="66">・回数たっぷり</text>
+      <text x="20" y="88">・長い資料もOK</text>
+      <text x="20" y="110">・順番待ちなし</text>
+    </g>
+  </g>
+
+  <!-- 下部の注記 -->
+  <g>
+    <rect x="120" y="304" width="400" height="38" rx="19" fill="#ffffff" stroke="#c9a44a" stroke-width="2.5"/>
+    <text x="320" y="329" text-anchor="middle" class="cap" font-size="17" fill="#4a3b2f">自分で申し込まない限り、請求は来ません</text>
+  </g>
+</svg>
