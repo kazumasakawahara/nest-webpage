@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="家族聴き取りガイドの画面イメージ">
+  <defs>
+    <style>
+      .bg   { fill: #f0ead8; }
+      .card { fill: #ffffff; }
+      .ttl  { font-family: 'Hiragino Mincho ProN','Yu Mincho','Shippori Mincho B1',serif; fill: #1a3d18; }
+      .lbl  { font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; fill: #9a948a; letter-spacing: 1.6px; }
+      .q    { font-family: 'Hiragino Mincho ProN','Yu Mincho','Shippori Mincho B1',serif; fill: #1a3d18; }
+      .hint { font-family: 'Hiragino Sans','Noto Sans JP',sans-serif; fill: #9a948a; }
+      .num  { font-family: 'Hiragino Mincho ProN','Yu Mincho',serif; fill: #faf6ef; }
+      .foot { font-family: 'Hiragino Mincho ProN','Yu Mincho',serif; fill: #2d5a27; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="800" height="600"/>
+
+  <text class="lbl" x="56" y="62" font-size="13">QUESTIONS TO ASK</text>
+  <text class="ttl" x="56" y="104" font-size="30">まず、3つだけ</text>
+  <line x1="56" y1="126" x2="180" y2="126" stroke="#d97757" stroke-width="3"/>
+
+  <!-- 1 -->
+  <rect class="card" x="56" y="156" width="688" height="112" rx="12"/>
+  <circle cx="112" cy="212" r="24" fill="#2d5a27"/>
+  <text class="num" x="112" y="221" font-size="22" text-anchor="middle">1</text>
+  <text class="q" x="156" y="200" font-size="21">絶対に、やってはいけないことは何ですか。</text>
+  <text class="hint" x="156" y="232" font-size="13">これをすると危ない、パニックになる。そういうことがあれば、まずそれを。</text>
+
+  <!-- 2 -->
+  <rect class="card" x="56" y="284" width="688" height="112" rx="12"/>
+  <circle cx="112" cy="340" r="24" fill="#2d5a27"/>
+  <text class="num" x="112" y="349" font-size="22" text-anchor="middle">2</text>
+  <text class="q" x="156" y="328" font-size="21">パニックになったとき、どうすると落ち着きますか。</text>
+  <text class="hint" x="156" y="360" font-size="13">「静かな部屋へ」「背中をさする」。あなたが見つけた方法を。</text>
+
+  <!-- 3 -->
+  <rect class="card" x="56" y="412" width="688" height="112" rx="12"/>
+  <circle cx="112" cy="468" r="24" fill="#2d5a27"/>
+  <text class="num" x="112" y="477" font-size="22" text-anchor="middle">3</text>
+  <text class="q" x="156" y="456" font-size="21">もしものとき、いちばん先に連絡すべき人は誰ですか。</text>
+  <text class="hint" x="156" y="488" font-size="13">お名前と、電話番号を。</text>
+
+  <line x1="56" y1="548" x2="744" y2="548" stroke="#e6e0d4" stroke-width="1"/>
+  <text class="foot" x="400" y="576" font-size="16" text-anchor="middle">この3つが書けていれば、明日はじめて会う支援者でも、その人を守れます。</text>
+</svg>

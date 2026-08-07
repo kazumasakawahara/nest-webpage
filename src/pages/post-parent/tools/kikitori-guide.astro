@@ -1,0 +1,1059 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageIntro from '../../../components/PageIntro.astro';
+import CtaBlock from '../../../components/CtaBlock.astro';
+
+// 最初の3問（原典 第9章 必須項目のうち、命に直結する3つ）
+const firstThree = [
+  {
+    q: '絶対に、やってはいけないことは何ですか。',
+    hint: 'これをすると危ない、パニックになる。そういうことがあれば、まずそれを。',
+  },
+  {
+    q: 'パニックになったとき、どうすると落ち着きますか。',
+    hint: '「静かな部屋へ」「背中をさする」。あなたが見つけた方法を。',
+  },
+  {
+    q: 'もしものとき、いちばん先に連絡すべき人は誰ですか。',
+    hint: 'お名前と、電話番号を。',
+  },
+];
+
+// 7つのまとまり（原典の「7本柱」を、ご家族の言葉に翻訳したもの）
+type Group = { heading?: string; questions: string[] };
+type Pillar = {
+  no: number;
+  title: string;
+  en: string;
+  lead: string;
+  critical?: boolean;
+  gentle?: boolean;
+  groups: Group[];
+  riskTable?: boolean;
+  roleTable?: boolean;
+  tip?: string;
+};
+
+const pillars: Pillar[] = [
+  {
+    no: 1,
+    title: 'この人は、どんな人か',
+    en: 'Identity & Narrative',
+    lead: '「管理する対象」ではなく「その人の物語」として残すためのまとまりです。',
+    groups: [
+      {
+        questions: [
+          'お子さんの、小さい頃のことを教えてください',
+          'これまでで、いちばん大変だった時期はいつ頃でしたか',
+          'お子さんが楽しそうにしているのは、どんなときですか',
+          '学校や施設での経験で、印象に残っていることはありますか',
+          '将来、どのような生活を送ってほしいと思っていますか',
+          'ご本人自身は、何か言っていることがありますか',
+          'ご家族として「これだけは守ってほしい」ということはありますか',
+        ],
+      },
+    ],
+    tip: 'うまくいった話と、うまくいかなかった話。両方を残してください。失敗の記録は、次の支援者を同じ失敗から守ります。',
+  },
+  {
+    no: 2,
+    title: 'これだけは、覚えていてほしい',
+    en: 'Care Instructions',
+    lead: '安全に直結します。ここだけは、初回で。',
+    critical: true,
+    groups: [
+      {
+        heading: 'やってはいけないこと',
+        questions: [
+          '絶対にやってはいけないことは、何かありますか',
+          'これをすると、パニックになる・危険な状態になる、ということはありますか',
+          '過去に、支援者の対応で困った経験はありますか',
+          '食べ物のアレルギーや、飲んではいけない薬はありますか',
+        ],
+      },
+    ],
+    riskTable: true,
+  },
+  {
+    no: 3,
+    title: 'もしものとき、誰に',
+    en: 'Safety Net',
+    lead: 'ご本人を守る「人」と「機関」を明らかにします。',
+    groups: [
+      {
+        heading: '頼れる人',
+        questions: [
+          'もしものときに、いちばん頼りになる方はどなたですか',
+          'その方の連絡先を教えてください（携帯と自宅、どちらが確実ですか）',
+          '2番目、3番目に連絡すべき方はどなたですか',
+          'ご本人と、いちばん仲の良い方はどなたですか',
+          'その方は、どのようなことをしてくれますか',
+        ],
+      },
+      {
+        heading: 'かかりつけの医療機関',
+        questions: [
+          'かかりつけのお医者さんは、どちらですか',
+          '通院の頻度は、どのくらいですか',
+          '緊急時に駆け込む病院は、決まっていますか',
+          '歯科や眼科など、ほかにかかっている医療機関はありますか',
+        ],
+      },
+    ],
+    tip: '「誰に」だけでなく「その人は何ができるか」まで。連絡先の一覧より、役割の一覧のほうが役に立ちます。',
+  },
+  {
+    no: 4,
+    title: '紙の上の手続き',
+    en: 'Legal Basis',
+    lead: '行政サービスを受けるための、土台の情報です。',
+    groups: [
+      {
+        heading: '手帳・受給者証',
+        questions: [
+          '手帳はお持ちですか。種類と等級を教えてください',
+          '受給者証の種類は何ですか',
+          '次の更新時期は、いつ頃ですか',
+          '更新の手続きは、どなたがされていますか',
+        ],
+      },
+      {
+        heading: '後見制度',
+        questions: [
+          '成年後見人はいらっしゃいますか',
+          '後見制度について、検討されたことはありますか',
+          '日常生活自立支援事業は、利用されていますか',
+        ],
+      },
+    ],
+  },
+  {
+    no: 5,
+    title: '私がやっている、名前のない仕事',
+    en: 'Parental Transition',
+    lead: '向き合いにくいまとまりです。今日でなくても構いません。',
+    gentle: true,
+    groups: [
+      {
+        heading: 'まず、1日を追いかける',
+        questions: [
+          'ご家庭での1日の流れを教えてください。朝起きてから、夜寝るまで',
+        ],
+      },
+    ],
+    roleTable: true,
+    tip: '「親がいなくなったら誰が」を具体的にすることが、この問い集でいちばん難しく、いちばん効く部分です。右の2列が埋まっていない行が、そのまま将来の課題リストになります。',
+  },
+  {
+    no: 6,
+    title: 'お金を、守る',
+    en: 'Financial Safety',
+    lead: 'デリケートな話題ですが、経済的な搾取からご本人を守るために欠かせません。',
+    groups: [
+      {
+        questions: [
+          'お金の管理は、誰がしていますか',
+          'ご本人は、お金の使い方をどの程度理解していますか',
+          'お小遣いの管理は、どのようにしていますか',
+          '年金や手当は、どなたが管理していますか',
+          '金銭に関して、ご心配なことはありますか',
+        ],
+      },
+    ],
+  },
+  {
+    no: 7,
+    title: 'いま、関わってくれている人たち',
+    en: 'Multi-Agency Collaboration',
+    lead: 'すでにあるつながりを、地図にします。',
+    groups: [
+      {
+        questions: [
+          '現在利用しているサービス・事業所を教えてください',
+          'それぞれの担当者のお名前と連絡先を教えてください',
+          'サービス担当者会議は、どのくらいの頻度で開かれていますか',
+          '地域の相談支援センターとの、つながりはありますか',
+        ],
+      },
+    ],
+  },
+];
+
+// 第2のまとまりで使う、危険の度合い
+const riskLevels = [
+  { level: '命に関わる', desc: '放置すれば生命の危険', example: '重度のアレルギー、発作の誘因' },
+  { level: 'パニック・自傷を招く', desc: '本人が傷ついてしまう', example: '大きな音、急な予定変更、特定の言葉' },
+  { level: '不快・混乱を招く', desc: '落ち着きを失う', example: '特定の食感、人混み、明るすぎる照明' },
+];
+
+// 第5のまとまりで使う、親のしごとの棚卸し表
+const roleRows = [
+  { when: '朝', task: '起床の声かけ、着替えの介助' },
+  { when: '朝', task: '朝食の準備、服薬の確認' },
+  { when: '日中', task: '通所先への送迎' },
+  { when: '夕方', task: '入浴の見守り・介助' },
+  { when: '夜', task: '就寝の見守り、夜間の対応' },
+  { when: '随時', task: 'お金の管理' },
+  { when: '随時', task: '通院の付き添い' },
+  { when: '随時', task: '役所の手続き' },
+];
+
+const roleFollowUps = [
+  'もしお母さんが体調を崩されたら、この部分は誰がやりますか',
+  '使えるサービス（ヘルパー、ショートステイなど）はありますか',
+  'きょうだいや親戚で、協力してくれる方はいますか',
+];
+
+// 語り → 引き継げる情報（原典 8.2 の変換例。架空の事例）
+const narrative =
+  '息子は大きな音が苦手で、パニックになると自分の頭を叩きます。そのときは静かな部屋に連れていって、背中をさすると落ち着きます。今は私が全部の食事を作っていますが、来月から入院の予定があるんです。';
+
+const extracted = [
+  { kind: 'やってはいけないこと', body: '大きな音を出す', note: 'パニック・自傷を招く' },
+  { kind: 'うまくいく関わり方', body: '静かな部屋で背中をさする', note: '効果あり' },
+  { kind: '親がやっている仕事', body: '食事の準備', note: '今は母。代われる人は未定' },
+  { kind: '急ぎの注意', body: '母の入院予定', note: '来月' },
+];
+
+// 聴き方のコツ
+const techniques = [
+  {
+    name: 'ストーリーで聞く',
+    body: '「最近、困った場面はありましたか。そのときどうされましたか」。いつ・どこで・何が起きて・どう対応したか。エピソードで聞くと、ご本人も意識していない知恵が出てきます。',
+  },
+  {
+    name: '比べて聞く',
+    body: '「調子がいい日と悪い日では、どんな違いがありますか」「お父さんとお母さんでは、接し方に違いはありますか」。違いを聞くと、条件が見えます。',
+  },
+  {
+    name: '「もしも」で聞く',
+    body: '「もし初めての支援者が来るとしたら、最初に何を伝えますか」。仮定の場面が、普段は言葉にしない判断基準を引き出します。',
+  },
+];
+
+const mindset = [
+  '「教えてください」の姿勢で。親はケアの専門家です',
+  '一度に、全部を聞かない',
+  '沈黙を恐れない。思い出す時間を待つ',
+  '「なぜそうするか」まで残す。方法だけでは伝わらない',
+  '親の言葉を、そのまま残す。支援者の解釈で置き換えない',
+];
+
+// チェックリスト
+const checklistRequired = [
+  'お名前・生年月日・血液型',
+  'やってはいけないこと（1つ以上）',
+  'うまくいく関わり方（1つ以上）',
+  'いちばんに連絡する人（1名）',
+  'かかりつけ医',
+  '主に介護している方の基本情報',
+];
+
+const checklistRecommended = [
+  '生育歴の主なできごと',
+  '本人・家族の願い',
+  '診断名・服薬',
+  '連絡すべき人 2名以上',
+  '手帳・受給者証と更新日',
+  '親がやっている仕事の棚卸し（5つ以上）',
+  'それぞれの代わりの手段',
+  'お金の管理の状況',
+  '関わっている機関',
+];
+
+const updateTriggers = [
+  '年に1回の見直し',
+  'ご本人の状態が大きく変わったとき',
+  'ご家族の状況が変わったとき（入院・転居・介護負担の増加）',
+  '使うサービスが変わったとき',
+  '手帳・受給者証の更新のとき',
+];
+
+// 書いたあと、どこに残すか
+const destinations = [
+  {
+    name: '紙に書く',
+    forWhom: 'まず手を動かしたい方',
+    body: 'このページのチェックリストを印刷して、面談に持っていけます。',
+    link: null as { label: string; href: string; external?: boolean } | null,
+  },
+  {
+    name: '手元のパソコンに',
+    forWhom: '無料ではじめたい方',
+    body: '無料アプリ Obsidian に取り込むだけで使える、引き継ぎテンプレートを配布しています。書いたメモはずっとお手元に残ります。',
+    link: { label: '入手のしかたを見る', href: '/post-parent/tools/oya-inai-start/' },
+  },
+  {
+    name: '支援チームで共有する',
+    forWhom: '法人・支援者の方',
+    body: '聴き取った内容を構造化して、支援者が替わっても引き継げる形にするしくみです。',
+    link: { label: 'くらしサポートについて', href: '/post-parent/tools/#kurashi-support' },
+  },
+];
+---
+
+<BaseLayout
+  title="家族聴き取りガイド｜親なき後"
+  description="親御さんの頭の中にある「我が子を守る知恵」を、ことばにするための問い集です。7つのまとまり・約50の問い。ご家族はご自分への問いかけとして、支援者の方は面談の手引きとしてお使いいただけます。印刷できるチェックリストつき。"
+>
+  <PageIntro
+    eyebrow="Questions to ask"
+    title="聞いておきたかった、と思う前に"
+    lead="親の頭の中にある「我が子を守る知恵」は、書き残さなければ、その人と一緒に消えてしまいます。ここにあるのは、その知恵をことばにするための問いです。"
+  />
+
+  <!-- §1 この問い集の使い方 -->
+  <section class="section section--tight no-print">
+    <div class="container container--narrow reveal">
+      <div class="grid-3 usage">
+        <div class="usage__card">
+          <p class="usage__label">ご家族へ</p>
+          <p class="usage__text">
+            支援者に聞かれる前に、ご自分に問いかけてみてください。答えられないところは、飛ばして構いません。今日書けなかった問いは、また来年でいい。
+          </p>
+        </div>
+        <div class="usage__card">
+          <p class="usage__label">支援者の方へ</p>
+          <p class="usage__text">
+            面談の手引きとしてお使いください。上から順に消化するのではなく、語りの流れに合わせて拾ってください。
+          </p>
+        </div>
+        <div class="usage__card">
+          <p class="usage__label">一度に、全部やらない</p>
+          <p class="usage__text">
+            目安は1回60〜90分、4回に分けて。初回で網羅する必要はありません。ここは、終わらせるための表ではありません。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- §2 まず、3つだけ -->
+  <section class="section section--sand no-print" id="first-three">
+    <div class="container container--narrow reveal">
+      <h2 class="section__title">まず、3つだけ</h2>
+      <p class="section__lead">もし今日、3つしか書けないなら。この3つです。</p>
+
+      <ol class="three">
+        {firstThree.map((item, i) => (
+          <li class="three__item">
+            <div class="three__num" aria-hidden="true">{i + 1}</div>
+            <div class="three__body">
+              <p class="three__q">{item.q}</p>
+              <p class="three__hint">{item.hint}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <p class="three__close">
+        この3つが書けていれば、明日はじめて会う支援者でも、その人を守れます。
+      </p>
+    </div>
+  </section>
+
+  <!-- §3 7つのまとまり -->
+  <section class="section no-print" id="pillars">
+    <div class="container container--narrow reveal">
+      <h2 class="section__title">7つのまとまり</h2>
+      <p class="section__lead">
+        気になるところから、ひとつずつ開いてください。順番どおりでなくて構いません。
+      </p>
+
+      <div class="pillars">
+        {pillars.map((p) => (
+          <details class:list={['pillar', { 'pillar--critical': p.critical, 'pillar--gentle': p.gentle }]}>
+            <summary class="pillar__summary">
+              <span class="pillar__no" aria-hidden="true">{p.no}</span>
+              <span class="pillar__heading">
+                <span class="pillar__title">{p.title}</span>
+                <span class="pillar__en">{p.en}</span>
+              </span>
+              {p.critical && <span class="pillar__flag">最重要</span>}
+              <span class="pillar__chevron" aria-hidden="true"></span>
+            </summary>
+
+            <div class="pillar__body">
+              <p class="pillar__lead">{p.lead}</p>
+
+              {p.groups.map((g) => (
+                <div class="qgroup">
+                  {g.heading && <h3 class="qgroup__heading">{g.heading}</h3>}
+                  <ul class="qlist">
+                    {g.questions.map((q) => <li class="qlist__item">{q}</li>)}
+                  </ul>
+                </div>
+              ))}
+
+              {p.riskTable && (
+                <div class="qgroup">
+                  <h3 class="qgroup__heading">危険の度合いで、分けて考える</h3>
+                  <div class="table-wrap">
+                    <table class="tbl">
+                      <thead>
+                        <tr><th>度合い</th><th>どういうことか</th><th>例</th></tr>
+                      </thead>
+                      <tbody>
+                        {riskLevels.map((r) => (
+                          <tr>
+                            <th scope="row">{r.level}</th>
+                            <td>{r.desc}</td>
+                            <td>{r.example}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <h3 class="qgroup__heading">うまくいく関わり方</h3>
+                  <ul class="qlist">
+                    <li class="qlist__item">パニックになったとき、どうすると落ち着きますか</li>
+                    <li class="qlist__item">日常生活で「こうするとうまくいく」というコツはありますか</li>
+                    <li class="qlist__item">話しかけるとき、気をつけていることはありますか</li>
+                    <li class="qlist__item">食事・入浴・睡眠に、こだわりや決まったやり方はありますか</li>
+                    <li class="qlist__item">外出のとき、気をつけていることはありますか</li>
+                  </ul>
+
+                  <h3 class="qgroup__heading">からだのこと</h3>
+                  <ul class="qlist">
+                    <li class="qlist__item">診断名を教えてください</li>
+                    <li class="qlist__item">飲んでいる薬はありますか（名前・量・タイミング）</li>
+                    <li class="qlist__item">音・光・触れられることなどに、過敏さはありますか</li>
+                    <li class="qlist__item">体調が悪いときのサインは、どんなものですか</li>
+                  </ul>
+                </div>
+              )}
+
+              {p.roleTable && (
+                <div class="qgroup">
+                  <p class="qgroup__note">
+                    1日を順に話していただくと、名前のついていない仕事が次々に出てきます。
+                    右の2列が空いている行が、これから考えるところです。
+                  </p>
+                  <div class="table-wrap">
+                    <table class="tbl tbl--role">
+                      <thead>
+                        <tr><th>いつ</th><th>やっていること</th><th>今は誰が</th><th>代われる人・サービス</th></tr>
+                      </thead>
+                      <tbody>
+                        {roleRows.map((r) => (
+                          <tr>
+                            <th scope="row">{r.when}</th>
+                            <td>{r.task}</td>
+                            <td class="tbl__blank"></td>
+                            <td class="tbl__blank"></td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <h3 class="qgroup__heading">そして、一つひとつに</h3>
+                  <ul class="qlist">
+                    {roleFollowUps.map((q) => <li class="qlist__item">{q}</li>)}
+                  </ul>
+                </div>
+              )}
+
+              {p.tip && (
+                <p class="pillar__tip">
+                  <span class="pillar__tip-label">記録のコツ</span>
+                  {p.tip}
+                </p>
+              )}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- §4 語りが、引き継げる情報に変わる -->
+  <section class="section section--cream no-print">
+    <div class="container container--narrow reveal">
+      <h2 class="section__title">語りが、引き継げる情報に変わる</h2>
+      <p class="section__lead">
+        整った文章を書く必要はありません。ふつうに話すだけで十分です。
+      </p>
+
+      <figure class="convert">
+        <blockquote class="convert__voice">
+          <p class="convert__voice-label">親御さんの語り（例）</p>
+          <p class="convert__voice-text">{narrative}</p>
+        </blockquote>
+
+        <div class="convert__arrow" aria-hidden="true">↓</div>
+
+        <div class="convert__out">
+          {extracted.map((e) => (
+            <div class="chip">
+              <p class="chip__kind">{e.kind}</p>
+              <p class="chip__body">{e.body}</p>
+              <p class="chip__note">{e.note}</p>
+            </div>
+          ))}
+        </div>
+
+        <figcaption class="convert__caption">
+          ふつうに話しただけの4行が、そのまま4つの「引き継げる情報」になります。
+          <br />
+          ※ この例は説明のための架空のもので、実在の方の情報ではありません。
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- §5 聴き方のコツ -->
+  <section class="section no-print">
+    <div class="container container--narrow reveal">
+      <h2 class="section__title">聴き方の、3つのコツ</h2>
+
+      <div class="tips">
+        {techniques.map((t) => (
+          <div class="tip">
+            <h3 class="tip__name">{t.name}</h3>
+            <p class="tip__body">{t.body}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="info-box mindset">
+        <p class="info-box__title">心構え</p>
+        <ol class="mindset__list">
+          {mindset.map((m) => <li>{m}</li>)}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- §6 チェックリスト（印刷できます） -->
+  <section class="section section--sand print-target" id="checklist">
+    <div class="container container--narrow reveal">
+      <div class="checklist__head">
+        <div>
+          <h2 class="section__title">聴き取りチェックリスト</h2>
+          <p class="section__lead">印刷して、面談に持っていけます。</p>
+        </div>
+        <button type="button" class="btn btn--outline btn--sm no-print" data-print>
+          このリストを印刷する
+        </button>
+      </div>
+
+      <div class="grid-2 checklist">
+        <div class="checklist__col">
+          <h3 class="checklist__title">まず、これだけは</h3>
+          <ul class="checklist__list">
+            {checklistRequired.map((c) => <li>{c}</li>)}
+          </ul>
+        </div>
+        <div class="checklist__col">
+          <h3 class="checklist__title">3回目までに</h3>
+          <ul class="checklist__list">
+            {checklistRecommended.map((c) => <li>{c}</li>)}
+          </ul>
+        </div>
+      </div>
+
+      <div class="checklist__update">
+        <h3 class="checklist__title">そして、一度で終わりにしない</h3>
+        <ul class="checklist__update-list">
+          {updateTriggers.map((u) => <li>{u}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- §7 書いたあと、どこに残すか -->
+  <section class="section no-print">
+    <div class="container container--narrow reveal">
+      <h2 class="section__title">書いたあと、どこに残すか</h2>
+      <p class="section__lead">
+        聞いた内容は、残してはじめて引き継げます。ご事情に合う方法をお選びください。
+      </p>
+
+      <div class="grid-3 dests">
+        {destinations.map((d) => (
+          <div class="dest">
+            <p class="dest__for">{d.forWhom}</p>
+            <h3 class="dest__name">{d.name}</h3>
+            <p class="dest__body">{d.body}</p>
+            {d.link
+              ? <a class="inline-link" href={d.link.href}>{d.link.label} →</a>
+              : <button type="button" class="inline-link inline-link--btn" data-print>チェックリストを印刷する →</button>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight no-print">
+    <div class="container">
+      <CtaBlock
+        title="書き方に迷ったら"
+        body="「何から聞けばいいかわからない」「うまく言葉にできない」。そんなときこそ、ご相談ください。一緒に整理するところから、お手伝いします。"
+        primary={{ label: 'お問い合わせフォーム', href: '/contact/' }}
+        secondary={{ label: 'ツール・しくみへ戻る', href: '/post-parent/tools/' }}
+        variant="dark"
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-print]').forEach((btn) => {
+    btn.addEventListener('click', () => window.print());
+  });
+</script>
+
+<style>
+  /* ===== §1 使い方 ===== */
+  .usage { gap: var(--space-5); }
+  .usage__card {
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+  }
+  .usage__label {
+    font-family: var(--font-hand);
+    font-size: 17px;
+    color: var(--color-green-900);
+    margin-bottom: var(--space-2);
+  }
+  .usage__text {
+    font-size: 15px;
+    line-height: var(--lh-loose);
+    color: var(--color-ink-mute);
+  }
+
+  /* ===== §2 まず、3つだけ ===== */
+  .three {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-6) 0 0;
+    display: grid;
+    gap: var(--space-5);
+  }
+  .three__item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-4);
+    align-items: start;
+    background: var(--color-paper);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    box-shadow: var(--shadow-soft);
+  }
+  .three__num {
+    width: 44px;
+    height: 44px;
+    flex: none;
+    border-radius: 50%;
+    background: var(--color-green-700);
+    color: var(--color-cream);
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .three__q {
+    font-family: var(--font-hand);
+    font-size: 21px;
+    line-height: var(--lh-snug);
+    color: var(--color-green-900);
+    margin-bottom: var(--space-2);
+  }
+  .three__hint {
+    font-size: 14px;
+    line-height: var(--lh-normal);
+    color: var(--color-ink-soft);
+  }
+  .three__close {
+    margin-top: var(--space-6);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-line);
+    font-family: var(--font-hand);
+    font-size: 18px;
+    line-height: var(--lh-loose);
+    color: var(--color-green-900);
+    text-align: center;
+  }
+
+  /* ===== §3 7つのまとまり ===== */
+  .pillars {
+    margin-top: var(--space-6);
+    display: grid;
+    gap: var(--space-3);
+  }
+  .pillar {
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    background: var(--color-paper);
+    overflow: hidden;
+  }
+  .pillar--critical { border-left: 4px solid var(--color-terra-500); }
+  .pillar--gentle { border-left: 4px solid var(--color-green-500); }
+
+  .pillar__summary {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-5);
+    cursor: pointer;
+    list-style: none;
+    transition: background var(--dur-fast) var(--ease-out);
+  }
+  .pillar__summary::-webkit-details-marker { display: none; }
+  .pillar__summary:hover { background: var(--color-cream); }
+
+  .pillar__no {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--color-green-100);
+    color: var(--color-green-900);
+    font-family: var(--font-serif);
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pillar__heading { display: grid; gap: 2px; }
+  .pillar__title {
+    font-family: var(--font-hand);
+    font-size: 19px;
+    color: var(--color-green-900);
+    line-height: var(--lh-snug);
+  }
+  .pillar__en {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--color-ink-soft);
+  }
+  .pillar__flag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--color-paper);
+    background: var(--color-terra-500);
+    border-radius: var(--radius-pill);
+    padding: 3px 10px;
+    white-space: nowrap;
+  }
+  .pillar__chevron {
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid var(--color-green-700);
+    border-bottom: 2px solid var(--color-green-700);
+    transform: rotate(45deg) translate(-2px, -2px);
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+  .pillar[open] .pillar__chevron { transform: rotate(-135deg) translate(-2px, -2px); }
+
+  .pillar__body {
+    padding: 0 var(--space-5) var(--space-5);
+    border-top: 1px solid var(--color-line-soft);
+  }
+  .pillar__lead {
+    font-size: 14px;
+    line-height: var(--lh-loose);
+    color: var(--color-ink-mute);
+    margin: var(--space-4) 0 var(--space-5);
+  }
+
+  .qgroup + .qgroup { margin-top: var(--space-5); }
+  .qgroup__heading {
+    font-size: var(--fs-small);
+    font-family: var(--font-mono);
+    letter-spacing: 0.06em;
+    color: var(--color-green-700);
+    margin: var(--space-5) 0 var(--space-3);
+  }
+  .qgroup__heading:first-child { margin-top: 0; }
+  .qgroup__note {
+    font-size: 14px;
+    line-height: var(--lh-loose);
+    color: var(--color-ink-mute);
+    margin-bottom: var(--space-4);
+  }
+
+  .qlist { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-2); }
+  .qlist__item {
+    position: relative;
+    padding-left: 1.4em;
+    font-size: 15px;
+    line-height: var(--lh-loose);
+    color: var(--color-ink);
+  }
+  .qlist__item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-green-500);
+  }
+
+  .table-wrap { overflow-x: auto; margin-bottom: var(--space-4); }
+  .tbl {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    line-height: var(--lh-normal);
+  }
+  .tbl th, .tbl td {
+    border: 1px solid var(--color-line);
+    padding: var(--space-3);
+    text-align: left;
+    vertical-align: top;
+  }
+  .tbl thead th {
+    background: var(--color-cream);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--color-green-700);
+    white-space: nowrap;
+  }
+  .tbl tbody th {
+    background: var(--color-cream);
+    color: var(--color-green-900);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .tbl td { color: var(--color-ink-mute); }
+  .tbl__blank { background: repeating-linear-gradient(180deg, transparent 0 22px, var(--color-line-soft) 22px 23px); min-width: 8em; }
+  .tbl--role { min-width: 560px; }
+
+  .pillar__tip {
+    margin-top: var(--space-5);
+    background: var(--color-cream);
+    border-left: 3px solid var(--color-green-700);
+    border-radius: var(--radius-sm);
+    padding: var(--space-4);
+    font-size: 14px;
+    line-height: var(--lh-loose);
+    color: var(--color-ink);
+  }
+  .pillar__tip-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--color-green-700);
+    margin-bottom: var(--space-2);
+  }
+
+  /* ===== §4 変換例 ===== */
+  .convert { margin: var(--space-6) 0 0; }
+  .convert__voice {
+    background: var(--color-paper);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+    padding: var(--space-5) var(--space-6);
+    margin: 0;
+  }
+  .convert__voice-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--color-ink-soft);
+    margin-bottom: var(--space-3);
+  }
+  .convert__voice-text {
+    font-family: var(--font-hand);
+    font-size: 18px;
+    line-height: var(--lh-loose);
+    color: var(--color-green-900);
+  }
+  .convert__arrow {
+    text-align: center;
+    font-size: 26px;
+    color: var(--color-green-500);
+    margin: var(--space-4) 0;
+  }
+  .convert__out {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+  .chip {
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-top: 3px solid var(--color-green-700);
+    border-radius: var(--radius-sm);
+    padding: var(--space-4);
+  }
+  .chip__kind {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--color-green-700);
+    margin-bottom: var(--space-2);
+  }
+  .chip__body {
+    font-size: 15px;
+    line-height: var(--lh-snug);
+    color: var(--color-ink);
+    margin-bottom: var(--space-2);
+  }
+  .chip__note { font-size: 13px; color: var(--color-ink-soft); }
+  .convert__caption {
+    margin-top: var(--space-5);
+    font-size: 14px;
+    line-height: var(--lh-loose);
+    color: var(--color-ink-mute);
+    text-align: center;
+  }
+
+  /* ===== §5 コツ ===== */
+  .tips { margin-top: var(--space-6); display: grid; gap: var(--space-4); }
+  .tip {
+    border-left: 3px solid var(--color-green-500);
+    padding-left: var(--space-5);
+  }
+  .tip__name {
+    font-family: var(--font-hand);
+    font-size: 19px;
+    color: var(--color-green-900);
+    margin-bottom: var(--space-2);
+  }
+  .tip__body {
+    font-size: 15px;
+    line-height: var(--lh-loose);
+    color: var(--color-ink-mute);
+  }
+  .mindset { margin-top: var(--space-7); }
+  .mindset__list {
+    margin: 0;
+    padding-left: 1.4em;
+    display: grid;
+    gap: var(--space-2);
+    font-size: 15px;
+    line-height: var(--lh-loose);
+    color: var(--color-ink);
+  }
+
+  /* ===== §6 チェックリスト ===== */
+  .checklist__head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+  .checklist { margin-top: var(--space-6); gap: var(--space-6); }
+  .checklist__title {
+    font-family: var(--font-hand);
+    font-size: 18px;
+    color: var(--color-green-900);
+    margin-bottom: var(--space-3);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--color-line);
+  }
+  .checklist__list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); }
+  .checklist__list li {
+    position: relative;
+    padding-left: 2em;
+    font-size: 15px;
+    line-height: var(--lh-normal);
+    color: var(--color-ink);
+  }
+  .checklist__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.1em;
+    width: 17px;
+    height: 17px;
+    border: 1.5px solid var(--color-green-700);
+    border-radius: var(--radius-sm);
+    background: var(--color-paper);
+  }
+  .checklist__update { margin-top: var(--space-7); }
+  .checklist__update-list {
+    margin: 0;
+    padding-left: 1.3em;
+    display: grid;
+    gap: var(--space-2);
+    font-size: 15px;
+    line-height: var(--lh-normal);
+    color: var(--color-ink-mute);
+  }
+
+  /* ===== §7 残しかた ===== */
+  .dests { margin-top: var(--space-6); gap: var(--space-5); }
+  .dest {
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .dest__for {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--color-green-700);
+  }
+  .dest__name {
+    font-family: var(--font-hand);
+    font-size: 19px;
+    color: var(--color-green-900);
+  }
+  .dest__body {
+    font-size: 14px;
+    line-height: var(--lh-loose);
+    color: var(--color-ink-mute);
+    flex: 1;
+  }
+
+  .inline-link {
+    color: var(--color-green-700);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    font-size: 14px;
+  }
+  .inline-link:hover { color: var(--color-terra-500); }
+  .inline-link--btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+    font: inherit;
+    font-size: 14px;
+    color: var(--color-green-700);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  @media (max-width: 768px) {
+    .convert__out { grid-template-columns: 1fr; }
+    .pillar__summary { grid-template-columns: auto 1fr auto; gap: var(--space-3); padding: var(--space-4); }
+    .pillar__flag { grid-column: 2; justify-self: start; }
+    .three__q { font-size: 19px; }
+  }
+
+  /* ===== 印刷（チェックリストだけを出す） ===== */
+  @media print {
+    .no-print { display: none !important; }
+    :global(footer) { display: none !important; }
+
+    .print-target { padding: 0 !important; background: #fff !important; }
+    .checklist { grid-template-columns: 1fr 1fr; }
+    .checklist__list li,
+    .checklist__update-list li { break-inside: avoid; }
+    .checklist__list li::before { border-color: #333; }
+    .section__title { font-size: 20px; }
+  }
+</style>

@@ -31,6 +31,8 @@ export interface ToolManual {
 }
 
 export interface ToolIntro {
+  id?: string;      // ページ内アンカー用（例: kurashi-support → /post-parent/tools/#kurashi-support）
+  step?: string;    // 「聞く → 書く → 残す・共有する」の3段のどこに位置するか
   name: string;
   tagline: string;
   forWhom: string;
@@ -83,11 +85,57 @@ export const seminars: Seminar[] = [
 
 // ツール・しくみ紹介（概念紹介のみ。実データ・内部構造は載せない）
 export const tools: ToolIntro[] = [
+  // ── ① 聞く ─────────────────────────────────────────────
   {
+    id: 'kikitori-guide',
+    step: '聞く',
+    name: '家族聴き取りガイド',
+    tagline: '「聞いておけばよかった」を、なくすために',
+    forWhom: 'ご家族・相談支援専門員向け',
+    body:
+      '親御さんの頭の中にある「我が子を守る知恵」を、ことばにするための問い集です。' +
+      '7つのまとまり・約50の問いを、ご家族はご自分への問いかけとして、支援者の方は面談の手引きとして使えます。' +
+      'まずは「3つだけ」から。印刷して面談に持っていけるチェックリストもつけました。',
+    image: '/images/post-parent/kikitori-guide.svg',
+    imageAlt: '「家族聴き取りガイド」の冒頭「まず、3つだけ」の画面例。3つの問いが番号つきで並んでいる。',
+    links: [
+      { label: '問い集を読む', href: '/post-parent/tools/kikitori-guide/' },
+      { label: 'この取り組みについて問い合わせる', href: '/contact/' },
+    ],
+  },
+
+  // ── ② 書く ─────────────────────────────────────────────
+  {
+    id: 'oya-inai-template',
+    step: '書く',
+    name: '親なき後・引き継ぎテンプレート（Obsidian）',
+    tagline: '親の「我が子を守る知恵」を、無料で・誰でも残せる形に',
+    forWhom: '障がいのある子をもつご家族・相談支援専門員向け',
+    body:
+      '専用システムがなくても、今日から始められる無料のテンプレートです。無料アプリ Obsidian に取り込むだけで、' +
+      '本人の「これだけは」を1枚にまとめたり、好き嫌い・関わり方・試行錯誤を記録できます。書いたメモは手元に残り、次の支援者へ引き継げます。' +
+      '「くらしサポート」の考え方を、誰もが手元で始められる軽量版にしたものです。' +
+      '上の「家族聴き取りガイド」で聞いたことを、そのまま書き込む先としてお使いください。',
+    image: '/images/post-parent/oya-inai-template.png',
+    imageAlt: '「親なき後・引き継ぎテンプレート」の画面例',
+    links: [
+      { label: '入手のしかた（画像つき手順）', href: '/post-parent/tools/oya-inai-start/' },
+      { label: 'GitHubで入手する（無料）', href: 'https://github.com/kazumasakawahara/oya-inai', external: true },
+      { label: 'この取り組みについて問い合わせる', href: '/contact/' },
+    ],
+  },
+
+  // ── ③ 残す・共有する ───────────────────────────────────
+  {
+    id: 'kurashi-support',
+    step: '残す・共有する',
     name: 'くらしサポート（親なき後支援データベース）',
     tagline: '親の暗黙知を、支援者みんなで引き継げる形に',
     forWhom: 'nest と、関心のある支援者・法人向け',
-    body: '親や家族が積み重ねた「我が子を守る知恵」を、特定の誰かの記憶に頼らず継承するための仕組みです。本人の大切にしていること、緊急時の注意、支えてくれる人のつながりを整理し、必要なときに必要な人へ確実に引き継げる形にします。',
+    body:
+      '親や家族が積み重ねた「我が子を守る知恵」を、特定の誰かの記憶に頼らず継承するための仕組みです。' +
+      '本人の大切にしていること、緊急時の注意、支えてくれる人のつながりを整理し、必要なときに必要な人へ確実に引き継げる形にします。' +
+      '聴き取りガイドの7つのまとまりが、そのままこのしくみの骨格になっています。',
     video: '/videos/kurashi-support-ai.mp4',
     poster: '/videos/kurashi-support-ai-poster.jpg',
     manual: {
@@ -103,23 +151,14 @@ export const tools: ToolIntro[] = [
     ],
   },
   {
-    name: '親なき後・引き継ぎテンプレート（Obsidian）',
-    tagline: '親の「我が子を守る知恵」を、無料で・誰でも残せる形に',
-    forWhom: '障がいのある子をもつご家族・相談支援専門員向け',
-    body: '専用システムがなくても、今日から始められる無料のテンプレートです。無料アプリ Obsidian に取り込むだけで、本人の「これだけは」を1枚にまとめたり、好き嫌い・関わり方・試行錯誤を記録できます。書いたメモは手元に残り、次の支援者へ引き継げます。「くらしサポート」の考え方を、誰もが手元で始められる軽量版にしたものです。',
-    image: '/images/post-parent/oya-inai-template.png',
-    imageAlt: '「親なき後・引き継ぎテンプレート」の画面例',
-    links: [
-      { label: '入手のしかた（画像つき手順）', href: '/post-parent/tools/oya-inai-start/' },
-      { label: 'GitHubで入手する（無料）', href: 'https://github.com/kazumasakawahara/oya-inai', external: true },
-      { label: 'この取り組みについて問い合わせる', href: '/contact/' },
-    ],
-  },
-  {
+    id: 'ecomap',
+    step: '残す・共有する',
     name: '支援エコマップ',
     tagline: '本人を中心とした支援ネットワークを可視化',
     forWhom: '相談支援専門員・社会福祉士・行政職員向け',
-    body: '医療・福祉・権利擁護など、本人を支える人と機関のつながりを、直感的な図として描き・共有できるツールです。支援者間の情報共有を円滑にします。',
+    body:
+      '医療・福祉・権利擁護など、本人を支える人と機関のつながりを、直感的な図として描き・共有できるツールです。支援者間の情報共有を円滑にします。' +
+      '聴き取りガイドの「もしものとき、誰に」「いま、関わってくれている人たち」で挙がった名前が、そのまま図になります。',
     image: '/images/post-parent/ecomap.png',
     imageAlt: '本人を中心に、医療・福祉・権利擁護・家族などの支援ネットワークをノードとつながりで可視化したエコマップの例',
     links: [

@@ -3,6 +3,31 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageIntro from '../../components/PageIntro.astro';
 import CtaBlock from '../../components/CtaBlock.astro';
 import { tools } from '../../lib/post-parent';
+
+// 「聞く → 書く → 残す・共有する」の3段。tools 配列の step と対応する。
+const flow = [
+  {
+    no: '1',
+    step: '聞く',
+    lead: '何を聞けばいいかを、決める',
+    body: '親御さんの頭の中にある知恵を、ことばにするための問い集。すべてはここから始まります。',
+    href: '#kikitori-guide',
+  },
+  {
+    no: '2',
+    step: '書く',
+    lead: '手元に、書き留める',
+    body: '聞いたことを、無料のテンプレートに書き込む。パソコン1台あれば、今日から始められます。',
+    href: '#oya-inai-template',
+  },
+  {
+    no: '3',
+    step: '残す・共有する',
+    lead: '支援チームで、引き継ぐ',
+    body: '書いたものを構造化し、支援者が替わっても質が落ちない形にする。図としても共有できます。',
+    href: '#kurashi-support',
+  },
+];
 ---
 <BaseLayout
   title="ツール・しくみ｜親なき後"
@@ -14,10 +39,32 @@ import { tools } from '../../lib/post-parent';
     lead="親なき後も支援が途切れないために。nestが取り組んでいる、知恵をつなぐためのしくみです。"
   />
 
+  <section class="section section--tight">
+    <div class="container container--narrow reveal">
+      <p class="flow-intro">
+        ここにあるしくみは、ばらばらの道具ではありません。<br />
+        <strong>聞く → 書く → 残す・共有する</strong>という、ひとつの流れです。
+      </p>
+
+      <ol class="flowmap">
+        {flow.map((f) => (
+          <li class="flowmap__item">
+            <a class="flowmap__link" href={f.href}>
+              <span class="flowmap__no" aria-hidden="true">{f.no}</span>
+              <span class="flowmap__step">{f.step}</span>
+              <span class="flowmap__lead">{f.lead}</span>
+              <span class="flowmap__body">{f.body}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
   <section class="section">
     <div class="container container--narrow">
       {tools.map((t, i) => (
-        <article class:list={['tool', { 'tool--alt': i % 2 === 1 }]} >
+        <article id={t.id} class:list={['tool', { 'tool--alt': i % 2 === 1 }]} >
           <div class="tool__media">
             {t.video ? (
               <div class="video-embed">
@@ -35,6 +82,7 @@ import { tools } from '../../lib/post-parent';
               : <div class="tool__placeholder" aria-hidden="true">準備中</div>}
           </div>
           <div class="tool__body">
+            {t.step && <p class="tool__step"><span class="tool__step-dot" aria-hidden="true"></span>{t.step}</p>}
             <p class="tool__for">{t.forWhom}</p>
             <h2 class="tool__title">{t.name}</h2>
             <p class="tool__tagline">{t.tagline}</p>
@@ -91,6 +139,110 @@ import { tools } from '../../lib/post-parent';
 </script>
 
 <style>
+  /* ===== 聞く → 書く → 残す・共有する（3段の流れ） ===== */
+  .flow-intro {
+    text-align: center;
+    font-size: 16px;
+    line-height: var(--lh-loose);
+    color: var(--color-ink-mute);
+    margin-bottom: var(--space-6);
+  }
+  .flow-intro strong {
+    font-family: var(--font-hand);
+    font-size: 19px;
+    color: var(--color-green-900);
+    font-weight: 600;
+  }
+
+  .flowmap {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+  .flowmap__item { position: relative; }
+  /* 項目のあいだに矢印を置く */
+  .flowmap__item + .flowmap__item::before {
+    content: '';
+    position: absolute;
+    left: calc(var(--space-5) / -2 - 4px);
+    top: 42px;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--color-green-500);
+    border-bottom: 2px solid var(--color-green-500);
+    transform: rotate(-45deg);
+  }
+
+  .flowmap__link {
+    display: grid;
+    gap: var(--space-2);
+    height: 100%;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    text-decoration: none;
+    transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+  }
+  .flowmap__link:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+  }
+  .flowmap__no {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--color-green-700);
+    color: var(--color-cream);
+    font-family: var(--font-serif);
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .flowmap__step {
+    font-family: var(--font-hand);
+    font-size: 20px;
+    color: var(--color-green-900);
+    line-height: var(--lh-snug);
+  }
+  .flowmap__lead {
+    font-size: var(--fs-small);
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+    color: var(--color-green-700);
+  }
+  .flowmap__body {
+    font-size: 14px;
+    line-height: var(--lh-loose);
+    color: var(--color-ink-mute);
+  }
+
+  /* カード側の段バッジ */
+  .tool__step {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--color-green-700);
+    background: var(--color-green-100);
+    border-radius: var(--radius-pill);
+    padding: 3px 12px;
+    margin-bottom: var(--space-3);
+  }
+  .tool__step-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-green-500);
+  }
+
   .tool {
     display: grid;
     grid-template-columns: 0.9fr 1.1fr;
@@ -234,6 +386,18 @@ import { tools } from '../../lib/post-parent';
   }
 
   .tool__links { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+  /* アンカー移動時、固定ヘッダーの下に隠れないように */
+  .tool[id] { scroll-margin-top: var(--space-8); }
+
+  @media (max-width: 900px) {
+    .flowmap { grid-template-columns: 1fr; gap: var(--space-4); }
+    .flowmap__item + .flowmap__item::before {
+      left: 50%;
+      top: calc(var(--space-4) / -2 - 6px);
+      transform: rotate(45deg) translateX(-50%);
+    }
+  }
 
   @media (max-width: 768px) {
     .tool { grid-template-columns: 1fr; }
