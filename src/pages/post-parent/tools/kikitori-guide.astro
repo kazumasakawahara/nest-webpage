@@ -239,6 +239,59 @@ const mindset = [
   '親の言葉を、そのまま残す。支援者の解釈で置き換えない',
 ];
 
+// ── 支援者向け：面談の設計（原典 第2章）──
+const sessionPlan = [
+  { round: '第1回', target: '① この人は、どんな人か ＋ ② これだけは、覚えていてほしい', time: '60〜90分', priority: '最高', rank: 'top' },
+  { round: '第2回', target: '③ もしものとき、誰に', time: '40〜60分', priority: '最高', rank: 'top' },
+  { round: '第3回', target: '④ 紙の上の手続き ＋ ⑤ 私がやっている、名前のない仕事', time: '60〜90分', priority: '高', rank: 'high' },
+  { round: '第4回', target: '⑥ お金を、守る ＋ ⑦ いま、関わってくれている人たち', time: '40〜60分', priority: '通常', rank: 'normal' },
+  { round: '補足回', target: '不足の補完・変化の反映', time: '30分程度', priority: '随時', rank: 'normal' },
+];
+
+// 聴き取り開始前の準備（原典 2.2）
+const preparation = [
+  'ご家族に、目的と所要時間をあらかじめ説明し、同意を得る',
+  '可能であればご本人も同席する（難しければ、別途面談の場を設ける）',
+  '既存の支援記録・手帳の写しなどがあれば、事前に目を通しておく',
+  '落ち着いて話せる場所を確保する',
+  '記録の正確さのため、録音の可否を事前に確認する',
+];
+
+// 記録フォーマット（原典 8.3）
+const recordFormat = `【クライアント名】
+【聴き取り日】
+【聴き取り者】
+【対象者】　（続柄）
+【内容】
+　（語られたままを、自由記述で）`;
+
+// 5つの価値（原典 1.2）
+const values = [
+  { name: '尊厳', meaning: '一人の人間として記録する', practice: '「管理対象」ではなく「その人の物語」として聴く' },
+  { name: '安全', meaning: '緊急時に迷わせない', practice: 'やってはいけないこと・危険情報を最優先で確認する' },
+  { name: '継続性', meaning: '支援者が替わっても質を保つ', practice: '「なぜそうするか」の理由まで記録する' },
+  { name: '強靭性', meaning: '親の代わりを用意する', practice: '「親がいなくなったら誰が」を具体的に確認する' },
+  { name: '権利擁護', meaning: '本人の声を拾い上げる', practice: 'ご本人の意思・希望を必ず確認する' },
+];
+
+// 配布ファイル
+const downloads = [
+  {
+    kind: 'PDF ・ A4 2ページ',
+    name: '記入シート',
+    body: '1ページ目が「まず、3つだけ」の記入シート、2ページ目が聴き取りチェックリストです。印刷して、そのまま面談に持っていけます。',
+    href: '/downloads/kikitori-sheet.pdf',
+    label: 'PDFをダウンロード',
+  },
+  {
+    kind: 'Word（.docx） ・ 支援者向け',
+    name: '家族聴き取りマニュアル（原典）',
+    body: 'このページのもとになった、nestの業務用マニュアルです。Version 1.0（2026年2月）。法人内での研修や、様式づくりの下敷きとしてご自由にお使いください。',
+    href: '/docs/post-parent/kikitori-manual-v1.0.docx',
+    label: 'Word版をダウンロード',
+  },
+];
+
 // チェックリスト
 const checklistRequired = [
   'お名前・生年月日・血液型',
@@ -316,6 +369,9 @@ const destinations = [
           <p class="usage__label">支援者の方へ</p>
           <p class="usage__text">
             面談の手引きとしてお使いください。上から順に消化するのではなく、語りの流れに合わせて拾ってください。
+            回数の設計・事前準備・記録フォーマットは
+            <a class="inline-link" href="#for-professionals">進め方の設計</a>に、
+            様式は<a class="inline-link" href="#downloads">ダウンロード</a>にまとめています。
           </p>
         </div>
         <div class="usage__card">
@@ -526,6 +582,79 @@ const destinations = [
     </div>
   </section>
 
+  <!-- §5.5 支援者の方へ：進め方の設計 -->
+  <section class="section section--cream no-print" id="for-professionals">
+    <div class="container container--narrow reveal">
+      <p class="pro__eyebrow">FOR PROFESSIONALS</p>
+      <h2 class="section__title">支援者の方へ ── 進め方の設計</h2>
+      <p class="section__lead">
+        ここから先は、面談を組み立てる方に向けた実務的な情報です。nestが現場で使っている手順を、そのまま公開しています。
+      </p>
+
+      <div class="pro">
+        <h3 class="pro__title"><span class="pro__num">1</span>全体の設計（4回＋補足回）</h3>
+        <p class="pro__text">
+          初回で網羅しようとしないでください。7つのまとまりは、次の順で分けると無理がありません。
+        </p>
+        <div class="table-wrap">
+          <table class="tbl">
+            <thead>
+              <tr><th>回</th><th>扱うまとまり</th><th>所要時間</th><th>優先度</th></tr>
+            </thead>
+            <tbody>
+              {sessionPlan.map((s) => (
+                <tr>
+                  <th scope="row">{s.round}</th>
+                  <td>{s.target}</td>
+                  <td>{s.time}</td>
+                  <td><span class:list={['prio', `prio--${s.rank}`]}>{s.priority}</span></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="pro__title"><span class="pro__num">2</span>聴き取りをはじめる前に</h3>
+        <ul class="qlist">
+          {preparation.map((p) => <li class="qlist__item">{p}</li>)}
+        </ul>
+
+        <h3 class="pro__title"><span class="pro__num">3</span>記録のしかた</h3>
+        <p class="pro__text">
+          整った文章に直さないでください。親御さんの言葉のまま、次の形で書き起こします。
+          解釈を加えず語りのまま残しておくと、あとから必要な情報を取り出せます。
+        </p>
+        <div class="format">
+          <pre class="format__body">{recordFormat}</pre>
+        </div>
+        <p class="pro__note">
+          メモは必要最小限にとどめ、可能であれば許可を得て録音してください。書くことに気を取られると、語りが止まります。
+        </p>
+
+        <h3 class="pro__title"><span class="pro__num">4</span>迷ったときの、5つの拠りどころ</h3>
+        <p class="pro__text">
+          どこまで聞くか、どう記録するかで迷ったら、この5つに立ち返ってください。
+        </p>
+        <div class="table-wrap">
+          <table class="tbl">
+            <thead>
+              <tr><th>価値</th><th>意味</th><th>聴き取りでの実践</th></tr>
+            </thead>
+            <tbody>
+              {values.map((v) => (
+                <tr>
+                  <th scope="row">{v.name}</th>
+                  <td>{v.meaning}</td>
+                  <td>{v.practice}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- §6 チェックリスト（印刷できます） -->
   <section class="section section--sand print-target" id="checklist">
     <div class="container container--narrow reveal">
@@ -534,9 +663,14 @@ const destinations = [
           <h2 class="section__title">聴き取りチェックリスト</h2>
           <p class="section__lead">印刷して、面談に持っていけます。</p>
         </div>
-        <button type="button" class="btn btn--outline btn--sm no-print" data-print>
-          このリストを印刷する
-        </button>
+        <div class="checklist__actions no-print">
+          <button type="button" class="btn btn--outline btn--sm" data-print>
+            このリストを印刷する
+          </button>
+          <a class="btn btn--outline btn--sm" href="/downloads/kikitori-sheet.pdf" target="_blank" rel="noopener">
+            記入シート（PDF）
+          </a>
+        </div>
       </div>
 
       <div class="grid-2 checklist">
@@ -560,6 +694,35 @@ const destinations = [
           {updateTriggers.map((u) => <li>{u}</li>)}
         </ul>
       </div>
+    </div>
+  </section>
+
+  <!-- §6.5 ダウンロード -->
+  <section class="section no-print" id="downloads">
+    <div class="container container--narrow reveal">
+      <h2 class="section__title">ダウンロード</h2>
+      <p class="section__lead">
+        どちらも無料です。事業所内での配布・複製も、ご自由にどうぞ。
+      </p>
+
+      <div class="grid-2 dls">
+        {downloads.map((d) => (
+          <div class="dl">
+            <p class="dl__kind">{d.kind}</p>
+            <h3 class="dl__name">{d.name}</h3>
+            <p class="dl__body">{d.body}</p>
+            <a class="btn btn--primary btn--sm" href={d.href} target="_blank" rel="noopener">
+              {d.label}
+              <span class="btn__icon" aria-hidden="true">↓</span>
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <p class="dls__note">
+        原典のWord版は、支援者が家族から聴き取るための業務マニュアルとして書かれています。
+        このページは、それをご家族にも読める形に組み直したものです。内容は同じです。
+      </p>
     </div>
   </section>
 
@@ -941,7 +1104,122 @@ const destinations = [
     color: var(--color-ink);
   }
 
+  /* ===== §5.5 支援者向け ===== */
+  .pro__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--color-terra-500);
+    margin-bottom: var(--space-2);
+  }
+  .pro { margin-top: var(--space-6); }
+  .pro__title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-hand);
+    font-size: 19px;
+    color: var(--color-green-900);
+    margin: var(--space-7) 0 var(--space-3);
+  }
+  .pro__title:first-child { margin-top: 0; }
+  .pro__num {
+    flex: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--color-green-700);
+    color: var(--color-cream);
+    font-family: var(--font-serif);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pro__text {
+    font-size: 15px;
+    line-height: var(--lh-loose);
+    color: var(--color-ink-mute);
+    margin-bottom: var(--space-4);
+  }
+  .pro__note {
+    font-size: 14px;
+    line-height: var(--lh-loose);
+    color: var(--color-ink-soft);
+    margin-top: var(--space-3);
+  }
+  .prio {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    border-radius: var(--radius-pill);
+    padding: 2px 10px;
+    white-space: nowrap;
+  }
+  .prio--top { background: var(--color-terra-100); color: var(--color-terra-700); }
+  .prio--high { background: var(--color-green-100); color: var(--color-green-700); }
+  .prio--normal { background: var(--color-sand); color: var(--color-ink-mute); }
+
+  .format {
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-left: 3px solid var(--color-green-700);
+    border-radius: var(--radius-sm);
+    padding: var(--space-4) var(--space-5);
+    overflow-x: auto;
+  }
+  .format__body {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: var(--lh-loose);
+    color: var(--color-ink);
+    white-space: pre-wrap;
+  }
+
+  /* ===== §6.5 ダウンロード ===== */
+  .dls { margin-top: var(--space-6); gap: var(--space-5); }
+  .dl {
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+  .dl__kind {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--color-green-700);
+    background: var(--color-green-100);
+    border-radius: var(--radius-pill);
+    padding: 3px 10px;
+  }
+  .dl__name {
+    font-family: var(--font-hand);
+    font-size: 19px;
+    color: var(--color-green-900);
+  }
+  .dl__body {
+    font-size: 14px;
+    line-height: var(--lh-loose);
+    color: var(--color-ink-mute);
+    flex: 1;
+    margin-bottom: var(--space-2);
+  }
+  .dls__note {
+    margin-top: var(--space-5);
+    font-size: 14px;
+    line-height: var(--lh-loose);
+    color: var(--color-ink-soft);
+  }
+
   /* ===== §6 チェックリスト ===== */
+  .checklist__actions { display: flex; gap: var(--space-3); flex-wrap: wrap; }
   .checklist__head {
     display: flex;
     align-items: flex-end;
@@ -1036,6 +1314,9 @@ const destinations = [
     text-decoration: underline;
     text-underline-offset: 2px;
   }
+
+  /* アンカー移動時の余白 */
+  section[id] { scroll-margin-top: var(--space-6); }
 
   @media (max-width: 768px) {
     .convert__out { grid-template-columns: 1fr; }
