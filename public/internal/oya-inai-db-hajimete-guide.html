@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>はじめてガイド｜親なき後支援データベース（oya-inai-db）導入マニュアル</title>
+<style>
+:root {
+  --ink: #1f2933;
+  --ink-soft: #52606d;
+  --accent: #0f6b54;
+  --accent-soft: #e7f4f0;
+  --line: #d9e2ec;
+  --bg: #fbfdfc;
+  --code-bg: #f1f5f4;
+  --warn-bg: #fff8e6;
+  --warn-line: #e6c66e;
+  --win: #1565c0;
+  --win-soft: #e8f1fb;
+  --mac: #6a4fa3;
+  --mac-soft: #f1edf9;
+  --ok: #2e7d32;
+  --ok-soft: #eaf5ea;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Meiryo", sans-serif;
+  line-height: 1.95; font-size: 16.5px;
+}
+.page { max-width: 860px; margin: 0 auto; padding: 40px 24px 96px; }
+header.hero {
+  background: linear-gradient(135deg, #0f6b54 0%, #14856a 60%, #1c9a7c 100%);
+  color: #fff; border-radius: 16px; padding: 40px 32px; margin-bottom: 36px;
+}
+header.hero h1 { margin: 0 0 12px; font-size: 1.75em; line-height: 1.5; border: none; color: #fff; }
+header.hero p { margin: 6px 0; font-size: 1.02em; opacity: .95; }
+header.hero .hero-note { font-size: .92em; opacity: .85; margin-top: 14px; }
+h2 {
+  font-size: 1.42em; margin: 64px 0 18px; padding: 10px 16px;
+  background: var(--accent-soft); border-left: 6px solid var(--accent); border-radius: 6px;
+}
+h3 { font-size: 1.15em; margin: 36px 0 12px; color: var(--accent); }
+p { margin: 12px 0; }
+a { color: var(--accent); }
+ul, ol { padding-left: 1.5em; }
+li { margin: 8px 0; }
+
+/* 目次 */
+nav.toc { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 22px 26px; }
+nav.toc .toc-title { font-weight: 700; margin-bottom: 8px; }
+nav.toc ol { margin: 0; }
+nav.toc li { margin: 6px 0; }
+
+/* OSバッジ */
+.os-badge { display: inline-block; font-size: .82em; font-weight: 700; padding: 2px 12px; border-radius: 999px; vertical-align: middle; }
+.os-badge.win { background: var(--win-soft); color: var(--win); }
+.os-badge.mac { background: var(--mac-soft); color: var(--mac); }
+
+/* ステップカード */
+.step { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 22px 26px; margin: 22px 0; }
+.step .step-head { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
+.step .step-num {
+  flex: none; width: 44px; height: 44px; border-radius: 50%;
+  background: var(--accent); color: #fff; font-weight: 700; font-size: 1.15em;
+  display: flex; align-items: center; justify-content: center;
+}
+.step.win .step-num { background: var(--win); }
+.step.mac .step-num { background: var(--mac); }
+.step .step-title { font-size: 1.12em; font-weight: 700; margin: 0; }
+.step .time { font-size: .85em; color: var(--ink-soft); margin-left: auto; white-space: nowrap; }
+
+/* できたか確認 */
+.check {
+  background: var(--ok-soft); border: 1px solid #bfe3c0; border-radius: 10px;
+  padding: 12px 18px; margin: 16px 0 4px; font-size: .98em;
+}
+.check::before { content: "✅ ここまでできたか確認 — "; font-weight: 700; color: var(--ok); }
+
+/* 注意・ヒント */
+.note { background: var(--warn-bg); border: 1px solid var(--warn-line); border-radius: 10px; padding: 12px 18px; margin: 14px 0; font-size: .97em; }
+.note::before { content: "⚠️ "; }
+.tip { background: var(--accent-soft); border-radius: 10px; padding: 12px 18px; margin: 14px 0; font-size: .97em; }
+.tip::before { content: "💡 "; }
+
+/* コマンド */
+.cmd {
+  position: relative; background: #263238; color: #eceff1; border-radius: 10px;
+  padding: 16px 110px 16px 18px; margin: 14px 0; font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: .92em; line-height: 1.7; overflow-x: auto; white-space: pre-wrap; word-break: break-all;
+}
+.cmd button {
+  position: absolute; top: 10px; right: 10px; border: none; border-radius: 8px;
+  background: var(--accent); color: #fff; font-size: .85em; font-weight: 700;
+  padding: 8px 14px; cursor: pointer; font-family: inherit;
+}
+.cmd button:active { transform: scale(.96); }
+
+/* 図解 */
+figure.zukai { margin: 18px 0; text-align: center; }
+figure.zukai svg { max-width: 100%; height: auto; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+figure.zukai figcaption { font-size: .88em; color: var(--ink-soft); margin-top: 6px; }
+
+/* 表 */
+table { width: 100%; border-collapse: collapse; margin: 16px 0; background: #fff; font-size: .95em; }
+th, td { border: 1px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: top; }
+th { background: var(--accent-soft); }
+
+/* 辞典 */
+dl.jiten { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 10px 26px; }
+dl.jiten dt { font-weight: 700; color: var(--accent); margin-top: 14px; }
+dl.jiten dd { margin: 4px 0 10px 0; }
+
+/* FAQ */
+details.faq { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 4px 18px; margin: 10px 0; }
+details.faq summary { font-weight: 700; cursor: pointer; padding: 10px 0; }
+details.faq[open] { padding-bottom: 12px; }
+
+/* チェックリスト */
+ul.checklist { list-style: none; padding-left: 0; }
+ul.checklist li { padding-left: 2em; position: relative; }
+ul.checklist li::before { content: "☐"; position: absolute; left: .3em; color: var(--accent); font-size: 1.1em; }
+
+.pdf-link { text-align: right; font-size: .92em; margin: -20px 0 24px; }
+footer.guide-foot { margin-top: 72px; padding-top: 20px; border-top: 1px solid var(--line); font-size: .88em; color: var(--ink-soft); }
+@media print {
+  .cmd button { display: none; }
+  .pdf-link { display: none; }
+  details.faq { border: none; padding: 0; }
+  details.faq summary { pointer-events: none; }
+  h2 { break-after: avoid; }
+  .step { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="hero">
+  <h1>はじめてガイド<br>親なき後支援データベースを、あなたのパソコンに</h1>
+  <p>パソコンが得意でなくて、だいじょうぶ。</p>
+  <p>このガイドは、「GitHub」も「データベース」も聞いたことがない方を想定して、ゼロからひとつずつ進めるように書いています。むずかしい言葉が出てきたら、そのつど説明します。覚える必要はありません。</p>
+  <p class="hero-note">所要時間の目安：待ち時間を含めて 60〜90分。飲み物を用意して、のんびり進めましょう。むずかしいのは初日だけです。2日目からは、アイコンをダブルクリックするだけになります。</p>
+</header>
+
+<p class="pdf-link">🖨️ 印刷しながら進めたい方は：<a href="/internal/oya-inai-db-hajimete-guide.pdf">印刷用PDFをダウンロード</a></p>
+
+<nav class="toc">
+  <div class="toc-title">📖 このガイドの流れ</div>
+  <ol>
+    <li><a href="#ch0">これは、なに？ — できること・費用・安心の話</a></li>
+    <li><a href="#junbi">はじめる前のチェックリスト</a></li>
+    <li><a href="#jiten">ことばのミニ辞典（5つだけ）</a></li>
+    <li><a href="#win">Windows のかた <span class="os-badge win">Windows編</span></a></li>
+    <li><a href="#mac">Mac のかた <span class="os-badge mac">Mac編</span></a></li>
+    <li><a href="#trouble">うまくいかないとき（症状から引くQ&amp;A）</a></li>
+    <li><a href="#ai">AIを足したくなったら</a></li>
+    <li><a href="#sysadmin">職場の情報システム担当の方へ（1枚まとめ）</a></li>
+    <li><a href="#help">それでも困ったら</a></li>
+  </ol>
+</nav>
+
+<h2 id="ch0">1. これは、なに？</h2>
+
+<p>「くらしサポート（oya-inai-db）」は、<strong>親や家族が積み重ねてきた「我が子を守る知恵」を、支援者みんなで引き継ぐためのデータベース</strong>です。あなたの事業所のパソコン1台の中に、次のような情報を整理して残せます。</p>
+
+<ul>
+  <li><strong>してはいけないこと（禁忌）</strong> — 緊急時に、まっ先に画面に表示されます。初めて対応するスタッフの二次被害を防ぎます。</li>
+  <li><strong>推奨されるケア</strong> — 「この方にはこう関わるとよい」という知恵の引き継ぎ。</li>
+  <li><strong>キーパーソン・かかりつけ医・手帳や受給者証の期限</strong> — 更新漏れはアラートで気づけます。</li>
+  <li><strong>日々の記録</strong> — 現場のスタッフがスマホからも残せます。</li>
+</ul>
+
+<h3>費用は、かかりません</h3>
+<p>ソフトはすべて無料で公開されています（MITライセンスという、自由に使ってよいライセンスです）。パソコンさえあれば、追加の購入は一切ありません。AI機能はあとから足せますが、<strong>AIがなくても中核機能はぜんぶ動きます</strong>。</p>
+
+<h3>いちばん大事な、安心の話</h3>
+<p>利用者さんの情報は、<strong>そのパソコンの中だけ</strong>に保存されます。インターネット上のどこかに送られたり、クラウドに預けられたりすることはありません。だからこそ、障害のある方の大切な情報を扱う道具として設計されています。</p>
+
+<figure class="zukai">
+<svg viewBox="0 0 640 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="データはパソコンの中だけに保存される図">
+  <rect x="30" y="30" width="360" height="180" rx="14" fill="#e7f4f0" stroke="#0f6b54" stroke-width="2.5"/>
+  <text x="210" y="60" text-anchor="middle" font-size="16" font-weight="bold" fill="#0f6b54">あなたの事業所のパソコン</text>
+  <rect x="60" y="80" width="140" height="100" rx="10" fill="#fff" stroke="#0f6b54" stroke-width="1.5"/>
+  <text x="130" y="120" text-anchor="middle" font-size="13" fill="#1f2933">利用者さんの</text>
+  <text x="130" y="140" text-anchor="middle" font-size="13" fill="#1f2933">データベース</text>
+  <text x="130" y="165" text-anchor="middle" font-size="20">🗄️</text>
+  <rect x="220" y="80" width="140" height="100" rx="10" fill="#fff" stroke="#0f6b54" stroke-width="1.5"/>
+  <text x="290" y="120" text-anchor="middle" font-size="13" fill="#1f2933">見るための画面</text>
+  <text x="290" y="140" text-anchor="middle" font-size="13" fill="#1f2933">（ブラウザ）</text>
+  <text x="290" y="165" text-anchor="middle" font-size="20">🖥️</text>
+  <line x1="200" y1="130" x2="220" y2="130" stroke="#0f6b54" stroke-width="2"/>
+  <text x="500" y="100" text-anchor="middle" font-size="15" fill="#52606d">インターネット</text>
+  <text x="500" y="125" text-anchor="middle" font-size="24">☁️</text>
+  <line x1="410" y1="115" x2="450" y2="115" stroke="#c62828" stroke-width="3" stroke-dasharray="6 5"/>
+  <text x="430" y="105" text-anchor="middle" font-size="18" fill="#c62828" font-weight="bold">✕</text>
+  <text x="500" y="170" text-anchor="middle" font-size="12.5" fill="#52606d">利用者さんの情報は</text>
+  <text x="500" y="190" text-anchor="middle" font-size="12.5" fill="#52606d">外に出ません</text>
+</svg>
+<figcaption>図1：データベースも画面も、ぜんぶあなたのパソコンの中で動きます</figcaption>
+</figure>
+
+<h2 id="junbi">2. はじめる前のチェックリスト</h2>
+
+<p>始める前に、次の5つを確認してください。ひとつでも「？」があれば、無理せず<a href="#sysadmin">情報システム担当の方へのページ</a>を職場の詳しい人に見せて相談しましょう。</p>
+
+<ul class="checklist">
+  <li><strong>パソコン</strong> — Windows 10 か 11（64ビット）、または Mac。メモリは 8GB 以上が目安です（「設定」→「システム」→「バージョン情報」で確認できます）。</li>
+  <li><strong>そのパソコンの「管理者権限」</strong> — 新しいソフトを入れられるパソコンですか？ 職場のパソコンで、ソフトのインストールに許可が必要な場合は、先に担当者へ相談してください。</li>
+  <li><strong>インターネット接続</strong> — 最初のダウンロードに使います（導入後の日常利用にネットは不要です）。</li>
+  <li><strong>時間</strong> — 待ち時間を含めて 60〜90分。途中でやめても、続きから再開できます。</li>
+  <li><strong>ハードディスクの空き</strong> — 10GB 以上あると安心です。</li>
+</ul>
+
+<div class="tip">うまくいかなくても、パソコンが壊れることはありません。途中で分からなくなったら、<a href="#trouble">「うまくいかないとき」</a>を見るか、いったん閉じて詳しい人と一緒に再開すれば大丈夫です。</div>
+
+<h2 id="jiten">3. ことばのミニ辞典（5つだけ）</h2>
+
+<p>このガイドに出てくる「知らない言葉」は、実はこの5つだけです。<strong>覚えなくて大丈夫</strong>。「そういうものがあるのね」で先に進んでください。</p>
+
+<dl class="jiten">
+  <dt>GitHub（ギットハブ）</dt>
+  <dd>世界中の人がソフトを無料で公開している、インターネット上の「公開棚」です。oya-inai-db もここに置いてあります。あなたがGitHubの操作を覚える必要はありません。ダウンロードは自動で行われます。</dd>
+  <dt>Docker Desktop（ドッカー・デスクトップ）</dt>
+  <dd>データベースを動かすための「箱」を提供する無料ソフトです。起動すると、画面の隅に<strong>クジラのアイコン🐳</strong>が出ます。このガイドでは「クジラ」と呼びます。</dd>
+  <dt>ターミナル／PowerShell（パワーシェル）</dt>
+  <dd>パソコンに文字で指示を出すための、黒い（または青い）画面です。映画のハッカーみたいで身構えますが、<strong>やることは「コピーして、貼り付けて、Enterキー」だけ</strong>。自分で文字を打つ場面はありません。</dd>
+  <dt>インストーラー</dt>
+  <dd>導入作業を自動でやってくれるプログラムです。「ダウンロード→設置→起動→動作確認」を全部代わりにやってくれて、日本語で話しかけてきます。質問されたら、基本は Enter キーを押せば進みます。</dd>
+  <dt>localhost:3001（ローカルホスト）</dt>
+  <dd>「このパソコン自身の中」という意味の住所です。ブラウザのアドレスに <strong>localhost:3001</strong> と出ていたら、インターネットではなく、あなたのパソコンの中の画面を見ています。</dd>
+</dl>
+
+<h2 id="win">4. Windows のかた <span class="os-badge win">Windows編</span></h2>
+
+<p>この章だけで完結します（Macの方は<a href="#mac">第5章</a>へ）。全部で6ステップ。前半3つが「準備」、後半3つが「起動と日々の使い方」です。</p>
+
+<div class="step win">
+  <div class="step-head">
+    <div class="step-num">1</div>
+    <p class="step-title">Docker Desktop（クジラ）を入れる</p>
+    <span class="time">⏱ 15〜30分</span>
+  </div>
+  <p>いちばんの山場です。ここを越えれば、あとは下り坂です。</p>
+  <ol>
+    <li>ブラウザで <a href="https://www.docker.com/products/docker-desktop/" target="_blank" rel="noopener">docker.com/products/docker-desktop</a> を開きます。</li>
+    <li>「<strong>Download for Windows</strong>」と書かれた青いボタンを押します（AMD64 と ARM64 の選択が出たら、ほとんどのパソコンは <strong>AMD64</strong> です）。</li>
+    <li>ダウンロードされたファイル（Docker Desktop Installer.exe）をダブルクリックし、画面の指示どおりに進めます。チェックボックスは<strong>そのままでOK</strong>です。</li>
+    <li>「再起動してください」と出たら、パソコンを再起動します。</li>
+    <li>再起動後、スタートメニューから「<strong>Docker Desktop</strong>」を探して起動します。利用規約の画面が出たら「Accept（同意する）」を押します。<strong>アカウント登録を求められたら、登録せずに進んで構いません</strong>（Skip や Continue without signing in を選びます）。</li>
+  </ol>
+  <div class="note">途中で「<strong>WSL 2 の更新が必要です</strong>」という青い画面やメッセージが出ることがあります。表示されたリンクを開いて更新プログラムを入れ、もう一度 Docker Desktop を起動してください。分からなくなったら<a href="#trouble">Q&amp;A</a>へ。</div>
+  <div class="check">画面右下のタスクバー（時計の近く。隠れていたら「∧」を押す）に、<strong>クジラのアイコン🐳</strong>が表示されていて、アイコンが動いていない（安定している）こと。</div>
+</div>
+
+<div class="step win">
+  <div class="step-head">
+    <div class="step-num">2</div>
+    <p class="step-title">Node.js（画面を動かす部品）を入れる</p>
+    <span class="time">⏱ 5〜10分</span>
+  </div>
+  <ol>
+    <li>ブラウザで <a href="https://nodejs.org/ja" target="_blank" rel="noopener">nodejs.org/ja</a> を開きます。</li>
+    <li>「<strong>LTS</strong>」「<strong>推奨版</strong>」と書かれた緑のボタンからダウンロードします（Windows Installer (.msi) を選びます）。</li>
+    <li>ダウンロードしたファイルをダブルクリックし、<strong>ぜんぶ「次へ（Next）」</strong>で進めて完了します。設定を変える必要はありません。</li>
+  </ol>
+  <div class="check">とくに確認は不要です。もし失敗していれば、次のステップで教えてもらえるので、そのとき対処すれば大丈夫。</div>
+</div>
+
+<div class="step win">
+  <div class="step-head">
+    <div class="step-num">3</div>
+    <p class="step-title">「魔法の2行」を貼り付けて、自動セットアップ</p>
+    <span class="time">⏱ 10〜20分</span>
+  </div>
+  <p>ここからインストーラーにバトンタッチします。あなたがやるのは、コピーして貼り付けるだけです。</p>
+  <ol>
+    <li>画面左下の<strong>スタートボタンを「右クリック」</strong>します。</li>
+    <li>メニューから「<strong>ターミナル（管理者）</strong>」（または「Windows PowerShell（管理者）」）を選びます。「このアプリがデバイスに変更を加えることを許可しますか？」と聞かれたら「<strong>はい</strong>」。</li>
+    <li>黒い（青い）画面が開いたら、下の1行目をコピーして、画面の上で<strong>右クリック（＝貼り付け）</strong>し、<strong>Enter</strong> を押します。</li>
+  </ol>
+  <div class="cmd">Set-ExecutionPolicy Bypass -Scope Process -Force<button onclick="cp(this)">コピー</button></div>
+  <ol start="4">
+    <li>続けて2行目も同じように、コピー → 右クリックで貼り付け → Enter。</li>
+  </ol>
+  <div class="cmd">irm https://raw.githubusercontent.com/kazumasakawahara/oya-inai-db/main/installer/install-windows.ps1 | iex<button onclick="cp(this)">コピー</button></div>
+  <ol start="5">
+    <li>「oya-inai-db インストーラー」という表示が出て、日本語で質問されます。<strong>基本はそのまま Enter（または Y と入力して Enter）</strong>で進みます。</li>
+    <li>ダウンロードと設置、データベースの起動、接続テストまで自動で行われます。のんびり待ちましょう。</li>
+  </ol>
+  <div class="tip">保存先は「<strong>ドキュメント</strong>」フォルダの中の「<strong>oya-inai-db</strong>」です。あとで使うので覚えておいてください。</div>
+  <div class="check">最後に「接続テスト」が<strong>[完了]</strong>になり、エラーの赤い文字で止まっていないこと。もし途中で「Docker Desktop を起動してください」と言われたら、クジラを起動してから、もう一度2行目を貼り付ければ再開できます。</div>
+</div>
+
+<div class="step win">
+  <div class="step-head">
+    <div class="step-num">4</div>
+    <p class="step-title">はじめての起動（start.bat をダブルクリック）</p>
+    <span class="time">⏱ 初回のみ 10〜20分</span>
+  </div>
+  <ol>
+    <li>エクスプローラー（フォルダのアイコン）を開き、「<strong>ドキュメント</strong>」→「<strong>oya-inai-db</strong>」を開きます。</li>
+    <li>「<strong>start</strong>」（start.bat）というファイルを<strong>ダブルクリック</strong>します。</li>
+    <li>「WindowsによってPCが保護されました」という青い画面が出たら、「<strong>詳細情報</strong>」を押してから「<strong>実行</strong>」を押します（初回だけ聞かれます）。</li>
+    <li>黒い画面で、不足している部品の自動インストールが始まります。<strong>初回は10〜20分かかります</strong>。席を立ってお茶にしましょう。</li>
+  </ol>
+  <div class="note">途中で起きることが2つあります。どちらも正常です。<br>
+  ① <strong>メモ帳が開いたら</strong> —「APIキーを設定してください」と表示されますが、AIを使わない場合は<strong>何も書かずにそのまま閉じてOK</strong>です。閉じたら黒い画面に戻って、キーをどれか押します。<br>
+  ② 「<strong>uv がインストールされました。もう一度実行してください</strong>」と出たら — 指示どおり、いったんウィンドウを閉じて、もう一度 start.bat をダブルクリックします。</div>
+  <div class="check">ブラウザが自動で開いて、アドレスに <strong>localhost:3001</strong>、画面にアプリが表示されること。おめでとうございます！ これで導入は完了です。</div>
+</div>
+
+<div class="step win">
+  <div class="step-head">
+    <div class="step-num">5</div>
+    <p class="step-title">デモデータで、さわってみる（おすすめ）</p>
+    <span class="time">⏱ 5分</span>
+  </div>
+  <p>架空の利用者さんのデータを入れて、画面を体験できます。実在の方の情報を入れる前の練習に最適です。</p>
+  <ol>
+    <li>「ドキュメント」→「oya-inai-db」フォルダの<strong>何もないところ</strong>を右クリックし、「<strong>ターミナルで開く</strong>」を選びます。</li>
+    <li>下の1行を貼り付けて Enter。</li>
+  </ol>
+  <div class="cmd">.\installer\load-demo-data.ps1<button onclick="cp(this)">コピー</button></div>
+  <p>ブラウザの画面を再読み込みすると、デモの利用者さんが表示されます。<strong>本格運用を始める前には</strong>、同じ場所で下の1行を実行すると、デモデータをきれいに消せます。</p>
+  <div class="cmd">.\installer\load-demo-data.ps1 -Remove<button onclick="cp(this)">コピー</button></div>
+</div>
+
+<div class="step win">
+  <div class="step-head">
+    <div class="step-num">6</div>
+    <p class="step-title">2日目からの、毎日の使い方</p>
+    <span class="time">⏱ 1分</span>
+  </div>
+  <p>ここまで来れば、もうターミナルは使いません。毎日はこれだけです。</p>
+  <ol>
+    <li><strong>クジラ🐳を起動</strong>（スタートメニュー → Docker Desktop。すでに動いていれば不要）</li>
+    <li>「ドキュメント」→「oya-inai-db」→ <strong>start.bat をダブルクリック</strong> → ブラウザが開く</li>
+    <li>使い終わったら <strong>stop.bat をダブルクリック</strong>して停止</li>
+  </ol>
+  <div class="tip">start.bat のショートカットをデスクトップに置いておくと便利です（右クリック → 送る → デスクトップ）。</div>
+</div>
+
+<h2 id="mac">5. Mac のかた <span class="os-badge mac">Mac編</span></h2>
+
+<p>この章だけで完結します。流れはWindowsと同じ6ステップです。</p>
+
+<div class="step mac">
+  <div class="step-head">
+    <div class="step-num">1</div>
+    <p class="step-title">Docker Desktop（クジラ）を入れる</p>
+    <span class="time">⏱ 15〜25分</span>
+  </div>
+  <ol>
+    <li>まず自分のMacの種類を確認します。画面左上の<strong>リンゴマーク →「このMacについて」</strong>を開き、「チップ」の欄を見ます。「Apple M1/M2/M3/M4…」とあれば <strong>Appleシリコン</strong>、「Intel」とあれば <strong>Intel</strong> です。</li>
+    <li>ブラウザで <a href="https://www.docker.com/products/docker-desktop/" target="_blank" rel="noopener">docker.com/products/docker-desktop</a> を開き、自分のチップに合った「<strong>Download for Mac</strong>」を押します。</li>
+    <li>ダウンロードした Docker.dmg をダブルクリックし、開いた窓で<strong>クジラのアイコンを「Applications」フォルダへドラッグ</strong>します。</li>
+    <li>「アプリケーション」フォルダから Docker を起動します。「開いてもよろしいですか？」には「開く」、利用規約は「Accept」。<strong>アカウント登録はしなくて構いません</strong>（Skip を選べます）。パスワードを聞かれたら、Macのログインパスワードを入力します。</li>
+  </ol>
+  <div class="check">画面上部のメニューバー（時計の並び）に<strong>クジラのアイコン🐳</strong>が出て、動きが止まっている（安定している）こと。</div>
+</div>
+
+<div class="step mac">
+  <div class="step-head">
+    <div class="step-num">2</div>
+    <p class="step-title">Node.js（画面を動かす部品）を入れる</p>
+    <span class="time">⏱ 5〜10分</span>
+  </div>
+  <ol>
+    <li>ブラウザで <a href="https://nodejs.org/ja" target="_blank" rel="noopener">nodejs.org/ja</a> を開きます。</li>
+    <li>「<strong>LTS</strong>」「<strong>推奨版</strong>」の緑のボタンからダウンロードします（macOS Installer (.pkg)）。</li>
+    <li>ダウンロードしたファイルをダブルクリックし、<strong>ぜんぶ「続ける」</strong>で進めて完了します。</li>
+  </ol>
+  <div class="check">とくに確認は不要です。問題があれば、次のステップで教えてもらえます。</div>
+</div>
+
+<div class="step mac">
+  <div class="step-head">
+    <div class="step-num">3</div>
+    <p class="step-title">「魔法の1行」を貼り付けて、自動セットアップ</p>
+    <span class="time">⏱ 10〜20分</span>
+  </div>
+  <ol>
+    <li>キーボードで <strong>command ⌘ + スペース</strong>を押し、「<strong>ターミナル</strong>」と入力して Enter。白い（黒い）画面が開きます。</li>
+    <li>下の1行をコピーして、ターミナルに <strong>command ⌘ + V で貼り付け</strong>、Enter を押します。</li>
+  </ol>
+  <div class="cmd">curl -sL https://raw.githubusercontent.com/kazumasakawahara/oya-inai-db/main/installer/install-mac.sh | bash<button onclick="cp(this)">コピー</button></div>
+  <ol start="3">
+    <li>「oya-inai-db インストーラー」が日本語で案内してくれます。質問は<strong>基本そのまま Enter（または Y）</strong>で進みます。</li>
+    <li>ダウンロード、設置、データベース起動、接続テストまで自動です。</li>
+  </ol>
+  <div class="tip">保存先は「<strong>書類（Documents）</strong>」フォルダの中の「<strong>oya-inai-db</strong>」です。</div>
+  <div class="check">最後の「接続テスト」が<strong>[完了]</strong>になっていること。途中で止まったら、クジラが起動しているかを確認して、同じ1行をもう一度貼り付ければ再開できます。</div>
+</div>
+
+<div class="step mac">
+  <div class="step-head">
+    <div class="step-num">4</div>
+    <p class="step-title">はじめての起動（start.command）</p>
+    <span class="time">⏱ 初回のみ 10〜20分</span>
+  </div>
+  <ol>
+    <li>Finderで「<strong>書類</strong>」→「<strong>oya-inai-db</strong>」を開きます。</li>
+    <li>「<strong>start.command</strong>」を、初回だけ<strong>右クリック（controlを押しながらクリック）→「開く」</strong>を選びます。「開発元を確認できません」という警告が出たら、もう一度「<strong>開く</strong>」を押します。（2回目以降は普通のダブルクリックでOK）</li>
+    <li>ターミナルが開き、不足部品の自動インストールが始まります。<strong>初回は10〜20分</strong>。のんびり待ちます。</li>
+    <li>「uv がインストールされました。もう一度実行してください」と出た場合は、ウィンドウを閉じて start.command をもう一度開きます。</li>
+  </ol>
+  <div class="check">ブラウザが自動で開いて、アドレスに <strong>localhost:3001</strong>、画面にアプリが表示されること。導入完了です！</div>
+</div>
+
+<div class="step mac">
+  <div class="step-head">
+    <div class="step-num">5</div>
+    <p class="step-title">デモデータで、さわってみる（おすすめ）</p>
+    <span class="time">⏱ 5分</span>
+  </div>
+  <p>架空の利用者さんのデータで画面を体験できます。ターミナル（⌘+スペース →「ターミナル」）に、下の2行を順に貼り付けて Enter します。</p>
+  <div class="cmd">cd ~/Documents/oya-inai-db<button onclick="cp(this)">コピー</button></div>
+  <div class="cmd">bash installer/load-demo-data.sh<button onclick="cp(this)">コピー</button></div>
+  <p>本格運用の前にデモデータを消すときは、同じ場所でこちらを実行します。</p>
+  <div class="cmd">bash installer/load-demo-data.sh --remove<button onclick="cp(this)">コピー</button></div>
+</div>
+
+<div class="step mac">
+  <div class="step-head">
+    <div class="step-num">6</div>
+    <p class="step-title">2日目からの、毎日の使い方</p>
+    <span class="time">⏱ 1分</span>
+  </div>
+  <ol>
+    <li><strong>クジラ🐳を起動</strong>（アプリケーション → Docker。すでに動いていれば不要）</li>
+    <li>「書類」→「oya-inai-db」→ <strong>start.command をダブルクリック</strong> → ブラウザが開く</li>
+    <li>使い終わったら <strong>stop.command をダブルクリック</strong>して停止</li>
+  </ol>
+</div>
+
+<h2 id="trouble">6. うまくいかないとき（症状から引くQ&amp;A）</h2>
+
+<p>まず合言葉をひとつ：<strong>「困ったら、クジラと再起動」</strong>。トラブルの大半は、①クジラ（Docker Desktop）が動いていない、②パソコンの再起動で直る、のどちらかです。</p>
+
+<details class="faq">
+  <summary>「WindowsによってPCが保護されました」と青い画面が出た</summary>
+  <p>怪しいソフトという意味ではなく、「配布元が大手ストアではない」というだけの表示です。「<strong>詳細情報</strong>」を押すと「実行」ボタンが現れるので、押して進めてください。</p>
+</details>
+
+<details class="faq">
+  <summary>Macで「開発元を確認できないため開けません」と出た</summary>
+  <p>ファイルを<strong>右クリック（controlキーを押しながらクリック）→「開く」</strong>を選ぶと、「開く」ボタン付きの警告に変わります。初回だけこの手順が必要で、2回目からは普通にダブルクリックできます。</p>
+</details>
+
+<details class="faq">
+  <summary>「WSL 2 の更新が必要です」と出た（Windows）</summary>
+  <p>Docker Desktop が使う部品の更新案内です。表示されたリンク（Microsoftのページ)から更新プログラムをダウンロードして実行し、パソコンを再起動してから Docker Desktop をもう一度起動してください。リンクが分からない場合は、スタートボタンを右クリック→「ターミナル（管理者）」で <code>wsl --update</code> と入力して Enter でも更新できます。</p>
+</details>
+
+<details class="faq">
+  <summary>クジラのアイコンが出ない／「Docker Desktop が起動していません」と言われる</summary>
+  <p>① スタートメニュー（Macはアプリケーション）から Docker Desktop をもう一度起動 → 1〜2分待つ。② それでもだめなら、パソコンごと再起動してから Docker Desktop を起動。③ それでもだめなら、職場のパソコンでは「仮想化」という機能が無効になっている場合があります。<a href="#sysadmin">情シス向けの1枚</a>を担当者に見せてください。</p>
+</details>
+
+<details class="faq">
+  <summary>途中でメモ帳（.envファイル）が開いた</summary>
+  <p>AI機能を使う場合の設定ファイルです。<strong>AIを使わないなら、何も書かずにそのまま閉じて大丈夫</strong>。あとからAIを足すときに開き直せます（<a href="#ai">第7章</a>）。</p>
+</details>
+
+<details class="faq">
+  <summary>ブラウザの画面が真っ白／「接続できません」と出る</summary>
+  <p>初回は部品の準備に時間がかかっています。<strong>1〜2分待ってから、ブラウザの再読み込み（⟳）</strong>を押してください。それでもだめなら、start.bat（Macは start.command）をもう一度ダブルクリック。アドレスバーに <code>localhost:3001</code> と直接入力して Enter でも開けます。</p>
+</details>
+
+<details class="faq">
+  <summary>「ポートが使用中です」というエラーが出た</summary>
+  <p>前回の終了が不完全だったときに出ます。いちばん簡単な解決法は<strong>パソコンの再起動</strong>です。再起動後、クジラ → start の順で起動し直してください。</p>
+</details>
+
+<details class="faq">
+  <summary>会社のパソコンで、インストールが途中で止められてしまう</summary>
+  <p>セキュリティソフトや管理設定が原因のことが多いです。無理に回避しようとせず、<a href="#sysadmin">情報システム担当の方への1枚</a>を印刷して、担当者に許可を相談してください。</p>
+</details>
+
+<details class="faq">
+  <summary>やりなおしたい（最初から入れ直したい）</summary>
+  <p>「ドキュメント（書類）」の中の「oya-inai-db」フォルダを丸ごとゴミ箱に入れてから、第4章（Macは第5章）のステップ3をもう一度実行すれば、きれいに入れ直せます。※すでに利用者さんのデータを登録している場合は、消える前に必ず詳しい人に相談してください。</p>
+</details>
+
+<h2 id="ai">7. AIを足したくなったら（あとからで大丈夫）</h2>
+
+<p>AIがなくても、利用者台帳・緊急照会・期限アラート・訪問前ブリーフィングはぜんぶ動きます。「面談の語りから自動で情報を整理する」「音声を文字起こしする」といった機能を使いたくなったら、3つの選択肢があります。</p>
+
+<table>
+  <tr><th>選択肢</th><th>費用</th><th>特徴</th></tr>
+  <tr><td><strong>Ollama（オラマ）</strong></td><td>無料</td><td>AIもパソコンの中で動かす方式。<strong>情報が一切外に出ない</strong>のが最大の魅力。やや性能の高いパソコンが必要です。</td></tr>
+  <tr><td><strong>Gemini（ジェミニ）</strong></td><td>無料枠あり</td><td>GoogleのAI。無料の範囲でかなり使えます。AIに送った内容はGoogleのサーバーで処理されます。</td></tr>
+  <tr><td><strong>Claude（クロード）</strong></td><td>有料</td><td>Anthropic社のAI。精度が高く、本格的に使いたい団体向け。</td></tr>
+</table>
+
+<p>設定は「oya-inai-db」フォルダの中の「<strong>.env</strong>」というファイルをメモ帳で開き、選んだAIのキー（利用券のような文字列）を1行書き込むだけです。くわしい手順は <a href="https://github.com/kazumasakawahara/oya-inai-db/blob/main/docs/manuals/QUICK_START.md" target="_blank" rel="noopener">GitHubのクイックスタートガイド</a>（少し技術者向け）をご覧ください。</p>
+
+<div class="note">AIを設定した場合、<strong>AIに渡した文章だけ</strong>がそのAI会社のサーバーへ送られます。利用者さんの情報の扱い方針は、導入前に法人内で確認しておくと安心です。迷ったら、まずはAIなし、次にOllama（外に出ない方式）がおすすめです。</div>
+
+<h2 id="sysadmin">8. 職場の情報システム担当の方へ（このページを見せてください）</h2>
+
+<p>導入を検討している職員の方は、このページを印刷（またはURLを共有）して、パソコン管理の担当者にお渡しください。以下、担当者向けの技術情報です。</p>
+
+<table>
+  <tr><th>項目</th><th>内容</th></tr>
+  <tr><td>ソフトウェア本体</td><td>oya-inai-db（MITライセンス・オープンソース）<br>配布元: <a href="https://github.com/kazumasakawahara/oya-inai-db" target="_blank" rel="noopener">github.com/kazumasakawahara/oya-inai-db</a></td></tr>
+  <tr><td>インストールされるもの</td><td>Docker Desktop（Neo4jコンテナ実行用）、Node.js LTS。初回起動時に uv（Pythonパッケージマネージャ）と pnpm を自動導入。Windows は WSL2 バックエンドを使用（要仮想化支援 / VT-x, AMD-V 有効）</td></tr>
+  <tr><td>データの保存場所</td><td>すべてローカル（ユーザーの Documents/oya-inai-db 配下および Docker ボリューム）。クラウド送信・外部保存なし</td></tr>
+  <tr><td>外部通信</td><td>導入時のみ: github.com、Docker Hub、npm/PyPI レジストリ、astral.sh（uv）。日常運用時: なし（AI機能を任意設定した場合のみ、当該AI社APIへ送信）</td></tr>
+  <tr><td>使用ポート</td><td>3001（Web UI）、8001（API）、7474/7687（Neo4j）。いずれも localhost バインドのローカル利用</td></tr>
+  <tr><td>アカウント登録</td><td>不要（Docker Desktop のサインインも不要。大企業での Docker Desktop 商用利用条件は Docker 社の現行ライセンス条項をご確認ください）</td></tr>
+  <tr><td>個人情報の扱い</td><td>要配慮個人情報を含む支援記録を扱う前提で設計。データはローカル完結、AI連携は初期状態で無効</td></tr>
+</table>
+
+<h2 id="help">9. それでも困ったら</h2>
+
+<p>ここまで読んで進めても、うまくいかないことはあります。それはあなたのせいではありません。パソコンの環境は一台ごとに違うからです。</p>
+
+<p>NPO法人nestでは、この仕組みを広げたいと考えている支援者・法人の方の導入相談を受け付けています。「どこで止まったか」のスマホ写真を添えていただけると、お答えが早くなります。</p>
+
+<p style="text-align:center; margin:28px 0;">
+  <a href="/contact/" style="display:inline-block; background:var(--accent); color:#fff; font-weight:700; padding:14px 36px; border-radius:999px; text-decoration:none;">nestに問い合わせる</a>
+</p>
+
+<p>また、パソコン操作に自信のある方向けの詳しい資料（技術者向け）はGitHubにあります：<a href="https://github.com/kazumasakawahara/oya-inai-db/blob/main/docs/manuals/QUICK_START.md" target="_blank" rel="noopener">クイックスタート</a>／<a href="https://github.com/kazumasakawahara/oya-inai-db/blob/main/docs/manuals/FAQ.md" target="_blank" rel="noopener">FAQ</a>／<a href="https://github.com/kazumasakawahara/oya-inai-db/blob/main/docs/manuals/COMPLETE_MANUAL.md" target="_blank" rel="noopener">完全マニュアル</a></p>
+
+<footer class="guide-foot">
+  <p>はじめてガイド v1.0（2026年8月）／対象: oya-inai-db（親なき後支援データベース）／NPO法人nest</p>
+  <p>本ガイドの内容は無料で公開されているソフトウェアの導入手順です。画面の文言はソフトの更新により変わることがあります。</p>
+</footer>
+
+</div>
+<script>
+function cp(btn){
+  var text = btn.parentNode.childNodes[0].textContent;
+  var ta = document.createElement('textarea');
+  ta.value = text.trim();
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); } catch(e){}
+  document.body.removeChild(ta);
+  if (navigator.clipboard) { navigator.clipboard.writeText(text.trim()).catch(function(){}); }
+  var old = btn.textContent;
+  btn.textContent = 'コピーしました';
+  setTimeout(function(){ btn.textContent = old; }, 1600);
+}
+window.addEventListener('beforeprint', function(){
+  document.querySelectorAll('details.faq').forEach(function(d){ d.open = true; });
+});
+</script>
+</body>
+</html>

@@ -7,9 +7,10 @@ https://github.com/kazumasakawahara/oya-inai-db （2026-08-08 MIT で public 公
   Claude Desktop 不要・AIなしでも中核機能が動く・AIは Ollama/Gemini/Claude の選択制（「無償の定義」）。
 - post-parent の「くらしサポート」カードの GitHub リンク・マニュアルリンクは oya-inai-db 系に統一済み（2026-08-08）。
   **nest-support へのリンクを復活させないこと。**
-- 残タスク: サイト内の導入マニュアル v2（`public/internal/` の HTML。旧 `nest-support-manual.html` は
-  Claude Desktop 前提の旧版のため、oya-inai-db の README / docs/manuals/ を原稿に書き直す。
-  それまでカードのマニュアルボタンは GitHub の QUICK_START.md を指す暫定運用）。
+- ~~残タスク: サイト内の導入マニュアル v2~~ → **完了（2026-08-08）**: `public/internal/oya-inai-db-hajimete-guide.html`
+  （はじめてガイド v1.0・PDF版同梱）を新設し、カードのマニュアルボタンをここへ向けた。
+  旧 `nest-support-manual.html` は旧スタック（Claude Desktop前提）の記録として残置（リンクは全て外し済み）。
+  図解は簡易SVG。実機スクリーンショットへの差し替えは任意の改善タスク。
 
 # HANDOVER — 2026-07-24（気づきノート実装 ／ 教えてAIさん ／ つたえるカード）
 

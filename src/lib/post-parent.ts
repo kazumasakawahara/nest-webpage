@@ -147,10 +147,10 @@ export const tools: ToolIntro[] = [
     poster: '/videos/kurashi-support-ai-poster.jpg',
     manual: {
       intro:
-        '「システム」や「データベース」と聞くと、少し身構えてしまうかもしれません。でも、心配はいりません。導入は同梱の自動セットアップに沿って進められ、Mac・Windows のどちらにも対応しています。パソコンの操作に不慣れな支援員・相談員の方を想定したクイックスタートガイドを用意していますので、まずはそこからのぞいてみてください。',
-      href: 'https://github.com/kazumasakawahara/oya-inai-db/blob/main/docs/manuals/QUICK_START.md',
-      label: 'クイックスタートガイドを読む',
-      meta: 'GitHub のページが開きます（サイト内マニュアルは準備中）',
+        '「システム」や「データベース」と聞くと、少し身構えてしまうかもしれません。でも、心配はいりません。パソコンの操作に不慣れな支援員・相談員の方を想定した「はじめてガイド」を用意しました。ことばの説明から毎日の使い方、うまくいかないときのQ&Aまで、ゼロからひとつずつ進められます。むずかしいのは初日だけ。2日目からはダブルクリックだけで使えます。',
+      href: '/internal/oya-inai-db-hajimete-guide.html',
+      label: 'はじめてガイドを読む',
+      meta: '画面でそのまま読めます（印刷用PDFつき・別ページで開きます）',
     },
     links: [
       { label: 'GitHub で見る（無料公開）', href: 'https://github.com/kazumasakawahara/oya-inai-db', external: true },
