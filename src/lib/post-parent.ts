@@ -25,7 +25,7 @@ export interface ToolLink {
 
 export interface ToolManual {
   intro: string;    // 福祉職に配慮した、ハードルを下げる導入紹介文
-  href: string;     // 例: /internal/nest-support-manual.html
+  href: string;     // 例: /internal/... または外部URL（GitHub等）
   label: string;    // ボタン文言
   meta?: string;    // 例: 画面でそのまま読めます（別ページで開きます）
 }
@@ -37,6 +37,8 @@ export interface ToolIntro {
   tagline: string;
   forWhom: string;
   body: string;
+  icon?: string;    // アプリ風アイコン（ストア風カード表示用）例: /images/post-parent/kurashi-support-icon.svg
+  chips?: string[]; // 特徴チップ（ストア風カード表示用）例: 'GitHubで無料公開'
   image?: string;
   imageAlt?: string;
   video?: string;   // 紹介動画（mp4）例: /videos/kurashi-support-ai.mp4
@@ -133,21 +135,25 @@ export const tools: ToolIntro[] = [
     name: 'くらしサポート（親なき後支援データベース）',
     tagline: '親の暗黙知を、支援者みんなで引き継げる形に',
     forWhom: 'nest と、関心のある支援者・法人向け',
+    icon: '/images/post-parent/kurashi-support-icon.svg',
+    chips: ['GitHubで無料公開（MIT）', 'Mac・Windows対応', 'AIなしでも使える', 'スマホから記録入力'],
     body:
       '親や家族が積み重ねた「我が子を守る知恵」を、特定の誰かの記憶に頼らず継承するための仕組みです。' +
       '本人の大切にしていること、緊急時の注意、支えてくれる人のつながりを整理し、必要なときに必要な人へ確実に引き継げる形にします。' +
-      '聴き取りガイドの7つのまとまりが、そのままこのしくみの骨格になっています。',
+      '緊急時には「してはいけないこと」をまっ先に表示して二次被害を防ぎ、日々の記録は現場のスタッフがスマホからも残せます。' +
+      '聴き取りガイドの7つのまとまりが、そのままこのしくみの骨格になっています。' +
+      'しくみ全体は「oya-inai-db」としてGitHubで無料公開（MITライセンス）しています。有料ソフトの購入は不要で、AIを使わなくても中核機能は動き、使う場合も無料のものから選べます。関心のある支援者・法人の方はどなたでも導入いただけます。',
     video: '/videos/kurashi-support-ai.mp4',
     poster: '/videos/kurashi-support-ai-poster.jpg',
     manual: {
       intro:
-        '「システム」や「データベース」と聞くと、少し身構えてしまうかもしれません。でも、心配はいりません。この導入マニュアルは、パソコンの操作に不慣れな支援員・相談員の方を想定して、ゼロから一歩ずつ、画面のとおりに進められるように書いています。Mac・Windows のどちらにも対応し、導入の目安は30分〜1時間ほど。応用的な機能は、必要になったときに読めば大丈夫です。まずは目次をのぞいてみるところから、はじめてみてください。',
-      href: '/internal/nest-support-manual.html',
-      label: '導入マニュアルを読む',
-      meta: '画面でそのまま読めます（別ページで開きます）',
+        '「システム」や「データベース」と聞くと、少し身構えてしまうかもしれません。でも、心配はいりません。導入は同梱の自動セットアップに沿って進められ、Mac・Windows のどちらにも対応しています。パソコンの操作に不慣れな支援員・相談員の方を想定したクイックスタートガイドを用意していますので、まずはそこからのぞいてみてください。',
+      href: 'https://github.com/kazumasakawahara/oya-inai-db/blob/main/docs/manuals/QUICK_START.md',
+      label: 'クイックスタートガイドを読む',
+      meta: 'GitHub のページが開きます（サイト内マニュアルは準備中）',
     },
     links: [
-      // GitHub公開可なら追加: { label: 'GitHub で見る', href: 'https://github.com/kazumasakawahara/nest-support', external: true },
+      { label: 'GitHub で見る（無料公開）', href: 'https://github.com/kazumasakawahara/oya-inai-db', external: true },
       { label: 'この取り組みについて問い合わせる', href: '/contact/' },
     ],
   },
