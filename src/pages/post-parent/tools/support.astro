@@ -1,0 +1,327 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Hero from '../../../components/Hero.astro';
+import CtaBlock from '../../../components/CtaBlock.astro';
+
+// 親なき後ツール群（聞く → 渡す → 引き出す）に共通する、
+// 更新・サポート・免責の説明。公開と同時に必要なページ（2026-08-11 新設）。
+
+// 「できること／できないこと」の対比
+const canDo = [
+  '導入でつまずいた箇所についてのご質問',
+  '不具合・記述の誤りのご報告の受付',
+  'ガイドや手順書の改善（いただいたご意見を反映します）',
+  '「うちの事業所で使えるか」といったご相談',
+];
+
+const cannotDo = [
+  '24時間・時間を区切った対応（お約束できません）',
+  '個別の運用代行、データの入力代行',
+  '消えてしまったデータの復旧',
+  '緊急時の連絡窓口としての機能',
+];
+---
+
+<BaseLayout
+  title="更新・サポート・免責について"
+  description="親なき後支援ツール（聴き取りガイド／記録テンプレート／くらしサポート）の、更新の考え方・サポートの範囲・免責事項。無償配布物としての約束と、約束できないことを明記しています。"
+>
+  <Hero
+    eyebrow="Support & Terms"
+    title="更新・サポート・免責について"
+    lead="無償で配っているものです。何を期待していただけて、何は期待できないかを、先に書いておきます。"
+    size="sm"
+    placeholderLabel="SUPPORT"
+  />
+
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="doc reveal">
+
+        <p class="doc__intro">
+          このページは、親なき後支援の3つの道具——<strong>支援者のための聴き取りガイド</strong>、
+          <strong>記録テンプレート</strong>、<strong>くらしサポート（親なき後支援データベース）</strong>——に共通する
+          取り扱いをまとめたものです。導入をご検討の段階で、一度お読みください。
+        </p>
+
+        <section class="doc__section">
+          <h2>1. いまの検証の状態</h2>
+          <p>
+            正直に書きます。<strong>「仕組みとして動くこと」と「実務に合っていること」は、別に確かめる必要があります。</strong>
+            現時点の状態は次のとおりです。
+          </p>
+          <table class="status">
+            <thead>
+              <tr><th>何を</th><th>状態</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>仕組みが正しく動くこと</td>
+                <td><span class="badge badge--ok">検証済み</span>架空の利用者を使い、記録の生成・登録・検査を通しで確認しています</td>
+              </tr>
+              <tr>
+                <td>実務に合っていること</td>
+                <td><span class="badge badge--part">一巡のみ</span>計画相談支援の担当者に一度ご確認いただいた段階です。継続して見直します</td>
+              </tr>
+              <tr>
+                <td>Windows での導入手順</td>
+                <td><span class="badge badge--todo">実機未確認</span>公開されている情報をもとに書いており、実際の画面での確認が済んでいません</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="doc__note">
+            うまくいかない箇所は、まだ残っているはずです。
+            <strong>お気づきの点をお知らせいただくことが、いちばんの改善につながります。</strong>
+          </p>
+        </section>
+
+        <section class="doc__section">
+          <h2>2. 更新について</h2>
+          <p>
+            すべて GitHub で公開しています。更新は各リポジトリから入手していただく形で、
+            自動では配られません。GitHub の「Watch」を設定していただくと、更新の通知を受け取れます。
+          </p>
+          <h3>制度が変わったときは</h3>
+          <p>
+            障害福祉の制度は変わります。私たちは、関係する公的機関のページを<strong>毎月1回、機械的に見張っています</strong>。
+            変更が検知されると「確認すべきこと」として起票され、内容を人が読んで、
+            必要があれば配布物へ反映します。
+          </p>
+          <p class="doc__callout">
+            <strong>機械が行うのは起票までで、判断と反映は人が行います。</strong>
+            したがって、<strong>「使っていれば自動的に最新の制度に追随する」ことはお約束できません。</strong>
+            制度に関する最終的な確認は、必ず所管の窓口でお願いします。
+          </p>
+        </section>
+
+        <section class="doc__section">
+          <h2>3. サポートの範囲</h2>
+          <p>
+            無償で配っているものですので、有償のソフトウェアのような保守はお付けできません。
+            そのうえで、できる範囲でお手伝いします。
+          </p>
+          <div class="twocol">
+            <div class="twocol__box twocol__box--can">
+              <p class="twocol__head">できること</p>
+              <ul>{canDo.map((s) => <li>{s}</li>)}</ul>
+            </div>
+            <div class="twocol__box twocol__box--cannot">
+              <p class="twocol__head">できないこと</p>
+              <ul>{cannotDo.map((s) => <li>{s}</li>)}</ul>
+            </div>
+          </div>
+          <p class="doc__callout doc__callout--alert">
+            <strong>緊急時に、この仕組みやお問い合わせ窓口を頼りにしないでください。</strong>
+            急を要する場面では、いつもどおり、かかりつけ医・救急・相談支援事業所・
+            市町村の窓口へ直接ご連絡ください。この仕組みは、
+            <strong>その場に居合わせた人が「してはいけないこと」をすぐ確認するための道具</strong>であって、
+            連絡先や対応の判断そのものを引き受けるものではありません。
+          </p>
+        </section>
+
+        <section class="doc__section">
+          <h2>4. データはどこにあるか</h2>
+          <ul class="doc__list">
+            <li>
+              入力された情報は、<strong>すべて導入された事業所のパソコンの中</strong>にあります。
+              nest がデータを受け取ることも、見ることもありません。
+            </li>
+            <li>
+              したがって、<strong>個人情報の管理責任は導入する事業所にあります。</strong>
+              バックアップ、端末の管理、退職者のアクセス停止などは、貴事業所の規程に沿ってお願いします。
+            </li>
+            <li>
+              語りの振り分けに AI を使う場合は、<strong>その部分だけ外部の AI サービスへ送られます。</strong>
+              このため、無料プランではお使いいただけません（無料プランは入力内容がサービスの改善に用いられうるためです）。
+              有料プランをご利用ください。
+            </li>
+            <li>
+              AI を使わずに、中核機能（緊急時の禁忌表示・期限管理）だけを使うこともできます。
+              その場合、外部へ送られる情報はありません。
+            </li>
+          </ul>
+          <p class="doc__note">
+            利用者ご本人・ご家族への説明と同意については、<strong>事業所ごとに確認すべき事項の一覧を別途ご用意します。</strong>
+            配布する側が代わりに決められることではありませんが、確認していただく項目はお示しすべきだと考えています。（準備中）
+          </p>
+        </section>
+
+        <section class="doc__section">
+          <h2>5. 免責</h2>
+          <ul class="doc__list">
+            <li>
+              いずれも <strong>MIT ライセンス</strong>で公開しています。無償でお使いいただけ、改変も再配布も自由です。
+              一方で、<strong>いかなる保証もありません。</strong>ご利用により生じた損害について、当法人は責任を負いかねます。
+            </li>
+            <li>
+              <strong>医療・法律の助言ではありません。</strong>診断、治療、法的判断の根拠としてお使いいただくことはできません。
+            </li>
+            <li>
+              <strong>支援の判断を代替するものではありません。</strong>記録は判断のための材料であって、判断そのものではありません。
+              最終的な判断は、いつもどおり支援者と本人・ご家族が行うものです。
+            </li>
+            <li>
+              掲載している制度の説明は、作成した時点のものです。適用の可否は個別の事情によって変わります。
+              <strong>必ず所管の窓口でご確認ください。</strong>
+            </li>
+            <li>
+              AI が生成した内容には誤りが含まれることがあります。
+              <strong>振り分けの結果は必ず人が確認してから確定する</strong>設計にしていますが、
+              確認を省略した場合の誤りについては責任を負いかねます。
+            </li>
+          </ul>
+        </section>
+
+        <section class="doc__section">
+          <h2>6. 費用</h2>
+          <p>
+            <strong>当法人へのお支払いは一切不要です。</strong>導入費用も、利用料も、サポート費用もいただきません。
+            ただし、AI による振り分けをお使いになる場合の AI サービス利用料は、貴事業所のご負担となります
+            （専門職が利用者を支援するための必要経費としてご理解いただく形になります）。
+          </p>
+        </section>
+
+        <section class="doc__section">
+          <h2>7. 作っているのは</h2>
+          <p>
+            特定非営利活動法人 nest です。北九州市で障害福祉サービスを運営しながら、
+            「親なき後」に向けた備えを、どの事業所でも手元で始められる形にすることを目指して作っています。
+            商品として売るためではなく、<strong>同じ課題を抱える支援者に使っていただくため</strong>に公開しています。
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </section>
+
+  <CtaBlock
+    title="お気づきの点をお寄せください"
+    body="導入のご相談、うまくいかなかった箇所のご報告、ガイドへのご意見。どれも歓迎します。いただいたご意見が、そのまま次の版になります。"
+    primary={{ label: 'お問い合わせフォーム', href: '/contact/' }}
+    secondary={{ label: '道具の一覧へ戻る', href: '/post-parent/tools/' }}
+    variant="cream"
+  />
+</BaseLayout>
+
+<style>
+  .doc { color: var(--color-ink); }
+
+  .doc__intro {
+    background: var(--color-paper);
+    border-left: 3px solid var(--color-terra-500);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: var(--space-5) var(--space-6);
+    margin-bottom: var(--space-7);
+    line-height: 1.95;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .doc__section { margin-bottom: var(--space-7); }
+
+  .doc__section h2 {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    color: var(--color-green-900);
+    padding-bottom: var(--space-3);
+    margin-bottom: var(--space-5);
+    border-bottom: 2px solid var(--color-green-700);
+  }
+
+  .doc__section h3 {
+    font-size: 17px;
+    color: var(--color-green-900);
+    margin: var(--space-6) 0 var(--space-3);
+  }
+
+  .doc__section p { line-height: 1.95; margin-bottom: var(--space-4); }
+
+  .doc__list { line-height: 1.95; padding-left: 1.3em; }
+  .doc__list li { margin-bottom: var(--space-4); }
+
+  .doc__note {
+    font-size: 15px;
+    color: var(--color-ink-muted, #5a5a5a);
+    background: var(--color-paper);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .doc__callout {
+    background: var(--color-paper);
+    border-left: 3px solid var(--color-green-700);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .doc__callout--alert {
+    border-left-color: var(--color-terra-500);
+  }
+
+  /* 検証状態の表 */
+  .status {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--space-5) 0;
+    font-size: 15px;
+  }
+  .status th, .status td {
+    text-align: left;
+    padding: var(--space-4);
+    border-bottom: 1px solid var(--color-line, #e5e2de);
+    vertical-align: top;
+    line-height: 1.85;
+  }
+  .status th {
+    font-size: 13px;
+    color: var(--color-ink-muted, #6b6b6b);
+    font-weight: 600;
+  }
+  .status td:first-child { width: 34%; font-weight: 600; }
+
+  .badge {
+    display: inline-block;
+    font-size: 12px;
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin-right: var(--space-3);
+    white-space: nowrap;
+  }
+  .badge--ok { background: #eef4f0; color: #3f6f52; }
+  .badge--part { background: #faf5e6; color: #8a6d1f; }
+  .badge--todo { background: #fbf0ed; color: #9a3d2c; }
+
+  /* できること／できないこと */
+  .twocol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+    margin: var(--space-5) 0;
+  }
+  .twocol__box {
+    background: var(--color-paper);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    border-top: 3px solid transparent;
+  }
+  .twocol__box--can { border-top-color: #3f6f52; }
+  .twocol__box--cannot { border-top-color: #9a3d2c; }
+  .twocol__head {
+    font-weight: 700;
+    margin: 0 0 var(--space-3);
+    font-size: 15px;
+  }
+  .twocol__box--can .twocol__head { color: #3f6f52; }
+  .twocol__box--cannot .twocol__head { color: #9a3d2c; }
+  .twocol__box ul {
+    margin: 0;
+    padding-left: 1.2em;
+    font-size: 14.5px;
+    line-height: 1.85;
+  }
+  .twocol__box li { margin-bottom: var(--space-3); }
+
+  @media (max-width: 640px) {
+    .twocol { grid-template-columns: 1fr; }
+    .status td:first-child { width: auto; }
+  }
+</style>

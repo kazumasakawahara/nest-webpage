@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>支援者のための聴き取りガイド — 既存の業務の中で、少しずつ</title>
+<style>
+  :root{
+    --ink:#1c1917; --ink2:#44403c; --ink3:#79716b;
+    --line:#e7e5e4; --bg:#fdfcfb; --card:#fff;
+    --accent:#4a6b7c; --accent-soft:#eef3f6; --accent-line:#d5e2e9;
+    --core:#7c5a3a; --core-soft:#f6f0e9; --core-line:#e6d8c7;
+    --alert:#9a3d2c; --alert-soft:#fbf0ed; --alert-line:#eed4cc;
+    --warn:#8a6d1f; --warn-soft:#faf5e6; --warn-line:#e8dcb5;
+    --mute:#f6f5f3;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic","Meiryo",-apple-system,BlinkMacSystemFont,sans-serif;
+    line-height:1.95;font-size:16px;letter-spacing:.01em}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 24px 80px}
+  .draft{background:var(--warn-soft);border:1px solid var(--warn-line);color:var(--warn);
+    border-radius:10px;padding:12px 16px;font-size:14px;margin-bottom:30px}
+  h1{font-size:29px;line-height:1.45;margin:0 0 8px;letter-spacing:-.01em}
+  .sub{color:var(--ink3);font-size:15px;margin:0 0 32px}
+  h2{font-size:20px;margin:56px 0 16px;padding-top:26px;border-top:1px solid var(--line)}
+  h2 .n{display:inline-flex;align-items:center;justify-content:center;width:27px;height:27px;
+    border-radius:50%;background:var(--accent);color:#fff;font-size:14px;margin-right:10px;vertical-align:2px}
+  h2.core{border-top-color:var(--core-line)} h2.core .n{background:var(--core)}
+  h3{font-size:16.5px;margin:28px 0 10px;color:var(--accent)}
+  p{margin:0 0 16px}
+  .lead{background:var(--accent-soft);border:1px solid var(--accent-line);border-radius:14px;padding:26px 28px 20px;margin:0 0 26px}
+  .lead .big{font-size:22px;font-weight:700;line-height:1.6;margin:0 0 10px}
+  .lead p:last-child{margin-bottom:0}
+  .cycle{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch;margin:24px 0 10px}
+  .cyc{flex:1 1 150px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:15px 16px}
+  .cyc.hot{border-color:var(--core-line);background:var(--core-soft)}
+  .cyc .lb{font-size:11.5px;color:var(--ink3);letter-spacing:.04em;margin:0 0 4px}
+  .cyc .tt{font-weight:700;font-size:15.5px;margin:0 0 5px}
+  .cyc .dd{font-size:13.5px;color:var(--ink2);margin:0;line-height:1.75}
+  .cyc.hot .lb{color:var(--core)}
+  .qbox{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:0 10px 10px 0;padding:14px 18px;margin:12px 0;font-size:15.5px;color:var(--ink)}
+  .qbox.big{border-left-color:var(--core);font-size:17px;font-weight:700;line-height:1.7;padding:17px 20px}
+  .qbox small{display:block;font-weight:400;font-size:14px;color:var(--ink2);margin-top:7px;line-height:1.8}
+  .num{display:flex;gap:15px;align-items:flex-start;background:var(--card);border:1px solid var(--line);
+    border-radius:12px;padding:17px 19px;margin:12px 0}
+  .num .b{flex:0 0 auto;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;
+    justify-content:center;font-size:14px;font-weight:700;background:var(--alert);color:#fff}
+  .num.two .b{background:#b06a3a} .num.three .b{background:#9aa06a}
+  .num .t{font-weight:700;margin:2px 0 6px;font-size:16px}
+  .num .d{margin:0;font-size:14.5px;color:var(--ink2)}
+  .num .d em{font-style:normal;background:var(--warn-soft);padding:1px 5px;border-radius:4px}
+  table{width:100%;border-collapse:collapse;margin:18px 0;font-size:15px}
+  th,td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:13.5px;color:var(--ink3);font-weight:600}
+  .note{background:var(--mute);border-radius:10px;padding:15px 18px;font-size:14.5px;color:var(--ink2);margin:18px 0}
+  .alertbox{background:var(--alert-soft);border:1px solid var(--alert-line);border-radius:12px;padding:16px 20px;margin:20px 0;font-size:14.5px;color:var(--ink2)}
+  .alertbox b{color:var(--alert)}
+  .rules{display:grid;gap:11px;margin:18px 0}
+  .rule{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:15px 18px}
+  .rule .h{font-weight:700;margin:0 0 5px;font-size:15px}
+  .rule .b{margin:0;font-size:14.5px;color:var(--ink2)}
+  .check{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin:16px 0}
+  .check .hd{font-weight:700;font-size:15px;margin:0 0 10px;color:var(--accent)}
+  .check ul{list-style:none;padding:0;margin:0}
+  .check li{padding:7px 0 7px 30px;position:relative;font-size:15px;border-bottom:1px solid var(--line)}
+  .check li:last-child{border-bottom:none}
+  .check li::before{content:"";position:absolute;left:0;top:14px;width:15px;height:15px;
+    border:1.5px solid #c9c5c1;border-radius:4px}
+  .punch{background:var(--core-soft);border:1px solid var(--core-line);border-radius:12px;
+    padding:20px 24px;margin:24px 0;font-size:16.5px;line-height:1.8;color:var(--ink)}
+  ul.plain{padding-left:1.3em;margin:0 0 16px} ul.plain li{margin-bottom:8px}
+  .foot{margin-top:52px;padding-top:22px;border-top:1px solid var(--line);color:var(--ink3);font-size:13.5px}
+  @media (max-width:600px){.wrap{padding:26px 15px 60px}h1{font-size:23px}body{font-size:15.5px}
+    .cyc{flex:1 1 100%}table{font-size:14px}th,td{padding:11px 8px}}
+  @media print{body{background:#fff}.wrap{max-width:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="draft"><strong>初版です（2026-08-11）。</strong>計画相談支援の実務に沿っているか、まだ十分な確かめを経ていません。<strong>実際に使ってみて合わないところ・足りないところがあれば、お問い合わせからお知らせください。</strong>いただいたご意見を反映して改訂していきます。</div>
+
+  <h1>支援者のための聴き取りガイド<br>既存の業務の中で、少しずつ</h1>
+  <p class="sub">計画相談支援の担当者・意思決定支援に関わる方向け</p>
+
+  <div class="lead">
+    <p class="big">新しい面談枠は、作りません。</p>
+    <p>すでにある場面——初回のアセスメント、モニタリングの訪問、担当者会議、更新の手続き——に、<strong>問いをいくつか足すだけ</strong>です。</p>
+    <p>そして、<strong>どこに記録するかを覚える必要はありません。</strong>聞けたことをそのまま渡せば、仕分けは自動で行われます。担当者の仕事は<strong>「聞くこと」と「そのまま渡すこと」の2つだけ</strong>です。</p>
+  </div>
+
+  <div class="cycle">
+    <div class="cyc"><p class="lb">最初の1回</p><p class="tt">初回・アセスメント</p><p class="dd">命に関わる3つだけ押さえる</p></div>
+    <div class="cyc hot"><p class="lb">毎回・ここが中心</p><p class="tt">モニタリング訪問</p><p class="dd">同じ3問を繰り返す</p></div>
+    <div class="cyc"><p class="lb">その場でしか取れない</p><p class="tt">担当者会議</p><p class="dd">やり方の違いと、決めた理由</p></div>
+    <div class="cyc"><p class="lb">期限のたび</p><p class="tt">更新・節目</p><p class="dd">担い手が続くかを確かめる</p></div>
+  </div>
+
+  <h2><span class="n">1</span>最初の1回（インテーク・アセスメント）</h2>
+  <p>初回で必ず押さえるのは3つです。時間が取れなければ、<strong>上から順に</strong>。</p>
+
+  <div class="num"><div class="b">1</div><div>
+    <p class="t">してはいけないこと</p>
+    <p class="d">「<strong>絶対にやってはいけないこと</strong>はありますか」「これをすると、パニックになる・危険になる、ということは」「過去に、支援者の対応で困ったことは」<br><br>
+    <em>必ず「何が起きたか」まで</em>——「体に触らないでください」だけでなく、「前の職員が肩をつかんだら余計にひどくなって、その日は一日戻らなかった」まで。<strong>理由のない禁止は、いずれ破られます。</strong>食物アレルギー・飲み合わせの悪い薬もここで。</p>
+  </div></div>
+
+  <div class="num two"><div class="b">2</div><div>
+    <p class="t">落ち着くまでの「順序」</p>
+    <p class="d">「パニックのとき、どうすると落ち着きますか。<strong>順番に</strong>教えてください」「途中で声をかけたほうがいいですか」「どのくらい待ちますか」<br><br>
+    <em>「順番」と「どのくらい」を必ず</em>——「静かな部屋にひとりにして、5分待つ。声はかけない」。ここまで具体的なら、初めての人でも実行できます。朝の支度・食事・入浴・睡眠の順序も同じ形で。</p>
+  </div></div>
+
+  <div class="num three"><div class="b">3</div><div>
+    <p class="t">期限のあるもの</p>
+    <p class="d">「手帳の種類と等級は」「受給者証の期限は」「区分認定の更新は」「その手続きは、どなたが」<br><br>
+    <em>「誰がやっているか」まで聞くのが要点</em>——期限そのものより、<strong>その手続きを担っている人が今後も担えるか</strong>が問題になります。</p>
+  </div></div>
+
+  <div class="note"><strong>初回で聞ききれなくてよいこと</strong>：生育歴、家族関係の全体像、お金のこと、将来の希望、誰が何を担っているかの棚卸し。どれも2回目以降で構いません。信頼が薄いうちに聞くと、答えが浅くなるか、関係が硬くなります。</div>
+
+  <h3>ただし、向こうから出てきたら拾う</h3>
+  <p>上の3つを聞いている途中で、<strong>質問への答えではなく、独り言のように出てくる一言</strong>があります。</p>
+  <div class="qbox">「正直、私も体がきつくなってきていて、通院の付き添いはそろそろ難しいかもしれません」</div>
+  <p><strong>これを流さないでください。</strong>担い手が細っていく最初の兆候は、ほぼこの形で現れます。棚卸しは2回目以降で構いませんが、<strong>向こうから語られたものは、その場でそのまま記録</strong>してください。</p>
+
+  <h2 class="core"><span class="n">2</span>モニタリングの訪問（毎回・3問）</h2>
+  <p><strong>ここがこのガイドの中心です。</strong>周期は自治体や対象者によって異なりますが、訪問のたびに同じ3問を置くだけで、情報が古くならずに済みます。</p>
+
+  <div class="qbox big">① 前にうかがった〈この対応〉は、今も同じですか。実際に効きましたか
+    <small>前回の記録を1つか2つ持って行って確かめる。<strong>「変わっていない」と確かめること自体が記録になります。</strong>これをしないと、3年前の情報が現在の情報の顔をして残り続けます。</small></div>
+
+  <div class="qbox big">② 変わったこと、もう要らなくなったことはありますか
+    <small>支援記録は「できないこと」に偏りがちです。<strong>「ボタンの手伝いは、この2か月は要らなくなりました」</strong>——こういう変化は、意識して聞かないと出てきません。要らなくなった支援を書き換えないままだと、本人のいまの力を低く見積もった記録が残ります。</small></div>
+
+  <div class="qbox big">③ 今回、新しく気づいたことはありますか
+    <small>計画に書かれた課題の外側を拾う問いです。<strong>「買い物でお金を出すとき、後ろの人を気にして焦ってしまう。先に財布から出しておくと落ち着く」</strong>——誰も課題として挙げていなかった発見が、次の危機を防ぎます。</small></div>
+
+  <h2><span class="n">3</span>サービス担当者会議</h2>
+  <p>会議でしか取れないものが2つあります。</p>
+  <p><strong>ひとつは、事業所ごとのやり方の違い。</strong>同じ場面で、日中活動の職員とホームの世話人が違う対応をしていることがあります。どちらが正しいかをその場で決める必要はありません。<strong>両方をそのまま記録してください。</strong>食い違いは、消さずに残しておくと、後で本人にとってどちらが良いかを判断する材料になります。無理に一本化した記録は、根拠を失います。</p>
+  <p><strong>もうひとつは、決めた理由。</strong>議事録には「〇〇とすることで合意」と残りますが、<strong>なぜそう決めたか</strong>は残りません。半年後に見直すとき、理由が無いと最初から議論をやり直すことになります。</p>
+  <div class="qbox">いまの決定は、どういう考えでそうなりましたか<br>別の案は出ましたか。それを採らなかったのはなぜですか</div>
+
+  <h2><span class="n">4</span>更新・期限のとき</h2>
+  <p>受給者証や手帳の更新、区分認定の更新は、<strong>「担い手を確かめる」機会</strong>として使ってください。</p>
+  <div class="qbox">この手続きは、今回どなたがされましたか<br>次も同じ方ができそうですか<br>難しくなりそうなら、どこが引き継げそうですか</div>
+  <p>親御さんが担ってきた手続きは、体調ひとつで止まります。「今回は誰がやったか」を毎回記録しておくと、<strong>担い手が細っていく過程が見えます。</strong>これは、聞かなければ絶対に見えません。</p>
+
+  <h2><span class="n">5</span>節目・急変のとき</h2>
+  <p>入院と退院、転居、学校の卒業や事業所の変更、家族の入院や死別——こうした場面では、<strong>それまでの前提が一度に変わります。</strong></p>
+  <div class="qbox">この変化で、いままでのやり方のうち、続けられなくなるものはありますか<br>新しく必要になったことはありますか</div>
+  <p>とくに<strong>退院時</strong>は、入院中に処方や生活リズムが変わっていることが多く、それまでの手順がそのままでは使えません。</p>
+  <div class="alertbox"><b>虐待が疑われる場面は、このガイドの範囲外です。</b>聴き取りで扱うのではなく、市町村の障害者虐待防止センター等への通報が法律上の義務として先に立ちます。判断に迷う場面は基幹相談支援センターへ。</div>
+
+  <h2><span class="n">6</span>事業所・医療から届いた記録</h2>
+  <p>日中活動の支援記録、ヒヤリハット、診断書や意見書、行政からの通知——<strong>これらは聴き取らなくても手元に来ます。</strong>来たものは<strong>そのまま渡してください。</strong>要約や転記は不要です。むしろ、転記の過程で「誰が言ったのか」が落ちるほうが問題になります。</p>
+  <p>ひとつだけ確認しておくとよいのは、<strong>その情報をどこまで共有してよいか</strong>です。</p>
+  <div class="qbox">これは支援チームで共有してよい情報ですか<br>ご本人やご家族の同意が要るものですか<br>ここだけの話として伺ったものですか</div>
+
+  <h2><span class="n">7</span>本人から聞く</h2>
+  <p>家族向けのガイドには無い軸です。<strong>本人から出た言葉は、家族や職員が代弁した言葉と区別して記録してください。</strong></p>
+  <div class="qbox">いま、いちばん楽しいことは何ですか<br>これから、やってみたいことはありますか<br>困っていることはありますか</div>
+  <p>言葉の少ない方でも、<strong>うなずき・表情・繰り返される単語</strong>は記録に値します。「うなずいて『ひとりで、電車、見る』と話した」——この一行が、後から計画の根拠になります。<strong>本人の口から初めて出た希望</strong>は、そのことを添えて記録してください。時期が分かると、その後の変化を追えます。</p>
+
+  <h2><span class="n">8</span>記録の渡し方</h2>
+  <p><strong>清書しないでください。</strong>箇条書きのままでも、録音の書き起こしでも、面談メモの走り書きでも構いません。<strong>そのまま渡せば、どこに何を書くかは自動で仕分けられます。</strong>「これは禁忌か、引き金か」「どのページか」を判断する必要はありません。</p>
+  <div class="rules">
+    <div class="rule"><p class="h">① 本人・家族の言葉のまま残す</p><p class="b">「大きな音が苦手」と要約せず、「掃除機の音でも、いきなりだと駄目」と聞いたとおりに。要約すると、次の人が判断できる幅が狭くなります。</p></div>
+    <div class="rule"><p class="h">② 誰が言ったかを書く</p><p class="b">母から、世話人から、本人から、医師から。同じ内容でも、出どころによって重みが変わります。</p></div>
+    <div class="rule"><p class="h">③ 分からないことは「分からない」と書く</p><p class="b">推測で埋めないでください。<strong>空欄のまま残すほうが安全です。</strong>埋めた1行は、後から事実として引き継がれます。</p></div>
+  </div>
+
+  <h2><span class="n">9</span>聞き方のコツ</h2>
+  <ul class="plain">
+    <li><strong>出来事から聞く</strong>——「困った場面は最近ありましたか。そのとき、どうされましたか」。抽象的な質問より、具体的な場面のほうが実際のやり方が出てきます</li>
+    <li><strong>比べて聞く</strong>——「調子のいい日と悪い日で、何が違いますか」「お母さんと職員さんで、接し方に違いは」。差を聞くと、本人に合ったやり方が浮かびます</li>
+    <li><strong>仮定して聞く</strong>——「明日初めての支援者が来るとしたら、最初に何を伝えますか」。いちばん大事なことを一言で引き出せる問いです</li>
+    <li><strong>沈黙を待つ</strong>——言いにくいことほど、間のあとに出てきます</li>
+  </ul>
+
+  <h3>「してはいけないこと」と「本人に起きること」は、両方聞く</h3>
+  <table>
+    <thead><tr><th>聞き方</th><th>出てくるもの</th><th>例</th></tr></thead>
+    <tbody>
+      <tr><td>支援者がしてはいけないことは</td><td><strong>禁じ手</strong></td><td>体に触らない</td></tr>
+      <tr><td>本人はどんなときに苦しくなりますか</td><td><strong>引き金</strong></td><td>予告のない大きな音</td></tr>
+    </tbody>
+  </table>
+  <p><strong>片方だけだと足りません。</strong>禁じ手だけだと「なぜ駄目なのか」が分からず守られません。引き金だけだと「では何をすればよいか」が分かりません。両方あって、初めて次の人が動けます。</p>
+
+  <h2><span class="n">10</span>聞けたかどうかの目安</h2>
+  <div class="check">
+    <p class="hd">初回の面談が終わった時点で</p>
+    <ul>
+      <li>明日、初めての支援者が入っても、<strong>やってはいけないこと</strong>を伝えられる</li>
+      <li>パニックのときの対応を、<strong>順番どおりに</strong>伝えられる</li>
+      <li>次に切れる<strong>期限</strong>が何で、いつかを言える</li>
+      <li>何かあったとき、<strong>最初に連絡する人</strong>が誰か分かる</li>
+    </ul>
+  </div>
+  <div class="check">
+    <p class="hd">モニタリングを一巡した時点で</p>
+    <ul>
+      <li>前回から<strong>変わったこと</strong>と<strong>変わらなかったこと</strong>を、それぞれ挙げられる</li>
+      <li>本人が<strong>自分の言葉で言った希望</strong>を、ひとつ挙げられる</li>
+      <li>いま<strong>誰がどの手続きを担っているか</strong>を言える</li>
+    </ul>
+  </div>
+
+  <h2><span class="n">11</span>一度で終わりにしない</h2>
+  <p>情報には鮮度があります。禁忌や対応の手順は、確かめないまま1年も経てば、それが今も正しいのか誰にも分かりません。</p>
+  <div class="punch"><strong>新しいことを聞き出すより、すでに聞いたことを確かめ直すほうが、実は価値が高い。</strong><br>ここだけ持ち帰っていただければ十分です。</div>
+
+  <h2><span class="n">12</span>このガイドについて</h2>
+  <ul class="plain">
+    <li><strong>業務の場面の区切り方</strong>（初回・モニタリング・担当者会議・更新・節目）が実務の実感と合っているか、とくにご意見をいただきたい箇所です</li>
+    <li>各場面の問いの数は「既存業務に足せる範囲」を想定して絞っています。<strong>多すぎる／少なすぎる</strong>があれば教えてください</li>
+    <li>モニタリングの周期など、自治体によって運用が異なる点は具体的な数値を書いていません</li>
+    <li>3章の「<strong>事業所ごとのやり方の違い</strong>」は、手元の検証教材（架空の語り5本）には例がなく、<strong>実務で起きるだろうという想定で書いています</strong>。実際に会議で食い違いが出ることがあるか、あるとして両論を残す運用が現実的かを、とくに確かめていただきたい点です</li>
+  </ul>
+
+  <p class="foot">親なき後支援パッケージ — 計画相談担当者・意思決定支援者版 聴き取りガイド（初版 2026-08-11）<br>NPO法人 nest</p>
+</div>
+</body>
+</html>

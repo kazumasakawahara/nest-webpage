@@ -4,27 +4,27 @@ import PageIntro from '../../components/PageIntro.astro';
 import CtaBlock from '../../components/CtaBlock.astro';
 import { tools } from '../../lib/post-parent';
 
-// 「聞く → 書く → 残す・共有する」の3段。tools 配列の step と対応する。
+// 「聞く → 渡す → 引き出す」の3段。tools 配列の step と対応する。
 const flow = [
   {
     no: '1',
     step: '聞く',
-    lead: '何を聞けばいいかを、決める',
-    body: '親御さんの頭の中にある知恵を、ことばにするための問い集。すべてはここから始まります。',
+    lead: '既存の業務の中で、少しずつ',
+    body: '新しい面談枠は作りません。初回・モニタリング・担当者会議——すでにある場面に、問いをいくつか足すだけ。',
     href: '#kikitori-guide',
   },
   {
     no: '2',
-    step: '書く',
-    lead: '手元に、書き留める',
-    body: '聞いたことを、無料のテンプレートに書き込む。パソコン1台あれば、今日から始められます。',
+    step: '渡す',
+    lead: '清書せず、そのまま',
+    body: '聞けたことをそのまま渡すと、手元の記録と支援データベースの両方へ、それぞれの流儀で振り分けられます。',
     href: '#oya-inai-template',
   },
   {
     no: '3',
-    step: '残す・共有する',
-    lead: '支援チームで、引き継ぐ',
-    body: '書いたものを構造化し、支援者が替わっても質が落ちない形にする。図としても共有できます。',
+    step: '引き出す',
+    lead: '必要なときに、必要な人へ',
+    body: '緊急時は「してはいけないこと」をまっ先に。期限や経緯は聞けば答える。支援者が替わっても質が落ちません。',
     href: '#kurashi-support',
   },
 ];
@@ -43,7 +43,11 @@ const flow = [
     <div class="container container--narrow reveal">
       <p class="flow-intro">
         ここにあるしくみは、ばらばらの道具ではありません。<br />
-        <strong>聞く → 書く → 残す・共有する</strong>という、ひとつの流れです。
+        <strong>聞く → 渡す → 引き出す</strong>という、ひとつの流れです。<br />
+        <span class="flow-intro__note">
+          計画相談支援の担当者、および意思決定支援に関わる方に向けています。ご家族向けは別途準備中です。<br />
+          いずれも無償です。<a href="/post-parent/tools/support/">更新・サポート・免責について</a>をご確認のうえご検討ください。
+        </span>
       </p>
 
       <ol class="flowmap">
@@ -156,7 +160,14 @@ const flow = [
 </script>
 
 <style>
-  /* ===== 聞く → 書く → 残す・共有する（3段の流れ） ===== */
+  .flow-intro__note {
+    display: inline-block;
+    margin-top: 0.6em;
+    font-size: 0.86em;
+    color: var(--color-text-muted, #6b6b6b);
+  }
+
+  /* ===== 聞く → 渡す → 引き出す（3段の流れ） ===== */
   .flow-intro {
     text-align: center;
     font-size: 16px;
