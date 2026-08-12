@@ -132,6 +132,13 @@ export const tools: ToolIntro[] = [
       '振り分けの結果は先に宣言され、違っていれば訂正できます。実名が入るデータベース側への登録は、必ず人の確認を経てから行います。' +
       'テンプレートだけを使って、Obsidian 単体で運用することもできます（データベースは不要です）。' +
       '架空の利用者を例にした記入例を同梱しているので、実際の書きぶりを見てから始められます。',
+    manual: {
+      intro:
+        'テンプレートを自分のパソコンで使い始めるまでの手順を、Obsidian の入れ方から受付箱の作り方まで、順にまとめています。テンプレートに同梱しているので、手元でも同じものが読めます。',
+      href: 'https://github.com/kazumasakawahara/oya-inai-keikaku-soudan/blob/main/docs/%E5%B0%8E%E5%85%A5%E6%89%8B%E9%A0%86.md',
+      label: '導入手順を読む',
+      meta: 'GitHub でそのまま読めます（別ページで開きます）',
+    },
     links: [
       { label: 'GitHubで入手する（無料）', href: 'https://github.com/kazumasakawahara/oya-inai-keikaku-soudan', external: true },
       { label: 'この取り組みについて問い合わせる', href: '/contact/' },
@@ -165,9 +172,10 @@ export const tools: ToolIntro[] = [
         '「システム」や「データベース」と聞くと、少し身構えてしまうかもしれません。でも、心配はいりません。パソコンの操作に不慣れな支援員・相談員の方を想定した「はじめてガイド」を用意しました。ことばの説明から毎日の使い方、うまくいかないときのQ&Aまで、ゼロからひとつずつ進められます。むずかしいのは初日だけ。2日目からはダブルクリックだけで使えます。',
       href: '/internal/oya-inai-db-hajimete-guide.html',
       label: 'はじめてガイドを読む',
-      meta: '画面でそのまま読めます（印刷用PDFつき・別ページで開きます）',
+      meta: '画面でそのまま読めます（印刷用PDFつき・別ページで開きます）。もっと詳しくは、下の「完全導入マニュアル」へ。',
     },
     links: [
+      { label: '完全導入マニュアルを読む', href: '/internal/oya-inai-db-kanzen-manual.html', external: true },
       { label: 'GitHub で見る（無料公開）', href: 'https://github.com/kazumasakawahara/oya-inai-db', external: true },
       { label: 'この取り組みについて問い合わせる', href: '/contact/' },
     ],
