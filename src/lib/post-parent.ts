@@ -134,10 +134,10 @@ export const tools: ToolIntro[] = [
       '架空の利用者を例にした記入例を同梱しているので、実際の書きぶりを見てから始められます。',
     manual: {
       intro:
-        'テンプレートを自分のパソコンで使い始めるまでの手順を、Obsidian の入れ方から受付箱の作り方まで、順にまとめています。テンプレートに同梱しているので、手元でも同じものが読めます。',
-      href: 'https://github.com/kazumasakawahara/oya-inai-keikaku-soudan/blob/main/docs/%E5%B0%8E%E5%85%A5%E6%89%8B%E9%A0%86.md',
-      label: '導入手順を読む',
-      meta: 'GitHub でそのまま読めます（別ページで開きます）',
+        'テンプレートを自分のパソコンで使い始めるまでを、Obsidian の入れ方から受付箱の作り方、最初のインテーク、困ったときの対処まで、順にまとめています。パソコンの操作に不慣れな方を想定して、各手順に「なぜ必要か」を添えました。導入作業そのものを Claude に手伝ってもらう進め方も載せています。',
+      href: '/internal/oya-inai-template-kanzen-manual.html',
+      label: '完全導入マニュアルを読む',
+      meta: '画面でそのまま読めます（別ページで開きます）。手順だけを短く追いたい方は、同梱の「導入手順」（約30分）へ。',
     },
     links: [
       { label: 'GitHubで入手する（無料）', href: 'https://github.com/kazumasakawahara/oya-inai-keikaku-soudan', external: true },
