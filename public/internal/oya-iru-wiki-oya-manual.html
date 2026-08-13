@@ -166,7 +166,7 @@ git config core.hooksPath githooks</code></pre>
 <ol><li><strong>この Vault</strong>（例: <code>~/Obsidian/oya-iru-wiki</code>）</li><li><strong>受付箱</strong>（例: <code>~/Desktop/受付箱</code>）</li></ol>
 <p>この設定は最初の1回きりです。</p>
 <blockquote><p><strong>設定の文字列は、AI 自身に作ってもらえます。</strong> 「filesystem の差込口を、この2つのフォルダで設定したい」と頼めば、貼り付ける内容を出してくれます。ご自身の手が要るのは「押す・貼る・打つ」だけです。</p>
-<p><strong>いちばんつまずくのは「完全終了」です。</strong> 設定はアプリを完全に終了して起動し直すまで反映されません。ウィンドウを閉じるだけでは終了していません（Mac は <code>command</code> + <code>Q</code>）。</p></blockquote>
+<p><strong>いちばんつまずくのは「完全終了」です。</strong> 設定はアプリを完全に終了して起動し直すまで反映されません。ウィンドウを閉じるだけでは終了していません——Mac は <code>command</code> + <code>Q</code>。<strong>Windows は「×」で閉じても画面右下のタスクトレイで動き続け、しかもアイコンは「^」印の中に隠れています</strong>。確実な終了のしかた（タスクマネージャーを使う方法まで）は<a href="./oya-iru-wiki-guide-03-claude.html">くわしい手順書③</a>にあります。</p></blockquote>
 <h3 id="4-3-つながったか確かめる">4-3. つながったか確かめる</h3>
 <p>AI に、こう聞いてみてください。</p>
 <blockquote><p>「Vault のフォルダの中身を見て、raw の下にいくつ棚があるか教えてください」</p></blockquote>
@@ -248,13 +248,13 @@ python3 scripts/okf_lint.py</code></pre>
 <blockquote><p>「このエラーが出ました。何が起きていて、次に何をすればよいか教えてください。（ここにエラーの文字を貼る）」</p></blockquote>
 <table><thead><tr><th>症状</th><th>頼み方の例</th></tr></thead><tbody><tr><td>検査（lint）が ERROR を出した</td><td>「この ERROR の意味と、直し方を教えてください」</td></tr><tr><td>保存が止まった（関所）</td><td>「関所に止められました。何が引っかかっていますか」</td></tr><tr><td>どのページに何があるか分からない</td><td>「index を見て、いまある記録の全体像を教えてください」</td></tr><tr><td>何が原因か分からない</td><td>「このマニュアルの第11章を見ながら、一緒に原因を探してください」</td></tr></tbody></table>
 <h3 id="11-1-まず試すこと">11-1. まず試すこと</h3>
-<p>Obsidian を閉じて開き直す。AI のアプリを<strong>完全終了</strong>して起動し直す（Mac は <code>command</code> + <code>Q</code>）。多くの不調はこれで直ります。</p>
+<p>Obsidian を閉じて開き直す。AI のアプリを<strong>完全終了</strong>して起動し直す——Mac は <code>command</code> + <code>Q</code>、Windows は画面右下の「^」印の中の Claude アイコンを右クリック→終了（見つからなければ <code>Ctrl</code> + <code>Shift</code> + <code>Esc</code> のタスクマネージャーで「Claude」を全部終了。くわしくは<a href="./oya-iru-wiki-guide-03-claude.html">手順書③</a>）。多くの不調はこれで直ります。</p>
 <h3 id="11-2-検査が-error-を出すとき">11-2. 検査が ERROR を出すとき</h3>
 <p>出力メッセージが対処を書いています。よくある原因: <code>wiki/</code> に実名が入っている（→記号に置き換える）／必須の日付や ID が抜けている（→ AI に「直して」と頼む）。ERROR は機微情報が漏れる危険があるときに出ます。解消するまで保存は通りません。<strong>これは故障ではなく、仕様です。</strong></p>
 <h3 id="11-3-過去の日記を直したくなったとき">11-3. 過去の日記を直したくなったとき</h3>
 <p>月が終わった日記は凍結されていて、AI も書き換えません。<strong>今月の日記に「◯月◯日の件、実は…」と話してください。</strong> それが正しい訂正の形です。当時の記録と訂正の両方が残ることに、価値があります。</p>
 <h3 id="11-4-ai-がフォルダを見てくれないとき">11-4. AI がフォルダを見てくれないとき</h3>
-<ol><li><strong>完全終了していない</strong> — いちばん多い原因です。ウィンドウを閉じただけでは終了していません</li><li><strong>フォルダの指定が違う</strong> — AI に「いま見えているフォルダを教えてください」と聞く</li><li><strong>受付箱を Vault の中に作ってしまった</strong> — 外に作り直してください（第4章 4-1）</li></ol>
+<ol><li><strong>完全終了していない</strong> — いちばん多い原因です。ウィンドウを閉じただけでは終了していません。特に Windows は、アイコンが「^」印の中に隠れたまま動き続けます（確実な終了は<a href="./oya-iru-wiki-guide-03-claude.html">手順書③</a>）</li><li><strong>フォルダの指定が違う</strong> — AI に「いま見えているフォルダを教えてください」と聞く</li><li><strong>受付箱を Vault の中に作ってしまった</strong> — 外に作り直してください（第4章 4-1）</li></ol>
 <h3 id="11-5-それでも解決しないとき">11-5. それでも解決しないとき</h3>
 <p><code>docs/導入手順.md</code> の「困ったとき」と、配布元の Issue をご覧ください。<strong>このテンプレートはβ版</strong>で、子育ての実感に合うかは検証の途中です。違和感があれば、それはあなたが正しい可能性が高いです。</p>
 <hr>
