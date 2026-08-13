@@ -218,9 +218,29 @@ const flow = [
                   お使いのブラウザは動画の再生に対応していません。
                 </video>
               </div>
-            ) : t.image
-              ? <img src={t.image} alt={t.imageAlt ?? t.name} />
-              : <div class="tool__placeholder" aria-hidden="true">準備中</div>}
+            ) : t.images && t.images.length > 0
+              ? null
+              : t.image
+                ? <img src={t.image} alt={t.imageAlt ?? t.name} />
+                : <div class="tool__placeholder" aria-hidden="true">準備中</div>}
+            {t.images && t.images.length > 0 && (
+              <div class="tool__shots">
+                {t.images.map((im) => (
+                  <figure class="tool__shot">
+                    <button
+                      type="button"
+                      class="tool__shot-btn"
+                      data-lightbox-src={im.src}
+                      data-lightbox-alt={im.alt}
+                      aria-label={`拡大表示: ${im.alt}`}
+                    >
+                      <img src={im.src} alt={im.alt} loading="lazy" />
+                    </button>
+                    {im.caption && <figcaption class="tool__shot-caption">{im.caption}</figcaption>}
+                  </figure>
+                ))}
+              </div>
+            )}
           </div>
           <div class="tool__body">
             {t.step && <p class="tool__step"><span class="tool__step-dot" aria-hidden="true"></span>{t.step}</p>}
@@ -522,6 +542,10 @@ const flow = [
   .tool__shots {
     display: grid;
     gap: var(--space-4);
+  }
+  /* 紹介動画の下にスクショが続くときの間隔 */
+  .video-embed + .tool__shots {
+    margin-top: var(--space-4);
   }
   .tool__shot {
     margin: 0;

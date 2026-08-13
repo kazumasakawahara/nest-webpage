@@ -213,6 +213,18 @@ export const tools: ToolIntro[] = [
       '関心のある支援者・法人の方はどなたでも導入いただけます。',
     video: '/videos/kurashi-support-ai.mp4',
     poster: '/videos/kurashi-support-ai-poster.jpg',
+    images: [
+      {
+        src: '/images/post-parent/oya-inai-db-github.jpg',
+        alt: 'GitHub で公開中の oya-inai-db リポジトリの画面。agents・api・docs などのフォルダが並んでいる',
+        caption: 'GitHub で公開中の oya-inai-db の画面（クリックで拡大）',
+      },
+      {
+        src: '/images/post-parent/oya-inai-db-github-zip.jpg',
+        alt: 'GitHub の緑色の「Code」ボタンを押して開いたメニュー。いちばん下に「Download ZIP」がある',
+        caption: '入手はかんたん。緑色の「Code」ボタン →「Download ZIP」（クリックで拡大）',
+      },
+    ],
     manual: {
       intro:
         '「システム」や「データベース」と聞くと、少し身構えてしまうかもしれません。でも、心配はいりません。パソコンの操作に不慣れな支援員・相談員の方を想定した「はじめてガイド」を用意しました。ことばの説明から毎日の使い方、うまくいかないときのQ&Aまで、ゼロからひとつずつ進められます。むずかしいのは初日だけ。2日目からはダブルクリックだけで使えます。',
