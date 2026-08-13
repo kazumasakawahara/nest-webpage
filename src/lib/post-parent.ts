@@ -96,6 +96,8 @@ export const familyTools: ToolIntro[] = [
     tagline: '話すだけでいい。書式は AI の仕事',
     forWhom: '障がいのあるお子さん（知的障がい・自閉スペクトラム症など）を育てている親御さん向け',
     chips: ['話すだけでいい', 'GitHubで無料公開（MIT）', '記入例つき', 'Mac・Windows対応'],
+    image: '/images/post-parent/oya-iru-wiki-github.jpg',
+    imageAlt: 'GitHub で公開中の oya-iru-wiki リポジトリの画面。docs・記入例・記録の棚などのフォルダが並んでいる',
     body:
       '親がいる「今」から始める、子育ての記録テンプレート（oya-iru-wiki）です。' +
       '親がすることは、AI に「今日こんなことがあった」と話すだけ。1行でも、話さない日があってもかまいません。' +
