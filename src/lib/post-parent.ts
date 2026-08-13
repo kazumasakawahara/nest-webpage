@@ -109,7 +109,7 @@ export const familyTools: ToolIntro[] = [
         'Obsidian というアプリの名前を今日初めて聞いた方を想定して、AI の選び方（お子さんの情報が学習に使われないことの確かめ方）から、書類を置くだけの受付箱の作り方、最初の日記、困ったときの対処まで、順にまとめました。各手順に「なぜ必要か」を添えています。導入作業そのものを AI に手伝ってもらう進め方も載せています。',
       href: '/internal/oya-iru-wiki-oya-manual.html',
       label: '親のための完全導入マニュアルを読む',
-      meta: '画面でそのまま読めます（別ページで開きます）。手順だけを短く追いたい方は、同梱の「導入手順」（約30分）へ。',
+      meta: '画面でそのまま読めます（別ページで開きます）。GitHub・Obsidian・ターミナルが初めての方向けに、画面の見た目から一歩ずつ説明する「くわしい手順書」4冊もマニュアルからたどれます。',
     },
     links: [
       { label: 'GitHubで入手する（無料）', href: 'https://github.com/kazumasakawahara/oya-iru-wiki', external: true },

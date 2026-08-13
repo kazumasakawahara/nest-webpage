@@ -9,7 +9,6 @@
     --ink:#1c1917; --ink2:#44403c; --ink3:#79716b;
     --line:#e7e5e4; --bg:#fdfcfb; --card:#fff;
     --accent:#3f6f52; --accent-soft:#eef4f0; --accent-line:#d6e5db;
-    --ok:#3f6f52; --ok-soft:#eef4f0; --ok-line:#d6e5db;
     --alert:#9a3d2c; --alert-soft:#fbf0ed; --alert-line:#eed4cc;
     --mute:#f6f5f3;
   }
@@ -19,7 +18,7 @@
     line-height:1.95;font-size:16px;letter-spacing:.01em}
   .wrap{max-width:860px;margin:0 auto;padding:40px 24px 96px}
   header.doc{border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:34px}
-  h1{font-size:30px;line-height:1.4;margin:0 0 8px;letter-spacing:-.01em}
+  h1{font-size:28px;line-height:1.5;margin:0 0 8px;letter-spacing:-.01em}
   .sub{color:var(--ink3);font-size:14px;margin:0}
   h2{font-size:22px;margin:52px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--ink);line-height:1.5}
   h3{font-size:18px;margin:34px 0 10px;color:var(--ink2);line-height:1.55}
@@ -54,7 +53,7 @@
   }
   @media (max-width:640px){
     .wrap{padding:24px 16px 64px}
-    h1{font-size:24px} h2{font-size:19px}
+    h1{font-size:22px} h2{font-size:19px}
   }
 </style>
 </head>
@@ -72,7 +71,7 @@
 <ul><li><a href="#このマニュアルの読み方">このマニュアルの読み方</a></li><li><a href="#全体の道のり">全体の道のり</a></li><li><strong>第1部　知る</strong></li><li>第1章　この仕組みは何をしてくれるか</li><li>第2章　導入前の準備と確認</li><li><strong>第2部　導入する</strong></li><li>第3章　記録の入れ物（Vault）を用意する</li><li>第4章　AI とつなぎ、受付箱を作る</li><li>第5章　動作確認と、お子さんの登録</li><li><strong>第3部　使う</strong></li><li>第6章　毎日の使い方 — 話すだけ</li><li>第7章　月に一度、AI がやること</li><li>第8章　読み返す・支援者に渡す</li><li>第9章　お子さん自身の参加</li><li><strong>第4部　守る・直す</strong></li><li>第10章　個人情報を守るための約束</li><li>第11章　トラブルシューティング</li><li><strong>付録</strong></li><li>付録A　フォルダの地図 ／ 付録B　ページの型一覧 ／ 付録C　用語集 ／ 付録D　関連ドキュメント</li></ul>
 <hr>
 <h2 id="このマニュアルの読み方">このマニュアルの読み方</h2>
-<ul><li><code>この書体</code> の部分は、パソコンに入力する文字列です。<strong>そのままコピーして貼り付けて</strong>ください</li><li>各手順に <strong>「なぜ必要か」</strong> を添えています。意味が分かると安心して進められます</li><li>うまくいかないときは、その場で立ち止まらず第11章を見てください</li><li><strong>導入作業そのものを、AI に横についてもらいながら進められます。</strong> この仕組みはどうせ AI を使います。その AI に「導入マニュアルの第3章を見ながら手伝って」とお願いできます</li></ul>
+<ul><li><code>この書体</code> の部分は、パソコンに入力する文字列です。<strong>そのままコピーして貼り付けて</strong>ください</li><li>各手順に <strong>「なぜ必要か」</strong> を添えています。意味が分かると安心して進められます</li><li><strong>難所の4箇所には、画面の見た目から一歩ずつ説明する「くわしい手順書」（全4冊）があります</strong>: <a href="./oya-iru-wiki-guide-01-github.html">① テンプレートを手に入れる（GitHub）</a>／<a href="./oya-iru-wiki-guide-02-obsidian.html">② Obsidian を入れて、Vault として開く</a>／<a href="./oya-iru-wiki-guide-03-claude.html">③ Claude を用意して、フォルダを見せる</a>／<a href="./oya-iru-wiki-guide-04-terminal.html">④ 黒い画面をこわがらない</a>。本編で迷ったら、対応する1冊へ</li><li>うまくいかないときは、その場で立ち止まらず第11章を見てください</li><li><strong>導入作業そのものを、AI に横についてもらいながら進められます。</strong> この仕組みはどうせ AI を使います。その AI に「導入マニュアルの第3章を見ながら手伝って」とお願いできます</li></ul>
 <table><thead><tr><th>AI ができること</th><th>ご自身の手が要ること</th></tr></thead><tbody><tr><td>フォルダの中を見て、必要なファイルが揃っているか確かめる</td><td>アプリのインストール（管理者パスワードの入力）</td></tr><tr><td>エラーの文字を読んで、何が起きているか日本語で説明する</td><td>ライセンスの同意ボタンを押す</td></tr><tr><td>次に何をすればよいかを、いまの状態に合わせて案内する</td><td>ボタンを押す・文字を貼る・最後の判断</td></tr></tbody></table>
 <blockquote><p><strong>なぜ全部を任せられないのか。</strong> アプリの導入には、パソコンの管理者パスワードの入力と、ライセンスへの同意が含まれます。この2つは AI が代わりにやってはいけない操作です。ここだけは必ずご自身で。</p></blockquote>
 <hr>
@@ -134,6 +133,7 @@
 <h2 id="第3章記録の入れ物vaultを用意する">第3章　記録の入れ物（Vault）を用意する</h2>
 <blockquote><p>🤝 この章から先は、AI に横についてもらいながら進められます。先に第4章の接続を済ませてからこの章に戻ってきても構いません。</p></blockquote>
 <h3 id="3-1-テンプレートを手に入れる">3-1. テンプレートを手に入れる</h3>
+<blockquote><p>🔰 GitHub というサイトを初めて使う方は、画面の見た目から説明した <strong><a href="./oya-iru-wiki-guide-01-github.html">くわしい手順書①「テンプレートを手に入れる」</a></strong> をどうぞ（ZIP 中心・登録不要）。</p></blockquote>
 <p><strong>方法 A（Git を使う場合）</strong></p>
 <pre><code>git clone https://github.com/kazumasakawahara/oya-iru-wiki.git ~/Obsidian/oya-iru-wiki</code></pre>
 <p><strong>方法 B（ZIP でダウンロード）</strong></p>
@@ -141,6 +141,7 @@
 <blockquote><p>ZIP の場合、<strong>検査の仕組みの「実行の許可」が落ちていることがあります。</strong> そのままだと関所（後述）が黙って効かなくなるので、次を一度だけ実行してください（AI に頼んでも構いません）。</p>
 <pre><code>cd &lt;あなたのVault&gt; &amp;&amp; chmod 755 githooks/pre-commit scripts/*.py</code></pre></blockquote>
 <h3 id="3-2-obsidian-で開く">3-2. Obsidian で開く</h3>
+<blockquote><p>🔰 Obsidian のインストールから初回画面の操作までは <strong><a href="./oya-iru-wiki-guide-02-obsidian.html">くわしい手順書②「Obsidian を入れて、Vault として開く」</a></strong> に一歩ずつ書いてあります。</p></blockquote>
 <p>Obsidian を起動し、「フォルダを Vault として開く」を選んで、いま置いたフォルダを指定します。左側にフォルダの一覧が出れば成功です。</p>
 <p><strong>なぜ必要？</strong> — Obsidian は、フォルダをそのまま「ノートの入れ物」として扱うアプリです。中身はただのテキストファイルなので、<strong>将来 Obsidian をやめても記録は残ります</strong>。なお、日記をチャットで書く運用では Obsidian を開かない日がほとんどです。読み返したくなったときの窓だと思ってください。</p>
 <h3 id="3-3-外に漏れる道を断つ最重要">3-3. 外に漏れる道を断つ（最重要）</h3>
@@ -155,6 +156,7 @@ git config core.hooksPath githooks</code></pre>
 <blockquote><p>Git を使わない方（ZIP で入れて履歴管理をしない方）は、この手順と 3-3 は飛ばして構いません。その場合も、フォルダを<strong>公開の場所（共有リンク・クラウドの公開フォルダ等）に置かない</strong>ことだけ守ってください。</p></blockquote>
 <hr>
 <h2 id="第4章ai-とつなぎ受付箱を作る">第4章　AI とつなぎ、受付箱を作る</h2>
+<blockquote><p>🔰 この章が導入のやま場です。Claude のプラン契約（学習に使われないことの確かめ方）からフォルダ接続の確認まで、<strong><a href="./oya-iru-wiki-guide-03-claude.html">くわしい手順書③「Claude を用意して、フォルダを見せる」</a></strong> が画面に沿って案内します。</p></blockquote>
 <h3 id="4-1-受付箱を作る">4-1. 受付箱を作る</h3>
 <p>Vault の<strong>外</strong>に、書類をいったん置くフォルダを1つ作ってください。</p>
 <ul><li>Mac の例: <code>~/Desktop/受付箱</code></li><li>Windows の例: <code>C:\Users\あなたの名前\Desktop\受付箱</code></li></ul>
@@ -174,6 +176,7 @@ git config core.hooksPath githooks</code></pre>
 <hr>
 <h2 id="第5章動作確認とお子さんの登録">第5章　動作確認と、お子さんの登録</h2>
 <h3 id="5-1-検査lintを初めて動かす">5-1. 検査（lint）を初めて動かす</h3>
+<blockquote><p>🔰 「ターミナル」「黒い画面」が初めての方は <strong><a href="./oya-iru-wiki-guide-04-terminal.html">くわしい手順書④「黒い画面をこわがらない」</a></strong> をどうぞ。コピペだけで進めます。</p></blockquote>
 <pre><code>cd &lt;あなたのVault&gt;
 python3 scripts/okf_lint.py</code></pre>
 <p><strong>「違反なし」</strong>と出れば、骨格は健全です。追加のインストールは要りません。</p>
