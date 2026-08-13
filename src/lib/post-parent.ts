@@ -41,6 +41,7 @@ export interface ToolIntro {
   chips?: string[]; // 特徴チップ（ストア風カード表示用）例: 'GitHubで無料公開'
   image?: string;
   imageAlt?: string;
+  images?: { src: string; alt: string; caption?: string }[]; // 複数スクリーンショット（クリックで拡大）。指定時は image より優先
   video?: string;   // 紹介動画（mp4）例: /videos/kurashi-support-ai.mp4
   poster?: string;  // 動画のポスター画像（任意。未指定なら video の先頭フレーム）
   manual?: ToolManual; // 導入マニュアルへの誘導（任意）
@@ -96,8 +97,18 @@ export const familyTools: ToolIntro[] = [
     tagline: '話すだけでいい。書式は AI の仕事',
     forWhom: '障がいのあるお子さん（知的障がい・自閉スペクトラム症など）を育てている親御さん向け',
     chips: ['話すだけでいい', 'GitHubで無料公開（MIT）', '記入例つき', 'Mac・Windows対応'],
-    image: '/images/post-parent/oya-iru-wiki-github.jpg',
-    imageAlt: 'GitHub で公開中の oya-iru-wiki リポジトリの画面。docs・記入例・記録の棚などのフォルダが並んでいる',
+    images: [
+      {
+        src: '/images/post-parent/oya-iru-wiki-github.jpg',
+        alt: 'GitHub で公開中の oya-iru-wiki リポジトリの画面。docs・記入例・記録の棚などのフォルダが並んでいる',
+        caption: 'GitHub で公開中のテンプレートの画面（クリックで拡大）',
+      },
+      {
+        src: '/images/post-parent/oya-iru-wiki-github-zip.jpg',
+        alt: 'GitHub の緑色の「Code」ボタンを押して開いたメニュー。いちばん下に「Download ZIP」がある',
+        caption: '入手はかんたん。緑色の「Code」ボタン →「Download ZIP」（クリックで拡大）',
+      },
+    ],
     body:
       '親がいる「今」から始める、子育ての記録テンプレート（oya-iru-wiki）です。' +
       '親がすることは、AI に「今日こんなことがあった」と話すだけ。1行でも、話さない日があってもかまいません。' +

@@ -107,9 +107,26 @@ const flow = [
       {familyTools.map((t) => (
         <article id={t.id} class="tool">
           <div class="tool__media">
-            {t.image
-              ? <img src={t.image} alt={t.imageAlt ?? t.name} />
-              : <div class="tool__placeholder" aria-hidden="true">準備中</div>}
+            {t.images && t.images.length > 0
+              ? <div class="tool__shots">
+                  {t.images.map((im) => (
+                    <figure class="tool__shot">
+                      <button
+                        type="button"
+                        class="tool__shot-btn"
+                        data-lightbox-src={im.src}
+                        data-lightbox-alt={im.alt}
+                        aria-label={`拡大表示: ${im.alt}`}
+                      >
+                        <img src={im.src} alt={im.alt} loading="lazy" />
+                      </button>
+                      {im.caption && <figcaption class="tool__shot-caption">{im.caption}</figcaption>}
+                    </figure>
+                  ))}
+                </div>
+              : t.image
+                ? <img src={t.image} alt={t.imageAlt ?? t.name} />
+                : <div class="tool__placeholder" aria-hidden="true">準備中</div>}
           </div>
           <div class="tool__body">
             <p class="tool__for">{t.forWhom}</p>
@@ -263,9 +280,33 @@ const flow = [
       />
     </div>
   </section>
+
+  <dialog id="tool-lightbox" class="lightbox">
+    <button type="button" class="lightbox__close" data-lightbox-close aria-label="拡大表示を閉じる">×</button>
+    <img class="lightbox__img" src="" alt="" />
+    <p class="lightbox__hint">画像の外側をクリック（または Esc キー）で閉じます</p>
+  </dialog>
 </BaseLayout>
 
 <script>
+  // スクリーンショットのクリックで拡大表示（ライトボックス）
+  const lightbox = document.querySelector<HTMLDialogElement>('#tool-lightbox');
+  const lightboxImg = lightbox?.querySelector<HTMLImageElement>('.lightbox__img');
+  if (lightbox && lightboxImg) {
+    document.querySelectorAll<HTMLElement>('[data-lightbox-src]').forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        lightboxImg.src = trigger.dataset.lightboxSrc ?? '';
+        lightboxImg.alt = trigger.dataset.lightboxAlt ?? '';
+        lightbox.showModal();
+      });
+    });
+    lightbox.querySelector('[data-lightbox-close]')?.addEventListener('click', () => lightbox.close());
+    // 画像の外側（backdrop 部分）をクリックしたら閉じる
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) lightbox.close();
+    });
+  }
+
   // ポスターのクリックでプレイヤーへ切り替え、再生する
   document.querySelectorAll<HTMLElement>('[data-video-play]').forEach((trigger) => {
     trigger.addEventListener('click', () => {
@@ -475,6 +516,77 @@ const flow = [
     color: var(--color-ink-soft);
     font-family: var(--font-mono);
     letter-spacing: 0.1em;
+  }
+
+  /* ===== スクリーンショットのギャラリー（クリックで拡大） ===== */
+  .tool__shots {
+    display: grid;
+    gap: var(--space-4);
+  }
+  .tool__shot {
+    margin: 0;
+  }
+  .tool__shot-btn {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: zoom-in;
+    border-radius: var(--radius-md);
+  }
+  .tool__shot-btn img {
+    width: 100%;
+    display: block;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+  }
+  .tool__shot-caption {
+    margin-top: 0.45em;
+    font-size: 0.82em;
+    color: var(--color-text-muted, #6b6b6b);
+    text-align: center;
+  }
+
+  .lightbox {
+    border: none;
+    padding: 0;
+    background: transparent;
+    max-width: min(94vw, 1200px);
+    overflow: visible;
+  }
+  .lightbox::backdrop {
+    background: rgba(0, 0, 0, 0.78);
+  }
+  .lightbox__img {
+    display: block;
+    max-width: 100%;
+    max-height: 82vh;
+    margin: 0 auto;
+    border-radius: var(--radius-md);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
+  }
+  .lightbox__close {
+    position: absolute;
+    top: -0.6em;
+    right: -0.6em;
+    z-index: 1;
+    width: 2.2em;
+    height: 2.2em;
+    border: none;
+    border-radius: 50%;
+    background: #fff;
+    color: #333;
+    font-size: 1.1em;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  }
+  .lightbox__hint {
+    margin: 0.7em 0 0;
+    text-align: center;
+    font-size: 0.82em;
+    color: rgba(255, 255, 255, 0.85);
   }
 
   /* ===== 紹介動画（ポスター → クリックで再生） ===== */
