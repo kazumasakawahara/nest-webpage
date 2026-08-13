@@ -218,10 +218,10 @@ const flow = [
                   お使いのブラウザは動画の再生に対応していません。
                 </video>
               </div>
-            ) : t.images && t.images.length > 0
-              ? null
-              : t.image
-                ? <img src={t.image} alt={t.imageAlt ?? t.name} />
+            ) : t.image
+              ? <img src={t.image} alt={t.imageAlt ?? t.name} />
+              : t.images && t.images.length > 0
+                ? null
                 : <div class="tool__placeholder" aria-hidden="true">準備中</div>}
             {t.images && t.images.length > 0 && (
               <div class="tool__shots">
@@ -543,8 +543,9 @@ const flow = [
     display: grid;
     gap: var(--space-4);
   }
-  /* 紹介動画の下にスクショが続くときの間隔 */
-  .video-embed + .tool__shots {
+  /* 紹介動画や全体図の下にスクショが続くときの間隔 */
+  .video-embed + .tool__shots,
+  .tool__media img + .tool__shots {
     margin-top: var(--space-4);
   }
   .tool__shot {

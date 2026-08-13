@@ -170,6 +170,18 @@ export const tools: ToolIntro[] = [
     chips: ['GitHubで無料公開（MIT）', 'Obsidian だけでも使えます', '記入例つき', 'Mac・Windows対応'],
     image: '/images/post-parent/flow-oya-inai-template.svg',
     imageAlt: '聞く・渡す・引き出すの3段を並べた全体図。いまは2段目の「渡す」を示している',
+    images: [
+      {
+        src: '/images/post-parent/oya-inai-keikaku-soudan-github.jpg',
+        alt: 'GitHub で公開中の oya-inai-keikaku-soudan リポジトリの画面。docs・raw・wiki・記入例などのフォルダが並んでいる',
+        caption: 'GitHub で公開中のテンプレートの画面（クリックで拡大）',
+      },
+      {
+        src: '/images/post-parent/oya-inai-keikaku-soudan-github-zip.jpg',
+        alt: 'GitHub の緑色の「Code」ボタンを押して開いたメニュー。いちばん下に「Download ZIP」がある',
+        caption: '入手はかんたん。緑色の「Code」ボタン →「Download ZIP」（クリックで拡大）',
+      },
+    ],
     body:
       '面談メモの走り書きでも、事業所から届いた支援記録でも、清書せずにそのまま渡していただけば十分です。' +
       '「これは禁忌か、引き金か」「どのページに書くか」を担当者が判断する必要はありません。' +
