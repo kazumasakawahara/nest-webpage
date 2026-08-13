@@ -2,7 +2,29 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageIntro from '../../components/PageIntro.astro';
 import CtaBlock from '../../components/CtaBlock.astro';
-import { tools } from '../../lib/post-parent';
+import { tools, familyTools } from '../../lib/post-parent';
+
+// ご家族セクションの3段（話す → 編まれる → 手渡す）。カードは oya-iru-wiki の1枚。
+const familyFlow = [
+  {
+    no: '1',
+    step: '話す',
+    lead: '1行でいい。毎晩でなくていい',
+    body: '「今日こんなことがあった」と AI に話すだけ。事実と親の思いは、AI が聞き分けて日記に書き留めます。',
+  },
+  {
+    no: '2',
+    step: '編まれる',
+    lead: '月に一度、AI が整理',
+    body: '日記の中の「選んだ場面」「うまくいった関わり方」を AI が拾い、あなたの承認を得てページにします。',
+  },
+  {
+    no: '3',
+    step: '手渡す',
+    lead: 'いつか、本人の隣に立つ人へ',
+    body: '積み重ねは「はい・いいえ・嫌をどう表すか」の1枚に育ち、新しい支援者へ渡せる形になります。',
+  },
+];
 
 // 「聞く → 渡す → 引き出す」の3段。tools 配列の step と対応する。
 const flow = [
@@ -36,16 +58,114 @@ const flow = [
   <PageIntro
     eyebrow="Tools & Systems"
     title="ツール・しくみ"
-    lead="親なき後も支援が途切れないために。計画相談支援の担当者・意思決定支援に関わる方に向けた、3つの道具を無償で公開しています。"
+    lead="親なき後も支援が途切れないために。ご家族（親）向けの記録テンプレートと、計画相談支援・意思決定支援に関わる方に向けた3つの道具を、無償で公開しています。"
   />
 
+  <!-- ===== どなたですか？（2択ナビ） ===== -->
   <section class="section section--tight">
     <div class="container container--narrow reveal">
+      <nav class="audience" aria-label="お立場別の入口">
+        <a class="audience__link" href="#for-family">
+          <span class="audience__who">ご家族（親）の方へ</span>
+          <span class="audience__what">日記からつくる、わが子のバイブル</span>
+        </a>
+        <a class="audience__link" href="#for-professionals">
+          <span class="audience__who">支援者の方へ</span>
+          <span class="audience__what">聞く → 渡す → 引き出すの3つの道具</span>
+        </a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ===== ご家族（親）の方へ ===== -->
+  <section id="for-family" class="section audience-section">
+    <div class="container container--narrow">
+      <div class="reveal">
+        <span class="eyebrow">For Families</span>
+        <h2 class="section__title">ご家族の方へ — 日記から始める</h2>
+        <p class="flow-intro">
+          親には、書類のどこにも載らない「我が子を守る知恵」があります。<br />
+          それを<strong>話す → 編まれる → 手渡す</strong>の流れで、少しずつ形にしていきます。<br />
+          <span class="flow-intro__note">
+            無償です。<a href="/post-parent/tools/support/">更新・サポート・免責について</a>をご確認のうえご検討ください。
+          </span>
+        </p>
+        <ol class="flowmap flowmap--static">
+          {familyFlow.map((f) => (
+            <li class="flowmap__item">
+              <span class="flowmap__link">
+                <span class="flowmap__no" aria-hidden="true">{f.no}</span>
+                <span class="flowmap__step">{f.step}</span>
+                <span class="flowmap__lead">{f.lead}</span>
+                <span class="flowmap__body">{f.body}</span>
+              </span>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      {familyTools.map((t) => (
+        <article id={t.id} class="tool">
+          <div class="tool__media">
+            {t.image
+              ? <img src={t.image} alt={t.imageAlt ?? t.name} />
+              : <div class="tool__placeholder" aria-hidden="true">準備中</div>}
+          </div>
+          <div class="tool__body">
+            <p class="tool__for">{t.forWhom}</p>
+            <h3 class="tool__title">{t.name}</h3>
+            <p class="tool__tagline">{t.tagline}</p>
+            {t.chips && t.chips.length > 0 && (
+              <p class="tool__chips" aria-label="このしくみの特徴">
+                {t.chips.map((c) => <span>{c}</span>)}
+              </p>
+            )}
+            <p class="tool__text">{t.body}</p>
+            {t.manual && (
+              <div class="tool__manual">
+                <p class="tool__manual-label">はじめての方へ</p>
+                <p class="tool__manual-intro">{t.manual.intro}</p>
+                <a class="btn btn--primary btn--sm" href={t.manual.href} target="_blank" rel="noopener">
+                  {t.manual.label}
+                  <span class="btn__icon" aria-hidden="true">→</span>
+                </a>
+                {t.manual.meta && <p class="tool__manual-meta">{t.manual.meta}</p>}
+              </div>
+            )}
+            <div class="tool__links">
+              {t.links.map((l) => (
+                <a class="btn btn--outline" href={l.href} {...(l.external ? { rel: 'external', target: '_blank' } : {})}>
+                  {l.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- ===== 橋渡し：親の記録と支援者の記録は並走する ===== -->
+  <section class="section section--tight">
+    <div class="container container--narrow reveal">
+      <p class="bridge">
+        親の記録と支援者の記録は、別々のものではありません。<strong>同じ子を、両側から支えます。</strong><br />
+        ご家族のテンプレートは、下の支援者向けの道具と互換の形で作られており、
+        相談支援専門員が付いたときには日常の共有から、親が関われなくなったときの全面引き継ぎまで、橋がかかるようになっています。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 支援者の方へ ===== -->
+  <section id="for-professionals" class="section section--tight audience-section">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">For Professionals</span>
+      <h2 class="section__title">支援者の方へ — 聞く・渡す・引き出す</h2>
       <p class="flow-intro">
         ここにあるしくみは、ばらばらの道具ではありません。<br />
         <strong>聞く → 渡す → 引き出す</strong>という、ひとつの流れです。<br />
         <span class="flow-intro__note">
-          計画相談支援の担当者、および意思決定支援に関わる方に向けています。ご家族向けは別途準備中です。<br />
+          計画相談支援の担当者、および意思決定支援に関わる方に向けています。<br />
           いずれも無償です。<a href="/post-parent/tools/support/">更新・サポート・免責について</a>をご確認のうえご検討ください。
         </span>
       </p>
@@ -165,6 +285,65 @@ const flow = [
     margin-top: 0.6em;
     font-size: 0.86em;
     color: var(--color-text-muted, #6b6b6b);
+  }
+
+  /* ===== どなたですか？（2択ナビ） ===== */
+  .audience {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+  }
+  .audience__link {
+    display: grid;
+    gap: var(--space-1);
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-top: 3px solid var(--color-green-700);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    text-decoration: none;
+    transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+  }
+  .audience__link:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+  }
+  .audience__who {
+    font-family: var(--font-hand);
+    font-size: 19px;
+    color: var(--color-green-900);
+  }
+  .audience__what {
+    font-size: 13.5px;
+    color: var(--color-ink-mute);
+  }
+  .audience-section { scroll-margin-top: var(--space-8); }
+  .audience-section .eyebrow { display: block; margin-bottom: var(--space-2); }
+  .audience-section .section__title { margin-bottom: var(--space-5); }
+
+  /* ご家族セクションの3段はリンクではない（カードは1枚なので飛び先を作らない） */
+  .flowmap--static { margin-bottom: var(--space-7); }
+  .flowmap--static .flowmap__link { cursor: default; }
+  .flowmap--static .flowmap__link:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* 親の記録と支援者の記録の橋渡し文 */
+  .bridge {
+    text-align: center;
+    font-size: 15px;
+    line-height: var(--lh-loose);
+    color: var(--color-ink-mute);
+    background: var(--color-cream);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    padding: var(--space-5) var(--space-6);
+  }
+  .bridge strong { color: var(--color-green-900); }
+
+  @media (max-width: 640px) {
+    .audience { grid-template-columns: 1fr; gap: var(--space-3); }
   }
 
   /* ===== 聞く → 渡す → 引き出す（3段の流れ） ===== */
