@@ -49,6 +49,11 @@ Obsidianのノートは、**自分のパソコンの中の、ふつうのフォ�
 
 Obsidianには、ノートとノートを**リンクでつなぐ**機能があります。「今日の日記」から「かかりつけ医のメモ」へ、そこから「お薬の記録」へ——ためたノートが、芋づる式にたどれる**自分だけの百科事典**に育っていきます。
 
+<figure class="mockup mockup--wide">
+  <img src="/images/ai-tips/dougu-3-vault.svg" alt="保管庫（Vault）の正体を示す図。左はパソコンの中のふつうのフォルダで、中身は「今日の日記.md」などのただの文字ファイル。右は同じノートをObsidianで見たところで、日記・制度・先生・お薬・窓口のノートが糸でつながり、自分だけの百科事典に育つ" width="640" height="320" loading="lazy" decoding="async" />
+  <figcaption>▲ 左と右は同じもの。正体はただのフォルダ、Obsidianで開くと百科事典になる</figcaption>
+</figure>
+
 ## 入手のしかた
 
 手順はシンプルです。

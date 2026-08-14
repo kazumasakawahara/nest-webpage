@@ -30,6 +30,11 @@ Claude（クロード）は、ブラウザで claude.com を開けばそのま�
 - **ブラウザ版のAI**は、応接室に来てくれた**お客さん**です。話はできますが、あなたの机の書類には触れません
 - **アプリ版（Claude Desktop）のAI**は、あなたのパソコンに**自分の机を持った同僚**です。許可した範囲で、パソコンの中の道具や書類と一緒に働けます
 
+<figure class="mockup mockup--wide">
+  <img src="/images/ai-tips/dougu-1-desk.svg" alt="ブラウザ版のAI（応接室に来たお客さん。話はできるが、机の書類には触れない）と、アプリ版のClaude Desktop（パソコンの中に自分の机と道具の差込口を持った同僚）の対比図" width="640" height="340" loading="lazy" decoding="async" />
+  <figcaption>▲ 同じAIでも、座っている場所が違う。道具の差込口があるのは、机を持ったアプリ版だけ</figcaption>
+</figure>
+
 決定的な違いは、**「コネクタ」と呼ばれる道具を持たせられるのがアプリ版だけ**、ということ。次回ご紹介する Filesystem（ファイルを読み書きする手）をはじめ、この特集で手に入れる道具はぜんぶ、この机の上に並んでいきます。
 
 つまり Claude Desktop は、**これから先のすべての土台**です。
@@ -37,6 +42,11 @@ Claude（クロード）は、ブラウザで claude.com を開けばそのま�
 ## 入手のしかた
 
 所要時間は10分ほど。ソフトは無料です。
+
+<figure class="mockup mockup--wide">
+  <img src="/images/ai-tips/dougu-1-steps.svg" alt="入手の3ステップ図。①claude.comでアカウントを作る、②claude.com/downloadからMac/Windows用アプリを入れる、③起動して1のアカウントでサインイン" width="640" height="180" loading="lazy" decoding="async" />
+  <figcaption>▲ 全体はこの3歩。ひとつずつ進みましょう</figcaption>
+</figure>
 
 ### 1. アカウントを作る
 

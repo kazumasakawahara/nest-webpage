@@ -29,13 +29,18 @@ kind: dougu
 
 **Filesystem の許可フォルダに、Obsidian の保管庫を追加する。**
 
-やることは、これだけです。Claude Desktop の設定（歯車アイコン）→「拡張機能」または「コネクタ」→ ファイルシステムの許可フォルダに、Obsidian の保管庫（例：書類フォルダの中の `わたしのノート`）を追加して、アプリを完全終了→起動し直す。第2回と同じ手順です。
+やることは、これだけです。第2回と同じ要領で、設定の「コネクタ」から Filesystem を開き、任せるフォルダに Obsidian の保管庫（例：書類フォルダの中の `わたしのノート`）を追加するだけ。反映されないときは、アプリの完全終了→起動し直し（第2回のコラム参照）です。
 
 これで、**あなたがObsidianで書いたノートをAIが読める**ようになり、**AIが書いたノートをあなたがObsidianで読める**ようになりました。同じノートを、人間とAIが両側から開ける状態です。
 
 ## 「自分専用のデータセンター」が動き出す
 
 この状態を、私は**自分専用のデータセンター**と呼んでいます。大げさに聞こえますか？　でも、動かし方を見てください。
+
+<figure class="mockup mockup--wide">
+  <img src="/images/ai-tips/dougu-4-loop.svg" alt="データセンターの循環図。①あなたが「今日ね、」と話す→②Claudeがノートに書き留める→③保管庫（Obsidian）にたまる→④次に聞いたときClaudeが読んでから答える→あなたに返る、という輪。まん中に「使うほど、うちの事情にくわしくなる」" width="640" height="360" loading="lazy" decoding="async" />
+  <figcaption>▲ 話す→たまる→効いてくる。この輪が回りはじめます</figcaption>
+</figure>
 
 ### しまうときは、話すだけ
 
@@ -66,6 +71,11 @@ AIが保管庫の中を探して、「はい、5月のメモにあります。�
 じつはこの特集には、もうひとつの狙いがありました。
 
 nest が[親なき後のページ](/post-parent/)で無償公開している道具は、**まさにこの「Claude＋Filesystem＋Obsidian」の仕組みの上に建っています**。
+
+<figure class="mockup mockup--wide">
+  <img src="/images/ai-tips/dougu-4-foundation.svg" alt="土台と家の図。土台の3つのブロックはClaude Desktop（机・第1回）、Filesystem（手・第2回）、Obsidian（ノート・第3回）。その上に「親なき後の道具」の家が建ち、家の中にご家族向け「わが子のバイブル」と支援者向け「記録テンプレート」が入っている" width="640" height="340" loading="lazy" decoding="async" />
+  <figcaption>▲ この特集でそろえた3つの道具が、親なき後の道具たちの土台になっています</figcaption>
+</figure>
 
 - **ご家族（親）向け：[日記からつくる、わが子のバイブル（oya-iru-wiki）](/post-parent/tools/#oya-iru-wiki)** — AIに「今日こんなことがあった」と話すだけで日記がたまり、月に一度AIが整理して、いつか本人の隣に立つ支援者へ手渡せる1枚に育てていく記録テンプレートです
 - **支援者向け：[記録テンプレートと、ひとつの入力（oya-inai-keikaku-soudan）](/post-parent/tools/#oya-inai-template)** — 計画相談・意思決定支援の記録を、聞く→渡す→引き出すの流れで支援に活かすための道具一式です

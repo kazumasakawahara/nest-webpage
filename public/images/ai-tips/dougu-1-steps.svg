@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 180" width="640" height="180" role="img" aria-label="Claude Desktop入手の3ステップ。①claude.comでアカウントを作る、②claude.com/downloadからアプリを入れる、③起動してサインイン。所要10分ほど">
+  <defs>
+    <style>.lbl{font-family:system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;}</style>
+  </defs>
+
+  <text x="24" y="36" class="lbl" font-size="16" font-weight="700" fill="#2f5d3a">入手は3ステップ・10分ほど</text>
+
+  <!-- ステップ1 -->
+  <rect x="24" y="56" width="180" height="96" rx="14" fill="#ffffff" stroke="#ddd3c1" stroke-width="1.5"/>
+  <circle cx="52" cy="84" r="14" fill="#d97757"/>
+  <text x="52" y="89" text-anchor="middle" class="lbl" font-size="13.5" font-weight="700" fill="#ffffff">1</text>
+  <text x="74" y="89" class="lbl" font-size="14" font-weight="700" fill="#2f5d3a">アカウント</text>
+  <text x="44" y="116" class="lbl" font-size="12" fill="#7c7360">claude.com で</text>
+  <text x="44" y="134" class="lbl" font-size="12" fill="#7c7360">メール登録</text>
+
+  <path d="M212 104 h14 M220 96 l10 8 -10 8" fill="none" stroke="#d97757" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- ステップ2 -->
+  <rect x="236" y="56" width="180" height="96" rx="14" fill="#ffffff" stroke="#ddd3c1" stroke-width="1.5"/>
+  <circle cx="264" cy="84" r="14" fill="#d97757"/>
+  <text x="264" y="89" text-anchor="middle" class="lbl" font-size="13.5" font-weight="700" fill="#ffffff">2</text>
+  <text x="286" y="89" class="lbl" font-size="14" font-weight="700" fill="#2f5d3a">アプリを入れる</text>
+  <text x="256" y="116" class="lbl" font-size="12" fill="#7c7360">claude.com/download</text>
+  <text x="256" y="134" class="lbl" font-size="12" fill="#7c7360">から Mac / Windows 用を</text>
+
+  <path d="M424 104 h14 M432 96 l10 8 -10 8" fill="none" stroke="#d97757" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- ステップ3 -->
+  <rect x="448" y="56" width="168" height="96" rx="14" fill="#eaf2e5" stroke="#bcd7b3" stroke-width="2"/>
+  <circle cx="476" cy="84" r="14" fill="#4a8c3f"/>
+  <text x="476" y="89" text-anchor="middle" class="lbl" font-size="13.5" font-weight="700" fill="#ffffff">3</text>
+  <text x="498" y="89" class="lbl" font-size="14" font-weight="700" fill="#2f5d3a">サインイン</text>
+  <text x="468" y="116" class="lbl" font-size="12" fill="#4a8c3f">起動して、1の</text>
+  <text x="468" y="134" class="lbl" font-size="12" fill="#4a8c3f">アカウントで入る</text>
+</svg>

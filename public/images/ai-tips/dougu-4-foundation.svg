@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 340" width="640" height="340" role="img" aria-label="土台と家の図。土台の3つのブロックはClaude Desktop（机）・Filesystem（手）・Obsidian（ノート）。その上に「親なき後の道具」の家が建ち、家の中に「日記からつくる、わが子のバイブル」と「支援者向けの記録テンプレート」が入っている。この特集でそろえた道具が、そのまま土台になっている">
+  <defs>
+    <style>.lbl{font-family:system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;}</style>
+  </defs>
+
+  <text x="24" y="38" class="lbl" font-size="17" font-weight="700" fill="#2f5d3a">親なき後の道具は、同じ土台の上に建っています</text>
+
+  <!-- 家（屋根） -->
+  <path d="M120 148 L320 62 L520 148 Z" fill="#d97757" stroke="#c05f3f" stroke-width="2" stroke-linejoin="round"/>
+  <text x="320" y="128" text-anchor="middle" class="lbl" font-size="15" font-weight="700" fill="#ffffff">親なき後の道具</text>
+
+  <!-- 家（本体） -->
+  <rect x="144" y="148" width="352" height="100" fill="#faf6ef" stroke="#ddd3c1" stroke-width="2"/>
+  <rect x="164" y="166" width="152" height="64" rx="10" fill="#ffffff" stroke="#bcd7b3" stroke-width="1.8"/>
+  <text x="240" y="192" text-anchor="middle" class="lbl" font-size="12" font-weight="700" fill="#2f5d3a">ご家族向け</text>
+  <text x="240" y="212" text-anchor="middle" class="lbl" font-size="11" fill="#7c7360">わが子のバイブル</text>
+  <rect x="324" y="166" width="152" height="64" rx="10" fill="#ffffff" stroke="#bcd7b3" stroke-width="1.8"/>
+  <text x="400" y="192" text-anchor="middle" class="lbl" font-size="12" font-weight="700" fill="#2f5d3a">支援者向け</text>
+  <text x="400" y="212" text-anchor="middle" class="lbl" font-size="11" fill="#7c7360">記録テンプレート</text>
+
+  <!-- 土台ブロック -->
+  <g class="lbl">
+    <rect x="120" y="260" width="126" height="52" rx="8" fill="#eaf2e5" stroke="#4a8c3f" stroke-width="2"/>
+    <text x="183" y="282" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2f5d3a">Claude Desktop</text>
+    <text x="183" y="300" text-anchor="middle" font-size="11" fill="#4a8c3f">机（第1回）</text>
+
+    <rect x="258" y="260" width="126" height="52" rx="8" fill="#eaf2e5" stroke="#4a8c3f" stroke-width="2"/>
+    <text x="321" y="282" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2f5d3a">Filesystem</text>
+    <text x="321" y="300" text-anchor="middle" font-size="11" fill="#4a8c3f">手（第2回）</text>
+
+    <rect x="396" y="260" width="126" height="52" rx="8" fill="#eaf2e5" stroke="#4a8c3f" stroke-width="2"/>
+    <text x="459" y="282" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2f5d3a">Obsidian</text>
+    <text x="459" y="300" text-anchor="middle" font-size="11" fill="#4a8c3f">ノート（第3回）</text>
+  </g>
+
+  <text x="320" y="334" text-anchor="middle" class="lbl" font-size="12" fill="#7c7360">この特集でそろえた3つが、そのまま土台です</text>
+</svg>

@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 340" width="640" height="340" role="img" aria-label="ブラウザ版のAI（応接室に来たお客さん。話はできるが、あなたのファイルには触れない）と、アプリ版のClaude Desktop（パソコンの中に自分の机を持った同僚。道具＝コネクタを差せる）の対比図">
+  <defs>
+    <style>.lbl{font-family:system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;}</style>
+  </defs>
+
+  <!-- 左：ブラウザ版 -->
+  <rect x="20" y="26" width="276" height="288" rx="16" fill="#efe9dd" stroke="#ddd3c1" stroke-width="1.5"/>
+  <text x="48" y="68" class="lbl" font-size="19" font-weight="700" fill="#7c7360">ブラウザ版のAI</text>
+  <text x="48" y="90" class="lbl" font-size="12.5" fill="#9a907c">応接室に来てくれた、お客さん</text>
+
+  <!-- ブラウザ窓の中のロボット -->
+  <g transform="translate(48,108)">
+    <rect x="0" y="0" width="108" height="84" rx="8" fill="#ffffff" stroke="#ddd3c1" stroke-width="1.5"/>
+    <rect x="0" y="0" width="108" height="18" rx="8" fill="#e6ded0"/>
+    <rect x="0" y="9" width="108" height="9" fill="#e6ded0"/>
+    <circle cx="12" cy="9" r="3" fill="#d97757"/>
+    <circle cx="22" cy="9" r="3" fill="#ffd15c"/>
+    <circle cx="32" cy="9" r="3" fill="#8fbf87"/>
+    <g transform="translate(36,32)">
+      <line x1="18" y1="7" x2="18" y2="2" stroke="#7c7360" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="18" cy="0" r="3.2" fill="#ffd15c"/>
+      <rect x="2" y="7" width="32" height="26" rx="8" fill="#faf6ef" stroke="#7c7360" stroke-width="2.2"/>
+      <rect x="9" y="13" width="18" height="14" rx="4.5" fill="#4a443a"/>
+      <circle cx="14.5" cy="20" r="2.6" fill="#f2d9ae"/>
+      <circle cx="21.5" cy="20" r="2.6" fill="#f2d9ae"/>
+    </g>
+  </g>
+  <rect x="170" y="118" width="112" height="52" rx="12" fill="#ffffff" stroke="#ddd3c1" stroke-width="1.2"/>
+  <text x="226" y="139" text-anchor="middle" class="lbl" font-size="12.5" fill="#5f5847">お話は、</text>
+  <text x="226" y="157" text-anchor="middle" class="lbl" font-size="12.5" fill="#5f5847">できますよ</text>
+
+  <g class="lbl" font-size="13.5" fill="#5f5847">
+    <g><circle cx="50" cy="222" r="4" fill="#b7ac97"/><text x="64" y="227">話すことは、できる</text></g>
+    <g><circle cx="50" cy="252" r="4" fill="#b7ac97"/><text x="64" y="257">机の書類には、触れない</text></g>
+  </g>
+  <text x="158" y="294" text-anchor="middle" class="lbl" font-size="14" font-weight="700" fill="#7c7360">応接室の、お客さん</text>
+
+  <!-- 矢印 -->
+  <g transform="translate(300,158)">
+    <circle cx="20" cy="12" r="22" fill="#d97757"/>
+    <path d="M12 12 h14 M20 4 l10 8 -10 8" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- 右：Claude Desktop -->
+  <rect x="344" y="26" width="276" height="288" rx="16" fill="#eaf2e5" stroke="#bcd7b3" stroke-width="2"/>
+  <text x="372" y="68" class="lbl" font-size="19" font-weight="700" fill="#2f5d3a">Claude Desktop</text>
+  <text x="372" y="90" class="lbl" font-size="12.5" fill="#4a8c3f">パソコンの中に、自分の机を持つ</text>
+
+  <!-- 机に向かうロボット -->
+  <g transform="translate(376,104)">
+    <g transform="translate(24,0)">
+      <line x1="18" y1="7" x2="18" y2="2" stroke="#2f5d3a" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="18" cy="0" r="3.2" fill="#ffd15c"/>
+      <rect x="2" y="7" width="32" height="26" rx="8" fill="#faf6ef" stroke="#2f5d3a" stroke-width="2.2"/>
+      <rect x="9" y="13" width="18" height="14" rx="4.5" fill="#1f3a26"/>
+      <circle cx="14.5" cy="20" r="2.6" fill="#8fe0b0"/>
+      <circle cx="21.5" cy="20" r="2.6" fill="#8fe0b0"/>
+    </g>
+    <!-- 机 -->
+    <rect x="0" y="40" width="104" height="10" rx="4" fill="#c9a06c"/>
+    <rect x="6" y="50" width="10" height="26" fill="#b18a58"/>
+    <rect x="88" y="50" width="10" height="26" fill="#b18a58"/>
+    <!-- 差込口（コネクタの口） -->
+    <g transform="translate(112,36)">
+      <rect x="0" y="0" width="34" height="46" rx="8" fill="#ffffff" stroke="#bcd7b3" stroke-width="1.5"/>
+      <rect x="9" y="9" width="16" height="9" rx="2.5" fill="#eaf2e5" stroke="#4a8c3f" stroke-width="1.6"/>
+      <rect x="9" y="27" width="16" height="9" rx="2.5" fill="#eaf2e5" stroke="#4a8c3f" stroke-width="1.6"/>
+    </g>
+    <text x="129" y="98" text-anchor="middle" class="lbl" font-size="10.5" fill="#4a8c3f">差込口</text>
+  </g>
+
+  <g class="lbl" font-size="13.5" fill="#264a2c" font-weight="600">
+    <g><path d="M370 217 l5 5 9 -10" fill="none" stroke="#4a8c3f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><text x="392" y="227">道具（コネクタ）を差せる</text></g>
+    <g><path d="M370 247 l5 5 9 -10" fill="none" stroke="#4a8c3f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><text x="392" y="257">パソコンの中で一緒に働ける</text></g>
+  </g>
+  <text x="482" y="294" text-anchor="middle" class="lbl" font-size="14" font-weight="700" fill="#2f5d3a">机を持った、同僚</text>
+</svg>
