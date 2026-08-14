@@ -17,6 +17,10 @@ export default defineConfig({
         !page.includes('/members/') && !page.includes('/apps/'),
     }),
   ],
+  server: {
+    // プレビュー環境が割り当てる PORT を尊重（未指定なら Astro 既定の 4321）
+    port: process.env.PORT ? Number(process.env.PORT) : 4321,
+  },
   build: {
     inlineStylesheets: 'auto',
   },
