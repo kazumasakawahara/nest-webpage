@@ -10,12 +10,13 @@ kind: dougu
 
 <div class="callout series-nav">
   <span class="callout__label">特集・道具の入手コーナー</span>
-  <p>この記事は、特集<strong>「道具の入手 ― AIの道具箱をそろえる」</strong>（全4回）の第2回です。</p>
+  <p>この記事は、特集<strong>「道具の入手 ― AIの道具箱をそろえる」</strong>（全5回）の第2回です。</p>
   <ol class="series-nav__list">
     <li><a href="/ai-tips/2026-08-15-dougu-1-claude-desktop/">AIに“専用の机”を用意する ― Claude Desktopを迎え入れる</a></li>
     <li class="is-current">AIに“手”を持たせる ― 最初のコネクタ Filesystem（この記事）</li>
     <li><a href="/ai-tips/2026-08-15-dougu-3-obsidian/">知恵をためる“ノート”を手に入れる ― Obsidianという道具</a></li>
     <li><a href="/ai-tips/2026-08-15-dougu-4-data-center/">ClaudeとObsidianで、自分専用の“データセンター”をつくる</a></li>
+    <li><a href="/ai-tips/2026-08-15-dougu-5-trusted-center/">たまるだけでは、まだ半人前 ― “信頼できる倉庫”に育てる3つの規律（発展編）</a></li>
   </ol>
 </div>
 

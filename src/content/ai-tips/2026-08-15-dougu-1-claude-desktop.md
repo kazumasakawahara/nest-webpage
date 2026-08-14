@@ -8,16 +8,17 @@ kind: dougu
 
 「AIは便利らしい。でも、ブラウザで聞くだけならもう使っている。この先って何があるの？」——この特集は、そんな方のためのコーナーです。
 
-AIを"読みものの相手"から"一緒に働く相棒"に変えるには、いくつかの**道具**が要ります。どれも無料〜低コストで、入手は思ったよりかんたん。全4回で、ひとつずつ手に入れていきましょう。
+AIを"読みものの相手"から"一緒に働く相棒"に変えるには、いくつかの**道具**が要ります。どれも無料〜低コストで、入手は思ったよりかんたん。全5回で、ひとつずつ手に入れていきましょう。
 
 <div class="callout series-nav">
   <span class="callout__label">特集・道具の入手コーナー</span>
-  <p>この記事は、特集<strong>「道具の入手 ― AIの道具箱をそろえる」</strong>（全4回）の第1回です。</p>
+  <p>この記事は、特集<strong>「道具の入手 ― AIの道具箱をそろえる」</strong>（全5回）の第1回です。</p>
   <ol class="series-nav__list">
     <li class="is-current">AIに“専用の机”を用意する ― Claude Desktopを迎え入れる（この記事）</li>
     <li><a href="/ai-tips/2026-08-15-dougu-2-filesystem/">AIに“手”を持たせる ― 最初のコネクタ Filesystem</a></li>
     <li><a href="/ai-tips/2026-08-15-dougu-3-obsidian/">知恵をためる“ノート”を手に入れる ― Obsidianという道具</a></li>
     <li><a href="/ai-tips/2026-08-15-dougu-4-data-center/">ClaudeとObsidianで、自分専用の“データセンター”をつくる</a></li>
+    <li><a href="/ai-tips/2026-08-15-dougu-5-trusted-center/">たまるだけでは、まだ半人前 ― “信頼できる倉庫”に育てる3つの規律（発展編）</a></li>
   </ol>
 </div>
 

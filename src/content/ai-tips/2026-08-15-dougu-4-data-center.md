@@ -1,7 +1,7 @@
 ---
 title: ClaudeとObsidianで、自分専用の“データセンター”をつくる
 date: 2026-08-15
-summary: 机（Claude Desktop）、手（Filesystem）、ノート（Obsidian）——3つの道具を組み合わせると、「話すだけで記録がたまり、たまるほどAIがうちの事情にくわしくなる」自分専用のデータセンターが動き出します。Filesystemさえあれば、難しいことは何もありません。そしてこの仕組みこそ、親なき後のツールの土台です。特集「道具の入手」最終回。
+summary: 机（Claude Desktop）、手（Filesystem）、ノート（Obsidian）——3つの道具を組み合わせると、「話すだけで記録がたまり、たまるほどAIがうちの事情にくわしくなる」自分専用のデータセンターが動き出します。Filesystemさえあれば、難しいことは何もありません。そしてこの仕組みこそ、親なき後のツールの土台です。特集「道具の入手」第4回。
 draft: false
 kind: dougu
 ---
@@ -12,12 +12,13 @@ kind: dougu
 
 <div class="callout series-nav">
   <span class="callout__label">特集・道具の入手コーナー</span>
-  <p>この記事は、特集<strong>「道具の入手 ― AIの道具箱をそろえる」</strong>（全4回）の最終回です。</p>
+  <p>この記事は、特集<strong>「道具の入手 ― AIの道具箱をそろえる」</strong>（全5回）の第4回です。</p>
   <ol class="series-nav__list">
     <li><a href="/ai-tips/2026-08-15-dougu-1-claude-desktop/">AIに“専用の机”を用意する ― Claude Desktopを迎え入れる</a></li>
     <li><a href="/ai-tips/2026-08-15-dougu-2-filesystem/">AIに“手”を持たせる ― 最初のコネクタ Filesystem</a></li>
     <li><a href="/ai-tips/2026-08-15-dougu-3-obsidian/">知恵をためる“ノート”を手に入れる ― Obsidianという道具</a></li>
     <li class="is-current">ClaudeとObsidianで、自分専用の“データセンター”をつくる（この記事）</li>
+    <li><a href="/ai-tips/2026-08-15-dougu-5-trusted-center/">たまるだけでは、まだ半人前 ― “信頼できる倉庫”に育てる3つの規律（発展編）</a></li>
   </ol>
 </div>
 
@@ -117,6 +118,8 @@ nest が[親なき後のページ](/post-parent/)で無償公開している道�
 | 組み合わせ（第4回） | 話すだけでたまる、自分専用データセンター | — |
 
 ここまでお付き合いいただき、ありがとうございました。道具はそろいました。あとは、今日あったことをひとつ、AIに話してみてください。**あなたのデータセンターの稼働初日は、その一言から始まります。**
+
+→ 発展編 [たまるだけでは、まだ半人前 ― データセンターを“信頼できる倉庫”に育てる3つの規律](/ai-tips/2026-08-15-dougu-5-trusted-center/)
 
 - 親なき後の道具を見てみる：[ツール・しくみ](/post-parent/tools/)
 - 迷ったら：[お問い合わせ](/contact/)
