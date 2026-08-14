@@ -17,6 +17,9 @@ const anshinItems = all
 // 便利ワザ編（kind未指定。新しい順）
 const wazaItems = all.filter((e) => !e.data.kind).sort(byDateDesc);
 
+// 特集・道具の入手コーナー（ファイル名の連番順）
+const douguItems = all.filter((e) => e.data.kind === 'dougu').sort((a, b) => a.id.localeCompare(b.id));
+
 // 相棒編：読みもの＋連載本編（ファイル名の連番順）＋実践編（日付順）
 const aibouIntro = all.find((e) => e.data.kind === 'aibou');
 const seriesItems = all.filter((e) => e.data.kind === 'series').sort((a, b) => a.id.localeCompare(b.id));
@@ -72,6 +75,25 @@ const fmtDate = (d: Date) =>
           </a>
         </li>
       </ul>
+
+      {douguItems.length > 0 && (
+        <div class="feature-box reveal" id="dougu">
+          <p class="feature-box__eyebrow">🧰 特集コーナー</p>
+          <h3 class="feature-box__title">道具の入手 ― AIの道具箱をそろえる（全{douguItems.length}回）</h3>
+          <p class="feature-box__lead">
+            AIを“読みものの相手”から“一緒に働く相棒”へ。専用の机（Claude Desktop）、手（Filesystem）、知恵をためるノート（Obsidian）を順に手に入れて、最後は自分専用の“データセンター”を組み上げます。ここで整う道具は、<a href="/post-parent/tools/">親なき後のツール・しくみ</a>を始めるときの土台にもなります。
+          </p>
+          <ol class="feature-box__list">
+            {douguItems.map((item) => (
+              <li class="feature-box__item">
+                <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
+                  <span class="feature-box__name">{item.data.title}</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </div>
+      )}
 
       <a href="/ai-tips/pocket/" class="pocket-door reveal">
         <span class="pocket-door__emoji" aria-hidden="true">👝</span>
@@ -204,8 +226,98 @@ const fmtDate = (d: Date) =>
 
 <style>
   /* === 3つの棚ナビ === */
-  #anshin, #waza, #aibou {
+  #anshin, #waza, #aibou, #dougu {
     scroll-margin-top: 96px;
+  }
+
+  /* === 特集コーナー：道具の入手 === */
+  .feature-box {
+    margin-top: var(--space-5);
+    padding: var(--space-5);
+    border: 2px solid var(--color-terra-500);
+    border-radius: 16px;
+    background: rgba(217, 119, 87, 0.05);
+  }
+
+  .feature-box__eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--color-terra-500);
+  }
+
+  .feature-box__title {
+    font-family: var(--font-hand);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-green-900);
+    margin-top: var(--space-2);
+    line-height: 1.6;
+  }
+
+  .feature-box__lead {
+    font-size: 13px;
+    color: var(--color-ink-mute);
+    line-height: 1.8;
+    margin-top: var(--space-2);
+  }
+
+  .feature-box__lead a {
+    color: var(--color-green-700);
+    border-bottom: 1px solid currentColor;
+  }
+
+  .feature-box__list {
+    list-style: none;
+    counter-reset: dougu;
+    padding: 0;
+    margin-top: var(--space-3);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .feature-box__item {
+    counter-increment: dougu;
+    border-bottom: 1px dashed var(--color-line);
+  }
+
+  .feature-box__item:last-child { border-bottom: none; }
+
+  .feature-box__link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-2);
+    color: var(--color-ink);
+    transition: background-color var(--dur-fast) var(--ease-out);
+  }
+
+  .feature-box__link::before {
+    content: counter(dougu);
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: var(--color-terra-500);
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }
+
+  .feature-box__link:hover {
+    background-color: rgba(217, 119, 87, 0.08);
+    color: var(--color-ink);
+  }
+
+  .feature-box__name {
+    font-family: var(--font-hand);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-green-900);
+    line-height: 1.6;
   }
 
   .picks {
@@ -483,7 +595,8 @@ const fmtDate = (d: Date) =>
     .picks {
       grid-template-columns: 1fr;
     }
-    .series-box {
+    .series-box,
+    .feature-box {
       padding: var(--space-4);
     }
     .tips-list__link {
