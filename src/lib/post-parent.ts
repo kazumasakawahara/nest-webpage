@@ -106,7 +106,7 @@ export const familyTools: ToolIntro[] = [
       {
         src: '/images/post-parent/oya-iru-wiki-github-zip.jpg',
         alt: 'GitHub の緑色の「Code」ボタンを押して開いたメニュー。いちばん下に「Download ZIP」がある',
-        caption: '入手はかんたん。緑色の「Code」ボタン →「Download ZIP」（クリックで拡大）',
+        caption: '上のボタンで ZIP が直接落ちてきます。配布元の GitHub から取ることもできます（クリックで拡大）',
       },
     ],
     body:
@@ -122,10 +122,15 @@ export const familyTools: ToolIntro[] = [
         'Obsidian というアプリの名前を今日初めて聞いた方を想定して、AI の選び方（お子さんの情報が学習に使われないことの確かめ方）から、連絡帳の写真をスマホから入れられる受付箱の作り方、最初の日記、困ったときの対処まで、順にまとめました。各手順に「なぜ必要か」を添えています。導入作業そのものを AI に手伝ってもらう進め方も載せています。',
       href: '/internal/oya-iru-wiki-oya-manual.html',
       label: '親のための完全導入マニュアルを読む',
-      meta: '画面でそのまま読めます（別ページで開きます）。GitHub・Obsidian・ターミナル・スマホからの写真の入れ方まで、画面の見た目から一歩ずつ説明する「くわしい手順書」5冊もマニュアルからたどれます。',
+      meta: '画面でそのまま読めます（別ページで開きます）。Obsidian の導入・AI とのフォルダ接続・ターミナル・スマホからの写真の入れ方まで、画面の見た目から一歩ずつ説明する「くわしい手順書」もマニュアルからたどれます。',
     },
     links: [
-      { label: 'GitHubで入手する（無料）', href: 'https://github.com/kazumasakawahara/oya-iru-wiki', external: true },
+      {
+        label: 'テンプレートをダウンロード（無料・ZIP）',
+        href: 'https://github.com/kazumasakawahara/oya-iru-wiki/archive/refs/heads/main.zip',
+        external: true,
+      },
+      { label: '配布元（GitHub）を見る', href: 'https://github.com/kazumasakawahara/oya-iru-wiki', external: true },
       { label: 'この取り組みについて問い合わせる', href: '/contact/' },
     ],
   },
