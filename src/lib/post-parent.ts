@@ -41,6 +41,7 @@ export interface ToolIntro {
   chips?: string[]; // 特徴チップ（ストア風カード表示用）例: 'GitHubで無料公開'
   image?: string;
   imageAlt?: string;
+  images?: { src: string; alt: string; caption?: string }[]; // 複数スクリーンショット（クリックで拡大）。指定時は image より優先
   video?: string;   // 紹介動画（mp4）例: /videos/kurashi-support-ai.mp4
   poster?: string;  // 動画のポスター画像（任意。未指定なら video の先頭フレーム）
   manual?: ToolManual; // 導入マニュアルへの誘導（任意）
@@ -85,10 +86,55 @@ export const seminars: Seminar[] = [
   // TODO(河原さん): 研修会のメタ情報（年・テーマ・講師）と配布資料を追加
 ];
 
+// ご家族（親）向けテンプレート（2026-08-13 追加）。
+// 2026-08-11 に「別プロジェクトとして後日再登場させる」とした家族向けの、その再登場。
+// 支援者の3段（聞く→渡す→引き出す）とは別の一人称（親）のため、tools 配列に混ぜず独立させる。
+// tools/ ページの先頭「ご家族の方へ」セクションで表示する。
+export const familyTools: ToolIntro[] = [
+  {
+    id: 'oya-iru-wiki',
+    name: '日記からつくる、わが子のバイブル',
+    tagline: '話すだけでいい。書式は AI の仕事',
+    forWhom: '障がいのあるお子さん（知的障がい・自閉スペクトラム症など）を育てている親御さん向け',
+    chips: ['話すだけでいい', 'GitHubで無料公開（MIT）', '記入例つき', 'Mac・Windows対応'],
+    images: [
+      {
+        src: '/images/post-parent/oya-iru-wiki-github.jpg',
+        alt: 'GitHub で公開中の oya-iru-wiki リポジトリの画面。docs・記入例・記録の棚などのフォルダが並んでいる',
+        caption: 'GitHub で公開中のテンプレートの画面（クリックで拡大）',
+      },
+      {
+        src: '/images/post-parent/oya-iru-wiki-github-zip.jpg',
+        alt: 'GitHub の緑色の「Code」ボタンを押して開いたメニュー。いちばん下に「Download ZIP」がある',
+        caption: '入手はかんたん。緑色の「Code」ボタン →「Download ZIP」（クリックで拡大）',
+      },
+    ],
+    body:
+      '親がいる「今」から始める、子育ての記録テンプレート（oya-iru-wiki）です。' +
+      '親がすることは、AI に「今日こんなことがあった」と話すだけ。1行でも、話さない日があってもかまいません。' +
+      'AI が「あったこと（事実）」と「おもったこと（親の思い）」を聞き分けて日記に書き留め、月に一度、' +
+      '子どもが選んだ場面・伝わりやすい示し方・うまくいった関わり方をページに整理していきます。' +
+      '積み重ねは「はい・いいえ・嫌をどう表すか」のプロファイルに育ちます——いつか本人の隣に立つ意思決定支援者が、最初に読むべき1枚です。' +
+      '下の支援者向けの道具と互換の形で作ってあるので、相談支援専門員が付いたときは日常の共有から全面引き継ぎまで橋がかかります。' +
+      '書式やアプリの知識は要りません。仕組みは検証済みですが、子育ての実感に合うかは、これから当事者の親御さんの声で確かめていく段階です。',
+    manual: {
+      intro:
+        'Obsidian というアプリの名前を今日初めて聞いた方を想定して、AI の選び方（お子さんの情報が学習に使われないことの確かめ方）から、書類を置くだけの受付箱の作り方、最初の日記、困ったときの対処まで、順にまとめました。各手順に「なぜ必要か」を添えています。導入作業そのものを AI に手伝ってもらう進め方も載せています。',
+      href: '/internal/oya-iru-wiki-oya-manual.html',
+      label: '親のための完全導入マニュアルを読む',
+      meta: '画面でそのまま読めます（別ページで開きます）。GitHub・Obsidian・ターミナルが初めての方向けに、画面の見た目から一歩ずつ説明する「くわしい手順書」4冊もマニュアルからたどれます。',
+    },
+    links: [
+      { label: 'GitHubで入手する（無料）', href: 'https://github.com/kazumasakawahara/oya-iru-wiki', external: true },
+      { label: 'この取り組みについて問い合わせる', href: '/contact/' },
+    ],
+  },
+];
+
 // ツール・しくみ紹介（概念紹介のみ。実データ・内部構造は載せない）。
 // 読み手は計画相談の担当者・意思決定支援者に統一（2026-08-11）。
-// ご家族向け（旧 oya-inai ・家族聴き取りガイド）はこの3段から外し、別プロジェクトとして後日再登場させる。
-// 旧ページ（tools/kikitori-guide・tools/oya-inai-start）は削除せずに残してある（家族版で再利用するため）。
+// ご家族向けは上の familyTools（oya-iru-wiki。2026-08-13 再登場）として独立させた。
+// 旧ページ（tools/kikitori-guide・tools/oya-inai-start）は削除せずに残してある。
 export const tools: ToolIntro[] = [
   // ── ① 聞く ─────────────────────────────────────────────
   {
@@ -124,6 +170,18 @@ export const tools: ToolIntro[] = [
     chips: ['GitHubで無料公開（MIT）', 'Obsidian だけでも使えます', '記入例つき', 'Mac・Windows対応'],
     image: '/images/post-parent/flow-oya-inai-template.svg',
     imageAlt: '聞く・渡す・引き出すの3段を並べた全体図。いまは2段目の「渡す」を示している',
+    images: [
+      {
+        src: '/images/post-parent/oya-inai-keikaku-soudan-github.jpg',
+        alt: 'GitHub で公開中の oya-inai-keikaku-soudan リポジトリの画面。docs・raw・wiki・記入例などのフォルダが並んでいる',
+        caption: 'GitHub で公開中のテンプレートの画面（クリックで拡大）',
+      },
+      {
+        src: '/images/post-parent/oya-inai-keikaku-soudan-github-zip.jpg',
+        alt: 'GitHub の緑色の「Code」ボタンを押して開いたメニュー。いちばん下に「Download ZIP」がある',
+        caption: '入手はかんたん。緑色の「Code」ボタン →「Download ZIP」（クリックで拡大）',
+      },
+    ],
     body:
       '面談メモの走り書きでも、事業所から届いた支援記録でも、清書せずにそのまま渡していただけば十分です。' +
       '「これは禁忌か、引き金か」「どのページに書くか」を担当者が判断する必要はありません。' +
@@ -167,6 +225,18 @@ export const tools: ToolIntro[] = [
       '関心のある支援者・法人の方はどなたでも導入いただけます。',
     video: '/videos/kurashi-support-ai.mp4',
     poster: '/videos/kurashi-support-ai-poster.jpg',
+    images: [
+      {
+        src: '/images/post-parent/oya-inai-db-github.jpg',
+        alt: 'GitHub で公開中の oya-inai-db リポジトリの画面。agents・api・docs などのフォルダが並んでいる',
+        caption: 'GitHub で公開中の oya-inai-db の画面（クリックで拡大）',
+      },
+      {
+        src: '/images/post-parent/oya-inai-db-github-zip.jpg',
+        alt: 'GitHub の緑色の「Code」ボタンを押して開いたメニュー。いちばん下に「Download ZIP」がある',
+        caption: '入手はかんたん。緑色の「Code」ボタン →「Download ZIP」（クリックで拡大）',
+      },
+    ],
     manual: {
       intro:
         '「システム」や「データベース」と聞くと、少し身構えてしまうかもしれません。でも、心配はいりません。パソコンの操作に不慣れな支援員・相談員の方を想定した「はじめてガイド」を用意しました。ことばの説明から毎日の使い方、うまくいかないときのQ&Aまで、ゼロからひとつずつ進められます。むずかしいのは初日だけ。2日目からはダブルクリックだけで使えます。',

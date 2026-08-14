@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>くわしい手順書 ①　テンプレートを手に入れる（GitHub から）</title>
+<style>
+  :root{
+    --ink:#1c1917; --ink2:#44403c; --ink3:#79716b;
+    --line:#e7e5e4; --bg:#fdfcfb; --card:#fff;
+    --accent:#3f6f52; --accent-soft:#eef4f0; --accent-line:#d6e5db;
+    --alert:#9a3d2c; --alert-soft:#fbf0ed; --alert-line:#eed4cc;
+    --mute:#f6f5f3;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Yu Gothic UI","Yu Gothic","Meiryo","Hiragino Sans","Hiragino Kaku Gothic ProN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    line-height:1.95;font-size:16px;letter-spacing:.01em}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 24px 96px}
+  header.doc{border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:34px}
+  h1{font-size:28px;line-height:1.5;margin:0 0 8px;letter-spacing:-.01em}
+  .sub{color:var(--ink3);font-size:14px;margin:0}
+  h2{font-size:22px;margin:52px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--ink);line-height:1.5}
+  h3{font-size:18px;margin:34px 0 10px;color:var(--ink2);line-height:1.55}
+  h4{font-size:16px;margin:24px 0 8px;color:var(--ink2)}
+  p{margin:0 0 15px}
+  ul,ol{margin:0 0 16px;padding-left:1.5em}
+  li{margin-bottom:7px}
+  a{color:var(--accent);text-underline-offset:3px}
+  code{background:var(--mute);border:1px solid var(--line);border-radius:5px;
+    padding:1px 5px;font-size:13.5px;
+    font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace}
+  pre{background:#faf9f7;border:1px solid var(--line);border-radius:10px;
+    padding:14px 16px;overflow-x:auto;margin:0 0 18px;line-height:1.7}
+  pre code{background:none;border:none;padding:0;font-size:13px}
+  blockquote{margin:0 0 18px;padding:14px 18px;background:var(--accent-soft);
+    border:1px solid var(--accent-line);border-left:4px solid var(--accent);
+    border-radius:0 10px 10px 0;color:var(--ink2)}
+  blockquote p:last-child{margin-bottom:0}
+  table{border-collapse:collapse;width:100%;margin:0 0 20px;font-size:14.5px;
+    background:var(--card);display:block;overflow-x:auto}
+  th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+  th{background:var(--mute);font-weight:600;white-space:nowrap}
+  hr{border:none;border-top:1px solid var(--line);margin:44px 0}
+  strong{font-weight:700}
+  footer.doc{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);
+    color:var(--ink3);font-size:13.5px}
+  @media print{
+    body{background:#fff;font-size:11pt;line-height:1.7}
+    .wrap{max-width:none;padding:0}
+    h2,h3{break-after:avoid}
+    pre,table,blockquote{break-inside:avoid}
+  }
+  @media (max-width:640px){
+    .wrap{padding:24px 16px 64px}
+    h1{font-size:22px} h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="doc">
+  <h1>くわしい手順書 ①　テンプレートを手に入れる（GitHub から）</h1>
+  <p class="sub">日記からつくる、わが子のバイブル（oya-iru-wiki）／ くわしい手順書 全4冊の1冊目</p>
+</header>
+<blockquote><p><strong>この手順書は、GitHub というサイトを初めて使う方のためのものです。</strong> アカウント登録は不要で、かかるお金もありません。やることは「サイトから ZIP ファイルを1つダウンロードして、決めた場所に置く」だけです。</p>
+<p>所要時間: 5〜10分 ／ 前の手順: なし（ここが最初です） ／ 次の手順: <a href="./oya-iru-wiki-guide-02-obsidian.html">② Obsidian を入れて、Vault として開く</a></p></blockquote>
+<h2 id="github-とは何ですか">GitHub とは何ですか？</h2>
+<p>プログラムや文書のひな型を置いておける、世界で広く使われている公開棚のようなサイトです。このテンプレートも GitHub に置いてあり、<strong>誰でも・無料で・登録なしに</strong>持ち帰れます。「ダウンロードしたら課金される」「登録を求められる」ことはありません。</p>
+<h2 id="方法a-zip-でダウンロードするおすすめ・登録不要">方法A: ZIP でダウンロードする（おすすめ・登録不要）</h2>
+<h3 id="1-テンプレートのページを開く">1. テンプレートのページを開く</h3>
+<p>ブラウザ（Safari・Chrome・Edge など）で、次のアドレスを開きます。</p>
+<pre><code>https://github.com/kazumasakawahara/oya-iru-wiki</code></pre>
+<p>英語まじりの画面が出ますが、読む必要はありません。ファイルの一覧が並んでいれば正しいページです。</p>
+<h3 id="2-緑色のボタンから-zip-を選ぶ">2. 緑色のボタンから ZIP を選ぶ</h3>
+<ol><li>ページの右上あたりにある<strong>緑色の「Code」ボタン</strong>を押します</li><li>開いたメニューのいちばん下にある <strong>「Download ZIP」</strong> を押します</li><li>ダウンロードが始まります（数MB。すぐ終わります）</li></ol>
+<blockquote><p>見た目が変わっていて緑のボタンが見つからないときは、そのページの URL を AI に伝えて「このページから ZIP をダウンロードする場所を教えて」と聞いてください。</p></blockquote>
+<h3 id="3-zip-を展開する">3. ZIP を展開する</h3>
+<ul><li><strong>Mac</strong>: ダウンロードフォルダの <code>oya-iru-wiki-main.zip</code> を<strong>ダブルクリック</strong>すると、<code>oya-iru-wiki-main</code> というフォルダができます</li><li><strong>Windows</strong>: <code>oya-iru-wiki-main.zip</code> を<strong>右クリック → 「すべて展開」</strong>を選びます</li></ul>
+<blockquote><p><strong>ここでつまずく方が多いポイント</strong>: Windows では、ZIP をダブルクリックすると「中をのぞいている」だけの状態になります。見た目はフォルダですが、まだ展開されていません。必ず<strong>右クリック → すべて展開</strong>をしてください。</p></blockquote>
+<h3 id="4-置き場所に移す">4. 置き場所に移す</h3>
+<p>展開してできたフォルダを、ホームフォルダの下の <code>Obsidian</code> フォルダに移します（<code>Obsidian</code> フォルダがなければ作ってください）。</p>
+<ul><li>Mac の例: <code>/Users/あなたの名前/Obsidian/oya-iru-wiki</code></li><li>Windows の例: <code>C:\Users\あなたの名前\Obsidian\oya-iru-wiki</code></li></ul>
+<p>移すときに、フォルダ名の末尾の <code>-main</code> は消して <code>oya-iru-wiki</code> にしておくと、この後の説明とそろって迷いません。</p>
+<blockquote><p><strong>なぜ「書類」や「デスクトップ」ではだめなのか。</strong> だめではありません。ただ、クラウド同期（iCloud・OneDrive）が自動で効くフォルダに置くと、お子さんの記録がクラウドに上がります。それを承知で選ぶのでない限り、<strong>同期対象でない場所</strong>（ホーム直下の <code>Obsidian</code> フォルダなど）をおすすめします。</p></blockquote>
+<h3 id="5-できたかどうかの確かめ">5. できたかどうかの確かめ</h3>
+<p>フォルダを開いて、中に <code>README.md</code> <code>purpose.md</code> <code>記入例</code> などが見えれば成功です。これでこの手順書は終わりです。<a href="./oya-iru-wiki-guide-02-obsidian.html">② Obsidian を入れて、Vault として開く</a> へ進んでください。</p>
+<blockquote><p>ZIP で入れた場合、あとで一度だけ「実行の許可」を戻す作業があります（<a href="./oya-iru-wiki-guide-04-terminal.html">④ 黒い画面をこわがらない</a> で説明します）。今は気にしなくて大丈夫です。</p></blockquote>
+<h2 id="方法b-git-でクローンするgit-を使ったことがある方向け">方法B: Git でクローンする（Git を使ったことがある方向け）</h2>
+<p>Git が入っているパソコンなら、ターミナルで次を実行します。</p>
+<pre><code>git clone https://github.com/kazumasakawahara/oya-iru-wiki.git ~/Obsidian/oya-iru-wiki</code></pre>
+<ul><li>クローンなら、後で「実行の許可」を戻す作業は不要です</li><li><strong>実データの運用を始める前に、公開への道を断つ</strong>（<code>git remote remove origin</code>）ことを忘れないでください（導入手順.md Step 1）</li><li>「Git って何？」という方は、方法A で何も問題ありません。Git は履歴を残したい人向けの追加の道具です</li></ul>
+<h2 id="よくあるつまずき">よくあるつまずき</h2>
+<table><thead><tr><th>症状</th><th>対処</th></tr></thead><tbody><tr><td>ダウンロードした ZIP が見つからない</td><td>ブラウザの「ダウンロード」フォルダを見る（Mac: Dock の右端／Windows: エクスプローラーの「ダウンロード」）</td></tr><tr><td>「このファイルは安全でない可能性があります」と出た</td><td>GitHub からの ZIP は一般的な配布方法です。「保存」「継続」を選んで大丈夫です。不安なら URL が <code>github.com/kazumasakawahara/oya-iru-wiki</code> であることを確かめてください</td></tr><tr><td>フォルダの中に同じ名前のフォルダがもう一段ある</td><td>展開のしかたによって起きます。内側の（<code>README.md</code> が直接見える方の）フォルダを置き場所に移してください</td></tr><tr><td>英語の画面がこわい</td><td>読まなくて大丈夫です。押すのは緑の「Code」→「Download ZIP」の2つだけです</td></tr></tbody></table>
+<hr>
+<p>*くわしい手順書 ①／全4冊 ・ oya-iru-wiki β版 2026-08-13*</p>
+<footer class="doc">
+  <p>β版 2026-08-13 ／ 特定非営利活動法人 nest ／ MIT License ／
+  配布元: <a href="https://github.com/kazumasakawahara/oya-iru-wiki" rel="external">github.com/kazumasakawahara/oya-iru-wiki</a></p>
+</footer>
+</div>
+</body>
+</html>
