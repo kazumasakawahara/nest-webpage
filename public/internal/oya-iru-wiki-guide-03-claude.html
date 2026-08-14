@@ -77,19 +77,19 @@
 <ol><li><code>https://claude.com/download</code> から、お使いの OS 用の Claude Desktop をダウンロードします</li><li>インストールします（Mac は dmg を開いてアイコンを Applications へドラッグ、Windows は exe を実行。②の Obsidian と同じ要領です）</li><li>起動して、1で作ったアカウントでサインインします</li></ol>
 <h2 id="3-受付箱を作る">3. 受付箱を作る</h2>
 <p>AI に見せるフォルダは2つです。そのうち1つ「受付箱」をここで作ります。</p>
-<ol><li><strong>デスクトップに新しいフォルダを1つ</strong>作り、名前を <code>受付箱</code> にします</li></ol>
+<ol><li><strong>デスクトップに新しいフォルダを1つ</strong>作り、名前をこのページからコピーして <code>📮受付箱</code> にします（📮 はデスクトップで一目で見つけるための目印です。絵文字の入力がむずかしければ <code>受付箱</code> だけでも大丈夫——AI はどちらも受付箱として扱います）</li></ol>
 <ul><li>Mac: デスクトップの何もない所を右クリック → 「新規フォルダ」</li><li>Windows: デスクトップの何もない所を右クリック → 「新規作成」→「フォルダー」</li></ul>
 <ol><li>これだけです。連絡帳の写真や園・学校のプリントは、今後ぜんぶここに入れます。中身は AI が読んで記録の棚に移し、受付箱は空に戻ります</li></ol>
 <blockquote><p><strong>日記はここを通りません。</strong> 日記はチャットで話すだけ。受付箱は「書類の入口」です。<br><strong>Vault の中に作らないでください。</strong> 手前に一段あることで、置き間違いを記録される前に取り消せます。</p></blockquote>
 <h2 id="4-claude-にフォルダを見せる差込口の設定">4. Claude にフォルダを見せる（差込口の設定）</h2>
 <p>Claude Desktop とパソコンのフォルダをつなぐ仕組みを <strong>MCP（差込口）</strong>と呼びます。見せるフォルダは次の<strong>2つ</strong>です。</p>
-<ol><li><strong>記録の Vault</strong>（例: <code>Obsidian/oya-iru-wiki</code>）</li><li><strong>受付箱</strong>（例: デスクトップの <code>受付箱</code>）</li></ol>
+<ol><li><strong>記録の Vault</strong>（例: <code>Obsidian/oya-iru-wiki</code>）</li><li><strong>受付箱</strong>（例: デスクトップの <code>📮受付箱</code>）</li></ol>
 <h3 id="方法1-設定画面からまずこちらを試す">方法1: 設定画面から（まずこちらを試す）</h3>
 <ol><li>Claude Desktop の<strong>設定</strong>（歯車アイコン）を開きます</li><li><strong>「拡張機能」または「コネクタ」</strong>という項目を探します（バージョンにより名前が違います）</li><li>その中の<strong>「ファイルシステム」（Filesystem）</strong>を有効にし、アクセスを許可するフォルダとして上の2つを追加します</li></ol>
 <h3 id="方法2-claude-自身に設定内容を作ってもらう方法1で見つからないとき">方法2: Claude 自身に設定内容を作ってもらう（方法1で見つからないとき）</h3>
 <p><strong>先に大事な注意を一つ。</strong> 設定ファイルは、<strong>Claude が動いている間に書き換えると、消されてしまうことがあります</strong>（Claude はチャットを開いた瞬間などに設定を書き戻すため）。だから方法2は、必ずこの順番で進めます——<strong>①案内をもらう → ②メモに控える → ③Claude を完全終了する → ④編集する → ⑤起動する</strong>。</p>
 <ol><li>Claude Desktop のチャットに、そのままこう貼り付けます。</li></ol>
-<p>   &gt; 「あなた（Claude Desktop）に私のパソコンの2つのフォルダ——<code>Obsidian/oya-iru-wiki</code> とデスクトップの <code>受付箱</code>——を見せたい。filesystem の差込口（MCP）の設定方法を、私のパソコンの画面に沿ってひとつずつ案内してください。私はパソコンに詳しくありません。<strong>あとで Claude を終了してから作業するので、手順の全文と、貼り付ける設定の内容を、コピーして残せる形でまとめて出してください。</strong>」</p>
+<p>   &gt; 「あなた（Claude Desktop）に私のパソコンの2つのフォルダ——<code>Obsidian/oya-iru-wiki</code> とデスクトップの <code>📮受付箱</code>——を見せたい。filesystem の差込口（MCP）の設定方法を、私のパソコンの画面に沿ってひとつずつ案内してください。私はパソコンに詳しくありません。<strong>あとで Claude を終了してから作業するので、手順の全文と、貼り付ける設定の内容を、コピーして残せる形でまとめて出してください。</strong>」</p>
 <ol><li>出てきた手順と設定内容を、<strong>メモ帳（Windows）／メモ・テキストエディット（Mac）に貼り付けて保存</strong>します（Claude を終了すると画面が見られなくなるため）</li><li>次の「完全終了」を行ってから、控えた手順どおりに設定ファイルを編集します</li><li>編集を保存したら、Claude Desktop を起動し直します</li></ol>
 <h3 id="設定のあと必ず完全終了する--ここが全行程でいちばんのつまずきポイント">設定のあと、必ず「完全終了」する — ここが全行程でいちばんのつまずきポイント</h3>
 <p><strong>設定は、アプリを完全に終了して起動し直すまで反映されません。</strong> そして「終了したつもり」がいちばん起きやすいのが Windows です。</p>

@@ -156,14 +156,14 @@ git config core.hooksPath githooks</code></pre>
 <h2 id="第4章ai-とつなぎ受付箱を作る">第4章　AI とつなぎ、受付箱を作る</h2>
 <blockquote><p>🔰 この章が導入のやま場です。Claude のプラン契約（学習に使われないことの確かめ方）からフォルダ接続の確認まで、<strong><a href="./oya-iru-wiki-guide-03-claude.html">くわしい手順書③「Claude を用意して、フォルダを見せる」</a></strong> が画面に沿って案内します。</p></blockquote>
 <h3 id="4-1-受付箱を作る">4-1. 受付箱を作る</h3>
-<p>Vault の<strong>外</strong>に、書類をいったん置くフォルダを1つ作ってください。</p>
-<ul><li>Mac の例: <code>~/Desktop/受付箱</code></li><li>Windows の例: <code>C:\Users\あなたの名前\Desktop\受付箱</code></li></ul>
+<p>Vault の<strong>外</strong>（デスクトップ）に、書類をいったん置くフォルダを1つ作ってください。名前はこのページからコピーして <code>📮受付箱</code> にします。📮 の絵文字は、デスクトップで一目で見つけるための目印です（入力がむずかしければ <code>受付箱</code> だけでも大丈夫。AI はどちらも受付箱として扱います）。</p>
+<ul><li>Mac の例: <code>~/Desktop/📮受付箱</code></li><li>Windows の例: <code>C:\Users\あなたの名前\Desktop\📮受付箱</code></li></ul>
 <p>連絡帳の写真、園・学校からのプリント、療育のレポート——<strong>紙やファイルで受け取ったものは、全部ここに入れるだけ</strong>です。AI が中身を読んで、適切な棚に移します。</p>
 <blockquote><p><strong>日記はここを通りません。</strong> 日記はチャットで話すだけです。受付箱は「書類の入口」、チャットは「日記の入口」と覚えてください。</p>
 <p><strong>なぜ Vault の外に作るのか。</strong> 原本の置き場（<code>raw/</code>）は、一度入れたら書き換えも削除もしない場所です。手前に受付箱が一段あることで、置き間違いを記録される前に取り消せます。</p></blockquote>
 <h3 id="4-2-ai-に2つのフォルダを見せる">4-2. AI に2つのフォルダを見せる</h3>
 <p>AI のパソコン用アプリとフォルダをつなぐ仕組みを <strong>MCP（差込口）</strong> と呼びます。指定するのは次の2つです。</p>
-<ol><li><strong>この Vault</strong>（例: <code>~/Obsidian/oya-iru-wiki</code>）</li><li><strong>受付箱</strong>（例: <code>~/Desktop/受付箱</code>）</li></ol>
+<ol><li><strong>この Vault</strong>（例: <code>~/Obsidian/oya-iru-wiki</code>）</li><li><strong>受付箱</strong>（例: <code>~/Desktop/📮受付箱</code>）</li></ol>
 <p>この設定は最初の1回きりです。</p>
 <blockquote><p><strong>設定の文字列は、AI 自身に作ってもらえます。</strong> 「filesystem の差込口を、この2つのフォルダで設定したい」と頼めば、貼り付ける内容を出してくれます。ご自身の手が要るのは「押す・貼る・打つ」だけです。</p>
 <p><strong>いちばんつまずくのは「完全終了」です。</strong> 設定はアプリを完全に終了して起動し直すまで反映されません。ウィンドウを閉じるだけでは終了していません——Mac は <code>command</code> + <code>Q</code>。<strong>Windows は「×」で閉じても画面右下のタスクトレイで動き続け、しかもアイコンは「^」印の中に隠れています</strong>。確実な終了のしかた（タスクマネージャーを使う方法まで）は<a href="./oya-iru-wiki-guide-03-claude.html">くわしい手順書③</a>にあります。</p></blockquote>
@@ -274,7 +274,7 @@ python3 scripts/okf_lint.py</code></pre>
 └── AGENTS.md              AI への指示書（正典）
 
 デスクトップ/
-└── 受付箱/                ← 書類はここに置くだけ（Vault の外）</code></pre>
+└── 📮受付箱/              ← 書類はここに置くだけ（Vault の外）</code></pre>
 <h2 id="付録bページの型一覧">付録B　ページの型一覧</h2>
 <p>AI の整理宣言に出てくることばです。覚える必要はありません——分からなければ AI に聞けば説明します。</p>
 <table><thead><tr><th>よみ</th><th>何が書かれるか</th></tr></thead><tbody><tr><td><strong>こえ</strong>（意思表出プロファイル）</td><td>はい・いいえ・嫌をどう表すか。<strong>バイブルの心臓</strong></td></tr><tr><td><strong>せんたく</strong>（選択の記録)</td><td>選んだ・拒否した・表明した場面。日記から AI が拾う</td></tr><tr><td><strong>ふしめ</strong>（節目の記録）</td><td>就学・卒業・18歳など。当時の判断の過程を残す</td></tr><tr><td>ためしたこと</td><td>試した関わり方と結果。<strong>失敗の記録こそ価値が高い</strong></td></tr><tr><td>手順書</td><td>「こうすればうまくいく」と分かった関わり方</td></tr><tr><td>きっかけ</td><td>好き・苦手が発動する条件</td></tr><tr><td>ひと</td><td>本人・家族・関わる人のページ</td></tr><tr><td>かかわり先</td><td>園・学校・事業所・窓口</td></tr><tr><td>とりあつかい注意</td><td>特に慎重に扱う記録（性・行動など）</td></tr><tr><td>確認待ち</td><td>AI があなたの判断を待っている項目</td></tr></tbody></table>
