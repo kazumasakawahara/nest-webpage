@@ -61,35 +61,82 @@
 <div class="wrap">
 <header class="doc">
   <h1>くわしい手順書 ②　Obsidian を入れて、Vault として開く</h1>
-  <p class="sub">日記からつくる、わが子のバイブル（oya-iru-wiki）／ くわしい手順書 全4冊の2冊目</p>
+  <p class="sub">日記からつくる、わが子のバイブル（oya-iru-wiki）／ くわしい手順書 全5冊の2冊目</p>
 </header>
-<blockquote><p><strong>この手順書は、Obsidian というアプリを初めて聞いた方のためのものです。</strong> Obsidian は無料のメモアプリで、テンプレートのフォルダを「記録の入れ物」として開くために使います。登録なしでも使えます。</p>
-<p>所要時間: 10分 ／ 前の手順: <a href="./oya-iru-wiki-guide-01-github.html">① テンプレートを手に入れる</a> ／ 次の手順: <a href="./oya-iru-wiki-guide-03-claude.html">③ Claude を用意して、フォルダを見せる</a></p></blockquote>
+<blockquote>
+<p><strong>この手順書は、Obsidian というアプリを初めて聞いた方のためのものです。</strong> Obsidian は無料のメモアプリで、テンプレートのフォルダを「記録の入れ物」として開くために使います。登録なしでも使えます。</p>
+<p>所要時間: 10分 ／ 前の手順: <a href="oya-iru-wiki-guide-01-github.html">① テンプレートを手に入れる</a> ／ 次の手順: <a href="oya-iru-wiki-guide-03-claude.html">③ Claude を用意して、フォルダを見せる</a></p>
+</blockquote>
 <h2 id="obsidian-とは何ですか-本当に無料ですか">Obsidian とは何ですか？ 本当に無料ですか？</h2>
 <p>パソコンの中のフォルダを、そのまま「ノートの束」として読み書きできるメモアプリです。<strong>個人利用は無料</strong>です（有料プランは同期などの追加機能で、この仕組みには不要です）。大事な性質がひとつあります——<strong>Obsidian は記録を独自形式に閉じ込めません</strong>。中身はただのテキストファイルなので、<strong>将来 Obsidian をやめても記録はそのまま残ります</strong>。</p>
 <p>そしてもうひとつ。日記はチャットで話すだけなので、<strong>Obsidian を開かない日がほとんどです</strong>。読み返したくなったときの窓だと思ってください。</p>
 <h2 id="1-obsidian-をダウンロードする">1. Obsidian をダウンロードする</h2>
 <p>ブラウザで次のアドレスを開きます。</p>
-<pre><code>https://obsidian.md</code></pre>
+<pre><code>https://obsidian.md
+</code></pre>
 <p>紫色のサイトが開いたら、<strong>「Download」</strong>（ダウンロード）ボタンを押します。お使いの OS（Mac / Windows）は自動で見分けてくれます。</p>
 <h2 id="2-インストールする">2. インストールする</h2>
-<ul><li><strong>Mac</strong>: ダウンロードした <code>Obsidian-〇〇.dmg</code> をダブルクリック → 開いた窓で <strong>Obsidian のアイコンを「Applications」フォルダへドラッグ</strong> → 窓を閉じ、Launchpad か「アプリケーション」フォルダから Obsidian を起動</li><li>初回起動時に「インターネットからダウンロードされたアプリです。開いてもよろしいですか？」と聞かれたら<strong>「開く」</strong></li><li><strong>Windows</strong>: ダウンロードした <code>Obsidian-〇〇.exe</code> をダブルクリック → 画面の指示に従って進む（管理者パスワードを聞かれたら入力）→ 完了すると Obsidian が起動します</li></ul>
-<blockquote><p>ここが、このマニュアル全体で数少ない「AI に代わってもらえない」操作です（管理者パスワードの入力とライセンス同意は、ご自身の手で）。</p></blockquote>
+<ul>
+<li><strong>Mac</strong>: ダウンロードした <code>Obsidian-〇〇.dmg</code> をダブルクリック → 開いた窓で <strong>Obsidian のアイコンを「Applications」フォルダへドラッグ</strong> → 窓を閉じ、Launchpad か「アプリケーション」フォルダから Obsidian を起動</li>
+<li>初回起動時に「インターネットからダウンロードされたアプリです。開いてもよろしいですか？」と聞かれたら<strong>「開く」</strong></li>
+<li><strong>Windows</strong>: ダウンロードした <code>Obsidian-〇〇.exe</code> をダブルクリック → 画面の指示に従って進む（管理者パスワードを聞かれたら入力）→ 完了すると Obsidian が起動します</li>
+</ul>
+<blockquote>
+<p>ここが、このマニュアル全体で数少ない「AI に代わってもらえない」操作です（管理者パスワードの入力とライセンス同意は、ご自身の手で）。</p>
+</blockquote>
 <h2 id="3-言語を日本語にする英語で起動した場合">3. 言語を日本語にする（英語で起動した場合）</h2>
 <p>初回は英語画面のことがあります。左下の<strong>歯車アイコン（Settings）</strong>を押し、いちばん上の言語メニュー（Language）から <strong>日本語</strong> を選びます。</p>
 <h2 id="4-テンプレートのフォルダをvault-として開く">4. テンプレートのフォルダを「Vault として」開く</h2>
 <p>Obsidian の初回画面（Vault を作る・開く画面）で:</p>
-<ol><li><strong>「フォルダを Vault として開く」</strong>（英語表示なら Open folder as vault）の <strong>「開く」</strong> を押します</li><li>フォルダ選択の画面で、①で置いたテンプレートのフォルダ（例: <code>Obsidian/oya-iru-wiki</code>）を選びます</li><li>「信頼できる作成者のものですか？」という確認が出たら <strong>「信頼する」</strong> を選びます（自分で持ってきたフォルダなので大丈夫です）</li></ol>
+<ol>
+<li><strong>「フォルダを Vault として開く」</strong>（英語表示なら Open folder as vault）の <strong>「開く」</strong> を押します</li>
+<li>フォルダ選択の画面で、①で置いたテンプレートのフォルダ（例: <code>Obsidian/oya-iru-wiki</code>）を選びます</li>
+<li>「信頼できる作成者のものですか？」という確認が出たら <strong>「信頼する」</strong> を選びます（自分で持ってきたフォルダなので大丈夫です）</li>
+</ol>
 <p><strong>左側に <code>raw</code> <code>wiki</code> <code>記入例</code> などのフォルダ一覧が出れば成功です。</strong></p>
-<blockquote><p><strong>ここでつまずく方が多いポイント</strong></p>
-<ul><li>「新しい Vault を作る」を選ばないでください。それは空の入れ物を新しく作る操作です。今回は<strong>すでにあるフォルダを開く</strong>ので、「フォルダを <strong>Vault として</strong>開く」の方です</li><li>フォルダ選択で <code>oya-iru-wiki</code> の<strong>中の個別ファイル</strong>ではなく、<strong>フォルダそのもの</strong>を選びます</li></ul></blockquote>
+<blockquote>
+<p><strong>ここでつまずく方が多いポイント</strong></p>
+<ul>
+<li>「新しい Vault を作る」を選ばないでください。それは空の入れ物を新しく作る操作です。今回は<strong>すでにあるフォルダを開く</strong>ので、「フォルダを <strong>Vault として</strong>開く」の方です</li>
+<li>フォルダ選択で <code>oya-iru-wiki</code> の<strong>中の個別ファイル</strong>ではなく、<strong>フォルダそのもの</strong>を選びます</li>
+</ul>
+</blockquote>
 <h2 id="5-最初にひとつだけ見ておく">5. 最初にひとつだけ見ておく</h2>
 <p>左のファイル一覧から <code>記入例</code> フォルダの <strong><code>0_この記入例について</code></strong> を一度開いてみてください。この仕組みで親が何をすればよいか（＝日記だけ。それも話すだけ）が3分で分かります。</p>
-<p>これでこの手順書は終わりです。<a href="./oya-iru-wiki-guide-03-claude.html">③ Claude を用意して、フォルダを見せる</a> へ進んでください。</p>
+<p>これでこの手順書は終わりです。<a href="oya-iru-wiki-guide-03-claude.html">③ Claude を用意して、フォルダを見せる</a> へ進んでください。</p>
 <h2 id="よくあるつまずき">よくあるつまずき</h2>
-<table><thead><tr><th>症状</th><th>対処</th></tr></thead><tbody><tr><td>どの画面からフォルダを開くのか分からなくなった</td><td>左下の Vault 切替アイコン（金庫のマーク）→「別の Vault を開く」で最初の画面に戻れます</td></tr><tr><td>左側にフォルダ一覧が出ない</td><td>左上のアイコンでサイドバーが畳まれていることがあります。左端の縦バーのアイコンを押してみてください</td></tr><tr><td>「信頼しますか」で「信頼しない」を押してしまった</td><td>設定 →「コミュニティプラグイン」で制限モードを解除できますが、この Vault はプラグインなしで動くので、そのままでも支障ありません</td></tr><tr><td>文字が小さい・読みにくい</td><td>設定 →「外観」で文字サイズを変えられます</td></tr><tr><td>間違えて「新しい Vault を作る」で空の Vault を作ってしまった</td><td>その Vault は閉じて構いません（フォルダごと削除して大丈夫です）。あらためて「フォルダを Vault として開く」からやり直してください</td></tr></tbody></table>
+<table>
+<thead>
+<tr>
+<th>症状</th>
+<th>対処</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>どの画面からフォルダを開くのか分からなくなった</td>
+<td>左下の Vault 切替アイコン（金庫のマーク）→「別の Vault を開く」で最初の画面に戻れます</td>
+</tr>
+<tr>
+<td>左側にフォルダ一覧が出ない</td>
+<td>左上のアイコンでサイドバーが畳まれていることがあります。左端の縦バーのアイコンを押してみてください</td>
+</tr>
+<tr>
+<td>「信頼しますか」で「信頼しない」を押してしまった</td>
+<td>設定 →「コミュニティプラグイン」で制限モードを解除できますが、この Vault はプラグインなしで動くので、そのままでも支障ありません</td>
+</tr>
+<tr>
+<td>文字が小さい・読みにくい</td>
+<td>設定 →「外観」で文字サイズを変えられます</td>
+</tr>
+<tr>
+<td>間違えて「新しい Vault を作る」で空の Vault を作ってしまった</td>
+<td>その Vault は閉じて構いません（フォルダごと削除して大丈夫です）。あらためて「フォルダを Vault として開く」からやり直してください</td>
+</tr>
+</tbody>
+</table>
 <hr>
-<p>*くわしい手順書 ②／全4冊 ・ oya-iru-wiki β版 2026-08-13*</p>
+<p><em>くわしい手順書 ②／全4冊 ・ oya-iru-wiki β版 2026-08-13</em></p>
 <footer class="doc">
   <p>β版 2026-08-13 ／ 特定非営利活動法人 nest ／ MIT License ／
   配布元: <a href="https://github.com/kazumasakawahara/oya-iru-wiki" rel="external">github.com/kazumasakawahara/oya-iru-wiki</a></p>

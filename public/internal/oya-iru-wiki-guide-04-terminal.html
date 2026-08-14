@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>くわしい手順書 ④　黒い画面をこわがらない</title>
+<title>くわしい手順書 ④　黒い画面をこわがらない（動作確認の検査を動かす）</title>
 <style>
   :root{
     --ink:#1c1917; --ink2:#44403c; --ink3:#79716b;
@@ -60,47 +60,99 @@
 <body>
 <div class="wrap">
 <header class="doc">
-  <h1>くわしい手順書 ④　黒い画面をこわがらない</h1>
-  <p class="sub">日記からつくる、わが子のバイブル（oya-iru-wiki）／ くわしい手順書 全4冊の4冊目</p>
+  <h1>くわしい手順書 ④　黒い画面をこわがらない（動作確認の検査を動かす）</h1>
+  <p class="sub">日記からつくる、わが子のバイブル（oya-iru-wiki）／ くわしい手順書 全5冊の4冊目</p>
 </header>
-<blockquote><p><strong>この手順書は、「ターミナル」「コマンド」という言葉に身構えてしまう方のためのものです。</strong> 使うのは導入のときのほんの数回、やることは<strong>コピーして、貼り付けて、Enter を押す</strong>だけです。タイプミスの心配はいりません——全部コピペで進みます。</p>
-<p>所要時間: 10分 ／ 前の手順: <a href="./oya-iru-wiki-guide-03-claude.html">③ Claude を用意して、フォルダを見せる</a> ／ 次の手順: なし（これで導入完了。あとは今夜、1行話すだけ）</p></blockquote>
+<blockquote>
+<p><strong>この手順書は、「ターミナル」「コマンド」という言葉に身構えてしまう方のためのものです。</strong> 使うのは導入のときのほんの数回、やることは<strong>コピーして、貼り付けて、Enter を押す</strong>だけです。タイプミスの心配はいりません——全部コピペで進みます。</p>
+<p>所要時間: 10分 ／ 前の手順: <a href="oya-iru-wiki-guide-03-claude.html">③ Claude を用意して、フォルダを見せる</a> ／ 次の手順: なし（これで導入完了。あとは今夜、1行話すだけ）</p>
+<p>連絡帳をスマホで撮っている方は、このあと <strong><a href="oya-iru-wiki-guide-05-smartphone.html">⑤ スマホの写真を、受付箱に入れる</a></strong> へ進んでください。撮ったその場で受付箱に届くようになります。</p>
+</blockquote>
 <h2 id="そもそも何のために黒い画面を使うのですか">そもそも何のために「黒い画面」を使うのですか？</h2>
 <p>この仕組みには、<strong>実名の混入や記録の壊れを機械的に見つける検査（lint）</strong>が入っています。人の注意力に頼らないための安全装置です。この検査を一度動かして「違反なし」を確かめるのが、導入の仕上げです。ふだんの検査は AI が自動でやるので、<strong>ご自身で黒い画面を使うのは、基本的に今日だけ</strong>です。</p>
 <h2 id="1-黒い画面を開く">1. 黒い画面を開く</h2>
-<ul><li><strong>Mac</strong>: <code>command</code> + <code>スペース</code> を押して「<strong>ターミナル</strong>」と入力し、Enter。白い（または黒い）文字だけの窓が開きます</li><li><strong>Windows</strong>: スタートボタンを右クリック → 「<strong>ターミナル</strong>」（または「Windows PowerShell」）を選びます</li></ul>
+<ul>
+<li><strong>Mac</strong>: <code>command</code> + <code>スペース</code> を押して「<strong>ターミナル</strong>」と入力し、Enter。白い（または黒い）文字だけの窓が開きます</li>
+<li><strong>Windows</strong>: スタートボタンを右クリック → 「<strong>ターミナル</strong>」（または「Windows PowerShell」）を選びます</li>
+</ul>
 <p>名前が「ターミナル」でも「PowerShell」でも「コマンドプロンプト」でも、<strong>役割は同じ</strong>です（パソコンによって呼び名が違うだけ）。こわい見た目ですが、ここは「パソコンに文字で指示を出す窓口」です。<strong>指示した以外のことは起きません。</strong></p>
 <h2 id="2-vault-の場所へ移動する">2. Vault の場所へ移動する</h2>
 <p>次の1行をコピーして、黒い画面に貼り付けて、Enter を押します。</p>
-<ul><li>Mac の場合:</li></ul>
-<pre><code>cd ~/Obsidian/oya-iru-wiki</code></pre>
-<ul><li>Windows の場合:</li></ul>
-<pre><code>cd $HOME\Obsidian\oya-iru-wiki</code></pre>
+<ul>
+<li>Mac の場合:</li>
+</ul>
+<pre><code class="language-bash">cd ~/Obsidian/oya-iru-wiki
+</code></pre>
+<ul>
+<li>Windows の場合:</li>
+</ul>
+<pre><code class="language-powershell">cd $HOME\Obsidian\oya-iru-wiki
+</code></pre>
 <p>何も起きないように見えたら、それが成功です（移動しただけなので、表示は出ません）。</p>
-<blockquote><p>テンプレートを別の場所に置いた方は、<code>Obsidian/oya-iru-wiki</code> の部分を実際の場所に置き換えてください。分からなければ、フォルダを黒い画面に<strong>ドラッグ＆ドロップ</strong>すると場所の文字が入ります（<code>cd </code> と1文字空けてからドロップ）。</p></blockquote>
+<blockquote>
+<p>テンプレートを別の場所に置いた方は、<code>Obsidian/oya-iru-wiki</code> の部分を実際の場所に置き換えてください。分からなければ、フォルダを黒い画面に<strong>ドラッグ＆ドロップ</strong>すると場所の文字が入ります（<code>cd</code> と1文字空けてからドロップ）。</p>
+</blockquote>
 <h2 id="3-検査を動かす">3. 検査を動かす</h2>
 <p>続けて、次の1行を貼り付けて Enter。</p>
-<pre><code>python3 scripts/okf_lint.py</code></pre>
+<pre><code class="language-bash">python3 scripts/okf_lint.py
+</code></pre>
 <p><strong>「違反なし。」</strong>という日本語が出れば合格です。骨格は健全で、追加のインストールも要りません。</p>
-<blockquote><p><strong>Windows で「python3 が見つかりません」と出たら</strong>: Microsoft Store が自動で開くか、「ストアから入手」と案内されます。<strong>「Python 3」を入れて</strong>（無料）、もう一度上の1行を実行してください。</p></blockquote>
-<h2 id="4-zip-で入れた方だけ--実行の許可を戻すmac-のみ・1回だけ">4. ZIP で入れた方だけ — 実行の許可を戻す（Mac のみ・1回だけ）</h2>
+<blockquote>
+<p><strong>Windows で「python3 が見つかりません」と出たら</strong>: Microsoft Store が自動で開くか、「ストアから入手」と案内されます。<strong>「Python 3」を入れて</strong>（無料）、もう一度上の1行を実行してください。</p>
+</blockquote>
+<h2 id="4-zip-で入れた方だけ--実行の許可を戻すmac-のみ1回だけ">4. ZIP で入れた方だけ — 実行の許可を戻す（Mac のみ・1回だけ）</h2>
 <p>ZIP でダウンロードすると、検査の仕組みの「実行の許可」が外れていることがあります。次の1行を貼り付けて Enter（<strong>手順書①で ZIP を使った Mac の方だけ</strong>。Git でクローンした方・Windows の方は不要です）。</p>
-<pre><code>chmod 755 githooks/pre-commit scripts/*.py</code></pre>
+<pre><code class="language-bash">chmod 755 githooks/pre-commit scripts/*.py
+</code></pre>
 <p>表示が何も出なければ成功です。</p>
-<blockquote><p><strong>なぜ必要？</strong> — 許可が外れたままだと、危ない保存操作を止める「関所」が<strong>黙って</strong>効かなくなります。効いていないことは画面に出ないので、ここで一度だけ戻しておきます。</p></blockquote>
+<blockquote>
+<p><strong>なぜ必要？</strong> — 許可が外れたままだと、危ない保存操作を止める「関所」が<strong>黙って</strong>効かなくなります。効いていないことは画面に出ないので、ここで一度だけ戻しておきます。</p>
+</blockquote>
 <h2 id="5-git-を使う方だけ関所を有効にする">5. （Git を使う方だけ）関所を有効にする</h2>
 <p>手順書①で「方法B: Git でクローン」を選んだ方は、続けて次も実行します。</p>
-<pre><code>git config core.hooksPath githooks</code></pre>
+<pre><code class="language-bash">git config core.hooksPath githooks
+</code></pre>
 <p>ZIP で入れて Git を使わない方は、この行は飛ばしてください（代わりに「フォルダを公開の場所・共有リンクに置かない」ことだけ守ってください）。</p>
 <h2 id="6-おつかれさまでした">6. おつかれさまでした</h2>
 <p>黒い画面はもう閉じて大丈夫です（Mac: <code>command</code> + <code>Q</code>／Windows: 窓を閉じる）。</p>
 <p>導入は完了です。今夜、Claude にこう話しかけてください。</p>
-<blockquote><p>「今日こんなことがあった。……」</p></blockquote>
+<blockquote>
+<p>「今日こんなことがあった。……」</p>
+</blockquote>
 <p>1行でかまいません。それが、わが子のバイブルの1ページ目になります。</p>
 <h2 id="よくあるつまずき">よくあるつまずき</h2>
-<table><thead><tr><th>症状</th><th>対処</th></tr></thead><tbody><tr><td>貼り付けができない</td><td>Mac: <code>command</code> + <code>V</code>／Windows: 右クリックで貼り付け（PowerShell は右クリックだけで貼り付く設定が既定です）</td></tr><tr><td>「No such file or directory」と出た</td><td>移動先のフォルダ名が違います。手順2の「ドラッグ＆ドロップ」のやり方で場所を入れ直してください</td></tr><tr><td>「違反なし」ではなく ERROR が出た</td><td>出た文字を<strong>そのまま Claude に貼り付けて</strong>「意味と直し方を教えて」と聞いてください。導入直後の ERROR はほぼ置き場所・展開のしかたの問題です</td></tr><tr><td>赤い文字が出て不安</td><td>赤＝故障ではありません。メッセージが対処を書いています。読んでも分からなければ Claude へ</td></tr><tr><td>そもそも黒い画面を使いたくない</td><td>この手順だけ、パソコンに詳しい家族・知人に代わってもらっても大丈夫です。やることはこのページのコピペ3〜4回だけです</td></tr></tbody></table>
+<table>
+<thead>
+<tr>
+<th>症状</th>
+<th>対処</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>貼り付けができない</td>
+<td>Mac: <code>command</code> + <code>V</code>／Windows: 右クリックで貼り付け（PowerShell は右クリックだけで貼り付く設定が既定です）</td>
+</tr>
+<tr>
+<td>「No such file or directory」と出た</td>
+<td>移動先のフォルダ名が違います。手順2の「ドラッグ＆ドロップ」のやり方で場所を入れ直してください</td>
+</tr>
+<tr>
+<td>「違反なし」ではなく ERROR が出た</td>
+<td>出た文字を<strong>そのまま Claude に貼り付けて</strong>「意味と直し方を教えて」と聞いてください。導入直後の ERROR はほぼ置き場所・展開のしかたの問題です</td>
+</tr>
+<tr>
+<td>赤い文字が出て不安</td>
+<td>赤＝故障ではありません。メッセージが対処を書いています。読んでも分からなければ Claude へ</td>
+</tr>
+<tr>
+<td>そもそも黒い画面を使いたくない</td>
+<td>この手順だけ、パソコンに詳しい家族・知人に代わってもらっても大丈夫です。やることはこのページのコピペ3〜4回だけです</td>
+</tr>
+</tbody>
+</table>
 <hr>
-<p>*くわしい手順書 ④／全4冊 ・ oya-iru-wiki β版 2026-08-13*</p>
+<p><em>くわしい手順書 ④／全4冊 ・ oya-iru-wiki β版 2026-08-13</em></p>
 <footer class="doc">
   <p>β版 2026-08-13 ／ 特定非営利活動法人 nest ／ MIT License ／
   配布元: <a href="https://github.com/kazumasakawahara/oya-iru-wiki" rel="external">github.com/kazumasakawahara/oya-iru-wiki</a></p>
