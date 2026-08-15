@@ -46,3 +46,6 @@ media-src/
 # Local-only scratch/mockup files
 nest-rebuild-status.html
 public/sidebar-nav-mockup.html
+
+# Claude Code local environment config
+.claude/
