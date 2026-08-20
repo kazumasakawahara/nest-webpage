@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 470" width="360" height="470" role="img" aria-label="スマホのチャット画面のイラスト。コピー機のエラー画面E-052の写真を送り、「このエラー、どういう意味？まず何をすればいい？」と聞くと、AIが紙づまりの対処手順を3つ答えている">
+  <defs>
+    <style>.lbl{font-family:system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;}</style>
+  </defs>
+
+  <!-- スマホ本体 -->
+  <rect x="40" y="10" width="280" height="450" rx="34" fill="#2b3a2c"/>
+  <rect x="52" y="22" width="256" height="426" rx="24" fill="#f4efe4"/>
+
+  <!-- 上部バー -->
+  <rect x="52" y="22" width="256" height="44" rx="24" fill="#2d5a27"/>
+  <rect x="52" y="44" width="256" height="22" fill="#2d5a27"/>
+  <circle cx="86" cy="44" r="12" fill="#4a8c3f"/>
+  <path d="M81 42 q2 3 5 0 M91 42 q2 3 5 0" stroke="#faf6ef" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M83 50 q4 3 8 0" stroke="#faf6ef" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <text x="106" y="49" class="lbl" font-size="13" fill="#faf6ef">AIさん</text>
+
+  <!-- ① 撮った写真（コピー機のエラー画面） -->
+  <g>
+    <rect x="140" y="78" width="156" height="104" rx="10" fill="#ffffff" stroke="#d8cdb4" stroke-width="2"/>
+    <rect x="148" y="86" width="140" height="88" rx="6" fill="#8b8271"/>
+    <!-- 操作パネルの接写 -->
+    <rect x="158" y="96" width="80" height="44" rx="5" fill="#faf6ef"/>
+    <text x="198" y="116" text-anchor="middle" class="lbl" font-size="15" font-weight="700" fill="#c0492c">E-052</text>
+    <path d="M168 128 h60" stroke="#c0492c" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+    <g fill="#6f6555">
+      <rect x="246" y="98" width="26" height="16" rx="4"/>
+      <rect x="246" y="122" width="26" height="16" rx="4"/>
+    </g>
+    <rect x="158" y="148" width="114" height="18" rx="4" fill="#a59a84"/>
+  </g>
+  <g>
+    <rect x="128" y="70" width="54" height="19" rx="9.5" fill="#b85f3d"/>
+    <text x="155" y="83.5" text-anchor="middle" class="lbl" font-size="10.5" fill="#ffffff">① 撮る</text>
+  </g>
+
+  <!-- ② ひとこと添えて送る -->
+  <g>
+    <rect x="100" y="196" width="196" height="46" rx="12" fill="#4a8c3f"/>
+    <text x="114" y="215" class="lbl" font-size="11.5" fill="#ffffff">このエラー、どういう意味？</text>
+    <text x="114" y="232" class="lbl" font-size="11.5" fill="#ffffff">まず何をすればいい？</text>
+  </g>
+  <g>
+    <rect x="88" y="188" width="54" height="19" rx="9.5" fill="#b85f3d"/>
+    <text x="115" y="201.5" text-anchor="middle" class="lbl" font-size="10.5" fill="#ffffff">② 送る</text>
+  </g>
+
+  <!-- ③ 返ってくる -->
+  <g>
+    <rect x="62" y="256" width="212" height="100" rx="12" fill="#ffffff" stroke="#ddd6c6" stroke-width="2"/>
+    <text x="76" y="276" class="lbl" font-size="11.5" fill="#3d3a33">紙づまりのお知らせです。</text>
+    <text x="76" y="294" class="lbl" font-size="11.5" fill="#3d3a33">① 電源は切らずにそのまま</text>
+    <text x="76" y="312" class="lbl" font-size="11.5" fill="#3d3a33">② 前カバーを開ける</text>
+    <text x="76" y="330" class="lbl" font-size="11.5" fill="#3d3a33">③ オレンジのレバーの奥の紙を</text>
+    <text x="76" y="348" class="lbl" font-size="11.5" fill="#3d3a33">　 ゆっくり引き抜く、の順です。</text>
+  </g>
+  <g>
+    <rect x="56" y="248" width="84" height="19" rx="9.5" fill="#b85f3d"/>
+    <text x="98" y="261.5" text-anchor="middle" class="lbl" font-size="10.5" fill="#ffffff">③ 返ってくる</text>
+  </g>
+
+  <!-- 入力欄 -->
+  <g>
+    <rect x="64" y="408" width="232" height="30" rx="15" fill="#ffffff" stroke="#d8cdb4" stroke-width="2"/>
+    <circle cx="82" cy="423" r="9" fill="none" stroke="#7a8a6a" stroke-width="2"/>
+    <path d="M78 423 h8 M82 419 v8" stroke="#7a8a6a" stroke-width="2" stroke-linecap="round"/>
+    <text x="100" y="427" class="lbl" font-size="10.5" fill="#9b917e">メッセージ</text>
+  </g>
+</svg>
