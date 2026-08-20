@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-label="引き継ぎメモ風の左右対比図。左（グレー）はぼんやり依頼で、「お知らせ作って」の一言だけのメモを渡されたAIが困り顔（どのお知らせ？いつの？誰あて？）。右（緑）は4点セットで、背景・お願い・条件・形式の4行が書かれた引き継ぎメモを渡されたAIが笑顔で「すぐ動けます！」。締めの一文は「新人さんに優しい人は、AIへの頼み方も上手」">
+  <defs>
+    <style>
+      .cap { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; }
+      .label { font-family: 'Noto Sans JP', sans-serif; }
+    </style>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="640" height="400" rx="16" fill="#faf6ef"/>
+
+  <!-- ===== 左：ぼんやり依頼(グレー系) ===== -->
+  <rect x="20" y="20" width="292" height="316" rx="14" fill="#f0ede4"/>
+  <g transform="translate(40 8)">
+    <rect x="0" y="0" width="118" height="30" rx="15" fill="#8a8578"/>
+    <text x="59" y="20" text-anchor="middle" class="label" font-size="14" font-weight="700" fill="#ffffff">ぼんやり依頼</text>
+  </g>
+
+  <!-- 一言メモ -->
+  <g transform="translate(76 54)">
+    <rect x="-4" y="-4" width="188" height="116" rx="5" fill="#dcd7c9" stroke="#8a8578" stroke-width="2"/>
+    <rect x="0" y="0" width="180" height="108" rx="4" fill="#ffffff" stroke="#8a8578" stroke-width="2.5"/>
+    <rect x="72" y="-10" width="36" height="12" rx="3" fill="#8a8578"/>
+    <text x="90" y="46" text-anchor="middle" class="cap" font-size="17" fill="#4a463c">「お知らせ作って」</text>
+    <!-- 余白（何も書かれていない線） -->
+    <line x1="20" y1="70" x2="160" y2="70" stroke="#e6e2d6" stroke-width="2"/>
+    <line x1="20" y1="86" x2="160" y2="86" stroke="#e6e2d6" stroke-width="2"/>
+  </g>
+
+  <!-- 下向き矢印 -->
+  <path d="M166 182 v18 l-7 -7 m7 7 l7 -7" fill="none" stroke="#8a8578" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- 困り顔のAI -->
+  <g transform="translate(138 216)">
+    <rect x="0" y="8" width="56" height="48" rx="12" fill="#8a8578"/>
+    <line x1="28" y1="2" x2="28" y2="8" stroke="#8a8578" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="28" cy="0" r="4.5" fill="#b8b2a4"/>
+    <!-- 困り目 -->
+    <path d="M12 26 q6 -5 12 0" fill="none" stroke="#faf6ef" stroke-width="3" stroke-linecap="round"/>
+    <path d="M32 26 q6 -5 12 0" fill="none" stroke="#faf6ef" stroke-width="3" stroke-linecap="round"/>
+    <!-- 口(へにゃ) -->
+    <path d="M18 42 q5 -4 10 0 q5 4 10 0" fill="none" stroke="#faf6ef" stroke-width="3" stroke-linecap="round"/>
+    <!-- 汗 -->
+    <path d="M64 14 q5 8 0 13 q-5 -5 0 -13" fill="#3a6ea5" opacity="0.7"/>
+    <!-- ？マーク -->
+    <text x="-16" y="18" class="cap" font-size="22" fill="#8a8578">？</text>
+    <text x="66" y="52" class="cap" font-size="16" fill="#8a8578">？</text>
+  </g>
+  <text x="166" y="296" text-anchor="middle" class="cap" font-size="14" fill="#6b665a">どのお知らせ…？　いつの…？</text>
+  <text x="166" y="318" text-anchor="middle" class="label" font-size="13" font-weight="700" fill="#6b665a">AIさん、動けない</text>
+
+  <!-- ===== 右：4点セット（緑系） ===== -->
+  <rect x="328" y="20" width="292" height="316" rx="14" fill="#eef3e6"/>
+  <g transform="translate(348 8)">
+    <rect x="0" y="0" width="96" height="30" rx="15" fill="#2d5a27"/>
+    <text x="48" y="20" text-anchor="middle" class="label" font-size="14" font-weight="700" fill="#ffffff">4点セット</text>
+  </g>
+
+  <!-- 引き継ぎメモ（4行） -->
+  <g transform="translate(384 54)">
+    <rect x="-4" y="-4" width="188" height="116" rx="5" fill="#cfe0c3" stroke="#4a8c3f" stroke-width="2"/>
+    <rect x="0" y="0" width="180" height="108" rx="4" fill="#ffffff" stroke="#4a8c3f" stroke-width="2.5"/>
+    <rect x="72" y="-10" width="36" height="12" rx="3" fill="#4a8c3f"/>
+    <!-- 4行 -->
+    <g class="label" font-size="11" font-weight="700">
+      <rect x="10" y="10" width="40" height="16" rx="3" fill="#3a6ea5"/>
+      <text x="30" y="22" text-anchor="middle" fill="#ffffff">背景</text>
+      <text x="58" y="22" class="cap" font-size="12.5" font-weight="400" fill="#4a463c">秋祭りをします</text>
+      <rect x="10" y="34" width="40" height="16" rx="3" fill="#4a8c3f"/>
+      <text x="30" y="46" text-anchor="middle" fill="#ffffff">お願い</text>
+      <text x="58" y="46" class="cap" font-size="12.5" font-weight="400" fill="#4a463c">案内文の下書きを</text>
+      <rect x="10" y="58" width="40" height="16" rx="3" fill="#c9a44a"/>
+      <text x="30" y="70" text-anchor="middle" fill="#ffffff">条件</text>
+      <text x="58" y="70" class="cap" font-size="12.5" font-weight="400" fill="#4a463c">やさしい言葉で</text>
+      <rect x="10" y="82" width="40" height="16" rx="3" fill="#b85f3d"/>
+      <text x="30" y="94" text-anchor="middle" fill="#ffffff">形式</text>
+      <text x="58" y="94" class="cap" font-size="12.5" font-weight="400" fill="#4a463c">箇条書きで短く</text>
+    </g>
+  </g>
+
+  <!-- 下向き矢印 -->
+  <path d="M474 182 v18 l-7 -7 m7 7 l7 -7" fill="none" stroke="#4a8c3f" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- 動けるAI -->
+  <g transform="translate(446 216)">
+    <rect x="0" y="8" width="56" height="48" rx="12" fill="#2d5a27"/>
+    <line x1="28" y1="2" x2="28" y2="8" stroke="#2d5a27" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="28" cy="0" r="4.5" fill="#d97757"/>
+    <!-- にこにこ目 -->
+    <path d="M12 24 q6 6 12 0" fill="none" stroke="#faf6ef" stroke-width="3" stroke-linecap="round"/>
+    <path d="M32 24 q6 6 12 0" fill="none" stroke="#faf6ef" stroke-width="3" stroke-linecap="round"/>
+    <!-- 口（にっこり） -->
+    <path d="M18 40 q10 8 20 0" fill="none" stroke="#faf6ef" stroke-width="3" stroke-linecap="round"/>
+    <!-- やる気の光 -->
+    <g stroke="#c9a44a" stroke-width="3" stroke-linecap="round">
+      <line x1="-10" y1="10" x2="-16" y2="4"/>
+      <line x1="66" y1="10" x2="72" y2="4"/>
+      <line x1="70" y1="30" x2="78" y2="30"/>
+    </g>
+  </g>
+  <text x="474" y="296" text-anchor="middle" class="cap" font-size="14" fill="#2d5a27">すぐ動けます！</text>
+  <text x="474" y="318" text-anchor="middle" class="label" font-size="13" font-weight="700" fill="#2d5a27">AIさん、動ける</text>
+
+  <!-- ===== 締めの一文 ===== -->
+  <text x="320" y="374" text-anchor="middle" class="cap" font-size="18" fill="#2d5a27">新人さんに優しい人は、AIへの頼み方も上手</text>
+</svg>
