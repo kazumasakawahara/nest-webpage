@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-label="これまでとこれからの2段比較フロー図。上段（これまで・グレー）：30ページの通知が届く→最初から読む（3ページ目で力尽きる）→付箋だけ貼る（理解は後回し）。下段（これから・緑）：AIに先に渡す（3行で教えて）→会話で深掘り（うちに関係ある所は？）→原文で確認（該当ページだけ・アンバー色で強調）。締めの一文：読まなくていい、ではなく『読む場所がわかってから読む』">
+  <defs>
+    <style>
+      .cap { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; }
+      .label { font-family: 'Noto Sans JP', sans-serif; }
+    </style>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="640" height="400" rx="16" fill="#faf6ef"/>
+
+  <!-- ===== 上段：これまで（グレー系） ===== -->
+  <rect x="20" y="18" width="600" height="150" rx="14" fill="#f0ede4"/>
+  <g transform="translate(40 8)">
+    <rect x="0" y="0" width="96" height="30" rx="15" fill="#8a8578"/>
+    <text x="48" y="20" text-anchor="middle" class="label" font-size="14" font-weight="700" fill="#ffffff">これまで</text>
+  </g>
+
+  <!-- 箱1：通知が届く -->
+  <g transform="translate(44 56)">
+    <rect width="160" height="92" rx="10" fill="#ffffff" stroke="#b8b2a4" stroke-width="2.5"/>
+    <!-- 紙の束アイコン -->
+    <g transform="translate(64 12)">
+      <rect x="4" y="4" width="26" height="20" rx="2" fill="#e8e2d2" stroke="#8a8578" stroke-width="1.6"/>
+      <rect x="0" y="0" width="26" height="20" rx="2" fill="#ffffff" stroke="#8a8578" stroke-width="1.6"/>
+      <line x1="4" y1="6" x2="20" y2="6" stroke="#b8b2a4" stroke-width="1.6"/>
+      <line x1="4" y1="11" x2="22" y2="11" stroke="#b8b2a4" stroke-width="1.6"/>
+      <line x1="4" y1="16" x2="16" y2="16" stroke="#b8b2a4" stroke-width="1.6"/>
+    </g>
+    <text x="80" y="58" text-anchor="middle" class="label" font-size="14" font-weight="700" fill="#4a463c">30ページの通知が届く</text>
+    <text x="80" y="78" text-anchor="middle" class="label" font-size="11.5" fill="#8a8578">「重要」の判子つき</text>
+  </g>
+  <path d="M212 102 h16 l-6 -6 m6 6 l-6 6" fill="none" stroke="#8a8578" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- 箱2：最初から読む -->
+  <g transform="translate(240 56)">
+    <rect width="160" height="92" rx="10" fill="#ffffff" stroke="#b8b2a4" stroke-width="2.5"/>
+    <!-- 開いた本＋汗アイコン -->
+    <g transform="translate(64 12)">
+      <path d="M0 6 q8 -6 16 0 q8 -6 16 0 v16 q-8 -6 -16 0 q-8 -6 -16 0 Z" fill="#ffffff" stroke="#8a8578" stroke-width="1.6"/>
+      <line x1="16" y1="6" x2="16" y2="22" stroke="#8a8578" stroke-width="1.6"/>
+      <path d="M38 4 q4 6 0 10" fill="none" stroke="#3a6ea5" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+    </g>
+    <text x="80" y="58" text-anchor="middle" class="label" font-size="14" font-weight="700" fill="#4a463c">最初から読む</text>
+    <text x="80" y="78" text-anchor="middle" class="label" font-size="11.5" fill="#8a8578">3ページ目で力尽きる</text>
+  </g>
+  <path d="M408 102 h16 l-6 -6 m6 6 l-6 6" fill="none" stroke="#8a8578" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- 箱3：付箋だけ貼る -->
+  <g transform="translate(436 56)">
+    <rect width="160" height="92" rx="10" fill="#ffffff" stroke="#b8b2a4" stroke-width="2.5"/>
+    <!-- 付箋つき書類アイコン -->
+    <g transform="translate(66 10)">
+      <rect x="0" y="0" width="22" height="26" rx="2" fill="#ffffff" stroke="#8a8578" stroke-width="1.6"/>
+      <rect x="16" y="4" width="12" height="6" fill="#d97757" opacity="0.75"/>
+      <rect x="18" y="13" width="12" height="6" fill="#c9a44a" opacity="0.75"/>
+      <line x1="4" y1="8" x2="14" y2="8" stroke="#b8b2a4" stroke-width="1.6"/>
+      <line x1="4" y1="14" x2="12" y2="14" stroke="#b8b2a4" stroke-width="1.6"/>
+    </g>
+    <text x="80" y="58" text-anchor="middle" class="label" font-size="14" font-weight="700" fill="#4a463c">付箋だけ貼る</text>
+    <text x="80" y="78" text-anchor="middle" class="label" font-size="11.5" fill="#8a8578">理解は後回し</text>
+  </g>
+
+  <!-- ===== 段の間の矢印 ===== -->
+  <g transform="translate(320 176)">
+    <path d="M0 0 v14 l-7 -7 m7 7 l7 -7" fill="none" stroke="#4a8c3f" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="16" y="14" class="cap" font-size="15" fill="#2d5a27">順番を、逆にする</text>
+  </g>
+
+  <!-- ===== 下段：これから（緑系） ===== -->
+  <rect x="20" y="200" width="600" height="150" rx="14" fill="#eef3e6"/>
+  <g transform="translate(40 190)">
+    <rect x="0" y="0" width="96" height="30" rx="15" fill="#2d5a27"/>
+    <text x="48" y="20" text-anchor="middle" class="label" font-size="14" font-weight="700" fill="#ffffff">これから</text>
+  </g>
+
+  <!-- 箱1：AIに先に渡す -->
+  <g transform="translate(44 238)">
+    <rect width="160" height="92" rx="10" fill="#ffffff" stroke="#4a8c3f" stroke-width="2.5"/>
+    <!-- AIさんの顔アイコン -->
+    <g transform="translate(66 8)">
+      <rect x="0" y="6" width="28" height="24" rx="7" fill="#2d5a27"/>
+      <line x1="14" y1="2" x2="14" y2="6" stroke="#2d5a27" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="14" cy="1" r="2.4" fill="#d97757"/>
+      <path d="M7 16 q3 3 6 0" fill="none" stroke="#faf6ef" stroke-width="2" stroke-linecap="round"/>
+      <path d="M17 16 q3 3 6 0" fill="none" stroke="#faf6ef" stroke-width="2" stroke-linecap="round"/>
+      <path d="M10 23 q4 3 8 0" fill="none" stroke="#faf6ef" stroke-width="2" stroke-linecap="round"/>
+    </g>
+    <text x="80" y="58" text-anchor="middle" class="label" font-size="14" font-weight="700" fill="#2d5a27">AIに先に渡す</text>
+    <text x="80" y="78" text-anchor="middle" class="cap" font-size="13" fill="#4a6741">「3行で教えて」</text>
+  </g>
+  <path d="M212 284 h16 l-6 -6 m6 6 l-6 6" fill="none" stroke="#4a8c3f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- 箱2：会話で深掘り -->
+  <g transform="translate(240 238)">
+    <rect width="160" height="92" rx="10" fill="#ffffff" stroke="#4a8c3f" stroke-width="2.5"/>
+    <!-- ふきだし2つアイコン -->
+    <g transform="translate(62 8)">
+      <rect x="0" y="0" width="22" height="14" rx="6" fill="#eef3e6" stroke="#4a8c3f" stroke-width="1.8"/>
+      <path d="M7 14 l2 5 l3 -5" fill="#eef3e6" stroke="#4a8c3f" stroke-width="1.8" stroke-linejoin="round"/>
+      <rect x="16" y="14" width="22" height="14" rx="6" fill="#ffffff" stroke="#4a8c3f" stroke-width="1.8"/>
+    </g>
+    <text x="80" y="58" text-anchor="middle" class="label" font-size="14" font-weight="700" fill="#2d5a27">会話で深掘り</text>
+    <text x="80" y="78" text-anchor="middle" class="cap" font-size="13" fill="#4a6741">「うちに関係ある所は？」</text>
+  </g>
+  <path d="M408 284 h16 l-6 -6 m6 6 l-6 6" fill="none" stroke="#4a8c3f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- 箱3：原文で確認（アンバー・強調） -->
+  <g transform="translate(436 238)">
+    <rect width="160" height="92" rx="10" fill="#fdf3dd" stroke="#c9a44a" stroke-width="3.5"/>
+    <!-- 虫めがね＋ページアイコン -->
+    <g transform="translate(64 8)">
+      <rect x="0" y="0" width="20" height="26" rx="2" fill="#ffffff" stroke="#a5824a" stroke-width="1.6"/>
+      <line x1="4" y1="7" x2="15" y2="7" stroke="#c9a44a" stroke-width="1.6"/>
+      <line x1="4" y1="13" x2="15" y2="13" stroke="#c9a44a" stroke-width="1.6"/>
+      <circle cx="22" cy="18" r="8" fill="#fdf3dd" fill-opacity="0.6" stroke="#a5824a" stroke-width="2.2"/>
+      <line x1="28" y1="24" x2="34" y2="30" stroke="#a5824a" stroke-width="3" stroke-linecap="round"/>
+    </g>
+    <text x="80" y="58" text-anchor="middle" class="label" font-size="14" font-weight="700" fill="#8a6a1f">原文で確認</text>
+    <text x="80" y="78" text-anchor="middle" class="label" font-size="11.5" fill="#a5824a">該当ページだけ・ここが大事</text>
+  </g>
+
+  <!-- ===== 締めの一文 ===== -->
+  <text x="320" y="382" text-anchor="middle" class="cap" font-size="17" fill="#2d5a27">「読まなくていい」ではなく、『読む場所がわかってから読む』</text>
+</svg>
