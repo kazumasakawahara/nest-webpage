@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" width="640" height="300" role="img" aria-label="仕切り直し3手順の流れ図。いっぱいになった古い会話から、①頼む（引き継ぎメモにまとめて）→ 引き継ぎメモのカード → ②確かめる（人が赤ペンで直す）→ ③貼る（新しい会話の冒頭に）→ すっきりした新しい会話へ">
+  <defs>
+    <style>.lbl{font-family:system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;}</style>
+  </defs>
+
+  <text x="24" y="34" class="lbl" font-size="17" font-weight="700" fill="#2f5d3a">仕切り直しは「頼む・確かめる・貼る」</text>
+
+  <!-- 古い会話 -->
+  <g transform="translate(24,60)">
+    <rect width="150" height="190" rx="12" fill="#efe9dd" stroke="#ddd3c1" stroke-width="1.5"/>
+    <text x="75" y="24" text-anchor="middle" class="lbl" font-size="12.5" font-weight="700" fill="#7c7360">いっぱいの会話</text>
+    <g opacity="0.2"><rect x="14" y="36" width="100" height="14" rx="7" fill="#bcd7b3"/><rect x="36" y="54" width="100" height="14" rx="7" fill="#e8c0ae"/></g>
+    <g opacity="0.45"><rect x="14" y="72" width="96" height="14" rx="7" fill="#bcd7b3"/><rect x="36" y="90" width="100" height="14" rx="7" fill="#e8c0ae"/></g>
+    <g opacity="0.75"><rect x="14" y="108" width="90" height="14" rx="7" fill="#bcd7b3"/><rect x="36" y="126" width="100" height="14" rx="7" fill="#e8c0ae"/></g>
+    <rect x="14" y="144" width="104" height="14" rx="7" fill="#bcd7b3"/>
+    <rect x="36" y="162" width="100" height="14" rx="7" fill="#e8c0ae"/>
+    <text x="75" y="204" text-anchor="middle" class="lbl" font-size="10.5" fill="#b0492c">上が薄れてきた</text>
+  </g>
+
+  <!-- ①頼む -->
+  <g transform="translate(180,130)">
+    <path d="M0 12 h40 M32 4 l10 8 -10 8" fill="none" stroke="#4a8c3f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="22" y="-6" text-anchor="middle" class="lbl" font-size="12" font-weight="700" fill="#2f5d3a">① 頼む</text>
+    <text x="22" y="40" text-anchor="middle" class="lbl" font-size="9" fill="#7c7360">まとめて</text>
+  </g>
+
+  <!-- 引き継ぎメモ -->
+  <g transform="translate(230,78)">
+    <rect x="-4" y="-4" width="128" height="160" rx="6" fill="#d8cdb4"/>
+    <rect width="120" height="152" rx="4" fill="#ffffff" stroke="#8a7a5c" stroke-width="2"/>
+    <rect x="40" y="-10" width="40" height="12" rx="4" fill="#8a7a5c"/>
+    <text x="60" y="22" text-anchor="middle" class="lbl" font-size="11.5" font-weight="700" fill="#4a3b2f">引き継ぎメモ</text>
+    <rect x="10" y="34" width="58" height="12" rx="3" fill="#3a6ea5"/><text x="39" y="43" text-anchor="middle" class="lbl" font-size="8" fill="#fff">決まったこと</text>
+    <line x1="10" y1="54" x2="108" y2="54" stroke="#ddd3c1" stroke-width="2"/>
+    <rect x="10" y="62" width="30" height="12" rx="3" fill="#4a8c3f"/><text x="25" y="71" text-anchor="middle" class="lbl" font-size="8" fill="#fff">前提</text>
+    <line x1="10" y1="82" x2="100" y2="82" stroke="#ddd3c1" stroke-width="2"/>
+    <rect x="10" y="90" width="30" height="12" rx="3" fill="#c9a44a"/><text x="25" y="99" text-anchor="middle" class="lbl" font-size="8" fill="#fff">課題</text>
+    <line x1="10" y1="110" x2="104" y2="110" stroke="#ddd3c1" stroke-width="2"/>
+    <rect x="10" y="118" width="30" height="12" rx="3" fill="#b85f3d"/><text x="25" y="127" text-anchor="middle" class="lbl" font-size="8" fill="#fff">次</text>
+    <line x1="10" y1="138" x2="96" y2="138" stroke="#ddd3c1" stroke-width="2"/>
+    <!-- 赤ペンの直し -->
+    <path d="M58 78 q14 -8 28 2" fill="none" stroke="#d9534f" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M96 124 l6 6 10 -12" fill="none" stroke="#d9534f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- ②確かめる -->
+  <g transform="translate(290,238)">
+    <g transform="translate(-6,-6) rotate(-30)">
+      <rect width="34" height="8" rx="2" fill="#d9534f"/>
+      <path d="M34 0 l8 4 l-8 4 z" fill="#f0c9a8"/>
+    </g>
+    <text x="14" y="28" text-anchor="middle" class="lbl" font-size="12" font-weight="700" fill="#b0492c">② 確かめる</text>
+    <text x="14" y="44" text-anchor="middle" class="lbl" font-size="9.5" fill="#7c7360">人が読んで、赤を入れる</text>
+  </g>
+
+  <!-- ③貼る -->
+  <g transform="translate(366,130)">
+    <path d="M0 12 h40 M32 4 l10 8 -10 8" fill="none" stroke="#4a8c3f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="22" y="-6" text-anchor="middle" class="lbl" font-size="12" font-weight="700" fill="#2f5d3a">③ 貼る</text>
+    <text x="22" y="40" text-anchor="middle" class="lbl" font-size="9" fill="#7c7360">冒頭に</text>
+  </g>
+
+  <!-- 新しい会話 -->
+  <g transform="translate(420,60)">
+    <rect width="196" height="190" rx="12" fill="#eaf2e5" stroke="#bcd7b3" stroke-width="2"/>
+    <text x="98" y="24" text-anchor="middle" class="lbl" font-size="12.5" font-weight="700" fill="#2f5d3a">新しい会話</text>
+    <!-- メモが1行目 -->
+    <rect x="14" y="36" width="168" height="54" rx="8" fill="#ffffff" stroke="#4a8c3f" stroke-width="2"/>
+    <text x="98" y="56" text-anchor="middle" class="lbl" font-size="10.5" font-weight="700" fill="#2f5d3a">引き継ぎメモ（貼り付け）</text>
+    <text x="98" y="74" text-anchor="middle" class="lbl" font-size="10" fill="#5f5847">読んでから始めてください</text>
+    <rect x="40" y="104" width="142" height="16" rx="8" fill="#f7ede7" stroke="#d97757" stroke-width="1.2"/>
+    <text x="111" y="116" text-anchor="middle" class="lbl" font-size="9.5" fill="#2a2620">読みました。続きですね</text>
+    <rect x="14" y="130" width="110" height="16" rx="8" fill="#ffffff" stroke="#bcd7b3" stroke-width="1.2"/>
+    <text x="98" y="176" text-anchor="middle" class="lbl" font-size="11" font-weight="700" fill="#2f5d3a">大事な前提が、大きな字で1行目に</text>
+  </g>
+</svg>
