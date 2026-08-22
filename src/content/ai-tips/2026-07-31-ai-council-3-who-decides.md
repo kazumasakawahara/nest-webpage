@@ -109,13 +109,32 @@ AIは「こういう方なら、こう言いそうだ」という自然な台詞
 
 もちろん、その場かぎりのお願いとして毎回貼りつけても構いません。**今日、手ぶらで試せます。**
 
-## お配りします ― 会議のカード、そのもの
+## 「これって、スキルにできない？」 ― では、お配りします
 
-さて、最後に。この連載でご紹介した会議の進め方を書いたカード（スキル）を、**そのままお配りします**。
+さて、最後に。ここまで読んでくださった方の頭の中に、たぶんこんな声が浮かんでいます。
+
+<div class="qa">
+  <div class="qa__row qa__row--me">
+    <div class="qa__avatar">🙂</div>
+    <p class="qa__bubble">白旗の条件を封筒に入れて、反論の前に言い直して、最後に水を差す係を呼んで……正直、この段取りを毎回AIに説明するのは無理です。<strong>これって、スキルにできないんですか？</strong></p>
+  </div>
+  <div class="qa__row qa__row--ai">
+    <div class="qa__avatar">🤖</div>
+    <p class="qa__bubble">できます。というより、<strong>スキルにするために作った段取り</strong>です。<a href="/ai-tips/2026-07-17-ai-skills-recipe-card/">レシピカードの回</a>でお話ししたとおり、スキルはただの文章。この会議の進め方を1枚のカードに書いて引き出しに入れておけば、次からは<strong>「ケース会議を開いて」の一言</strong>で、今日の7人が席に着きます。</p>
+  </div>
+  <div class="qa__row qa__row--me">
+    <div class="qa__avatar">🙂</div>
+    <p class="qa__bubble">いつでも使えたら、便利よね。……うちだけじゃなくて、ほかの現場でも。</p>
+  </div>
+  <div class="qa__row qa__row--ai">
+    <div class="qa__avatar">🤖</div>
+    <p class="qa__bubble">では、そうしましょう。<strong>スキルにして、皆さんにお配りします。</strong></p>
+  </div>
+</div>
 
 <div class="callout">
   <span class="callout__label">ダウンロード</span>
-  <p><strong><a href="/downloads/deliberation-sim-v1.0.zip">熟議シミュレータ（deliberation-sim）v1.0 ― zip形式</a></strong></p>
+  <p><strong><a href="/downloads/deliberation-sim-v1.0.zip">ひとりケース会議のカード（deliberation-sim）v1.0 ― zip形式</a></strong></p>
   <p>中身は、進め方を書いた説明文のファイルが数枚だけです。プログラムではないので、開けば人間にも普通に読めます。<strong>自由に使い、直し、配っていただいてかまいません</strong>（クレジット表示のみお願いする条件で公開しています。詳しくは同梱の LICENSE をご覧ください）。</p>
 </div>
 
