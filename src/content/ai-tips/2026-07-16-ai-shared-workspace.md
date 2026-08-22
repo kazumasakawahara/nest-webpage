@@ -104,6 +104,8 @@ AIにとっての申し送りノートは、**パソコンの中の、ふつう�
 
 カタログの検索欄に「**file**」と打つと、「**Filesystem**（ファイルシステム）」という道具が見つかります。これが「手元のファイルを扱う手」の正体です。
 
+→ ここから先の入れ方（提供元の確かめ方、任せるフォルダの選び方、つながったかの確認まで）は、特集「道具の入手」の第2回 [AIに“手”を持たせる ― 最初のコネクタ Filesystem](/ai-tips/2026-08-15-dougu-2-filesystem/) に、画面ごとにもう一段くわしくまとめました。手を動かしながら進めるなら、そちらが近道です。
+
 <figure class="mockup mockup--shot mockup--wide">
   <img src="/images/ai-tips/ai-workspace-search-filesystem.webp" alt="コネクタのカタログで検索欄に「file」と入力した画面。Files.comとFilesystemの2つのコネクタがカードで表示されている" width="1600" height="366" loading="lazy" decoding="async" />
   <figcaption>▲ 「file」で検索。右側の「Filesystem」が今回の道具です</figcaption>
