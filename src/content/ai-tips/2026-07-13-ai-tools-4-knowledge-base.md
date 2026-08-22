@@ -1,7 +1,7 @@
 ---
 title: 道具だけでは宝の持ち腐れ ― AIのための“台帳”を育てる
 date: 2026-07-13
-summary: Claudeはなぜ「WAM NETに項目自体が存在しない」「URLは消える」と知っていたのか——答えは、道具ではなく“蓄積”にありました。AIのために何を貯めるのか（3つの層）、どう貯めるのか、そして個人情報を扱うときの大切なルール。連載のテーゼの後半、「台帳」の話です。連載第4回（中級者編）。
+summary: Claudeはなぜ「WAM NETに項目自体が存在しない」「URLは消える」と知っていたのか——答えは、道具ではなく“蓄積”にありました。AIのために何を貯めるのか（3つの層）、どう貯めるのか、そして個人情報を扱うときの大切なルール。連載のテーゼの後半、「台帳」の話です。連載第4回。
 draft: false
 kind: series
 ---
@@ -13,7 +13,7 @@ kind: series
 今回はその答え合わせです。持ち物のもう1つの主役、**“台帳”＝蓄積**の話をします。
 
 <div class="callout series-nav">
-  <span class="callout__label">連載・中級者編</span>
+  <span class="callout__label">連載・全5回</span>
   <p>この記事は、連載<strong>「AIに道具を持たせる」</strong>（全5回）の第4回です。</p>
   <ol class="series-nav__list">
     <li><a href="/ai-tips/2026-07-13-ai-tools-1-same-question/">同じ質問をしたら、ぜんぜん違う答えが返ってきた</a></li>

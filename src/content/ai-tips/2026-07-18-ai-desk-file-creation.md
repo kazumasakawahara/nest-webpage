@@ -13,8 +13,8 @@ AIに会議資料の下書きやお知らせの文面をお願いして、良い
 今回はこの「最後のひと手間」を卒業する話。実は、いまのAIは文章だけでなく、**Word・Excel・PowerPoint・PDFといったファイルそのもの**を作れるようになっています。
 
 <div class="callout">
-  <span class="callout__label">連載の番外編・第3弾です</span>
-  <p>この記事は、連載<strong>「<a href="/ai-tips/2026-07-13-ai-tools-1-same-question/">AIに道具を持たせる</a>」</strong>（全5回）の番外編です。第2回で「AIに持たせる3つの手」をご紹介しましたが、今回はいわば4本目——<strong>“作る手”</strong>。書類を作る道具の話です。この記事だけでも読めるように書いています。</p>
+  <span class="callout__label">実践編・第4回です</span>
+  <p>この記事は、連載<strong>「<a href="/ai-tips/2026-07-13-ai-tools-1-same-question/">AIに道具を持たせる</a>」</strong>（全5回）の実践編・第4回です。第2回で「AIに持たせる3つの手」をご紹介しましたが、今回はいわば4本目——<strong>“作る手”</strong>。書類を作る道具の話です。この記事だけでも読めるように書いています。</p>
 </div>
 
 ## 事務机には、2つの流儀がある

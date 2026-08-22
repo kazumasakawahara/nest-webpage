@@ -15,7 +15,7 @@ kind: series
 道具と台帳を持たせたClaudeは、これに「ほぼ即座に可能です」と答え、**6段階の工程表**を返してきました。その中身を、1つずつ解剖していきましょう。
 
 <div class="callout series-nav">
-  <span class="callout__label">連載・中級者編</span>
+  <span class="callout__label">連載・全5回</span>
   <p>この記事は、連載<strong>「AIに道具を持たせる」</strong>（全5回）の第3回です。</p>
   <ol class="series-nav__list">
     <li><a href="/ai-tips/2026-07-13-ai-tools-1-same-question/">同じ質問をしたら、ぜんぜん違う答えが返ってきた</a></li>

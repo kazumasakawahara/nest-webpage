@@ -8,6 +8,11 @@ kind: practice
 
 [第1回](/ai-tips/2026-07-29-ai-council-1-why-it-fails/)で仕掛けを作り、[第2回](/ai-tips/2026-07-30-ai-council-2-live/)で実際に会議を開いてみました。最終回は、いちばん大事な話です。
 
+<div class="callout">
+  <span class="callout__label">実践編・連載「ひとりケース会議」第3回（全3回・最終回）です</span>
+  <p>この記事は、連載「AIに“ひとりケース会議”を開かせる」の最終回です。第1回は「<a href="/ai-tips/2026-07-29-ai-council-1-why-it-fails/">賛成役と反対役が、なれ合わないために</a>」。</p>
+</div>
+
 第2回を読んだ方から、こう聞かれそうな気がしています。
 
 > 「それで、AIの結論どおりにしたんですか？」

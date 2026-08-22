@@ -8,6 +8,11 @@ kind: practice
 
 [前回](/ai-tips/2026-07-29-ai-council-1-why-it-fails/)は、AIに賛否を出させると一人芝居になってしまう話と、その対策——**議論の前に「白旗を上げる条件」を封筒に入れておく**——をご紹介しました。
 
+<div class="callout">
+  <span class="callout__label">実践編・連載「ひとりケース会議」第2回（全3回）です</span>
+  <p>この記事は、連載「AIに“ひとりケース会議”を開かせる」の第2回です。第1回は「<a href="/ai-tips/2026-07-29-ai-council-1-why-it-fails/">賛成役と反対役が、なれ合わないために</a>」。</p>
+</div>
+
 今回は、その仕掛けを入れたカードを使って、**実際の会議を1件、まるごとお見せします**。
 
 <div class="callout">

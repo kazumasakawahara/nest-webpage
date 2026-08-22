@@ -9,7 +9,7 @@ kind: series
 連載の最終回です。ここまでで、AIの持ち物は2つそろいました。**道具**（第2〜3回）と、**台帳**（第4回）。今回は、これらが組み合わさって動く**完成形**をお見せして、第1回の「同じ質問、ぜんぜん違う答え」の答え合わせをします。
 
 <div class="callout series-nav">
-  <span class="callout__label">連載・中級者編</span>
+  <span class="callout__label">連載・全5回</span>
   <p>この記事は、連載<strong>「AIに道具を持たせる」</strong>（全5回）の第5回・最終回です。</p>
   <ol class="series-nav__list">
     <li><a href="/ai-tips/2026-07-13-ai-tools-1-same-question/">同じ質問をしたら、ぜんぜん違う答えが返ってきた</a></li>

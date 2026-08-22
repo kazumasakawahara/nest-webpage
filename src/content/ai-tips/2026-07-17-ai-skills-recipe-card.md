@@ -13,8 +13,8 @@ AIに何かをお願いするとき、こんな経験はありませんか。
 今回は、この「毎回ゼロから説明」を卒業する仕組み、**スキル**のお話です。
 
 <div class="callout">
-  <span class="callout__label">連載の番外編・第2弾です</span>
-  <p>この記事は、連載<strong>「<a href="/ai-tips/2026-07-13-ai-tools-1-same-question/">AIに道具を持たせる</a>」</strong>（全5回）の番外編です。<a href="/ai-tips/2026-07-13-ai-tools-5-putting-together/">最終回</a>で、AIの持ち物の三点セット——道具・台帳・<strong>手順書</strong>——をご紹介しましたが、あのとき「隠れた主役」と呼んだ手順書の<strong>実物</strong>が、今回の主役。この記事だけでも読めるように書いています。</p>
+  <span class="callout__label">実践編・第3回です</span>
+  <p>この記事は、連載<strong>「<a href="/ai-tips/2026-07-13-ai-tools-1-same-question/">AIに道具を持たせる</a>」</strong>（全5回）の実践編・第3回です。<a href="/ai-tips/2026-07-13-ai-tools-5-putting-together/">最終回</a>で、AIの持ち物の三点セット——道具・台帳・<strong>手順書</strong>——をご紹介しましたが、あのとき「隠れた主役」と呼んだ手順書の<strong>実物</strong>が、今回の主役。この記事だけでも読めるように書いています。</p>
 </div>
 
 ## スキルとは ― 新人さんに渡す“レシピカード”
@@ -55,7 +55,7 @@ AIに何かをお願いするとき、こんな経験はありませんか。
 
 <div class="callout">
   <span class="callout__label">豆知識：Webクリッパー</span>
-  <p>Webページの<strong>本文だけをきれいに切り抜いて、自分のノートに保存してくれる</strong>拡張機能があります（私は「Obsidian Web Clipper」という無料のものを、Obsidian（オブシディアン）というノートアプリと組み合わせて使っています）。広告やメニューを除いた本文だけが、あとから読み返せる形で手元に残る——連載第4回でお話しした<strong>「<a href="/ai-tips/2026-07-13-ai-tools-4-knowledge-base/">台帳を育てる</a>」のいちばん手軽な入口</strong>です。ブックマークとの違いは、<strong>ページが消されても手元に残る</strong>こと、そして<strong>AIにファイルとして渡せる</strong>こと。拡張機能を入れるときの安全習慣は<a href="/ai-tips/2026-07-14-claude-in-chrome/">前回の番外編</a>と同じ——提供元を確認してから、です。</p>
+  <p>Webページの<strong>本文だけをきれいに切り抜いて、自分のノートに保存してくれる</strong>拡張機能があります（私は「Obsidian Web Clipper」という無料のものを、Obsidian（オブシディアン）というノートアプリと組み合わせて使っています）。広告やメニューを除いた本文だけが、あとから読み返せる形で手元に残る——連載第4回でお話しした<strong>「<a href="/ai-tips/2026-07-13-ai-tools-4-knowledge-base/">台帳を育てる</a>」のいちばん手軽な入口</strong>です。ブックマークとの違いは、<strong>ページが消されても手元に残る</strong>こと、そして<strong>AIにファイルとして渡せる</strong>こと。拡張機能を入れるときの安全習慣は<a href="/ai-tips/2026-07-14-claude-in-chrome/">実践編・第1回</a>と同じ——提供元を確認してから、です。</p>
 </div>
 
 さて、後日。ノートに貯めておいたその記事を、AIにそのまま渡してこうお願いしました。
@@ -124,7 +124,7 @@ AIに何かをお願いするとき、こんな経験はありませんか。
   </div>
   <div class="qa__row qa__row--ai">
     <div class="qa__avatar">🤖</div>
-    <p class="qa__bubble">いい勘です。<a href="/ai-tips/2026-07-14-claude-in-chrome/">前回の番外編</a>と同じ安全習慣——<strong>「誰が作ったものかを確認してから入れる」</strong>が、ここでも大事です。まずは<strong>提供元がはっきりしている公式のスキル集から</strong>試すのがおすすめ。それと、スキルはただの文章なので、<strong>入れる前に私に「このスキル、何が書いてある？」と読ませて要約させる</strong>こともできますよ。</p>
+    <p class="qa__bubble">いい勘です。<a href="/ai-tips/2026-07-14-claude-in-chrome/">実践編・第1回</a>と同じ安全習慣——<strong>「誰が作ったものかを確認してから入れる」</strong>が、ここでも大事です。まずは<strong>提供元がはっきりしている公式のスキル集から</strong>試すのがおすすめ。それと、スキルはただの文章なので、<strong>入れる前に私に「このスキル、何が書いてある？」と読ませて要約させる</strong>こともできますよ。</p>
   </div>
 </div>
 
