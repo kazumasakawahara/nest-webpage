@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 200" width="640" height="200" role="img" aria-labelledby="t">
+  <title id="t">役の数がふえていく階段：相手役1人 → 賛成役と反対役 → 7人の会議 → 空いた1席</title>
+  <defs>
+    <style>
+      .bg{fill:#fbf6ec}
+      .step{fill:#ffffff;stroke:#d9c9ae;stroke-width:1.5}
+      .lbl{font-family:"Hiragino Sans","Noto Sans JP",sans-serif;font-size:12px;fill:#2f4a3a}
+      .num{font-family:"Hiragino Sans","Noto Sans JP",sans-serif;font-size:11px;font-weight:700;fill:#d97757}
+      .head{fill:#4f7a5c}
+      .head--pro{fill:#4f7a5c}
+      .head--con{fill:#d97757}
+      .body{fill:#cfe0d2}
+      .body--con{fill:#f3d2c4}
+      .seat{fill:none;stroke:#d97757;stroke-width:2;stroke-dasharray:4 3}
+      .arrow{fill:none;stroke:#b9a98c;stroke-width:1.5}
+    </style>
+    <g id="person"><circle class="head" cx="0" cy="-10" r="5"/><path class="body" d="M-7 8a7 7 0 0 1 14 0v3h-14z"/></g>
+    <g id="person-con"><circle class="head--con" cx="0" cy="-10" r="5"/><path class="body--con" d="M-7 8a7 7 0 0 1 14 0v3h-14z"/></g>
+  </defs>
+  <rect class="bg" width="640" height="200" rx="14"/>
+
+  <!-- step 1 -->
+  <rect class="step" x="22" y="112" width="130" height="64" rx="10"/>
+  <use href="#person" x="87" y="140"/>
+  <text class="num" x="87" y="104" text-anchor="middle">第1回</text>
+  <text class="lbl" x="87" y="192" text-anchor="middle">相手役（1人）</text>
+
+  <!-- step 2 -->
+  <rect class="step" x="178" y="92" width="130" height="84" rx="10"/>
+  <use href="#person" x="225" y="130"/>
+  <use href="#person-con" x="261" y="130"/>
+  <text class="lbl" x="243" y="160" text-anchor="middle" font-size="10">賛成役 ／ 反対役</text>
+  <text class="num" x="243" y="84" text-anchor="middle">第2回</text>
+  <text class="lbl" x="243" y="192" text-anchor="middle">なれ合わない2人</text>
+
+  <!-- step 3 -->
+  <rect class="step" x="334" y="72" width="130" height="104" rx="10"/>
+  <use href="#person" x="357" y="106"/><use href="#person" x="381" y="106"/><use href="#person" x="405" y="106"/><use href="#person-con" x="429" y="106"/>
+  <use href="#person" x="369" y="140"/><use href="#person" x="393" y="140"/><use href="#person-con" x="417" y="140"/>
+  <rect class="seat" x="434" y="128" width="18" height="22" rx="4"/>
+  <text class="num" x="399" y="64" text-anchor="middle">第3回</text>
+  <text class="lbl" x="399" y="192" text-anchor="middle">7人の会議（席はひとつ空けて）</text>
+
+  <!-- step 4 -->
+  <rect class="step" x="490" y="52" width="130" height="124" rx="10"/>
+  <rect class="seat" x="531" y="88" width="48" height="54" rx="8"/>
+  <text class="lbl" x="555" y="120" text-anchor="middle" font-size="11">ご本人の席</text>
+  <text class="num" x="555" y="44" text-anchor="middle">第4回</text>
+  <text class="lbl" x="555" y="160" text-anchor="middle" font-size="11">AIは座らない</text>
+  <text class="lbl" x="555" y="192" text-anchor="middle">決めるのは、人</text>
+
+  <!-- arrows -->
+  <path class="arrow" d="M154 144h20m-6-5 6 5-6 5"/>
+  <path class="arrow" d="M310 124h20m-6-5 6 5-6 5"/>
+  <path class="arrow" d="M466 104h20m-6-5 6 5-6 5"/>
+</svg>

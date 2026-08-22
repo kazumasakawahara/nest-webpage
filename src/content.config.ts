@@ -22,8 +22,8 @@ const aiTips = defineCollection({
     image: z.string().optional(),
     draft: z.boolean().default(false),
     // 一覧の棚分け用。anshin=あんしん編 / series=相棒編・連載本編 / practice=相棒編・実践編 /
-    // aibou=相棒編・読みもの / dougu=特集・道具の入手コーナー。未指定は便利ワザ編
-    kind: z.enum(['series', 'practice', 'anshin', 'aibou', 'dougu']).optional(),
+    // aibou=相棒編・読みもの / dougu=特集・道具の入手コーナー / haiyu=特集・AIは俳優。未指定は便利ワザ編
+    kind: z.enum(['series', 'practice', 'anshin', 'aibou', 'dougu', 'haiyu']).optional(),
   }),
 });
 

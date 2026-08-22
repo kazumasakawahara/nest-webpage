@@ -38,6 +38,9 @@ const wazaItems = all.filter((e) => !e.data.kind).sort(byDateDesc);
 // 特集・道具の入手コーナー（ファイル名の連番順）
 const douguItems = all.filter((e) => e.data.kind === 'dougu').sort((a, b) => a.id.localeCompare(b.id));
 
+// 特集・AIは俳優（相手役 → 会議①②③。ファイル名の日付順＝読む順）
+const haiyuItems = all.filter((e) => e.data.kind === 'haiyu').sort((a, b) => a.id.localeCompare(b.id));
+
 // 相棒編：読みもの＋連載本編（ファイル名の連番順）＋実践編（日付順）
 const aibouIntro = all.find((e) => e.data.kind === 'aibou');
 const seriesItems = all.filter((e) => e.data.kind === 'series').sort((a, b) => a.id.localeCompare(b.id));
@@ -103,6 +106,26 @@ const fmtDate = (d: Date) =>
           </p>
           <ol class="feature-box__list">
             {douguItems.map((item) => (
+              <li class="feature-box__item">
+                <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
+                  <span class="feature-box__name">{item.data.title}</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </div>
+      )}
+
+      {haiyuItems.length > 0 && (
+        <div class="feature-box reveal" id="haiyu">
+          <p class="feature-box__eyebrow">🎭 特集コーナー</p>
+          <h3 class="feature-box__title">AIは俳優 ― どんな役もこなします（全{haiyuItems.length}回）</h3>
+          <p class="feature-box__lead">
+            電話の相手役、なれ合わない賛成役と反対役、7人のケース会議——ぜんぶ、同じAIです。役を振ると、AIは「答える人」から「一緒に考える人」に変わります。<strong>AIは何人にでもなれる。ただし、座れない席がひとつある。</strong>——その話まで、全4回で。第1回はどのAIでも無料で試せます。
+          </p>
+          <img class="feature-box__img" src="/images/ai-tips/haiyu-stairs.svg" alt="役の数がふえていく階段の図。第1回は相手役1人、第2回は賛成役と反対役、第3回は7人の会議、第4回は空いた1席（ご本人の席）" width="640" height="200" loading="lazy" decoding="async" />
+          <ol class="feature-box__list">
+            {haiyuItems.map((item) => (
               <li class="feature-box__item">
                 <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
                   <span class="feature-box__name">{item.data.title}</span>
@@ -244,7 +267,7 @@ const fmtDate = (d: Date) =>
 
 <style>
   /* === 3つの棚ナビ === */
-  #anshin, #waza, #aibou, #dougu {
+  #anshin, #waza, #aibou, #dougu, #haiyu {
     scroll-margin-top: 96px;
   }
 
@@ -283,6 +306,15 @@ const fmtDate = (d: Date) =>
   .feature-box__lead a {
     color: var(--color-green-700);
     border-bottom: 1px solid currentColor;
+  }
+
+  .feature-box__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 640px;
+    margin-top: var(--space-3);
+    border-radius: 12px;
   }
 
   .feature-box__list {
