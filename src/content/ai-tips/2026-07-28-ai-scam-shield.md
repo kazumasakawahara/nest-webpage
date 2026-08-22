@@ -15,8 +15,8 @@ kind: anshin
 でも、ここからが今日の本題です。**詐欺の文章を上手にしたのがAIなら、それを見破る力もAIにあります**。あやしいメールやSMSが来たら、削除する前に、AIさんに見せてみてください。AIは、あなたの「盾」になれます。
 
 <div class="callout">
-  <span class="callout__label">あんしん編の続きです</span>
-  <p>この記事は、あんしん編の「<a href="/ai-tips/2026-07-28-ai-confidently-wrong/">AIは、自信満々にまちがえる</a>」「<a href="/ai-tips/2026-07-28-ai-privacy-line/">AIに話していいこと、いけないこと</a>」に続く1本です。この記事だけでも読めますが、3本そろうと“守り”がひとそろいになります。</p>
+  <span class="callout__label">あんしん編・第5回（全6回）です</span>
+  <p>この記事は、あんしん編（こわくない、から始める）の第5回です。第3回「<a href="/ai-tips/2026-07-28-ai-confidently-wrong/">AIは、自信満々にまちがえる</a>」・第4回「<a href="/ai-tips/2026-07-28-ai-privacy-line/">AIに話していいこと、いけないこと</a>」と3本そろうと“守り”がひとそろいになります。第1回は「<a href="/ai-tips/2026-07-20-not-scary-anatomy-of-fear/">AIって、なんだか怖い</a>」。</p>
 </div>
 
 <div class="qa">

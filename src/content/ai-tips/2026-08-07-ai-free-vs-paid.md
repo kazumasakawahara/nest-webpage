@@ -6,9 +6,14 @@ draft: false
 kind: anshin
 ---
 
-あんしん編でこれまで扱ってきたのは、[「難しそう」](/ai-tips/2026-07-20-not-difficult-just-talk/)、[「怖い」](/ai-tips/2026-07-20-not-scary-anatomy-of-fear/)、[「まちがえる」](/ai-tips/2026-07-28-ai-confidently-wrong/)、[「個人情報」](/ai-tips/2026-07-28-ai-privacy-line/)。今日は5本目にして、いちばん現実的な心配ごとです——**お金の話**。
+あんしん編でこれまで扱ってきたのは、[「難しそう」](/ai-tips/2026-07-20-not-difficult-just-talk/)、[「怖い」](/ai-tips/2026-07-20-not-scary-anatomy-of-fear/)、[「まちがえる」](/ai-tips/2026-07-28-ai-confidently-wrong/)、[「個人情報」](/ai-tips/2026-07-28-ai-privacy-line/)、[「詐欺」](/ai-tips/2026-07-28-ai-scam-shield/)。今日は6本目にして、いちばん現実的な心配ごとです——**お金の話**。
 
 「タダより高いものはない、って言うし……」「無料で使い続けて、ある日どーんと請求が来たら……」。この心配、AIの教室で必ずと言っていいほど出てくる質問です。先に結論を言ってしまいましょう。**AIは、勝手に課金されることはありません。そして、この連載でご紹介してきたワザのほとんどは、無料のままできます。**
+
+<div class="callout">
+  <span class="callout__label">あんしん編・第6回（全6回・ひと区切りの回）です</span>
+  <p>この記事は、あんしん編（こわくない、から始める）の第6回です。第1回は「<a href="/ai-tips/2026-07-20-not-scary-anatomy-of-fear/">AIって、なんだか怖い</a>」。この記事だけでも読めます。</p>
+</div>
 
 ## 大原則 ― 「後払い」は、そもそも存在しない
 

@@ -10,9 +10,27 @@ const byDateDesc = (a: (typeof all)[number], b: (typeof all)[number]) =>
   b.data.date.getTime() - a.data.date.getTime() || a.id.localeCompare(b.id);
 
 // あんしん編（読む順＝古い順。土台→守りの順に積み上がる）
+// 読む順は記事本文の「前回」のつながりに合わせて明示する（日付・ファイル名順だと①②が逆になる）
+const ANSHIN_ORDER = [
+  '2026-07-20-not-scary-anatomy-of-fear',
+  '2026-07-20-not-difficult-just-talk',
+  '2026-07-28-ai-confidently-wrong',
+  '2026-07-28-ai-privacy-line',
+  '2026-07-28-ai-scam-shield',
+  '2026-08-07-ai-free-vs-paid',
+];
+const anshinRank = (e: (typeof all)[number]) => {
+  const i = ANSHIN_ORDER.indexOf(e.id);
+  return i === -1 ? Number.MAX_SAFE_INTEGER : i;
+};
 const anshinItems = all
   .filter((e) => e.data.kind === 'anshin')
-  .sort((a, b) => a.data.date.getTime() - b.data.date.getTime() || a.id.localeCompare(b.id));
+  .sort(
+    (a, b) =>
+      anshinRank(a) - anshinRank(b) ||
+      a.data.date.getTime() - b.data.date.getTime() ||
+      a.id.localeCompare(b.id),
+  );
 
 // 便利ワザ編（kind未指定。新しい順）
 const wazaItems = all.filter((e) => !e.data.kind).sort(byDateDesc);
