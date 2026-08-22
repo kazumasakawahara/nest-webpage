@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-label="拍手をしながら「素晴らしい企画ですね！」と言うAIさんと、夏祭りの企画書を手に「本当に……？」と首をかしげる人。企画書には駐車場12台のメモがある">
+  <defs>
+    <style>
+      .cap { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; }
+      .lbl { font-family: system-ui, -apple-system, 'Hiragino Sans', 'Yu Gothic', sans-serif; }
+    </style>
+  </defs>
+
+  <rect width="640" height="360" rx="16" fill="#faf6ef"/>
+
+  <!-- 人（左）：マスコット。首をかしげる -->
+  <g transform="translate(150,178) rotate(-6) scale(0.35)">
+    <path d="M-64 250 C-72 302 -18 320 10 302 C-4 326 -66 322 -72 286 Z" fill="#1c2942"/>
+    <path d="M64 250 C72 302 18 320 -10 302 C4 326 66 322 72 286 Z" fill="#243654"/>
+    <rect x="-14" y="48" width="28" height="22" rx="7" fill="#e6b892"/>
+    <path d="M-66 252 C-78 168 -58 80 -18 64 C-8 58 8 58 18 64 C58 80 78 168 66 252 Z" fill="#22314f"/>
+    <path d="M-30 70 Q0 56 30 70 L22 98 Q0 84 -22 98 Z" fill="#2c3c5e"/>
+    <path d="M-17 78 Q0 68 17 78 L11 100 Q0 92 -11 100 Z" fill="#e9eef5"/>
+    <line x1="0" y1="96" x2="0" y2="244" stroke="#33456b" stroke-width="3"/>
+    <path d="M-72 6 C-88 -66 -44 -100 0 -100 C44 -100 88 -66 72 6 C64 -6 54 -4 48 8 C40 -8 30 -6 24 8 C16 -8 4 -8 -2 8 C-10 -8 -22 -8 -28 8 C-36 -6 -48 -6 -54 10 C-60 2 -66 2 -72 6 Z" fill="#8c908c"/>
+    <circle cx="0" cy="0" r="60" fill="#f0c9a8"/>
+    <path d="M-52 -52 C-30 -74 30 -74 52 -50" stroke="#a9ada8" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <circle cx="-38" cy="24" r="10" fill="#e79a78" opacity="0.5"/>
+    <circle cx="38" cy="24" r="10" fill="#e79a78" opacity="0.5"/>
+    <path d="M-40 -12 Q-26 -20 -14 -14" stroke="#4a3b2f" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <path d="M14 -14 Q26 -20 40 -12" stroke="#4a3b2f" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <circle cx="-26" cy="8" r="6" fill="#4a3b2f"/>
+    <circle cx="26" cy="8" r="6" fill="#4a3b2f"/>
+    <g stroke="#c9a44a" stroke-width="3.5" fill="#ffffff" fill-opacity="0.14">
+      <ellipse cx="-26" cy="6" rx="22" ry="15"/>
+      <ellipse cx="26" cy="6" rx="22" ry="15"/>
+    </g>
+    <path d="M-4 4 Q0 -1 4 4" stroke="#c9a44a" stroke-width="3.5" fill="none"/>
+    <line x1="-48" y1="2" x2="-64" y2="-4" stroke="#c9a44a" stroke-width="3"/>
+    <line x1="48" y1="2" x2="64" y2="-4" stroke="#c9a44a" stroke-width="3"/>
+    <path d="M-12 40 Q0 36 12 40" stroke="#9e4a3a" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <path d="M-56 132 C-64 178 -32 198 -8 198" fill="none" stroke="#22314f" stroke-width="30" stroke-linecap="round"/>
+    <path d="M56 132 C64 178 32 198 8 198" fill="none" stroke="#243654" stroke-width="30" stroke-linecap="round"/>
+    <circle cx="-12" cy="198" r="13" fill="#f0c9a8"/>
+    <circle cx="12" cy="198" r="13" fill="#f0c9a8"/>
+  </g>
+  <!-- 企画書（手の上・読める大きさ） -->
+  <g transform="translate(96 214) rotate(-8)">
+    <rect width="110" height="82" rx="4" fill="#ffffff" stroke="#8a7a5c" stroke-width="2.5"/>
+    <text x="55" y="22" text-anchor="middle" class="lbl" font-size="13" font-weight="700" fill="#4a3b2f">夏祭り 企画案</text>
+    <line x1="12" y1="32" x2="98" y2="32" stroke="#b8b2a4" stroke-width="2"/>
+    <text x="55" y="52" text-anchor="middle" class="lbl" font-size="11.5" fill="#5f5847">来場 60名</text>
+    <text x="55" y="70" text-anchor="middle" class="lbl" font-size="11.5" font-weight="700" fill="#b0492c">駐車場 12台</text>
+  </g>
+  <!-- 人のふきだし -->
+  <g>
+    <rect x="40" y="34" width="150" height="40" rx="12" fill="#ffffff" stroke="#e6e0d4" stroke-width="2"/>
+    <path d="M110 74 l8 12 l4 -12 z" fill="#ffffff" stroke="#e6e0d4" stroke-width="2"/>
+    <text x="115" y="60" text-anchor="middle" class="cap" font-size="18" fill="#2a2620">本当に……？</text>
+  </g>
+
+  <!-- AIさん（右）：拍手 -->
+  <g transform="translate(470 150)">
+    <rect x="-34" y="0" width="68" height="58" rx="14" fill="#2d5a27"/>
+    <line x1="0" y1="-10" x2="0" y2="0" stroke="#2d5a27" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="0" cy="-14" r="5" fill="#d97757"/>
+    <!-- 目（にこにこ・弧） -->
+    <path d="M-20 24 q6 -8 12 0" fill="none" stroke="#faf6ef" stroke-width="3" stroke-linecap="round"/>
+    <path d="M8 24 q6 -8 12 0" fill="none" stroke="#faf6ef" stroke-width="3" stroke-linecap="round"/>
+    <path d="M-12 40 q12 10 24 0" fill="none" stroke="#faf6ef" stroke-width="3" stroke-linecap="round"/>
+    <rect x="-26" y="64" width="52" height="42" rx="10" fill="#4a8c3f" opacity="0.9"/>
+    <!-- 手（拍手） -->
+    <circle cx="-38" cy="84" r="9" fill="#4a8c3f"/>
+    <circle cx="38" cy="84" r="9" fill="#4a8c3f"/>
+    <g stroke="#c9a44a" stroke-width="2.4" stroke-linecap="round">
+      <line x1="-52" y1="70" x2="-58" y2="64"/><line x1="-54" y1="84" x2="-62" y2="84"/><line x1="-52" y1="98" x2="-58" y2="104"/>
+      <line x1="52" y1="70" x2="58" y2="64"/><line x1="54" y1="84" x2="62" y2="84"/><line x1="52" y1="98" x2="58" y2="104"/>
+    </g>
+    <!-- きらきら -->
+    <g fill="#c9a44a" opacity="0.85">
+      <path d="M60 -24 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3 z"/>
+      <path d="M-66 -10 l2.5 6 6 2.5 -6 2.5 -2.5 6 -2.5 -6 -6 -2.5 6 -2.5 z"/>
+    </g>
+  </g>
+  <!-- AIのふきだし -->
+  <g>
+    <rect x="360" y="48" width="236" height="42" rx="12" fill="#ffffff" stroke="#e6e0d4" stroke-width="2"/>
+    <path d="M476 90 l-4 14 l-10 -14 z" fill="#ffffff" stroke="#e6e0d4" stroke-width="2"/>
+    <text x="478" y="75" text-anchor="middle" class="cap" font-size="18" fill="#2a2620">素晴らしい企画ですね！</text>
+  </g>
+
+  <!-- 床 -->
+  <rect x="0" y="312" width="640" height="48" rx="16" fill="#efe9dd"/>
+  <rect x="0" y="312" width="640" height="6" fill="#ddd3c1"/>
+  <text x="320" y="342" text-anchor="middle" class="lbl" font-size="12" fill="#7c7360">拍手の陰で、駐車場の話は出てこない</text>
+</svg>

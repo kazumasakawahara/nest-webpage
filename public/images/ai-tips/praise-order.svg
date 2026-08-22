@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 340" width="640" height="340" role="img" aria-label="順番の対比図。上：「先に見せる」と、AIの案は自分の案にそっくりになる（引っぱられる）。下：「先に出させる」と、AIから違う案が出てきて、自分の案と並べて比べられる">
+  <defs>
+    <style>.lbl{font-family:system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;}</style>
+    <g id="bot">
+      <line x1="20" y1="8" x2="20" y2="2" stroke="#2f5d3a" stroke-width="2.2" stroke-linecap="round"/>
+      <circle cx="20" cy="0" r="3" fill="#ffd15c"/>
+      <rect x="2" y="8" width="36" height="28" rx="9" fill="#faf6ef" stroke="#2f5d3a" stroke-width="2"/>
+      <rect x="10" y="15" width="20" height="14" rx="5" fill="#1f3a26"/>
+      <circle cx="16" cy="22" r="2.6" fill="#8fe0b0"/>
+      <circle cx="24" cy="22" r="2.6" fill="#8fe0b0"/>
+    </g>
+  </defs>
+
+  <!-- 上段：先に見せる -->
+  <rect x="14" y="14" width="612" height="150" rx="16" fill="#ffffff" stroke="#ddd3c1" stroke-width="1.5"/>
+  <rect x="14" y="14" width="150" height="150" rx="16" fill="#f7ede7"/>
+  <rect x="150" y="14" width="14" height="150" fill="#f7ede7"/>
+  <text x="89" y="78" text-anchor="middle" class="lbl" font-size="14" font-weight="700" fill="#b8543a">先に見せると</text>
+  <text x="89" y="100" text-anchor="middle" class="lbl" font-size="11" fill="#b0492c">引っぱられる</text>
+
+  <!-- 私の案 -->
+  <g transform="translate(196,42)">
+    <rect width="84" height="96" rx="6" fill="#fdf8e8" stroke="#c9a44a" stroke-width="2"/>
+    <text x="42" y="20" text-anchor="middle" class="lbl" font-size="11" font-weight="700" fill="#8a6a1a">私の案</text>
+    <g stroke="#2a2620" stroke-width="2.6" stroke-linecap="round"><line x1="12" y1="38" x2="72" y2="38"/><line x1="12" y1="54" x2="60" y2="54"/><line x1="12" y1="70" x2="68" y2="70"/><line x1="12" y1="86" x2="50" y2="86"/></g>
+  </g>
+  <path d="M292 90 h40 M324 82 l10 8 -10 8" fill="none" stroke="#b7ac97" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <use href="#bot" x="344" y="72"/>
+  <path d="M396 90 h40 M428 82 l10 8 -10 8" fill="none" stroke="#b7ac97" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- AIの案（そっくり） -->
+  <g transform="translate(452,42)">
+    <rect width="84" height="96" rx="6" fill="#eaf2e5" stroke="#4a8c3f" stroke-width="2"/>
+    <text x="42" y="20" text-anchor="middle" class="lbl" font-size="11" font-weight="700" fill="#2f5d3a">AIの案</text>
+    <g stroke="#2a2620" stroke-width="2.6" stroke-linecap="round"><line x1="12" y1="38" x2="72" y2="38"/><line x1="12" y1="54" x2="60" y2="54"/><line x1="12" y1="70" x2="68" y2="70"/><line x1="12" y1="86" x2="50" y2="86"/></g>
+  </g>
+  <g transform="translate(548,60)">
+    <rect width="66" height="40" rx="8" fill="#fdf1ec" stroke="#d97757" stroke-width="1.5"/>
+    <text x="33" y="17" text-anchor="middle" class="lbl" font-size="10.5" font-weight="700" fill="#b0492c">そっくり</text>
+    <text x="33" y="32" text-anchor="middle" class="lbl" font-size="9" fill="#b0492c">新しい視点なし</text>
+  </g>
+
+  <!-- 下段：先に出させる -->
+  <rect x="14" y="178" width="612" height="150" rx="16" fill="#ffffff" stroke="#ddd3c1" stroke-width="1.5"/>
+  <rect x="14" y="178" width="150" height="150" rx="16" fill="#eaf2e5"/>
+  <rect x="150" y="178" width="14" height="150" fill="#eaf2e5"/>
+  <text x="89" y="242" text-anchor="middle" class="lbl" font-size="14" font-weight="700" fill="#2f5d3a">先に出させると</text>
+  <text x="89" y="264" text-anchor="middle" class="lbl" font-size="11" fill="#4a8c3f">比べられる</text>
+
+  <!-- 条件だけ -->
+  <g transform="translate(196,232)">
+    <rect width="84" height="44" rx="6" fill="#efe9dd" stroke="#ddd3c1" stroke-width="1.5"/>
+    <text x="42" y="19" text-anchor="middle" class="lbl" font-size="10.5" fill="#5f5847">条件だけ</text>
+    <text x="42" y="34" text-anchor="middle" class="lbl" font-size="9" fill="#9a907c">60名・12台・前庭</text>
+  </g>
+  <path d="M292 254 h40 M324 246 l10 8 -10 8" fill="none" stroke="#b7ac97" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <use href="#bot" x="344" y="236"/>
+  <path d="M396 254 h40 M428 246 l10 8 -10 8" fill="none" stroke="#b7ac97" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- AIの案（違う） -->
+  <g transform="translate(452,206)">
+    <rect width="84" height="96" rx="6" fill="#eaf2e5" stroke="#4a8c3f" stroke-width="2"/>
+    <text x="42" y="20" text-anchor="middle" class="lbl" font-size="11" font-weight="700" fill="#2f5d3a">AIの案</text>
+    <g stroke="#2a2620" stroke-width="2.6" stroke-linecap="round"><line x1="12" y1="38" x2="52" y2="38"/><line x1="12" y1="54" x2="72" y2="54"/><line x1="12" y1="70" x2="40" y2="70"/><line x1="12" y1="86" x2="66" y2="86"/></g>
+    <rect x="44" y="62" width="36" height="14" rx="4" fill="#d97757"/>
+    <text x="62" y="72" text-anchor="middle" class="lbl" font-size="8" fill="#fff">駐車場</text>
+  </g>
+  <!-- 私の案（あとから並べる） -->
+  <g transform="translate(556,206)">
+    <rect width="60" height="96" rx="6" fill="#fdf8e8" stroke="#c9a44a" stroke-width="2"/>
+    <text x="30" y="20" text-anchor="middle" class="lbl" font-size="10" font-weight="700" fill="#8a6a1a">私の案</text>
+    <g stroke="#2a2620" stroke-width="2.4" stroke-linecap="round"><line x1="10" y1="38" x2="50" y2="38"/><line x1="10" y1="54" x2="42" y2="54"/><line x1="10" y1="70" x2="48" y2="70"/><line x1="10" y1="86" x2="36" y2="86"/></g>
+  </g>
+  <text x="546" y="320" text-anchor="middle" class="lbl" font-size="10" font-weight="700" fill="#2f5d3a">⇄ 違いが、宝</text>
+</svg>
