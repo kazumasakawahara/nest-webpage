@@ -14,6 +14,11 @@ kind: anshin
 
 でも、ここからが今日の本題です。**詐欺の文章を上手にしたのがAIなら、それを見破る力もAIにあります**。あやしいメールやSMSが来たら、削除する前に、AIさんに見せてみてください。AIは、あなたの「盾」になれます。
 
+<div class="callout">
+  <span class="callout__label">あんしん編の続きです</span>
+  <p>この記事は、あんしん編の「<a href="/ai-tips/2026-07-28-ai-confidently-wrong/">AIは、自信満々にまちがえる</a>」「<a href="/ai-tips/2026-07-28-ai-privacy-line/">AIに話していいこと、いけないこと</a>」に続く1本です。この記事だけでも読めますが、3本そろうと“守り”がひとそろいになります。</p>
+</div>
+
 <div class="qa">
   <div class="qa__row qa__row--me">
     <div class="qa__avatar">🙂</div>
