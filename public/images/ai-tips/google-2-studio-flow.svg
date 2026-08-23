@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 200" width="640" height="200" role="img" aria-labelledby="t">
+  <title id="t">Workspace Studio の流れの図。きっかけ（スターター）→ やること（ステップ）→ 結果。例：毎朝7時 → 未読メールを要約 → Chatに知らせる</title>
+  <defs>
+    <style>
+      .bg{fill:#fbf6ec}
+      .card{fill:#ffffff;stroke:#d9c9ae;stroke-width:1.5}
+      .card--g{stroke:#4f7a5c}
+      .tag{font-family:"Hiragino Sans","Noto Sans JP",sans-serif;font-size:11px;font-weight:700;fill:#d97757}
+      .ttl{font-family:"Hiragino Sans","Noto Sans JP",sans-serif;font-size:13px;font-weight:700;fill:#2f4a3a}
+      .ex{font-family:"Hiragino Sans","Noto Sans JP",sans-serif;font-size:11px;fill:#4a5a50}
+      .sub{font-family:"Hiragino Sans","Noto Sans JP",sans-serif;font-size:9.5px;fill:#7a8a7f}
+      .arrow{fill:none;stroke:#b9a98c;stroke-width:1.5}
+      .note{font-family:"Hiragino Sans","Noto Sans JP",sans-serif;font-size:10px;fill:#7a8a7f}
+    </style>
+  </defs>
+  <rect class="bg" width="640" height="200" rx="14"/>
+
+  <rect class="card" x="24" y="40" width="170" height="110" rx="10"/>
+  <text class="tag" x="40" y="62">スターター</text>
+  <text class="ttl" x="40" y="82">きっかけ</text>
+  <text class="ex" x="40" y="104">例：毎朝7時に</text>
+  <text class="ex" x="40" y="120">例：フォームに回答が来たら</text>
+  <text class="sub" x="40" y="138">時刻・できごと・手動 から選ぶ</text>
+
+  <path class="arrow" d="M196 95h26m-7-5 7 5-7 5"/>
+
+  <rect class="card card--g" x="226" y="40" width="190" height="110" rx="10"/>
+  <text class="tag" x="242" y="62">ステップ</text>
+  <text class="ttl" x="242" y="82">やること（いくつでも）</text>
+  <text class="ex" x="242" y="104">例：未読メールを要約する</text>
+  <text class="ex" x="242" y="120">例：返信の下書きを作る</text>
+  <text class="sub" x="242" y="138">Gmail・ドライブ・シート・Chat…</text>
+
+  <path class="arrow" d="M418 95h26m-7-5 7 5-7 5"/>
+
+  <rect class="card" x="448" y="40" width="168" height="110" rx="10"/>
+  <text class="tag" x="464" y="62">結果</text>
+  <text class="ttl" x="464" y="82">届く・たまる</text>
+  <text class="ex" x="464" y="104">例：Chat に朝の要約が届く</text>
+  <text class="ex" x="464" y="120">例：シートに1行たまる</text>
+  <text class="sub" x="464" y="138">人が見て、決める</text>
+
+  <text class="note" x="320" y="180" text-anchor="middle">「目覚まし時計」（定期タスク）の Google 版。有料の Google Workspace（Business Starter 以上）で使えます</text>
+</svg>

@@ -4,6 +4,7 @@ date: 2026-07-19
 summary: 「明日の予定を見て、段取りを考えて」——そうAIに頼んで、「カレンダーを拝見できません」と返されたことはありませんか。AIがあなたの秘書になれない理由はただひとつ、手帳（カレンダー）とメール（ポスト）が見えていないから。今回は、AIに“合鍵”を渡す話です。もともと家主のGemini、合鍵を受け取るClaudeとChatGPT——3社の流儀と、合鍵を渡すときの大切な作法をご紹介します。
 draft: false
 kind: practice
+series: [google]
 ---
 
 AIとの付き合いにも慣れてきたころ、多くの方が一度はこう頼みます。
@@ -17,6 +18,19 @@ AIとの付き合いにも慣れてきたころ、多くの方が一度はこう
 <div class="callout">
   <span class="callout__label">実践編・第5回です</span>
   <p>この記事は、連載<strong>「<a href="/ai-tips/2026-07-13-ai-tools-1-same-question/">AIに道具を持たせる</a>」</strong>（全5回）の実践編・第5回です。第2回で、AIに道具をつなぐ共通の差し込み口「<a href="/ai-tips/2026-07-13-ai-tools-2-mcp-basics/">MCP＝コンセント</a>」のお話をしました。今回はその差し込み口に、いちばん身近で、いちばん大事な道具——<strong>自分の予定とメール</strong>——をつなぎます。この記事だけでも読めるように書いています。</p>
+</div>
+
+<div class="callout series-nav">
+  <span class="callout__label">🧰 特集・Googleの道具箱</span>
+  <p>この記事は、特集<strong>「Googleの道具箱 ― いつものGoogleで、ここまでできる」</strong>（全6回）にも第4回として入っています。今回の道具：<strong>合鍵（手帳とメール）</strong>——Google では Gemini が“もともと家主”なので、合鍵を渡す手間がいちばん少ない回です。</p>
+  <ol class="series-nav__list">
+    <li><a href="/ai-tips/2026-07-10-gemini-canvas/">Gemini Canvasで、案内文も議事録も“その場で”仕上げる</a></li>
+    <li><a href="/ai-tips/2026-07-10-notebooklm-slides/">スライド作成も、AIさんに“1行”お願いするだけ ― Gemini Notebook（旧 NotebookLM）で資料づくり</a></li>
+    <li><a href="/ai-tips/2026-07-12-notebooklm-custom-instructions/">AIさんに“最初のお約束”を渡そう ― Gemini Notebook のカスタム指示</a></li>
+    <li class="is-current">AIに“合鍵”を渡すと、秘書になる ― 手帳とメールをつなぐ（この記事）</li>
+    <li><a href="/ai-tips/2026-08-23-google-1-drive-hands/">Googleドライブを、AIの“手”にする ― フォルダごと読ませる3つの道</a></li>
+    <li><a href="/ai-tips/2026-08-23-google-2-gem-studio/">Gemをつくる ― うちの事情を覚えたGeminiを、ひとり用意する（発展編：Workspace Studioで“流れ”を組む）</a></li>
+  </ol>
 </div>
 
 ## 手帳とメールは、“家の中”にある

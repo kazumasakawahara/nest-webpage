@@ -2,6 +2,7 @@
 title: AIさんに“最初のお約束”を渡そう ― NotebookLMのカスタム指示で出力がグッと良くなる
 date: 2026-07-12
 summary: NotebookLMはとても便利ですが、そのまま使うと「出典が書かれていない」「PDFにすると文字化けする」「体裁がバラバラ」といった“惜しい”出力になりがちです。実は、最初に一度だけ“お約束（カスタム指示）”を渡しておくと、それ以降ずっと質の高い答えが返ってきます。今回は、その仕組みと設定手順を、AIをあまり使わない方向けにやさしくご紹介します。nestが用意した「そのまま貼り付けるだけ」のプロンプトもプレゼントします。
+series: [google]
 ---
 
 前回の記事で、[NotebookLMでスライドを作る話](/ai-tips/2026-07-10-notebooklm-slides/) をご紹介しました。手元の資料を渡して「1行お願いするだけ」で、たたき台ができる——とても便利です。
@@ -23,6 +24,19 @@ summary: NotebookLMはとても便利ですが、そのまま使うと「出典�
     <div class="qa__avatar">🤖</div>
     <p class="qa__bubble">それ、<strong>毎回言わなくて済む</strong>方法がありますよ。ノートブックに<strong>「カスタム指示」</strong>という“お約束”を一度だけ登録しておくんです。そうすると、そのノートブックの答えは<strong>ぜんぶ、そのお約束にそって</strong>返ってきます。nestで使っているものを、そのまま差し上げますね。</p>
   </div>
+</div>
+
+<div class="callout series-nav">
+  <span class="callout__label">🧰 特集・Googleの道具箱</span>
+  <p>この記事は、特集<strong>「Googleの道具箱 ― いつものGoogleで、ここまでできる」</strong>（全6回）の第3回です。今回の道具：<strong>レシピカード（その1）</strong>——Claude 版の「<a href="/ai-tips/2026-07-17-ai-skills-recipe-card/">スキル</a>」にあたる、“うちのやり方”を先に渡しておく仕組み。なお NotebookLM は 2026年7月に<strong>「Gemini Notebook」</strong>へ名前が変わりました（中身と使い方は同じです）。</p>
+  <ol class="series-nav__list">
+    <li><a href="/ai-tips/2026-07-10-gemini-canvas/">Gemini Canvasで、案内文も議事録も“その場で”仕上げる</a></li>
+    <li><a href="/ai-tips/2026-07-10-notebooklm-slides/">スライド作成も、AIさんに“1行”お願いするだけ ― Gemini Notebook（旧 NotebookLM）で資料づくり</a></li>
+    <li class="is-current">AIさんに“最初のお約束”を渡そう ― Gemini Notebook のカスタム指示（この記事）</li>
+    <li><a href="/ai-tips/2026-07-19-ai-keys-calendar-mail/">AIに“合鍵”を渡すと、秘書になる ― 手帳とメールをつなぐ</a></li>
+    <li><a href="/ai-tips/2026-08-23-google-1-drive-hands/">Googleドライブを、AIの“手”にする ― フォルダごと読ませる3つの道</a></li>
+    <li><a href="/ai-tips/2026-08-23-google-2-gem-studio/">Gemをつくる ― うちの事情を覚えたGeminiを、ひとり用意する（発展編：Workspace Studioで“流れ”を組む）</a></li>
+  </ol>
 </div>
 
 ## 「カスタム指示」って、なに？

@@ -2,6 +2,7 @@
 title: “文書づくり”が一変する ― Gemini Canvasで、案内文も議事録も“その場で”仕上げる
 date: 2026-07-10
 summary: お知らせや案内文、議事録づくり。毎回イチから書くのは大変ですよね。GoogleのAI「Gemini」のCanvasという機能を使うと、話しかけるだけで下書きができて、その場で直せます。AIを使ったことがない方向けに、やさしく紹介します。
+series: [google]
 ---
 
 お知らせ、見学の案内文、会議の議事録、研修の資料——。福祉の現場は、**文書をつくる場面**がとても多いですよね。毎回まっさらな画面から書きはじめるのは、なかなか骨が折れます。
@@ -17,6 +18,19 @@ summary: お知らせや案内文、議事録づくり。毎回イチから書�
     <div class="qa__avatar">🤖</div>
     <p class="qa__bubble">得意ですよ！ とくに Google の「Gemini（ジェミニ）」というAIの <strong>Canvas（キャンバス）</strong> という機能がぴったり。「こんな文章を作って」と話しかけると下書きを作って、「もう少し短く」などと言えば <strong>その場で直して</strong> くれます。いっしょにやってみましょう。</p>
   </div>
+</div>
+
+<div class="callout series-nav">
+  <span class="callout__label">🧰 特集・Googleの道具箱</span>
+  <p>この記事は、特集<strong>「Googleの道具箱 ― いつものGoogleで、ここまでできる」</strong>（全6回）の第1回です。今回の道具：<strong>机</strong>——Claude 版の「<a href="/ai-tips/2026-08-15-dougu-1-claude-desktop/">Claude Desktop</a>」にあたる、AIと一緒に書類を仕上げる場所。無料の Google アカウントで使えます。</p>
+  <ol class="series-nav__list">
+    <li class="is-current">Gemini Canvasで、案内文も議事録も“その場で”仕上げる（この記事）</li>
+    <li><a href="/ai-tips/2026-07-10-notebooklm-slides/">スライド作成も、AIさんに“1行”お願いするだけ ― Gemini Notebook（旧 NotebookLM）で資料づくり</a></li>
+    <li><a href="/ai-tips/2026-07-12-notebooklm-custom-instructions/">AIさんに“最初のお約束”を渡そう ― Gemini Notebook のカスタム指示</a></li>
+    <li><a href="/ai-tips/2026-07-19-ai-keys-calendar-mail/">AIに“合鍵”を渡すと、秘書になる ― 手帳とメールをつなぐ</a></li>
+    <li><a href="/ai-tips/2026-08-23-google-1-drive-hands/">Googleドライブを、AIの“手”にする ― フォルダごと読ませる3つの道</a></li>
+    <li><a href="/ai-tips/2026-08-23-google-2-gem-studio/">Gemをつくる ― うちの事情を覚えたGeminiを、ひとり用意する（発展編：Workspace Studioで“流れ”を組む）</a></li>
+  </ol>
 </div>
 
 ## そもそも「Gemini」「Canvas」って？
