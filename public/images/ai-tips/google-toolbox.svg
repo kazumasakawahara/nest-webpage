@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 230" width="640" height="230" role="img" aria-labelledby="t">
+  <title id="t">Claudeの道具箱とGoogleの道具箱の対応表</title>
+  <defs>
+    <style>
+      .bg{fill:#fbf6ec}
+      .box{fill:#ffffff;stroke:#d9c9ae;stroke-width:1.5}
+      .hd{font-family:"Hiragino Sans","Noto Sans JP",sans-serif;font-size:13px;font-weight:700}
+      .hd--c{fill:#d97757}
+      .hd--g{fill:#4f7a5c}
+      .role{font-family:"Hiragino Sans","Noto Sans JP",sans-serif;font-size:12px;font-weight:700;fill:#2f4a3a}
+      .item{font-family:"Hiragino Sans","Noto Sans JP",sans-serif;font-size:11.5px;fill:#2f4a3a}
+      .sub{font-family:"Hiragino Sans","Noto Sans JP",sans-serif;font-size:9.5px;fill:#7a8a7f}
+      .line{stroke:#e6dbc6;stroke-width:1}
+      .eq{font-family:"Hiragino Sans","Noto Sans JP",sans-serif;font-size:12px;fill:#b9a98c}
+      .paid{font-family:"Hiragino Sans","Noto Sans JP",sans-serif;font-size:9px;fill:#ffffff}
+      .paidbg{fill:#d97757}
+    </style>
+  </defs>
+  <rect class="bg" width="640" height="230" rx="14"/>
+
+  <!-- headers -->
+  <rect class="box" x="132" y="14" width="200" height="28" rx="8"/>
+  <text class="hd hd--c" x="232" y="33" text-anchor="middle">Claude の道具箱（道具の入手）</text>
+  <rect class="box" x="412" y="14" width="212" height="28" rx="8"/>
+  <text class="hd hd--g" x="518" y="33" text-anchor="middle">Google の道具箱（この特集）</text>
+
+  <!-- rows -->
+  <g>
+    <text class="role" x="20" y="72">机</text>
+    <text class="item" x="142" y="72">Claude Desktop</text>
+    <text class="eq" x="372" y="72" text-anchor="middle">↔</text>
+    <text class="item" x="422" y="72">Gemini Canvas</text>
+    <text class="sub" x="422" y="84">第1回・無料</text>
+    <line class="line" x1="20" y1="92" x2="620" y2="92"/>
+
+    <text class="role" x="20" y="110">手</text>
+    <text class="item" x="142" y="110">Filesystem（許可したフォルダ）</text>
+    <text class="eq" x="372" y="110" text-anchor="middle">↔</text>
+    <text class="item" x="422" y="110">Google ドライブ＋Gemini</text>
+    <text class="sub" x="422" y="122">第5回・フォルダ指定は有料プラン</text>
+    <line class="line" x1="20" y1="130" x2="620" y2="130"/>
+
+    <text class="role" x="20" y="148">ノート</text>
+    <text class="item" x="142" y="148">Obsidian</text>
+    <text class="eq" x="372" y="148" text-anchor="middle">↔</text>
+    <text class="item" x="422" y="148">Gemini Notebook（旧 NotebookLM）</text>
+    <text class="sub" x="422" y="160">第2回・第3回・無料</text>
+    <line class="line" x1="20" y1="168" x2="620" y2="168"/>
+
+    <text class="role" x="20" y="186">レシピカード</text>
+    <text class="item" x="142" y="186">スキル</text>
+    <text class="eq" x="372" y="186" text-anchor="middle">↔</text>
+    <text class="item" x="422" y="186">Gem（カスタム指示）</text>
+    <text class="sub" x="422" y="198">第6回・無料</text>
+    <line class="line" x1="20" y1="206" x2="620" y2="206"/>
+
+    <text class="role" x="20" y="222">目覚まし時計</text>
+    <text class="item" x="142" y="222">定期タスク</text>
+    <text class="eq" x="372" y="222" text-anchor="middle">↔</text>
+    <text class="item" x="422" y="222">Workspace Studio</text>
+    <rect class="paidbg" x="556" y="211" width="56" height="14" rx="7"/>
+    <text class="paid" x="584" y="221" text-anchor="middle">有料 Workspace</text>
+  </g>
+</svg>

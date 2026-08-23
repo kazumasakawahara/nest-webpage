@@ -35,11 +35,34 @@ const anshinItems = all
 // 便利ワザ編（kind未指定。新しい順）
 const wazaItems = all.filter((e) => !e.data.kind).sort(byDateDesc);
 
+// 特集コーナーの所属判定：特集専属（kind===特集名）か、棚に残したままの併載（series に特集名）
+type Entry = (typeof all)[number];
+type FeatureId = 'dougu' | 'haiyu' | 'google';
+const inFeature = (id: FeatureId) => (e: Entry) =>
+  e.data.kind === id || (e.data.series ?? []).includes(id);
+
 // 特集・道具の入手コーナー（ファイル名の連番順）
-const douguItems = all.filter((e) => e.data.kind === 'dougu').sort((a, b) => a.id.localeCompare(b.id));
+const douguItems = all.filter(inFeature('dougu')).sort((a, b) => a.id.localeCompare(b.id));
 
 // 特集・AIは俳優（相手役 → 会議①②③。ファイル名の日付順＝読む順）
-const haiyuItems = all.filter((e) => e.data.kind === 'haiyu').sort((a, b) => a.id.localeCompare(b.id));
+const haiyuItems = all.filter(inFeature('haiyu')).sort((a, b) => a.id.localeCompare(b.id));
+
+// 特集・Googleの道具箱（読む順＝道具の順。日付順ではないので明示）
+const GOOGLE_ORDER = [
+  '2026-07-10-gemini-canvas',
+  '2026-07-10-notebooklm-slides',
+  '2026-07-12-notebooklm-custom-instructions',
+  '2026-07-19-ai-keys-calendar-mail',
+  '2026-08-23-google-1-drive-hands',
+  '2026-08-23-google-2-gem-studio',
+];
+const googleRank = (e: Entry) => {
+  const i = GOOGLE_ORDER.indexOf(e.id);
+  return i === -1 ? Number.MAX_SAFE_INTEGER : i;
+};
+const googleItems = all
+  .filter(inFeature('google'))
+  .sort((a, b) => googleRank(a) - googleRank(b) || a.id.localeCompare(b.id));
 
 // 相棒編：読みもの＋連載本編（ファイル名の連番順）＋実践編（日付順）
 const aibouIntro = all.find((e) => e.data.kind === 'aibou');
@@ -106,6 +129,26 @@ const fmtDate = (d: Date) =>
           </p>
           <ol class="feature-box__list">
             {douguItems.map((item) => (
+              <li class="feature-box__item">
+                <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
+                  <span class="feature-box__name">{item.data.title}</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </div>
+      )}
+
+      {googleItems.length > 0 && (
+        <div class="feature-box reveal" id="google">
+          <p class="feature-box__eyebrow">🧰 特集コーナー</p>
+          <h3 class="feature-box__title">Googleの道具箱 ― いつものGoogleで、ここまでできる（全{googleItems.length}回）</h3>
+          <p class="feature-box__lead">
+            <strong>Googleしか使えない職場でも、AIに道具は持たせられます。</strong>「道具の入手」で Claude にそろえた机・手・ノート・レシピカードを、Gemini と Google Workspace で一つずつ。無料の Google アカウントでできることから始めて、最後は有料の Workspace で“流れ”を組む Workspace Studio まで。どちらの道具箱を開けるかは、お使いの環境で選べます。
+          </p>
+          <img class="feature-box__img" src="/images/ai-tips/google-toolbox.svg" alt="Claudeの道具箱とGoogleの道具箱の対応表。机＝Claude Desktop と Gemini Canvas、手＝Filesystem と Googleドライブ、ノート＝Obsidian と Gemini Notebook、レシピカード＝スキルと Gem、目覚まし時計＝定期タスクと Workspace Studio" width="640" height="230" loading="lazy" decoding="async" />
+          <ol class="feature-box__list">
+            {googleItems.map((item) => (
               <li class="feature-box__item">
                 <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
                   <span class="feature-box__name">{item.data.title}</span>
@@ -267,7 +310,7 @@ const fmtDate = (d: Date) =>
 
 <style>
   /* === 3つの棚ナビ === */
-  #anshin, #waza, #aibou, #dougu, #haiyu {
+  #anshin, #waza, #aibou, #dougu, #haiyu, #google {
     scroll-margin-top: 96px;
   }
 

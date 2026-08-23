@@ -27,6 +27,13 @@ const shelfLabels: Record<string, string> = {
   haiyu: '🎭 特集・AIは俳優',
 };
 const shelf = item.data.kind ? shelfLabels[item.data.kind] : '💡 便利ワザ編';
+// 棚に残したまま特集に併載している記事は、特集のバッジも並べて出す
+const featureLabels: Record<string, string> = {
+  dougu: '🧰 特集・道具の入手',
+  haiyu: '🎭 特集・AIは俳優',
+  google: '🧰 特集・Googleの道具箱',
+};
+const features = (item.data.series ?? []).map((s) => featureLabels[s]).filter(Boolean);
 ---
 
 <BaseLayout title={item.data.title} description={item.data.summary ?? item.data.title}>
@@ -41,6 +48,9 @@ const shelf = item.data.kind ? shelfLabels[item.data.kind] : '💡 便利ワザ�
         </a>
         <span class="badge badge--accent">教えてAIさん</span>
         <span class="badge tip-article__shelf">{shelf}</span>
+        {features.map((f) => (
+          <span class="badge tip-article__shelf">{f}</span>
+        ))}
         <h1 class="tip-article__title">{item.data.title}</h1>
         <time class="tip-article__date" datetime={item.data.date.toISOString()}>
           {fmtDate(item.data.date)}
