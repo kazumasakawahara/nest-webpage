@@ -45,11 +45,21 @@ series: [google]
 ## やってみよう
 
 1. **Gemini を開く** … パソコンで `gemini.google.com` を開き、お持ちの Google アカウントでログインします（スマホのアプリでもOK）。
-2. **Canvas をオンにする** … 文字を入力する欄のまわりにあるメニューから、**「Canvas」を選びます**。
+2. **Canvas をオンにする** … 「Gemini に相談」と書かれた入力欄の **左にある「＋」ボタン** を押し、開いたメニューから **「Canvas」を選びます**（メニューに見当たらないときは、「その他のツール」の中にあります）。入力欄に「Canvas」の札が付けばOKです。
 
-<figure class="mockup mockup--wide">
-  <img src="/images/ai-tips/canvas-toggle.svg" alt="Geminiの入力欄。ツールの中の「Canvas」をオンにする場所を示した図" width="560" height="220" loading="lazy" decoding="async" />
-  <figcaption>▲ 入力欄のまわりから「Canvas」をオンにします</figcaption>
+<figure class="mockup mockup--wide mockup--shot">
+  <img src="/images/ai-tips/canvas-00-home.webp" alt="Gemini の最初の画面。「Gemini に相談」の入力欄の左にある＋ボタンを赤枠で示している" width="850" height="250" loading="lazy" decoding="async" />
+  <figcaption>▲ ① 「Gemini に相談」の左の「＋」を押します</figcaption>
+</figure>
+
+<figure class="mockup mockup--wide mockup--shot">
+  <img src="/images/ai-tips/canvas-01-menu.webp" alt="＋を押して開いたメニュー。ファイルをアップロード、ドライブから追加、画像を作成などの項目の中に Canvas があり、見当たらない場合は「その他のツール」の中にあることを赤枠で示している" width="540" height="400" loading="lazy" decoding="async" />
+  <figcaption>▲ ② メニューの「Canvas」。無ければ「その他のツール」→「Canvas」</figcaption>
+</figure>
+
+<figure class="mockup mockup--wide mockup--shot">
+  <img src="/images/ai-tips/canvas-02-chip.webp" alt="入力欄に「Canvas」の札が付いた状態。案内文が「一緒に文章を書いたり、コンテンツを作成したりしましょう」に変わっている" width="740" height="130" loading="lazy" decoding="async" />
+  <figcaption>▲ ③ 入力欄に「Canvas」の札が付きました</figcaption>
 </figure>
 
 3. **お願いする** … あとは、作ってほしい文書を **ふつうの言葉で** 頼むだけ。たとえば——
@@ -61,9 +71,9 @@ series: [google]
 
 4. **画面を見てみる** … すると、**左側で会話しながら、右側にできあがった文書**が表示されます。
 
-<figure class="mockup mockup--shot">
-  <img src="/images/ai-tips/canvas-screen.svg" alt="GeminiのCanvas画面のイメージ。左で会話し、右にできた文書が表示され、その場で直せる" width="640" height="400" loading="lazy" decoding="async" />
-  <figcaption>▲ 左＝お願いする／右＝できた文書。右の文書は、話しかけるだけで何度でも直せます</figcaption>
+<figure class="mockup mockup--full mockup--shot">
+  <img src="/images/ai-tips/canvas-03-open.webp" alt="Canvas が開いた実際の画面。左でお願いの会話、右に「あきの えんそくの おしらせ」という文書が表示されている。右上に印刷・作成・共有のボタン" width="1300" height="750" loading="lazy" decoding="async" />
+  <figcaption>▲ ④ 左＝お願いする／右＝できた文書（「秋の遠足のお知らせ」を頼んだ例）。右の文書は、話しかけるだけで何度でも直せます</figcaption>
 </figure>
 
 5. **直す** … できた文書は、次のように自由に直せます。むずかしい操作はいりません。
@@ -71,12 +81,22 @@ series: [google]
    - **選んだ部分だけAIに直してもらう** … 直したいところを **マウスでなぞって選び**、「**この部分を、もっとやさしく直して**」のようにお願いすると、**その箇所だけ** を直してくれます。文書全体を作り直さなくていいので、とても手軽です。
    - **全体をまとめてお願い** … 「もう少し短く」「やさしい言葉に」「箇条書きに」「日付の欄を足して」なども、話しかけるだけ。
 
-<figure class="mockup mockup--shot">
-  <img src="/images/ai-tips/canvas-select.svg" alt="Canvasの文書で、直したい部分をなぞって選び、その部分だけAIに直してもらう様子の図" width="500" height="300" loading="lazy" decoding="async" />
-  <figcaption>▲ 直したい所を選んで「この部分を◯◯に直して」とお願いすれば、その箇所だけを直してくれます</figcaption>
+<figure class="mockup mockup--wide mockup--shot">
+  <img src="/images/ai-tips/canvas-04-select.webp" alt="Canvas の文書で一文をなぞって選ぶと、すぐ下に「Gemini に相談」という小さな入力欄が出る実際の画面" width="800" height="400" loading="lazy" decoding="async" />
+  <figcaption>▲ ⑤ 直したい所をなぞると「Gemini に相談」が出ます。「この部分をもっとやさしく」と頼めば、その箇所だけ直してくれます</figcaption>
 </figure>
 
-6. **仕上げる** … 気に入ったら、**Googleドキュメントへ書き出す**（ボタンひとつ）か、文章をコピーして Word などに貼り付けて完成です。
+6. **仕上げる** … 気に入ったら、文書の右上にある **共有ボタン**から **「Google ドキュメントにエクスポート」**（書き出し）を選ぶか、「内容をコピー」して Word などに貼り付けて完成です。
+
+<figure class="mockup mockup--wide mockup--shot">
+  <img src="/images/ai-tips/canvas-05-export.webp" alt="共有ボタンを押して出るメニュー。Google ドライブで共有、Google ドキュメントにエクスポート（赤枠）、内容をコピー" width="345" height="190" loading="lazy" decoding="async" />
+  <figcaption>▲ ⑥ 「Google ドキュメントにエクスポート」で、いつものドキュメントに</figcaption>
+</figure>
+
+<div class="callout">
+  <span class="callout__label">画面は変わります</span>
+  <p>この記事の画面は 2026年8月に撮ったものです。Gemini はボタンの場所や名前がときどき変わります。見つからないときは、<strong>「＋」の中を探す</strong>、それでも無ければ <strong>Gemini 自身に「Canvas はどこ？」と聞く</strong>のが早道です。</p>
+</div>
 
 ## Canvas のうれしいところ
 

@@ -43,19 +43,52 @@ Gem は、その **説明を先に書いておいた、専用の Gemini** です
 
 ## 作り方 ― 名前と指示を書いて、保存するだけ【無料】
 
-1. パソコンで **gemini.google.com** を開き、左のメニューから **「Gem」**（Gem マネージャー）を選びます。
-2. **「Gem を作成」**（新しい Gem）を押します。
-3. **名前**を付けます（例：「お知らせ書き係」）。
-4. **指示**の欄に、役割と約束を書きます。下に例を置きました。
-5. 必要なら **「知識」** に参考ファイルを添えます（事業所の書き方見本、用語集など）。
-6. 右側のプレビューで試し打ちして、よければ **保存**。
+実際の画面で、順番に見ていきましょう（画面は 2026年8月のもの。赤い番号は、本文の番号と対応しています）。無料の Google アカウントでも作れます（使える回数や AI の種類に上限があります）。
 
-無料の Google アカウントでも作れます（使える回数や AI の種類に上限があります）。
+**① 「Gem」を開く** — パソコンで **gemini.google.com** を開き、左上のメニューを広げて **「Gem」** を選びます。
+
+<figure class="mockup mockup--wide mockup--shot">
+  <img src="/images/ai-tips/gem-01-sidebar.webp" alt="Gemini の左メニュー。チャットを新規作成・チャットを検索・画像・動画・ライブラリの下にある「Gem」を赤枠で示した画面" width="640" height="290" loading="lazy" decoding="async" />
+  <figcaption>▲ ① 左のメニューのいちばん下、「Gem」</figcaption>
+</figure>
+
+**② 「Gem を作成」を押す** — 「Gem マネージャー」という画面が開きます。上には Google が用意した Gem が並んでいて（介護記録向けの「ケア記録アシスト」もあります）、その下の **「＋ Gem を作成」** を押します。
+
+<figure class="mockup mockup--full mockup--shot">
+  <img src="/images/ai-tips/gem-02-manager.webp" alt="Gem マネージャーの画面。Google が作成した Gem（コーディング パートナー、Storybook、アイデア出しのプロ、ケア記録アシスト）の下に、マイ Gem と「Gem を作成」ボタンがあり、ボタンを赤枠で示している" width="1084" height="430" loading="lazy" decoding="async" />
+  <figcaption>▲ ② 右側の「＋ Gem を作成」</figcaption>
+</figure>
+
+**③〜⑥ 名前・説明・指示を書いて、保存** — 新しい Gem の画面です。**③名前**（例：お知らせ書き係）、**④説明**（ひとこと）、**⑤カスタム指示**（役割と約束。下に例を置きました）を書いて、右上の **⑥保存**。「知識」の欄に、事業所の書き方見本や用語集のファイルを添えることもできます。
+
+<figure class="mockup mockup--full mockup--shot">
+  <img src="/images/ai-tips/gem-03-form.webp" alt="新しい Gem の作成画面。左に名前・説明・カスタム指示の入力欄（赤枠で③④⑤）、右にプレビュー、右上に保存ボタン（赤枠で⑥）" width="1240" height="720" loading="lazy" decoding="async" />
+  <figcaption>▲ ③名前 ④説明 ⑤カスタム指示 を書いて、⑥保存。右側はプレビューです</figcaption>
+</figure>
 
 <div class="ai-prompt">
-  <span class="ai-prompt__label">指示の例 ― 「お知らせ書き係」</span>
+  <span class="ai-prompt__label">⑤ 指示の例 ― 「お知らせ書き係」</span>
   あなたは、就労継続支援B型事業所の「お知らせ書き係」です。私が用件を箇条書きで渡したら、利用者さんとご家族向けのお知らせ文を作ってください。約束：①一文は短く、むずかしい言葉はやさしい言葉に②漢字には（　）でふりがな③日付・場所・持ち物は最初にまとめて④最後に「わからないことは職員に聞いてください」を入れる⑤敬語は「です・ます」。個人名や個人情報は、私が渡しても文面には入れず「〇〇さん」のままにしてください。
 </div>
+
+**⑦ 「チャットを開始」** — 保存すると「Gem『お知らせ書き係』を作成しました」と出ます。**「チャットを開始」** を押すと、その Gem との会話が始まります。
+
+<figure class="mockup mockup--wide mockup--shot">
+  <img src="/images/ai-tips/gem-04-saved.webp" alt="「Gem『お知らせ書き係』を作成しました」のダイアログ。共有と、チャットを開始（赤枠で⑦）のボタン" width="560" height="334" loading="lazy" decoding="async" />
+  <figcaption>▲ ⑦ 「チャットを開始」</figcaption>
+</figure>
+
+**⑧ 用件を渡す** — Gem の名前と説明が出た画面で、下の入力欄に **用件を箇条書きで** 入れるだけ。説明はもう要りません。
+
+<figure class="mockup mockup--full mockup--shot">
+  <img src="/images/ai-tips/gem-05-start.webp" alt="作成した Gem「お知らせ書き係」の画面。名前と説明の下に入力欄があり、赤枠で⑧" width="1340" height="580" loading="lazy" decoding="async" />
+  <figcaption>▲ ⑧ 「・9月12日（金）に避難訓練 ・10時に玄関前に集合 ・動きやすい靴 ・雨なら中止、朝8時に連絡」と入れてみました</figcaption>
+</figure>
+
+<figure class="mockup mockup--full mockup--shot">
+  <img src="/images/ai-tips/gem-06-result.webp" alt="Gem の回答。利用者（りようしゃ）のみなさん、ご家族（かぞく）のみなさまへ、と漢字にふりがなが付き、日にちと時間・場所・持ち物が最初にまとめられたお知らせ文" width="1340" height="640" loading="lazy" decoding="async" />
+  <figcaption>▲ 約束どおり、ふりがな付きで、日付・場所・持ち物が最初に。ここから先は「もう少し短く」と話しかけて直すだけです</figcaption>
+</figure>
 
 指示を自分で書くのが大変なら、**Gemini 本人に書かせる**のがいちばん早い方法です。
 
