@@ -26,7 +26,7 @@ const aiTips = defineCollection({
     kind: z.enum(['series', 'practice', 'anshin', 'aibou', 'dougu', 'haiyu']).optional(),
     // 棚（kind）とは別の「特集への併載」。記事は元の棚に残したまま、特集ブロックにも並ぶ。
     // 特集専属の記事は kind に特集名を持ち、series は不要（kind===特集名 も特集ブロックに入る）
-    series: z.array(z.enum(['dougu', 'haiyu', 'google'])).optional(),
+    series: z.array(z.enum(['dougu', 'haiyu', 'google', 'asobi'])).optional(),
   }),
 });
 

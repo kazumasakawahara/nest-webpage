@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 200" width="640" height="200" role="img" aria-labelledby="t">
+  <title id="t">開いた道具箱から、紙飛行機と音符が飛び出している図</title>
+  <defs>
+    <style>
+      .bg{fill:#fbf6ec}
+      .shadow{fill:#efe4cf}
+      .body{fill:#d97757;stroke:#b95f42;stroke-width:2}
+      .lid{fill:#b95f42;stroke:#b95f42;stroke-width:2;stroke-linejoin:round}
+      .mouth{fill:#8f4a34}
+      .latch{fill:#fbf6ec;stroke:#b95f42;stroke-width:1.5}
+      .trail{fill:none;stroke:#7a8a7f;stroke-width:1.5;stroke-dasharray:4 6;stroke-linecap:round}
+      .plane1{fill:#ffffff;stroke:#4f7a5c;stroke-width:1.5;stroke-linejoin:round}
+      .plane2{fill:#e6efe0;stroke:#4f7a5c;stroke-width:1.5;stroke-linejoin:round}
+      .note{font-family:"Hiragino Sans","Noto Sans JP",sans-serif;font-weight:700}
+      .note--g{font-size:26px;fill:#4f7a5c}
+      .note--t{font-size:22px;fill:#d97757}
+      .note--s{font-size:17px;fill:#b9a98c}
+      .spark{fill:#d9c9ae}
+    </style>
+  </defs>
+  <rect class="bg" width="640" height="200" rx="14"/>
+
+  <!-- 地面の影 -->
+  <ellipse class="shadow" cx="320" cy="172" rx="115" ry="9"/>
+
+  <!-- 開いたふた（左右のフラップ） -->
+  <polygon class="lid" points="252,112 208,88 276,88 318,112"/>
+  <polygon class="lid" points="388,112 432,88 364,88 322,112"/>
+
+  <!-- 道具箱の本体 -->
+  <rect class="body" x="248" y="110" width="144" height="58" rx="9"/>
+  <rect class="mouth" x="258" y="106" width="124" height="10" rx="4"/>
+  <rect class="latch" x="310" y="132" width="20" height="14" rx="3"/>
+
+  <!-- 飛び出しの軌跡 -->
+  <path class="trail" d="M330,102 C 368,64 412,48 458,56"/>
+  <path class="trail" d="M310,102 C 282,72 258,66 240,68"/>
+  <path class="trail" d="M320,100 C 316,76 306,58 296,48"/>
+
+  <!-- 紙飛行機 -->
+  <polygon class="plane1" points="506,48 446,62 474,68"/>
+  <polygon class="plane2" points="506,48 474,68 482,84"/>
+
+  <!-- 音符 -->
+  <text class="note note--g" x="386" y="60">♪</text>
+  <text class="note note--t" x="228" y="66">♫</text>
+  <text class="note note--s" x="288" y="42">♪</text>
+
+  <!-- きらめき -->
+  <path class="spark" d="M198,112 l3,-8 3,8 8,3 -8,3 -3,8 -3,-8 -8,-3 z"/>
+  <path class="spark" d="M436,100 l2.5,-7 2.5,7 7,2.5 -7,2.5 -2.5,7 -2.5,-7 -7,-2.5 z"/>
+</svg>
