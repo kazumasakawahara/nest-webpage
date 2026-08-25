@@ -64,7 +64,7 @@ const googleItems = all
   .filter(inFeature('google'))
   .sort((a, b) => googleRank(a) - googleRank(b) || a.id.localeCompare(b.id));
 
-// 特集・道具箱で、あそぶ（ファイル名の連番順）
+// 特集・道具箱で、あそぶ（ファイル名の連番順。記事が出るまでは近日公開の枠だけ描画）
 const asobiItems = all.filter(inFeature('asobi')).sort((a, b) => a.id.localeCompare(b.id));
 
 // 相棒編：読みもの＋連載本編（ファイル名の連番順）＋実践編（日付順）
@@ -164,12 +164,12 @@ const fmtDate = (d: Date) =>
 
       <div class="feature-box reveal" id="asobi">
         <p class="feature-box__eyebrow">🪁 特集コーナー</p>
-        <h3 class="feature-box__title">道具箱で、あそぶ ― 道具は、そろった。さあ、あそぼう。{asobiItems.length > 0 && `（全${asobiItems.length}回）`}</h3>
+        <h3 class="feature-box__title">道具箱で、あそぶ ― 道具は、そろった。さあ、あそぼう。{asobiItems.length > 0 ? `（全${asobiItems.length}回）` : '（近日公開）'}</h3>
         <p class="feature-box__lead">
           <a href="#dougu">道具の入手</a>（Claude 版）と<a href="#google">Googleの道具箱</a>（Google 版）でそろえた道具を、こんどは組み合わせて遊ぶ実演連載です。題材は<a href="/peer-activities/railway-club/">鉄道倶楽部</a>。旅の写真がかべ新聞になり、同じ材料が思い出ラジオになります。倶楽部の活動で、そのまま使えるかたちを目指します。
         </p>
         <img class="feature-box__img" src="/images/ai-tips/asobi-toolbox.svg" alt="開いた道具箱から、紙飛行機と音符が飛び出している図" width="640" height="200" loading="lazy" decoding="async" />
-        {asobiItems.length > 0 && (
+        {asobiItems.length > 0 ? (
           <ol class="feature-box__list">
             {asobiItems.map((item) => (
               <li class="feature-box__item">
@@ -179,6 +179,8 @@ const fmtDate = (d: Date) =>
               </li>
             ))}
           </ol>
+        ) : (
+          <p class="feature-box__coming">第1回「かべ新聞編集部」・第2回「思い出ラジオ局」——近日公開です。</p>
         )}
       </div>
 
@@ -381,6 +383,13 @@ const fmtDate = (d: Date) =>
     max-width: 640px;
     margin-top: var(--space-3);
     border-radius: 12px;
+  }
+
+  .feature-box__coming {
+    font-family: var(--font-hand);
+    font-size: 14px;
+    color: var(--color-ink-mute);
+    margin-top: var(--space-3);
   }
 
   .feature-box__list {
