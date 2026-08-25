@@ -446,6 +446,24 @@ const features = (item.data.series ?? []).map((s) => featureLabels[s]).filter(Bo
     border: 1px solid var(--color-line);
   }
 
+  /* 音声プレーヤー */
+  .tip-article__body :global(.audio-box) {
+    margin: var(--space-6) auto;
+    padding: var(--space-4);
+    background: var(--color-sand);
+    border-radius: var(--radius-md);
+    text-align: center;
+  }
+  .tip-article__body :global(.audio-box audio) {
+    width: 100%;
+    max-width: 520px;
+    margin-top: var(--space-3);
+  }
+  .tip-article__body :global(.audio-box figcaption) {
+    font-size: 13px;
+    color: var(--color-ink-mute);
+  }
+
   /* AIへの頼み方（コピペ用の例文ボックス） */
   .tip-article__body :global(.ai-prompt) {
     margin: var(--space-5) 0;
