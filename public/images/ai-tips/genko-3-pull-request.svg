@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440" width="640" height="440" role="img" aria-label="回覧板（プルリクエスト）の往復を示す2列の図。左列は「提案する人」、右列は「共同研究者・指導教員」。①ブランチで考察を組み替える→②「考察をテーマ別に直しました。いかがでしょうか」と回覧板を出す→右へ矢印→③直した箇所だけが色付きで並んで見える→④気になる行のすぐ横にコメント「52行目の『影響』は『受容』のほうが正確では」→左へ矢印→⑤指摘の箇所だけ直して同じ回覧板に足す→右へ矢印→⑥「これで結構です」と承認→⑦本編に合流。図の下部に「①〜⑥のやりとりが、原稿と一緒にそのまま残る」と書かれている">
+  <defs>
+    <style>
+      .cap { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; }
+    </style>
+    <marker id="arrow-terra" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#b85f3d"/>
+    </marker>
+    <marker id="arrow-brown" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#8a7a5c"/>
+    </marker>
+  </defs>
+
+  <!-- 舞台背景（クリーム） -->
+  <rect width="640" height="440" rx="16" fill="#faf6ef"/>
+
+  <!-- 書き割り -->
+  <rect x="12" y="56" width="616" height="364" fill="#eef3e6"/>
+
+  <!-- 緞帳（どんちょう） -->
+  <rect x="0" y="0" width="640" height="42" fill="#b85f3d"/>
+  <path d="M0 42 q40 24 80 0 q40 24 80 0 q40 24 80 0 q40 24 80 0 q40 24 80 0 q40 24 80 0 q40 24 80 0 q40 24 80 0 v-8 h-640 Z" fill="#b85f3d"/>
+  <g fill="#a04e2f" opacity="0.5">
+    <rect x="70" y="0" width="7" height="40"/>
+    <rect x="230" y="0" width="7" height="40"/>
+    <rect x="390" y="0" width="7" height="40"/>
+    <rect x="550" y="0" width="7" height="40"/>
+  </g>
+  <!-- 袖幕（左右・細め） -->
+  <path d="M0 0 h34 q8 84 -4 164 q-8 54 -30 72 Z" fill="#a04e2f"/>
+  <path d="M640 0 h-34 q-8 84 4 164 q8 54 30 72 Z" fill="#a04e2f"/>
+
+  <!-- 木の看板（中央・ぶら下がり） -->
+  <line x1="320" y1="42" x2="320" y2="60" stroke="#6b4a2f" stroke-width="3"/>
+  <line x1="258" y1="42" x2="266" y2="60" stroke="#6b4a2f" stroke-width="3"/>
+  <line x1="382" y1="42" x2="374" y2="60" stroke="#6b4a2f" stroke-width="3"/>
+  <g transform="translate(226 58)">
+    <rect width="188" height="38" rx="6" fill="#e8d9b8" stroke="#6b4a2f" stroke-width="3"/>
+    <text x="94" y="25" text-anchor="middle" class="cap" font-size="14" fill="#4a3b2f">第三幕「原稿の隣に置く」</text>
+  </g>
+
+  <!-- 列見出し -->
+  <text x="172" y="122" text-anchor="middle" class="cap" font-size="14" fill="#2d5a27">提案する人</text>
+  <line x1="72" y1="130" x2="272" y2="130" stroke="#8a7a5c" stroke-width="2"/>
+  <text x="473" y="122" text-anchor="middle" class="cap" font-size="14" fill="#2d5a27">共同研究者・指導教員</text>
+  <line x1="373" y1="130" x2="573" y2="130" stroke="#8a7a5c" stroke-width="2"/>
+
+  <!-- ① ブランチで考察を組み替える -->
+  <rect x="55" y="140" width="234" height="28" rx="8" fill="#ffffff" stroke="#8a7a5c" stroke-width="2"/>
+  <text x="172" y="158" text-anchor="middle" class="cap" font-size="11" fill="#2a2620">① ブランチで考察を組み替える</text>
+  <line x1="172" y1="168" x2="172" y2="180" stroke="#8a7a5c" stroke-width="2.5" marker-end="url(#arrow-brown)"/>
+
+  <!-- ② 回覧板を出す -->
+  <rect x="55" y="184" width="234" height="58" rx="8" fill="#ffffff" stroke="#8a7a5c" stroke-width="2"/>
+  <text x="172" y="201" text-anchor="middle" class="cap" font-size="11" fill="#2a2620">②「考察をテーマ別に直しました。</text>
+  <text x="172" y="216" text-anchor="middle" class="cap" font-size="11" fill="#2a2620">いかがでしょうか」と回覧板を出す</text>
+  <text x="172" y="233" text-anchor="middle" class="cap" font-size="10" fill="#b85f3d">（＝プルリクエスト）</text>
+  <!-- ②→③ -->
+  <line x1="293" y1="208" x2="352" y2="208" stroke="#b85f3d" stroke-width="3" marker-end="url(#arrow-terra)"/>
+
+  <!-- ③ 色付きで並んで見える -->
+  <rect x="356" y="184" width="234" height="66" rx="8" fill="#ffffff" stroke="#8a7a5c" stroke-width="2"/>
+  <text x="473" y="201" text-anchor="middle" class="cap" font-size="11" fill="#2a2620">③ 直した箇所だけが</text>
+  <text x="473" y="216" text-anchor="middle" class="cap" font-size="11" fill="#2a2620">色付きで並んで見える</text>
+  <rect x="392" y="224" width="150" height="5" rx="2.5" fill="#c0392b" opacity="0.75"/>
+  <rect x="392" y="234" width="150" height="5" rx="2.5" fill="#1e7e34" opacity="0.75"/>
+  <line x1="473" y1="250" x2="473" y2="262" stroke="#8a7a5c" stroke-width="2.5" marker-end="url(#arrow-brown)"/>
+
+  <!-- ④ 行のすぐ横にコメント -->
+  <rect x="356" y="266" width="234" height="84" rx="8" fill="#ffffff" stroke="#8a7a5c" stroke-width="2"/>
+  <text x="473" y="283" text-anchor="middle" class="cap" font-size="11" fill="#2a2620">④ 気になる行のすぐ横にコメント</text>
+  <!-- 原稿の行と、行に刺さる吹き出し -->
+  <line x1="372" y1="294" x2="574" y2="294" stroke="#b8b2a4" stroke-width="2"/>
+  <line x1="372" y1="303" x2="500" y2="303" stroke="#b8b2a4" stroke-width="2"/>
+  <path d="M508 303 l6 8 l6 -8 z" fill="#faf6ef" stroke="#c9a44a" stroke-width="2"/>
+  <rect x="386" y="310" width="176" height="32" rx="6" fill="#faf6ef" stroke="#c9a44a" stroke-width="2"/>
+  <text x="474" y="323" text-anchor="middle" class="cap" font-size="9" fill="#4a3b2f">「52行目の『影響』は</text>
+  <text x="474" y="336" text-anchor="middle" class="cap" font-size="9" fill="#4a3b2f">『受容』のほうが正確では」</text>
+  <!-- ④→⑤ -->
+  <line x1="352" y1="300" x2="293" y2="300" stroke="#b85f3d" stroke-width="3" marker-end="url(#arrow-terra)"/>
+
+  <!-- ⑤ 指摘の箇所だけ直す -->
+  <rect x="55" y="278" width="234" height="44" rx="8" fill="#ffffff" stroke="#8a7a5c" stroke-width="2"/>
+  <text x="172" y="296" text-anchor="middle" class="cap" font-size="11" fill="#2a2620">⑤ 指摘の箇所だけ直して</text>
+  <text x="172" y="312" text-anchor="middle" class="cap" font-size="11" fill="#2a2620">同じ回覧板に足す</text>
+  <!-- ⑤→⑥ -->
+  <line x1="293" y1="330" x2="352" y2="366" stroke="#b85f3d" stroke-width="3" marker-end="url(#arrow-terra)"/>
+
+  <!-- ⑥ 承認 -->
+  <rect x="356" y="356" width="234" height="28" rx="8" fill="#ffffff" stroke="#8a7a5c" stroke-width="2"/>
+  <text x="473" y="374" text-anchor="middle" class="cap" font-size="11" fill="#2a2620">⑥「これで結構です」と承認</text>
+  <!-- ⑥→⑦ -->
+  <line x1="352" y1="376" x2="248" y2="376" stroke="#b85f3d" stroke-width="3" marker-end="url(#arrow-terra)"/>
+
+  <!-- ⑦ 本編に合流 -->
+  <rect x="102" y="360" width="140" height="30" rx="8" fill="#4a8c3f" stroke="#2d5a27" stroke-width="2"/>
+  <text x="172" y="379" text-anchor="middle" class="cap" font-size="11" fill="#ffffff">⑦ 本編に合流</text>
+
+  <!-- 下部の一行 -->
+  <line x1="90" y1="404" x2="172" y2="404" stroke="#8a7a5c" stroke-width="1.5" stroke-dasharray="5 5"/>
+  <text x="320" y="409" text-anchor="middle" class="cap" font-size="12" fill="#2d5a27">①〜⑥のやりとりが、原稿と一緒にそのまま残る</text>
+  <line x1="468" y1="404" x2="550" y2="404" stroke="#8a7a5c" stroke-width="1.5" stroke-dasharray="5 5"/>
+</svg>
