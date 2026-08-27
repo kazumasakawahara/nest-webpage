@@ -37,7 +37,7 @@ const wazaItems = all.filter((e) => !e.data.kind).sort(byDateDesc);
 
 // 特集コーナーの所属判定：特集専属（kind===特集名）か、棚に残したままの併載（series に特集名）
 type Entry = (typeof all)[number];
-type FeatureId = 'dougu' | 'haiyu' | 'google' | 'asobi';
+type FeatureId = 'dougu' | 'haiyu' | 'google' | 'asobi' | 'genko';
 const inFeature = (id: FeatureId) => (e: Entry) =>
   e.data.kind === id || (e.data.series ?? []).includes(id);
 
@@ -66,6 +66,9 @@ const googleItems = all
 
 // 特集・道具箱で、あそぶ（ファイル名の連番順。記事が出るまでは近日公開の枠だけ描画）
 const asobiItems = all.filter(inFeature('asobi')).sort((a, b) => a.id.localeCompare(b.id));
+
+// 特集・原稿編（ファイル名の日付順＝読む順）
+const genkoItems = all.filter(inFeature('genko')).sort((a, b) => a.id.localeCompare(b.id));
 
 // 相棒編：読みもの＋連載本編（ファイル名の連番順）＋実践編（日付順）
 const aibouIntro = all.find((e) => e.data.kind === 'aibou');
@@ -123,85 +126,134 @@ const fmtDate = (d: Date) =>
         </li>
       </ul>
 
+      <p class="feature-intro">
+        🗂 <strong>特集コーナー</strong> ― まとまりで読みたいときは、こちらから。見出しを押すと目次がひらきます。
+      </p>
+
+      {genkoItems.length > 0 && (
+        <details class="feature-box reveal" id="genko" open>
+          <summary class="feature-box__summary">
+            <span class="feature-box__eyebrow">📝 特集コーナー・NEW</span>
+            <h3 class="feature-box__title">原稿編 ―「最終版が6つある」から卒業する（全{genkoItems.length}回）</h3>
+            <span class="feature-box__toggle" aria-hidden="true">＋</span>
+          </summary>
+          <div class="feature-box__body">
+            <p class="feature-box__lead">
+              実践報告や紀要、規程の改定——<strong>長い文章を、少しずつ、何度も直す人</strong>のための Git／GitHub 連載です。原稿にセーブポイントを置き（第1回）、AIの直しを差分で査読し（第2回）、共著者とのやりとりを原稿の隣に置く（第3回）。「逐語録は上げない」の線引きまで、全3回で。
+            </p>
+            <img class="feature-box__img" src="/images/ai-tips/genko-1-final-six.svg" alt="人形劇の舞台。研究者人形が「最終版」の札の付いた書類の山に埋もれて困り顔をし、AIさん人形がセーブポイントの旗の並んだ道を指さしている図" width="640" height="360" loading="lazy" decoding="async" />
+            <ol class="feature-box__list">
+              {genkoItems.map((item) => (
+                <li class="feature-box__item">
+                  <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
+                    <span class="feature-box__name">{item.data.title}</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </details>
+      )}
+
       {douguItems.length > 0 && (
-        <div class="feature-box reveal" id="dougu">
-          <p class="feature-box__eyebrow">🧰 特集コーナー</p>
-          <h3 class="feature-box__title">道具の入手 ― AIの道具箱をそろえる（全{douguItems.length}回）</h3>
-          <p class="feature-box__lead">
-            AIを“読みものの相手”から“一緒に働く相棒”へ。専用の机（Claude Desktop）、手（Filesystem）、知恵をためるノート（Obsidian）を順に手に入れて、自分専用の“データセンター”を組み上げます。発展編では、それを“信頼できる倉庫”に育てる規律まで。ここで整う道具は、<a href="/post-parent/tools/">親なき後のツール・しくみ</a>を始めるときの土台にもなります。
-          </p>
-          <ol class="feature-box__list">
-            {douguItems.map((item) => (
-              <li class="feature-box__item">
-                <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
-                  <span class="feature-box__name">{item.data.title}</span>
-                </a>
-              </li>
-            ))}
-          </ol>
-        </div>
+        <details class="feature-box reveal" id="dougu">
+          <summary class="feature-box__summary">
+            <span class="feature-box__eyebrow">🧰 特集コーナー</span>
+            <h3 class="feature-box__title">道具の入手 ― AIの道具箱をそろえる（全{douguItems.length}回）</h3>
+            <span class="feature-box__toggle" aria-hidden="true">＋</span>
+          </summary>
+          <div class="feature-box__body">
+            <p class="feature-box__lead">
+              AIを“読みものの相手”から“一緒に働く相棒”へ。専用の机（Claude Desktop）、手（Filesystem）、知恵をためるノート（Obsidian）を順に手に入れて、自分専用の“データセンター”を組み上げます。発展編では、それを“信頼できる倉庫”に育てる規律まで。ここで整う道具は、<a href="/post-parent/tools/">親なき後のツール・しくみ</a>を始めるときの土台にもなります。
+            </p>
+            <ol class="feature-box__list">
+              {douguItems.map((item) => (
+                <li class="feature-box__item">
+                  <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
+                    <span class="feature-box__name">{item.data.title}</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </details>
       )}
 
       {googleItems.length > 0 && (
-        <div class="feature-box reveal" id="google">
-          <p class="feature-box__eyebrow">🧰 特集コーナー</p>
-          <h3 class="feature-box__title">Googleの道具箱 ― いつものGoogleで、ここまでできる（全{googleItems.length}回）</h3>
-          <p class="feature-box__lead">
-            <strong>Googleしか使えない職場でも、AIに道具は持たせられます。</strong>「道具の入手」で Claude にそろえた机・手・ノート・レシピカードを、Gemini と Google Workspace で一つずつ。無料の Google アカウントでできることから始めて、最後は有料の Workspace で“流れ”を組む Workspace Studio まで。どちらの道具箱を開けるかは、お使いの環境で選べます。
-          </p>
-          <img class="feature-box__img" src="/images/ai-tips/google-toolbox.svg" alt="Claudeの道具箱とGoogleの道具箱の対応表。机＝Claude Desktop と Gemini Canvas、手＝Filesystem と Googleドライブ、ノート＝Obsidian と Gemini Notebook、レシピカード＝スキルと Gem、目覚まし時計＝定期タスクと Workspace Studio" width="640" height="230" loading="lazy" decoding="async" />
-          <ol class="feature-box__list">
-            {googleItems.map((item) => (
-              <li class="feature-box__item">
-                <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
-                  <span class="feature-box__name">{item.data.title}</span>
-                </a>
-              </li>
-            ))}
-          </ol>
-        </div>
+        <details class="feature-box reveal" id="google">
+          <summary class="feature-box__summary">
+            <span class="feature-box__eyebrow">🧰 特集コーナー</span>
+            <h3 class="feature-box__title">Googleの道具箱 ― いつものGoogleで、ここまでできる（全{googleItems.length}回）</h3>
+            <span class="feature-box__toggle" aria-hidden="true">＋</span>
+          </summary>
+          <div class="feature-box__body">
+            <p class="feature-box__lead">
+              <strong>Googleしか使えない職場でも、AIに道具は持たせられます。</strong>「道具の入手」で Claude にそろえた机・手・ノート・レシピカードを、Gemini と Google Workspace で一つずつ。無料の Google アカウントでできることから始めて、最後は有料の Workspace で“流れ”を組む Workspace Studio まで。どちらの道具箱を開けるかは、お使いの環境で選べます。
+            </p>
+            <img class="feature-box__img" src="/images/ai-tips/google-toolbox.svg" alt="Claudeの道具箱とGoogleの道具箱の対応表。机＝Claude Desktop と Gemini Canvas、手＝Filesystem と Googleドライブ、ノート＝Obsidian と Gemini Notebook、レシピカード＝スキルと Gem、目覚まし時計＝定期タスクと Workspace Studio" width="640" height="230" loading="lazy" decoding="async" />
+            <ol class="feature-box__list">
+              {googleItems.map((item) => (
+                <li class="feature-box__item">
+                  <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
+                    <span class="feature-box__name">{item.data.title}</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </details>
       )}
 
-      <div class="feature-box reveal" id="asobi">
-        <p class="feature-box__eyebrow">🪁 特集コーナー</p>
-        <h3 class="feature-box__title">道具箱で、あそぶ ― 道具は、そろった。さあ、あそぼう。{asobiItems.length > 0 ? `（全${asobiItems.length}回）` : '（近日公開）'}</h3>
-        <p class="feature-box__lead">
-          <a href="#dougu">道具の入手</a>（Claude 版）と<a href="#google">Googleの道具箱</a>（Google 版）でそろえた道具を、こんどは組み合わせて遊ぶ実演連載です。題材は<a href="/peer-activities/railway-club/">鉄道倶楽部</a>。旅の写真がかべ新聞になり、同じ材料が思い出ラジオになります。倶楽部の活動で、そのまま使えるかたちを目指します。
-        </p>
-        <img class="feature-box__img" src="/images/ai-tips/asobi-toolbox.svg" alt="開いた道具箱から、紙飛行機と音符が飛び出している図" width="640" height="200" loading="lazy" decoding="async" />
-        {asobiItems.length > 0 ? (
-          <ol class="feature-box__list">
-            {asobiItems.map((item) => (
-              <li class="feature-box__item">
-                <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
-                  <span class="feature-box__name">{item.data.title}</span>
-                </a>
-              </li>
-            ))}
-          </ol>
-        ) : (
-          <p class="feature-box__coming">第1回「かべ新聞編集部」・第2回「思い出ラジオ局」——近日公開です。</p>
-        )}
-      </div>
+      <details class="feature-box reveal" id="asobi">
+        <summary class="feature-box__summary">
+          <span class="feature-box__eyebrow">🪁 特集コーナー</span>
+          <h3 class="feature-box__title">道具箱で、あそぶ ― 道具は、そろった。さあ、あそぼう。{asobiItems.length > 0 ? `（全${asobiItems.length}回）` : '（近日公開）'}</h3>
+          <span class="feature-box__toggle" aria-hidden="true">＋</span>
+        </summary>
+        <div class="feature-box__body">
+          <p class="feature-box__lead">
+            <a href="#dougu">道具の入手</a>（Claude 版）と<a href="#google">Googleの道具箱</a>（Google 版）でそろえた道具を、こんどは組み合わせて遊ぶ実演連載です。題材は<a href="/peer-activities/railway-club/">鉄道倶楽部</a>。旅の写真がかべ新聞になり、同じ材料が思い出ラジオになります。倶楽部の活動で、そのまま使えるかたちを目指します。
+          </p>
+          <img class="feature-box__img" src="/images/ai-tips/asobi-toolbox.svg" alt="開いた道具箱から、紙飛行機と音符が飛び出している図" width="640" height="200" loading="lazy" decoding="async" />
+          {asobiItems.length > 0 ? (
+            <ol class="feature-box__list">
+              {asobiItems.map((item) => (
+                <li class="feature-box__item">
+                  <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
+                    <span class="feature-box__name">{item.data.title}</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          ) : (
+            <p class="feature-box__coming">第1回「かべ新聞編集部」・第2回「思い出ラジオ局」——近日公開です。</p>
+          )}
+        </div>
+      </details>
 
       {haiyuItems.length > 0 && (
-        <div class="feature-box reveal" id="haiyu">
-          <p class="feature-box__eyebrow">🎭 特集コーナー</p>
-          <h3 class="feature-box__title">AIは俳優 ― どんな役もこなします（全{haiyuItems.length}回）</h3>
-          <p class="feature-box__lead">
-            電話の相手役、なれ合わない賛成役と反対役、7人のケース会議——ぜんぶ、同じAIです。役を振ると、AIは「答える人」から「一緒に考える人」に変わります。<strong>AIは何人にでもなれる。ただし、座れない席がひとつある。</strong>——その話まで、全4回で。第1回はどのAIでも無料で試せます。
-          </p>
-          <img class="feature-box__img" src="/images/ai-tips/haiyu-stairs.svg" alt="役の数がふえていく階段の図。第1回は相手役1人、第2回は賛成役と反対役、第3回は7人の会議、第4回は空いた1席（ご本人の席）" width="640" height="200" loading="lazy" decoding="async" />
-          <ol class="feature-box__list">
-            {haiyuItems.map((item) => (
-              <li class="feature-box__item">
-                <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
-                  <span class="feature-box__name">{item.data.title}</span>
-                </a>
-              </li>
-            ))}
-          </ol>
-        </div>
+        <details class="feature-box reveal" id="haiyu">
+          <summary class="feature-box__summary">
+            <span class="feature-box__eyebrow">🎭 特集コーナー</span>
+            <h3 class="feature-box__title">AIは俳優 ― どんな役もこなします（全{haiyuItems.length}回）</h3>
+            <span class="feature-box__toggle" aria-hidden="true">＋</span>
+          </summary>
+          <div class="feature-box__body">
+            <p class="feature-box__lead">
+              電話の相手役、なれ合わない賛成役と反対役、7人のケース会議——ぜんぶ、同じAIです。役を振ると、AIは「答える人」から「一緒に考える人」に変わります。<strong>AIは何人にでもなれる。ただし、座れない席がひとつある。</strong>——その話まで、全4回で。第1回はどのAIでも無料で試せます。
+            </p>
+            <img class="feature-box__img" src="/images/ai-tips/haiyu-stairs.svg" alt="役の数がふえていく階段の図。第1回は相手役1人、第2回は賛成役と反対役、第3回は7人の会議、第4回は空いた1席（ご本人の席）" width="640" height="200" loading="lazy" decoding="async" />
+            <ol class="feature-box__list">
+              {haiyuItems.map((item) => (
+                <li class="feature-box__item">
+                  <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
+                    <span class="feature-box__name">{item.data.title}</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </details>
       )}
 
       <a href="/ai-tips/pocket/" class="pocket-door reveal">
@@ -333,22 +385,67 @@ const fmtDate = (d: Date) =>
   </section>
 </BaseLayout>
 
+<script>
+  // 閉じた <details> の中へ #dougu 等のアンカーで飛んできたとき、開いてから移動させる
+  const openFeatureFromHash = () => {
+    const id = decodeURIComponent(location.hash.slice(1));
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (el instanceof HTMLDetailsElement && !el.open) {
+      el.open = true;
+      el.scrollIntoView();
+    }
+  };
+  openFeatureFromHash();
+  window.addEventListener('hashchange', openFeatureFromHash);
+</script>
+
 <style>
   /* === 3つの棚ナビ === */
-  #anshin, #waza, #aibou, #dougu, #haiyu, #google, #asobi {
+  #anshin, #waza, #aibou, #dougu, #haiyu, #google, #asobi, #genko {
     scroll-margin-top: 96px;
   }
 
-  /* === 特集コーナー：道具の入手 === */
+  /* === 特集コーナー（開閉式） === */
+  .feature-intro {
+    margin-top: var(--space-6);
+    font-size: 13px;
+    color: var(--color-ink-mute);
+  }
+
+  .feature-intro strong {
+    color: var(--color-terra-500);
+    letter-spacing: 0.06em;
+  }
+
   .feature-box {
-    margin-top: var(--space-5);
-    padding: var(--space-5);
+    margin-top: var(--space-3);
+    padding: 0;
     border: 2px solid var(--color-terra-500);
     border-radius: 16px;
     background: rgba(217, 119, 87, 0.05);
+    overflow: hidden;
+  }
+
+  .feature-box__summary {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    column-gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    cursor: pointer;
+    list-style: none;
+    transition: background-color var(--dur-fast) var(--ease-out);
+  }
+
+  .feature-box__summary::-webkit-details-marker { display: none; }
+
+  .feature-box__summary:hover {
+    background-color: rgba(217, 119, 87, 0.08);
   }
 
   .feature-box__eyebrow {
+    grid-column: 1;
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.06em;
@@ -356,12 +453,38 @@ const fmtDate = (d: Date) =>
   }
 
   .feature-box__title {
+    grid-column: 1;
     font-family: var(--font-hand);
     font-size: 18px;
     font-weight: 700;
     color: var(--color-green-900);
-    margin-top: var(--space-2);
+    margin-top: 4px;
     line-height: 1.6;
+  }
+
+  .feature-box__toggle {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 1.5px solid var(--color-terra-500);
+    border-radius: 50%;
+    color: var(--color-terra-500);
+    font-size: 18px;
+    line-height: 1;
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+
+  .feature-box[open] .feature-box__toggle {
+    transform: rotate(45deg);
+  }
+
+  .feature-box__body {
+    padding: 0 var(--space-5) var(--space-5);
   }
 
   .feature-box__lead {

@@ -9,6 +9,7 @@ public/pdfs/
 ├── README.md               このファイル
 ├── forms/                  申込書類（入会・寄付・ボランティア等）
 ├── newsletter-archive/     機関誌「巣箱」公開バックナンバー
+├── notices/                期間限定のお知らせ・掲示物
 └── research/               研修会・シンポジウム資料、啓発資料
 ```
 
