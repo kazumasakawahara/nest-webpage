@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-label="GitHub Desktopの「Create a new repository」画面のイメージ。Name欄に kenkyu-2026-ishikettei、Local Pathに 書類/研究 が入力され、①箱の名前 ②箱を置く場所 ③Create repositoryボタンで箱ができる、という3つの注釈が付いている">
+  <defs>
+    <style>.lbl{font-family:system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;}</style>
+    <filter id="shr1" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#102211" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <!-- ウィンドウ -->
+  <rect x="10" y="10" width="620" height="356" rx="16" fill="#ffffff" stroke="#e3d8c4" stroke-width="1.5" filter="url(#shr1)"/>
+  <path d="M10 26 a16 16 0 0 1 16 -16 H614 a16 16 0 0 1 16 16 V44 H10 Z" fill="#f3ead9"/>
+  <circle cx="34" cy="27" r="6" fill="#e0685a"/>
+  <circle cx="54" cy="27" r="6" fill="#e8b64b"/>
+  <circle cx="74" cy="27" r="6" fill="#5aa85a"/>
+  <text x="320" y="32" text-anchor="middle" class="lbl" font-size="13" font-weight="700" fill="#8a8073">GitHub Desktop</text>
+
+  <!-- ダイアログ -->
+  <rect x="120" y="66" width="400" height="272" rx="12" fill="#ffffff" stroke="#d8cfbd" stroke-width="1.5"/>
+  <text x="140" y="96" class="lbl" font-size="15" font-weight="700" fill="#2a2620">Create a new repository</text>
+  <text x="140" y="114" class="lbl" font-size="11" fill="#8a8073">（新しいリポジトリ＝研究の箱を作る）</text>
+
+  <!-- Name -->
+  <text x="140" y="142" class="lbl" font-size="12" font-weight="700" fill="#55503f">Name</text>
+  <rect x="140" y="150" width="360" height="32" rx="6" fill="#fdfbf7" stroke="#4a8c3f" stroke-width="2"/>
+  <text x="152" y="171" class="lbl" font-size="13" fill="#2a2620">kenkyu-2026-ishikettei</text>
+
+  <!-- Description -->
+  <text x="140" y="204" class="lbl" font-size="12" font-weight="700" fill="#55503f">Description <tspan font-weight="400" fill="#a99f8c">(optional)</tspan></text>
+  <rect x="140" y="212" width="360" height="30" rx="6" fill="#fdfbf7" stroke="#e3d8c4" stroke-width="1.5"/>
+  <text x="152" y="232" class="lbl" font-size="12" fill="#a99f8c">意思決定支援の研究（2026）</text>
+
+  <!-- Local Path -->
+  <text x="140" y="264" class="lbl" font-size="12" font-weight="700" fill="#55503f">Local Path</text>
+  <rect x="140" y="272" width="286" height="32" rx="6" fill="#fdfbf7" stroke="#4a8c3f" stroke-width="2"/>
+  <text x="152" y="293" class="lbl" font-size="13" fill="#2a2620">/Users/あなた/書類/研究</text>
+  <rect x="434" y="272" width="66" height="32" rx="6" fill="#f3ead9" stroke="#d8cfbd"/>
+  <text x="467" y="293" text-anchor="middle" class="lbl" font-size="12" fill="#55503f">Choose…</text>
+
+  <!-- Create button -->
+  <g>
+    <rect x="352" y="306" width="148" height="26" rx="7" fill="#2f6fdb"/>
+    <text x="426" y="324" text-anchor="middle" class="lbl" font-size="13" font-weight="700" fill="#ffffff">Create repository</text>
+  </g>
+
+  <!-- 注釈① -->
+  <g>
+    <circle cx="70" cy="166" r="13" fill="#b85f3d"/>
+    <text x="70" y="171" text-anchor="middle" class="lbl" font-size="13" font-weight="700" fill="#fff">1</text>
+    <line x1="83" y1="166" x2="136" y2="166" stroke="#b85f3d" stroke-width="2"/>
+    <text x="70" y="196" text-anchor="middle" class="lbl" font-size="11" font-weight="700" fill="#b85f3d">箱の名前。</text>
+    <text x="70" y="211" text-anchor="middle" class="lbl" font-size="11" font-weight="700" fill="#b85f3d">半角英数字が</text>
+    <text x="70" y="226" text-anchor="middle" class="lbl" font-size="11" font-weight="700" fill="#b85f3d">無難です</text>
+  </g>
+  <!-- 注釈② -->
+  <g>
+    <circle cx="70" cy="288" r="13" fill="#b85f3d"/>
+    <text x="70" y="293" text-anchor="middle" class="lbl" font-size="13" font-weight="700" fill="#fff">2</text>
+    <line x1="83" y1="288" x2="136" y2="288" stroke="#b85f3d" stroke-width="2"/>
+    <text x="70" y="318" text-anchor="middle" class="lbl" font-size="11" font-weight="700" fill="#b85f3d">箱を置く場所</text>
+  </g>
+  <!-- 注釈③ -->
+  <g>
+    <circle cx="560" cy="319" r="13" fill="#b85f3d"/>
+    <text x="560" y="324" text-anchor="middle" class="lbl" font-size="13" font-weight="700" fill="#fff">3</text>
+    <line x1="547" y1="319" x2="504" y2="319" stroke="#b85f3d" stroke-width="2"/>
+    <text x="560" y="349" text-anchor="middle" class="lbl" font-size="11" font-weight="700" fill="#b85f3d">これで箱が</text>
+    <text x="560" y="364" text-anchor="middle" class="lbl" font-size="11" font-weight="700" fill="#b85f3d">できます</text>
+  </g>
+</svg>

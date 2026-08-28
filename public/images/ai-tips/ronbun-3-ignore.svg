@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 380" width="640" height="380" role="img" aria-label="GitHub Desktopの画面イメージ。変更一覧に「データ置き場/インタビュー01.txt」が現れ、右クリックメニューの「Ignore folder (add to .gitignore)」が強調されている。右側に、実行後はそのフォルダが一覧から消え「以後このフォルダはセーブに写り込まない」という注釈が付いている">
+  <defs>
+    <style>.lbl{font-family:system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;}</style>
+    <filter id="shi3" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#102211" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <rect x="10" y="10" width="620" height="340" rx="16" fill="#ffffff" stroke="#e3d8c4" stroke-width="1.5" filter="url(#shi3)"/>
+  <path d="M10 26 a16 16 0 0 1 16 -16 H614 a16 16 0 0 1 16 16 V44 H10 Z" fill="#f3ead9"/>
+  <circle cx="34" cy="27" r="6" fill="#e0685a"/>
+  <circle cx="54" cy="27" r="6" fill="#e8b64b"/>
+  <circle cx="74" cy="27" r="6" fill="#5aa85a"/>
+  <text x="320" y="32" text-anchor="middle" class="lbl" font-size="13" font-weight="700" fill="#8a8073">GitHub Desktop — kenkyu-2026-ishikettei</text>
+
+  <!-- 左パネル -->
+  <rect x="10" y="44" width="250" height="306" fill="#faf6ef"/>
+  <line x1="260" y1="44" x2="260" y2="350" stroke="#eee6d6" stroke-width="1.5"/>
+  <text x="34" y="70" class="lbl" font-size="12" font-weight="700" fill="#2a2620">Changes <tspan fill="#8a8073">(2)</tspan></text>
+  <line x1="24" y1="78" x2="108" y2="78" stroke="#4a8c3f" stroke-width="3"/>
+
+  <g class="lbl" font-size="11.5" fill="#2a2620">
+    <rect x="22" y="90" width="12" height="12" rx="3" fill="#4a8c3f"/>
+    <text x="42" y="100">分析メモ/コーディング.md</text>
+  </g>
+  <!-- 選択中の行 -->
+  <rect x="16" y="112" width="238" height="24" rx="5" fill="#fbe9df"/>
+  <g class="lbl" font-size="11.5" fill="#2a2620">
+    <rect x="22" y="118" width="12" height="12" rx="3" fill="#e8b64b"/>
+    <text x="42" y="128">データ置き場/インタビュー01.txt</text>
+  </g>
+  <text x="42" y="156" class="lbl" font-size="10.5" fill="#c0392b">⚠ うっかり箱の中に保存してしまった生データ</text>
+
+  <!-- 右クリックメニュー -->
+  <g>
+    <rect x="120" y="168" width="230" height="132" rx="8" fill="#ffffff" stroke="#d8cfbd" stroke-width="1.5" filter="url(#shi3)"/>
+    <g class="lbl" font-size="12" fill="#55503f">
+      <text x="136" y="192">Discard changes…</text>
+      <line x1="128" y1="202" x2="342" y2="202" stroke="#eee6d6" stroke-width="1"/>
+      <text x="136" y="222">Ignore file (add to .gitignore)</text>
+      <rect x="126" y="232" width="218" height="26" rx="5" fill="#f0f5ec" stroke="#4a8c3f" stroke-width="2"/>
+      <text x="136" y="250" font-weight="700" fill="#2d5a27">Ignore folder (add to .gitignore)</text>
+      <line x1="128" y1="266" x2="342" y2="266" stroke="#eee6d6" stroke-width="1"/>
+      <text x="136" y="288">Reveal in Finder</text>
+    </g>
+  </g>
+  <text x="130" y="322" class="lbl" font-size="11" font-weight="700" fill="#b85f3d">右クリック →「フォルダを無視」を選ぶ</text>
+
+  <!-- 実行後 -->
+  <g>
+    <text x="380" y="76" class="lbl" font-size="12" font-weight="700" fill="#55503f">実行後の変更一覧</text>
+    <rect x="376" y="88" width="230" height="84" rx="8" fill="#fdfbf7" stroke="#e3d8c4" stroke-width="1.5"/>
+    <g class="lbl" font-size="11.5" fill="#2a2620">
+      <rect x="388" y="102" width="12" height="12" rx="3" fill="#4a8c3f"/>
+      <text x="408" y="112">分析メモ/コーディング.md</text>
+      <rect x="388" y="128" width="12" height="12" rx="3" fill="#4a8c3f"/>
+      <text x="408" y="138">.gitignore</text>
+    </g>
+    <text x="388" y="162" class="lbl" font-size="10.5" fill="#8a8073">「データ置き場」は一覧から消えた</text>
+
+    <rect x="376" y="196" width="230" height="104" rx="10" fill="#fff" stroke="#b85f3d" stroke-width="2"/>
+    <text x="491" y="224" text-anchor="middle" class="lbl" font-size="12" font-weight="700" fill="#b85f3d">以後、このフォルダは</text>
+    <text x="491" y="243" text-anchor="middle" class="lbl" font-size="12" font-weight="700" fill="#b85f3d">セーブに写り込みません。</text>
+    <text x="491" y="268" text-anchor="middle" class="lbl" font-size="11" fill="#55503f">書庫（GitHub）に預ける日が来ても</text>
+    <text x="491" y="286" text-anchor="middle" class="lbl" font-size="11" fill="#55503f">このフォルダは一緒に上がりません</text>
+  </g>
+</svg>

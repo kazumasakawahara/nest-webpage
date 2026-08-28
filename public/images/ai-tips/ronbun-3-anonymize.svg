@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 380" width="640" height="380" role="img" aria-label="匿名化のビフォーアフター。上の紙には「田中花子さん（47歳）は4月3日、○○園の帰りに」とあり氏名・年齢・日付・施設名に印が付く。下の紙では「Aさん（40代）は春のある日、通所先の事業所の帰りに」と置き換えられている。横の小さな対応表（田中花子→Aさん）から鍵付き戸棚へ矢印が伸び「対応表は戸棚へ。箱には入れない」とある">
+  <defs>
+    <style>.lbl{font-family:system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;}</style>
+    <filter id="sha3" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="7" flood-color="#102211" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+
+  <rect width="640" height="380" rx="16" fill="#faf6ef"/>
+
+  <!-- 上：ビフォー -->
+  <g>
+    <rect x="40" y="30" width="400" height="110" rx="10" fill="#ffffff" stroke="#e3d8c4" stroke-width="1.5" filter="url(#sha3)"/>
+    <text x="60" y="58" class="lbl" font-size="12" font-weight="700" fill="#b85f3d">加工前（このままでは箱にもAIにも出せない）</text>
+    <text x="60" y="92" class="lbl" font-size="15" fill="#2a2620"><tspan fill="#c0392b" text-decoration="underline">田中花子さん</tspan>（<tspan fill="#c0392b" text-decoration="underline">47歳</tspan>）は<tspan fill="#c0392b" text-decoration="underline">4月3日</tspan>、</text>
+    <text x="60" y="118" class="lbl" font-size="15" fill="#2a2620"><tspan fill="#c0392b" text-decoration="underline">○○園</tspan>の帰りに、こう話した。</text>
+  </g>
+
+  <!-- 矢印 -->
+  <g>
+    <line x1="240" y1="150" x2="240" y2="184" stroke="#4a8c3f" stroke-width="5" stroke-linecap="round"/>
+    <path d="M240 190 l-8 -12 h16 z" fill="#4a8c3f"/>
+    <text x="258" y="174" class="lbl" font-size="12" font-weight="700" fill="#4a8c3f">匿名化（人間の仕事。AIにやらせない）</text>
+  </g>
+
+  <!-- 下：アフター -->
+  <g>
+    <rect x="40" y="198" width="400" height="110" rx="10" fill="#ffffff" stroke="#4a8c3f" stroke-width="2" filter="url(#sha3)"/>
+    <text x="60" y="226" class="lbl" font-size="12" font-weight="700" fill="#2d5a27">加工後（箱に入れられる）</text>
+    <text x="60" y="260" class="lbl" font-size="15" fill="#2a2620"><tspan fill="#2d5a27" font-weight="700">Aさん</tspan>（<tspan fill="#2d5a27" font-weight="700">40代</tspan>）は<tspan fill="#2d5a27" font-weight="700">春のある日</tspan>、</text>
+    <text x="60" y="286" class="lbl" font-size="15" fill="#2a2620"><tspan fill="#2d5a27" font-weight="700">通所先の事業所</tspan>の帰りに、こう話した。</text>
+  </g>
+
+  <!-- 対応表 -->
+  <g>
+    <rect x="472" y="96" width="128" height="96" rx="8" fill="#fdf4e3" stroke="#b85f3d" stroke-width="2" filter="url(#sha3)"/>
+    <text x="536" y="120" text-anchor="middle" class="lbl" font-size="12" font-weight="700" fill="#b85f3d">対応表</text>
+    <line x1="484" y1="130" x2="588" y2="130" stroke="#e3c9a8" stroke-width="1.5"/>
+    <text x="536" y="150" text-anchor="middle" class="lbl" font-size="12" fill="#2a2620">田中花子 → Aさん</text>
+    <text x="536" y="172" text-anchor="middle" class="lbl" font-size="12" fill="#2a2620">山本次郎 → Bさん</text>
+  </g>
+
+  <!-- 戸棚へ -->
+  <g>
+    <line x1="536" y1="196" x2="536" y2="232" stroke="#b85f3d" stroke-width="4" stroke-linecap="round"/>
+    <path d="M536 238 l-8 -12 h16 z" fill="#b85f3d"/>
+    <rect x="490" y="244" width="92" height="76" rx="7" fill="#8a6a4f" stroke="#6b4a2f" stroke-width="3"/>
+    <line x1="536" y1="246" x2="536" y2="318" stroke="#6b4a2f" stroke-width="2"/>
+    <rect x="524" y="266" width="24" height="20" rx="4" fill="#e8b64b" stroke="#6b4a2f" stroke-width="2"/>
+    <path d="M529 266 v-7 a7 7 0 0 1 14 0 v7" fill="none" stroke="#6b4a2f" stroke-width="2.5"/>
+    <text x="536" y="344" text-anchor="middle" class="lbl" font-size="11.5" font-weight="700" fill="#b85f3d">対応表は戸棚へ。</text>
+    <text x="536" y="360" text-anchor="middle" class="lbl" font-size="11.5" font-weight="700" fill="#b85f3d">箱には入れない</text>
+  </g>
+
+  <!-- 下部メモ -->
+  <text x="60" y="342" class="lbl" font-size="12" fill="#55503f">氏名は仮名に／年齢は年代に／日付は時期に／施設名は一般名に。</text>
+  <text x="60" y="360" class="lbl" font-size="12" fill="#55503f">最後に「組み合わせると特定できないか」をもう一度点検。</text>
+</svg>

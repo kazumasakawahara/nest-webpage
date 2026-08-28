@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-label="人形劇の舞台に並んだ3つの置き場所の図。左は鍵のかかった戸棚（生データ：逐語録・録音・同意書・対応表）、中央は研究の箱（匿名化済みの分析メモ・コーディングメモ・原稿）、右はAIさん人形の手もと（箱の中のもののうち、いま必要な断片だけ）。「匿名化してから」「断片だけ」の矢印でつながり、右へ行くほど渡すものが絞られる">
+  <defs>
+    <style>
+      .cap { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; }
+    </style>
+  </defs>
+
+  <rect width="640" height="400" rx="16" fill="#faf6ef"/>
+  <rect x="12" y="56" width="616" height="330" fill="#eef3e6"/>
+  <rect x="0" y="0" width="640" height="42" fill="#b85f3d"/>
+  <path d="M0 42 q40 24 80 0 q40 24 80 0 q40 24 80 0 q40 24 80 0 q40 24 80 0 q40 24 80 0 q40 24 80 0 q40 24 80 0 v-8 h-640 Z" fill="#b85f3d"/>
+  <g fill="#a04e2f" opacity="0.5">
+    <rect x="70" y="0" width="7" height="40"/>
+    <rect x="230" y="0" width="7" height="40"/>
+    <rect x="390" y="0" width="7" height="40"/>
+    <rect x="550" y="0" width="7" height="40"/>
+  </g>
+  <path d="M0 0 h34 q8 84 -4 164 q-8 54 -30 72 Z" fill="#a04e2f"/>
+  <path d="M640 0 h-34 q-8 84 4 164 q8 54 30 72 Z" fill="#a04e2f"/>
+
+  <!-- 看板 -->
+  <line x1="320" y1="42" x2="320" y2="60" stroke="#6b4a2f" stroke-width="3"/>
+  <line x1="238" y1="42" x2="246" y2="60" stroke="#6b4a2f" stroke-width="3"/>
+  <line x1="402" y1="42" x2="394" y2="60" stroke="#6b4a2f" stroke-width="3"/>
+  <g transform="translate(210 58)">
+    <rect width="220" height="38" rx="6" fill="#e8d9b8" stroke="#6b4a2f" stroke-width="3"/>
+    <text x="110" y="25" text-anchor="middle" class="cap" font-size="14" fill="#4a3b2f">第三幕「3つの置き場所」</text>
+  </g>
+
+  <!-- 左：鍵付き戸棚 -->
+  <g>
+    <rect x="44" y="150" width="120" height="150" rx="8" fill="#8a6a4f" stroke="#6b4a2f" stroke-width="3"/>
+    <line x1="104" y1="152" x2="104" y2="298" stroke="#6b4a2f" stroke-width="2"/>
+    <rect x="86" y="188" width="30" height="26" rx="5" fill="#e8b64b" stroke="#6b4a2f" stroke-width="2.5"/>
+    <path d="M92 188 v-9 a9 9 0 0 1 18 0 v9" fill="none" stroke="#6b4a2f" stroke-width="3"/>
+    <text x="104" y="140" text-anchor="middle" class="cap" font-size="13" font-weight="700" fill="#4a3b2f">🔐 鍵付きの戸棚</text>
+    <text x="104" y="322" text-anchor="middle" class="cap" font-size="10.5" fill="#4a3b2f">逐語録・録音・同意書</text>
+    <text x="104" y="337" text-anchor="middle" class="cap" font-size="10.5" fill="#4a3b2f">氏名の対応表</text>
+  </g>
+
+  <!-- 中央：研究の箱 -->
+  <g>
+    <path d="M256 172 l18 -16 h110 l18 16 Z" fill="#d9c49a" stroke="#6b4a2f" stroke-width="3"/>
+    <rect x="256" y="172" width="146" height="128" rx="8" fill="#e8d9b8" stroke="#6b4a2f" stroke-width="3"/>
+    <text x="329" y="150" text-anchor="middle" class="cap" font-size="13" font-weight="700" fill="#4a3b2f">📦 研究の箱</text>
+    <g class="cap" font-size="10.5" fill="#4a3b2f">
+      <rect x="270" y="190" width="118" height="24" rx="4" fill="#fff" stroke="#4a8c3f" stroke-width="1.5"/>
+      <text x="329" y="206" text-anchor="middle">匿名化済みの分析メモ</text>
+      <rect x="270" y="222" width="118" height="24" rx="4" fill="#fff" stroke="#4a8c3f" stroke-width="1.5"/>
+      <text x="329" y="238" text-anchor="middle">コーディングメモ</text>
+      <rect x="270" y="254" width="118" height="24" rx="4" fill="#fff" stroke="#4a8c3f" stroke-width="1.5"/>
+      <text x="329" y="270" text-anchor="middle">原稿</text>
+    </g>
+    <text x="329" y="322" text-anchor="middle" class="cap" font-size="10.5" fill="#4a3b2f">個人が特定できない形に</text>
+    <text x="329" y="337" text-anchor="middle" class="cap" font-size="10.5" fill="#4a3b2f">加工したものだけ</text>
+  </g>
+
+  <!-- 右：AIさんの手もと -->
+  <g>
+    <circle cx="530" cy="188" r="24" fill="#ffffff" stroke="#4a3b2f" stroke-width="3"/>
+    <circle cx="522" cy="183" r="3.2" fill="#4a3b2f"/>
+    <circle cx="538" cy="183" r="3.2" fill="#4a3b2f"/>
+    <path d="M522 196 q8 6 16 0" fill="none" stroke="#4a3b2f" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M522 210 l8 5 l8 -5 l-4 7 l4 7 h-16 l4 -7 Z" fill="#b85f3d"/>
+    <rect x="508" y="216" width="44" height="50" rx="12" fill="#7ea877" stroke="#4a3b2f" stroke-width="3"/>
+    <!-- 手のひらの上の断片 -->
+    <rect x="474" y="252" width="30" height="20" rx="3" fill="#fff" stroke="#4a8c3f" stroke-width="1.5" transform="rotate(-8 489 262)"/>
+    <line x1="508" y1="240" x2="490" y2="254" stroke="#4a3b2f" stroke-width="3" stroke-linecap="round"/>
+    <text x="530" y="152" text-anchor="middle" class="cap" font-size="13" font-weight="700" fill="#4a3b2f">🤖 AIの手もと</text>
+    <text x="530" y="306" text-anchor="middle" class="cap" font-size="10.5" fill="#4a3b2f">箱の中のもののうち</text>
+    <text x="530" y="321" text-anchor="middle" class="cap" font-size="10.5" fill="#4a3b2f">いま必要な断片だけ</text>
+  </g>
+
+  <!-- 絞り込み矢印 -->
+  <g>
+    <line x1="170" y1="238" x2="248" y2="238" stroke="#b85f3d" stroke-width="4" stroke-linecap="round"/>
+    <path d="M248 238 l-11 -7 v14 z" fill="#b85f3d"/>
+    <text x="209" y="226" text-anchor="middle" class="cap" font-size="10.5" fill="#b85f3d">匿名化してから</text>
+    <line x1="408" y1="238" x2="464" y2="238" stroke="#b85f3d" stroke-width="4" stroke-linecap="round"/>
+    <path d="M464 238 l-11 -7 v14 z" fill="#b85f3d"/>
+    <text x="436" y="226" text-anchor="middle" class="cap" font-size="10.5" fill="#b85f3d">断片だけ</text>
+  </g>
+  <text x="320" y="374" text-anchor="middle" class="cap" font-size="12" font-weight="700" fill="#b85f3d">→ 右へ行くほど、渡すものは絞られる →</text>
+</svg>

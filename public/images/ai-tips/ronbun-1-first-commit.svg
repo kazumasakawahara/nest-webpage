@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-label="GitHub Desktopの画面イメージ。左のChanges欄に変更されたファイルが並び、右に追加行が緑色で表示されている。左下のSummary欄に「箱を作った。部屋は4つ」と入力され、Commit to mainボタンに「一言メモを書いて、ここを押すのがセーブ」という注釈が付いている">
+  <defs>
+    <style>.lbl{font-family:system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;}</style>
+    <filter id="shc1" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#102211" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <rect x="10" y="10" width="620" height="360" rx="16" fill="#ffffff" stroke="#e3d8c4" stroke-width="1.5" filter="url(#shc1)"/>
+  <path d="M10 26 a16 16 0 0 1 16 -16 H614 a16 16 0 0 1 16 16 V44 H10 Z" fill="#f3ead9"/>
+  <circle cx="34" cy="27" r="6" fill="#e0685a"/>
+  <circle cx="54" cy="27" r="6" fill="#e8b64b"/>
+  <circle cx="74" cy="27" r="6" fill="#5aa85a"/>
+  <text x="320" y="32" text-anchor="middle" class="lbl" font-size="13" font-weight="700" fill="#8a8073">GitHub Desktop — kenkyu-2026-ishikettei</text>
+
+  <!-- 左パネル -->
+  <rect x="10" y="44" width="230" height="326" fill="#faf6ef"/>
+  <line x1="240" y1="44" x2="240" y2="370" stroke="#eee6d6" stroke-width="1.5"/>
+
+  <!-- タブ -->
+  <text x="34" y="68" class="lbl" font-size="12" font-weight="700" fill="#2a2620">Changes <tspan fill="#8a8073">(4)</tspan></text>
+  <text x="130" y="68" class="lbl" font-size="12" fill="#a99f8c">History</text>
+  <line x1="24" y1="76" x2="106" y2="76" stroke="#4a8c3f" stroke-width="3"/>
+
+  <!-- ファイル一覧 -->
+  <g class="lbl" font-size="11.5" fill="#2a2620">
+    <rect x="22" y="88" width="12" height="12" rx="3" fill="#4a8c3f"/>
+    <text x="42" y="98">文献ノート/はじめのメモ.md</text>
+    <rect x="22" y="114" width="12" height="12" rx="3" fill="#4a8c3f"/>
+    <text x="42" y="124">分析メモ/研究日誌.md</text>
+    <rect x="22" y="140" width="12" height="12" rx="3" fill="#4a8c3f"/>
+    <text x="42" y="150">原稿/構想メモ.md</text>
+    <rect x="22" y="166" width="12" height="12" rx="3" fill="#4a8c3f"/>
+    <text x="42" y="176">調査の道具/調査票案.md</text>
+  </g>
+
+  <!-- Summary / Commit -->
+  <line x1="10" y1="252" x2="240" y2="252" stroke="#eee6d6" stroke-width="1.5"/>
+  <rect x="22" y="264" width="206" height="30" rx="6" fill="#ffffff" stroke="#4a8c3f" stroke-width="2"/>
+  <text x="32" y="284" class="lbl" font-size="12" fill="#2a2620">箱を作った。部屋は4つ</text>
+  <rect x="22" y="302" width="206" height="24" rx="6" fill="#ffffff" stroke="#e3d8c4" stroke-width="1.5"/>
+  <text x="32" y="318" class="lbl" font-size="11" fill="#a99f8c">Description（省略可）</text>
+  <rect x="22" y="334" width="206" height="28" rx="7" fill="#2f6fdb"/>
+  <text x="125" y="353" text-anchor="middle" class="lbl" font-size="13" font-weight="700" fill="#ffffff">Commit to main</text>
+
+  <!-- 右：差分表示 -->
+  <text x="260" y="68" class="lbl" font-size="12" font-weight="700" fill="#55503f">文献ノート/はじめのメモ.md</text>
+  <rect x="256" y="80" width="356" height="180" rx="8" fill="#fdfbf7" stroke="#e3d8c4" stroke-width="1.5"/>
+  <g class="lbl" font-size="12">
+    <rect x="264" y="92" width="340" height="20" rx="4" fill="#e6f4e2"/>
+    <text x="274" y="106" fill="#1e7e34">＋ ## 研究の問い（仮）</text>
+    <rect x="264" y="116" width="340" height="20" rx="4" fill="#e6f4e2"/>
+    <text x="274" y="130" fill="#1e7e34">＋ 意思決定支援の場面で、支援者は…</text>
+    <rect x="264" y="140" width="340" height="20" rx="4" fill="#e6f4e2"/>
+    <text x="274" y="154" fill="#1e7e34">＋ </text>
+    <rect x="264" y="164" width="340" height="20" rx="4" fill="#e6f4e2"/>
+    <text x="274" y="178" fill="#1e7e34">＋ ## 気になっている先行研究</text>
+    <rect x="264" y="188" width="340" height="20" rx="4" fill="#e6f4e2"/>
+    <text x="274" y="202" fill="#1e7e34">＋ [[意思決定支援]] [[本人の意向]]</text>
+  </g>
+  <text x="264" y="248" class="lbl" font-size="11" fill="#8a8073">増えた行は緑で表示されます（減った行は赤）</text>
+
+  <!-- 注釈 -->
+  <g>
+    <rect x="300" y="292" width="238" height="56" rx="10" fill="#fff" stroke="#b85f3d" stroke-width="2"/>
+    <text x="419" y="315" text-anchor="middle" class="lbl" font-size="12" font-weight="700" fill="#b85f3d">一言メモを書いて、ここを押すのが</text>
+    <text x="419" y="334" text-anchor="middle" class="lbl" font-size="12" font-weight="700" fill="#b85f3d">セーブ。呪文はありません</text>
+    <line x1="300" y1="330" x2="234" y2="344" stroke="#b85f3d" stroke-width="2"/>
+    <path d="M234 344 l14 -3 l-8 10 z" fill="#b85f3d"/>
+  </g>
+</svg>

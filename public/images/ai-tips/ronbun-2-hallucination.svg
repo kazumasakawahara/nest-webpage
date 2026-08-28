@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 380" width="640" height="380" role="img" aria-label="人形劇の舞台。AIさん人形が「良い文献がありますよ」と本を差し出しているが、その本は半分霧のように透けている。研究者人形は受け取る前に、CiNiiと書かれた検索台で題名を確かめている。立て札に、①データベースで題名・著者を検索 ②見つかったら原典を読む ③見つからなければ使わない、とある">
+  <defs>
+    <style>
+      .cap { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; }
+    </style>
+    <linearGradient id="fog" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8a6a4f" stop-opacity="0.9"/>
+      <stop offset="0.55" stop-color="#8a6a4f" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#8a6a4f" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="640" height="380" rx="16" fill="#faf6ef"/>
+  <rect x="12" y="56" width="616" height="310" fill="#eef3e6"/>
+  <rect x="0" y="0" width="640" height="42" fill="#b85f3d"/>
+  <path d="M0 42 q40 24 80 0 q40 24 80 0 q40 24 80 0 q40 24 80 0 q40 24 80 0 q40 24 80 0 q40 24 80 0 q40 24 80 0 v-8 h-640 Z" fill="#b85f3d"/>
+  <g fill="#a04e2f" opacity="0.5">
+    <rect x="70" y="0" width="7" height="40"/>
+    <rect x="230" y="0" width="7" height="40"/>
+    <rect x="390" y="0" width="7" height="40"/>
+    <rect x="550" y="0" width="7" height="40"/>
+  </g>
+  <path d="M0 0 h34 q8 84 -4 164 q-8 54 -30 72 Z" fill="#a04e2f"/>
+  <path d="M640 0 h-34 q-8 84 4 164 q8 54 30 72 Z" fill="#a04e2f"/>
+
+  <!-- 看板 -->
+  <line x1="320" y1="42" x2="320" y2="60" stroke="#6b4a2f" stroke-width="3"/>
+  <line x1="230" y1="42" x2="238" y2="60" stroke="#6b4a2f" stroke-width="3"/>
+  <line x1="410" y1="42" x2="402" y2="60" stroke="#6b4a2f" stroke-width="3"/>
+  <g transform="translate(196 58)">
+    <rect width="248" height="38" rx="6" fill="#e8d9b8" stroke="#6b4a2f" stroke-width="3"/>
+    <text x="124" y="25" text-anchor="middle" class="cap" font-size="14" fill="#4a3b2f">第二幕「その文献、実在しますか」</text>
+  </g>
+
+  <!-- AIさん人形（左） -->
+  <g>
+    <circle cx="110" cy="180" r="26" fill="#ffffff" stroke="#4a3b2f" stroke-width="3"/>
+    <circle cx="101" cy="175" r="3.4" fill="#4a3b2f"/>
+    <circle cx="119" cy="175" r="3.4" fill="#4a3b2f"/>
+    <path d="M101 189 q9 7 18 0" fill="none" stroke="#4a3b2f" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M102 202 l8 6 l8 -6 l-4 8 l4 8 h-16 l4 -8 Z" fill="#b85f3d"/>
+    <rect x="88" y="210" width="44" height="56" rx="12" fill="#7ea877" stroke="#4a3b2f" stroke-width="3"/>
+    <line x1="132" y1="228" x2="168" y2="216" stroke="#4a3b2f" stroke-width="3" stroke-linecap="round"/>
+    <!-- 霧の本 -->
+    <g transform="translate(168 196)">
+      <rect width="64" height="42" rx="4" fill="url(#fog)" stroke="#6b4a2f" stroke-width="2" stroke-dasharray="5 5"/>
+      <text x="32" y="26" text-anchor="middle" class="cap" font-size="11" fill="#fff">文献？</text>
+    </g>
+    <!-- ふきだし -->
+    <path d="M120 132 l4 14 l13 -7 z" fill="#ffffff" stroke="#e6e0d4" stroke-width="2"/>
+    <rect x="44" y="106" width="152" height="30" rx="10" fill="#ffffff" stroke="#e6e0d4" stroke-width="2"/>
+    <text x="120" y="126" text-anchor="middle" class="cap" font-size="12" fill="#2a2620">良い文献がありますよ</text>
+  </g>
+
+  <!-- 検索台（中央） -->
+  <g>
+    <rect x="292" y="196" width="120" height="90" rx="8" fill="#8a6a4f" stroke="#6b4a2f" stroke-width="3"/>
+    <rect x="304" y="208" width="96" height="40" rx="6" fill="#fdfbf7" stroke="#6b4a2f" stroke-width="2"/>
+    <text x="352" y="228" text-anchor="middle" class="cap" font-size="12" font-weight="700" fill="#2d5a27">CiNii 🔍</text>
+    <text x="352" y="242" text-anchor="middle" class="cap" font-size="9.5" fill="#6b6152">題名・著者で検索</text>
+    <text x="352" y="304" text-anchor="middle" class="cap" font-size="12" fill="#4a3b2f">検索台</text>
+  </g>
+
+  <!-- 研究者人形（右） -->
+  <g>
+    <circle cx="480" cy="186" r="24" fill="#f6d7b8" stroke="#4a3b2f" stroke-width="3"/>
+    <path d="M458 176 q22 -20 44 0 q-4 -16 -22 -16 q-18 0 -22 16 Z" fill="#4a3b2f"/>
+    <circle cx="472" cy="184" r="3.2" fill="#4a3b2f"/>
+    <circle cx="489" cy="184" r="3.2" fill="#4a3b2f"/>
+    <path d="M472 197 q8 5 16 0" fill="none" stroke="#4a3b2f" stroke-width="2.5" stroke-linecap="round"/>
+    <rect x="458" y="210" width="44" height="58" rx="12" fill="#5b7ea8" stroke="#4a3b2f" stroke-width="3"/>
+    <line x1="458" y1="230" x2="416" y2="222" stroke="#4a3b2f" stroke-width="3" stroke-linecap="round"/>
+    <!-- ふきだし -->
+    <path d="M488 142 l4 14 l13 -7 z" fill="#ffffff" stroke="#e6e0d4" stroke-width="2"/>
+    <rect x="418" y="112" width="176" height="34" rx="10" fill="#ffffff" stroke="#e6e0d4" stroke-width="2"/>
+    <text x="506" y="134" text-anchor="middle" class="cap" font-size="12" fill="#2a2620">まず、実在するか確かめます</text>
+  </g>
+
+  <!-- 立て札 -->
+  <line x1="536" y1="302" x2="536" y2="340" stroke="#6b4a2f" stroke-width="4"/>
+  <g transform="translate(446 236)">
+    <rect width="180" height="66" rx="6" fill="#e8d9b8" stroke="#6b4a2f" stroke-width="2.5"/>
+    <text x="12" y="20" class="cap" font-size="11" fill="#4a3b2f">① 題名・著者を検索する</text>
+    <text x="12" y="38" class="cap" font-size="11" fill="#4a3b2f">② 見つかったら原典を読む</text>
+    <text x="12" y="56" class="cap" font-size="11" fill="#4a3b2f">③ 見つからなければ使わない</text>
+  </g>
+</svg>

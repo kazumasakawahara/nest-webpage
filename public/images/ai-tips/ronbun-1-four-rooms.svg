@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-label="人形劇の舞台に描かれた「研究の箱」の間取り図。大きな箱の中に「文献ノート」「分析メモ」「原稿」「調査の道具」の4部屋が並び、箱の外の左側に鍵のかかった戸棚が置かれ「生データはこちら。箱には入れない」と札が下がっている。AIさん人形が「箱の中は、ぜんぶ履歴が残ります」と言っている">
+  <defs>
+    <style>
+      .cap { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; }
+    </style>
+  </defs>
+
+  <!-- 舞台背景（クリーム） -->
+  <rect width="640" height="400" rx="16" fill="#faf6ef"/>
+  <!-- 書き割り -->
+  <rect x="12" y="56" width="616" height="330" fill="#eef3e6"/>
+  <!-- 緞帳 -->
+  <rect x="0" y="0" width="640" height="42" fill="#b85f3d"/>
+  <path d="M0 42 q40 24 80 0 q40 24 80 0 q40 24 80 0 q40 24 80 0 q40 24 80 0 q40 24 80 0 q40 24 80 0 q40 24 80 0 v-8 h-640 Z" fill="#b85f3d"/>
+  <g fill="#a04e2f" opacity="0.5">
+    <rect x="70" y="0" width="7" height="40"/>
+    <rect x="230" y="0" width="7" height="40"/>
+    <rect x="390" y="0" width="7" height="40"/>
+    <rect x="550" y="0" width="7" height="40"/>
+  </g>
+  <path d="M0 0 h34 q8 84 -4 164 q-8 54 -30 72 Z" fill="#a04e2f"/>
+  <path d="M640 0 h-34 q-8 84 4 164 q8 54 30 72 Z" fill="#a04e2f"/>
+
+  <!-- 看板 -->
+  <line x1="320" y1="42" x2="320" y2="60" stroke="#6b4a2f" stroke-width="3"/>
+  <line x1="238" y1="42" x2="246" y2="60" stroke="#6b4a2f" stroke-width="3"/>
+  <line x1="402" y1="42" x2="394" y2="60" stroke="#6b4a2f" stroke-width="3"/>
+  <g transform="translate(204 58)">
+    <rect width="232" height="38" rx="6" fill="#e8d9b8" stroke="#6b4a2f" stroke-width="3"/>
+    <text x="116" y="25" text-anchor="middle" class="cap" font-size="14" fill="#4a3b2f">第一幕「研究の箱の間取り」</text>
+  </g>
+
+  <!-- 鍵付き戸棚（箱の外・左） -->
+  <g>
+    <rect x="34" y="150" width="112" height="180" rx="8" fill="#8a6a4f" stroke="#6b4a2f" stroke-width="3"/>
+    <line x1="90" y1="152" x2="90" y2="328" stroke="#6b4a2f" stroke-width="2"/>
+    <rect x="76" y="228" width="10" height="18" rx="3" fill="#e8d9b8"/>
+    <rect x="94" y="228" width="10" height="18" rx="3" fill="#e8d9b8"/>
+    <!-- 錠前 -->
+    <rect x="76" y="182" width="28" height="24" rx="5" fill="#e8b64b" stroke="#6b4a2f" stroke-width="2.5"/>
+    <path d="M82 182 v-8 a8 8 0 0 1 16 0 v8" fill="none" stroke="#6b4a2f" stroke-width="3"/>
+    <text x="90" y="140" text-anchor="middle" class="cap" font-size="13" font-weight="700" fill="#4a3b2f">鍵付きの戸棚</text>
+    <!-- 札 -->
+    <line x1="90" y1="330" x2="90" y2="342" stroke="#6b4a2f" stroke-width="2"/>
+    <rect x="24" y="342" width="132" height="44" rx="6" fill="#fff" stroke="#b85f3d" stroke-width="2"/>
+    <text x="90" y="360" text-anchor="middle" class="cap" font-size="11" fill="#b85f3d">生データ（逐語録・録音</text>
+    <text x="90" y="376" text-anchor="middle" class="cap" font-size="11" fill="#b85f3d">・同意書）は箱に入れない</text>
+  </g>
+
+  <!-- 研究の箱 -->
+  <g>
+    <!-- 箱のふた -->
+    <path d="M186 128 l24 -22 h256 l24 22 Z" fill="#d9c49a" stroke="#6b4a2f" stroke-width="3"/>
+    <rect x="186" y="128" width="304" height="204" rx="8" fill="#e8d9b8" stroke="#6b4a2f" stroke-width="3"/>
+    <text x="338" y="121" text-anchor="middle" class="cap" font-size="14" font-weight="700" fill="#4a3b2f">研究の箱（リポジトリ）</text>
+
+    <!-- 4部屋 -->
+    <g>
+      <rect x="200" y="142" width="136" height="86" rx="6" fill="#ffffff" stroke="#4a8c3f" stroke-width="2.5"/>
+      <text x="268" y="176" text-anchor="middle" class="cap" font-size="15" fill="#2d5a27">📚 文献ノート</text>
+      <text x="268" y="200" text-anchor="middle" class="cap" font-size="10.5" fill="#6b6152">読んだ文献のメモ</text>
+
+      <rect x="340" y="142" width="136" height="86" rx="6" fill="#ffffff" stroke="#4a8c3f" stroke-width="2.5"/>
+      <text x="408" y="176" text-anchor="middle" class="cap" font-size="15" fill="#2d5a27">📝 分析メモ</text>
+      <text x="408" y="200" text-anchor="middle" class="cap" font-size="10.5" fill="#6b6152">考えの途中経過</text>
+
+      <rect x="200" y="232" width="136" height="86" rx="6" fill="#ffffff" stroke="#4a8c3f" stroke-width="2.5"/>
+      <text x="268" y="266" text-anchor="middle" class="cap" font-size="15" fill="#2d5a27">📄 原稿</text>
+      <text x="268" y="290" text-anchor="middle" class="cap" font-size="10.5" fill="#6b6152">論文・実践報告</text>
+
+      <rect x="340" y="232" width="136" height="86" rx="6" fill="#ffffff" stroke="#4a8c3f" stroke-width="2.5"/>
+      <text x="408" y="266" text-anchor="middle" class="cap" font-size="15" fill="#2d5a27">🧰 調査の道具</text>
+      <text x="408" y="290" text-anchor="middle" class="cap" font-size="10.5" fill="#6b6152">調査票・様式・申請控え</text>
+    </g>
+  </g>
+
+  <!-- ×印の矢印（戸棚→箱に入れない） -->
+  <g>
+    <line x1="150" y1="238" x2="182" y2="238" stroke="#b85f3d" stroke-width="3" stroke-dasharray="6 5"/>
+    <line x1="160" y1="228" x2="176" y2="248" stroke="#b85f3d" stroke-width="4"/>
+    <line x1="176" y1="228" x2="160" y2="248" stroke="#b85f3d" stroke-width="4"/>
+  </g>
+
+  <!-- AIさん人形（右） -->
+  <g>
+    <circle cx="556" cy="252" r="26" fill="#ffffff" stroke="#4a3b2f" stroke-width="3"/>
+    <circle cx="547" cy="247" r="3.4" fill="#4a3b2f"/>
+    <circle cx="565" cy="247" r="3.4" fill="#4a3b2f"/>
+    <path d="M547 261 q9 7 18 0" fill="none" stroke="#4a3b2f" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M548 274 l8 6 l8 -6 l-4 8 l4 8 h-16 l4 -8 Z" fill="#b85f3d"/>
+    <rect x="534" y="282" width="44" height="52" rx="12" fill="#7ea877" stroke="#4a3b2f" stroke-width="3"/>
+    <line x1="534" y1="304" x2="512" y2="290" stroke="#4a3b2f" stroke-width="3" stroke-linecap="round"/>
+    <!-- ふきだし -->
+    <path d="M540 210 l6 12 l12 -8 z" fill="#ffffff" stroke="#e6e0d4" stroke-width="2"/>
+    <rect x="452" y="164" width="168" height="50" rx="10" fill="#ffffff" stroke="#e6e0d4" stroke-width="2"/>
+    <text x="536" y="185" text-anchor="middle" class="cap" font-size="12" fill="#2a2620">箱の中は、ぜんぶ</text>
+    <text x="536" y="203" text-anchor="middle" class="cap" font-size="12" fill="#2a2620">履歴が残ります</text>
+  </g>
+</svg>

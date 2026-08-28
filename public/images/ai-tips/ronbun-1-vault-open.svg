@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-label="Obsidianの起動画面のイメージ。左に「保管庫としてフォルダを開く」の項目が強調され、矢印の先の開いたあとの画面では、ファイル一覧に「文献ノート」「分析メモ」「原稿」「調査の道具」の4フォルダが並んでいる">
+  <defs>
+    <style>.lbl{font-family:system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;}</style>
+    <filter id="shv1" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#102211" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <rect width="640" height="400" fill="none"/>
+
+  <!-- 左：起動画面 -->
+  <g>
+    <rect x="10" y="30" width="286" height="330" rx="14" fill="#ffffff" stroke="#e3d8c4" stroke-width="1.5" filter="url(#shv1)"/>
+    <path d="M10 44 a14 14 0 0 1 14 -14 H282 a14 14 0 0 1 14 14 V60 H10 Z" fill="#f3ead9"/>
+    <circle cx="32" cy="45" r="5.5" fill="#e0685a"/>
+    <circle cx="50" cy="45" r="5.5" fill="#e8b64b"/>
+    <circle cx="68" cy="45" r="5.5" fill="#5aa85a"/>
+    <text x="153" y="50" text-anchor="middle" class="lbl" font-size="12" font-weight="700" fill="#8a8073">Obsidian</text>
+
+    <text x="153" y="102" text-anchor="middle" class="lbl" font-size="15" font-weight="700" fill="#2a2620">保管庫を作成・開く</text>
+
+    <rect x="34" y="126" width="238" height="52" rx="8" fill="#fdfbf7" stroke="#e3d8c4" stroke-width="1.5"/>
+    <text x="48" y="148" class="lbl" font-size="12" font-weight="700" fill="#55503f">新しい保管庫を作成する</text>
+    <text x="48" y="166" class="lbl" font-size="10.5" fill="#a99f8c">空のフォルダから始める</text>
+
+    <rect x="34" y="190" width="238" height="52" rx="8" fill="#f0f5ec" stroke="#4a8c3f" stroke-width="2.5"/>
+    <text x="48" y="212" class="lbl" font-size="12" font-weight="700" fill="#2d5a27">保管庫としてフォルダを開く</text>
+    <text x="48" y="230" class="lbl" font-size="10.5" fill="#6d8a66">既存のフォルダを保管庫にする</text>
+
+    <!-- フォルダ選択 -->
+    <rect x="52" y="262" width="220" height="34" rx="7" fill="#ffffff" stroke="#d8cfbd" stroke-width="1.5"/>
+    <path d="M64 272 h9 l3 4 h12 v10 h-24 Z" fill="#e8b64b"/>
+    <text x="96" y="284" class="lbl" font-size="12" fill="#2a2620">kenkyu-2026-ishikettei</text>
+    <text x="62" y="322" class="lbl" font-size="11" font-weight="700" fill="#b85f3d">第1回で作った箱を、</text>
+    <text x="62" y="337" class="lbl" font-size="11" font-weight="700" fill="#b85f3d">そのまま選ぶだけ</text>
+  </g>
+
+  <!-- 矢印 -->
+  <g>
+    <line x1="304" y1="196" x2="336" y2="196" stroke="#b85f3d" stroke-width="5" stroke-linecap="round"/>
+    <path d="M336 196 l-11 -8 v16 z" fill="#b85f3d"/>
+  </g>
+
+  <!-- 右：開いたあと -->
+  <g>
+    <rect x="344" y="30" width="286" height="330" rx="14" fill="#ffffff" stroke="#e3d8c4" stroke-width="1.5" filter="url(#shv1)"/>
+    <path d="M344 44 a14 14 0 0 1 14 -14 H616 a14 14 0 0 1 14 14 V60 H344 Z" fill="#f3ead9"/>
+    <circle cx="366" cy="45" r="5.5" fill="#e0685a"/>
+    <circle cx="384" cy="45" r="5.5" fill="#e8b64b"/>
+    <circle cx="402" cy="45" r="5.5" fill="#5aa85a"/>
+    <text x="487" y="50" text-anchor="middle" class="lbl" font-size="12" font-weight="700" fill="#8a8073">kenkyu-2026-ishikettei</text>
+
+    <!-- サイドバー -->
+    <rect x="344" y="60" width="132" height="300" fill="#faf6ef"/>
+    <line x1="476" y1="60" x2="476" y2="360" stroke="#eee6d6" stroke-width="1.5"/>
+    <g class="lbl" font-size="12" fill="#2a2620">
+      <path d="M358 84 h9 l3 4 h12 v10 h-24 Z" fill="#e8b64b"/>
+      <text x="390" y="96">文献ノート</text>
+      <path d="M358 114 h9 l3 4 h12 v10 h-24 Z" fill="#e8b64b"/>
+      <text x="390" y="126">分析メモ</text>
+      <path d="M358 144 h9 l3 4 h12 v10 h-24 Z" fill="#e8b64b"/>
+      <text x="390" y="156">原稿</text>
+      <path d="M358 174 h9 l3 4 h12 v10 h-24 Z" fill="#e8b64b"/>
+      <text x="390" y="186">調査の道具</text>
+    </g>
+
+    <!-- 本文エリア -->
+    <text x="494" y="96" class="lbl" font-size="13" font-weight="700" fill="#2a2620">はじめのメモ</text>
+    <g fill="#cbc2b0">
+      <rect x="494" y="112" width="112" height="7" rx="3.5"/>
+      <rect x="494" y="128" width="118" height="7" rx="3.5"/>
+      <rect x="494" y="144" width="96" height="7" rx="3.5"/>
+    </g>
+
+    <!-- 注釈 -->
+    <rect x="490" y="252" width="128" height="96" rx="10" fill="#fff" stroke="#b85f3d" stroke-width="2"/>
+    <text x="554" y="276" text-anchor="middle" class="lbl" font-size="11" font-weight="700" fill="#b85f3d">書く場所と</text>
+    <text x="554" y="292" text-anchor="middle" class="lbl" font-size="11" font-weight="700" fill="#b85f3d">セーブされる場所が</text>
+    <text x="554" y="308" text-anchor="middle" class="lbl" font-size="11" font-weight="700" fill="#b85f3d">ひとつになった</text>
+    <text x="554" y="332" text-anchor="middle" class="lbl" font-size="14" fill="#b85f3d">📦＝📓</text>
+  </g>
+</svg>
