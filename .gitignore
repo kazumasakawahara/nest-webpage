@@ -68,3 +68,6 @@ tmp-upload/
 
 # MCP のローカル接続設定（マシン固有）
 .mcp.json
+
+# 記事用の写真素材の置き場（採用分は別途 public/images/ 直下へ配置）
+public/images/pic/
