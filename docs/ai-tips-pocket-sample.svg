@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-label="人形劇の舞台で、代表マスコットが「買ってくるのを忘れちゃった！」と困り、大きなエプロンに「AI」と書かれたポケットをつけたAIさんが「かいものチェッカー！」と道具カードを取り出している図">
+  <defs>
+    <style>
+      .cap { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; }
+    </style>
+  </defs>
+
+  <!-- 舞台背景 -->
+  <rect width="640" height="360" rx="16" fill="#faf6ef"/>
+  <rect x="12" y="56" width="616" height="248" fill="#eef3e6"/>
+  <ellipse cx="200" cy="180" rx="34" ry="12" fill="#ffffff" opacity="0.9"/>
+  <circle cx="590" cy="96" r="20" fill="#c9a44a" opacity="0.85"/>
+
+  <!-- 緞帳 -->
+  <rect x="0" y="0" width="640" height="42" fill="#b85f3d"/>
+  <path d="M0 42 q40 24 80 0 q40 24 80 0 q40 24 80 0 q40 24 80 0 q40 24 80 0 q40 24 80 0 q40 24 80 0 q40 24 80 0 v-8 h-640 Z" fill="#b85f3d"/>
+  <g fill="#a04e2f" opacity="0.5">
+    <rect x="70" y="0" width="7" height="40"/>
+    <rect x="230" y="0" width="7" height="40"/>
+    <rect x="390" y="0" width="7" height="40"/>
+    <rect x="550" y="0" width="7" height="40"/>
+  </g>
+  <path d="M0 0 h34 q8 84 -4 164 q-8 54 -30 72 Z" fill="#a04e2f"/>
+  <path d="M640 0 h-34 q-8 84 4 164 q8 54 30 72 Z" fill="#a04e2f"/>
+
+  <!-- 看板 -->
+  <line x1="320" y1="42" x2="320" y2="60" stroke="#6b4a2f" stroke-width="3"/>
+  <line x1="252" y1="42" x2="260" y2="60" stroke="#6b4a2f" stroke-width="3"/>
+  <line x1="388" y1="42" x2="380" y2="60" stroke="#6b4a2f" stroke-width="3"/>
+  <g transform="translate(212 58)">
+    <rect width="216" height="38" rx="6" fill="#e8d9b8" stroke="#6b4a2f" stroke-width="3"/>
+    <text x="108" y="25" text-anchor="middle" class="cap" font-size="16" fill="#4a3b2f">👝 AIさんのポケット</text>
+  </g>
+
+  <!-- ふきだし（マスコット・左上・2行） -->
+  <g>
+    <rect x="28" y="60" width="150" height="58" rx="12" fill="#ffffff" stroke="#e6e0d4" stroke-width="2"/>
+    <path d="M96 118 l10 14 l4 -14 z" fill="#ffffff" stroke="#e6e0d4" stroke-width="2"/>
+    <text x="103" y="83" text-anchor="middle" class="cap" font-size="14" fill="#2a2620">買ってくるのを</text>
+    <text x="103" y="104" text-anchor="middle" class="cap" font-size="14" fill="#2a2620">忘れちゃった！</text>
+  </g>
+
+  <!-- ふきだし（AIさん・右上・とび出し風） -->
+  <g>
+    <rect x="440" y="62" width="180" height="40" rx="12" fill="#2d5a27"/>
+    <path d="M510 102 l-2 13 l-10 -13 z" fill="#2d5a27"/>
+    <text x="530" y="88" text-anchor="middle" class="cap" font-size="16" fill="#faf6ef">かいものチェッカー！</text>
+  </g>
+
+  <!-- 代表マスコット（左。白髪・金縁メガネ・紺フリース） -->
+  <g transform="translate(120 158) scale(0.38)">
+    <path d="M-64 250 C-72 302 -18 320 10 302 C-4 326 -66 322 -72 286 Z" fill="#1c2942"/>
+    <path d="M64 250 C72 302 18 320 -10 302 C4 326 66 322 72 286 Z" fill="#243654"/>
+    <rect x="-14" y="48" width="28" height="22" rx="7" fill="#e6b892"/>
+    <path d="M-66 252 C-78 168 -58 80 -18 64 C-8 58 8 58 18 64 C58 80 78 168 66 252 Z" fill="#22314f"/>
+    <path d="M-30 70 Q0 56 30 70 L22 98 Q0 84 -22 98 Z" fill="#2c3c5e"/>
+    <path d="M-17 78 Q0 68 17 78 L11 100 Q0 92 -11 100 Z" fill="#e9eef5"/>
+    <line x1="0" y1="96" x2="0" y2="244" stroke="#33456b" stroke-width="3"/>
+    <path d="M-72 6 C-88 -66 -44 -100 0 -100 C44 -100 88 -66 72 6 C64 -6 54 -4 48 8 C40 -8 30 -6 24 8 C16 -8 4 -8 -2 8 C-10 -8 -22 -8 -28 8 C-36 -6 -48 -6 -54 10 C-60 2 -66 2 -72 6 Z" fill="#8c908c"/>
+    <circle cx="0" cy="0" r="60" fill="#f0c9a8"/>
+    <path d="M-52 -52 C-30 -74 30 -74 52 -50" stroke="#a9ada8" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <circle cx="-38" cy="24" r="10" fill="#e79a78" opacity="0.5"/>
+    <circle cx="38" cy="24" r="10" fill="#e79a78" opacity="0.5"/>
+    <path d="M-40 -12 Q-26 -20 -14 -14" stroke="#4a3b2f" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <path d="M14 -14 Q26 -20 40 -12" stroke="#4a3b2f" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <circle cx="-26" cy="8" r="6" fill="#4a3b2f"/>
+    <circle cx="26" cy="8" r="6" fill="#4a3b2f"/>
+    <g stroke="#c9a44a" stroke-width="3.5" fill="#ffffff" fill-opacity="0.14">
+      <ellipse cx="-26" cy="6" rx="22" ry="15"/>
+      <ellipse cx="26" cy="6" rx="22" ry="15"/>
+    </g>
+    <path d="M-4 4 Q0 -1 4 4" stroke="#c9a44a" stroke-width="3.5" fill="none"/>
+    <line x1="-48" y1="2" x2="-64" y2="-4" stroke="#c9a44a" stroke-width="3"/>
+    <line x1="48" y1="2" x2="64" y2="-4" stroke="#c9a44a" stroke-width="3"/>
+    <ellipse cx="0" cy="42" rx="10" ry="12" fill="#9e4a3a"/>
+    <path d="M-56 132 C-64 178 -32 198 -8 198" fill="none" stroke="#22314f" stroke-width="30" stroke-linecap="round"/>
+    <path d="M56 132 C64 178 32 198 8 198" fill="none" stroke="#243654" stroke-width="30" stroke-linecap="round"/>
+    <circle cx="-12" cy="198" r="13" fill="#f0c9a8"/>
+    <circle cx="12" cy="198" r="13" fill="#f0c9a8"/>
+  </g>
+
+  <!-- 出てきた道具カード（AIさんが差し出す） -->
+  <g transform="translate(198 202) rotate(-5)">
+    <rect width="170" height="44" rx="10" fill="#ffffff" stroke="#4a8c3f" stroke-width="3"/>
+    <text x="85" y="28" text-anchor="middle" class="cap" font-size="14" fill="#1a3d18">🛒 かいものチェッカー</text>
+  </g>
+  <!-- パッと出た放射線 -->
+  <g stroke="#c9a44a" stroke-width="3" stroke-linecap="round">
+    <line x1="206" y1="192" x2="196" y2="180"/>
+    <line x1="250" y1="184" x2="248" y2="168"/>
+    <line x1="296" y1="186" x2="304" y2="172"/>
+    <line x1="196" y1="222" x2="180" y2="220"/>
+  </g>
+  <!-- ポケット→カードの軌跡 -->
+  <path d="M420 268 q-70 8 -116 -30" fill="none" stroke="#9a948a" stroke-width="2.5" stroke-dasharray="6 5" stroke-linecap="round"/>
+
+  <!-- AIさん（右。大きなエプロン＋「AI」ポケット） -->
+  <g transform="translate(452 138)">
+    <!-- 頭 -->
+    <rect x="-46" y="-24" width="92" height="76" rx="18" fill="#2d5a27"/>
+    <line x1="0" y1="-36" x2="0" y2="-24" stroke="#2d5a27" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="0" cy="-42" r="6" fill="#d97757"/>
+    <path d="M-26 8 q8 8 16 0" fill="none" stroke="#faf6ef" stroke-width="4" stroke-linecap="round"/>
+    <path d="M10 8 q8 8 16 0" fill="none" stroke="#faf6ef" stroke-width="4" stroke-linecap="round"/>
+    <path d="M-13 30 q13 10 26 0" fill="none" stroke="#faf6ef" stroke-width="4" stroke-linecap="round"/>
+    <!-- 体 -->
+    <rect x="-38" y="58" width="76" height="88" rx="14" fill="#4a8c3f"/>
+    <!-- エプロン（クリーム・肩ひも＋大きな前掛け） -->
+    <line x1="-16" y1="56" x2="-24" y2="76" stroke="#f4e6c8" stroke-width="7"/>
+    <line x1="16" y1="56" x2="24" y2="76" stroke="#f4e6c8" stroke-width="7"/>
+    <path d="M-30 74 h60 l26 34 v42 q0 10 -10 10 h-92 q-10 0 -10 -10 v-42 Z" fill="#f4e6c8" stroke="#b85f3d" stroke-width="3"/>
+    <path d="M-24 80 h48 l22 30 v36 q0 6 -6 6 h-80 q-6 0 -6 -6 v-36 Z" fill="none" stroke="#d9c9a0" stroke-width="1.8" stroke-dasharray="4 4"/>
+    <!-- 腰のリボン -->
+    <path d="M56 112 l16 -8 v18 z" fill="#b85f3d"/>
+    <path d="M56 116 l14 10 -16 2 z" fill="#b85f3d"/>
+    <!-- 「AI」ポケット -->
+    <path d="M-22 108 h44 v26 a10 10 0 0 1 -10 10 h-24 a10 10 0 0 1 -10 -10 Z" fill="#4a8c3f" stroke="#2d5a27" stroke-width="3"/>
+    <text x="0" y="134" text-anchor="middle" class="cap" font-size="19" fill="#faf6ef" font-weight="bold">AI</text>
+    <!-- 腕（左＝カードを差し出す／右＝腰） -->
+    <path d="M-38 92 C-64 102 -84 110 -98 116" fill="none" stroke="#4a8c3f" stroke-width="13" stroke-linecap="round"/>
+    <circle cx="-102" cy="118" r="10" fill="#4a8c3f"/>
+    <path d="M38 96 C54 104 58 112 56 120" fill="none" stroke="#4a8c3f" stroke-width="13" stroke-linecap="round"/>
+  </g>
+
+  <!-- 波の書き割り -->
+  <g>
+    <path d="M-10 316 q20 -22 40 0 q20 -22 40 0 q20 -22 40 0 q20 -22 40 0 q20 -22 40 0 q20 -22 40 0 q20 -22 40 0 q20 -22 40 0 q20 -22 40 0 q20 -22 40 0 q20 -22 40 0 q20 -22 40 0 q20 -22 40 0 q20 -22 40 0 q20 -22 40 0 q20 -22 40 0 v60 h-650 Z" fill="#3a6ea5" opacity="0.85"/>
+    <path d="M-30 334 q20 -20 40 0 q20 -20 40 0 q20 -20 40 0 q20 -20 40 0 q20 -20 40 0 q20 -20 40 0 q20 -20 40 0 q20 -20 40 0 q20 -20 40 0 q20 -20 40 0 q20 -20 40 0 q20 -20 40 0 q20 -20 40 0 q20 -20 40 0 q20 -20 40 0 q20 -20 40 0 v40 h-690 Z" fill="#2a5580"/>
+  </g>
+</svg>
