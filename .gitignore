@@ -49,3 +49,22 @@ public/sidebar-nav-mockup.html
 
 # Claude Code local environment config
 .claude/
+
+# graphify の解析出力（再生成可能）
+graphify-out/
+src/graphify-out/
+
+# 配布用スキルのステージング出力（再生成可能）
+/.dist-staging/
+
+# 一時アップロード置き場
+tmp-upload/
+
+# Serena のローカルプロジェクト設定
+.serena/
+
+# Jupyter の仮想ドキュメント
+.virtual_documents/
+
+# MCP のローカル接続設定（マシン固有）
+.mcp.json
