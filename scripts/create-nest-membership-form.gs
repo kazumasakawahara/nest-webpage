@@ -41,7 +41,7 @@
  */
 
 // ▼▼▼ 回答の通知先（担当者）メールアドレス ▼▼▼
-var OFFICE_EMAIL = 's.kawasaki@npo-nest.com';
+var OFFICE_EMAIL = 'nest-kimachi@popar.ocn.ne.jp';
 // ▲▲▲
 
 // 紙の申込書（同意文・確認メッセージから参照）
