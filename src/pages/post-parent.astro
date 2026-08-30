@@ -191,6 +191,25 @@ const NEWSLETTER_FORM_URL = '';
         </div>
       </div>
 
+      <h3 class="pp-tax__h3">「27万円が戻ってくる」ではありません</h3>
+      <p class="pp-tax__lead">
+        いちばん多い誤解がここです。障害者控除は<strong>税額から引くのではなく、税率をかける前の所得から差し引く</strong>仕組みなので、軽くなる税金は「控除額 × 税率」になります。上の6つのうち、所得税・住民税の障害者控除だけがこの形をとります（相続税の控除は税額から直接引くので、金額がそのまま効きます）。
+      </p>
+      <figure class="pp-tax-fig">
+        <img
+          src="/images/post-parent/shogaisha-kojo-shikumi.svg"
+          alt="総所得額から諸々の所得控除と障害者控除が差し引かれ、残った課税対象所得に税率がかかることを示す図。控除額は所得税が一般27万円・特別40万円・同居特別75万円、住民税が26万円・30万円・53万円。"
+          width="1000"
+          height="622"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption>障害者控除は、税額ではなく所得から差し引かれます。</figcaption>
+      </figure>
+      <p class="pp-tax__note">
+        ※ たとえば一般障害者で所得税率が5%の方なら、所得税27万円×5%＝13,500円、住民税26万円×10%＝26,000円で、年およそ4万円が軽くなります。所得税の税率は5〜45%と幅があるため、軽くなる額はご家庭によって異なります。
+      </p>
+
       <div class="pp-tax-remember">
         <p class="pp-tax-remember__title">この3つだけでも、覚えて帰ってください</p>
         <ol>
@@ -201,8 +220,8 @@ const NEWSLETTER_FORM_URL = '';
       </div>
 
       <div class="pp-tax-dl">
-        <a class="btn btn--accent" href="/pdfs/post-parent/障害者の税の特例_保護者向け.pdf" download>保護者向け資料をダウンロード（PDF・約110KB）</a>
-        <p class="pp-tax-dl__note">この6つの制度を1枚にまとめた保護者向け資料です。印刷して、勉強会や窓口相談のお供にどうぞ。</p>
+        <a class="btn btn--accent" href="/pdfs/post-parent/障害者の税の特例_保護者向け.pdf" download>保護者向け資料をダウンロード（PDF・A4両面2ページ・約560KB）</a>
+        <p class="pp-tax-dl__note">表面に6つの制度、裏面に上の仕組み図と補足を収めた保護者向け資料です。両面印刷1枚で配れます。勉強会や窓口相談のお供にどうぞ。</p>
       </div>
 
       <details class="pp-tax-refs">
@@ -573,6 +592,34 @@ const NEWSLETTER_FORM_URL = '';
     background: var(--color-paper);
     border-left: 4px solid var(--color-terra-500);
     border-radius: var(--radius-sm);
+  }
+
+  .pp-tax-fig {
+    margin: var(--space-5) 0 var(--space-4);
+    padding: var(--space-4);
+    background: #fff;
+    border: 1px solid var(--color-line, #e2ddd3);
+    border-radius: 10px;
+  }
+
+  .pp-tax-fig img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .pp-tax-fig figcaption {
+    margin-top: var(--space-3);
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--color-ink-mute);
+    text-align: center;
+  }
+
+  @media (max-width: 640px) {
+    .pp-tax-fig {
+      padding: var(--space-3);
+    }
   }
 
   .pp-tax-remember__title {
