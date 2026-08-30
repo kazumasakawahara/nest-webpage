@@ -140,15 +140,17 @@ const NEWSLETTER_FORM_URL = '';
           <span class="pp-tax-map__phase">いま・毎年</span>
           <div class="pp-tax-item">
             <h4>所得税・住民税の障害者控除</h4>
-            <p class="pp-tax-item__amount">27万〜75万円<span>を所得から控除</span></p>
-            <p>本人に収入がなくても、扶養している親の側で受けられます。同居の特別障害者は75万円（見落としが多いところです）。</p>
+            <p class="pp-tax-item__amount">所得税 27万〜75万円<span>＋住民税 26万〜53万円を所得から控除</span></p>
+            <p>本人に収入がなくても、扶養している親の側で受けられます。同居の特別障害者は所得税75万円・住民税53万円（見落としが多いところです）。</p>
             <p class="pp-tax-item__how">年末調整・確定申告に書くだけ。さかのぼって5年分の還付請求もできます。</p>
+            <p class="pp-tax-item__refs">根拠：所得税法79条／地方税法34条・314条の2（各1項6号・3項）</p>
           </div>
           <div class="pp-tax-item">
             <h4>少額貯蓄の利子非課税（マル優）</h4>
             <p class="pp-tax-item__amount">元本350万円<span>＋国債等に別枠350万円</span></p>
             <p>通常20.315％かかる預貯金の利子が非課税になります。</p>
             <p class="pp-tax-item__how">手帳などを持って金融機関の窓口で申込み。自動では適用されません。</p>
+            <p class="pp-tax-item__refs">根拠：所得税法10条・租税特別措置法3条の4／特別マル優は同法4条</p>
           </div>
         </div>
         <div class="pp-tax-map__col">
@@ -158,12 +160,14 @@ const NEWSLETTER_FORM_URL = '';
             <p class="pp-tax-item__amount">1年につき10万／20万円<span>×85歳までの年数</span></p>
             <p>相続税そのものから直接差し引けます。例えば40歳の特別障害者の方なら、(85−40)年×20万円＝900万円。効果が特に大きい制度です。</p>
             <p class="pp-tax-item__how">引ききれない分は、きょうだいなど他の扶養義務者の相続税からも差し引けます。</p>
+            <p class="pp-tax-item__refs">根拠：相続税法19条の4</p>
           </div>
           <div class="pp-tax-item">
             <h4>相続登記の義務化（あわせて確認）</h4>
             <p class="pp-tax-item__amount">3年以内<span>に登記の申請が必要</span></p>
             <p>令和6年4月から、不動産を相続した人は取得を知った日から3年以内の登記申請が義務になりました。過去の相続も対象です。</p>
             <p class="pp-tax-item__how">「亡くなった祖父名義のまま」の土地・建物がないか、この機会にご確認を。</p>
+            <p class="pp-tax-item__refs">根拠：不動産登記法76条の2・164条1項（過去の相続への適用は令和3年改正法附則5条6項）</p>
           </div>
         </div>
         <div class="pp-tax-map__col">
@@ -173,12 +177,14 @@ const NEWSLETTER_FORM_URL = '';
             <p class="pp-tax-item__amount">3,000万／6,000万円<span>まで贈与税なし</span></p>
             <p>親がまとまったお金を信託銀行に預け、銀行が生活費・医療費を本人へ定期的に渡し続ける仕組み。一度に大金が渡らないので、使い切りやトラブルを防げます。</p>
             <p class="pp-tax-item__how">取り扱う金融機関が限られるため、事前の相談を。</p>
+            <p class="pp-tax-item__refs">根拠：相続税法21条の4</p>
           </div>
           <div class="pp-tax-item">
             <h4>心身障害者扶養共済（しょうがい共済）</h4>
             <p class="pp-tax-item__amount">月2万円<span>（1口）を一生涯支給・2口まで</span></p>
             <p>親が掛金を払い、親が亡くなった後にお子さんへ年金を届ける都道府県の制度。受け取る年金は非課税、掛金は全額が親の所得控除になります。</p>
             <p class="pp-tax-item__how">加入は市区町村の障害福祉担当窓口へ。親の年齢が上がるほど掛金も上がるため、検討は早いほど有利です。</p>
+            <p class="pp-tax-item__refs">根拠：所得税法9条1項3号ハ・75条2項3号／相続税法12条1項5号・21条の3第1項5号</p>
           </div>
         </div>
       </div>
@@ -196,6 +202,20 @@ const NEWSLETTER_FORM_URL = '';
         <a class="btn btn--accent" href="/pdfs/post-parent/障害者の税の特例_保護者向け.pdf" download>保護者向け資料をダウンロード（PDF・約110KB）</a>
         <p class="pp-tax-dl__note">この6つの制度を1枚にまとめた保護者向け資料です。印刷して、勉強会や窓口相談のお供にどうぞ。</p>
       </div>
+
+      <details class="pp-tax-refs">
+        <summary>根拠となる法令（e-Gov 法令検索で現行条文を確認できます）</summary>
+        <ul>
+          <li><strong>障害者・特別障害者の区分</strong>：<a href="https://laws.e-gov.go.jp/law/340AC0000000033" rel="external" target="_blank">所得税法</a>2条1項28号・29号＋<a href="https://laws.e-gov.go.jp/law/340CO0000000096" rel="external" target="_blank">所得税法施行令</a>10条（手帳の等級との対応はここに規定）。相続税では<a href="https://laws.e-gov.go.jp/law/325AC0000000073" rel="external" target="_blank">相続税法</a>19条の4第2項＋<a href="https://laws.e-gov.go.jp/law/325CO0000000071" rel="external" target="_blank">相続税法施行令</a>4条の4</li>
+          <li><strong>所得税・住民税の障害者控除</strong>：所得税法79条（27万・40万・同居特別障害者75万円）／<a href="https://laws.e-gov.go.jp/law/325AC0000000226" rel="external" target="_blank">地方税法</a>34条1項6号・3項、314条の2第1項6号・3項（26万・30万・同居特別障害者53万円）。5年分の還付請求は<a href="https://laws.e-gov.go.jp/law/337AC0000000066" rel="external" target="_blank">国税通則法</a>74条</li>
+          <li><strong>相続税の障害者控除</strong>：相続税法19条の4（1年につき10万・20万円×85歳までの年数。他の扶養義務者からの控除は同条3項）</li>
+          <li><strong>特定贈与信託</strong>：相続税法21条の4（特別障害者6,000万円・それ以外の特定障害者3,000万円）</li>
+          <li><strong>しょうがい共済</strong>：年金の非課税は所得税法9条1項3号ハ＋施行令20条、掛金の全額所得控除は所得税法75条2項3号、受給権の非課税は相続税法12条1項5号（相続税）・21条の3第1項5号（贈与税）</li>
+          <li><strong>マル優</strong>：所得税法10条。<strong>限度額350万円は<a href="https://laws.e-gov.go.jp/law/332AC0000000026" rel="external" target="_blank">租税特別措置法</a>3条の4による読替え</strong>（所得税法本則は300万円のまま）。国債・地方債の特別マル優350万円は同法4条</li>
+          <li><strong>相続登記の義務化</strong>：<a href="https://laws.e-gov.go.jp/law/416AC0000000123" rel="external" target="_blank">不動産登記法</a>76条の2（3年以内の申請義務）・164条1項（10万円以下の過料）。施行日〔令和6年4月1日〕前の相続への適用は令和3年法律第24号附則5条6項</li>
+        </ul>
+        <p>※ 各リンク先は e-Gov 法令検索の現行条文です（2026年8月30日照合）。条番号で該当箇所をご確認ください。</p>
+      </details>
 
       <p class="pp-tax__note">
         ※ 金額・要件は令和8年（2026年）時点の制度に基づく概要です。個別の適用可否は、税務署・税理士、市区町村の障害福祉窓口へご確認ください。nest では個別の税務相談はお受けしていません。
@@ -477,11 +497,60 @@ const NEWSLETTER_FORM_URL = '';
   }
 
   .pp-tax-item__how {
-    margin-bottom: 0 !important;
     padding-top: var(--space-2);
     border-top: 1px dashed var(--color-line);
     font-size: 12.5px !important;
     color: var(--color-ink-mute) !important;
+  }
+
+  .pp-tax-item__refs {
+    margin-bottom: 0 !important;
+    font-size: 11.5px !important;
+    line-height: 1.7 !important;
+    color: var(--color-ink-mute) !important;
+    letter-spacing: 0.01em;
+  }
+
+  .pp-tax-refs {
+    margin-top: var(--space-5);
+    padding: var(--space-4) var(--space-5);
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+  }
+
+  .pp-tax-refs summary {
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-green-900);
+  }
+
+  .pp-tax-refs ul {
+    margin: var(--space-3) 0 0;
+    padding-left: 1.3em;
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .pp-tax-refs li {
+    font-size: 13px;
+    line-height: 1.9;
+    color: var(--color-ink);
+  }
+
+  .pp-tax-refs a {
+    color: var(--color-terra-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .pp-tax-refs a:hover { color: var(--color-terra-500); }
+
+  .pp-tax-refs > p {
+    margin: var(--space-3) 0 0;
+    font-size: 12px;
+    color: var(--color-ink-mute);
   }
 
   .pp-tax-remember {
