@@ -10,6 +10,7 @@ public/pdfs/
 ├── forms/                  申込書類（入会・寄付・ボランティア等）
 ├── newsletter-archive/     機関誌「巣箱」公開バックナンバー
 ├── notices/                期間限定のお知らせ・掲示物
+├── post-parent/            親なき後ページの配布資料（税の特例など）
 └── research/               研修会・シンポジウム資料、啓発資料
 ```
 
