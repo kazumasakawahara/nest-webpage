@@ -6,7 +6,11 @@ dist/
 .wrangler/
 
 # dependencies
+# 末尾スラッシュ付きはディレクトリにしか一致しない。worktree で本体の
+# node_modules へシンボリックリンクを張ると追跡対象になってしまうため、
+# スラッシュなしの行も置いてリンク自体を無視する（2026-08-30）
 node_modules/
+node_modules
 
 # logs
 npm-debug.log*
