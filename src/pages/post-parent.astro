@@ -21,7 +21,9 @@ const NEWSLETTER_FORM_URL = '';
     placeholderLabel="POST-PARENT SUPPORT"
     bright
     flip
-  />
+  >
+    <p class="pp-hero-sublead">とはいえ、税にまつわる話もおまけです。</p>
+  </Hero>
 
   <!-- ===== 理念（主役） ===== -->
   <section class="section">
@@ -288,6 +290,18 @@ const NEWSLETTER_FORM_URL = '';
 </BaseLayout>
 
 <style>
+  .pp-hero-sublead {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.9;
+    color: rgba(250, 246, 239, 0.88);
+    max-width: 600px;
+    margin: calc(-1 * var(--space-4)) 0 var(--space-5);
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
+    line-break: strict;
+    word-break: auto-phrase;
+  }
+
   .pp-entry { text-decoration: none; }
   .pp-entry__more {
     margin-top: auto;
