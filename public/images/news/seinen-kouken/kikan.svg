@@ -1,0 +1,33 @@
+<svg viewBox="0 0 760 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="現行と改正後の制度利用期間の比較">
+  <style>
+    text{font-family:'Noto Sans JP','Hiragino Sans','Yu Gothic',sans-serif}
+    .t{font-size:13px;fill:#2a2620}
+    .ts{font-size:11.5px;fill:#6b665e}
+    .th{font-family:'Shippori Mincho B1','Hiragino Mincho ProN',serif;font-size:15px;font-weight:600;fill:#1a3d18}
+  </style>
+
+  <text x="0" y="16" class="th">現行</text>
+  <rect x="90" y="34" width="600" height="26" fill="#f0ead8" stroke="#9a948a"/>
+  <circle cx="140" cy="47" r="5" fill="#9a948a"/>
+  <text x="112" y="80" class="ts">申立て</text>
+  <text x="112" y="96" class="ts">（例：遺産分割のため）</text>
+  <circle cx="290" cy="47" r="5" fill="#9a948a"/>
+  <text x="266" y="80" class="ts">遺産分割 完了</text>
+  <text x="266" y="96" class="ts">＝目的は達成</text>
+  <path d="M300 47 L676 47" stroke="#9a948a" stroke-width="1"/>
+  <text x="430" y="30" class="t" fill="#6b665e">それでも続く（報酬・監督も続く）</text>
+  <text x="640" y="80" class="ts">本人の死亡</text>
+
+  <line x1="0" y1="120" x2="760" y2="120" stroke="#e6e0d4"/>
+
+  <text x="0" y="152" class="th">改正後</text>
+  <rect x="90" y="170" width="220" height="26" fill="#e8efe6" stroke="#2d5a27"/>
+  <circle cx="140" cy="183" r="5" fill="#2d5a27"/>
+  <text x="112" y="216" class="ts">申立て</text>
+  <circle cx="290" cy="183" r="5" fill="#2d5a27"/>
+  <text x="252" y="216" class="ts">遺産分割 完了</text>
+  <text x="252" y="232" class="ts">→ 審判を取り消して終了</text>
+
+  <rect x="330" y="170" width="360" height="26" fill="#ffffff" stroke="#e6e0d4" stroke-dasharray="4 4"/>
+  <text x="510" y="188" class="t" fill="#6b665e" text-anchor="middle">必要になったらまた使えばよい</text>
+</svg>

@@ -1,0 +1,54 @@
+<svg viewBox="0 0 760 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="補助人に与えられる3種類の権限の関係図">
+  <style>
+    text{font-family:'Noto Sans JP','Hiragino Sans','Yu Gothic',sans-serif}
+    .l{font-size:13px;fill:#2a2620}
+    .ls{font-size:11.5px;fill:#6b665e}
+    .h{font-family:'Shippori Mincho B1','Hiragino Mincho ProN',serif;font-size:15px;font-weight:600}
+  </style>
+
+  <rect x="250" y="0" width="260" height="44" rx="2" fill="#1a3d18"/>
+  <text x="380" y="28" class="h" fill="#faf6ef" text-anchor="middle">補助開始の審判（民7条）</text>
+
+  <path d="M380 44 L380 66" stroke="#2a2620" stroke-width="1.5"/>
+  <path d="M130 66 L630 66" stroke="#2a2620" stroke-width="1.5"/>
+  <path d="M130 66 L130 88 M380 66 L380 88 M630 66 L630 88" stroke="#2a2620" stroke-width="1.5"/>
+
+  <!-- 同意権 -->
+  <rect x="10" y="88" width="240" height="150" fill="#ffffff" stroke="#2d5a27" stroke-width="1.5"/>
+  <rect x="10" y="88" width="240" height="30" fill="#2d5a27"/>
+  <text x="24" y="109" class="h" fill="#faf6ef">同意権の審判</text>
+  <text x="196" y="108" class="ls" fill="#faf6ef">民9条</text>
+  <text x="24" y="140" class="l">選んだ行為をするときは</text>
+  <text x="24" y="159" class="l">補助人の同意が要る</text>
+  <text x="24" y="184" class="ls">同意なしにした行為は取消し可</text>
+  <text x="24" y="203" class="ls">選べるのは9条2項の11項目から</text>
+  <text x="24" y="222" class="ls">（預貯金の払戻し、不動産、相続 等）</text>
+
+  <!-- 代理権 -->
+  <rect x="510" y="88" width="240" height="150" fill="#ffffff" stroke="#2d5a27" stroke-width="1.5"/>
+  <rect x="510" y="88" width="240" height="30" fill="#2d5a27"/>
+  <text x="524" y="109" class="h" fill="#faf6ef">代理権の審判</text>
+  <text x="694" y="108" class="ls" fill="#faf6ef">民11条</text>
+  <text x="524" y="140" class="l">選んだ法律行為について</text>
+  <text x="524" y="159" class="l">補助人が本人を代理する</text>
+  <text x="524" y="184" class="ls">例：遺産分割、施設入所契約、</text>
+  <text x="524" y="203" class="ls">　　居住用不動産の売却（要許可）</text>
+  <text x="524" y="222" class="ls">本人以外の申立てには本人の同意が必要</text>
+
+  <!-- 特定補助 -->
+  <rect x="260" y="88" width="240" height="150" fill="#ffffff" stroke="#b85f3d" stroke-width="1.5"/>
+  <rect x="260" y="88" width="240" height="30" fill="#b85f3d"/>
+  <text x="274" y="109" class="h" fill="#faf6ef">特定補助の審判</text>
+  <text x="444" y="108" class="ls" fill="#faf6ef">民10条</text>
+  <text x="274" y="140" class="l">能力を欠く常況の人向け</text>
+  <text x="274" y="159" class="l">9条2項の行為をまとめて取消可</text>
+  <text x="274" y="184" class="ls">特定補助人の権限は3つだけ：</text>
+  <text x="274" y="203" class="ls">取消権の行使／意思表示の受領／</text>
+  <text x="274" y="222" class="ls">財産の保存行為</text>
+
+  <path d="M380 238 L380 262" stroke="#b85f3d" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <path d="M380 262 l-6 -9 h12 z" fill="#b85f3d"/>
+  <rect x="150" y="262" width="460" height="62" fill="#f9e8df" stroke="#b85f3d" stroke-dasharray="3 3"/>
+  <text x="380" y="286" class="l" text-anchor="middle" fill="#b85f3d">特定補助人になっても、包括的な代理権は付かない。</text>
+  <text x="380" y="308" class="l" text-anchor="middle" fill="#b85f3d">代理が必要なら、別に民11条の代理権付与の審判が要る。</text>
+</svg>

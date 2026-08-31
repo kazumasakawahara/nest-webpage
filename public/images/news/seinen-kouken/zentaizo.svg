@@ -1,0 +1,63 @@
+<svg viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="現行の3類型と改正後の補助一元化の比較図">
+  <style>
+    text{font-family:'Noto Sans JP','Hiragino Sans','Yu Gothic',sans-serif}
+    .lbl{font-size:13px;fill:#2a2620}
+    .lbl-s{font-size:11.5px;fill:#6b665e}
+    .ttl{font-family:'Shippori Mincho B1','Hiragino Mincho ProN',serif;font-size:16px;fill:#1a3d18;font-weight:600}
+    .box-name{font-family:'Shippori Mincho B1','Hiragino Mincho ProN',serif;font-size:16px;font-weight:600}
+  </style>
+
+  <!-- 左：現行 -->
+  <text x="0" y="18" class="ttl">現行</text>
+  <text x="0" y="40" class="lbl-s">能力の程度で入る箱が決まる</text>
+
+  <rect x="0" y="56" width="330" height="62" fill="#f0ead8" stroke="#9a948a"/>
+  <text x="14" y="82" class="box-name" fill="#2a2620">後見</text>
+  <text x="70" y="79" class="lbl-s">能力を欠く常況</text>
+  <text x="70" y="98" class="lbl">包括的な代理権 ＋ 日常行為以外の取消権</text>
+  <text x="14" y="106" class="lbl-s">18.1万人</text>
+
+  <rect x="0" y="126" width="330" height="62" fill="#f0ead8" stroke="#9a948a"/>
+  <text x="14" y="152" class="box-name" fill="#2a2620">保佐</text>
+  <text x="70" y="149" class="lbl-s">著しく不十分</text>
+  <text x="70" y="168" class="lbl">法定の重要行為の取消権 ＋ 個別の代理権</text>
+  <text x="14" y="176" class="lbl-s">5.8万人</text>
+
+  <rect x="0" y="196" width="330" height="62" fill="#f0ead8" stroke="#9a948a"/>
+  <text x="14" y="222" class="box-name" fill="#2a2620">補助</text>
+  <text x="70" y="219" class="lbl-s">不十分</text>
+  <text x="70" y="238" class="lbl">個別の同意権 ＋ 個別の代理権</text>
+  <text x="14" y="246" class="lbl-s">1.8万人</text>
+
+  <text x="0" y="290" class="lbl-s">※利用者数は令和7年12月末時点</text>
+  <text x="0" y="310" class="lbl-s">※いったん入ると、能力が回復しない限り</text>
+  <text x="0" y="328" class="lbl-s">　降りられない</text>
+
+  <!-- 矢印 -->
+  <path d="M348 155 L400 155" stroke="#2d5a27" stroke-width="2" fill="none"/>
+  <path d="M400 155 l-9 -6 v12 z" fill="#2d5a27"/>
+
+  <!-- 右：改正後 -->
+  <text x="420" y="18" class="ttl">改正後</text>
+  <text x="420" y="40" class="lbl-s">箱はひとつ。中身を組み立てる</text>
+
+  <rect x="420" y="56" width="340" height="202" fill="#e8efe6" stroke="#2d5a27"/>
+  <text x="436" y="84" class="box-name" fill="#2d5a27">補助</text>
+  <text x="486" y="82" class="lbl-s">能力が不十分であれば入口はここ</text>
+
+  <rect x="436" y="98" width="308" height="42" fill="#ffffff" stroke="#2d5a27" stroke-dasharray="3 3"/>
+  <text x="448" y="116" class="lbl">同意権の審判（民9条）</text>
+  <text x="448" y="133" class="lbl-s">選んだ行為だけ、同意なしなら取り消せる</text>
+
+  <rect x="436" y="148" width="308" height="42" fill="#ffffff" stroke="#2d5a27" stroke-dasharray="3 3"/>
+  <text x="448" y="166" class="lbl">代理権の審判（民11条）</text>
+  <text x="448" y="183" class="lbl-s">選んだ行為だけ、補助人が代理できる</text>
+
+  <rect x="436" y="198" width="308" height="46" fill="#ffffff" stroke="#b85f3d" stroke-dasharray="3 3"/>
+  <text x="448" y="216" class="lbl" fill="#b85f3d">特定補助の審判（民10条）</text>
+  <text x="448" y="233" class="lbl-s">能力を欠く常況の人向け。重要行為をまとめて取消可</text>
+
+  <text x="420" y="290" class="lbl-s">※ この3つのうち少なくとも1つと同時でなければ</text>
+  <text x="420" y="308" class="lbl-s">　補助を開始できない（民7条3項）</text>
+  <text x="420" y="328" class="lbl-s">※ 必要がなくなれば途中で終われる（民12条）</text>
+</svg>

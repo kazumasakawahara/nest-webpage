@@ -1,7 +1,16 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
 import NewsList from '../../components/NewsList.astro';
+
+// トピックコーナー：法律・制度の解説記事（tag: トピック）を新しい順に
+const topics = (
+  await getCollection('news', ({ data }) => !data.draft && data.tag === 'トピック')
+).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const fmtDate = (d: Date) =>
+  `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
 ---
 
 <BaseLayout
@@ -18,6 +27,36 @@ import NewsList from '../../components/NewsList.astro';
     placeholderLabel="NEWS"
   />
 
+  {
+    topics.length > 0 && (
+      <section class="section topic-corner-section" id="topics">
+        <div class="container container--narrow">
+          <div class="topic-corner reveal">
+            <p class="topic-corner__eyebrow">TOPICS</p>
+            <h2 class="topic-corner__title">トピック ― 法律・制度を読む</h2>
+            <p class="topic-corner__lead">
+              障害のある方とご家族の暮らしにかかわる法律改正・制度改正を、条文にも踏み込んで解説する常設コーナーです。
+            </p>
+            <ul class="topic-corner__list">
+              {topics.map((t) => (
+                <li class="topic-corner__item">
+                  <a href={`/news/${t.id}/`} class="topic-corner__link">
+                    <time class="topic-corner__date" datetime={t.data.date.toISOString()}>
+                      {fmtDate(t.data.date)}
+                    </time>
+                    <h3 class="topic-corner__item-title">{t.data.title}</h3>
+                    {t.data.summary && <p class="topic-corner__summary">{t.data.summary}</p>}
+                    <span class="topic-corner__more">読む →</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   <section class="section">
     <div class="container container--narrow">
       <NewsList showSummary={true} />
@@ -28,3 +67,100 @@ import NewsList from '../../components/NewsList.astro';
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .topic-corner-section {
+    padding-bottom: 0;
+  }
+
+  .topic-corner {
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-top: 3px solid var(--color-green-700);
+    border-radius: var(--radius-md);
+    padding: var(--space-6) var(--space-6) var(--space-5);
+  }
+
+  .topic-corner__eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--fs-eyebrow);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-terra-500);
+    margin-bottom: var(--space-2);
+  }
+
+  .topic-corner__title {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--color-green-900);
+    line-height: 1.5;
+    margin-bottom: var(--space-3);
+  }
+
+  .topic-corner__lead {
+    font-size: 14px;
+    color: var(--color-ink-mute);
+    line-height: 1.9;
+    margin-bottom: var(--space-5);
+  }
+
+  .topic-corner__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .topic-corner__item {
+    border-top: 1px solid var(--color-line-soft);
+  }
+
+  .topic-corner__link {
+    display: block;
+    padding: var(--space-4) var(--space-2);
+    color: var(--color-ink);
+    transition: background-color var(--dur-fast) var(--ease-out);
+  }
+
+  .topic-corner__link:hover {
+    background-color: rgba(74, 140, 63, 0.04);
+    color: var(--color-ink);
+  }
+
+  .topic-corner__date {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-ink-soft);
+    letter-spacing: 0.05em;
+  }
+
+  .topic-corner__item-title {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-green-900);
+    line-height: 1.6;
+    margin-block: var(--space-1) var(--space-2);
+  }
+
+  .topic-corner__summary {
+    font-size: 13px;
+    color: var(--color-ink-mute);
+    line-height: 1.8;
+    margin-bottom: var(--space-2);
+  }
+
+  .topic-corner__more {
+    font-size: 13px;
+    color: var(--color-green-700);
+  }
+
+  .topic-corner__link:hover .topic-corner__more {
+    color: var(--color-terra-500);
+  }
+
+  @media (max-width: 600px) {
+    .topic-corner {
+      padding: var(--space-5) var(--space-4) var(--space-4);
+    }
+  }
+</style>

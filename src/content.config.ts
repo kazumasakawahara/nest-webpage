@@ -7,7 +7,7 @@ const news = defineCollection({
     title: z.string(),
     date: z.coerce.date(),
     summary: z.string().optional(),
-    tag: z.enum(['お知らせ', 'イベント', '事業所', 'メディア']).default('お知らせ'),
+    tag: z.enum(['お知らせ', 'イベント', '事業所', 'メディア', 'トピック']).default('お知らせ'),
     image: z.string().optional(),
     draft: z.boolean().default(false),
   }),
