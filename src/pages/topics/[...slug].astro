@@ -95,6 +95,7 @@ const fmtDate = (d: Date) =>
     margin-top: var(--space-7);
     margin-bottom: var(--space-3);
     color: var(--color-green-900);
+    scroll-margin-top: 80px; /* モバイルの固定トップバーに隠れないように */
   }
   .topic-article__body :global(h3) {
     font-size: 18px;
@@ -129,6 +130,44 @@ const fmtDate = (d: Date) =>
     border: none;
     border-top: 1px solid var(--color-line);
     margin: var(--space-7) 0 var(--space-5);
+  }
+
+  /* 目次 */
+  .topic-article__body :global(.topic-toc) {
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-5);
+    margin: var(--space-6) 0;
+  }
+  .topic-article__body :global(.topic-toc__title) {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-green-900);
+    letter-spacing: 0.08em;
+    margin: 0 0 var(--space-2);
+  }
+  .topic-article__body :global(.topic-toc__list) {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .topic-article__body :global(.topic-toc__list li) {
+    margin: 0;
+    border-top: 1px solid var(--color-line-soft);
+  }
+  .topic-article__body :global(.topic-toc__list a) {
+    display: block;
+    padding: var(--space-2) var(--space-1);
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--color-green-700);
+    border-bottom: none;
+  }
+  .topic-article__body :global(.topic-toc__list a:hover) {
+    color: var(--color-terra-500);
+    background-color: rgba(74, 140, 63, 0.04);
   }
 
   /* 法律名の枠 */
