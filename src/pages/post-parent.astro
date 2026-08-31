@@ -73,6 +73,26 @@ const NEWSLETTER_FORM_URL = '';
         <p>nestの歩みは、親の「願い」を、当事者の「力」に変え、それを地域の「支え合い」という形に昇華させる過程でした。</p>
         <p class="pp-article__close">「親なき後」は、一人で抱えれば深い闇ですが、仲間とともに仕組みを作れば、それは未来への希望になります。nestがこれまで紡いできたネットワークと、これから創り出す仕組みは、同じ悩みを抱える多くの家族にとって、確かな灯火となるはずです。</p>
       </div>
+
+      <!-- めざすネットワークの地図（インタラクティブ・エコマップ） -->
+      <div class="pp-ecomap">
+        <h3 class="pp-ecomap__title">めざすネットワークを、一枚の地図に</h3>
+        <p class="pp-ecomap__lead">
+          その地図の真ん中にいるのは、制度でも、親でもなく、本人です。
+          どこで暮らすか。誰と暮らすか。どんな毎日を送るか——支援者の力を借りながら、決めるのはいつも本人。
+          わたしたちが15年かけて紡いできた「安心のネットワーク」がめざす理想のかたちを、動く地図にしました。
+        </p>
+        <iframe
+          src="/post-parent/ecomap.html"
+          title="本人を中心に置いた理想の支援ネットワークの地図"
+          class="pp-ecomap__frame"
+          loading="lazy"
+        ></iframe>
+        <p class="pp-ecomap__hint">
+          丸をドラッグすると動かせます。クリックすると、それぞれの支え手の「理想のかたち」が読めます。
+          <a href="/post-parent/ecomap.html" target="_blank" rel="noopener" class="inline-link">全画面で地図を見る →</a>
+        </p>
+      </div>
     </div>
   </section>
 
@@ -662,5 +682,46 @@ const NEWSLETTER_FORM_URL = '';
     font-size: 16px;
     line-height: 2;
     color: var(--color-ink);
+  }
+
+  .pp-ecomap {
+    margin-top: var(--space-7);
+  }
+
+  .pp-ecomap__title {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    color: var(--color-ink);
+    margin-bottom: var(--space-3);
+  }
+
+  .pp-ecomap__lead {
+    font-size: 16px;
+    line-height: 2;
+    color: var(--color-ink);
+    margin-bottom: var(--space-4);
+  }
+
+  .pp-ecomap__frame {
+    display: block;
+    width: 100%;
+    height: 620px;
+    border: 0;
+    border-radius: var(--radius-md);
+    background: #10141c;
+    box-shadow: 0 8px 28px rgba(20, 30, 25, 0.18);
+  }
+
+  .pp-ecomap__hint {
+    margin-top: var(--space-3);
+    font-size: 13px;
+    line-height: 1.9;
+    color: var(--color-ink-mute);
+  }
+
+  @media (max-width: 640px) {
+    .pp-ecomap__frame {
+      height: 520px;
+    }
   }
 </style>

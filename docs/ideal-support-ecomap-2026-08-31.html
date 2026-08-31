@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+</head>
+<body>
+<title>本人が真ん中の支援エコマップ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style>
+  :root{
+    --bg:#10141c; --bg-soft:#171d29; --panel:#1b2230; --line:#2a3345;
+    --ink:#e7ecf5; --ink-dim:#9aa7bc; --ink-faint:#66738c;
+    --gold:#f6c453; --gold-dim:#8a6f2f;
+    --f-display:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+    --f-body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:var(--bg); color:var(--ink); font-family:var(--f-body);
+    overflow:hidden; -webkit-font-smoothing:antialiased;
+  }
+  #stage{position:fixed;inset:0}
+  svg{display:block;width:100%;height:100%;cursor:grab}
+  svg.dragging{cursor:grabbing}
+
+  /* ---- header overlay ---- */
+  header{
+    position:fixed; top:0; left:0; right:0; padding:22px 28px 10px;
+    pointer-events:none; z-index:5;
+    background:linear-gradient(to bottom, rgba(16,20,28,.92) 0%, rgba(16,20,28,.72) 55%, rgba(16,20,28,0) 100%);
+  }
+  h1{
+    font-family:var(--f-display); font-weight:700; font-size:clamp(20px,3.2vw,30px);
+    letter-spacing:.06em; color:var(--ink);
+  }
+  h1 .accent{color:var(--gold)}
+  .lead{
+    margin-top:6px; font-size:clamp(11.5px,1.5vw,13.5px); line-height:1.8; color:var(--ink-dim);
+    max-width:44em;
+  }
+  .note{
+    margin-top:4px; font-size:10.5px; letter-spacing:.08em; color:var(--ink-faint);
+  }
+
+  /* ---- legends ---- */
+  .legend{
+    position:fixed; left:20px; bottom:18px; z-index:5; pointer-events:none;
+    display:flex; flex-direction:column; gap:10px; max-width:min(560px,72vw);
+  }
+  .chips{display:flex; flex-wrap:wrap; gap:5px 8px; margin-top:12px; max-width:56em}
+  .chip{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:10.5px; letter-spacing:.05em; color:var(--ink-dim);
+    background:rgba(23,29,41,.8); border:1px solid var(--line);
+    border-radius:999px; padding:3px 10px 3px 7px;
+  }
+  .chip i{width:9px;height:9px;border-radius:50%;flex:none}
+  .lines{display:flex; flex-wrap:wrap; gap:6px 16px; font-size:10.5px; color:var(--ink-faint); letter-spacing:.04em}
+  .lines span{display:inline-flex;align-items:center;gap:7px}
+  .lines svg{width:30px;height:8px;flex:none}
+  .hint{
+    position:fixed; right:20px; bottom:18px; z-index:5; pointer-events:none;
+    font-size:10.5px; letter-spacing:.08em; color:var(--ink-faint);
+    background:rgba(23,29,41,.8); border:1px solid var(--line); border-radius:999px; padding:5px 12px;
+  }
+
+  /* ---- graph elements ---- */
+  .edge{stroke:#48536a; fill:none}
+  .edge.strong{stroke:#5f6d8a; stroke-width:3.2}
+  .edge.normal{stroke-width:1.8}
+  .edge.standby{stroke-width:1.8; stroke-dasharray:5 5}
+  .elabel{
+    font-family:var(--f-body); font-size:10px; letter-spacing:.04em;
+    fill:#8b98af; stroke:var(--bg); stroke-width:3.5px; paint-order:stroke;
+    text-anchor:middle; pointer-events:none;
+  }
+  .node{cursor:pointer}
+  .node circle.core{stroke-width:2}
+  .node text{
+    font-family:var(--f-body); font-size:11.5px; font-weight:500; letter-spacing:.03em;
+    fill:#dfe6f2; stroke:var(--bg); stroke-width:4px; paint-order:stroke;
+    text-anchor:middle; pointer-events:none;
+  }
+  .node .cap{font-size:9.5px; font-weight:400; fill:var(--ink-faint); letter-spacing:.06em}
+  .node.self text.name{font-family:var(--f-display); font-size:15px; font-weight:700; letter-spacing:.14em}
+  .dim{opacity:.13; transition:opacity .25s}
+  .lit .edge{stroke:var(--gold)}
+  .lit .elabel{fill:var(--gold)}
+  .glow{filter:drop-shadow(0 0 14px rgba(246,196,83,.45))}
+  .halo{fill:none; stroke:rgba(246,196,83,.28); stroke-width:1.2}
+
+  /* ---- detail panel ---- */
+  #panel{
+    position:fixed; top:0; right:0; bottom:0; width:340px; z-index:8;
+    background:var(--panel); border-left:1px solid var(--line);
+    padding:26px 24px; overflow-y:auto;
+    transform:translateX(105%); transition:transform .3s cubic-bezier(.2,.7,.2,1);
+    box-shadow:-18px 0 40px rgba(0,0,0,.35);
+  }
+  #panel.open{transform:none}
+  #panel .pchip{
+    display:inline-flex; align-items:center; gap:7px; font-size:10.5px; letter-spacing:.1em;
+    color:var(--ink-dim); border:1px solid var(--line); border-radius:999px; padding:3px 11px 3px 8px;
+  }
+  #panel .pchip i{width:9px;height:9px;border-radius:50%}
+  #panel h2{
+    font-family:var(--f-display); font-size:21px; font-weight:700; letter-spacing:.04em;
+    margin:14px 0 4px; text-wrap:balance;
+  }
+  #panel .role{font-size:12.5px; line-height:1.9; color:var(--ink-dim); margin-top:8px}
+  #panel .ideal-h{
+    margin-top:22px; font-size:10.5px; letter-spacing:.22em; color:var(--gold);
+    border-top:1px solid var(--line); padding-top:16px;
+  }
+  #panel .ideal{font-size:13px; line-height:2.05; margin-top:8px}
+  #panel .links-h{margin-top:22px; font-size:10.5px; letter-spacing:.22em; color:var(--ink-faint)}
+  #panel ul{list-style:none; margin-top:8px; display:flex; flex-direction:column; gap:6px}
+  #panel li{font-size:11.5px; color:var(--ink-dim); line-height:1.6}
+  #panel li b{color:var(--ink); font-weight:500}
+  #close{
+    position:absolute; top:16px; right:16px; width:30px; height:30px;
+    border:1px solid var(--line); border-radius:50%; background:none; color:var(--ink-dim);
+    font-size:14px; line-height:1; cursor:pointer;
+  }
+  #close:hover,#close:focus-visible{color:var(--ink); border-color:var(--ink-dim); outline:none}
+
+  @media (max-width:680px){
+    header{padding:16px 16px 8px}
+    .legend{left:12px; bottom:12px; gap:7px}
+    .hint{display:none}
+    #panel{
+      top:auto; left:0; width:100%; max-height:62vh;
+      border-left:none; border-top:1px solid var(--line);
+      border-radius:18px 18px 0 0; transform:translateY(110%);
+    }
+    #panel.open{transform:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    #panel{transition:none}
+    .dim{transition:none}
+  }
+  /* 幅が狭いとき：文字も一段小さく */
+  @media (max-width:600px){
+    .node text{font-size:10px}
+    .node .cap{font-size:8.5px}
+    .node.self text.name{font-size:12.5px}
+    .elabel{font-size:9px}
+  }
+  /* 埋め込み（iframe）など高さが低いとき：ヘッダーを圧縮 */
+  @media (max-height:700px){
+    header{padding:12px 16px 6px}
+    h1{font-size:17px}
+    .lead{display:none}
+    .note{margin-top:2px;font-size:9.5px}
+    .chips{margin-top:7px}
+    .chip{font-size:9.5px;padding:2px 8px 2px 6px}
+    .hint{display:none}
+    .legend{left:12px;bottom:8px}
+    .lines{font-size:9.5px;gap:4px 10px}
+  }
+</style>
+
+<div id="stage"><svg id="graph" role="img" aria-label="本人を中心に置いた理想の支援ネットワーク図"></svg></div>
+
+<header>
+  <h1>本人が、<span class="accent">真ん中</span>。</h1>
+  <p class="lead">どこで暮らすか。誰と暮らすか。どんな毎日を送るか。——支援者の力を借りながら、決めるのはいつも本人。その仕組みを一枚の地図にした、理想の支援ネットワーク・エコマップ。</p>
+  <p class="note">概念図です。実在の個人の情報は含みません。</p>
+  <div class="chips" id="chips"></div>
+</header>
+
+<div class="legend">
+  <div class="lines">
+    <span><svg viewBox="0 0 30 8"><line x1="0" y1="4" x2="30" y2="4" stroke="#5f6d8a" stroke-width="3.2"/></svg>日々の信頼関係</span>
+    <span><svg viewBox="0 0 30 8"><line x1="0" y1="4" x2="30" y2="4" stroke="#48536a" stroke-width="1.8"/></svg>定期的なつながり</span>
+    <span><svg viewBox="0 0 30 8"><line x1="0" y1="4" x2="30" y2="4" stroke="#48536a" stroke-width="1.8" stroke-dasharray="5 5"/></svg>必要なときに動く控えの関係</span>
+  </div>
+</div>
+<div class="hint">ノードをドラッグで動かす ／ クリックで「理想のかたち」を表示</div>
+
+<aside id="panel" aria-live="polite">
+  <button id="close" aria-label="閉じる">✕</button>
+  <div id="pbody"></div>
+</aside>
+
+<script>
+"use strict";
+const CATS = {
+  self:      {name:"本人",                 color:"#f6c453"},
+  decision:  {name:"本人が決めること",     color:"#f0e3b8"},
+  plan:      {name:"相談・計画",           color:"#4dd0c4"},
+  family:    {name:"家族・仲間",           color:"#ef8fb0"},
+  life:      {name:"暮らしの場",           color:"#7ccf85"},
+  day:       {name:"日中・働く・余暇",     color:"#5aa9e6"},
+  health:    {name:"健康",                 color:"#f2837f"},
+  rights:    {name:"権利擁護・お金",       color:"#b28ef2"},
+  community: {name:"地域",                 color:"#f0a15a"},
+  gov:       {name:"行政",                 color:"#8fa0b8"},
+};
+
+const NODES = [
+  {id:"self", label:"本人（わたし）", cap:"意思決定の主体", cat:"self", r:46,
+   role:"この地図の主人公。支援の「受け手」ではなく、自分の人生の決定者。すべての矢印は、この人の選択を支えるためにある。",
+   ideal:"支援とは、本人の代わりに決めることではない。分かりやすい情報と、実際に試せる体験と、待ってくれる時間があれば、人は自分のことを自分で決められる。この地図は、そのための仕組みを描いたもの。"},
+  {id:"d1", label:"どこで暮らすか", cat:"decision", r:33, angle:245, ring:0.24,
+   role:"実家、グループホーム、ひとり暮らし——住まいの選択。",
+   ideal:"体験利用や宿泊体験を重ね、実際に比べたうえで本人が選ぶ。「空きがあるから」「親が高齢だから」で決めない。"},
+  {id:"d2", label:"誰と暮らすか", cat:"decision", r:33, angle:165, ring:0.24,
+   role:"家族と、仲間と、ひとりで——共に暮らす相手の選択。",
+   ideal:"親と暮らし続けることも、離れて暮らすことも、どちらも対等な選択肢。周囲の都合ではなく、本人の望みから出発する。"},
+  {id:"d3", label:"どんな毎日を送るか", cat:"decision", r:33, angle:315, ring:0.24,
+   role:"働き方、日中の過ごし方、楽しみ方の選択。",
+   ideal:"日中活動は「行かせる場所」ではなく「選んだ場所」。合わなければ変えられるし、変えても誰も責めない。"},
+  {id:"soudan", label:"相談支援専門員", cat:"plan", r:30, angle:-15, ring:0.44,
+   role:"サービス等利用計画をつくり、支援チーム全体をつなぐ要。",
+   ideal:"本人の言葉にならない思いをくみ取り、代弁で終わらせず、本人が自分の言葉で語れる場をつくる。計画は本人のいないところで書かない。"},
+  {id:"kikan", label:"基幹相談支援センター", cat:"plan", r:26, angle:8, ring:0.58,
+   role:"地域の相談支援の中核機関。難しい課題の後ろ盾。",
+   ideal:"支援がうまくいかないとき、相談支援専門員を支える二重の安全網。個別の支援から見えた課題を、地域の資源づくりへ返していく。"},
+  {id:"family", label:"家族", cat:"family", r:28, angle:150, ring:0.44,
+   role:"生育歴と好みを一番よく知る存在。",
+   ideal:"「親なき後」を見据えて、少しずつ手を放しながら、本人の歴史と勘どころを支援チームへ引き継いでいく。先回りして決めない。",
+   },
+  {id:"peer", label:"友人・仲間（当事者活動）", cat:"family", r:28, angle:185, ring:0.46,
+   role:"当事者研究やサークルで出会う、対等な仲間。",
+   ideal:"支援する・されるの関係ではない、横並びのつながり。仲間の「やってみた」の経験談が、本人の選択肢を一番豊かにする。"},
+  {id:"sewanin", label:"グループホームの世話人", cat:"life", r:28, angle:232, ring:0.44,
+   role:"暮らしの場での、日々の支え手。",
+   ideal:"「管理人」ではなく「同じ屋根の下の応援者」。本人のペースと流儀を尊重し、暮らしの主導権はあくまで本人に置く。"},
+  {id:"helper", label:"ヘルパー（居宅介護）", cat:"life", r:26, angle:252, ring:0.5,
+   role:"家事や外出など、生活の具体的な場面を支える。",
+   ideal:"「できない」の代行で終わらせず、「できた」を一つずつ増やす関わり。本人のやり方を奪わない。"},
+  {id:"jiritsu", label:"自立生活援助", cat:"life", r:24, angle:268, ring:0.58,
+   role:"ひとり暮らしへの移行と定着に伴走する制度。",
+   ideal:"実家やグループホームからの「次の一歩」を、現実の選択肢にする。うまくいかなくても、やり直せる伴走。"},
+  {id:"work", label:"働く場（就労支援など）", cat:"day", r:29, angle:300, ring:0.44,
+   role:"就労継続支援B型・A型、一般就労など、働く場と役割。",
+   ideal:"工賃の額だけではなく、役割と出番があること。「ありがとう」が行き交い、働く誇りが育つ場であること。"},
+  {id:"hobby", label:"趣味・余暇のつながり", cat:"day", r:26, angle:328, ring:0.5,
+   role:"鉄道、音楽、スポーツ——好きなことでつながる時間。",
+   ideal:"支援計画に載らない「楽しみ」こそが生活の質。好きなことが、人と地域への扉になる。"},
+  {id:"doctor", label:"かかりつけ医", cat:"health", r:27, angle:95, ring:0.44,
+   role:"体調の変化を継続して診る、身近な医師。",
+   ideal:"本人の表現の癖を知っていて、家族ではなく本人に向かって説明する医師。健康の情報は本人の了解のもとチームで共有する。"},
+  {id:"nurse", label:"訪問看護師", cat:"health", r:25, angle:115, ring:0.52,
+   role:"自宅やホームでの健康管理・服薬の支え。",
+   ideal:"日々の小さな変化にいち早く気づき、医療と暮らしの橋渡しをする。"},
+  {id:"kouken", label:"成年後見人（意思決定支援型）", cat:"rights", r:27, angle:35, ring:0.46,
+   role:"契約や財産管理を法的に支える。",
+   ideal:"「本人に代わって決める人」ではなく「本人が決められるように整える人」。意思決定支援を踏まえた後見事務のガイドラインに沿って動く。"},
+  {id:"shakyo", label:"社協（日常生活自立支援事業）", cat:"rights", r:26, angle:47, ring:0.56,
+   role:"日々のお金の管理や、大事な書類の預かりを手伝う。",
+   ideal:"お金の不安を減らし、そのうえで使い道は本人が決める。管理のための管理にしない。"},
+  {id:"minsei", label:"民生委員・近隣の人", cat:"community", r:25, angle:205, ring:0.58,
+   role:"地域でのゆるやかな見守り。",
+   ideal:"特別な支援者ではない「顔見知り」の力。あいさつが交わせる関係は、災害のときにも効く地域の安全網になる。"},
+  {id:"city", label:"市町村 障害福祉課", cat:"gov", r:26, angle:82, ring:0.58,
+   role:"支給決定、手帳、年金など制度の窓口。",
+   ideal:"制度に本人を当てはめるのではなく、本人の望む暮らしから逆算して必要な支給を組み立てる。"},
+];
+
+const EDGES = [
+  ["self","d1","自分で決める","strong"],
+  ["self","d2","自分で決める","strong"],
+  ["self","d3","自分で決める","strong"],
+  ["soudan","self","意思を聴き、計画へ","strong"],
+  ["soudan","sewanin","チームをつなぐ","normal"],
+  ["soudan","work","チームをつなぐ","normal"],
+  ["soudan","doctor","チームをつなぐ","normal"],
+  ["soudan","city","チームをつなぐ","normal"],
+  ["kikan","soudan","後ろ盾になる","standby"],
+  ["family","self","歴史を伝え、見守る","strong"],
+  ["family","d2","思いを尊重する","normal"],
+  ["peer","self","対等に語り合う","strong"],
+  ["peer","d3","経験を分かち合う","normal"],
+  ["sewanin","self","日々の暮らしを支える","strong"],
+  ["sewanin","d1","住まいの選択肢を広げる","normal"],
+  ["helper","self","「できた」を増やす","normal"],
+  ["jiritsu","self","ひとり暮らしに伴走","standby"],
+  ["jiritsu","d1","次の一歩を選択肢に","standby"],
+  ["work","self","役割と出番をつくる","strong"],
+  ["work","d3","働き方の選択肢を広げる","normal"],
+  ["hobby","self","楽しみを一緒に","normal"],
+  ["doctor","self","体の声を聴く","normal"],
+  ["nurse","self","健康を見守る","normal"],
+  ["nurse","doctor","情報を共有","normal"],
+  ["kouken","self","決定を代行せず支える","normal"],
+  ["shakyo","self","お金の不安を減らす","normal"],
+  ["minsei","self","ゆるやかに見守る","standby"],
+  ["city","self","制度で支える","normal"],
+];
+
+/* ---------- setup ---------- */
+const svg = document.getElementById("graph");
+const NS = "http://www.w3.org/2000/svg";
+const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+let W = innerWidth, H = innerHeight, CX = W/2, CY = H/2 + 14;
+let SC = 1;
+function applyScale(){
+  SC = Math.max(0.62, Math.min(1, Math.min(W, H) / 640));
+  NODES.forEach(n => { n.r = Math.round(n.r0 * SC); });
+}
+
+const byId = {};
+NODES.forEach(n => {
+  byId[n.id] = n;
+  n.r0 = n.r;
+  n.x = CX; n.y = CY; n.vx = 0; n.vy = 0; n.fixed = false;
+});
+applyScale();
+EDGES.forEach(e => { e.s = byId[e[0]]; e.t = byId[e[1]]; });
+
+function homeOf(n){
+  if (n.id === "self") return [CX, CY];
+  const ringMax = Math.max(120, Math.min(W/2 - (W > 600 ? 130 : 72), H/2 - 140));
+  const R = ringMax * ((n.ring || 0.45) / 0.58);
+  const a = (n.angle || 0) * Math.PI / 180;
+  return [CX + Math.cos(a) * R, CY + Math.sin(a) * R * 0.92];
+}
+function seed(){
+  NODES.forEach(n => {
+    const [hx, hy] = homeOf(n);
+    n.x = hx + (n.id==="self"?0:(Math.random()-0.5)*40);
+    n.y = hy + (n.id==="self"?0:(Math.random()-0.5)*40);
+  });
+}
+seed();
+
+/* neighbors for highlight */
+const adj = {};
+NODES.forEach(n => adj[n.id] = new Set([n.id]));
+EDGES.forEach(e => { adj[e[0]].add(e[1]); adj[e[1]].add(e[0]); });
+
+/* ---------- build DOM ---------- */
+const defs = document.createElementNS(NS,"defs");
+defs.innerHTML =
+  '<marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">' +
+  '<path d="M0,0 L10,5 L0,10 z" fill="#5f6d8a"/></marker>' +
+  '<marker id="arrGold" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">' +
+  '<path d="M0,0 L10,5 L0,10 z" fill="#f6c453"/></marker>';
+svg.appendChild(defs);
+const gE = document.createElementNS(NS,"g");
+const gL = document.createElementNS(NS,"g");
+const gN = document.createElementNS(NS,"g");
+svg.appendChild(gE); svg.appendChild(gL); svg.appendChild(gN);
+
+EDGES.forEach(e => {
+  const grp = document.createElementNS(NS,"g");
+  const ln = document.createElementNS(NS,"line");
+  ln.setAttribute("class","edge " + e[3]);
+  ln.setAttribute("marker-end","url(#arr)");
+  grp.appendChild(ln); gE.appendChild(grp);
+  const tx = document.createElementNS(NS,"text");
+  tx.setAttribute("class","elabel");
+  tx.textContent = e[2];
+  gL.appendChild(tx);
+  e.ln = ln; e.tx = tx; e.grp = grp;
+});
+
+NODES.forEach(n => {
+  const g = document.createElementNS(NS,"g");
+  g.setAttribute("class","node" + (n.id==="self" ? " self glow" : ""));
+  g.setAttribute("tabindex","0");
+  g.setAttribute("role","button");
+  g.setAttribute("aria-label", n.label);
+  const c = document.createElementNS(NS,"circle");
+  c.setAttribute("class","core");
+  c.setAttribute("r", n.r);
+  const col = CATS[n.cat].color;
+  if (n.cat === "decision"){
+    c.setAttribute("fill","#3b3118");
+    c.setAttribute("stroke", "#e5c060");
+    c.setAttribute("stroke-dasharray","4 4");
+  } else {
+    c.setAttribute("fill", shade(col, n.id==="self" ? 1 : 0.6));
+    c.setAttribute("stroke", col);
+  }
+  g.appendChild(c);
+  if (n.id === "self"){
+    const h = document.createElementNS(NS,"circle");
+    h.setAttribute("class","halo"); h.setAttribute("r", n.r + 12);
+    g.insertBefore(h, c); n.haloEl = h;
+  }
+  const name = document.createElementNS(NS,"text");
+  name.setAttribute("class","name");
+  name.setAttribute("dy", n.id==="self" ? 5 : n.r + 16);
+  name.textContent = n.label;
+  g.appendChild(name);
+  if (n.cap){
+    const cap = document.createElementNS(NS,"text");
+    cap.setAttribute("class","cap");
+    cap.setAttribute("dy", n.r + 16);
+    cap.textContent = n.cap;
+    g.appendChild(cap);
+  }
+  gN.appendChild(g);
+  n.el = g; n.circleEl = c;
+});
+
+function shade(hex, k){
+  const v = parseInt(hex.slice(1),16);
+  const r = (v>>16)&255, g = (v>>8)&255, b = v&255;
+  const br = 22, bg = 28, bb = 40; /* blend toward bg-soft */
+  const m = (a,c) => Math.round(c + (a-c)*k);
+  return "rgb(" + m(r,br) + "," + m(g,bg) + "," + m(b,bb) + ")";
+}
+
+/* legend chips */
+const chipBox = document.getElementById("chips");
+Object.keys(CATS).forEach(k => {
+  const s = document.createElement("span");
+  s.className = "chip";
+  s.innerHTML = '<i style="background:' + CATS[k].color + '"></i>' + CATS[k].name;
+  chipBox.appendChild(s);
+});
+
+/* ---------- physics ---------- */
+function restLen(e){
+  if (e.s.id==="self" || e.t.id==="self"){
+    if (e.s.cat==="decision" || e.t.cat==="decision") return 165 * SC;
+    return Math.max(150, Math.min(W/2 - 80, H/2 - 140)) * 0.78;
+  }
+  if (e.s.cat==="decision" || e.t.cat==="decision") return 185 * SC;
+  return 170 * SC;
+}
+let tickCount = 0;
+function tick(){
+  tickCount++;
+  /* repulsion */
+  for (let i=0;i<NODES.length;i++){
+    for (let j=i+1;j<NODES.length;j++){
+      const a = NODES[i], b = NODES[j];
+      let dx = b.x-a.x, dy = b.y-a.y;
+      let d2 = dx*dx+dy*dy; if (d2 < 1) { d2 = 1; dx = 1; }
+      const d = Math.sqrt(d2);
+      const min = a.r + b.r + (W > 600 ? 58 : 34);
+      let f = 22000 / d2;
+      if (d < min) f += (min-d)*0.06;
+      f = Math.min(f, 6);
+      const fx = dx/d*f, fy = dy/d*f;
+      a.vx -= fx; a.vy -= fy; b.vx += fx; b.vy += fy;
+    }
+  }
+  /* springs */
+  EDGES.forEach(e => {
+    const dx = e.t.x-e.s.x, dy = e.t.y-e.s.y;
+    const d = Math.max(1, Math.hypot(dx,dy));
+    const f = (d - restLen(e)) * 0.0045;
+    const fx = dx/d*f, fy = dy/d*f;
+    e.s.vx += fx; e.s.vy += fy; e.t.vx -= fx; e.t.vy -= fy;
+  });
+  /* home gravity + ambient wobble */
+  NODES.forEach((n,i) => {
+    const [hx,hy] = homeOf(n);
+    const k = n.id==="self" ? 0.06 : 0.0035;
+    n.vx += (hx-n.x)*k; n.vy += (hy-n.y)*k;
+    if (!reduced && n.id!=="self"){
+      n.vx += Math.sin(tickCount/90 + i*2.1) * 0.012;
+      n.vy += Math.cos(tickCount/110 + i*1.3) * 0.012;
+    }
+  });
+  /* integrate */
+  NODES.forEach(n => {
+    if (n.fixed){ n.vx = 0; n.vy = 0; return; }
+    n.vx *= 0.86; n.vy *= 0.86;
+    const sp = Math.hypot(n.vx,n.vy);
+    if (sp > 5){ n.vx = n.vx/sp*5; n.vy = n.vy/sp*5; }
+    n.x += n.vx; n.y += n.vy;
+    const short = H < 700;
+    const px = Math.max(n.r + 20, W > 600 ? 88 : 46);
+    const pyT = n.r + (short ? 112 : 175), pyB = n.r + (short ? 55 : 75);
+    n.x = Math.max(px, Math.min(W-px, n.x));
+    n.y = Math.max(pyT, Math.min(H-pyB, n.y));
+  });
+}
+
+function render(){
+  EDGES.forEach(e => {
+    const dx = e.t.x-e.s.x, dy = e.t.y-e.s.y;
+    const d = Math.max(1, Math.hypot(dx,dy));
+    const ux = dx/d, uy = dy/d;
+    const x1 = e.s.x + ux*(e.s.r+3), y1 = e.s.y + uy*(e.s.r+3);
+    const x2 = e.t.x - ux*(e.t.r+9), y2 = e.t.y - uy*(e.t.r+9);
+    e.ln.setAttribute("x1",x1); e.ln.setAttribute("y1",y1);
+    e.ln.setAttribute("x2",x2); e.ln.setAttribute("y2",y2);
+    let ang = Math.atan2(dy,dx)*180/Math.PI;
+    if (ang > 90 || ang < -90) ang += 180;
+    const mx = (x1+x2)/2, my = (y1+y2)/2;
+    e.tx.setAttribute("transform","translate("+mx+","+my+") rotate("+ang+") translate(0,-6)");
+  });
+  NODES.forEach(n => {
+    n.el.setAttribute("transform","translate("+n.x+","+n.y+")");
+  });
+}
+
+if (reduced){ for (let i=0;i<600;i++) tick(); }
+function loop(){ tick(); render(); requestAnimationFrame(loop); }
+requestAnimationFrame(loop);
+
+/* ---------- interaction ---------- */
+let dragN = null, moved = false;
+svg.addEventListener("pointerdown", ev => {
+  const g = ev.target.closest(".node");
+  if (!g) return;
+  dragN = NODES.find(n => n.el === g);
+  if (!dragN) return;
+  moved = false;
+  dragN.fixed = true;
+  svg.classList.add("dragging");
+  svg.setPointerCapture(ev.pointerId);
+  ev.preventDefault();
+});
+svg.addEventListener("pointermove", ev => {
+  if (!dragN) return;
+  moved = true;
+  const r = svg.getBoundingClientRect();
+  dragN.x = ev.clientX - r.left;
+  dragN.y = ev.clientY - r.top;
+});
+svg.addEventListener("pointerup", ev => {
+  if (!dragN) return;
+  dragN.fixed = false;
+  if (!moved) openPanel(dragN);
+  dragN = null;
+  svg.classList.remove("dragging");
+});
+svg.addEventListener("pointerdown", ev => {
+  if (!ev.target.closest(".node")) closePanel();
+});
+
+/* hover highlight */
+NODES.forEach(n => {
+  n.el.addEventListener("pointerenter", () => highlight(n));
+  n.el.addEventListener("pointerleave", () => highlight(null));
+  n.el.addEventListener("keydown", ev => {
+    if (ev.key === "Enter" || ev.key === " "){ ev.preventDefault(); openPanel(n); }
+  });
+  n.el.addEventListener("focus", () => highlight(n));
+  n.el.addEventListener("blur", () => highlight(null));
+});
+function highlight(n){
+  if (!n){
+    NODES.forEach(m => m.el.classList.remove("dim"));
+    EDGES.forEach(e => {
+      e.grp.classList.remove("dim","lit");
+      e.tx.classList.remove("dim");
+      e.tx.style.fill = "";
+      e.ln.setAttribute("marker-end","url(#arr)");
+    });
+    return;
+  }
+  NODES.forEach(m => m.el.classList.toggle("dim", !adj[n.id].has(m.id)));
+  EDGES.forEach(e => {
+    const on = (e[0]===n.id || e[1]===n.id);
+    e.grp.classList.toggle("dim", !on);
+    e.tx.classList.toggle("dim", !on);
+    e.grp.classList.toggle("lit", on);
+    e.tx.style.fill = on ? "#f6c453" : "";
+    e.ln.setAttribute("marker-end", on ? "url(#arrGold)" : "url(#arr)");
+  });
+}
+
+/* ---------- panel ---------- */
+const panel = document.getElementById("panel");
+const pbody = document.getElementById("pbody");
+document.getElementById("close").addEventListener("click", closePanel);
+document.addEventListener("keydown", ev => { if (ev.key === "Escape") closePanel(); });
+
+function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+function openPanel(n){
+  const cat = CATS[n.cat];
+  const rel = EDGES.filter(e => e[0]===n.id || e[1]===n.id).map(e => {
+    const outgoing = e[0]===n.id;
+    const other = outgoing ? e.t : e.s;
+    return "<li>" + (outgoing
+      ? "<b>" + esc(e[2]) + "</b> → " + esc(other.label)
+      : esc(other.label) + " → <b>" + esc(e[2]) + "</b>") + "</li>";
+  }).join("");
+  pbody.innerHTML =
+    '<span class="pchip"><i style="background:' + cat.color + '"></i>' + cat.name + '</span>' +
+    '<h2>' + esc(n.label) + '</h2>' +
+    '<p class="role">' + esc(n.role) + '</p>' +
+    '<p class="ideal-h">理想のかたち</p>' +
+    '<p class="ideal">' + esc(n.ideal) + '</p>' +
+    '<p class="links-h">つながり</p><ul>' + rel + '</ul>';
+  panel.classList.add("open");
+}
+function closePanel(){ panel.classList.remove("open"); }
+
+/* ---------- resize ---------- */
+addEventListener("resize", () => {
+  W = innerWidth; H = innerHeight; CX = W/2; CY = H/2 + 14;
+  applyScale();
+  NODES.forEach(n => {
+    n.circleEl.setAttribute("r", n.r);
+    if (n.haloEl) n.haloEl.setAttribute("r", n.r + 12);
+  });
+});
+</script>
+
+</body>
+</html>
