@@ -79,6 +79,13 @@ export const sudachiReports: PdfDoc[] = [
     cover: '/images/newsletter/2023-report-cover.jpg',
     meta: '2023年度 ・ PDF 16ページ ・ 約8.5MB',
   },
+  {
+    // 初年度はローマ数字なし（sudachi.astro の表記に合わせる）
+    title: '巣立ちプロジェクト 2022報告書',
+    file: '/pdfs/newsletter-archive/%E5%B7%A3%E7%AB%8B%E3%81%A1%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%882022%E5%A0%B1%E5%91%8A%E6%9B%B8.pdf',
+    cover: '/images/newsletter/2022-report-cover.jpg',
+    meta: '2022年度 ・ PDF 12ページ ・ 約1MB',
+  },
 ];
 
 // 研修会アーカイブ
