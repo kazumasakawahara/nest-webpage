@@ -191,6 +191,7 @@
 "use strict";
 const CATS = {
   self:      {name:"本人",                 color:"#f6c453"},
+  sdm:       {name:"意思決定支援",         color:"#dfa244"},
   decision:  {name:"本人が決めること",     color:"#f0e3b8"},
   plan:      {name:"相談・計画",           color:"#4dd0c4"},
   family:    {name:"家族・仲間",           color:"#ef8fb0"},
@@ -206,6 +207,9 @@ const NODES = [
   {id:"self", label:"本人（わたし）", cap:"意思決定の主体", cat:"self", r:46,
    role:"この地図の主人公。支援の「受け手」ではなく、自分の人生の決定者。すべての矢印は、この人の選択を支えるためにある。",
    ideal:"支援とは、本人の代わりに決めることではない。分かりやすい情報と、実際に試せる体験と、待ってくれる時間があれば、人は自分のことを自分で決められる。この地図は、そのための仕組みを描いたもの。"},
+  {id:"sdm", label:"意思決定支援者", cap:"いつも傍らに", cat:"sdm", r:31, angle:272, ring:0.2,
+   role:"本人の傍らで、思いが言葉になるまで待ち、選ぶ過程に伴走する人。特定の資格の名前ではなく、本人が「この人となら考えられる」と感じて選んだ関わりのこと。",
+   ideal:"情報をわかりやすく手渡し、実際に試せる体験の機会をつくり、決めるのを急かさない。うまく言えない日は、表情やしぐさから思いをすくい上げる。決めた結果が周りの期待と違っても、まず本人の側に立つ。"},
   {id:"d1", label:"どこで暮らすか", cat:"decision", r:33, angle:245, ring:0.24,
    role:"実家、グループホーム、ひとり暮らし——住まいの選択。",
    ideal:"体験利用や宿泊体験を重ね、実際に比べたうえで本人が選ぶ。「空きがあるから」「親が高齢だから」で決めない。"},
@@ -267,6 +271,11 @@ const EDGES = [
   ["self","d1","自分で決める","strong"],
   ["self","d2","自分で決める","strong"],
   ["self","d3","自分で決める","strong"],
+  ["sdm","self","傍らで思いを聴く","strong"],
+  ["sdm","d1","一緒に見て、比べる","normal"],
+  ["sdm","d2","気持ちを言葉にする","normal"],
+  ["sdm","d3","「試してみる」を支える","normal"],
+  ["soudan","sdm","計画に反映する","normal"],
   ["soudan","self","意思を聴き、計画へ","strong"],
   ["soudan","sewanin","チームをつなぐ","normal"],
   ["soudan","work","チームをつなぐ","normal"],
@@ -393,7 +402,7 @@ NODES.forEach(n => {
   if (n.cap){
     const cap = document.createElementNS(NS,"text");
     cap.setAttribute("class","cap");
-    cap.setAttribute("dy", n.r + 16);
+    cap.setAttribute("dy", n.id === "self" ? n.r + 16 : n.r + 30);
     cap.textContent = n.cap;
     g.appendChild(cap);
   }
@@ -422,6 +431,7 @@ Object.keys(CATS).forEach(k => {
 function restLen(e){
   if (e.s.id==="self" || e.t.id==="self"){
     if (e.s.cat==="decision" || e.t.cat==="decision") return 165 * SC;
+    if (e.s.cat==="sdm" || e.t.cat==="sdm") return 150 * SC;
     return Math.max(150, Math.min(W/2 - 80, H/2 - 140)) * 0.78;
   }
   if (e.s.cat==="decision" || e.t.cat==="decision") return 185 * SC;
@@ -472,7 +482,7 @@ function tick(){
     n.x += n.vx; n.y += n.vy;
     const short = H < 700;
     const px = Math.max(n.r + 20, W > 600 ? 88 : 46);
-    const pyT = n.r + (short ? 112 : 175), pyB = n.r + (short ? 55 : 75);
+    const pyT = n.r + (short ? 112 : 215), pyB = n.r + (short ? 55 : 75);
     n.x = Math.max(px, Math.min(W-px, n.x));
     n.y = Math.max(pyT, Math.min(H-pyB, n.y));
   });
