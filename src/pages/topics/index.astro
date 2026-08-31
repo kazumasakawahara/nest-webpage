@@ -1,0 +1,120 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+
+const topics = (await getCollection('topics', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+
+const fmtDate = (d: Date) =>
+  `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
+---
+
+<BaseLayout
+  title="トピック ― 法律・制度を読む"
+  description="障害のある方とご家族の暮らしにかかわる法律改正・制度改正を、条文にも踏み込んで解説する常設コーナーです。"
+>
+  <Hero
+    eyebrow="TOPICS"
+    title="トピック ― 法律・制度を読む"
+    lead="障害のある方とご家族の暮らしにかかわる法律や制度の改正を、条文にも踏み込んで、少していねいに解説していきます。"
+    size="md"
+    placeholderLabel="TOPICS"
+  />
+
+  <section class="section">
+    <div class="container container--narrow">
+      <p class="topics-intro reveal">
+        制度の改正は、新聞の見出しだけでは「自分たちに何が起きるのか」が見えにくいものです。このコーナーでは、なるべく条文そのものに当たりながら、暮らしと支援の現場の目線で読みほどきます。記事は少しずつ増やしていきます。
+      </p>
+
+      <ul class="topics-list">
+        {
+          topics.map((t, i) => (
+            <li class="topics-list__item reveal" data-delay={(i % 3) + 1}>
+              <a href={`/topics/${t.id}/`} class="topics-list__link">
+                <time class="topics-list__date" datetime={t.data.date.toISOString()}>
+                  {fmtDate(t.data.date)}
+                </time>
+                <h2 class="topics-list__title">{t.data.title}</h2>
+                {t.data.summary && <p class="topics-list__summary">{t.data.summary}</p>}
+                <span class="topics-list__more">読む →</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <p class="text-soft text-center" style="margin-top:var(--space-7);">
+        ※ 解説は執筆時点の公表資料に基づくものです。個別の事案の判断にあたっては、各記事末尾の出典（原典）をご確認ください。
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .topics-intro {
+    font-size: 15px;
+    color: var(--color-ink-mute);
+    line-height: 2;
+    margin-bottom: var(--space-6);
+  }
+
+  .topics-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .topics-list__item {
+    border-top: 1px solid var(--color-line);
+  }
+
+  .topics-list__item:last-child {
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .topics-list__link {
+    display: block;
+    padding: var(--space-5) var(--space-3);
+    color: var(--color-ink);
+    transition: background-color var(--dur-fast) var(--ease-out);
+  }
+
+  .topics-list__link:hover {
+    background-color: rgba(74, 140, 63, 0.04);
+    color: var(--color-ink);
+  }
+
+  .topics-list__date {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-ink-soft);
+    letter-spacing: 0.05em;
+  }
+
+  .topics-list__title {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-green-900);
+    line-height: 1.6;
+    margin-block: var(--space-1) var(--space-2);
+  }
+
+  .topics-list__summary {
+    font-size: 13.5px;
+    color: var(--color-ink-mute);
+    line-height: 1.9;
+    margin-bottom: var(--space-2);
+  }
+
+  .topics-list__more {
+    font-size: 13px;
+    color: var(--color-green-700);
+  }
+
+  .topics-list__link:hover .topics-list__more {
+    color: var(--color-terra-500);
+  }
+</style>

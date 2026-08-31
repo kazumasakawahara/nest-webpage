@@ -1,0 +1,326 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const items = await getCollection('topics', ({ data }) => !data.draft);
+  return items.map((item) => ({
+    params: { slug: item.id },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+const { Content } = await render(item);
+
+const fmtDate = (d: Date) =>
+  `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
+---
+
+<BaseLayout title={item.data.title} description={item.data.summary ?? item.data.title}>
+  <article class="topic-article">
+    <div class="container container--narrow">
+      <header class="topic-article__head reveal">
+        <a href="/topics/" class="topic-article__back">
+          <span aria-hidden="true">←</span> トピック 一覧へ
+        </a>
+        <span class="badge badge--accent">トピック</span>
+        <h1 class="topic-article__title">{item.data.title}</h1>
+        <time class="topic-article__date" datetime={item.data.date.toISOString()}>
+          {fmtDate(item.data.date)}
+        </time>
+      </header>
+
+      <div class="topic-article__body reveal">
+        <Content />
+      </div>
+
+      <div class="topic-article__foot reveal">
+        <a href="/topics/" class="btn btn--outline">一覧に戻る</a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .topic-article {
+    padding-block: var(--space-9) var(--space-8);
+  }
+
+  .topic-article__head {
+    text-align: center;
+    margin-bottom: var(--space-7);
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .topic-article__back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 13px;
+    color: var(--color-ink-mute);
+    font-family: var(--font-mono);
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-5);
+  }
+
+  .topic-article__back:hover { color: var(--color-terra-500); }
+
+  .topic-article__title {
+    font-family: var(--font-serif);
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--color-green-900);
+    line-height: 1.5;
+    margin-block: var(--space-4);
+  }
+
+  .topic-article__date {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--color-ink-soft);
+    letter-spacing: 0.05em;
+  }
+
+  .topic-article__body {
+    font-size: 16px;
+    line-height: 2;
+    color: var(--color-ink);
+  }
+
+  .topic-article__body :global(p) { margin-bottom: var(--space-5); }
+  .topic-article__body :global(h2) {
+    font-size: 22px;
+    margin-top: var(--space-7);
+    margin-bottom: var(--space-3);
+    color: var(--color-green-900);
+  }
+  .topic-article__body :global(h3) {
+    font-size: 18px;
+    margin-top: var(--space-5);
+    margin-bottom: var(--space-3);
+    color: var(--color-green-900);
+  }
+  .topic-article__body :global(ul),
+  .topic-article__body :global(ol) {
+    padding-left: 1.6em;
+    margin-bottom: var(--space-5);
+  }
+  .topic-article__body :global(ul) { list-style: disc; }
+  .topic-article__body :global(ol) { list-style: decimal; }
+  .topic-article__body :global(li) { margin-bottom: var(--space-2); }
+  .topic-article__body :global(a) {
+    color: var(--color-green-700);
+    border-bottom: 1px solid currentColor;
+  }
+  .topic-article__body :global(a:hover) {
+    color: var(--color-terra-500);
+  }
+  .topic-article__body :global(strong) {
+    color: var(--color-green-900);
+    font-weight: 600;
+  }
+  .topic-article__body :global(img) {
+    max-width: 100%;
+    height: auto;
+  }
+  .topic-article__body :global(hr) {
+    border: none;
+    border-top: 1px solid var(--color-line);
+    margin: var(--space-7) 0 var(--space-5);
+  }
+
+  /* 法律名の枠 */
+  .topic-article__body :global(.topic-lawref) {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    color: var(--color-ink-mute);
+    line-height: 1.9;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    padding: var(--space-4) var(--space-5);
+    margin-bottom: var(--space-5);
+  }
+
+  /* 施行スケジュール */
+  .topic-article__body :global(.topic-schedule) {
+    border-left: 3px solid var(--color-green-700);
+    padding: var(--space-1) 0 var(--space-1) var(--space-5);
+    margin: var(--space-5) 0 var(--space-6);
+  }
+  .topic-article__body :global(.topic-schedule dl) {
+    margin: 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 20px;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .topic-article__body :global(.topic-schedule dt) {
+    font-family: var(--font-serif);
+    white-space: nowrap;
+    color: var(--color-green-700);
+    font-weight: 600;
+  }
+  .topic-article__body :global(.topic-schedule dd) { margin: 0; }
+  @media (max-width: 600px) {
+    .topic-article__body :global(.topic-schedule dl) { grid-template-columns: 1fr; gap: 2px; }
+    .topic-article__body :global(.topic-schedule dd) { margin-bottom: var(--space-2); }
+  }
+
+  /* 図版 */
+  .topic-article__body :global(.topic-figure) {
+    margin: var(--space-6) 0;
+  }
+  .topic-article__body :global(.topic-figure img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line-soft);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+  }
+  .topic-article__body :global(.topic-figure figcaption) {
+    margin-top: var(--space-2);
+    font-size: 13px;
+    color: var(--color-ink-mute);
+    line-height: 1.7;
+  }
+
+  /* 条文の新旧対照 */
+  .topic-article__body :global(.taisho) {
+    margin: var(--space-5) 0;
+    border: 1px solid var(--color-line);
+    background: var(--color-paper);
+  }
+  .topic-article__body :global(.taisho-head) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    font-size: 13px;
+    border-bottom: 1px solid var(--color-line);
+  }
+  .topic-article__body :global(.taisho-head div) {
+    padding: 7px 14px;
+    font-family: var(--font-serif);
+  }
+  .topic-article__body :global(.taisho-head .new) {
+    background: var(--color-green-100);
+    color: var(--color-green-700);
+    border-right: 1px solid var(--color-line);
+  }
+  .topic-article__body :global(.taisho-head .old) {
+    background: var(--color-sand);
+    color: var(--color-ink-mute);
+  }
+  .topic-article__body :global(.taisho-body) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .topic-article__body :global(.taisho-body > div) {
+    padding: var(--space-4) var(--space-4) 18px;
+    font-family: var(--font-serif);
+    font-size: 14px;
+    line-height: 1.9;
+  }
+  .topic-article__body :global(.taisho-body .new) { border-right: 1px solid var(--color-line); }
+  .topic-article__body :global(.taisho-body .old) {
+    color: var(--color-ink-mute);
+    background: #fcfbf8;
+  }
+  .topic-article__body :global(.taisho b) {
+    background: linear-gradient(transparent 62%, #f3e2a8 62%);
+    font-weight: 600;
+    color: inherit;
+  }
+  .topic-article__body :global(.taisho .old b) {
+    background: linear-gradient(transparent 62%, #e8e2d4 62%);
+    font-weight: 400;
+  }
+  .topic-article__body :global(.taisho .kesu) {
+    color: var(--color-terra-700);
+    font-family: var(--font-sans);
+    font-size: 12.5px;
+    margin: var(--space-3) 0 0;
+  }
+  .topic-article__body :global(.taisho .jo) {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 2px;
+  }
+  @media (max-width: 640px) {
+    .topic-article__body :global(.taisho-head) { grid-template-columns: 1fr; }
+    .topic-article__body :global(.taisho-head .new) {
+      border-right: none;
+      border-bottom: 1px solid var(--color-line);
+    }
+    .topic-article__body :global(.taisho-body) { grid-template-columns: 1fr; }
+    .topic-article__body :global(.taisho-body .new) {
+      border-right: none;
+      border-bottom: 1px solid var(--color-line);
+    }
+  }
+
+  /* 読みどころ／注意ブロック */
+  .topic-article__body :global(.point) {
+    background: var(--color-green-100);
+    border-left: 3px solid var(--color-green-700);
+    padding: var(--space-4) var(--space-5);
+    margin: var(--space-5) 0;
+    font-size: 15px;
+    line-height: 1.9;
+  }
+  .topic-article__body :global(.point p) { margin: 0; }
+  .topic-article__body :global(.point p + p) { margin-top: var(--space-3); }
+  .topic-article__body :global(.point b) {
+    font-weight: 600;
+    color: var(--color-green-900);
+  }
+  .topic-article__body :global(.chui) {
+    background: var(--color-terra-100);
+    border-left: 3px solid var(--color-terra-500);
+    padding: var(--space-4) var(--space-5);
+    margin: var(--space-5) 0;
+    font-size: 15px;
+    line-height: 1.9;
+  }
+  .topic-article__body :global(.chui p) { margin: 0; }
+  .topic-article__body :global(.chui strong) { color: var(--color-terra-700); }
+
+  /* 表（Markdownテーブル） */
+  .topic-article__body :global(table) {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.8;
+    margin: var(--space-5) 0;
+  }
+  .topic-article__body :global(th),
+  .topic-article__body :global(td) {
+    border-bottom: 1px solid var(--color-line);
+    padding: var(--space-3) var(--space-3);
+    text-align: left;
+    vertical-align: top;
+  }
+  .topic-article__body :global(th) {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .topic-article__body :global(thead th) {
+    border-bottom: 1.5px solid var(--color-green-900);
+  }
+  @media (max-width: 640px) {
+    .topic-article__body :global(table) { display: block; overflow-x: auto; }
+  }
+
+  .topic-article__foot {
+    margin-top: var(--space-8);
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .topic-article__title { font-size: 22px; }
+  }
+</style>

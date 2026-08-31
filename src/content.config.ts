@@ -7,7 +7,7 @@ const news = defineCollection({
     title: z.string(),
     date: z.coerce.date(),
     summary: z.string().optional(),
-    tag: z.enum(['お知らせ', 'イベント', '事業所', 'メディア', 'トピック']).default('お知らせ'),
+    tag: z.enum(['お知らせ', 'イベント', '事業所', 'メディア']).default('お知らせ'),
     image: z.string().optional(),
     draft: z.boolean().default(false),
   }),
@@ -30,4 +30,15 @@ const aiTips = defineCollection({
   }),
 });
 
-export const collections = { news, aiTips };
+// トピック：法律・制度の改正を解説する常設コーナー（/topics/）
+const topics = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/topics' }),
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    summary: z.string().optional(),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { news, aiTips, topics };
