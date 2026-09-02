@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440" width="640" height="440" role="img" aria-label="A4一枚の配布物のイメージ。見出し「懐かしい香月線」、3つの項目「路線の概要」「炭鉱と運営」「廃止と思い出」、最後に「香月線に乗ったことのある方、当日ぜひ話を聞かせてください」の一行">
+  <defs>
+    <style>
+      .t { font-family: 'Shippori Mincho B1', 'Hiragino Mincho ProN', serif; fill: #2f2a24; }
+      .h { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; fill: #2f2a24; }
+      .note { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; fill: #b85f3d; }
+    </style>
+  </defs>
+
+  <!-- 机（クリーム） -->
+  <rect width="640" height="440" rx="16" fill="#faf6ef"/>
+
+  <!-- 紙の影と紙 -->
+  <rect x="112" y="30" width="416" height="392" rx="4" fill="#d9d2c4" opacity="0.7"/>
+  <rect x="104" y="22" width="416" height="392" rx="4" fill="#ffffff" stroke="#e2dccf"/>
+
+  <!-- 見出し -->
+  <text x="312" y="70" text-anchor="middle" class="h" font-size="26">懐かしい香月線</text>
+  <line x1="150" y1="84" x2="474" y2="84" stroke="#3f6b4a" stroke-width="2"/>
+
+  <!-- 項目1 -->
+  <text x="140" y="118" class="h" font-size="15" fill="#3f6b4a">1. 路線の概要</text>
+  <text x="140" y="140" class="t" font-size="12">香月線は筑豊本線の中間駅から香月駅までを結ぶ短い線でした。</text>
+  <text x="140" y="158" class="t" font-size="12">もともと石炭輸送のために建設された路線です。</text>
+
+  <!-- 項目2 -->
+  <text x="140" y="194" class="h" font-size="15" fill="#3f6b4a">2. 炭鉱と運営</text>
+  <text x="140" y="216" class="t" font-size="12">石炭を運ぶという重要な役割を担っていた香月線でしたが、</text>
+  <text x="140" y="234" class="t" font-size="12">炭鉱が閉まるとともに、乗客数が減少していきました。</text>
+
+  <!-- 項目3 -->
+  <text x="140" y="270" class="h" font-size="15" fill="#3f6b4a">3. 廃止と思い出</text>
+  <text x="140" y="292" class="t" font-size="12">昭和60年（1985年）の4月1日に香月線は廃止されました。</text>
+  <text x="140" y="310" class="t" font-size="12">私は小学生のころ、香月の親戚の家に行くときに</text>
+  <text x="140" y="328" class="t" font-size="12">この線に乗った経験があります。</text>
+
+  <!-- 最後の一行（Sさんが足した） -->
+  <rect x="132" y="352" width="360" height="40" rx="6" fill="#eef3e6"/>
+  <text x="312" y="377" text-anchor="middle" class="h" font-size="13" fill="#2f2a24">香月線に乗ったことのある方、当日ぜひ話を聞かせてください。</text>
+
+  <!-- 付箋メモ -->
+  <g transform="rotate(-6 560 120)">
+    <rect x="500" y="90" width="112" height="64" fill="#fbe7a6" stroke="#e6cf7a"/>
+    <text x="556" y="116" text-anchor="middle" class="note" font-size="12">最後の一行は</text>
+    <text x="556" y="136" text-anchor="middle" class="note" font-size="12">私が足した</text>
+  </g>
+
+  <!-- 湯のみ -->
+  <g transform="translate(40 330)">
+    <ellipse cx="30" cy="44" rx="30" ry="8" fill="#e2dccf"/>
+    <path d="M6 12 q0 34 24 34 q24 0 24 -34 Z" fill="#3f6b4a"/>
+    <ellipse cx="30" cy="12" rx="24" ry="6" fill="#5f8a6a"/>
+    <path d="M22 -2 q4 -8 0 -14 M32 -4 q4 -8 0 -14" stroke="#b9b0a0" stroke-width="1.5" fill="none" opacity="0.8"/>
+  </g>
+</svg>

@@ -37,7 +37,7 @@ const wazaItems = all.filter((e) => !e.data.kind).sort(byDateDesc);
 
 // 特集コーナーの所属判定：特集専属（kind===特集名）か、棚に残したままの併載（series に特集名）
 type Entry = (typeof all)[number];
-type FeatureId = 'dougu' | 'haiyu' | 'google' | 'asobi' | 'genko' | 'ronbun';
+type FeatureId = 'dougu' | 'haiyu' | 'google' | 'asobi' | 'genko' | 'ronbun' | 'oshieru';
 const inFeature = (id: FeatureId) => (e: Entry) =>
   e.data.kind === id || (e.data.series ?? []).includes(id);
 
@@ -72,6 +72,9 @@ const genkoItems = all.filter(inFeature('genko')).sort((a, b) => a.id.localeComp
 
 // 特集・論文編（ファイル名の日付順＝読む順）
 const ronbunItems = all.filter(inFeature('ronbun')).sort((a, b) => a.id.localeCompare(b.id));
+
+// 特集・AIさんに、教える（ファイル名の日付順＝読む順）
+const oshieruItems = all.filter(inFeature('oshieru')).sort((a, b) => a.id.localeCompare(b.id));
 
 // 相棒編：読みもの＋連載本編（ファイル名の連番順）＋実践編（日付順）
 const aibouIntro = all.find((e) => e.data.kind === 'aibou');
@@ -133,10 +136,36 @@ const fmtDate = (d: Date) =>
         🗂 <strong>特集コーナー</strong> ― まとまりで読みたいときは、こちらから。見出しを押すと目次がひらきます。
       </p>
 
-      {ronbunItems.length > 0 && (
-        <details class="feature-box reveal" id="ronbun" open>
+      {oshieruItems.length > 0 && (
+        <details class="feature-box reveal" id="oshieru" open>
           <summary class="feature-box__summary">
-            <span class="feature-box__eyebrow">🎓 特集コーナー・NEW</span>
+            <span class="feature-box__eyebrow">🍵 特集コーナー・NEW</span>
+            <h3 class="feature-box__title">AIさんに、教える ― 好きなことの話をしに行く（全{oshieruItems.length}回）</h3>
+            <span class="feature-box__toggle" aria-hidden="true">＋</span>
+          </summary>
+          <div class="feature-box__body">
+            <p class="feature-box__lead">
+              この特集には、AIの説明が出てきません。出てくるのは、鉄道、庭、釣り、歌——<strong>誰かの「好き」の話だけ</strong>です。好きな分野では、あなたのほうがAIより詳しい。だから最初の一言は「教えて」ではなく、<strong>「私のほうが詳しいと思うけど、聞いてくれる？」</strong>。AIは、あなたの話を聞きに来た新人です。間違えたら、教えてやってください。そして話した中身は、誰かに持っていける一枚にして終わります。
+            </p>
+            <img class="feature-box__img" src="/images/ai-tips/oshieru-1-engawa.svg" alt="縁側に腰かけた年配の鉄道好きが「私のほうが詳しいと思うけど、聞いてくれる？」と話しかけ、隣でノートを開いた小さなAIさん人形が「聞かせてください」と答えている絵" width="640" height="400" loading="lazy" />
+            <ol class="feature-box__list">
+              {oshieruItems.map((item) => (
+                <li class="feature-box__item">
+                  <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
+                    <span class="feature-box__name">{item.data.title}</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+            <p class="feature-box__coming">あなたの「好き」も、教えてください。次の回の題材にします——<a href="/contact/">お問い合わせフォーム</a>へ。</p>
+          </div>
+        </details>
+      )}
+
+      {ronbunItems.length > 0 && (
+        <details class="feature-box reveal" id="ronbun">
+          <summary class="feature-box__summary">
+            <span class="feature-box__eyebrow">🎓 特集コーナー</span>
             <h3 class="feature-box__title">論文編 ― 研究室をまるごと道具箱に（全{ronbunItems.length}回）</h3>
             <span class="feature-box__toggle" aria-hidden="true">＋</span>
           </summary>

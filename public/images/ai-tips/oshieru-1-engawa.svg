@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-label="縁側に腰かけた年配の鉄道好きが、湯のみを手に「私のほうが詳しいと思うけど、聞いてくれる？」と話しかけ、隣でノートを開いた小さなAIさん人形が「聞かせてください」と答えている絵">
+  <defs>
+    <style>
+      .cap { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; fill: #2f2a24; }
+    </style>
+  </defs>
+
+  <!-- 空と庭 -->
+  <rect width="640" height="400" rx="16" fill="#faf6ef"/>
+  <rect x="0" y="0" width="640" height="230" rx="16" fill="#eef3e6"/>
+  <!-- 遠くの高架と電車 -->
+  <rect x="0" y="150" width="640" height="10" fill="#d9d2c4"/>
+  <g fill="#c9c1b0">
+    <rect x="60" y="160" width="10" height="70"/>
+    <rect x="200" y="160" width="10" height="70"/>
+    <rect x="340" y="160" width="10" height="70"/>
+    <rect x="480" y="160" width="10" height="70"/>
+  </g>
+  <g>
+    <rect x="300" y="122" width="170" height="28" rx="6" fill="#3f6b4a"/>
+    <rect x="310" y="128" width="26" height="12" rx="2" fill="#eef3e6"/>
+    <rect x="344" y="128" width="26" height="12" rx="2" fill="#eef3e6"/>
+    <rect x="378" y="128" width="26" height="12" rx="2" fill="#eef3e6"/>
+    <rect x="412" y="128" width="26" height="12" rx="2" fill="#eef3e6"/>
+    <rect x="300" y="142" width="170" height="4" fill="#b85f3d"/>
+  </g>
+
+  <!-- 縁側 -->
+  <rect x="0" y="250" width="640" height="150" fill="#d8b98a"/>
+  <g stroke="#c5a274" stroke-width="2">
+    <line x1="0" y1="280" x2="640" y2="280"/>
+    <line x1="0" y1="310" x2="640" y2="310"/>
+    <line x1="0" y1="340" x2="640" y2="340"/>
+    <line x1="0" y1="370" x2="640" y2="370"/>
+  </g>
+  <rect x="0" y="230" width="640" height="22" fill="#b98f5c"/>
+
+  <!-- 年配の人（Sさん） -->
+  <g transform="translate(150 150)">
+    <!-- 体 -->
+    <path d="M-40 130 q0 -60 40 -60 q40 0 40 60 Z" fill="#5c6f8a"/>
+    <!-- 頭 -->
+    <circle cx="0" cy="40" r="30" fill="#f2d3b3"/>
+    <!-- 帽子 -->
+    <path d="M-32 30 q32 -30 64 0 Z" fill="#3f6b4a"/>
+    <rect x="-36" y="26" width="72" height="8" rx="4" fill="#3f6b4a"/>
+    <!-- 目と口 -->
+    <circle cx="-10" cy="44" r="2.5" fill="#2f2a24"/>
+    <circle cx="10" cy="44" r="2.5" fill="#2f2a24"/>
+    <path d="M-8 56 q8 6 16 0" stroke="#2f2a24" stroke-width="2" fill="none"/>
+    <!-- 湯のみ -->
+    <g transform="translate(46 98)">
+      <path d="M-10 0 q0 20 10 20 q10 0 10 -20 Z" fill="#3f6b4a"/>
+      <ellipse cx="0" cy="0" rx="10" ry="3" fill="#5f8a6a"/>
+      <path d="M-3 -6 q3 -6 0 -12 M4 -8 q3 -6 0 -12" stroke="#b9b0a0" stroke-width="1.5" fill="none" opacity="0.8"/>
+    </g>
+  </g>
+
+  <!-- AIさん人形 -->
+  <g transform="translate(400 190)">
+    <!-- 体 -->
+    <rect x="-26" y="30" width="52" height="60" rx="12" fill="#f4e9d6" stroke="#b85f3d" stroke-width="2"/>
+    <!-- 頭 -->
+    <rect x="-24" y="-16" width="48" height="44" rx="12" fill="#ffffff" stroke="#b85f3d" stroke-width="2"/>
+    <circle cx="-9" cy="6" r="3" fill="#2f2a24"/>
+    <circle cx="9" cy="6" r="3" fill="#2f2a24"/>
+    <path d="M-6 16 q6 5 12 0" stroke="#2f2a24" stroke-width="2" fill="none"/>
+    <line x1="0" y1="-16" x2="0" y2="-28" stroke="#b85f3d" stroke-width="2"/>
+    <circle cx="0" cy="-31" r="4" fill="#b85f3d"/>
+    <!-- ノートと鉛筆 -->
+    <rect x="-40" y="56" width="34" height="26" rx="3" fill="#ffffff" stroke="#8a7f6e"/>
+    <line x1="-34" y1="64" x2="-12" y2="64" stroke="#c9c1b0"/>
+    <line x1="-34" y1="70" x2="-12" y2="70" stroke="#c9c1b0"/>
+    <line x1="-34" y1="76" x2="-16" y2="76" stroke="#c9c1b0"/>
+    <line x1="20" y1="58" x2="34" y2="44" stroke="#b85f3d" stroke-width="3"/>
+    <!-- 新人札 -->
+    <rect x="4" y="36" width="26" height="14" rx="2" fill="#ffffff" stroke="#8a7f6e"/>
+    <text x="17" y="47" text-anchor="middle" class="cap" font-size="9">新人</text>
+  </g>
+
+  <!-- 吹き出し（Sさん） -->
+  <g>
+    <rect x="34" y="24" width="270" height="72" rx="14" fill="#ffffff" stroke="#3f6b4a" stroke-width="2"/>
+    <path d="M150 96 l14 22 l14 -22 Z" fill="#ffffff" stroke="#3f6b4a" stroke-width="2"/>
+    <rect x="152" y="92" width="24" height="6" fill="#ffffff"/>
+    <text x="169" y="54" text-anchor="middle" class="cap" font-size="15">私のほうが詳しいと思うけど、</text>
+    <text x="169" y="80" text-anchor="middle" class="cap" font-size="15">聞いてくれる？</text>
+  </g>
+
+  <!-- 吹き出し（AIさん） -->
+  <g>
+    <rect x="420" y="70" width="180" height="46" rx="14" fill="#ffffff" stroke="#b85f3d" stroke-width="2"/>
+    <path d="M470 116 l-10 22 l24 -22 Z" fill="#ffffff" stroke="#b85f3d" stroke-width="2"/>
+    <rect x="466" y="112" width="20" height="6" fill="#ffffff"/>
+    <text x="510" y="99" text-anchor="middle" class="cap" font-size="15">聞かせてください</text>
+  </g>
+</svg>
