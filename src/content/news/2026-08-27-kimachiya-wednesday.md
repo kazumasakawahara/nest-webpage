@@ -6,6 +6,11 @@ summary: キッチン＆マルシェ木町家は、9月と10月の毎週水曜�
 image: /images/kimachiya-notice-wednesday.jpg
 ---
 
+<figure class="news-figure--right">
+  <img src="/images/kimachiya-makasete-wednesday.jpg" alt="「まかせて水曜日。」のロゴ。コック帽とフォーク・ナイフに囲まれた文字、家の輪郭、そして「木町家の新しいチャレンジ、はじまります。」の一文" width="720" height="720" loading="lazy" decoding="async" />
+  <figcaption>11月から始まる「まかせて水曜日」のロゴ</figcaption>
+</figure>
+
 キッチン＆マルシェ木町家は、**9月と10月の毎週水曜日をお休み**させていただきます。楽しみにしてくださっているお客様には、ご不便をおかけします。
 
 - 9月：2日・9日・16日・23日・30日

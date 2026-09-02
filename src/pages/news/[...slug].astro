@@ -95,6 +95,7 @@ const fmtDate = (d: Date) =>
     margin-top: var(--space-7);
     margin-bottom: var(--space-3);
     color: var(--color-green-900);
+    clear: both;
   }
   .news-article__body :global(h3) {
     font-size: 18px;
@@ -124,6 +125,36 @@ const fmtDate = (d: Date) =>
   .news-article__body :global(img) {
     max-width: 100%;
     height: auto;
+  }
+
+  /* 本文の右脇に回り込む図版（ロゴ・小さな図など） */
+  .news-article__body :global(.news-figure--right) {
+    float: right;
+    width: 260px;
+    max-width: 40%;
+    margin: var(--space-1) 0 var(--space-5) var(--space-6);
+  }
+  .news-article__body :global(.news-figure--right img) {
+    display: block;
+    width: 100%;
+    background: var(--color-paper);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+  }
+  .news-article__body :global(.news-figure--right figcaption) {
+    margin-top: var(--space-2);
+    font-size: 13px;
+    color: var(--color-ink-mute);
+    line-height: 1.6;
+    text-align: center;
+  }
+  @media (max-width: 600px) {
+    .news-article__body :global(.news-figure--right) {
+      float: none;
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto var(--space-5);
+    }
   }
 
   /* 記事内フォトギャラリー（マソンリー） */
