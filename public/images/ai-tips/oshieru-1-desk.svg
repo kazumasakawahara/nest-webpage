@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-label="机で書類を並べ替えている若い人が「私のことは、私がいちばん詳しい。聞いてくれる？」と言い、隣でノートを開いた小さなAIさん人形が「聞いて、書き留めます」と答えている絵。書類の上には「12時になったら途中でも立つ」と書いた紙が置かれている">
+  <defs>
+    <style>
+      .cap { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; fill: #2f2a24; }
+    </style>
+  </defs>
+
+  <!-- 部屋 -->
+  <rect width="640" height="400" rx="16" fill="#faf6ef"/>
+  <rect x="0" y="0" width="640" height="250" rx="16" fill="#eef3e6"/>
+  <!-- 壁の時計 -->
+  <circle cx="560" cy="60" r="26" fill="#ffffff" stroke="#8a7f6e" stroke-width="2"/>
+  <line x1="560" y1="60" x2="560" y2="42" stroke="#2f2a24" stroke-width="2"/>
+  <line x1="560" y1="60" x2="572" y2="60" stroke="#2f2a24" stroke-width="2"/>
+  <circle cx="560" cy="60" r="2" fill="#2f2a24"/>
+
+  <!-- 机 -->
+  <rect x="0" y="250" width="640" height="150" fill="#d8b98a"/>
+  <rect x="0" y="240" width="640" height="14" fill="#b98f5c"/>
+
+  <!-- 書類の山（並べ替え中） -->
+  <g>
+    <rect x="70" y="200" width="120" height="44" fill="#ffffff" stroke="#c9c1b0"/>
+    <rect x="76" y="192" width="120" height="44" fill="#ffffff" stroke="#c9c1b0"/>
+    <rect x="82" y="184" width="120" height="44" fill="#ffffff" stroke="#c9c1b0"/>
+    <rect x="86" y="178" width="120" height="44" fill="#ffffff" stroke="#c9c1b0" transform="rotate(-4 146 200)"/>
+    <g stroke="#e2dccf">
+      <line x1="94" y1="196" x2="180" y2="196"/>
+      <line x1="94" y1="204" x2="180" y2="204"/>
+      <line x1="94" y1="212" x2="160" y2="212"/>
+    </g>
+  </g>
+  <!-- 「12時になったら途中でも立つ」の紙 -->
+  <g transform="rotate(6 250 205)">
+    <rect x="210" y="186" width="84" height="52" fill="#ffffff" stroke="#b85f3d" stroke-width="1.5"/>
+    <text x="252" y="206" text-anchor="middle" class="cap" font-size="10">12時になったら</text>
+    <text x="252" y="222" text-anchor="middle" class="cap" font-size="10">途中でも立つ</text>
+  </g>
+
+  <!-- 若い人（Mさん） -->
+  <g transform="translate(150 120)">
+    <!-- 体 -->
+    <path d="M-38 130 q0 -56 38 -56 q38 0 38 56 Z" fill="#5f8a6a"/>
+    <!-- 腕（書類へ） -->
+    <path d="M-30 96 q-40 30 -70 60" stroke="#5f8a6a" stroke-width="14" stroke-linecap="round" fill="none"/>
+    <circle cx="-100" cy="156" r="9" fill="#f2d3b3"/>
+    <!-- 頭 -->
+    <circle cx="0" cy="42" r="28" fill="#f2d3b3"/>
+    <path d="M-28 36 q10 -30 40 -22 q16 6 16 22 q-8 -10 -24 -10 q-16 0 -32 10 Z" fill="#4a3a2c"/>
+    <!-- 目と口（書類を見ている） -->
+    <circle cx="-10" cy="46" r="2.5" fill="#2f2a24"/>
+    <circle cx="9" cy="46" r="2.5" fill="#2f2a24"/>
+    <line x1="-6" y1="58" x2="7" y2="58" stroke="#2f2a24" stroke-width="2"/>
+  </g>
+
+  <!-- AIさん人形 -->
+  <g transform="translate(420 170)">
+    <rect x="-26" y="30" width="52" height="60" rx="12" fill="#f4e9d6" stroke="#b85f3d" stroke-width="2"/>
+    <rect x="-24" y="-16" width="48" height="44" rx="12" fill="#ffffff" stroke="#b85f3d" stroke-width="2"/>
+    <circle cx="-9" cy="6" r="3" fill="#2f2a24"/>
+    <circle cx="9" cy="6" r="3" fill="#2f2a24"/>
+    <path d="M-6 16 q6 5 12 0" stroke="#2f2a24" stroke-width="2" fill="none"/>
+    <line x1="0" y1="-16" x2="0" y2="-28" stroke="#b85f3d" stroke-width="2"/>
+    <circle cx="0" cy="-31" r="4" fill="#b85f3d"/>
+    <!-- ノートと鉛筆 -->
+    <rect x="-40" y="56" width="34" height="26" rx="3" fill="#ffffff" stroke="#8a7f6e"/>
+    <line x1="-34" y1="64" x2="-12" y2="64" stroke="#c9c1b0"/>
+    <line x1="-34" y1="70" x2="-12" y2="70" stroke="#c9c1b0"/>
+    <line x1="-34" y1="76" x2="-16" y2="76" stroke="#c9c1b0"/>
+    <line x1="20" y1="58" x2="34" y2="44" stroke="#b85f3d" stroke-width="3"/>
+    <!-- 新人札 -->
+    <rect x="4" y="36" width="26" height="14" rx="2" fill="#ffffff" stroke="#8a7f6e"/>
+    <text x="17" y="47" text-anchor="middle" class="cap" font-size="9">新人</text>
+  </g>
+
+  <!-- 吹き出し（Mさん） -->
+  <g>
+    <rect x="30" y="22" width="290" height="72" rx="14" fill="#ffffff" stroke="#3f6b4a" stroke-width="2"/>
+    <path d="M150 94 l14 22 l14 -22 Z" fill="#ffffff" stroke="#3f6b4a" stroke-width="2"/>
+    <rect x="152" y="90" width="24" height="6" fill="#ffffff"/>
+    <text x="175" y="52" text-anchor="middle" class="cap" font-size="15">私のことは、私がいちばん詳しい。</text>
+    <text x="175" y="78" text-anchor="middle" class="cap" font-size="15">聞いてくれる？</text>
+  </g>
+
+  <!-- 吹き出し（AIさん） -->
+  <g>
+    <rect x="400" y="92" width="200" height="46" rx="14" fill="#ffffff" stroke="#b85f3d" stroke-width="2"/>
+    <path d="M440 138 l-10 22 l24 -22 Z" fill="#ffffff" stroke="#b85f3d" stroke-width="2"/>
+    <rect x="436" y="134" width="20" height="6" fill="#ffffff"/>
+    <text x="500" y="121" text-anchor="middle" class="cap" font-size="15">聞いて、書き留めます</text>
+  </g>
+</svg>

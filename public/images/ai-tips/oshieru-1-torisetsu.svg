@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 600" width="640" height="600" role="img" aria-label="A4一枚の「私のトリセツ」のイメージ。スイッチ、起きること、私にできること、周りにしてほしいこと、の四つの段があり、最後に「話す前に、これを読んでください。読んだあとの質問は、一度に一つでお願いします。」の一行がある">
+  <defs>
+    <style>
+      .t { font-family: 'Shippori Mincho B1', 'Hiragino Mincho ProN', serif; fill: #2f2a24; }
+      .h { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; fill: #3f6b4a; }
+      .note { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; fill: #b85f3d; }
+    </style>
+  </defs>
+
+  <!-- 机（クリーム） -->
+  <rect width="640" height="600" rx="16" fill="#faf6ef"/>
+
+  <!-- 紙の影と紙 -->
+  <rect x="96" y="30" width="456" height="548" rx="4" fill="#d9d2c4" opacity="0.7"/>
+  <rect x="88" y="22" width="456" height="548" rx="4" fill="#ffffff" stroke="#e2dccf"/>
+
+  <!-- 見出し -->
+  <text x="316" y="66" text-anchor="middle" class="h" font-size="24" fill="#2f2a24">私のトリセツ</text>
+  <line x1="130" y1="80" x2="502" y2="80" stroke="#3f6b4a" stroke-width="2"/>
+
+  <!-- スイッチ -->
+  <text x="120" y="110" class="h" font-size="15">■ スイッチ</text>
+  <text x="120" y="131" class="t" font-size="11.5">机の上の書類の端がそろっていないのが目に入ると、手が先に動きます。</text>
+  <text x="120" y="148" class="t" font-size="11.5">「ちょっとだけ」と思います。この「ちょっとだけ」がスイッチです。</text>
+
+  <!-- 起きること -->
+  <text x="120" y="182" class="h" font-size="15">■ 起きること</text>
+  <text x="120" y="203" class="t" font-size="11.5">順番が揃うまで、目が離せなくなります。頭の中で「あと何枚」と数え始めます。</text>
+  <text x="120" y="220" class="t" font-size="11.5">人の声は聞こえていても、意味が入ってきません。返事したつもりで、していない</text>
+  <text x="120" y="237" class="t" font-size="11.5">ことが多いそうです。時計は見えていても、「いま何時か」が頭に入りません。</text>
+  <text x="120" y="254" class="t" font-size="11.5">すべてそろったとき、急に周りの音が戻ってきます。そのときに初めて、時間の</text>
+  <text x="120" y="271" class="t" font-size="11.5">経過に気づきます。その結果、面談に遅れます。昼ごはんを抜きます。何度もです。</text>
+
+  <!-- 私にできること -->
+  <text x="120" y="305" class="h" font-size="15">■ 私にできること</text>
+  <text x="120" y="326" class="t" font-size="11.5">始める前に、終わりの時間を紙に書いて、書類の上に置くことで、途中でも</text>
+  <text x="120" y="343" class="t" font-size="11.5">止まることができました。</text>
+
+  <!-- 周りにしてほしいこと -->
+  <text x="120" y="377" class="h" font-size="15">■ 周りにしてほしいこと</text>
+  <text x="120" y="398" class="t" font-size="11.5">・声をかけるなら、肩を叩くのではなく、視界に紙を入れてください。</text>
+  <text x="120" y="415" class="t" font-size="11.5">・途中でやめられなかったあとに「なんで」と聞かないでください。理由は説明</text>
+  <text x="120" y="432" class="t" font-size="11.5">　できないし、自分でもいちばん困っているのは私だからです。</text>
+
+  <!-- 最後の一行（Mさんが足した） -->
+  <rect x="112" y="462" width="408" height="58" rx="6" fill="#eef3e6"/>
+  <text x="316" y="486" text-anchor="middle" class="h" font-size="12.5" fill="#2f2a24">話す前に、これを読んでください。</text>
+  <text x="316" y="506" text-anchor="middle" class="h" font-size="12.5" fill="#2f2a24">読んだあとの質問は、一度に一つでお願いします。</text>
+
+  <!-- 付箋メモ -->
+  <g transform="rotate(-6 560 540)">
+    <rect x="500" y="512" width="112" height="60" fill="#fbe7a6" stroke="#e6cf7a"/>
+    <text x="556" y="537" text-anchor="middle" class="note" font-size="12">最後の一行は</text>
+    <text x="556" y="556" text-anchor="middle" class="note" font-size="12">私が足した</text>
+  </g>
+
+  <!-- 「12時になったら途中でも立つ」のメモ -->
+  <g transform="rotate(4 40 80)">
+    <rect x="8" y="60" width="76" height="60" fill="#ffffff" stroke="#c9c1b0"/>
+    <text x="46" y="84" text-anchor="middle" class="note" font-size="10" fill="#2f2a24">12時に</text>
+    <text x="46" y="98" text-anchor="middle" class="note" font-size="10" fill="#2f2a24">なったら</text>
+    <text x="46" y="112" text-anchor="middle" class="note" font-size="10" fill="#2f2a24">途中でも立つ</text>
+  </g>
+</svg>
