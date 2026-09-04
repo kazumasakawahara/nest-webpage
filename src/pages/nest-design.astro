@@ -69,6 +69,77 @@ import { site } from '../lib/site';
     </div>
   </section>
 
+  <!-- ===== ネストデザイン宣言 ===== -->
+  <!-- 出典：「ネストデザイン宣言」「ネストデザインが大切にしていること」（2026-09 提供 PDF）を抜粋・再構成 -->
+  <section class="section nd-manifesto-section">
+    <div class="container container--narrow">
+      <div class="nd-manifesto reveal">
+        <span class="eyebrow eyebrow--center">Our Manifesto</span>
+        <h2 class="section__title section__title--center">ネストデザイン宣言</h2>
+
+        <p class="nd-manifesto__opening">
+          私たちは、「障害者アート」という言葉を、自ら名乗ることはありません。
+        </p>
+
+        <div class="nd-manifesto__body">
+          <p>
+            その言葉が障害への理解を広げ、多くの人の背中を押してきたことは知っています。
+            その役割を否定するつもりもありません。
+          </p>
+          <p>
+            しかし、その言葉が存在する限り、「障害者」と「それ以外」という境界線は消えません。
+            作品よりも先に「障害」が語られ、「障害があるのに、すごい」という言葉が賞賛として成立してしまう——
+            私たちは、その価値観に違和感を覚えます。
+          </p>
+          <p>
+            作品は、誰が描いたかではなく、何を感じさせるかで評価されるべきです。
+            肩書きは、作品の価値ではありません。障害も、才能でもありません。
+          </p>
+        </div>
+
+        <h3 class="nd-manifesto__subtitle">ネストデザインが大切にしていること</h3>
+        <ul class="nd-values">
+          <li>
+            <strong>感性は、誰のものでもない</strong>
+            <span>
+              表現に資格も肩書きもありません。作品の価値は、描いた人の属性ではなく、作品そのものが決めるものです。
+            </span>
+          </li>
+          <li>
+            <strong>「障害者だから」を、価値にしない</strong>
+            <span>
+              「障害者だから売れる」「障害者だから価値がある」という考え方に、ネストデザインは与しません。
+              「障害者アート」という看板を価値にすることもしません。
+            </span>
+          </li>
+          <li>
+            <strong>すべての作品を、商品にはしない</strong>
+            <span>
+              一人ひとりの内側からあふれ出る感性と、それを信じ、磨き、社会へ届けるスタッフの創造力。
+              その出会いから生まれた作品だけを、世の中へ送り出します。
+              「描いた」という事実ではなく、「伝わる」という力を大切にしたいからです。
+            </span>
+          </li>
+        </ul>
+
+        <div class="nd-manifesto__closing">
+          <p class="nd-manifesto__closing-lead">
+            私たちが届けたいのは、福祉ではありません。<br />
+            私たちが届けたいのは、感動です。
+          </p>
+          <p>
+            「障害者だから」ではなく、「この作品だから心を動かされた」。
+            そんな会話が当たり前になる社会を、私たちは本気で目指しています。
+          </p>
+          <p>
+            いつか、「障害者アート」という言葉そのものが必要なくなる社会へ。<br />
+            私たちは、その未来を信じて、今日も作品ではなく、人と向き合います。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== 制作作業 ===== -->
   <section class="section section--sand">
     <div class="container">
@@ -285,6 +356,117 @@ import { site } from '../lib/site';
     font-size: 15px;
     line-height: 1.9;
     color: var(--color-ink);
+  }
+
+  /* ネストデザイン宣言。一枚の紙に刷った宣言文のように、明朝・中央揃え・ゆったりした行間で。 */
+  .nd-manifesto-section { padding-top: 0; }
+
+  .nd-manifesto {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-6) var(--space-7);
+    background: var(--color-paper);
+    border-top: 3px solid var(--color-terra-500);
+    border-bottom: 1px solid var(--color-line);
+    text-align: center;
+  }
+
+  .nd-manifesto .section__title { margin-bottom: var(--space-6); }
+
+  .nd-manifesto__opening {
+    font-family: var(--font-serif);
+    font-size: 21px;
+    line-height: 1.8;
+    color: var(--color-green-900);
+    margin: 0 0 var(--space-6);
+  }
+
+  .nd-manifesto__body {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .nd-manifesto__body p {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    line-height: 2.1;
+    color: var(--color-ink);
+    margin: 0;
+  }
+
+  .nd-manifesto__body p + p { margin-top: var(--space-4); }
+
+  .nd-manifesto__subtitle {
+    font-family: var(--font-hand);
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--color-green-900);
+    margin: var(--space-8) 0 var(--space-5);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-line);
+  }
+
+  /* 大切にしていること：3項目。緑の薄い下地に、見出しは手書き体。 */
+  .nd-values {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 600px;
+    display: grid;
+    gap: var(--space-3);
+    text-align: left;
+  }
+
+  .nd-values li {
+    background: var(--color-green-100);
+    border-radius: 6px;
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .nd-values strong {
+    display: block;
+    font-family: var(--font-hand);
+    font-weight: 400;
+    font-size: 18px;
+    color: var(--color-green-900);
+    margin-bottom: var(--space-1);
+  }
+
+  .nd-values span {
+    display: block;
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--color-ink);
+  }
+
+  .nd-manifesto__closing {
+    margin-top: var(--space-8);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-line);
+  }
+
+  .nd-manifesto__closing p {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 2.1;
+    color: var(--color-ink);
+    margin: 0;
+  }
+
+  .nd-manifesto__closing p + p { margin-top: var(--space-4); }
+
+  .nd-manifesto__closing-lead {
+    font-size: 20px !important;
+    line-height: 1.9 !important;
+    color: var(--color-terra-700) !important;
+    margin-bottom: var(--space-5) !important;
+  }
+
+  @media (max-width: 640px) {
+    .nd-manifesto { padding: var(--space-7) var(--space-4) var(--space-6); }
+    .nd-manifesto__opening { font-size: 18px; }
+    .nd-manifesto__closing-lead { font-size: 18px !important; }
   }
 
   /* お仕事内容（業務種別チップ）。PDF パンフレットの業務一覧に対応。 */
