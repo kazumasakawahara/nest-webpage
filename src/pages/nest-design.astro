@@ -78,7 +78,7 @@ import { site } from '../lib/site';
         <h2 class="section__title section__title--center">ネストデザイン宣言</h2>
 
         <p class="nd-manifesto__opening">
-          私たちは、「障害者アート」という言葉を、自ら名乗ることはありません。
+          <span class="nd-phrase">私たちは、</span><span class="nd-phrase">「障害者アート」という言葉を、</span><span class="nd-phrase">自ら名乗ることはありません。</span>
         </p>
 
         <div class="nd-manifesto__body">
@@ -380,6 +380,9 @@ import { site } from '../lib/site';
     color: var(--color-green-900);
     margin: 0 0 var(--space-6);
   }
+
+  /* 文節の途中で折り返さない（「自ら名乗ることはありません」を分断しない） */
+  .nd-phrase { display: inline-block; }
 
   .nd-manifesto__body {
     max-width: 600px;
