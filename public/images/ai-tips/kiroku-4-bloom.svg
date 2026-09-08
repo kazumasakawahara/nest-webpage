@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-label="ノートのつながりを示すグラフの絵。中央の「潮見町」のページから「岬の灯台」「浜食堂」「朝市」「二番ホーム」のページへ糸が伸び、その先に写真・切符・一行の小さなノートが実のように下がっている。隅ではAIさん人形が糸を結んでいる">
+  <defs>
+    <style>
+      .cap { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; fill: #2f2a24; }
+      .thread { stroke: #b85f3d; stroke-width: 2; fill: none; stroke-linecap: round; }
+      .thread--thin { stroke: #b85f3d; stroke-width: 1.5; fill: none; stroke-linecap: round; }
+      .page { fill: #ffffff; stroke: #3f6b4a; stroke-width: 2; }
+      .leaf { fill: #ffffff; stroke: #8a7f6e; stroke-width: 1.5; }
+    </style>
+  </defs>
+
+  <!-- 紙面（ノートの見開き） -->
+  <rect width="640" height="400" rx="16" fill="#faf6ef"/>
+  <rect x="24" y="24" width="592" height="352" rx="12" fill="#ffffff" stroke="#e2dccf"/>
+  <g stroke="#eef3e6">
+    <line x1="24" y1="72" x2="616" y2="72"/>
+    <line x1="24" y1="120" x2="616" y2="120"/>
+    <line x1="24" y1="168" x2="616" y2="168"/>
+    <line x1="24" y1="216" x2="616" y2="216"/>
+    <line x1="24" y1="264" x2="616" y2="264"/>
+    <line x1="24" y1="312" x2="616" y2="312"/>
+  </g>
+
+  <!-- 糸（中央 → 四つのページ） -->
+  <path class="thread" d="M284 168 Q210 130 190 98"/>
+  <path class="thread" d="M356 168 Q430 130 452 98"/>
+  <path class="thread" d="M284 212 Q210 250 186 282"/>
+  <path class="thread" d="M356 212 Q420 250 442 282"/>
+
+  <!-- 糸（ページ → 小さなノート） -->
+  <path class="thread--thin" d="M120 112 Q108 140 104 160"/>
+  <path class="thread--thin" d="M180 112 Q192 138 196 158"/>
+  <path class="thread--thin" d="M470 112 Q456 140 452 160"/>
+  <path class="thread--thin" d="M530 112 Q546 138 552 158"/>
+  <path class="thread--thin" d="M120 300 Q106 322 100 342"/>
+  <path class="thread--thin" d="M180 300 Q192 322 196 340"/>
+  <path class="thread--thin" d="M460 300 Q446 322 440 342"/>
+  <path class="thread--thin" d="M520 300 Q540 308 552 316"/>
+
+  <!-- 中央のページ：潮見町 -->
+  <circle cx="320" cy="190" r="44" fill="#ffffff" stroke="#3f6b4a" stroke-width="2.5"/>
+  <circle cx="320" cy="190" r="36" fill="none" stroke="#eef3e6" stroke-width="3"/>
+  <text x="320" y="196" text-anchor="middle" class="cap" font-size="17">潮見町</text>
+
+  <!-- 四つのページ -->
+  <g>
+    <rect x="102" y="76" width="96" height="36" rx="8" class="page"/>
+    <text x="150" y="99" text-anchor="middle" class="cap" font-size="14">岬の灯台</text>
+  </g>
+  <g>
+    <rect x="452" y="76" width="96" height="36" rx="8" class="page"/>
+    <text x="500" y="99" text-anchor="middle" class="cap" font-size="14">浜食堂</text>
+  </g>
+  <g>
+    <rect x="102" y="264" width="96" height="36" rx="8" class="page"/>
+    <text x="150" y="287" text-anchor="middle" class="cap" font-size="14">朝市</text>
+  </g>
+  <g>
+    <rect x="442" y="264" width="96" height="36" rx="8" class="page"/>
+    <text x="490" y="287" text-anchor="middle" class="cap" font-size="14">二番ホーム</text>
+  </g>
+
+  <!-- 小さなノート（実）：写真 -->
+  <g transform="translate(84 160)">
+    <rect x="0" y="0" width="40" height="32" rx="3" class="leaf"/>
+    <rect x="5" y="5" width="30" height="18" fill="#eef3e6"/>
+    <circle cx="27" cy="11" r="3" fill="#b85f3d"/>
+    <path d="M5 23 l9 -8 l7 5 l6 -4 l8 7 Z" fill="#5f8a6a"/>
+    <line x1="14" y1="9" x2="14" y2="23" stroke="#ffffff" stroke-width="2"/>
+  </g>
+  <!-- 一行 -->
+  <g transform="translate(176 158)">
+    <rect x="0" y="0" width="46" height="24" rx="3" class="leaf"/>
+    <path d="M7 13 q6 -5 12 0 t12 0 t9 0" stroke="#3f6b4a" stroke-width="1.5" fill="none"/>
+  </g>
+  <!-- 写真（浜食堂） -->
+  <g transform="translate(432 160)">
+    <rect x="0" y="0" width="40" height="32" rx="3" class="leaf"/>
+    <rect x="5" y="5" width="30" height="18" fill="#f4e9d6"/>
+    <path d="M10 14 q10 12 20 0 Z" fill="#b85f3d"/>
+    <line x1="10" y1="14" x2="30" y2="14" stroke="#2f2a24" stroke-width="1.5"/>
+  </g>
+  <!-- 一行（浜食堂） -->
+  <g transform="translate(532 158)">
+    <rect x="0" y="0" width="46" height="24" rx="3" class="leaf"/>
+    <path d="M7 13 q6 -5 12 0 t12 0 t9 0" stroke="#3f6b4a" stroke-width="1.5" fill="none"/>
+  </g>
+  <!-- 写真（朝市） -->
+  <g transform="translate(80 342)">
+    <rect x="0" y="0" width="40" height="32" rx="3" class="leaf"/>
+    <rect x="5" y="5" width="30" height="18" fill="#eef3e6"/>
+    <circle cx="13" cy="15" r="4" fill="#b85f3d"/>
+    <circle cx="22" cy="16" r="4" fill="#5f8a6a"/>
+    <circle cx="30" cy="14" r="4" fill="#b85f3d"/>
+  </g>
+  <!-- 一行（朝市） -->
+  <g transform="translate(176 340)">
+    <rect x="0" y="0" width="46" height="24" rx="3" class="leaf"/>
+    <path d="M7 13 q6 -5 12 0 t12 0 t9 0" stroke="#3f6b4a" stroke-width="1.5" fill="none"/>
+  </g>
+  <!-- 切符（二番ホーム） -->
+  <g transform="translate(414 342)">
+    <rect x="0" y="0" width="52" height="28" rx="3" class="leaf"/>
+    <line x1="36" y1="0" x2="36" y2="28" stroke="#8a7f6e" stroke-dasharray="2 2"/>
+    <circle cx="44" cy="14" r="3" fill="none" stroke="#b85f3d" stroke-width="1.5"/>
+    <line x1="6" y1="10" x2="30" y2="10" stroke="#c9c1b0"/>
+    <line x1="6" y1="16" x2="26" y2="16" stroke="#c9c1b0"/>
+    <line x1="6" y1="22" x2="22" y2="22" stroke="#c9c1b0"/>
+  </g>
+
+  <!-- 結び目（AIさんが結んでいる糸） -->
+  <path class="thread--thin" d="M552 316 q10 -8 16 2 q4 8 -8 8 q-10 0 -6 -10"/>
+  <circle cx="556" cy="318" r="3" fill="#b85f3d"/>
+
+  <!-- AIさん人形（隅で糸を結ぶ） -->
+  <g transform="translate(596 300) scale(0.72)">
+    <rect x="-26" y="30" width="52" height="60" rx="12" fill="#f4e9d6" stroke="#b85f3d" stroke-width="2"/>
+    <rect x="-24" y="-16" width="48" height="44" rx="12" fill="#ffffff" stroke="#b85f3d" stroke-width="2"/>
+    <circle cx="-9" cy="6" r="3" fill="#2f2a24"/>
+    <circle cx="9" cy="6" r="3" fill="#2f2a24"/>
+    <path d="M-6 16 q6 5 12 0" stroke="#2f2a24" stroke-width="2" fill="none"/>
+    <line x1="0" y1="-16" x2="0" y2="-28" stroke="#b85f3d" stroke-width="2"/>
+    <circle cx="0" cy="-31" r="4" fill="#b85f3d"/>
+    <!-- 腕（糸へ伸ばす） -->
+    <path d="M-24 46 q-20 -8 -32 -22" stroke="#b85f3d" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <circle cx="-58" cy="22" r="5" fill="#ffffff" stroke="#b85f3d" stroke-width="2"/>
+  </g>
+
+  <!-- 上の一言 -->
+  <text x="320" y="56" text-anchor="middle" class="cap" font-size="12" style="fill:#8a7f6e">放り込むのはあなた、仕分けるのはAIさん</text>
+</svg>
