@@ -12,6 +12,56 @@ https://github.com/kazumasakawahara/oya-inai-db （2026-08-08 MIT で public 公
   旧 `nest-support-manual.html` は旧スタック（Claude Desktop前提）の記録として残置（リンクは全て外し済み）。
   図解は簡易SVG。実機スクリーンショットへの差し替えは任意の改善タスク。
 
+# HANDOVER — 2026-09-08 特集「撮るだけじゃ、もったいない」（Issue #24〜#27・Orca 進行）
+
+> 教えてAIさんの新特集。**なんでも箱（Obsidian の raw）に放り込むだけ → AI が仕分けて `[[ ]]` の糸を張る → 最後は箱の中身から AI が旅行記を書く**、全4回。親なき後とは切り離した「楽しい AI 活用」。正典は `docs/ai-tips-series-proposal-2026-09-08-kiroku.md`（第3稿・main 取り込み済み）。
+> 進め方は **Orca**（Issue ごとに worktree を切り、部屋は検品役）。記事本文の執筆だけは Orca に載せず部屋で行う。
+
+## 再開コマンド（コピペで動く）
+
+```bash
+cd /Users/k-kawahara/Projects/nest-webpage
+git fetch origin && git branch --list 'kazumasakawahara/*'   # Orca の worktree ブランチ一覧（ai-4＝#25、zip-e2＝#26）
+git log --oneline main..kazumasakawahara/zip-e2               # 未取り込みの成果を見る
+npm run build && npx vitest run                                # 取り込み後の確認（136件）
+```
+
+## 現在地
+- 目標: 4回の記事を出すための土台（枠組み・仕分け係スキル・旅行記の実験）を Orca で先に固める
+- 進捗:
+  - [x] 企画書 第3稿・Issue #24（親）#25 #26 #27 起票・PR #28（docs）main へマージ済み
+  - [x] #25 枠組み導入 → ブランチ `kazumasakawahara/ai-4`（bc3b2d9）。部屋で差分・看板 SVG 確認済み。**main 未取り込み**（Orca 上は #24 のタスクとして紐づいている。取り込み後に #25 を手で閉じる）
+  - [x] #26 仕分け係 zip＋実験 E2 → ブランチ `kazumasakawahara/zip-e2`（8コミット）。r1 で差し戻し1件（zip のディレクトリ属性 0600）→ 修正 → **r2 で差し戻しなし**。報告は `inspections/2026-09-08-issue26-shiwake-gakari{,-r2}.md`。**main 未取り込み**
+  - [ ] #27 旅行記の実験（E3 ノート一冊／E4 Canvas／E7 PDF）。**zip-e2 の保管庫 `docs/kiroku-demo/記録/` が土台**なので、zip-e2 を main に取り込んでから Orca の「開始→」。3案並走向き
+  - [ ] 河原さん実機の実験 E1（Filesystem 経由で raw の写真を Claude が見られるか）E5（スマホ文字起こし）E6（スマホ→PC 同期）
+  - [ ] 記事 第1〜4回・図版・news（部屋で執筆。実験結果を待つ）
+
+## グレーな判断
+- PR #28 は河原さんの明示依頼でマージ。以後の部屋ブランチのコミット（検品報告2本・HANDOVER・台帳）は push のみで、main への取り込みは河原さん判断（PR #29 を作ってある）
+- 検品 r1 の「一字一句」問題：私の勧めは「言葉は変えない。`[[ ]]` の付加は可」で基準を固定。**未承認**
+- #26 の保管庫は、Issue 文言（1回目の出力をそのままコミット）ではなく、部屋の勧めで v1.0 SKILL の3回目出力に差し替えた（#27 の土台にするため）。log-E2 に経緯あり
+
+## 未決論点
+- ai-4（枠組み＝「近日公開」の空ブロック）を main に入れる時期。部屋の勧めは第1回の原稿ができてから
+- zip-e2 を main に入れると `public/downloads/shiwake-gakari-v1.0.zip` が URL で到達可能になる（未リンク）。配布前に Finder のダブルクリック展開を1回実測
+- 旅行記のかたち（企画書 §9-2 の A〜F）の本命は #27 の結果で決める。決定は河原さん
+- 港のページ名（実演セットで AI が「港に名前があれば」と聞いている）。架空なので決めるだけ
+
+## 既知の罠・注意
+- **Orca のタスク入口**：#24（親）から始めると AI が子 Issue を自分で選ぶ。子 Issue の行の「開始→」から始める
+- Orca は `--dangerously-skip-permissions` で起動する。避けるなら `claude --permission-mode acceptEdits --prefill '<issue URL>'`。サンドボックスとフックはどちらでも効く
+- `--prefill` は URL だけ入る。**URL の後ろに指示文を足してから送信**（「…を読んで実装して。push はしないで」）
+- Orca の worktree は main から切られる。**参照させたい docs は先に main へ**（PR #28 の教訓）
+- Python zipfile で作った zip はディレクトリエントリの属性が 0600 になり、`unzip` 後にフォルダへ入れない。`external_attr` を明示する（r1 の差し戻し）
+- ai-4 と部屋ブランチは タスク.md／作業ログ.md の先頭に行を足しているので、取り込み順によって小さな衝突が出る。両方残せばよい
+
+## 次タスク（優先度順）
+- A: zip-e2 を main に取り込む → #27 を Orca で開始（指示文は「issue #27 を読んで実装して。push はしないで」）→ 部屋で検品
+- B: 実機実験 E1・E5・E6（河原さん）。結果で第1回の「軽い版／パソコン版」の書き分けが決まる
+- C: 第1回の執筆（実験の返事を無加工で載せる方針）→ ai-4 の取り込み → news
+
+---
+
 # HANDOVER — 2026-07-24（気づきノート実装 ／ 教えてAIさん ／ つたえるカード）
 
 > 次回開始時はこのファイルを最初に読み込んでから作業を再開してください。
