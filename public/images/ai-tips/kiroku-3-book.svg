@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-label="「raw なんでも箱」と書かれた箱から、写真・切符・一行のノートが糸でつながったまま立ち上がり、その上に「潮見町へ」と題した一冊の本が開いて浮かんでいる絵。本のページには小さな写真と縦線つきの引用が並ぶ。箱のそばでAIさん人形が本を指さし、旅人が驚いた顔で見ている">
+  <defs>
+    <style>
+      .cap { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; fill: #2f2a24; }
+      .mute { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; fill: #8a7f6e; }
+      .thread { stroke: #b85f3d; stroke-width: 1.8; fill: none; stroke-linecap: round; }
+    </style>
+  </defs>
+
+  <rect width="640" height="360" rx="16" fill="#faf6ef"/>
+  <rect x="0" y="250" width="640" height="110" fill="#efe9dc"/>
+
+  <!-- 箱 -->
+  <g transform="translate(250 190)">
+    <path d="M0 40 L140 40 L128 130 L12 130 Z" fill="#d8b98a" stroke="#b98f5c" stroke-width="2"/>
+    <rect x="-6" y="30" width="152" height="14" rx="3" fill="#b98f5c"/>
+    <text x="70" y="96" text-anchor="middle" class="cap" font-size="14">raw</text>
+    <text x="70" y="114" text-anchor="middle" class="mute" font-size="10">なんでも箱</text>
+  </g>
+
+  <!-- 箱から立ち上がる糸と小さなノート -->
+  <path d="M290 225 q-24 -30 -6 -46" class="thread"/>
+  <path d="M322 225 q0 -30 8 -46" class="thread"/>
+  <path d="M352 225 q24 -30 8 -46" class="thread"/>
+  <g transform="translate(266 168) rotate(-8)">
+    <rect x="0" y="0" width="34" height="24" fill="#ffffff" stroke="#8a7f6e"/>
+    <rect x="3" y="3" width="28" height="12" fill="#a9c8e2"/>
+  </g>
+  <g transform="translate(314 170) rotate(4)">
+    <rect x="0" y="0" width="34" height="18" rx="3" fill="#ffffff" stroke="#8a7f6e"/>
+    <line x1="5" y1="5" x2="5" y2="13" stroke="#b85f3d" stroke-width="2"/>
+    <line x1="10" y1="9" x2="28" y2="9" stroke="#c9c1b0"/>
+  </g>
+  <g transform="translate(354 172) rotate(10)">
+    <rect x="0" y="0" width="34" height="16" fill="#ffffff" stroke="#8a7f6e"/>
+    <line x1="5" y1="8" x2="28" y2="8" stroke="#8a7f6e"/>
+  </g>
+
+  <!-- 本（開いた見開き） -->
+  <g transform="translate(320 138)">
+    <path d="M-110 0 q55 -12 110 0 q55 -12 110 0 L110 -80 q-55 -12 -110 0 q-55 -12 -110 0 Z" fill="#ffffff" stroke="#8a7f6e" stroke-width="2"/>
+    <line x1="0" y1="-80" x2="0" y2="0" stroke="#c9c1b0"/>
+    <!-- 左ページ：題 -->
+    <text x="-55" y="-46" text-anchor="middle" class="cap" font-size="13">潮見町へ</text>
+    <text x="-55" y="-30" text-anchor="middle" class="mute" font-size="8">2026年8月29日〜31日</text>
+    <rect x="-90" y="-22" width="70" height="16" fill="#a9c8e2"/>
+    <!-- 右ページ：写真と引用 -->
+    <rect x="14" y="-70" width="60" height="18" fill="#c9a37a"/>
+    <line x1="14" y1="-44" x2="14" y2="-30" stroke="#b85f3d" stroke-width="2"/>
+    <line x1="20" y1="-41" x2="90" y2="-41" stroke="#8a7f6e"/>
+    <line x1="20" y1="-34" x2="70" y2="-34" stroke="#8a7f6e"/>
+    <line x1="14" y1="-22" x2="80" y2="-22" stroke="#c9c1b0"/>
+    <line x1="14" y1="-15" x2="90" y2="-15" stroke="#c9c1b0"/>
+  </g>
+  <text x="320" y="158" text-anchor="middle" class="mute" font-size="10">引用は本人の言葉のまま。地の文はAIさん</text>
+
+  <!-- 旅人（驚き） -->
+  <g transform="translate(120 200)">
+    <path d="M-36 130 q0 -56 36 -56 q36 0 36 56 Z" fill="#c97b5b"/>
+    <circle cx="0" cy="44" r="26" fill="#f2d3b3"/>
+    <path d="M-26 38 q10 -28 38 -20 q14 6 14 20 q-8 -10 -22 -10 q-16 0 -30 10 Z" fill="#4a3a2c"/>
+    <circle cx="-8" cy="46" r="3" fill="#2f2a24"/>
+    <circle cx="8" cy="46" r="3" fill="#2f2a24"/>
+    <ellipse cx="0" cy="60" rx="4" ry="5" fill="#2f2a24"/>
+    <path d="M30 100 q30 -20 56 -40" stroke="#c97b5b" stroke-width="12" stroke-linecap="round" fill="none"/>
+  </g>
+  <text x="120" y="345" text-anchor="middle" class="mute" font-size="11">放り込んだだけなのに</text>
+
+  <!-- AIさん人形 -->
+  <g transform="translate(540 220)">
+    <rect x="-20" y="38" width="40" height="48" rx="10" fill="#e7b9a0"/>
+    <rect x="-18" y="0" width="36" height="32" rx="8" fill="#ffffff" stroke="#b85f3d" stroke-width="2"/>
+    <circle cx="-7" cy="14" r="2.3" fill="#2f2a24"/>
+    <circle cx="7" cy="14" r="2.3" fill="#2f2a24"/>
+    <path d="M-6 22 q6 5 12 0" stroke="#2f2a24" stroke-width="1.5" fill="none"/>
+    <line x1="0" y1="-8" x2="0" y2="0" stroke="#b85f3d" stroke-width="2"/>
+    <circle cx="0" cy="-10" r="3" fill="#b85f3d"/>
+    <path d="M-20 50 q-30 -20 -60 -50" stroke="#e7b9a0" stroke-width="8" stroke-linecap="round" fill="none"/>
+  </g>
+  <text x="540" y="345" text-anchor="middle" class="mute" font-size="11">「旅行記を書いて」の一言で</text>
+</svg>
