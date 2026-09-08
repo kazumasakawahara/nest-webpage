@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-label="Obsidian のグラフ表示を描き起こした図。中央に「潮見町」、左に「浜食堂」、右上に「岬の灯台」の大きめの丸。潮見町からは、先月の日帰りの三つのノートと、三日間の旅の六つのノート（切符・道中の録音・浜食堂の看板・朝市・浜食堂のレシート・帰る日の港）へ線が伸びる。浜食堂には先月のあじフライ定食、今回の看板とレシート、録音、帰ってからの一行「浜食堂の魚」がつながり、岬の灯台には先月の写真と録音と「灯台の写真」の一行がつながっている。糸のない一行（洗濯を三回、何もなかった、切符の半券、雨）は端に浮いている">
+  <defs>
+    <style>
+      .lab { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; fill: #2f2a24; }
+      .mute { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; fill: #8a7f6e; }
+      .edge { stroke: #b85f3d; stroke-width: 1.6; fill: none; stroke-linecap: round; opacity: 0.8; }
+    </style>
+  </defs>
+
+  <rect width="640" height="400" rx="16" fill="#faf6ef"/>
+  <rect x="16" y="16" width="608" height="368" rx="10" fill="#fffdf8" stroke="#e2dccf"/>
+  <text x="32" y="40" class="mute" font-size="11">グラフ表示（描き起こし）― 先月の日帰りと、今回の三日間と、帰ってからの一行</text>
+
+  <!-- ハブ座標: 潮見町(330,200) 浜食堂(170,190) 岬の灯台(470,110) -->
+  <!-- 潮見町 → 先月の3ノート -->
+  <path d="M330 200 L400 80" class="edge"/>
+  <path d="M330 200 L300 90" class="edge"/>
+  <path d="M330 200 L250 120" class="edge"/>
+  <!-- 潮見町 → 今回の6ノート -->
+  <path d="M330 200 L420 200" class="edge"/>
+  <path d="M330 200 L430 260" class="edge"/>
+  <path d="M330 200 L330 310" class="edge"/>
+  <path d="M330 200 L240 300" class="edge"/>
+  <path d="M330 200 L250 250" class="edge"/>
+  <path d="M330 200 L380 320" class="edge"/>
+  <!-- 浜食堂 → 定食・看板・レシート・録音・一行 -->
+  <path d="M170 190 L250 120" class="edge"/>
+  <path d="M170 190 L250 250" class="edge"/>
+  <path d="M170 190 L240 300" class="edge"/>
+  <path d="M170 190 L420 200" class="edge"/>
+  <path d="M170 190 L100 280" class="edge"/>
+  <!-- 岬の灯台 → 先月の写真・録音・一行 -->
+  <path d="M470 110 L400 80" class="edge"/>
+  <path d="M470 110 L420 200" class="edge"/>
+  <path d="M470 110 L560 190" class="edge"/>
+
+  <!-- ハブ -->
+  <circle cx="330" cy="200" r="26" fill="#5f8a6a"/>
+  <circle cx="330" cy="200" r="19" fill="#eef3e6"/>
+  <text x="330" y="205" text-anchor="middle" class="lab" font-size="12">潮見町</text>
+  <circle cx="170" cy="190" r="18" fill="#5f8a6a"/>
+  <circle cx="170" cy="190" r="12" fill="#eef3e6"/>
+  <text x="170" y="168" text-anchor="middle" class="lab" font-size="12">浜食堂</text>
+  <circle cx="470" cy="110" r="16" fill="#5f8a6a"/>
+  <circle cx="470" cy="110" r="11" fill="#eef3e6"/>
+  <text x="470" y="90" text-anchor="middle" class="lab" font-size="12">岬の灯台</text>
+
+  <!-- 先月（8/10）の3ノート：薄い色 -->
+  <circle cx="400" cy="80" r="7" fill="#e0a98f"/>
+  <text x="400" y="66" text-anchor="middle" class="mute" font-size="9">08-10 岬の灯台</text>
+  <circle cx="300" cy="90" r="7" fill="#e0a98f"/>
+  <text x="300" y="76" text-anchor="middle" class="mute" font-size="9">08-10 帰りの港</text>
+  <circle cx="250" cy="120" r="7" fill="#e0a98f"/>
+  <text x="250" y="106" text-anchor="middle" class="mute" font-size="9">08-10 あじフライ定食</text>
+
+  <!-- 今回（8/29〜31）の6ノート -->
+  <circle cx="420" cy="200" r="8" fill="#b85f3d"/>
+  <text x="440" y="196" class="lab" font-size="10">08-29 道中の録音</text>
+  <circle cx="430" cy="260" r="8" fill="#b85f3d"/>
+  <text x="448" y="264" class="lab" font-size="10">08-29 切符</text>
+  <circle cx="330" cy="310" r="8" fill="#b85f3d"/>
+  <text x="330" y="330" text-anchor="middle" class="lab" font-size="10">08-30 朝市</text>
+  <circle cx="240" cy="300" r="8" fill="#b85f3d"/>
+  <text x="228" y="322" text-anchor="middle" class="lab" font-size="10">08-30 浜食堂のレシート</text>
+  <circle cx="250" cy="250" r="8" fill="#b85f3d"/>
+  <text x="212" y="242" text-anchor="end" class="lab" font-size="10">08-30 浜食堂の看板</text>
+  <circle cx="380" cy="320" r="8" fill="#b85f3d"/>
+  <text x="402" y="340" text-anchor="middle" class="lab" font-size="10">08-31 帰る日の港</text>
+
+  <!-- 帰ってからの一行（糸あり） -->
+  <circle cx="100" cy="280" r="7" fill="#d9a441"/>
+  <text x="100" y="300" text-anchor="middle" class="lab" font-size="10">09-02 浜食堂の魚</text>
+  <circle cx="560" cy="190" r="7" fill="#d9a441"/>
+  <text x="560" y="210" text-anchor="middle" class="lab" font-size="10">09-06 灯台の写真</text>
+
+  <!-- 帰ってからの一行（糸なし・端に浮く） -->
+  <circle cx="80" cy="120" r="6" fill="#d9a441" opacity="0.7"/>
+  <text x="80" y="108" text-anchor="middle" class="mute" font-size="9">09-01 洗濯を三回</text>
+  <circle cx="560" cy="300" r="6" fill="#d9a441" opacity="0.7"/>
+  <text x="560" y="320" text-anchor="middle" class="mute" font-size="9">09-05 切符の半券</text>
+  <circle cx="120" cy="350" r="6" fill="#d9a441" opacity="0.7"/>
+  <text x="120" y="368" text-anchor="middle" class="mute" font-size="9">09-03 何もなかった</text>
+  <circle cx="500" cy="350" r="6" fill="#d9a441" opacity="0.7"/>
+  <text x="500" y="368" text-anchor="middle" class="mute" font-size="9">09-07 雨</text>
+  <circle cx="60" cy="210" r="6" fill="#d9a441" opacity="0.7"/>
+  <text x="60" y="198" text-anchor="middle" class="mute" font-size="9">09-04 朝市の早い時間に</text>
+
+  <!-- 凡例 -->
+  <g transform="translate(32 378)">
+    <circle cx="6" cy="-4" r="5" fill="#5f8a6a"/><text x="16" y="0" class="mute" font-size="9">ページ</text>
+    <circle cx="70" cy="-4" r="5" fill="#e0a98f"/><text x="80" y="0" class="mute" font-size="9">先月の日帰り</text>
+    <circle cx="160" cy="-4" r="5" fill="#b85f3d"/><text x="170" y="0" class="mute" font-size="9">今回の三日間</text>
+    <circle cx="250" cy="-4" r="5" fill="#d9a441"/><text x="260" y="0" class="mute" font-size="9">帰ってからの一行</text>
+    <line x1="370" y1="-4" x2="392" y2="-4" class="edge"/><text x="398" y="0" class="mute" font-size="9">糸（[[ ]] のリンク）</text>
+  </g>
+</svg>
