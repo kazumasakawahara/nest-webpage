@@ -37,7 +37,7 @@ const wazaItems = all.filter((e) => !e.data.kind).sort(byDateDesc);
 
 // 特集コーナーの所属判定：特集専属（kind===特集名）か、棚に残したままの併載（series に特集名）
 type Entry = (typeof all)[number];
-type FeatureId = 'dougu' | 'haiyu' | 'google' | 'asobi' | 'genko' | 'ronbun' | 'oshieru';
+type FeatureId = 'dougu' | 'haiyu' | 'google' | 'asobi' | 'genko' | 'ronbun' | 'oshieru' | 'kiroku';
 const inFeature = (id: FeatureId) => (e: Entry) =>
   e.data.kind === id || (e.data.series ?? []).includes(id);
 
@@ -75,6 +75,9 @@ const ronbunItems = all.filter(inFeature('ronbun')).sort((a, b) => a.id.localeCo
 
 // 特集・AIさんに、教える（ファイル名の日付順＝読む順）
 const oshieruItems = all.filter(inFeature('oshieru')).sort((a, b) => a.id.localeCompare(b.id));
+
+// 特集・撮るだけじゃ、もったいない（ファイル名の連番順。記事が出るまでは近日公開の枠だけ描画）
+const kirokuItems = all.filter(inFeature('kiroku')).sort((a, b) => a.id.localeCompare(b.id));
 
 // 相棒編：読みもの＋連載本編（ファイル名の連番順）＋実践編（日付順）
 const aibouIntro = all.find((e) => e.data.kind === 'aibou');
@@ -136,10 +139,37 @@ const fmtDate = (d: Date) =>
         🗂 <strong>特集コーナー</strong> ― まとまりで読みたいときは、こちらから。見出しを押すと目次がひらきます。
       </p>
 
+      <details class="feature-box reveal" id="kiroku" open>
+        <summary class="feature-box__summary">
+          <span class="feature-box__eyebrow">📦 特集コーナー・NEW</span>
+          <h3 class="feature-box__title">撮るだけじゃ、もったいない ― 放り込むのはあなた、仕分けるのはAIさん{kirokuItems.length > 0 ? `（全${kirokuItems.length}回）` : '（近日公開）'}</h3>
+          <span class="feature-box__toggle" aria-hidden="true">＋</span>
+        </summary>
+        <div class="feature-box__body">
+          <p class="feature-box__lead">
+            スマホで写真を撮るだけですか？ それは、もったいない。撮ったもの・録ったもの・打った一言を、ぜんぶ<strong>「なんでも箱」に放り込む</strong>だけ。あとはAIさんが仕分けて、ノートにして、<strong>関係のあるもの同士を糸でつないでくれます</strong>。日帰りの三枚の写真が灯台と食堂につながり（第1回）、三日間の旅が地図になり（第2回）、帰ってからの一行が次の旅につながり（第3回）、最終回では箱の中身からAIさんが旅行記を一冊書きます（第4回）。道具はスマホと、自分のノート（Obsidian）と、AIさんの三つだけ。
+          </p>
+          <img class="feature-box__img" src="/images/ai-tips/kiroku-4-bloom.svg" alt="ノートのつながりを示すグラフの絵。中央の「潮見町」のページから「岬の灯台」「浜食堂」「朝市」「二番ホーム」のページへ糸が伸び、その先に写真・切符・一行の小さなノートが実のように下がっている。隅ではAIさん人形が糸を結んでいる" width="640" height="400" loading="lazy" decoding="async" />
+          {kirokuItems.length > 0 ? (
+            <ol class="feature-box__list">
+              {kirokuItems.map((item) => (
+                <li class="feature-box__item">
+                  <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
+                    <span class="feature-box__name">{item.data.title}</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          ) : (
+            <p class="feature-box__coming">第1回「なんでも箱をつくる」から第4回「旅行記を、AIさんに書いてもらう」まで——近日公開です。</p>
+          )}
+        </div>
+      </details>
+
       {oshieruItems.length > 0 && (
-        <details class="feature-box reveal" id="oshieru" open>
+        <details class="feature-box reveal" id="oshieru">
           <summary class="feature-box__summary">
-            <span class="feature-box__eyebrow">🍵 特集コーナー・NEW</span>
+            <span class="feature-box__eyebrow">🍵 特集コーナー</span>
             <h3 class="feature-box__title">AIさんに、教える ― 好きなことの話をしに行く（全{oshieruItems.length}回）</h3>
             <span class="feature-box__toggle" aria-hidden="true">＋</span>
           </summary>
@@ -459,7 +489,7 @@ const fmtDate = (d: Date) =>
 
 <style>
   /* === 3つの棚ナビ === */
-  #anshin, #waza, #aibou, #dougu, #haiyu, #google, #asobi, #genko {
+  #anshin, #waza, #aibou, #dougu, #haiyu, #google, #asobi, #genko, #kiroku {
     scroll-margin-top: 96px;
   }
 
