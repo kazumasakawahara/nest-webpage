@@ -1,0 +1,231 @@
+{
+  "nodes": [
+    {
+      "id": "title",
+      "type": "text",
+      "x": 0,
+      "y": -220,
+      "width": 1980,
+      "height": 120,
+      "text": "# 潮見町 三日\n\n2026-08-29 〜 2026-08-31 ／ 左から右へ、日付順。`>` の枠は本人の言葉（引用のまま）、「仕分け係の地の文」は私（AI）が足した文。下の段は糸の行き先（[[ページ]]）。"
+    },
+    {
+      "id": "prev",
+      "type": "text",
+      "x": -520,
+      "y": 560,
+      "width": 460,
+      "height": 200,
+      "text": "**先月の日帰り（2026-08-10）**\n\n- [[2026-08-10 岬の灯台]]\n- [[2026-08-10 浜食堂のあじフライ定食]]\n- [[2026-08-10 帰りの港]]"
+    },
+
+    {
+      "id": "day1",
+      "type": "group",
+      "x": 0,
+      "y": 0,
+      "width": 620,
+      "height": 1120,
+      "label": "一日目 2026-08-29 行き"
+    },
+    {
+      "id": "d1-photo-ticket",
+      "type": "file",
+      "x": 20,
+      "y": 60,
+      "width": 400,
+      "height": 300,
+      "file": "raw/IMG_0502.jpg"
+    },
+    {
+      "id": "d1-quote-ticket",
+      "type": "text",
+      "x": 20,
+      "y": 380,
+      "width": 580,
+      "height": 110,
+      "text": "> 切符。[[潮見町]]まで、乗り換え一回。\n\n— [[2026-08-29 切符]]"
+    },
+    {
+      "id": "d1-quote-rec",
+      "type": "text",
+      "x": 20,
+      "y": 510,
+      "width": 580,
+      "height": 460,
+      "text": "> 今、乗り換えの駅。二番ホームの立ち食いそばを食べた。かき揚げがでかくて、汁がしみてて、これはあたり。次の電車まで二十分あるから、ホームのベンチで、これ録ってる。\n>\n> 今日から三日、[[潮見町]]。先月は日帰りだったから、今度はゆっくり。[[浜食堂]]にもう一度行くのが、まあ、一番の目的かな。あじフライ。今朝のだよって言われたやつ。あれをもう一回。\n>\n> あと、朝市があるって聞いたから、二日目の朝は早起きして行ってみる。灯台は、天気が良ければ夕方にもう一回。前は風が強すぎて、帽子を押さえるので精一杯だったから。\n>\n> 宿は港のそば。窓から船が見えるといいんだけど。電車来た。じゃあ、また。\n\n— [[2026-08-29 道中の録音]]（録音）"
+    },
+    {
+      "id": "d1-ai",
+      "type": "text",
+      "x": 20,
+      "y": 990,
+      "width": 580,
+      "height": 110,
+      "text": "*仕分け係の地の文*\n\n乗り換えの駅のホームで録った声から、この旅は始まっている。行く前に挙がっていたのは三つ。浜食堂のあじフライ、二日目の朝市、天気が良ければ夕方の灯台。"
+    },
+
+    {
+      "id": "day2",
+      "type": "group",
+      "x": 680,
+      "y": 0,
+      "width": 620,
+      "height": 1120,
+      "label": "二日目 2026-08-30"
+    },
+    {
+      "id": "d2-photo-market",
+      "type": "file",
+      "x": 700,
+      "y": 60,
+      "width": 280,
+      "height": 210,
+      "file": "raw/IMG_0513.jpg"
+    },
+    {
+      "id": "d2-quote-market",
+      "type": "text",
+      "x": 1000,
+      "y": 60,
+      "width": 280,
+      "height": 210,
+      "text": "> 朝市。六時に行ったら、もう半分終わっていた。\n\n— [[2026-08-30 朝市]]"
+    },
+    {
+      "id": "d2-photo-sign",
+      "type": "file",
+      "x": 700,
+      "y": 300,
+      "width": 280,
+      "height": 210,
+      "file": "raw/IMG_0510.jpg"
+    },
+    {
+      "id": "d2-quote-sign",
+      "type": "text",
+      "x": 1000,
+      "y": 300,
+      "width": 280,
+      "height": 210,
+      "text": "> [[浜食堂]]の看板。去年の台風で曲がったままだって。\n\n— [[2026-08-30 浜食堂の看板]]"
+    },
+    {
+      "id": "d2-photo-receipt",
+      "type": "file",
+      "x": 700,
+      "y": 540,
+      "width": 280,
+      "height": 210,
+      "file": "raw/IMG_0517.jpg"
+    },
+    {
+      "id": "d2-quote-receipt",
+      "type": "text",
+      "x": 1000,
+      "y": 540,
+      "width": 280,
+      "height": 210,
+      "text": "> [[浜食堂]]のレシート。あじフライ定食と、いか焼きを追加。\n\n— [[2026-08-30 浜食堂のレシート]]"
+    },
+    {
+      "id": "d2-ai",
+      "type": "text",
+      "x": 700,
+      "y": 780,
+      "width": 580,
+      "height": 150,
+      "text": "*仕分け係の地の文*\n\nこの日の箱には写真が三枚。朝市、浜食堂の看板、レシートの順。レシートの時刻は 12:15、あじフライ定食といか焼きで 1,500 円。前日の録音にあった夕方の灯台は、この日の記録には出てこない。"
+    },
+
+    {
+      "id": "day3",
+      "type": "group",
+      "x": 1360,
+      "y": 0,
+      "width": 620,
+      "height": 1120,
+      "label": "三日目 2026-08-31 帰る日"
+    },
+    {
+      "id": "d3-photo-port",
+      "type": "file",
+      "x": 1380,
+      "y": 60,
+      "width": 400,
+      "height": 300,
+      "file": "raw/IMG_0525.jpg"
+    },
+    {
+      "id": "d3-quote-port",
+      "type": "text",
+      "x": 1380,
+      "y": 380,
+      "width": 580,
+      "height": 110,
+      "text": "> 港。朝の船が出ていくのを見てから、帰る。\n\n— [[2026-08-31 帰る日の港]]"
+    },
+    {
+      "id": "d3-ai",
+      "type": "text",
+      "x": 1380,
+      "y": 510,
+      "width": 580,
+      "height": 130,
+      "text": "*仕分け係の地の文*\n\n港の写真で終わる。先月の日帰りは夕方に戻ってくる船（[[2026-08-10 帰りの港]]）、今回は朝に出ていく船。"
+    },
+
+    {
+      "id": "pages",
+      "type": "group",
+      "x": 0,
+      "y": 1220,
+      "width": 1980,
+      "height": 320,
+      "label": "糸の行き先（ページ）",
+      "color": "4"
+    },
+    {
+      "id": "p-shiomi",
+      "type": "file",
+      "x": 200,
+      "y": 1290,
+      "width": 400,
+      "height": 180,
+      "file": "ページ/潮見町.md"
+    },
+    {
+      "id": "p-hama",
+      "type": "file",
+      "x": 790,
+      "y": 1290,
+      "width": 400,
+      "height": 180,
+      "file": "ページ/浜食堂.md"
+    },
+    {
+      "id": "p-todai",
+      "type": "file",
+      "x": 1380,
+      "y": 1290,
+      "width": 400,
+      "height": 180,
+      "file": "ページ/岬の灯台.md"
+    }
+  ],
+  "edges": [
+    { "id": "e-prev-d1", "fromNode": "prev", "fromSide": "right", "toNode": "d1-quote-rec", "toSide": "left", "label": "先月は日帰り" },
+    { "id": "e-d1-d2", "fromNode": "day1", "fromSide": "right", "toNode": "day2", "toSide": "left", "label": "二日目" },
+    { "id": "e-d2-d3", "fromNode": "day2", "fromSide": "right", "toNode": "day3", "toSide": "left", "label": "帰る日" },
+
+    { "id": "e-d1-shiomi", "fromNode": "day1", "fromSide": "bottom", "toNode": "p-shiomi", "toSide": "top" },
+    { "id": "e-d2-shiomi", "fromNode": "day2", "fromSide": "bottom", "toNode": "p-shiomi", "toSide": "top" },
+    { "id": "e-d3-shiomi", "fromNode": "day3", "fromSide": "bottom", "toNode": "p-shiomi", "toSide": "top" },
+
+    { "id": "e-rec-hama", "fromNode": "d1-quote-rec", "fromSide": "bottom", "toNode": "p-hama", "toSide": "top", "label": "もう一度行く" },
+    { "id": "e-sign-hama", "fromNode": "d2-quote-sign", "fromSide": "bottom", "toNode": "p-hama", "toSide": "top" },
+    { "id": "e-receipt-hama", "fromNode": "d2-quote-receipt", "fromSide": "bottom", "toNode": "p-hama", "toSide": "top" },
+
+    { "id": "e-rec-todai", "fromNode": "d1-quote-rec", "fromSide": "bottom", "toNode": "p-todai", "toSide": "top", "label": "天気が良ければ夕方に" }
+  ]
+}
