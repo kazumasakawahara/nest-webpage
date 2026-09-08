@@ -142,12 +142,12 @@ const fmtDate = (d: Date) =>
       <details class="feature-box reveal" id="kiroku" open>
         <summary class="feature-box__summary">
           <span class="feature-box__eyebrow">📦 特集コーナー・NEW</span>
-          <h3 class="feature-box__title">撮るだけじゃ、もったいない ― 放り込むのはあなた、仕分けるのはAIさん{kirokuItems.length > 0 ? `（全${kirokuItems.length}回）` : '（近日公開）'}</h3>
+          <h3 class="feature-box__title">撮るだけじゃ、もったいない ― 旅の記録を作ってみよう{kirokuItems.length > 0 ? `（全${kirokuItems.length}回）` : '（近日公開）'}</h3>
           <span class="feature-box__toggle" aria-hidden="true">＋</span>
         </summary>
         <div class="feature-box__body">
           <p class="feature-box__lead">
-            スマホで写真を撮るだけですか？ それは、もったいない。撮ったもの・録ったもの・打った一言を、ぜんぶ<strong>「なんでも箱」に放り込む</strong>だけ。あとはAIさんが仕分けて、ノートにして、<strong>関係のあるもの同士を糸でつないでくれます</strong>。日帰りの三枚の写真が灯台と食堂につながり（第1回）、三日間の旅が地図になり（第2回）、帰ってからの一行が次の旅につながり（第3回）、最終回では箱の中身からAIさんが旅行記を一冊書きます（第4回）。道具はスマホと、自分のノート（Obsidian）と、AIさんの三つだけ。
+            スマホで写真を撮るだけですか？ それは、もったいない。撮ったもの・録ったもの・打った一言を、ぜんぶ<strong>「なんでも箱」に放り込む</strong>だけ。あとはAIさんが仕分けて、ノートにして、<strong>関係のあるもの同士を糸でつないでくれます</strong>。放り込むのはあなた、仕分けるのはAIさん。日帰りの三枚の写真が灯台と食堂につながり（第1回）、三日間の旅と帰ってからの一行が地図になり（第2回）、最終回では箱の中身からAIさんが旅行記を一冊書きます（第3回）。道具はスマホと、自分のノート（Obsidian）と、AIさんの三つだけ。
           </p>
           <img class="feature-box__img" src="/images/ai-tips/kiroku-4-bloom.svg" alt="ノートのつながりを示すグラフの絵。中央の「潮見町」のページから「岬の灯台」「浜食堂」「朝市」「二番ホーム」のページへ糸が伸び、その先に写真・切符・一行の小さなノートが実のように下がっている。隅ではAIさん人形が糸を結んでいる" width="640" height="400" loading="lazy" decoding="async" />
           {kirokuItems.length > 0 ? (
@@ -161,7 +161,7 @@ const fmtDate = (d: Date) =>
               ))}
             </ol>
           ) : (
-            <p class="feature-box__coming">第1回「なんでも箱をつくる」から第4回「旅行記を、AIさんに書いてもらう」まで——近日公開です。</p>
+            <p class="feature-box__coming">第1回「なんでも箱をつくる」から第3回「旅行記を、AIさんに書いてもらう」まで——近日公開です。</p>
           )}
         </div>
       </details>
