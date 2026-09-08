@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-label="Obsidian のグラフ表示を描き起こした図。中央に「潮見町」の大きな丸。左上に「岬の灯台」、右上に「浜食堂」の丸。そこから「2026-08-10 岬の灯台」「2026-08-10 浜食堂のあじフライ定食」「2026-08-10 帰りの港」の三つの小さな丸へ線が伸びている。帰りの港は潮見町にだけつながっている">
+  <defs>
+    <style>
+      .lab { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; fill: #2f2a24; }
+      .mute { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; fill: #8a7f6e; }
+      .edge { stroke: #b85f3d; stroke-width: 1.8; fill: none; stroke-linecap: round; opacity: 0.85; }
+    </style>
+  </defs>
+
+  <rect width="640" height="360" rx="16" fill="#faf6ef"/>
+  <rect x="16" y="16" width="608" height="328" rx="10" fill="#fffdf8" stroke="#e2dccf"/>
+  <text x="32" y="40" class="mute" font-size="11">グラフ表示（描き起こし）</text>
+
+  <!-- 糸 -->
+  <path d="M320 180 L200 110" class="edge"/>
+  <path d="M320 180 L440 110" class="edge"/>
+  <path d="M200 110 L150 250" class="edge"/>
+  <path d="M320 180 L150 250" class="edge"/>
+  <path d="M440 110 L490 250" class="edge"/>
+  <path d="M320 180 L490 250" class="edge"/>
+  <path d="M320 180 L320 270" class="edge"/>
+
+  <!-- 中心：潮見町 -->
+  <circle cx="320" cy="180" r="28" fill="#5f8a6a"/>
+  <circle cx="320" cy="180" r="21" fill="#eef3e6"/>
+  <text x="320" y="185" text-anchor="middle" class="lab" font-size="13">潮見町</text>
+
+  <!-- ページ：岬の灯台・浜食堂 -->
+  <circle cx="200" cy="110" r="16" fill="#5f8a6a"/>
+  <circle cx="200" cy="110" r="11" fill="#eef3e6"/>
+  <text x="200" y="88" text-anchor="middle" class="lab" font-size="12">岬の灯台</text>
+  <circle cx="440" cy="110" r="16" fill="#5f8a6a"/>
+  <circle cx="440" cy="110" r="11" fill="#eef3e6"/>
+  <text x="440" y="88" text-anchor="middle" class="lab" font-size="12">浜食堂</text>
+
+  <!-- 日々のノート三つ -->
+  <circle cx="150" cy="250" r="9" fill="#b85f3d"/>
+  <text x="150" y="274" text-anchor="middle" class="lab" font-size="11">2026-08-10 岬の灯台</text>
+  <circle cx="490" cy="250" r="9" fill="#b85f3d"/>
+  <text x="490" y="274" text-anchor="middle" class="lab" font-size="11">2026-08-10 浜食堂のあじフライ定食</text>
+  <circle cx="320" cy="270" r="9" fill="#b85f3d"/>
+  <text x="320" y="294" text-anchor="middle" class="lab" font-size="11">2026-08-10 帰りの港</text>
+
+  <!-- 凡例 -->
+  <g transform="translate(32 316)">
+    <circle cx="6" cy="0" r="6" fill="#5f8a6a"/>
+    <text x="18" y="4" class="mute" font-size="10">ページ（もの・場所・店）</text>
+    <circle cx="176" cy="0" r="6" fill="#b85f3d"/>
+    <text x="188" y="4" class="mute" font-size="10">日々のノート（写真1枚につき1枚）</text>
+    <line x1="392" y1="0" x2="416" y2="0" class="edge"/>
+    <text x="422" y="4" class="mute" font-size="10">糸（[[ ]] のリンク）</text>
+  </g>
+</svg>
