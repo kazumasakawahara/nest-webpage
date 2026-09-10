@@ -14,7 +14,8 @@ series: [kiroku]
   <ol class="series-nav__list">
     <li><a href="/ai-tips/2026-09-09-kiroku-1-nandemo-bako/">撮るだけですか？ それは、もったいない ― なんでも箱をつくる</a></li>
     <li class="is-current">録音も、切符も、一行も、放り込む ― 旅の三日間が地図になる（この記事）</li>
-    <li>旅行記を、AIさんに書いてもらう ― 箱の中身が、一冊になる（近日公開）</li>
+    <li><a href="/ai-tips/2026-09-09-kiroku-3-ryokoki/">旅行記を、AIさんに書いてもらう ― 箱の中身が、一冊になる</a></li>
+    <li><a href="/ai-tips/2026-09-10-kiroku-ex-sumaho/">番外編：スマホは、放り込むだけ ― なんでも箱を、スマホとパソコンでつなぐ</a></li>
   </ol>
 </div>
 
@@ -59,7 +60,7 @@ series: [kiroku]
 <div class="callout">
   <span class="callout__label">声を、文字にして放り込む</span>
   <p>録音は<strong>文字にしてから</strong>箱に入れます。いちばん手軽なのは、スマホのキーボードのマイク（音声入力）で、Obsidian のノートに向かって話すこと。話した端から文字になります。ボイスメモを文字にする機能があるスマホなら、録音してから文字にしても構いません。音声ファイルそのものを箱に入れても、仕分け係は聞けません。</p>
-  <p>スマホで放り込んで、パソコンの仕分け係に見せるには、両方から同じ保管庫が見える必要があります。Obsidian Sync（有料）のほか、iPhone なら iCloud Drive、Android ではサードパーティの同期アプリが使えます（Obsidian の公式ヘルプ「Sync your notes across devices」に一覧があります）。同期の設定は環境ごとに違うので、この特集では踏み込みません。</p>
+  <p>スマホで放り込んで、パソコンの仕分け係に見せるには、両方から同じ保管庫が見える必要があります。Obsidian Sync（有料）のほか、iPhone なら iCloud Drive、Android ではサードパーティの同期アプリが使えます（Obsidian の公式ヘルプ「Sync your notes across devices」に一覧があります）。同期の設定は環境ごとに違うので、<a href="/ai-tips/2026-09-10-kiroku-ex-sumaho/">番外編「スマホは、放り込むだけ」</a>で、Android＋Mac と iPhone＋Mac に分けて手順にしました。</p>
 </div>
 
 ## 帰ってからの一週間は、一行だけ

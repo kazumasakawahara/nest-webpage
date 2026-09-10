@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 244" width="640" height="244" role="img" aria-label="四列の流れ図。スマホのドライブアプリから写真を Google ドライブの raw へ送り、パソコン版ドライブ（ミラーリング）が保管庫の raw に実体つきで同期し、Claude Desktop＋Filesystem が raw を読む。スマホに Obsidian は入っていない">
+  <defs>
+    <style>
+      .t { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; fill: #2f2a24; font-size: 12px; }
+      .s { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; fill: #8a7f6e; font-size: 10.5px; }
+      .h { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; fill: #8a7f6e; font-size: 11.5px; letter-spacing: 1px; }
+      .ok { fill: #3f7a5a; }
+      .box { fill: #ffffff; stroke: #2f2a24; stroke-width: 1.3; }
+      .box-ok { fill: #eef3e6; stroke: #3f7a5a; stroke-width: 1.3; }
+      .ghost { fill: none; stroke: #8a7f6e; stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .dev { fill: #ffffff; stroke: #2f2a24; stroke-width: 1.2; }
+      .col { stroke: #e2dccf; stroke-dasharray: 3 4; }
+      .ar { stroke: #2f2a24; stroke-width: 1.5; fill: none; marker-end: url(#m-ink); }
+      .ar-ok { stroke: #3f7a5a; stroke-width: 1.5; fill: none; marker-end: url(#m-ok); }
+    </style>
+    <marker id="m-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><polygon points="0,0 10,5 0,10" fill="#2f2a24"/></marker>
+    <marker id="m-ok" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><polygon points="0,0 10,5 0,10" fill="#3f7a5a"/></marker>
+  </defs>
+
+  <rect width="640" height="244" rx="16" fill="#faf6ef"/>
+
+  <text class="h" x="105" y="24" text-anchor="middle">スマホ（Android）</text>
+  <text class="h" x="270" y="24" text-anchor="middle">クラウド</text>
+  <text class="h" x="425" y="24" text-anchor="middle">パソコン</text>
+  <text class="h" x="570" y="24" text-anchor="middle">AI</text>
+  <line class="col" x1="197" y1="36" x2="197" y2="222"/>
+  <line class="col" x1="337" y1="36" x2="337" y2="222"/>
+  <line class="col" x1="507" y1="36" x2="507" y2="222"/>
+
+  <!-- スマホ -->
+  <rect class="dev" x="25" y="44" width="160" height="172" rx="14"/>
+  <rect class="box-ok" x="40" y="70" width="130" height="46" rx="5"/>
+  <text class="t ok" x="105" y="89" text-anchor="middle">ドライブアプリ</text>
+  <text class="s" x="105" y="106" text-anchor="middle">「＋」→ アップロードで raw へ</text>
+  <rect class="ghost" x="40" y="142" width="130" height="46" rx="5"/>
+  <text class="s" x="105" y="161" text-anchor="middle">Obsidian</text>
+  <text class="s" x="105" y="177" text-anchor="middle">入っていない</text>
+
+  <!-- クラウド -->
+  <rect class="box" x="210" y="80" width="120" height="56" rx="8"/>
+  <text class="t" x="270" y="102" text-anchor="middle">Google ドライブ</text>
+  <text class="s" x="270" y="121" text-anchor="middle">記録/raw/ に写真</text>
+
+  <!-- Mac -->
+  <rect class="dev" x="345" y="44" width="160" height="172" rx="8"/>
+  <rect class="box" x="358" y="70" width="134" height="46" rx="5"/>
+  <text class="t" x="425" y="89" text-anchor="middle">パソコン版ドライブ</text>
+  <text class="s" x="425" y="106" text-anchor="middle">ミラーリング（実体を置く）</text>
+  <rect class="box-ok" x="358" y="142" width="134" height="46" rx="5"/>
+  <text class="t" x="425" y="161" text-anchor="middle">保管庫 記録/raw/</text>
+  <text class="s" x="425" y="178" text-anchor="middle">実体つきの写真が並ぶ</text>
+
+  <!-- AI -->
+  <rect class="box-ok" x="515" y="104" width="110" height="50" rx="8"/>
+  <text class="t" x="570" y="124" text-anchor="middle">Claude Desktop</text>
+  <text class="s" x="570" y="141" text-anchor="middle">＋Filesystem</text>
+
+  <!-- 矢印 -->
+  <line class="ar-ok" x1="171" y1="92" x2="208" y2="104"/>
+  <text class="s ok" x="190" y="84" text-anchor="middle">写真を送る</text>
+  <line class="ar" x1="331" y1="104" x2="356" y2="96"/>
+  <text class="s" x="344" y="86" text-anchor="middle">同期</text>
+  <line class="ar" x1="425" y1="117" x2="425" y2="140"/>
+  <line class="ar-ok" x1="493" y1="162" x2="513" y2="136"/>
+  <text class="s ok" x="498" y="180" text-anchor="middle">raw を読む</text>
+
+  <text class="t ok" x="320" y="234" text-anchor="middle">写真の仕分けまで、そのまま動きます</text>
+</svg>

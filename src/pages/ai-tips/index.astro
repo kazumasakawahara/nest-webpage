@@ -77,7 +77,10 @@ const ronbunItems = all.filter(inFeature('ronbun')).sort((a, b) => a.id.localeCo
 const oshieruItems = all.filter(inFeature('oshieru')).sort((a, b) => a.id.localeCompare(b.id));
 
 // 特集・撮るだけじゃ、もったいない（ファイル名の連番順。記事が出るまでは近日公開の枠だけ描画）
-const kirokuItems = all.filter(inFeature('kiroku')).sort((a, b) => a.id.localeCompare(b.id));
+const kirokuAll = all.filter(inFeature('kiroku')).sort((a, b) => a.id.localeCompare(b.id));
+// 番外編（スラッグに kiroku-ex- を含む）は「全N回」に数えず、本編の後ろに並べる
+const kirokuItems = kirokuAll.filter((e) => !e.id.includes('kiroku-ex-'));
+const kirokuExtras = kirokuAll.filter((e) => e.id.includes('kiroku-ex-'));
 
 // 相棒編：読みもの＋連載本編（ファイル名の連番順）＋実践編（日付順）
 const aibouIntro = all.find((e) => e.data.kind === 'aibou');
@@ -154,6 +157,13 @@ const fmtDate = (d: Date) =>
             <ol class="feature-box__list">
               {kirokuItems.map((item) => (
                 <li class="feature-box__item">
+                  <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
+                    <span class="feature-box__name">{item.data.title}</span>
+                  </a>
+                </li>
+              ))}
+              {kirokuExtras.map((item) => (
+                <li class="feature-box__item feature-box__item--extra">
                   <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
                     <span class="feature-box__name">{item.data.title}</span>
                   </a>
@@ -615,6 +625,9 @@ const fmtDate = (d: Date) =>
     counter-increment: dougu;
     border-bottom: 1px dashed var(--color-line);
   }
+  /* 番外編：連番に数えず、丸印を「番」にする */
+  .feature-box__item--extra { counter-increment: none; }
+  .feature-box__item--extra .feature-box__link::before { content: '番'; }
 
   .feature-box__item:last-child { border-bottom: none; }
 
