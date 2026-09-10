@@ -31,7 +31,7 @@
   <rect class="dev" x="25" y="44" width="160" height="172" rx="14"/>
   <rect class="box-ok" x="40" y="70" width="130" height="46" rx="5"/>
   <text class="t ok" x="105" y="89" text-anchor="middle">ドライブアプリ</text>
-  <text class="s" x="105" y="106" text-anchor="middle">写真を「共有」→ raw へ</text>
+  <text class="s" x="105" y="106" text-anchor="middle">「＋」→ アップロードで raw へ</text>
   <rect class="ghost" x="40" y="142" width="130" height="46" rx="5"/>
   <text class="s" x="105" y="161" text-anchor="middle">Obsidian</text>
   <text class="s" x="105" y="177" text-anchor="middle">入っていない</text>
