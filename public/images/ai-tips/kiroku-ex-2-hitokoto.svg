@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 324" width="640" height="324" role="img" aria-label="四列の流れ図に二本の道。上の道：ドライブアプリでコメントを書くと Google ドキュメントになり、パソコンにはショートカットだけ届いて AI は読めない。下の道：スマホで文字を書くアプリ（Obsidian モバイルなど）がスマホ内フォルダに .md を書き、同期アプリが Google ドライブへ運び、パソコンの保管庫に実体つきで届いて AI が読める">
+  <defs>
+    <style>
+      .t { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; fill: #2f2a24; font-size: 12px; }
+      .s { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; fill: #8a7f6e; font-size: 10.5px; }
+      .h { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; fill: #8a7f6e; font-size: 11.5px; letter-spacing: 1px; }
+      .ok { fill: #3f7a5a; }
+      .ng { fill: #b85f3d; }
+      .box { fill: #ffffff; stroke: #2f2a24; stroke-width: 1.3; }
+      .box-ok { fill: #eef3e6; stroke: #3f7a5a; stroke-width: 1.3; }
+      .box-ng { fill: #f7e6df; stroke: #b85f3d; stroke-width: 1.3; }
+      .dev { fill: #ffffff; stroke: #2f2a24; stroke-width: 1.2; }
+      .col { stroke: #e2dccf; stroke-dasharray: 3 4; }
+      .ar { stroke: #2f2a24; stroke-width: 1.5; fill: none; marker-end: url(#m-ink); }
+      .ar-ok { stroke: #3f7a5a; stroke-width: 1.5; fill: none; marker-end: url(#m-ok); }
+      .ar-ok2 { stroke: #3f7a5a; stroke-width: 1.5; fill: none; marker-end: url(#m-ok); marker-start: url(#m-ok); }
+      .ar-ng { stroke: #b85f3d; stroke-width: 1.5; fill: none; marker-end: url(#m-ng); }
+    </style>
+    <marker id="m-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#2f2a24"/></marker>
+    <marker id="m-ok" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#3f7a5a"/></marker>
+    <marker id="m-ng" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><polygon points="0,0 10,5 0,10" fill="#b85f3d"/></marker>
+  </defs>
+
+  <rect width="640" height="324" rx="16" fill="#faf6ef"/>
+
+  <text class="h" x="105" y="24" text-anchor="middle">スマホ（Android）</text>
+  <text class="h" x="270" y="24" text-anchor="middle">クラウド</text>
+  <text class="h" x="425" y="24" text-anchor="middle">パソコン</text>
+  <text class="h" x="570" y="24" text-anchor="middle">AI</text>
+  <line class="col" x1="197" y1="36" x2="197" y2="310"/>
+  <line class="col" x1="337" y1="36" x2="337" y2="310"/>
+  <line class="col" x1="507" y1="36" x2="507" y2="310"/>
+
+  <rect class="dev" x="25" y="44" width="160" height="262" rx="14"/>
+
+  <!-- 上の道：詰まる -->
+  <rect class="box-ng" x="40" y="62" width="130" height="46" rx="5"/>
+  <text class="t ng" x="105" y="81" text-anchor="middle">ドライブアプリで書く</text>
+  <text class="s" x="105" y="98" text-anchor="middle">文字ファイルを作る口がない</text>
+  <rect class="box-ng" x="210" y="62" width="120" height="46" rx="8"/>
+  <text class="t" x="270" y="81" text-anchor="middle">Google ドキュメント</text>
+  <text class="s" x="270" y="98" text-anchor="middle">本文はクラウドにある</text>
+  <rect class="box-ng" x="358" y="62" width="134" height="46" rx="5"/>
+  <text class="t" x="425" y="81" text-anchor="middle">届くのはショートカット</text>
+  <text class="s" x="425" y="98" text-anchor="middle">コメント.gdoc（リンク）</text>
+  <rect class="box-ng" x="515" y="62" width="110" height="46" rx="8"/>
+  <text class="t ng" x="570" y="81" text-anchor="middle">読めない</text>
+  <text class="s" x="570" y="98" text-anchor="middle">本文が手元にない</text>
+  <line class="ar-ng" x1="171" y1="85" x2="208" y2="85"/>
+  <line class="ar-ng" x1="331" y1="85" x2="356" y2="85"/>
+  <line class="ar-ng" x1="493" y1="85" x2="513" y2="85"/>
+
+  <!-- 下の道：通る -->
+  <rect class="box-ok" x="40" y="150" width="130" height="56" rx="5"/>
+  <text class="t ok" x="105" y="168" text-anchor="middle">文字を書くアプリ</text>
+  <text class="s" x="105" y="184" text-anchor="middle">Obsidian モバイルが便利</text>
+  <text class="s" x="105" y="198" text-anchor="middle">素朴なメモ帳でも可</text>
+  <line class="ar-ok" x1="105" y1="207" x2="105" y2="228"/>
+  <text class="s ok" x="112" y="222" text-anchor="start">.md を書く</text>
+  <rect class="box" x="40" y="230" width="130" height="48" rx="5"/>
+  <text class="t" x="105" y="249" text-anchor="middle">スマホ内 記録/raw/</text>
+  <text class="s" x="105" y="266" text-anchor="middle">.md と写真の実体</text>
+
+  <rect class="box" x="210" y="226" width="120" height="56" rx="8"/>
+  <text class="t" x="270" y="246" text-anchor="middle">Google ドライブ</text>
+  <text class="s" x="270" y="262" text-anchor="middle">記録/raw/</text>
+  <text class="s" x="270" y="275" text-anchor="middle">.md と写真</text>
+  <line class="ar-ok2" x1="173" y1="254" x2="207" y2="254"/>
+  <text class="s ok" x="190" y="242" text-anchor="middle">同期アプリ</text>
+  <text class="s" x="190" y="292" text-anchor="middle">FolderSync 等</text>
+
+  <rect class="box-ok" x="358" y="230" width="134" height="48" rx="5"/>
+  <text class="t" x="425" y="249" text-anchor="middle">保管庫 記録/raw/</text>
+  <text class="s" x="425" y="266" text-anchor="middle">.md と写真の実体</text>
+  <line class="ar" x1="331" y1="254" x2="356" y2="254"/>
+  <text class="s" x="344" y="244" text-anchor="middle">同期</text>
+
+  <rect class="box-ok" x="515" y="230" width="110" height="48" rx="8"/>
+  <text class="t ok" x="570" y="249" text-anchor="middle">読める</text>
+  <text class="s" x="570" y="266" text-anchor="middle">仕分け係が動く</text>
+  <line class="ar-ok" x1="493" y1="254" x2="513" y2="254"/>
+</svg>

@@ -15,6 +15,7 @@ series: [kiroku]
     <li><a href="/ai-tips/2026-09-09-kiroku-1-nandemo-bako/">撮るだけですか？ それは、もったいない ― なんでも箱をつくる</a></li>
     <li><a href="/ai-tips/2026-09-09-kiroku-2-tabi-no-chizu/">録音も、切符も、一行も、放り込む ― 旅の三日間が地図になる</a></li>
     <li class="is-current">旅行記を、AIさんに書いてもらう ― 箱の中身が、一冊になる（この記事）</li>
+    <li><a href="/ai-tips/2026-09-10-kiroku-ex-sumaho/">番外編：スマホは、放り込むだけ ― なんでも箱を、スマホとパソコンでつなぐ</a></li>
   </ol>
 </div>
 
