@@ -1,0 +1,188 @@
+お店の入口用に、A4一枚・大きな字・総ルビのお知らせを作りました。下の HTML をそのまま `.html` ファイルとして保存し、ブラウザで開いて「印刷」（用紙 A4・余白なし・背景のグラフィックを印刷ON）にすると一枚に収まります。
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>木町家 秋の音楽会 お知らせ</title>
+<style>
+  @page { size: A4 portrait; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #e8e2d8; }
+  body {
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+    color: #3a2a1e;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  ruby { ruby-position: over; }
+  ruby rt { font-size: 0.42em; font-weight: normal; letter-spacing: 0; color: inherit; }
+
+  .sheet {
+    width: 210mm; min-height: 297mm;
+    margin: 10mm auto; padding: 11mm 13mm;
+    background: #fffaf0;
+    box-shadow: 0 4px 20px rgba(0,0,0,.18);
+    display: flex; flex-direction: column; justify-content: space-between; gap: 4mm;
+    border: 6px double #c9773b; outline: 3mm solid #fffaf0;
+  }
+  @media print {
+    html, body { background: #fff; }
+    .sheet { margin: 0; box-shadow: none; width: 210mm; height: 297mm; outline: none; }
+  }
+
+  /* 見出し */
+  .head { text-align: center; }
+  .head .shop {
+    display: inline-block; font-size: 20pt; font-weight: bold;
+    padding: 2mm 8mm; border-radius: 999px; background: #c9773b; color: #fff;
+  }
+  .head .sub { font-size: 22pt; font-weight: bold; margin-top: 3mm; letter-spacing: 0.1em; }
+  .head .title {
+    font-size: 44pt; font-weight: 900; line-height: 1.35; margin-top: 1mm;
+    color: #7a3b12; letter-spacing: 0.04em;
+  }
+  .head .title .note { color: #c9773b; font-size: 0.8em; }
+
+  /* 日付 */
+  .date {
+    text-align: center; background: #7a3b12; color: #fff;
+    border-radius: 4mm; padding: 3mm 2mm;
+    font-size: 36pt; font-weight: 900; line-height: 1.4;
+  }
+  .date rt { color: #ffe3c4; }
+  .date .dow { display: inline-block; font-size: 0.7em; background: #fff; color: #7a3b12; border-radius: 3mm; padding: 0 3mm; margin-left: 3mm; vertical-align: middle; }
+
+  /* 時間 */
+  .times { display: flex; gap: 4mm; }
+  .times div {
+    flex: 1; text-align: center; border: 3px solid #c9773b; border-radius: 4mm;
+    padding: 2mm 1mm; background: #fff;
+  }
+  .times .lab { font-size: 18pt; font-weight: bold; color: #7a3b12; }
+  .times .val { font-size: 32pt; font-weight: 900; line-height: 1.2; }
+  .times .small { font-size: 12pt; color: #6b5a4a; }
+
+  /* 情報の枠 */
+  .row { display: flex; gap: 4mm; }
+  .box {
+    flex: 1; background: #fff; border-radius: 4mm; padding: 3mm 4mm;
+    border-left: 8px solid #c9773b;
+  }
+  .box .lab { font-size: 15pt; font-weight: bold; color: #c9773b; }
+  .box .val { font-size: 26pt; font-weight: 900; line-height: 1.35; }
+  .box .val .big { font-size: 1.35em; color: #7a3b12; }
+  .box .add { font-size: 15pt; font-weight: bold; margin-top: 1mm; }
+
+  /* 出演 */
+  .cast { background: #fff; border-radius: 4mm; padding: 3mm 4mm; border-left: 8px solid #c9773b; }
+  .cast .lab { font-size: 15pt; font-weight: bold; color: #c9773b; }
+  .cast .list { display: flex; gap: 4mm; margin-top: 2mm; }
+  .cast .list div {
+    flex: 1; text-align: center; background: #fbe8d3; border-radius: 3mm;
+    padding: 2mm 1mm; font-size: 24pt; font-weight: 900; color: #7a3b12; line-height: 1.3;
+  }
+  .cast .list .icon { display: block; font-size: 22pt; line-height: 1.1; color: #c9773b; }
+
+  /* 定員 */
+  .limit {
+    text-align: center; font-size: 22pt; font-weight: 900; line-height: 1.5;
+    background: #fbe8d3; border-radius: 4mm; padding: 2mm;
+  }
+  .limit .num { font-size: 1.4em; color: #b8321a; }
+
+  /* 申し込み */
+  .contact {
+    text-align: center; background: #7a3b12; color: #fff; border-radius: 4mm; padding: 3mm 2mm;
+  }
+  .contact rt { color: #ffe3c4; }
+  .contact .lab { font-size: 20pt; font-weight: bold; }
+  .contact .tel { font-size: 42pt; font-weight: 900; line-height: 1.2; letter-spacing: 0.04em; }
+  .contact .hours { font-size: 17pt; margin-top: 1mm; }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <!-- 見出し -->
+  <div class="head">
+    <div class="shop">キッチン＆マルシェ <ruby>木町家<rt>きまちや</rt></ruby></div>
+    <div class="sub">♪ <ruby>秋<rt>あき</rt></ruby>の<ruby>音楽会<rt>おんがくかい</rt></ruby> ♪</div>
+    <div class="title">
+      <span class="note">「</span><ruby>風<rt>かぜ</rt></ruby>と<ruby>歌<rt>うた</rt></ruby>と<br>ピアノと<span class="note">」</span>
+    </div>
+  </div>
+
+  <!-- 日付 -->
+  <div class="date">
+    2026<ruby>年<rt>ねん</rt></ruby> 10<ruby>月<rt>がつ</rt></ruby> 17<ruby>日<rt>にち</rt></ruby>
+    <span class="dow"><ruby>土<rt>ど</rt></ruby></span>
+  </div>
+
+  <!-- 時間 -->
+  <div class="times">
+    <div>
+      <div class="lab"><ruby>開場<rt>かいじょう</rt></ruby></div>
+      <div class="val">17:00</div>
+      <div class="small">ドアが<ruby>開<rt>あ</rt></ruby>きます</div>
+    </div>
+    <div>
+      <div class="lab"><ruby>開演<rt>かいえん</rt></ruby></div>
+      <div class="val">17:30</div>
+      <div class="small"><ruby>演奏<rt>えんそう</rt></ruby>が<ruby>始<rt>はじ</rt></ruby>まります</div>
+    </div>
+    <div>
+      <div class="lab"><ruby>終演<rt>しゅうえん</rt></ruby>（<ruby>予定<rt>よてい</rt></ruby>）</div>
+      <div class="val">19:20</div>
+      <div class="small"><ruby>終<rt>お</rt></ruby>わります</div>
+    </div>
+  </div>
+
+  <!-- 会場・料金 -->
+  <div class="row">
+    <div class="box">
+      <div class="lab">■ <ruby>会場<rt>かいじょう</rt></ruby></div>
+      <div class="val">キッチン＆マルシェ<br><ruby>木町家<rt>きまちや</rt></ruby></div>
+    </div>
+    <div class="box">
+      <div class="lab">■ <ruby>料金<rt>りょうきん</rt></ruby></div>
+      <div class="val"><span class="big">2,500</span><ruby>円<rt>えん</rt></ruby>（<ruby>税込<rt>ぜいこみ</rt></ruby>）</div>
+      <div class="add">
+        <ruby>木町家<rt>きまちや</rt></ruby><ruby>手作<rt>てづく</rt></ruby>りパン＆ドリンク<ruby>付<rt>つ</rt></ruby>き
+      </div>
+    </div>
+  </div>
+
+  <!-- 出演 -->
+  <div class="cast">
+    <div class="lab">■ <ruby>出演<rt>しゅつえん</rt></ruby></div>
+    <div class="list">
+      <div><span class="icon">♪</span>ホルン</div>
+      <div><span class="icon">♪</span>テノール</div>
+      <div><span class="icon">♪</span>ピアノ</div>
+    </div>
+  </div>
+
+  <!-- 定員 -->
+  <div class="limit">
+    <span class="num">40</span><ruby>名様<rt>めいさま</rt></ruby><ruby>限定<rt>げんてい</rt></ruby><br>
+    <ruby>定員<rt>ていいん</rt></ruby>になり<ruby>次第<rt>しだい</rt></ruby>、<ruby>締<rt>し</rt></ruby>め<ruby>切<rt>き</rt></ruby>ります
+  </div>
+
+  <!-- 申し込み -->
+  <div class="contact">
+    <div class="lab">☎ お<ruby>申<rt>もう</rt></ruby>し<ruby>込<rt>こ</rt></ruby>みは お<ruby>電話<rt>でんわ</rt></ruby>で</div>
+    <div class="tel">093-592-0331</div>
+    <div class="hours"><ruby>受付<rt>うけつけ</rt></ruby> 10<ruby>時<rt>じ</rt></ruby>〜17<ruby>時<rt>じ</rt></ruby></div>
+  </div>
+
+</div>
+</body>
+</html>
+```
+
+補足を2点だけ。
+
+- 「木町家」のふりがなは **「きまちや」** にしています。読みが違う場合は、ファイル内の `<rt>きまちや</rt>`（3か所）を書き換えてください。
+- 印刷時は「背景のグラフィック（背景色）を印刷する」をONにすると、茶色の帯や枠がそのまま出ます。OFFだと白黒に近い見た目になります。
