@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 330" width="640" height="330" role="img" aria-label="三段の図。上段ストリーミング：クラウドに実体、パソコンには点線の名前だけで、AIは読めない。中段ミラーリング：クラウドとパソコンの両方に実体、AIが読める。下段パソコンのフォルダを同期：パソコンの元のフォルダに実体、クラウドの「パソコン」欄に写し、AIが読める">
+  <defs>
+    <style>
+      .t { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; fill: #2f2a24; font-size: 12px; }
+      .b { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; fill: #2f2a24; font-size: 13px; font-weight: 700; }
+      .s { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; fill: #8a7f6e; font-size: 10.5px; }
+      .h { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; fill: #8a7f6e; font-size: 11.5px; letter-spacing: 1px; }
+      .ok { fill: #3f7a5a; }
+      .ng { fill: #a8553a; }
+      .row { fill: #ffffff; stroke: #e2dccf; stroke-width: 1; }
+      .row-ok { fill: #f6f9f1; stroke: #3f7a5a; stroke-width: 1.2; }
+      .file { fill: #ffffff; stroke: #2f2a24; stroke-width: 1.2; }
+      .file-ok { fill: #eef3e6; stroke: #3f7a5a; stroke-width: 1.2; }
+      .ghost { fill: none; stroke: #8a7f6e; stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .col { stroke: #e2dccf; stroke-dasharray: 3 4; }
+      .ar { stroke: #2f2a24; stroke-width: 1.5; fill: none; marker-end: url(#m-ink); }
+      .ar-dash { stroke: #8a7f6e; stroke-width: 1.5; fill: none; stroke-dasharray: 5 4; marker-end: url(#m-gy); }
+      .ar-ok { stroke: #3f7a5a; stroke-width: 1.5; fill: none; marker-end: url(#m-ok); }
+    </style>
+    <marker id="m-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><polygon points="0,0 10,5 0,10" fill="#2f2a24"/></marker>
+    <marker id="m-gy" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><polygon points="0,0 10,5 0,10" fill="#8a7f6e"/></marker>
+    <marker id="m-ok" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><polygon points="0,0 10,5 0,10" fill="#3f7a5a"/></marker>
+    <symbol id="f" viewBox="0 0 22 26"><path d="M2 1h11l7 7v17H2z"/></symbol>
+  </defs>
+
+  <rect width="640" height="330" rx="16" fill="#faf6ef"/>
+
+  <text class="h" x="300" y="24" text-anchor="middle">クラウド（Google ドライブ）</text>
+  <text class="h" x="470" y="24" text-anchor="middle">パソコンの中</text>
+  <text class="h" x="585" y="24" text-anchor="middle">仕分け係</text>
+  <line class="col" x1="385" y1="34" x2="385" y2="300"/>
+  <line class="col" x1="545" y1="34" x2="545" y2="300"/>
+
+  <!-- ① ストリーミング -->
+  <g transform="translate(0,40)">
+    <rect class="row" x="16" y="0" width="608" height="78" rx="10"/>
+    <text class="b" x="30" y="24">① ストリーミング</text>
+    <text class="s" x="30" y="42">名前だけ手元に届き、</text>
+    <text class="s" x="30" y="57">開いた時だけ取り寄せる</text>
+    <g class="file"><use href="#f" x="250" y="22" width="26" height="30"/><use href="#f" x="282" y="22" width="26" height="30"/><use href="#f" x="314" y="22" width="26" height="30"/></g>
+    <path class="ar-dash" d="M352 38 H420"/>
+    <g class="ghost"><use href="#f" x="430" y="22" width="26" height="30"/><use href="#f" x="462" y="22" width="26" height="30"/><use href="#f" x="494" y="22" width="26" height="30"/></g>
+    <text class="s" x="475" y="66" text-anchor="middle">名前だけ（雲の印）</text>
+    <text class="b ng" x="585" y="43" text-anchor="middle">読めない</text>
+  </g>
+
+  <!-- ② ミラーリング -->
+  <g transform="translate(0,126)">
+    <rect class="row-ok" x="16" y="0" width="608" height="78" rx="10"/>
+    <text class="b" x="30" y="24">② ミラーリング</text>
+    <text class="s" x="30" y="42">クラウドの中身を丸ごと</text>
+    <text class="s" x="30" y="57">パソコンにも置く（この特集はこれ）</text>
+    <g class="file"><use href="#f" x="250" y="22" width="26" height="30"/><use href="#f" x="282" y="22" width="26" height="30"/><use href="#f" x="314" y="22" width="26" height="30"/></g>
+    <path class="ar-ok" d="M352 32 H420"/>
+    <path class="ar-ok" d="M420 46 H352"/>
+    <g class="file-ok"><use href="#f" x="430" y="22" width="26" height="30"/><use href="#f" x="462" y="22" width="26" height="30"/><use href="#f" x="494" y="22" width="26" height="30"/></g>
+    <text class="s" x="475" y="66" text-anchor="middle">実体あり（いつも同じ）</text>
+    <text class="b ok" x="585" y="43" text-anchor="middle">読める</text>
+  </g>
+
+  <!-- ③ パソコンのフォルダを同期 -->
+  <g transform="translate(0,212)">
+    <rect class="row" x="16" y="0" width="608" height="78" rx="10"/>
+    <text class="b" x="30" y="24">③ パソコンのフォルダを同期</text>
+    <text class="s" x="30" y="42">元のフォルダはそのまま、</text>
+    <text class="s" x="30" y="57">クラウドの「パソコン」欄に写しが出る</text>
+    <g class="file"><use href="#f" x="250" y="22" width="26" height="30"/><use href="#f" x="282" y="22" width="26" height="30"/><use href="#f" x="314" y="22" width="26" height="30"/></g>
+    <text class="s" x="300" y="66" text-anchor="middle">「パソコン」欄</text>
+    <path class="ar-ok" d="M420 32 H352"/>
+    <path class="ar-ok" d="M352 46 H420"/>
+    <g class="file-ok"><use href="#f" x="430" y="22" width="26" height="30"/><use href="#f" x="462" y="22" width="26" height="30"/><use href="#f" x="494" y="22" width="26" height="30"/></g>
+    <text class="s" x="475" y="66" text-anchor="middle">実体あり（元の場所）</text>
+    <text class="b ok" x="585" y="43" text-anchor="middle">読める</text>
+  </g>
+
+  <text class="s" x="320" y="316" text-anchor="middle">塗りつぶし＝実体がある　　点線＝名前だけ見えている</text>
+</svg>
