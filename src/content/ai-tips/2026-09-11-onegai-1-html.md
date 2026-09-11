@@ -11,6 +11,12 @@ series: [onegai]
 <div class="callout series-nav">
   <span class="callout__label">🗣 特集・こんな風にお願いするといいよ</span>
   <p>この特集は、実際にうまくいった頼み方を、<strong>そのときの文面と、返ってきたものごと</strong>一つずつ棚に並べていくコーナーです。回数は決めていません。見つかるたびに一つ増えます。これが、その1です。</p>
+  <ol class="series-nav__list">
+    <li class="is-current">その1　答えは、動く図でください ― 「図（HTMLが良い）」の一言</li>
+    <li><a href="/ai-tips/2026-09-11-onegai-2-quiz/">その2　研修資料を、押すと答えが出るクイズに</a></li>
+    <li><a href="/ai-tips/2026-09-11-onegai-3-kamishibai/">その3　利用者向けの手順を、紙芝居に</a></li>
+    <li><a href="/ai-tips/2026-09-11-onegai-4-a4-oshirase/">その4　お知らせを、A4一枚の掲示物に ― 一回目ははみ出した</a></li>
+  </ol>
 </div>
 
 <div class="qa">

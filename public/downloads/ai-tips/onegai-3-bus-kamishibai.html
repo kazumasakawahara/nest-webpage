@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>あたらしい バスの のりかた</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: "Hiragino Maru Gothic ProN", "BIZ UDGothic", "Yu Gothic", "Meiryo", sans-serif;
+    background: #FFF8E7;
+    color: #222;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 16px;
+  }
+
+  /* 順番インジケーター */
+  .steps {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 20px;
+    min-height: 64px;
+  }
+  .step {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    border: 4px solid #BBB;
+    background: #fff;
+    color: #999;
+    font-size: 26px;
+    font-weight: bold;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .step.done { background: #4CAF50; border-color: #4CAF50; color: #fff; }
+  .step.now  { background: #FF9800; border-color: #E65100; color: #fff; transform: scale(1.25); }
+  .line { width: 22px; height: 6px; background: #BBB; border-radius: 3px; }
+  .line.done { background: #4CAF50; }
+
+  /* カード */
+  .card {
+    background: #fff;
+    border: 6px solid #FFB74D;
+    border-radius: 32px;
+    width: 100%;
+    max-width: 560px;
+    min-height: 460px;
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+  .num {
+    font-size: 28px;
+    font-weight: bold;
+    color: #E65100;
+    margin-bottom: 8px;
+  }
+  .emoji {
+    font-size: 140px;
+    line-height: 1.1;
+    margin: 12px 0 24px;
+  }
+  .text {
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 1.5;
+  }
+  .sub {
+    font-size: 28px;
+    color: #555;
+    margin-top: 12px;
+  }
+
+  /* ボタン */
+  .buttons {
+    display: flex;
+    gap: 16px;
+    margin-top: 24px;
+    width: 100%;
+    max-width: 560px;
+  }
+  button {
+    border: none;
+    border-radius: 24px;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    min-height: 90px;
+  }
+  #next {
+    flex: 3;
+    font-size: 40px;
+    background: #2E7D32;
+    color: #fff;
+  }
+  #back {
+    flex: 1;
+    font-size: 24px;
+    background: #ddd;
+    color: #444;
+  }
+  button:active { transform: scale(0.97); }
+  #back[disabled] { visibility: hidden; }
+</style>
+</head>
+<body>
+
+  <div class="steps" id="steps"></div>
+
+  <div class="card" id="card">
+    <div class="num" id="num"></div>
+    <div class="emoji" id="emoji"></div>
+    <div class="text" id="text"></div>
+    <div class="sub" id="sub"></div>
+  </div>
+
+  <div class="buttons">
+    <button id="back">◀ もどる</button>
+    <button id="next">つぎへ ▶</button>
+  </div>
+
+<script>
+  const pages = [
+    { emoji: "🚌", text: "あたらしい<br>バスの のりかた", sub: "ボタンを おしてね", btn: "はじめる ▶" },
+    { step: 1, emoji: "🏠🗣️", text: "げんかんで<br>なまえを いう", sub: "「〇〇 です」" },
+    { step: 2, emoji: "🧢🚶", text: "あおい ぼうしの ひとに<br>ついていく", sub: "いっしょに あるく" },
+    { step: 3, emoji: "💺🔒", text: "シートベルトを<br>する", sub: "カチッ！" },
+    { step: 4, emoji: "🚏😊", text: "ついたら<br>「ついた」と いう", sub: "「ついた！」" },
+    { emoji: "🎉", text: "おしまい！<br>じょうずに のれたね", sub: "", btn: "さいしょから ▶" }
+  ];
+
+  let i = 0;
+  const $ = id => document.getElementById(id);
+
+  function render() {
+    const p = pages[i];
+    $("emoji").textContent = p.emoji;
+    $("text").innerHTML = p.text;
+    $("sub").textContent = p.sub || "";
+    $("num").textContent = p.step ? p.step + "ばんめ" : "";
+    $("next").textContent = p.btn || "つぎへ ▶";
+    $("back").disabled = (i === 0);
+
+    // 順番インジケーター
+    const s = $("steps");
+    s.innerHTML = "";
+    const cur = p.step || (i === pages.length - 1 ? 5 : 0);
+    for (let n = 1; n <= 4; n++) {
+      const d = document.createElement("div");
+      d.className = "step" + (n < cur ? " done" : n === cur ? " now" : "");
+      d.textContent = n < cur ? "✔" : n;
+      s.appendChild(d);
+      if (n < 4) {
+        const l = document.createElement("div");
+        l.className = "line" + (n < cur ? " done" : "");
+        s.appendChild(l);
+      }
+    }
+  }
+
+  $("next").onclick = () => { i = (i + 1) % pages.length; render(); };
+  $("back").onclick = () => { if (i > 0) { i--; render(); } };
+  document.addEventListener("keydown", e => {
+    if (e.key === "ArrowRight" || e.key === " " || e.key === "Enter") $("next").click();
+    if (e.key === "ArrowLeft") $("back").click();
+  });
+
+  render();
+</script>
+</body>
+</html>
