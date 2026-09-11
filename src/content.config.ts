@@ -28,7 +28,8 @@ const aiTips = defineCollection({
     // 特集専属の記事は kind に特集名を持ち、series は不要（kind===特集名 も特集ブロックに入る）
     // oshieru=特集・AIさんに、教える（好きな分野から入る。読者が先生、AIが新人）
     // kiroku=特集・撮るだけじゃ、もったいない（なんでも箱 raw に放り込み、AIが仕分けて糸を張る）
-    series: z.array(z.enum(['dougu', 'haiyu', 'google', 'asobi', 'genko', 'ronbun', 'oshieru', 'kiroku'])).optional(),
+    // onegai=特集・こんな風にお願いするといいよ（うまくいった頼み方を一つずつ。常設型で「全N回」と数えない）
+    series: z.array(z.enum(['dougu', 'haiyu', 'google', 'asobi', 'genko', 'ronbun', 'oshieru', 'kiroku', 'onegai'])).optional(),
   }),
 });
 

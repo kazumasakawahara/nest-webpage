@@ -82,6 +82,9 @@ const kirokuAll = all.filter(inFeature('kiroku')).sort((a, b) => a.id.localeComp
 const kirokuItems = kirokuAll.filter((e) => !e.id.includes('kiroku-ex-'));
 const kirokuExtras = kirokuAll.filter((e) => e.id.includes('kiroku-ex-'));
 
+// 特集・こんな風にお願いするといいよ（常設型。ファイル名の連番順＝その1、その2…。「全N回」とは数えない）
+const onegaiItems = all.filter(inFeature('onegai')).sort((a, b) => a.id.localeCompare(b.id));
+
 // 相棒編：読みもの＋連載本編（ファイル名の連番順）＋実践編（日付順）
 const aibouIntro = all.find((e) => e.data.kind === 'aibou');
 const seriesItems = all.filter((e) => e.data.kind === 'series').sort((a, b) => a.id.localeCompare(b.id));
@@ -142,9 +145,35 @@ const fmtDate = (d: Date) =>
         🗂 <strong>特集コーナー</strong> ― まとまりで読みたいときは、こちらから。見出しを押すと目次がひらきます。
       </p>
 
-      <details class="feature-box reveal" id="kiroku" open>
+      {onegaiItems.length > 0 && (
+        <details class="feature-box reveal" id="onegai" open>
+          <summary class="feature-box__summary">
+            <span class="feature-box__eyebrow">🗣 特集コーナー・NEW</span>
+            <h3 class="feature-box__title">こんな風にお願いするといいよ ― うまくいった頼み方を、一つずつ</h3>
+            <span class="feature-box__toggle" aria-hidden="true">＋</span>
+          </summary>
+          <div class="feature-box__body">
+            <p class="feature-box__lead">
+              同じことを頼んでも、<strong>言い方ひとつで返ってくるものが変わります</strong>。この特集は、実際にうまくいった頼み方を、そのときの文面と、返ってきたものごと一つずつ棚に並べていくコーナーです。回数は決めていません。見つかるたびに一つ増えます。その1は、文章で読んでも頭に入らないことを、<strong>「図（HTMLが良い）」の一言で動く図にしてもらった</strong>話です。
+            </p>
+            <img class="feature-box__img" src="/images/ai-tips/onegai-1-ugoku-zu.svg" alt="左で人が「文章だと頭に入らなくて……図（HTMLが良い）でお願い」と頼み、右でAIさん人形が、三つのボタンと二層の図が描かれた一枚のページを差し出している絵。ページの上には「ボタンで切り替え」の札" width="640" height="400" loading="lazy" decoding="async" />
+            <ol class="feature-box__list">
+              {onegaiItems.map((item) => (
+                <li class="feature-box__item">
+                  <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
+                    <span class="feature-box__name">{item.data.title}</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+            <p class="feature-box__coming">「こう頼んだらうまくいった」があれば、教えてください。次の一つにします——<a href="/contact/">お問い合わせフォーム</a>へ。</p>
+          </div>
+        </details>
+      )}
+
+      <details class="feature-box reveal" id="kiroku">
         <summary class="feature-box__summary">
-          <span class="feature-box__eyebrow">📦 特集コーナー・NEW</span>
+          <span class="feature-box__eyebrow">📦 特集コーナー</span>
           <h3 class="feature-box__title">撮るだけじゃ、もったいない ― 旅の記録を作ってみよう{kirokuItems.length > 0 ? `（全${kirokuItems.length}回）` : '（近日公開）'}</h3>
           <span class="feature-box__toggle" aria-hidden="true">＋</span>
         </summary>

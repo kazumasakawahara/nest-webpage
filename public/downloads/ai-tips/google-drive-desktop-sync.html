@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>パソコン版 Google ドライブ — クラウドとPCのファイルはどう対応するか</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F7F9; --ink:#1E2430; --mute:#6B7280;
+    --cloud:#2F6FDB; --cloud-soft:#DCE8FB;
+    --disk:#4B5563; --disk-soft:#E5E7EB;
+    --ok:#1E8E5A; --warn:#B45309; --line:#D1D5DB;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"BIZ UDPGothic","Hiragino Sans","Yu Gothic",sans-serif;
+    line-height:1.75;font-size:16px}
+  main{max-width:980px;margin:0 auto;padding:40px 24px 80px}
+  h1{font-size:28px;line-height:1.4;margin:0 0 8px}
+  h2{font-size:21px;margin:56px 0 12px;padding-left:12px;border-left:5px solid var(--cloud)}
+  h3{font-size:16px;margin:16px 0 6px}
+  p{margin:6px 0 12px;max-width:44em}
+  .lead{color:var(--mute);margin-bottom:24px}
+  code{font-family:ui-monospace,Menlo,monospace;font-size:14px;background:#fff;border:1px solid var(--line);padding:1px 6px;border-radius:4px}
+
+  /* 凡例 */
+  .legend{display:flex;flex-wrap:wrap;gap:18px 28px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:20px 0}
+  .legend svg{vertical-align:middle;margin-right:6px}
+  .legend span{font-size:14px}
+
+  /* モード切替 */
+  .seg{display:flex;gap:6px;flex-wrap:wrap;margin:16px 0 10px}
+  .seg button{font:inherit;font-weight:700;font-size:15px;padding:10px 20px;border-radius:10px;
+    border:2px solid var(--cloud);background:#fff;color:var(--cloud);cursor:pointer;
+    box-shadow:0 3px 0 var(--cloud);transition:transform .08s,box-shadow .08s,background .15s}
+  .seg button:hover{background:var(--cloud-soft)}
+  .seg button:active{transform:translateY(3px);box-shadow:0 0 0 var(--cloud)}
+  .seg button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+  .seg button[aria-pressed="true"]{background:var(--cloud);color:#fff;transform:translateY(3px);box-shadow:0 0 0 var(--cloud)}
+  .seg button[aria-pressed="true"]::before{content:"✓ "}
+  .seg-hint{font-size:13px;color:var(--mute);margin:0 0 10px}
+  .stage{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px}
+  .stage svg{width:100%;height:auto;display:block}
+  .file-anim{transition:opacity .35s, transform .35s}
+  @media (prefers-reduced-motion:reduce){.file-anim{transition:none}}
+  .note{display:grid;grid-template-columns:1fr 1fr;gap:12px 28px;margin-top:14px;font-size:15px}
+  .note div{padding:12px 14px;border-radius:8px;background:#fff;border:1px solid var(--line)}
+  .note b{display:block;margin-bottom:4px}
+  .note .good b{color:var(--ok)} .note .bad b{color:var(--warn)}
+  @media(max-width:640px){.note{grid-template-columns:1fr}}
+
+  /* 手順 */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .steps figure{margin:0;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px}
+  .steps figcaption{font-size:14px;margin-top:6px}
+  .steps svg{width:100%;height:auto}
+  @media(max-width:720px){.steps{grid-template-columns:repeat(2,1fr)}}
+
+  table{border-collapse:collapse;width:100%;font-size:15px;background:#fff;border:1px solid var(--line)}
+  th,td{border-bottom:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+  th{background:#F0F2F5;font-weight:700}
+  td:first-child{white-space:nowrap;font-weight:700;background:#FAFAFB}
+  .caution{border-left:5px solid var(--warn);background:#FFF7ED;padding:12px 16px;border-radius:0 8px 8px 0;margin:18px 0}
+</style>
+</head>
+<body>
+<main>
+  <h1>パソコン版 Google ドライブ<br>クラウドのファイルと、PCの中のファイルはどう対応しているか</h1>
+  <p class="lead">Google ドライブ（Web）に見えるフォルダ・ファイルと、Finder／エクスプローラーに見えるフォルダ・ファイルの関係を、「実体（データ本体）がどこにあるか」を軸に整理します。</p>
+
+  <div class="legend">
+    <span><svg width="26" height="30" viewBox="0 0 26 30"><path d="M3 2h13l7 7v19H3z" fill="#DCE8FB" stroke="#2F6FDB" stroke-width="2"/></svg>実体のあるファイル（データ本体を持つ）</span>
+    <span><svg width="26" height="30" viewBox="0 0 26 30"><path d="M3 2h13l7 7v19H3z" fill="none" stroke="#6B7280" stroke-width="2" stroke-dasharray="4 3"/></svg>プレースホルダ（名前と場所だけ。中身は必要になったら取りに行く）</span>
+    <span><svg width="22" height="22" viewBox="0 0 22 22"><circle cx="11" cy="11" r="10" fill="#1E8E5A"/><path d="M6 11l3 3 7-7" stroke="#fff" stroke-width="2.5" fill="none"/></svg>チェック＝PCにも実体あり</span>
+    <span><svg width="26" height="22" viewBox="0 0 26 22"><path d="M7 18h13a5 5 0 0 0 0-10 7 7 0 0 0-13 2 4 4 0 0 0 0 8z" fill="none" stroke="#2F6FDB" stroke-width="2"/></svg>雲＝クラウドのみ</span>
+  </div>
+
+  <h2>1. 全体像 — 常に「上（クラウド）」と「下（PC）」の二層</h2>
+  <p>パソコン版ドライブは、この二層のあいだで<strong>変更を写し合う仲介役</strong>です。どちらか一方で追加・編集・削除すると、もう一方にも同じことが起きます（削除も伝わる点に注意）。</p>
+
+  <div class="stage">
+  <svg viewBox="0 0 900 420" role="img" aria-label="クラウドとPCの二層構造">
+    <!-- クラウド層 -->
+    <rect x="30" y="20" width="840" height="150" rx="14" fill="#EEF4FD" stroke="#2F6FDB" stroke-width="2"/>
+    <text x="52" y="52" font-size="17" font-weight="700" fill="#2F6FDB">Google ドライブ（クラウド）＝ドライブの正本がここにある</text>
+    <g font-size="14" fill="#1E2430">
+      <rect x="52" y="70" width="230" height="84" rx="8" fill="#fff" stroke="#2F6FDB"/>
+      <text x="66" y="96" font-weight="700">マイドライブ</text>
+      <text x="66" y="118">自分のファイル。同期方式を</text><text x="66" y="138">「ストリーミング／ミラー」から選べる</text>
+      <rect x="306" y="70" width="230" height="84" rx="8" fill="#fff" stroke="#2F6FDB"/>
+      <text x="320" y="96" font-weight="700">共有ドライブ</text>
+      <text x="320" y="118">組織で共有。方式は</text><text x="320" y="138">常にストリーミング固定</text>
+      <rect x="560" y="70" width="290" height="84" rx="8" fill="#fff" stroke="#2F6FDB"/>
+      <text x="574" y="96" font-weight="700">パソコン（Computers）</text>
+      <text x="574" y="118">PC側で「同期するフォルダ」に指定した</text><text x="574" y="138">ローカルフォルダの写し。常にミラー</text>
+    </g>
+
+    <!-- 仲介 -->
+    <rect x="300" y="190" width="300" height="46" rx="23" fill="#1E2430"/>
+    <text x="450" y="219" font-size="15" font-weight="700" fill="#fff" text-anchor="middle">パソコン版 Google ドライブ（常駐アプリ）</text>
+    <g stroke="#4B5563" stroke-width="2.5" fill="none">
+      <path d="M180 170 v50" marker-end="url(#a)"/><path d="M215 250 v-50" marker-end="url(#a)"/>
+      <path d="M700 170 v50" marker-end="url(#a)"/><path d="M735 250 v-50" marker-end="url(#a)"/>
+    </g>
+    <defs><marker id="a" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0 0L8 4 0 8z" fill="#4B5563"/></marker></defs>
+
+    <!-- PC層 -->
+    <rect x="30" y="260" width="840" height="142" rx="14" fill="#F3F4F6" stroke="#4B5563" stroke-width="2"/>
+    <text x="52" y="292" font-size="17" font-weight="700" fill="#4B5563">あなたのPC（Mac／Windows）</text>
+    <g font-size="14">
+      <rect x="52" y="304" width="380" height="84" rx="8" fill="#fff" stroke="#4B5563"/>
+      <text x="66" y="328" font-weight="700">「Google Drive」として見えるフォルダ</text>
+      <text x="66" y="350" fill="#6B7280" font-size="13">Mac（ストリーミング時）:</text>
+      <text x="66" y="372" fill="#6B7280" font-size="13">~/Library/CloudStorage/GoogleDrive-アカウント/</text>
+      <rect x="470" y="304" width="380" height="84" rx="8" fill="#fff" stroke="#4B5563"/>
+      <text x="484" y="328" font-weight="700">元からあるローカルフォルダ</text>
+      <text x="484" y="350" fill="#6B7280" font-size="13">例: ~/Documents/案件、~/Pictures など</text>
+      <text x="484" y="372" fill="#6B7280" font-size="13">「同期するフォルダ」に指定できる</text>
+    </g>
+  </svg>
+  </div>
+
+  <h2>2. 同期方式を切り替えて、実体の置き場所を見比べる</h2>
+  <p>ボタンで方式を切り替えると、下の図で「どこに実体があるか」が変わります。</p>
+
+  <p class="seg-hint">▼ クリックして方式を選択（選択中は青く沈んだ状態で表示）</p>
+  <div class="seg" role="group" aria-label="同期方式">
+    <button type="button" data-mode="stream" aria-pressed="true">ストリーミング（既定）</button>
+    <button type="button" data-mode="mirror" aria-pressed="false">ミラーリング</button>
+    <button type="button" data-mode="backup" aria-pressed="false">パソコン上のフォルダを同期</button>
+  </div>
+
+  <div class="stage">
+  <svg id="modeSvg" viewBox="0 0 900 430" role="img" aria-label="同期方式ごとの実体の場所">
+    <defs>
+      <symbol id="fsolid" viewBox="0 0 26 30"><path d="M3 2h13l7 7v19H3z" fill="#DCE8FB" stroke="#2F6FDB" stroke-width="2"/></symbol>
+      <symbol id="fsolidL" viewBox="0 0 26 30"><path d="M3 2h13l7 7v19H3z" fill="#E5E7EB" stroke="#4B5563" stroke-width="2"/></symbol>
+      <symbol id="fghost" viewBox="0 0 26 30"><path d="M3 2h13l7 7v19H3z" fill="none" stroke="#6B7280" stroke-width="2" stroke-dasharray="4 3"/></symbol>
+      <symbol id="chk" viewBox="0 0 22 22"><circle cx="11" cy="11" r="10" fill="#1E8E5A"/><path d="M6 11l3 3 7-7" stroke="#fff" stroke-width="2.5" fill="none"/></symbol>
+      <symbol id="cld" viewBox="0 0 26 22"><path d="M7 18h13a5 5 0 0 0 0-10 7 7 0 0 0-13 2 4 4 0 0 0 0 8z" fill="#fff" stroke="#2F6FDB" stroke-width="2"/></symbol>
+      <marker id="b" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0 0L8 4 0 8z" fill="#2F6FDB"/></marker>
+    </defs>
+
+    <!-- クラウド -->
+    <rect x="30" y="20" width="840" height="150" rx="14" fill="#EEF4FD" stroke="#2F6FDB" stroke-width="2"/>
+    <text id="cloudTitle" x="52" y="52" font-size="17" font-weight="700" fill="#2F6FDB">クラウド：マイドライブ</text>
+    <g id="cloudFiles"></g>
+    <text id="cloudCap" x="52" y="150" font-size="14" fill="#1E2430"></text>
+
+    <!-- 矢印と説明 -->
+    <g id="mid"></g>
+
+    <!-- PC -->
+    <rect x="30" y="260" width="840" height="150" rx="14" fill="#F3F4F6" stroke="#4B5563" stroke-width="2"/>
+    <text id="pcTitle" x="52" y="292" font-size="17" font-weight="700" fill="#4B5563">PC：Google Drive フォルダ</text>
+    <g id="pcFiles"></g>
+    <text id="pcCap" x="52" y="392" font-size="14" fill="#1E2430"></text>
+  </svg>
+  </div>
+
+  <div class="note" id="modeNote"></div>
+
+  <h2>3. ストリーミングで「ファイルを開く」と何が起きるか</h2>
+  <p>ストリーミングは「オフラインでは使えない」と単純化されがちですが、実際は<strong>開いたものはPCに残る</strong>ので、途中からは部分的にミラーに近づきます。</p>
+  <div class="steps">
+    <figure>
+      <svg viewBox="0 0 200 120">
+        <use href="#cld" x="20" y="20" width="36" height="30"/>
+        <use href="#fghost" x="82" y="18" width="30" height="34"/>
+        <text x="100" y="80" font-size="12" text-anchor="middle" fill="#1E2430">Finder上：名前だけ</text>
+        <text x="100" y="98" font-size="11" text-anchor="middle" fill="#6B7280">ディスク使用 ≒ 0</text>
+      </svg>
+      <figcaption>① 一覧に並ぶが実体はクラウド。雲マークが付く。</figcaption>
+    </figure>
+    <figure>
+      <svg viewBox="0 0 200 120">
+        <use href="#fsolid" x="20" y="18" width="30" height="34"/>
+        <path d="M60 35 h60" stroke="#2F6FDB" stroke-width="2.5" fill="none" marker-end="url(#b)"/>
+        <use href="#fsolidL" x="130" y="18" width="30" height="34"/>
+        <text x="100" y="80" font-size="12" text-anchor="middle">ダブルクリックで開く</text>
+        <text x="100" y="98" font-size="11" text-anchor="middle" fill="#6B7280">その場でダウンロード</text>
+      </svg>
+      <figcaption>② 開いた瞬間に中身を取得。以後はローカルにキャッシュとして残る。</figcaption>
+    </figure>
+    <figure>
+      <svg viewBox="0 0 200 120">
+        <use href="#fsolidL" x="70" y="18" width="30" height="34"/>
+        <use href="#chk" x="92" y="40" width="18" height="18"/>
+        <text x="100" y="80" font-size="12" text-anchor="middle">「オフラインで使用可能」</text>
+        <text x="100" y="98" font-size="11" text-anchor="middle" fill="#6B7280">右クリックで指定</text>
+      </svg>
+      <figcaption>③ 指定したフォルダ／ファイルはキャッシュ扱いでなく<strong>常時保持</strong>。チェックマークに変わる。</figcaption>
+    </figure>
+    <figure>
+      <svg viewBox="0 0 200 120">
+        <use href="#fsolidL" x="20" y="18" width="30" height="34"/>
+        <path d="M60 35 h60" stroke="#2F6FDB" stroke-width="2.5" fill="none" marker-end="url(#b)"/>
+        <use href="#fsolid" x="130" y="18" width="30" height="34"/>
+        <text x="100" y="80" font-size="12" text-anchor="middle">編集して保存</text>
+        <text x="100" y="98" font-size="11" text-anchor="middle" fill="#6B7280">オフライン中の変更は後で送信</text>
+      </svg>
+      <figcaption>④ 保存すると自動でクラウドへ。ネットが無い間の変更は溜めておいて再接続時に送る。</figcaption>
+    </figure>
+  </div>
+
+  <h2>4. 一覧比較</h2>
+  <table>
+    <thead><tr><th>観点</th><th>ストリーミング</th><th>ミラーリング</th><th>パソコン上のフォルダ同期</th></tr></thead>
+    <tbody>
+      <tr><td>実体の場所</td><td>クラウド。開いたものだけPCに残る</td><td>クラウドとPCの両方</td><td>PC（元の場所）とクラウド「パソコン」の両方</td></tr>
+      <tr><td>PCの容量</td><td>ほぼ使わない</td><td>マイドライブ全体分を消費</td><td>元からあるので追加消費なし</td></tr>
+      <tr><td>オフライン</td><td>「オフラインで使用可能」に指定したものだけ</td><td>すべて可</td><td>すべて可</td></tr>
+      <tr><td>対象</td><td>マイドライブ・共有ドライブ</td><td>マイドライブのみ（共有ドライブは不可）</td><td>任意のローカルフォルダ</td></tr>
+      <tr><td>PC側の見え方（Mac）</td><td><code>~/Library/CloudStorage/GoogleDrive-アカウント/</code>（Finderの「場所」に表示）</td><td>既定は <code>~/Google Drive/</code>（場所は変更可）</td><td>元のフォルダのまま。アイコンに同期状態が付く</td></tr>
+      <tr><td>向いている人</td><td>常時ネット接続・ディスクが小さい・大量ファイル</td><td>移動先で確実に使う・ローカル速度重視</td><td>既存の作業フォルダをそのままクラウドにも持ちたい</td></tr>
+    </tbody>
+  </table>
+
+  <div class="caution">
+    <b>誤解しやすい点</b><br>
+    ・これは<strong>同期</strong>であって<strong>バックアップ</strong>ではありません。PCで削除するとクラウドでも削除されます（ゴミ箱に30日残る）。ランサムウェアや誤操作の対策としては別途スナップショットが必要です。<br>
+    ・Google ドキュメント／スプレッドシートはPC側に実体を持ちません。<code>.gdoc</code> 等の<strong>ショートカット</strong>が置かれ、開くとブラウザに飛びます。<br>
+    ・ミラー→ストリーミングに切り替えるときは、未同期のファイルがクラウドに上がり切ってから古いローカルフォルダを消してください。先に消すと失われます。<br>
+    ・共有ファイルはPCの容量は使いますが、Google側の容量はオーナーにのみ計上されます。
+  </div>
+
+<script>
+(function(){
+  const files = ["契約書.docx","議事録.pdf","写真.jpg","予算.xlsx","報告書.docx","資料.pptx"];
+  const svg = document.getElementById('modeSvg');
+  const cloudG = document.getElementById('cloudFiles');
+  const pcG = document.getElementById('pcFiles');
+  const midG = document.getElementById('mid');
+  const cloudTitle = document.getElementById('cloudTitle');
+  const pcTitle = document.getElementById('pcTitle');
+  const cloudCap = document.getElementById('cloudCap');
+  const pcCap = document.getElementById('pcCap');
+  const note = document.getElementById('modeNote');
+  const NS = 'http://www.w3.org/2000/svg';
+
+  function el(tag, attrs, text){
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    if (text) e.textContent = text;
+    return e;
+  }
+  function drawRow(group, y, kinds, badges){
+    while (group.firstChild) group.removeChild(group.firstChild);
+    files.forEach((name, i) => {
+      const x = 60 + i*135;
+      const g = el('g', {class:'file-anim'});
+      g.appendChild(el('use', {href: kinds[i], x, y, width:34, height:40}));
+      if (badges[i]) g.appendChild(el('use', {href: badges[i], x: x+22, y: y+26, width:18, height:18}));
+      g.appendChild(el('text', {x: x+17, y: y+60, 'font-size':'12', 'text-anchor':'middle', fill:'#1E2430'}, name));
+      group.appendChild(g);
+    });
+  }
+  function arrows(list){
+    while (midG.firstChild) midG.removeChild(midG.firstChild);
+    list.forEach(a => {
+      midG.appendChild(el('path', {d:a.d, stroke:'#2F6FDB', 'stroke-width':'2.5', fill:'none', 'marker-end':'url(#b)', 'stroke-dasharray': a.dash||''}));
+    });
+    midG.appendChild(el('rect', {x:250, y:196, width:400, height:38, rx:19, fill:'#fff', stroke:'#D1D5DB'}));
+    midG.appendChild(el('text', {x:450, y:221, 'font-size':'14', 'font-weight':'700', 'text-anchor':'middle'}, arrows.label));
+  }
+
+  const modes = {
+    stream: {
+      cloudTitle:'クラウド：マイドライブ（実体はすべてここ）',
+      pcTitle:'PC：Google Drive フォルダ（見えるが中身は必要時に取得）',
+      cloud:{kinds:files.map(()=>'#fsolid'), badges:[]},
+      pc:{kinds:['#fsolidL','#fghost','#fghost','#fsolidL','#fghost','#fghost'], badges:['#chk','#cld','#cld','#chk','#cld','#cld']},
+      cloudCap:'6件すべてクラウドに実体。',
+      pcCap:'「契約書」「予算」は開いた／オフライン指定したのでPCにもある。残り4件は名前だけ（雲マーク）。',
+      arrows:[{d:'M180 170 v55', dash:'6 4'},{d:'M215 255 v-55'},{d:'M700 170 v55', dash:'6 4'}],
+      label:'必要な分だけ取りに行く（点線）／保存は上へ',
+      note:[
+        ['good','PCの容量をほぼ使わない','数百GBのドライブでも、SSDには開いた分しか入らない。'],
+        ['good','共有ドライブもこの方式で見える','組織のファイルをFinderからそのまま開ける。'],
+        ['bad','ネットが無いと開けないものがある','出先で使うものは事前に「オフラインで使用可能」を付けておく。'],
+        ['bad','初回オープンが遅いことがある','大きなファイルは開くたびに待たされる場合がある。']
+      ]
+    },
+    mirror: {
+      cloudTitle:'クラウド：マイドライブ',
+      pcTitle:'PC：~/Google Drive/My Drive（完全な写し）',
+      cloud:{kinds:files.map(()=>'#fsolid'), badges:[]},
+      pc:{kinds:files.map(()=>'#fsolidL'), badges:files.map(()=>'#chk')},
+      cloudCap:'6件すべてクラウドに実体。',
+      pcCap:'6件すべてPCにも実体。マイドライブ全体が丸ごとコピーされ、常に同一に保たれる。',
+      arrows:[{d:'M180 170 v55'},{d:'M215 255 v-55'},{d:'M700 170 v55'},{d:'M735 255 v-55'}],
+      label:'両方向に常時コピー（100%同じ状態を維持）',
+      note:[
+        ['good','オフラインでも全部使える','電車内・停電時でも普通のフォルダとして動く。'],
+        ['good','開く・保存がローカル並みに速い','実体が手元にあるので通信待ちがない。'],
+        ['bad','マイドライブ全体分のディスクを消費','1TB使っていれば1TB分のSSDが要る。'],
+        ['bad','共有ドライブは対象外','共有ドライブは常にストリーミングのまま。']
+      ]
+    },
+    backup: {
+      cloudTitle:'クラウド：「パソコン」セクション（このPC名のフォルダ）',
+      pcTitle:'PC：元からあるローカルフォルダ（例: ~/Documents/案件）',
+      cloud:{kinds:files.map(()=>'#fsolid'), badges:[]},
+      pc:{kinds:files.map(()=>'#fsolidL'), badges:files.map(()=>'#chk')},
+      cloudCap:'ローカルフォルダの写しが「パソコン ＞ このPC名」の下に現れる。',
+      pcCap:'フォルダは元の場所のまま。Google Driveフォルダに移動させる必要はない。',
+      arrows:[{d:'M180 170 v55'},{d:'M215 255 v-55'},{d:'M700 170 v55'},{d:'M735 255 v-55'}],
+      label:'ローカルフォルダを起点に両方向ミラー',
+      note:[
+        ['good','既存の作業場所を変えずに始められる','Documentsのまま、クラウドにも同じものができる。'],
+        ['good','Google フォトへの同時アップも選べる','写真フォルダはドライブ＋フォトの両方に送れる。'],
+        ['bad','削除も同期される','PCで消せばクラウドの写しも消える。世代バックアップではない。'],
+        ['bad','マイドライブとは別の場所に置かれる','Web版では「マイドライブ」でなく「パソコン」を開く。']
+      ]
+    }
+  };
+
+  function render(key){
+    const m = modes[key];
+    cloudTitle.textContent = m.cloudTitle;
+    pcTitle.textContent = m.pcTitle;
+    cloudCap.textContent = m.cloudCap;
+    pcCap.textContent = m.pcCap;
+    drawRow(cloudG, 66, m.cloud.kinds, m.cloud.badges);
+    drawRow(pcG, 306, m.pc.kinds, m.pc.badges);
+    arrows.label = m.label;
+    arrows(m.arrows);
+    note.innerHTML = m.note.map(([c,t,b]) => `<div class="${c}"><b>${t}</b>${b}</div>`).join('');
+  }
+  document.querySelectorAll('.seg button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-pressed', b===btn));
+      render(btn.dataset.mode);
+    });
+  });
+  render('stream');
+})();
+</script>
+</main>
+</body>
+</html>
