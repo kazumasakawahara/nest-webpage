@@ -75,3 +75,4 @@ tmp-upload/
 
 # 記事用の写真素材の置き場（採用分は別途 public/images/ 直下へ配置）
 public/images/pic/
+docs/kiroku-demo/**/.obsidian/
