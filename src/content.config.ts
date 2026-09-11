@@ -21,6 +21,9 @@ const aiTips = defineCollection({
     summary: z.string().optional(),
     image: z.string().optional(),
     draft: z.boolean().default(false),
+    // 記事ページの見出しだけ、行ごとに折り返しを固定したいとき（一覧や <title> は title をそのまま使う）。
+    // 1要素＝1行。行の中を「|」で区切ると文節になり、狭い画面ではその境目でしか折れない。
+    titleLines: z.array(z.string()).optional(),
     // 一覧の棚分け用。anshin=あんしん編 / series=相棒編・連載本編 / practice=相棒編・実践編 /
     // aibou=相棒編・読みもの / dougu=特集・道具の入手コーナー / haiyu=特集・AIは俳優。未指定は便利ワザ編
     kind: z.enum(['series', 'practice', 'anshin', 'aibou', 'dougu', 'haiyu']).optional(),

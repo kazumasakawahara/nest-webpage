@@ -16,7 +16,7 @@ series: [onegai]
     <li><a href="/ai-tips/2026-09-11-onegai-2-quiz/">その2　研修資料を、押すと答えが出るクイズに</a></li>
     <li><a href="/ai-tips/2026-09-11-onegai-3-kamishibai/">その3　利用者向けの手順を、紙芝居に</a></li>
     <li><a href="/ai-tips/2026-09-11-onegai-4-a4-oshirase/">その4　お知らせを、A4一枚の掲示物に ― 一回目ははみ出した</a></li>
-    <li><a href="/ai-tips/2026-09-11-onegai-5-awasewaza/">その5　nest-news トピックコーナーの成年後見制度改正の解説ができるまで ― お願いの合わせ技</a></li>
+    <li><a href="/ai-tips/2026-09-11-onegai-5-awasewaza/">その5　nest-newsのトピックコーナーの成年後見制度改正の解説ができるまで ― お願いの合わせ技</a></li>
   </ol>
 </div>
 

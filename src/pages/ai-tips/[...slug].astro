@@ -56,7 +56,19 @@ const features = (item.data.series ?? []).map((s) => featureLabels[s]).filter(Bo
         {features.map((f) => (
           <span class="badge tip-article__shelf">{f}</span>
         ))}
-        <h1 class="tip-article__title">{item.data.title}</h1>
+        {item.data.titleLines ? (
+          <h1 class="tip-article__title tip-article__title--lines">
+            {item.data.titleLines.map((line) => (
+              <span class="tip-article__title-line">
+                {line.split('|').map((phrase) => (
+                  <span class="tip-article__phrase">{phrase}</span>
+                ))}
+              </span>
+            ))}
+          </h1>
+        ) : (
+          <h1 class="tip-article__title">{item.data.title}</h1>
+        )}
         <time class="tip-article__date" datetime={item.data.date.toISOString()}>
           {fmtDate(item.data.date)}
         </time>
@@ -116,6 +128,9 @@ const features = (item.data.series ?? []).map((s) => featureLabels[s]).filter(Bo
     margin-block: var(--space-4);
     word-break: auto-phrase;
   }
+  /* titleLines 指定時：1行＝block、文節＝inline-block（狭い画面では文節の境目でだけ折れる） */
+  .tip-article__title-line { display: block; }
+  .tip-article__phrase { display: inline-block; }
 
   .tip-article__date {
     font-family: var(--font-mono);
