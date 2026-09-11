@@ -36,6 +36,7 @@ const featureLabels: Record<string, string> = {
   genko: '📝 特集・原稿編',
   ronbun: '🎓 特集・論文編',
   kiroku: '📦 特集・撮るだけじゃ、もったいない',
+  onegai: '🗣 特集・こんな風にお願いするといいよ',
 };
 const features = (item.data.series ?? []).map((s) => featureLabels[s]).filter(Boolean);
 ---

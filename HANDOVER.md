@@ -12,6 +12,36 @@ https://github.com/kazumasakawahara/oya-inai-db （2026-08-08 MIT で public 公
   旧 `nest-support-manual.html` は旧スタック（Claude Desktop前提）の記録として残置（リンクは全て外し済み）。
   図解は簡易SVG。実機スクリーンショットへの差し替えは任意の改善タスク。
 
+# HANDOVER — 2026-09-11 新特集「こんな風にお願いするといいよ」その1
+
+> 河原さん発案の常設コーナー。**うまくいった頼み方を、そのときの文面と返ってきたものごと一つずつ棚に並べる**。その1は「図（HTMLが良い）」の一言で、パソコン版 Google ドライブの同期方式の説明が、ボタンで切り替わる一枚のページになった実例。依頼文は河原さんの原文、お手本 HTML は AI 出力を無加工で同梱。**ブランチにコミット済み、push・マージは河原さん判断待ち。**
+
+## 再開コマンド（コピペで動く）
+
+```bash
+cd /Users/k-kawahara/Projects/nest-webpage/.claude/worktrees/amazing-liskov-5dc0a8
+git status --short && git log --oneline -3
+npm run build && npx vitest run   # 136件
+```
+
+## 現在地
+- [x] `series: onegai` 追加（content.config.ts）、一覧の特集ブロック（🗣 NEW・既定オープン。kiroku は NEW 解除）、記事バッジ
+- [x] 記事 `src/content/ai-tips/2026-09-11-onegai-1-html.md`（kind 未指定＝便利ワザ棚に残したまま特集に併載）
+- [x] 看板 `public/images/ai-tips/onegai-1-ugoku-zu.svg`、カード用 `onegai-1-icon.svg`、お手本 `public/downloads/ai-tips/google-drive-desktop-sync.html`
+- [x] ポケットにスキット「動く図の注文係」（型に穴を空けた依頼文つき）
+- [x] build・vitest・dev 確認（作業ログ 2026-09-11 参照）
+- [ ] 河原さんレビュー → push → PR → マージ
+
+## グレーな判断
+- 「撮るだけじゃ、もったいない」の NEW を外した（公開翌日）。慣例「NEW は最新の特集1つ」に従ったが、両方 NEW に戻すのは一行の変更
+- 記事の「出てきた HTML の開き方」で Claude の「アーティファクト」・Gemini の「Canvas」に触れた。名称・場所は時期で変わるため「見当たらなければ『プレビューで見せて』」と逃げ道を書いた
+- お手本 HTML は Google Fonts（BIZ UDPGothic）を外部読み込みする。無加工方針のため残した
+
+## 次の一つを足すとき
+- 記事を `YYYY-MM-DD-onegai-N-<slug>.md` で作り `series: [onegai]` を付けるだけで箱に並ぶ（ファイル名順）。ポケットの skits にも1行
+
+---
+
 # HANDOVER — 2026-09-10 特集「撮るだけじゃ、もったいない」番外編「スマホは、放り込むだけ（仮）」
 
 > 全3回が「スマホは放り込む場所、仕分けはパソコン」を前提にしながら、**スマホの Obsidian と PC の保管庫をどうつなぐかを「この特集では踏み込みません」と先送りしている**。河原さん「欠落しているので、分かりやすく、かつ、詳しく説明しなければ」。この穴を番外編 1 本で埋める。2026-09-10 に記事・図版・一覧・ナビまで執筆し、同日夜に **Android＋Mac で一段目の実機確認が通った**。発見を反映して draft を外し、**PR #36 で main にマージ・本番反映確認済み（2026-09-10 夜）**。番外編は公開済み。
