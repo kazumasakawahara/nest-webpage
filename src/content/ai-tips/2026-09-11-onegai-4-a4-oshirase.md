@@ -16,6 +16,7 @@ series: [onegai]
     <li><a href="/ai-tips/2026-09-11-onegai-2-quiz/">その2　研修資料を、押すと答えが出るクイズに</a></li>
     <li><a href="/ai-tips/2026-09-11-onegai-3-kamishibai/">その3　利用者向けの手順を、紙芝居に</a></li>
     <li class="is-current">その4　お知らせを、A4一枚の掲示物に ― 一回目ははみ出した</li>
+    <li><a href="/ai-tips/2026-09-11-onegai-5-awasewaza/">その5　お願いの合わせ技 ― 一回目の返事を、二回目のお願いの材料にする</a></li>
   </ol>
 </div>
 

@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>成年後見制度はこう変わる — 民法等の一部を改正する法律（令和8年法律第45号）</title>
+<style>
+:root{
+  --sumi:#1A1F2B;
+  --sumi-usu:#5A6273;
+  --kinari:#FBFBF9;
+  --ai:#24468C;
+  --ai-usu:#E7ECF6;
+  --nezumi:#8A9099;
+  --nezumi-usu:#EEEFF0;
+  --enji:#8E2B3C;
+  --enji-usu:#F6EAEC;
+  --keisen:#D5D7DC;
+  --mincho: "Hiragino Mincho ProN", "游明朝", "Yu Mincho", "YuMincho", "Noto Serif JP", serif;
+  --gothic: "Hiragino Sans", "ヒラギノ角ゴシック", "游ゴシック体", "YuGothic", "Noto Sans JP", sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--kinari);
+  color:var(--sumi);
+  font-family:var(--gothic);
+  font-size:16px;
+  line-height:1.85;
+  font-feature-settings:"palt" 1;
+}
+.wrap{max-width:800px;margin:0 auto;padding:0 24px 96px}
+
+/* ---- 冒頭 ---- */
+header{padding:72px 0 40px;border-bottom:2px solid var(--sumi)}
+h1{
+  font-family:var(--mincho);
+  font-size:clamp(28px,5vw,40px);
+  line-height:1.4;
+  font-weight:600;
+  letter-spacing:.02em;
+  margin:0 0 20px;
+}
+.houritsu{
+  font-family:var(--mincho);
+  font-size:15px;
+  color:var(--sumi-usu);
+  line-height:1.9;
+  margin:0;
+}
+.lede{margin:28px 0 0;font-size:17px}
+
+/* ---- 施行スケジュール ---- */
+.schedule{
+  margin:36px 0 0;
+  border-left:3px solid var(--ai);
+  padding:4px 0 4px 20px;
+}
+.schedule dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 20px;font-size:15px}
+.schedule dt{font-family:var(--mincho);white-space:nowrap;color:var(--ai);font-weight:600}
+.schedule dd{margin:0}
+
+/* ---- 見出し ---- */
+h2{
+  font-family:var(--mincho);
+  font-size:26px;
+  font-weight:600;
+  line-height:1.5;
+  margin:72px 0 8px;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--sumi);
+}
+h3{
+  font-family:var(--mincho);
+  font-size:20px;
+  font-weight:600;
+  margin:48px 0 4px;
+  line-height:1.6;
+}
+h3 .jobun{
+  display:block;
+  font-family:var(--gothic);
+  font-size:13px;
+  font-weight:400;
+  color:var(--ai);
+  letter-spacing:.04em;
+  margin-top:4px;
+}
+p{margin:16px 0}
+
+/* ---- 図 ---- */
+figure{margin:32px 0;padding:0}
+figure svg{display:block;width:100%;height:auto}
+figcaption{
+  font-size:13.5px;
+  color:var(--sumi-usu);
+  margin-top:10px;
+  line-height:1.7;
+}
+
+/* ---- 新旧対照 ---- */
+.taisho{
+  margin:24px 0;
+  border:1px solid var(--keisen);
+  background:#fff;
+}
+.taisho-head{
+  display:grid;grid-template-columns:1fr 1fr;
+  font-size:13px;
+  border-bottom:1px solid var(--keisen);
+}
+.taisho-head div{padding:7px 14px;font-family:var(--mincho)}
+.taisho-head .new{background:var(--ai-usu);color:var(--ai);border-right:1px solid var(--keisen)}
+.taisho-head .old{background:var(--nezumi-usu);color:var(--sumi-usu)}
+.taisho-body{display:grid;grid-template-columns:1fr 1fr}
+.taisho-body>div{
+  padding:16px 16px 18px;
+  font-family:var(--mincho);
+  font-size:14.5px;
+  line-height:1.9;
+}
+.taisho-body .new{border-right:1px solid var(--keisen)}
+.taisho-body .old{color:var(--sumi-usu);background:#FCFCFC}
+.taisho b{background:linear-gradient(transparent 62%, #FFE9A8 62%);font-weight:600}
+.taisho .old b{background:linear-gradient(transparent 62%, #E4E6E9 62%);font-weight:400}
+.taisho .kesu{color:var(--enji);font-family:var(--gothic);font-size:13px}
+.jo{font-weight:600;display:block;margin-bottom:2px}
+
+@media (max-width:640px){
+  .taisho-head{grid-template-columns:1fr}
+  .taisho-head .new{border-right:none;border-bottom:1px solid var(--keisen)}
+  .taisho-body{grid-template-columns:1fr}
+  .taisho-body .new{border-right:none;border-bottom:1px solid var(--keisen)}
+}
+
+/* ---- 補足ブロック ---- */
+.point{
+  background:var(--ai-usu);
+  border-left:3px solid var(--ai);
+  padding:14px 18px;
+  margin:20px 0;
+  font-size:15px;
+}
+.point p{margin:0}
+.point p+p{margin-top:10px}
+.chui{
+  background:var(--enji-usu);
+  border-left:3px solid var(--enji);
+  padding:14px 18px;
+  margin:20px 0;
+  font-size:15px;
+}
+.chui p{margin:0}
+
+ul{padding-left:1.3em;margin:16px 0}
+li{margin:7px 0}
+
+table.plain{border-collapse:collapse;width:100%;font-size:14.5px;margin:24px 0}
+table.plain th,table.plain td{border-bottom:1px solid var(--keisen);padding:10px 12px;text-align:left;vertical-align:top}
+table.plain th{font-family:var(--mincho);font-weight:600;background:#fff;white-space:nowrap}
+table.plain thead th{border-bottom:1.5px solid var(--sumi)}
+
+footer{
+  margin-top:80px;padding-top:24px;
+  border-top:1px solid var(--keisen);
+  font-size:13.5px;color:var(--sumi-usu);
+}
+footer a{color:var(--ai)}
+footer ul{padding-left:1.2em}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>成年後見制度はこう変わる</h1>
+  <p class="houritsu">
+    民法等の一部を改正する法律（令和8年法律第45号）<br>
+    同法の施行に伴う関係法律の整備等に関する法律（令和8年法律第46号）<br>
+    令和8年6月17日成立／同年6月24日公布
+  </p>
+  <p class="lede">
+    2000年に始まった成年後見制度が、四半世紀ぶりに骨組みから作り直されました。ひとことで言えば、<strong>「重い・長い・降りられない」制度から、「必要な分だけ・必要な間だけ」の制度へ</strong>の転換です。すでに法律は成立・公布されていますが、施行はこれからで、今日の実務はまだ現行制度で動いています。
+  </p>
+
+  <div class="schedule">
+    <dl>
+      <dt>成年後見の見直し</dt>
+      <dd>公布から2年6月以内に政令で定める日（遅くとも2028年12月24日）</dd>
+      <dt>遺言の押印任意化ほか</dt>
+      <dd>公布から1年以内（遅くとも2027年6月24日）</dd>
+      <dt>保管証書遺言の創設</dt>
+      <dd>公布から3年以内（遅くとも2029年6月24日）</dd>
+    </dl>
+  </div>
+</header>
+
+<h2>1. 全体像 — 3つの類型が1つになる</h2>
+
+<p>
+現行制度は、本人の判断能力（事理弁識能力）の程度を医学的に測り、「欠く常況＝後見」「著しく不十分＝保佐」「不十分＝補助」の3つの箱のどれかに入れる仕組みです。箱が決まると、支援者に与えられる権限も自動的に決まります。とくに後見では、後見人が本人の財産全部について包括的な代理権と取消権を持ちます。
+</p>
+<p>
+改正後は、この3つの箱がなくなり、<strong>「補助」ひとつに一元化</strong>されます。そのうえで、遺産分割の代理権が要る人にはその代理権だけ、預貯金の管理に同意権が要る人にはその同意権だけ、というように、必要な権限を個別に組み立てます。
+</p>
+
+<figure>
+<svg viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="現行の3類型と改正後の補助一元化の比較図">
+  <style>
+    .lbl{font-family:var(--gothic);font-size:13px;fill:var(--sumi)}
+    .lbl-s{font-family:var(--gothic);font-size:11.5px;fill:var(--sumi-usu)}
+    .ttl{font-family:var(--mincho);font-size:16px;fill:var(--sumi);font-weight:600}
+    .box-name{font-family:var(--mincho);font-size:16px;font-weight:600}
+  </style>
+
+  <!-- 左：現行 -->
+  <text x="0" y="18" class="ttl">現行</text>
+  <text x="0" y="40" class="lbl-s">能力の程度で入る箱が決まる</text>
+
+  <rect x="0" y="56" width="330" height="62" fill="var(--nezumi-usu)" stroke="var(--nezumi)"/>
+  <text x="14" y="82" class="box-name" fill="var(--sumi)">後見</text>
+  <text x="70" y="79" class="lbl-s">能力を欠く常況</text>
+  <text x="70" y="98" class="lbl">包括的な代理権 ＋ 日常行為以外の取消権</text>
+  <text x="14" y="106" class="lbl-s">18.1万人</text>
+
+  <rect x="0" y="126" width="330" height="62" fill="var(--nezumi-usu)" stroke="var(--nezumi)"/>
+  <text x="14" y="152" class="box-name" fill="var(--sumi)">保佐</text>
+  <text x="70" y="149" class="lbl-s">著しく不十分</text>
+  <text x="70" y="168" class="lbl">法定の重要行為の取消権 ＋ 個別の代理権</text>
+  <text x="14" y="176" class="lbl-s">5.8万人</text>
+
+  <rect x="0" y="196" width="330" height="62" fill="var(--nezumi-usu)" stroke="var(--nezumi)"/>
+  <text x="14" y="222" class="box-name" fill="var(--sumi)">補助</text>
+  <text x="70" y="219" class="lbl-s">不十分</text>
+  <text x="70" y="238" class="lbl">個別の同意権 ＋ 個別の代理権</text>
+  <text x="14" y="246" class="lbl-s">1.8万人</text>
+
+  <text x="0" y="290" class="lbl-s">※利用者数は令和7年12月末時点</text>
+  <text x="0" y="310" class="lbl-s">※いったん入ると、能力が回復しない限り</text>
+  <text x="0" y="328" class="lbl-s">　降りられない</text>
+
+  <!-- 矢印 -->
+  <path d="M348 155 L400 155" stroke="var(--ai)" stroke-width="2" fill="none"/>
+  <path d="M400 155 l-9 -6 v12 z" fill="var(--ai)"/>
+
+  <!-- 右：改正後 -->
+  <text x="420" y="18" class="ttl">改正後</text>
+  <text x="420" y="40" class="lbl-s">箱はひとつ。中身を組み立てる</text>
+
+  <rect x="420" y="56" width="340" height="202" fill="var(--ai-usu)" stroke="var(--ai)"/>
+  <text x="436" y="84" class="box-name" fill="var(--ai)">補助</text>
+  <text x="486" y="82" class="lbl-s">能力が不十分であれば入口はここ</text>
+
+  <rect x="436" y="98" width="308" height="42" fill="#fff" stroke="var(--ai)" stroke-dasharray="3 3"/>
+  <text x="448" y="116" class="lbl">同意権の審判（民9条）</text>
+  <text x="448" y="133" class="lbl-s">選んだ行為だけ、同意なしなら取り消せる</text>
+
+  <rect x="436" y="148" width="308" height="42" fill="#fff" stroke="var(--ai)" stroke-dasharray="3 3"/>
+  <text x="448" y="166" class="lbl">代理権の審判（民11条）</text>
+  <text x="448" y="183" class="lbl-s">選んだ行為だけ、補助人が代理できる</text>
+
+  <rect x="436" y="198" width="308" height="46" fill="#fff" stroke="var(--enji)" stroke-dasharray="3 3"/>
+  <text x="448" y="216" class="lbl" fill="var(--enji)">特定補助の審判（民10条）</text>
+  <text x="448" y="233" class="lbl-s">能力を欠く常況の人向け。重要行為をまとめて取消可</text>
+
+  <text x="420" y="290" class="lbl-s">※ この3つのうち少なくとも1つと同時でなければ</text>
+  <text x="420" y="308" class="lbl-s">　補助を開始できない（民7条3項）</text>
+  <text x="420" y="328" class="lbl-s">※ 必要がなくなれば途中で終われる（民12条）</text>
+</svg>
+<figcaption>制度の骨格。現行は「能力の程度 → 権限」が自動的に決まるのに対し、改正後は入口をひとつにして、権限を注文して組み立てる形になる。</figcaption>
+</figure>
+
+<h3>条文で見ると — 「後見開始の審判」の条文が「補助開始の審判」に置き換わった
+<span class="jobun">民法7条</span></h3>
+
+<div class="taisho">
+  <div class="taisho-head"><div class="new">改正後</div><div class="old">現行</div></div>
+  <div class="taisho-body">
+    <div class="new">
+      <span class="jo">（補助開始の審判）</span>
+      第七条　<b>精神上の理由</b>により事理を弁識する能力が<b>不十分である者</b>については、家庭裁判所は、本人、配偶者、四親等内の親族、未成年後見人、未成年後見監督人、<b>補助開始の審判を請求することができる者として公正証書によって本人の指定した者</b>又は検察官の請求により、<b>補助開始の審判</b>をすることができる。<br>
+      ３　補助開始の審判は、第九条第一項若しくは第十条第一項の規定による審判のいずれか又は第十一条第一項の規定による審判をする必要がある場合において、<b>これらの審判と同時にしなければならない</b>。
+    </div>
+    <div class="old">
+      <span class="jo">（後見開始の審判）</span>
+      第七条　<b>精神上の障害</b>により事理を弁識する能力を<b>欠く常況にある者</b>については、家庭裁判所は、本人、配偶者、四親等内の親族、未成年後見人、未成年後見監督人、保佐人、保佐監督人、補助人、補助監督人又は検察官の請求により、<b>後見開始の審判</b>をすることができる。
+    </div>
+  </div>
+</div>
+
+<div class="point">
+<p>7条は条番号こそ同じですが、中身が入れ替わっています。読みどころは4つ。</p>
+<p>① 開始要件が「能力を<b>欠く常況</b>」から「能力が<b>不十分</b>」へ。入口が広く・浅くなりました。<br>
+② 「精神上の<b>障害</b>」が「精神上の<b>理由</b>」に。障害の有無で線を引く表現をやめています。<br>
+③ 申立権者に「<b>公正証書で本人が指定した者</b>」が加わりました。親族でなくても、日ごろ本人を見ている人に将来の申立てを託せます。<br>
+④ 3項が重要です。<b>補助開始の審判だけを単独ですることはできません</b>。同意権・特定補助・代理権のいずれかとセットでしか開始できない、つまり「使いみちのない後見」が構造的に生まれない設計になりました。</p>
+</div>
+
+<h2>2. 権限は「注文」して決める</h2>
+
+<p>
+新制度の補助人は、放っておけば何の権限も持ちません。家庭裁判所が、必要な行為をひとつずつ指定して権限を与えます。組み合わせは次の3種類です。
+</p>
+
+<figure>
+<svg viewBox="0 0 760 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="補助人に与えられる3種類の権限の関係図">
+  <style>
+    .l{font-family:var(--gothic);font-size:13px;fill:var(--sumi)}
+    .ls{font-family:var(--gothic);font-size:11.5px;fill:var(--sumi-usu)}
+    .h{font-family:var(--mincho);font-size:15px;font-weight:600}
+  </style>
+
+  <rect x="250" y="0" width="260" height="44" rx="2" fill="var(--sumi)"/>
+  <text x="380" y="28" class="h" fill="#fff" text-anchor="middle">補助開始の審判（民7条）</text>
+
+  <path d="M380 44 L380 66" stroke="var(--sumi)" stroke-width="1.5"/>
+  <path d="M130 66 L630 66" stroke="var(--sumi)" stroke-width="1.5"/>
+  <path d="M130 66 L130 88 M380 66 L380 88 M630 66 L630 88" stroke="var(--sumi)" stroke-width="1.5"/>
+
+  <!-- 同意権 -->
+  <rect x="10" y="88" width="240" height="150" fill="#fff" stroke="var(--ai)" stroke-width="1.5"/>
+  <rect x="10" y="88" width="240" height="30" fill="var(--ai)"/>
+  <text x="24" y="109" class="h" fill="#fff">同意権の審判</text>
+  <text x="196" y="108" class="ls" fill="#fff">民9条</text>
+  <text x="24" y="140" class="l">選んだ行為をするときは</text>
+  <text x="24" y="159" class="l">補助人の同意が要る</text>
+  <text x="24" y="184" class="ls">同意なしにした行為は取消し可</text>
+  <text x="24" y="203" class="ls">選べるのは9条2項の11項目から</text>
+  <text x="24" y="222" class="ls">（預貯金の払戻し、不動産、相続 等）</text>
+
+  <!-- 代理権 -->
+  <rect x="510" y="88" width="240" height="150" fill="#fff" stroke="var(--ai)" stroke-width="1.5"/>
+  <rect x="510" y="88" width="240" height="30" fill="var(--ai)"/>
+  <text x="524" y="109" class="h" fill="#fff">代理権の審判</text>
+  <text x="694" y="108" class="ls" fill="#fff">民11条</text>
+  <text x="524" y="140" class="l">選んだ法律行為について</text>
+  <text x="524" y="159" class="l">補助人が本人を代理する</text>
+  <text x="524" y="184" class="ls">例：遺産分割、施設入所契約、</text>
+  <text x="524" y="203" class="ls">　　居住用不動産の売却（要許可）</text>
+  <text x="524" y="222" class="ls">本人以外の申立てには本人の同意が必要</text>
+
+  <!-- 特定補助 -->
+  <rect x="260" y="88" width="240" height="150" fill="#fff" stroke="var(--enji)" stroke-width="1.5"/>
+  <rect x="260" y="88" width="240" height="30" fill="var(--enji)"/>
+  <text x="274" y="109" class="h" fill="#fff">特定補助の審判</text>
+  <text x="444" y="108" class="ls" fill="#fff">民10条</text>
+  <text x="274" y="140" class="l">能力を欠く常況の人向け</text>
+  <text x="274" y="159" class="l">9条2項の行為をまとめて取消可</text>
+  <text x="274" y="184" class="ls">特定補助人の権限は3つだけ：</text>
+  <text x="274" y="203" class="ls">取消権の行使／意思表示の受領／</text>
+  <text x="274" y="222" class="ls">財産の保存行為</text>
+
+  <path d="M380 238 L380 262" stroke="var(--enji)" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <path d="M380 262 l-6 -9 h12 z" fill="var(--enji)"/>
+  <rect x="150" y="262" width="460" height="62" fill="var(--enji-usu)" stroke="var(--enji)" stroke-dasharray="3 3"/>
+  <text x="380" y="286" class="l" text-anchor="middle" fill="var(--enji)">特定補助人になっても、包括的な代理権は付かない。</text>
+  <text x="380" y="308" class="l" text-anchor="middle" fill="var(--enji)">代理が必要なら、別に民11条の代理権付与の審判が要る。</text>
+</svg>
+<figcaption>3種類の審判の関係。同意権と特定補助は同時には使えず、一方の審判をすると他方は取り消される（民9条6項・10条4項）。</figcaption>
+</figure>
+
+<h3>包括的な取消権が消える
+<span class="jobun">民法9条</span></h3>
+
+<div class="taisho">
+  <div class="taisho-head"><div class="new">改正後</div><div class="old">現行</div></div>
+  <div class="taisho-body">
+    <div class="new">
+      <span class="jo">（補助人の同意を要する旨の審判等）</span>
+      第九条　家庭裁判所は、…必要があると認めるときは、補助開始の審判を受けた者が<b>特定の行為</b>をするにはその補助人の同意を得なければならない旨の審判をすることができる。…<br>
+      ２　前項の特定の行為は、次に掲げる行為のうち<b>家庭裁判所が定めるもの</b>をいう。<br>
+      　一　<b>預金又は貯金の預入又は払戻しの請求をすること。</b><br>
+      　二　元本を領収し、又は利用すること。<br>
+      　三　借財又は保証をすること。<br>
+      　四　<b>居住の用に供する建物の大修繕に関する工事の請負契約その他の重要な役務の提供に関する契約</b>を締結すること。<br>
+      　五　不動産その他重要な財産に関する権利の得喪を目的とする行為をすること。<br>
+      　六　訴訟行為をすること。　（以下十一号まで）
+    </div>
+    <div class="old">
+      <span class="jo">（成年被後見人の法律行為）</span>
+      第九条　<b>成年被後見人の法律行為は、取り消すことができる。</b>ただし、日用品の購入その他日常生活に関する行為については、この限りでない。
+      <p class="kesu">※ 現行13条1項（保佐人の同意を要する行為）は削除され、その内容が新9条2項に移されたうえで拡張された。</p>
+    </div>
+  </div>
+</div>
+
+<div class="point">
+<p>ここが実務上いちばん影響が大きいところです。現行の「後見なら何でも取り消せる」という包括的な保護がなくなり、<b>あらかじめ指定した行為だけが取消しの対象</b>になります。</p>
+<p>一方で、指定できる行為の<b>リスト自体は現行13条1項より広がっています</b>。とくに1号の「預金・貯金の預入・払戻しの請求」は現行の保佐の列挙になかった項目で、日常的な金銭管理を正面から取り込みました。4号も「新築・改築・増築・大修繕」という工事に限られていたのを、「重要な役務の提供に関する契約」まで広げています。介護・福祉サービスの契約が視野に入っている書きぶりです。</p>
+</div>
+
+<h3>「特定補助」— 能力を欠く常況の人のための受け皿
+<span class="jobun">民法10条</span></h3>
+
+<p>
+一元化といっても、これまで後見相当とされてきた人の保護をそのまま薄くするわけにはいきません。そこで新設されたのが特定補助の仕組みです。補助を開始した人が「精神上の理由により事理を弁識する能力を欠く常況」にあると認められる場合、<strong>民法9条2項の11項目の行為をまとめて取り消せる</strong>状態にできます（民10条2項）。列挙にない行為も、必要なら個別に取消しの対象に追加できます（同3項）。
+</p>
+
+<div class="taisho">
+  <div class="taisho-head"><div class="new">改正後（新設）</div><div class="old">現行（同じ条番号にあった規定）</div></div>
+  <div class="taisho-body">
+    <div class="new">
+      <span class="jo">（特定補助人を付する旨の審判等）</span>
+      第十条　…補助開始の審判を受けた者が精神上の理由により事理を弁識する能力を<b>欠く常況</b>にある者であり、かつ、必要があると認めるときは、その者のため第五項に規定する権限を有する補助人として<b>特定補助人</b>を付する旨の審判をすることができる。<br>
+      ２　前項の規定による審判があったときは、…<b>前条第二項各号に掲げる行為</b>（日用品の購入その他日常生活に関する行為を除く。）は、<b>取り消すことができる</b>。<br>
+      ５　特定補助人は、次に掲げる行為をする権限を有する。<br>
+      　一　…<b>取消権の行使</b><br>
+      　二　…<b>意思表示の受領</b><br>
+      　三　…<b>財産に関する保存行為</b>
+    </div>
+    <div class="old">
+      <span class="jo">（後見開始の審判の取消し）</span>
+      第十条　第七条に規定する原因が消滅したときは、家庭裁判所は、本人、配偶者、四親等内の親族、後見人、後見監督人又は検察官の請求により、後見開始の審判を<b>取り消さなければならない</b>。
+      <p class="kesu">※ この「原因が消滅しなければ取り消せない」という規定こそが、現行制度の「降りられなさ」の根拠だった。新12条へ引き継がれつつ、大きく緩められている。</p>
+    </div>
+  </div>
+</div>
+
+<div class="chui">
+<p><strong>誤解しやすい点。</strong>特定補助人は「新しい後見人」ではありません。10条5項が権限を3つに限定しており、そこに<strong>包括代理権は含まれていません</strong>。財産管理や契約締結を代理でやってもらうには、別途11条の代理権付与の審判が必要です。「重い人には特定補助を付けておけば何でもできる」という運用にはならない設計です。</p>
+</div>
+
+<h2>3. 終われる制度になる</h2>
+
+<p>
+現行制度では、遺産分割のために後見を申し立てたら、分割が終わっても本人が亡くなるまで後見が続きます。報酬も、後見人への監督も、ずっと続きます。これが利用をためらわせる最大の理由でした。改正後は、<strong>能力が回復していなくても、必要がなくなったと家庭裁判所が認めれば終われます</strong>。
+</p>
+
+<figure>
+<svg viewBox="0 0 760 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="現行と改正後の制度利用期間の比較">
+  <style>
+    .t{font-family:var(--gothic);font-size:13px;fill:var(--sumi)}
+    .ts{font-family:var(--gothic);font-size:11.5px;fill:var(--sumi-usu)}
+    .th{font-family:var(--mincho);font-size:15px;font-weight:600;fill:var(--sumi)}
+  </style>
+
+  <text x="0" y="16" class="th">現行</text>
+  <rect x="90" y="34" width="600" height="26" fill="var(--nezumi-usu)" stroke="var(--nezumi)"/>
+  <circle cx="140" cy="47" r="5" fill="var(--nezumi)"/>
+  <text x="112" y="80" class="ts">申立て</text>
+  <text x="112" y="96" class="ts">（例：遺産分割のため）</text>
+  <circle cx="290" cy="47" r="5" fill="var(--nezumi)"/>
+  <text x="266" y="80" class="ts">遺産分割 完了</text>
+  <text x="266" y="96" class="ts">＝目的は達成</text>
+  <path d="M300 47 L676 47" stroke="var(--nezumi)" stroke-width="1"/>
+  <text x="430" y="30" class="t" fill="var(--sumi-usu)">それでも続く（報酬・監督も続く）</text>
+  <text x="640" y="80" class="ts">本人の死亡</text>
+
+  <line x1="0" y1="120" x2="760" y2="120" stroke="var(--keisen)"/>
+
+  <text x="0" y="152" class="th">改正後</text>
+  <rect x="90" y="170" width="220" height="26" fill="var(--ai-usu)" stroke="var(--ai)"/>
+  <circle cx="140" cy="183" r="5" fill="var(--ai)"/>
+  <text x="112" y="216" class="ts">申立て</text>
+  <circle cx="290" cy="183" r="5" fill="var(--ai)"/>
+  <text x="252" y="216" class="ts">遺産分割 完了</text>
+  <text x="252" y="232" class="ts">→ 審判を取り消して終了</text>
+
+  <rect x="330" y="170" width="360" height="26" fill="#fff" stroke="var(--keisen)" stroke-dasharray="4 4"/>
+  <text x="510" y="188" class="t" fill="var(--sumi-usu)" text-anchor="middle">必要になったらまた使えばよい</text>
+</svg>
+<figcaption>「終われる」ことは、裏返せば「気軽に始められる」ことでもある。スポット的な利用が現実的になる。</figcaption>
+</figure>
+
+<div class="taisho">
+  <div class="taisho-head"><div class="new">改正後</div><div class="old">現行</div></div>
+  <div class="taisho-body">
+    <div class="new">
+      <span class="jo">（補助開始の審判等の取消し）</span>
+      第十二条　第七条第一項に規定する原因が消滅したときは、家庭裁判所は、…補助開始の審判を取り消さなければならない。<br>
+      ２　家庭裁判所は、<b>必要がなくなったと認めるとき</b>は、…第九条第一項の規定による審判の全部又は一部を<b>取り消すことができる</b>。<br>
+      ４　家庭裁判所は、<b>必要がなくなったと認めるとき</b>は、…第十条第一項の規定による審判…の全部若しくは一部を取り消すことができる。<br>
+      ５　家庭裁判所は、<b>必要がなくなったと認めるとき</b>は、…前条第一項の規定による審判の全部又は一部を取り消すことができる。<br>
+      ６　第九条第一項、第十条第一項及び前条第一項の規定による審判を<b>全て取り消す場合には</b>、家庭裁判所は、補助開始の審判を取り消さなければならない。
+    </div>
+    <div class="old">
+      <span class="jo">（被保佐人及び保佐人）</span>
+      第十二条　保佐開始の審判を受けた者は、被保佐人とし、これに保佐人を付する。
+      <p class="kesu">※ 現行10条・14条・18条は、いずれも「原因が消滅したとき」の取消ししか定めていない。「必要がなくなったとき」という終了事由は現行法に存在しない。</p>
+    </div>
+  </div>
+</div>
+
+<div class="point">
+<p>終わり方には2通りあります。ひとつは申立てによるもの。もうひとつが<b>職権による終了</b>で、これを支えるのが新設の民法876条の21です。補助人には毎年1回、本人の状況を家庭裁判所に報告する義務が課され、その報告を受けた家庭裁判所は、必要がなくなっていると判断すれば<b>職権で審判を取り消せます</b>。本人や親族が動かなくても、裁判所の側から出口を用意する仕組みです。</p>
+</div>
+
+<h2>4. 本人の意思を、手続として義務づける</h2>
+
+<p>
+現行法にも「本人の意思の尊重」（民858条）はありました。ただ、心構えを書いた規定にとどまっていました。改正後は、<strong>何をすれば意思を尊重したことになるのかを条文が具体的に書いています</strong>。
+</p>
+
+<div class="taisho">
+  <div class="taisho-head"><div class="new">改正後（新設）</div><div class="old">現行</div></div>
+  <div class="taisho-body">
+    <div class="new">
+      <span class="jo">（補助開始の審判を受けた者の意向の尊重並びに心身の状態及び生活の状況の配慮）</span>
+      第八百七十六条の十一　補助人は、補助の事務を行うに当たっては、補助開始の審判を受けた者の<b>心身の状態に応じて</b>、その者に対し、<b>その事務に関する情報の提供をして</b>その者のその事務に関する<b>陳述を聴取すること</b>その他の適切な方法により、その事務に関する<b>意向を把握するようにしなければならない</b>。<br>
+      ２　補助人は、…前項に規定する方法により把握した…<b>意向を尊重し</b>、かつ、その心身の状態及び生活の状況に配慮しなければならない。
+    </div>
+    <div class="old">
+      <span class="jo">（成年被後見人の意思の尊重及び身上の配慮）</span>
+      第八百五十八条　成年後見人は、成年被後見人の生活、療養看護及び財産の管理に関する事務を行うに当たっては、成年被後見人の<b>意思を尊重し</b>、かつ、その心身の状態及び生活の状況に配慮しなければならない。
+    </div>
+  </div>
+</div>
+
+<p>
+「情報を提供して、意見を聴く」という<strong>行為</strong>が義務になった点が新しいところです。意思決定支援の考え方が、条文の水準に上がったと読めます。この義務は、後述のとおり<strong>すでに後見・保佐を利用している人にも施行日から適用されます</strong>（附則2条・3条）。
+</p>
+
+<h3>選任のとき、まず本人の意見を聴く
+<span class="jobun">民法876条の2第4項</span></h3>
+
+<div class="taisho">
+  <div class="taisho-head"><div class="new">改正後</div><div class="old">現行</div></div>
+  <div class="taisho-body">
+    <div class="new">
+      第八百七十六条の二　４　補助人を選任するには、<b>補助開始の審判を受けた者…の意見</b>、心身の状態並びに生活及び財産の状況、補助人となる者の職業及び経歴並びに…利害関係の有無…<b>その他一切の事情</b>を考慮しなければならない。
+    </div>
+    <div class="old">
+      第八百四十三条　４　成年後見人を選任するには、成年被後見人の心身の状態並びに生活及び財産の状況、成年後見人となる者の職業及び経歴並びに…利害関係の有無…、<b>成年被後見人の意見</b>その他一切の事情を考慮しなければならない。
+    </div>
+  </div>
+</div>
+
+<p>
+現行法では考慮要素の<strong>最後</strong>に置かれていた「本人の意見」が、改正後は<strong>冒頭</strong>に移りました。条文の並び順を動かしただけに見えますが、法制上、列挙の順序は重み付けを示すものとして読まれます。
+</p>
+
+<h3>「うまくいっていない」だけで交代できるようになる
+<span class="jobun">民法876条の5</span></h3>
+
+<div class="taisho">
+  <div class="taisho-head"><div class="new">改正後（新設）</div><div class="old">現行</div></div>
+  <div class="taisho-body">
+    <div class="new">
+      第八百七十六条の五　次に掲げる事由があるときは、家庭裁判所は、…補助人を解任することができる。<br>
+      　一　補助人が<b>不正な行為</b>をしたとき。<br>
+      　二　補助人がその任務に著しく反したことによりその職務を継続させることが<b>相当でないとき</b>。<br>
+      　三　補助開始の審判を受けた者の<b>利益のため特に必要があるとき</b>。
+    </div>
+    <div class="old">
+      第八百四十六条　後見人に<b>不正な行為、著しい不行跡</b>その他後見の任務に適しない事由があるときは、家庭裁判所は、…これを解任することができる。
+    </div>
+  </div>
+</div>
+
+<div class="point">
+<p>現行の解任事由は、横領などの<b>後見人側の落ち度</b>に着目したものだけでした。3号の「本人の利益のため特に必要があるとき」が入ったことで、<b>誰も悪いことをしていなくても交代できる</b>ようになります。たとえば補助人が本人と一度も面談していない、本人との相性が悪く支援が届いていない、といった場面です。</p>
+<p>あわせて、現行にあった「著しい不行跡」という漠然とした事由は削られました。また、3号（本人の利益のための解任）で解任された人は<b>欠格事由にならない</b>と明記されています（民847条2号かっこ書、876条の6第2号かっこ書）。落ち度のない交代に不名誉が伴わないようにした配慮です。</p>
+</div>
+
+<h2>5. 報酬・死後事務・意思表示の受領</h2>
+
+<table class="plain">
+<thead>
+<tr><th>論点</th><th>現行</th><th>改正後</th></tr>
+</thead>
+<tbody>
+<tr>
+  <td>報酬の決め方</td>
+  <td>「後見人及び被後見人の<strong>資力</strong>その他の事情」だけが条文上の考慮要素（民862条）</td>
+  <td>「<strong>補助の事務の内容</strong>、補助人及び本人の資力その他の事情」（民876条の19）。やった仕事の中身が正面から要素になり、認容事案の実績公表も予定されている</td>
+</tr>
+<tr>
+  <td>本人が亡くなった後</td>
+  <td>成年後見人にだけ死後事務の権限（民873条の2）。保佐人・補助人にはない</td>
+  <td>補助人が、家裁の許可を得て<strong>火葬・埋葬の契約</strong>を締結でき、<strong>死亡当時の権限の範囲内</strong>で相続財産の保存に必要な行為・弁済期到来債務の弁済ができる（民876条の26）</td>
+</tr>
+<tr>
+  <td>本人に意思表示を届けたいが法定代理人がいない</td>
+  <td>規定なし。届けようがない</td>
+  <td><strong>意思表示の受領の特別代理人</strong>を新設。表意者の請求で家裁が選任する（民98条の3）。この特別代理人は、必要なら補助開始や代理権付与の審判を自ら請求できる</td>
+</tr>
+<tr>
+  <td>鑑定</td>
+  <td>後見開始には原則鑑定。明らかに不要なら省略可（家事119条1項）</td>
+  <td>補助開始は<strong>医師その他適当な者の意見</strong>で足りる。特定補助は原則鑑定で、省略には<strong>医師2人以上の意見</strong>が前提（家事119条1項・2項）</td>
+</tr>
+<tr>
+  <td>本人の生活実態の把握</td>
+  <td>規定なし</td>
+  <td>家庭裁判所は<strong>市町村長その他適当な者</strong>に、本人の心身の状態・生活の状況等について意見を求めることができる（家事120条3項）</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+このほか、身分行為に関する特則も整理されました。「成年被後見人」という概念自体がなくなるため、成年被後見人の婚姻について定めた民法738条は削除され、認知（780条）や縁組（799条）などの規定からも「成年被後見人」の文言が落ちています。
+</p>
+
+<h2>6. 任意後見も使いやすくなる</h2>
+
+<p>
+自分で選んだ人に将来を託す任意後見契約についても、実務で指摘されてきた使いにくさが手当てされました。
+</p>
+
+<table class="plain">
+<thead>
+<tr><th>論点</th><th>現行</th><th>改正後</th></tr>
+</thead>
+<tbody>
+<tr>
+  <td>発効のしかた</td>
+  <td>任意後見<strong>監督人が選任された時</strong>に効力発生（任意後見契約法2条1号・4条）</td>
+  <td><strong>任意後見開始の審判</strong>がされた時に効力発生（同2条1号・5条）</td>
+</tr>
+<tr>
+  <td>監督人</td>
+  <td>必ず選任される。その報酬が本人の財産から継続的に発生する</td>
+  <td>家庭裁判所が<strong>明らかに監督人による監督の必要がないと認めるとき</strong>は選任しないことができ、家裁が直接監督する（同7条5項・11条）</td>
+</tr>
+<tr>
+  <td>法定後見との関係</td>
+  <td>法定後見が開始すると<strong>任意後見契約は終了</strong>する（現行10条3項）</td>
+  <td>この規定を削除。<strong>補助と任意後見の併用が可能</strong>に（同14条）。権限が重なる場合に備え、契約の<strong>一部解除</strong>の規律を新設（同13条）</td>
+</tr>
+<tr>
+  <td>受任者が先に亡くなったら</td>
+  <td>次の人へ引き継ぐ仕組みがない</td>
+  <td>本人と受任者の間で、契約の効力を発生させる<strong>順序を定める合意</strong>ができる（同4条／公正証書による）</td>
+</tr>
+<tr>
+  <td>発効の申立てができる人</td>
+  <td>本人・配偶者・四親等内の親族・任意後見受任者</td>
+  <td>これに加えて<strong>公正証書で本人が指定した者</strong>、補助人・補助監督人（同5条1項）</td>
+</tr>
+<tr>
+  <td>監督人を誰にするか</td>
+  <td>考慮要素の規定なし</td>
+  <td>本人の意見（契約締結時に公証人へ申述した希望を含む）を考慮要素の冒頭に置く（同7条4項）</td>
+</tr>
+</tbody>
+</table>
+
+<h2>7. いま利用している人はどうなるか</h2>
+
+<p>
+令和7年12月末時点で、後見18万828人、保佐5万8,162人、補助1万8,078人が制度を利用しています。この人たちが施行日にいきなり新制度へ放り込まれることはありません。附則で3つの道が用意されています。
+</p>
+
+<figure>
+<svg viewBox="0 0 760 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="施行時の経過措置の分岐図">
+  <style>
+    .m{font-family:var(--gothic);font-size:13px;fill:var(--sumi)}
+    .ms{font-family:var(--gothic);font-size:11.5px;fill:var(--sumi-usu)}
+    .mh{font-family:var(--mincho);font-size:15px;font-weight:600}
+  </style>
+
+  <rect x="0" y="0" width="200" height="52" fill="var(--nezumi-usu)" stroke="var(--nezumi)"/>
+  <text x="16" y="24" class="mh" fill="var(--sumi)">後見・保佐の利用者</text>
+  <text x="16" y="43" class="ms">約23.9万人</text>
+
+  <path d="M200 26 L250 26 M250 26 L250 90 M250 26 L250 200 M250 26 L250 300" stroke="var(--nezumi)" stroke-width="1.2" fill="none"/>
+  <path d="M250 90 L290 90 M250 200 L290 200 M250 300 L290 300" stroke="var(--nezumi)" stroke-width="1.2"/>
+  <path d="M290 90 l-9 -5 v10 z M290 200 l-9 -5 v10 z M290 300 l-9 -5 v10 z" fill="var(--nezumi)"/>
+
+  <rect x="292" y="62" width="468" height="86" fill="#fff" stroke="var(--nezumi)"/>
+  <text x="308" y="86" class="m">そのまま続けたい</text>
+  <text x="308" y="110" class="ms">→ 基本的に現行法の内容のまま利用を継続できる（附則2条・3条）</text>
+  <text x="308" y="132" class="ms">　ただし、解任事由（民876条の5）と意向把握義務（民876条の11）は改正後の民法が適用される</text>
+
+  <rect x="292" y="172" width="468" height="86" fill="var(--ai-usu)" stroke="var(--ai)"/>
+  <text x="308" y="196" class="m" fill="var(--ai)">新制度へ移りたい</text>
+  <text x="308" y="220" class="ms">→ 改正後の補助開始の申立てをする（本人・配偶者・四親等内の親族・後見人等）</text>
+  <text x="308" y="242" class="ms">　補助が開始すると、いま受けている後見・保佐開始の審判は取り消される</text>
+
+  <rect x="292" y="272" width="468" height="86" fill="#fff" stroke="var(--nezumi)"/>
+  <text x="308" y="296" class="m">もうやめたい</text>
+  <text x="308" y="320" class="ms">→ 後見・保佐開始の審判の取消しを申し立てることができる（附則2条・3条）</text>
+  <text x="308" y="342" class="ms">　能力が回復していなくても、必要がなくなっていれば終われる</text>
+</svg>
+<figcaption>後見・保佐の利用者の経過措置。すでに補助を利用している人は、改正後の補助の内容で継続する（附則4条）。施行日前に締結された任意後見契約には、改正後の任意後見契約法が適用される（附則6条）。</figcaption>
+</figure>
+
+<h2>8. 福祉の現場が施行までに考えておくこと</h2>
+
+<p>
+制度の骨格が変わるということは、事業所から見た「相手方の確認のしかた」が変わるということでもあります。施行は最長2028年12月ですが、準備の観点はいまから見えています。
+</p>
+
+<ul>
+<li><strong>「後見人だから何でもできる」が通用しなくなる。</strong>包括代理権を持つ人がいなくなるため、入居契約・利用契約・金銭管理のそれぞれについて、目の前の補助人にその権限があるかを<strong>登記事項証明書で個別に確認する</strong>必要が高まります。登記事項にも「特定補助人を付する処分がされた旨」「取り消すことのできる行為」が加わりました（後見登記法4条1項）。</li>
+<li><strong>契約時に「同意権の対象か」を見る。</strong>新9条2項4号が「重要な役務の提供に関する契約」を取消しの対象に取り込んだため、サービス利用契約が同意権の範囲に指定されているかどうかが、契約の有効性に直結します。</li>
+<li><strong>利用者が亡くなった後の未払金。</strong>補助人にも死後事務の権限が入りました（民876条の26）。ただし「死亡当時の権限の範囲内」という制限があるので、生前に施設利用料の支払の代理権が付いていたかどうかで結論が変わります。</li>
+<li><strong>意思決定支援が法定の義務になる。</strong>民876条の11は補助人への義務ですが、事業所が日常的に本人の意向を記録し、補助人に情報として渡せる状態にしておくことが、そのまま補助人の義務の履行を支えます。この義務は<strong>既存の後見・保佐にも施行日から及びます</strong>。</li>
+<li><strong>家庭裁判所から意見を求められる側になる。</strong>家事120条3項により、市町村長その他適当な者に本人の生活状況の意見を求められる仕組みができました。日ごろ本人を見ている事業所の記録が、審判の内容を左右する場面が出てきます。</li>
+<li><strong>親なき後の設計が変わる。</strong>公正証書で申立権者を指定できるようになり（民7条1項、任意後見契約法5条1項）、任意後見の順序も定められるようになりました。親族が先に亡くなる前提の備え方に、新しい選択肢が加わります。</li>
+</ul>
+
+<div class="chui">
+<p>なお、施行日を定める政令はまだ出ていません。<strong>いま進行中の遺産分割や不動産処分は、引き続き現行の成年後見制度を前提に判断する必要があります</strong>。「もうすぐ変わるから待つ」という判断は、最長で2年半以上待つことを意味します。</p>
+</div>
+
+<footer>
+<p>出典（いずれも法務省）</p>
+<ul>
+<li><a href="https://www.moj.go.jp/MINJI/minji07_00410.html">「民法等の一部を改正する法律」（成年後見及び遺言の制度の見直し）について</a></li>
+<li>民法等改正法の概要（PDF）／新旧対照条文（民法等改正法）（PDF）</li>
+<li>法制審議会民法（成年後見等関係）部会「民法（成年後見等関係）等の改正に関する要綱案」（令和8年1月27日決定）</li>
+<li>利用者数：最高裁判所事務総局家庭局「成年後見関係事件の概況 — 令和7年1月～12月」</li>
+</ul>
+<p>条文はいずれも法務省公表の新旧対照条文によるもので、読みやすさのため一部を省略しています（省略箇所は「…」で示しました）。個別の事案の判断にあたっては原典をご確認ください。</p>
+</footer>
+
+</div>
+</body>
+</html>
