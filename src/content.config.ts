@@ -47,4 +47,18 @@ const topics = defineCollection({
   }),
 });
 
-export const collections = { news, aiTips, topics };
+// 意思決定支援ページの「寄稿」：外部・内部の執筆者による読みもの（/sudachi/decision-support/<slug>/）
+const decisionSupport = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/decision-support' }),
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    summary: z.string().optional(),
+    author: z.string(),
+    // 肩書き・所属（署名行で author の前に表示）
+    authorTitle: z.string().optional(),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { news, aiTips, topics, decisionSupport };

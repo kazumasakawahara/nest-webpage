@@ -1,6 +1,13 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CtaBlock from '../../components/CtaBlock.astro';
+
+// 寄稿（新しい順）
+const posts = (await getCollection('decisionSupport', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+const fmtDate = (d: Date) => `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
 ---
 
 <BaseLayout
@@ -161,6 +168,38 @@ import CtaBlock from '../../components/CtaBlock.astro';
       </div>
     </div>
   </section>
+
+  <!-- ===== 寄稿（実践の現場からの読みもの） ===== -->
+  {posts.length > 0 && (
+    <section class="section" id="column">
+      <div class="container container--narrow reveal">
+        <span class="eyebrow">Column</span>
+        <h2 class="section__title">寄稿</h2>
+        <p class="body-text">
+          意思決定支援の実践にかかわる読みものを掲載しています。
+        </p>
+        <ul class="ds-posts">
+          {posts.map((post) => (
+            <li>
+              <a class="ds-post-card" href={`/sudachi/decision-support/${post.id}/`}>
+                <span class="ds-post-card__meta">
+                  <span class="badge badge--accent">寄稿</span>
+                  <time datetime={post.data.date.toISOString()}>{fmtDate(post.data.date)}</time>
+                </span>
+                <span class="ds-post-card__title">{post.data.title}</span>
+                <span class="ds-post-card__author">
+                  {post.data.authorTitle && <small>{post.data.authorTitle}</small>}
+                  {post.data.author}
+                </span>
+                {post.data.summary && <span class="ds-post-card__summary">{post.data.summary}</span>}
+                <span class="ds-post-card__more" aria-hidden="true">読む →</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
 
   <!-- ===== つたえるカード（意思決定支援から生まれた道具） ===== -->
   <section class="section">
@@ -402,6 +441,85 @@ import CtaBlock from '../../components/CtaBlock.astro';
     color: var(--color-ink-mute);
     text-align: center;
   }
+
+  /* 寄稿カード */
+  .ds-posts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .ds-post-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-5) var(--space-6);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    background: var(--color-paper);
+    box-shadow: var(--shadow-soft);
+    color: inherit;
+    transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+  }
+
+  .ds-post-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .ds-post-card__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--color-ink-soft);
+    letter-spacing: 0.05em;
+  }
+
+  .ds-post-card__title {
+    font-family: var(--font-heading);
+    font-size: clamp(19px, 3vw, 23px);
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--color-green-900);
+  }
+
+  .ds-post-card__author {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-2);
+    font-family: var(--font-serif);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--color-green-900);
+  }
+
+  .ds-post-card__author small {
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--color-ink-mute);
+  }
+
+  .ds-post-card__summary {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--color-ink);
+  }
+
+  .ds-post-card__more {
+    margin-top: var(--space-1);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-green-700);
+  }
+
+  .ds-post-card:hover .ds-post-card__more { color: var(--color-terra-500); }
 
   /* つたえるカード紹介 */
   .ds-app__cards {
