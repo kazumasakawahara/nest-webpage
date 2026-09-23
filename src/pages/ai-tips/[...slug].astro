@@ -901,6 +901,13 @@ const features = (item.data.series ?? []).map((s) => featureLabels[s]).filter(Bo
     background: none;
     padding: 0;
   }
+  .tip-article__body :global(.akapen-redact) {
+    background: var(--color-ink);
+    color: var(--color-ink);
+    border-radius: 2px;
+    padding: 0 0.15em;
+    user-select: none;
+  }
 </style>
 
 <script>
