@@ -72,6 +72,11 @@ const features = (item.data.series ?? []).map((s) => featureLabels[s]).filter(Bo
         <time class="tip-article__date" datetime={item.data.date.toISOString()}>
           {fmtDate(item.data.date)}
         </time>
+        {item.data.updated && (
+          <span class="tip-article__updated">
+            （<time datetime={item.data.updated.toISOString()}>{fmtDate(item.data.updated)}</time> 更新）
+          </span>
+        )}
       </header>
 
       <div class="tip-article__body reveal">
@@ -132,7 +137,8 @@ const features = (item.data.series ?? []).map((s) => featureLabels[s]).filter(Bo
   .tip-article__title-line { display: block; }
   .tip-article__phrase { display: inline-block; }
 
-  .tip-article__date {
+  .tip-article__date,
+  .tip-article__updated {
     font-family: var(--font-mono);
     font-size: 13px;
     color: var(--color-ink-soft);

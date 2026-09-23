@@ -18,6 +18,8 @@ const aiTips = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
+    // 公開後に中身を手直ししたとき（AIの画面が変わった等）。記事ページの日付の横に「◯◯ 更新」と出る
+    updated: z.coerce.date().optional(),
     summary: z.string().optional(),
     image: z.string().optional(),
     draft: z.boolean().default(false),

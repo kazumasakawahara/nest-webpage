@@ -1,6 +1,7 @@
 ---
 title: AIが“書類ごと”作ってくれる ― 納品型と同席型、2つの事務机
 date: 2026-07-18
+updated: 2026-09-23
 summary: AIの答えをコピーして、Wordに貼って、体裁を整え直して……その「最後のひと手間」、実はもう要りません。いまのAIは、Word・Excel・PowerPointといったファイルそのものを作れます。しかもそのやり方には「ファイルで納品してくれるタイプ」と「いつものソフトに同席してくれるタイプ」の2つの流儀が。ClaudeとGemini（Google Workspace）を中心に、お使いの環境ならどちらから試すべきかまでご案内します。
 draft: false
 kind: practice
