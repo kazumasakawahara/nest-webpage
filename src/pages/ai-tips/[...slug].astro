@@ -877,6 +877,30 @@ const features = (item.data.series ?? []).map((s) => featureLabels[s]).filter(Bo
     color: var(--color-green-900);
     font-weight: 600;
   }
+
+  /* 赤ペン企画：答え合わせ表・全文の原文表示 */
+  .tip-article__body :global(.akapen-table-wrap) { overflow-x: auto; margin: var(--space-5) 0; }
+  .tip-article__body :global(.akapen-table) { margin: 0; min-width: 560px; }
+  .tip-article__body :global(.akapen-table small) { color: var(--color-ink-mute); font-size: 12px; }
+  .tip-article__body :global(.akapen-table th:nth-child(n+3)),
+  .tip-article__body :global(.akapen-table td.akapen-score) { text-align: center; white-space: nowrap; }
+  .tip-article__body :global(.akapen-score) { font-weight: 700; font-size: 16px; }
+  .tip-article__body :global(.akapen-score.is-maru) { color: var(--color-green-700); }
+  .tip-article__body :global(.akapen-score.is-sankaku) { color: var(--color-terra-500); }
+  .tip-article__body :global(.akapen-score.is-batsu) { color: var(--color-terra-700); background: var(--color-terra-100); }
+  .tip-article__body :global(.akapen-score.is-none) { color: var(--color-ink-soft); font-weight: 400; }
+  .tip-article__body :global(.akapen-total td) { background: var(--color-cream); font-weight: 600; text-align: center; }
+  .tip-article__body :global(.akapen-total td:nth-child(2)) { text-align: right; }
+  .tip-article__body :global(details.akapen-full pre) {
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.9;
+    margin: var(--space-3) 0 0;
+    background: none;
+    padding: 0;
+  }
 </style>
 
 <script>
