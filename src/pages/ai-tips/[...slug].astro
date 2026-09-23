@@ -4,7 +4,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import AiTipsQuestionBox from '../../components/AiTipsQuestionBox.astro';
 
 export async function getStaticPaths() {
-  const items = await getCollection('aiTips', ({ data }) => !data.draft);
+  // 開発サーバー（npm run dev）では下書きも URL 直打ちで確認できるようにする。本番ビルドには出ない
+  const items = await getCollection('aiTips', ({ data }) => import.meta.env.DEV || !data.draft);
   return items.map((item) => ({
     params: { slug: item.id },
     props: { item },
