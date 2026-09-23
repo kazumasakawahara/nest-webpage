@@ -789,6 +789,93 @@ const features = (item.data.series ?? []).map((s) => featureLabels[s]).filter(Bo
     .tip-article__title { font-size: 22px; }
     .tip-article__body :global(.qa__bubble) { max-width: 100%; }
   }
+
+  /* 赤ペン企画：AIの答え（原文）と赤ペン注記 */
+  .tip-article__body :global(.akapen) {
+    margin: var(--space-5) 0;
+  }
+  .tip-article__body :global(.akapen__ai) {
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-left: 4px solid var(--color-ink-soft);
+    border-radius: 6px;
+    padding: var(--space-3) var(--space-4);
+    font-size: 15px;
+    line-height: 1.9;
+  }
+  .tip-article__body :global(.akapen__ai p) { margin: 0; }
+  .tip-article__body :global(.akapen__ai p + p) { margin-top: var(--space-2); }
+  .tip-article__body :global(.akapen__label) {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--color-ink-mute);
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+  .tip-article__body :global(.akapen__pen) {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+    margin: var(--space-2) 0 0 var(--space-4);
+    padding: var(--space-2) var(--space-3);
+    border-left: 3px solid var(--color-terra-500);
+    color: var(--color-terra-700);
+    font-size: 15px;
+    line-height: 1.9;
+  }
+  .tip-article__body :global(.akapen__pen p) { margin: 0; }
+  .tip-article__body :global(.akapen__pen strong) { color: var(--color-terra-700); }
+  .tip-article__body :global(.akapen__mark) {
+    flex: none;
+    width: 1.8em;
+    height: 1.8em;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    border: 2px solid currentColor;
+    font-size: 14px;
+    margin-top: 2px;
+  }
+  .tip-article__body :global(.akapen__pen--maru .akapen__mark) { color: var(--color-green-700); }
+  .tip-article__body :global(.akapen__pen--plus) { border-left-color: var(--color-green-500); }
+  .tip-article__body :global(.akapen__pen--plus .akapen__mark) { color: var(--color-green-700); }
+  .tip-article__body :global(.akapen-legend) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--space-2);
+    margin: var(--space-4) 0;
+    padding: 0;
+    list-style: none;
+    font-size: 14px;
+  }
+  .tip-article__body :global(.akapen-legend li) {
+    display: flex;
+    gap: var(--space-2);
+    align-items: center;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: 6px;
+    padding: var(--space-2) var(--space-3);
+    color: var(--color-ink);
+  }
+  .tip-article__body :global(.akapen-legend .akapen__mark) { color: var(--color-terra-700); }
+  .tip-article__body :global(.akapen-legend .is-good .akapen__mark) { color: var(--color-green-700); }
+  .tip-article__body :global(details.akapen-full) {
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: 6px;
+    padding: var(--space-3) var(--space-4);
+    margin: var(--space-5) 0;
+    font-size: 14px;
+    line-height: 1.9;
+  }
+  .tip-article__body :global(details.akapen-full summary) {
+    cursor: pointer;
+    color: var(--color-green-900);
+    font-weight: 600;
+  }
 </style>
 
 <script>
