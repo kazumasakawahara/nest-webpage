@@ -908,6 +908,12 @@ const features = (item.data.series ?? []).map((s) => featureLabels[s]).filter(Bo
     padding: 0 0.15em;
     user-select: none;
   }
+  /* 連載の「次の回へ」ボタン（本文リンクの下線・色を打ち消す） */
+  .tip-article__body :global(.akapen-next) { text-align: center; margin: var(--space-6) 0; }
+  .tip-article__body :global(a.btn) { border-bottom: 1px solid var(--color-green-700); }
+  .tip-article__body :global(a.btn--primary),
+  .tip-article__body :global(a.btn--primary:hover) { color: var(--color-cream); }
+  .tip-article__body :global(a.btn--outline:hover) { color: var(--color-cream); }
 </style>
 
 <script>
