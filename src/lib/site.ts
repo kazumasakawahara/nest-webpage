@@ -6,14 +6,14 @@ export const site = {
     '特定非営利活動法人nestは、知的や精神に障がいのある人とその家族の暮らしを支援するNPO法人です。北九州市小倉北区を拠点に、グループホーム・就労継続支援B型などの事業を展開しています。',
   address: '〒803-0851 福岡県北九州市小倉北区木町3丁目6−7',
   tel: '093-582-7018',
-  telHours: '平日 9:00 〜 18:00',
+  telHours: '月〜金 9:00 〜 18:00',
   telHoliday: '祝日も営業しています。',
   established: '平成18年（2006年）8月15日',
   representative: '林 澄江',
   instagram: 'https://instagram.com/kimachi_ya/',
   instagramNestDesign: 'https://www.instagram.com/nestdesign328/',
   legacyUrl: 'https://www.nponest.com/',
-  copyright: '©2019 by 特定非営利活動法人（NPO法人）nest',
+  copyright: `© 2006–${new Date().getFullYear()} 特定非営利活動法人（NPO法人）nest`,
 } as const;
 
 export type NavLink = {
