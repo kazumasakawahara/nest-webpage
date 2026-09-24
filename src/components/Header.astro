@@ -16,10 +16,10 @@ function isActive(href: string) {
 <div class="mobile-topbar">
   <a href="/" class="mobile-topbar__logo" aria-label="nest トップへ">
     <img
-      src="/images/nest-image2/nest-logo-01.png"
+      src="/images/nest-image2/nest-logo-01-mark.png"
       alt="特定非営利活動法人 nest"
       width="1633"
-      height="687"
+      height="540"
     />
   </a>
   <button
@@ -258,6 +258,7 @@ function isActive(href: string) {
     text-transform: uppercase;
     text-decoration: none;
     color: rgba(250, 246, 239, 0.7);
+    padding-top: 6px; /* タップ領域を 24px 以上に（WCAG 2.2 の 2.5.8） */
     padding-bottom: 3px;
     border-bottom: 1px solid rgba(250, 246, 239, 0.3);
     transition: color var(--dur-fast) var(--ease-out);
@@ -305,9 +306,10 @@ function isActive(href: string) {
       text-decoration: none;
     }
 
+    /* 小さい画面では法人名の一行が読めない大きさになるので、ロゴは「nest」の部分だけを使う */
     .mobile-topbar__logo img {
       display: block;
-      height: 34px;
+      height: 28px;
       width: auto;
     }
 

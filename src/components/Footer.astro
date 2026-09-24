@@ -126,6 +126,15 @@ import { site, navLinks } from '../lib/site';
   }
   .site-footer__sublist a:hover { color: var(--color-terra-500); }
 
+  /* タップ領域を 24px 以上に（WCAG 2.2 の 2.5.8）。負のマージンで見た目の行間は変えない */
+  .site-footer__list a,
+  .site-footer__sublist a,
+  .site-footer__meta a {
+    display: inline-block;
+    padding-block: 5px;
+    margin-block: -5px;
+  }
+
   .site-footer__address {
     font-style: normal;
     font-size: 14px;
@@ -134,6 +143,8 @@ import { site, navLinks } from '../lib/site';
   }
 
   .site-footer__address p { margin-bottom: var(--space-3); }
+  /* 濃い緑の上なので、明るい背景用の --color-ink-soft ではなくクリームの半透明にする */
+  .site-footer__address .text-soft { color: rgba(250, 246, 239, 0.7); }
   .site-footer__address a {
     color: var(--color-cream);
     font-weight: 600;
