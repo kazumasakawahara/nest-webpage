@@ -1,10 +1,17 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import CtaBlock from '../components/CtaBlock.astro';
 
 // ゆるい公開入口の登録フォーム（用意でき次第 URL を設定。空文字なら「準備中」を表示）
 const NEWSLETTER_FORM_URL = '';
+
+// 寄稿（新しい順）
+const posts = (await getCollection('postParentColumn', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+const fmtDate = (d: Date) => `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
 ---
 
 <BaseLayout
@@ -40,6 +47,35 @@ const NEWSLETTER_FORM_URL = '';
       <p style="font-size:16px; line-height:2; color:var(--color-ink);">
         nest がめざすのは、その知恵と、支援者たちの経験を持ち寄り、親なき後も本人の暮らしを支え続けられる「仕組み」をつくることです。
       </p>
+
+      <!-- 寄稿（理念を掘り下げる読みもの） -->
+      {posts.length > 0 && (
+        <div class="pp-column" id="column">
+          <span class="eyebrow">Column</span>
+          <h3 class="pp-column__title">寄稿</h3>
+          <p class="pp-column__lead">親なき後にかかわる読みものを掲載しています。</p>
+          <ul class="ds-posts">
+            {posts.map((post) => (
+              <li>
+                <a class="ds-post-card" href={`/post-parent/column/${post.id}/`}>
+                  <span class="ds-post-card__meta">
+                    <span class="badge badge--accent">寄稿</span>
+                    <time datetime={post.data.date.toISOString()}>{fmtDate(post.data.date)}</time>
+                  </span>
+                  <span class="ds-post-card__title">{post.data.title}</span>
+                  {post.data.subtitle && <span class="ds-post-card__subtitle">― {post.data.subtitle} ―</span>}
+                  <span class="ds-post-card__author">
+                    {post.data.authorTitle && <small>{post.data.authorTitle}</small>}
+                    {post.data.author}
+                  </span>
+                  {post.data.summary && <span class="ds-post-card__summary">{post.data.summary}</span>}
+                  <span class="ds-post-card__more" aria-hidden="true">読む →</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   </section>
 
@@ -725,4 +761,112 @@ const NEWSLETTER_FORM_URL = '';
       height: 520px;
     }
   }
+  /* 寄稿（理念セクションの末尾） */
+  .pp-column {
+    margin-top: var(--space-7);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-line);
+    scroll-margin-top: 80px;
+  }
+
+  .pp-column__title {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--color-green-900);
+    margin: var(--space-2) 0 var(--space-3);
+  }
+
+  .pp-column__lead {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--color-ink-mute);
+    margin: 0 0 var(--space-5);
+  }
+
+  .ds-posts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .ds-post-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-5) var(--space-6);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    background: var(--color-paper);
+    box-shadow: var(--shadow-soft);
+    color: inherit;
+    transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+  }
+
+  .ds-post-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .ds-post-card__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--color-ink-soft);
+    letter-spacing: 0.05em;
+  }
+
+  .ds-post-card__title {
+    font-family: var(--font-heading);
+    font-size: clamp(19px, 3vw, 23px);
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--color-green-900);
+  }
+
+  .ds-post-card__subtitle {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--color-terra-500);
+  }
+
+  .ds-post-card__author {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-2);
+    font-family: var(--font-serif);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--color-green-900);
+  }
+
+  .ds-post-card__author small {
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--color-ink-mute);
+  }
+
+  .ds-post-card__summary {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--color-ink);
+  }
+
+  .ds-post-card__more {
+    margin-top: var(--space-1);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-green-700);
+  }
+
+  .ds-post-card:hover .ds-post-card__more { color: var(--color-terra-500); }
 </style>

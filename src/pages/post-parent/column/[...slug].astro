@@ -1,0 +1,222 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const items = await getCollection('postParentColumn', ({ data }) => !data.draft);
+  return items.map((item) => ({
+    params: { slug: item.id },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+const { Content } = await render(item);
+
+const fmtDate = (d: Date) =>
+  `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
+---
+
+<BaseLayout title={`${item.data.title}｜親なき後`} description={item.data.summary ?? item.data.title}>
+  <article class="ds-post">
+    <div class="container container--narrow">
+      <header class="ds-post__head reveal">
+        <a href="/post-parent/#column" class="ds-post__back">
+          <span aria-hidden="true">←</span> 親なき後へ
+        </a>
+        <span class="badge badge--accent">寄稿</span>
+        <h1 class="ds-post__title">{item.data.title}</h1>
+        {item.data.subtitle && <p class="ds-post__subtitle">― {item.data.subtitle} ―</p>}
+        <p class="ds-post__byline">
+          {item.data.authorTitle && <span class="ds-post__affil">{item.data.authorTitle}</span>}
+          <span class="ds-post__author">{item.data.author}</span>
+        </p>
+        <time class="ds-post__date" datetime={item.data.date.toISOString()}>
+          {fmtDate(item.data.date)}
+        </time>
+      </header>
+
+      <div class="ds-post__body reveal">
+        <Content />
+      </div>
+
+      <footer class="ds-post__foot reveal">
+        <div class="ds-post__signature">
+          <span class="ds-post__signature-label">執筆</span>
+          <span class="ds-post__signature-name">
+            {item.data.authorTitle && <small>{item.data.authorTitle}</small>}
+            {item.data.author}
+          </span>
+        </div>
+        <a href="/post-parent/#column" class="btn btn--outline">親なき後のページへ戻る</a>
+      </footer>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .ds-post {
+    padding-block: var(--space-9) var(--space-8);
+  }
+
+  .ds-post__head {
+    text-align: center;
+    margin-bottom: var(--space-7);
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .ds-post__back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 13px;
+    color: var(--color-ink-mute);
+    font-family: var(--font-mono);
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-5);
+  }
+
+  .ds-post__back:hover { color: var(--color-terra-500); }
+
+  .ds-post__title {
+    font-family: var(--font-serif);
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--color-green-900);
+    line-height: 1.5;
+    margin-block: var(--space-4);
+  }
+
+  .ds-post__subtitle {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--color-terra-500);
+    margin: 0 0 var(--space-4);
+  }
+
+  .ds-post__byline {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+    gap: var(--space-2) var(--space-3);
+    margin: 0 0 var(--space-2);
+    font-family: var(--font-serif);
+    color: var(--color-green-900);
+  }
+
+  .ds-post__affil {
+    font-size: 14px;
+    color: var(--color-ink-mute);
+  }
+
+  .ds-post__author {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  .ds-post__date {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--color-ink-soft);
+    letter-spacing: 0.05em;
+  }
+
+  .ds-post__body {
+    font-size: 16px;
+    line-height: 2;
+    color: var(--color-ink);
+  }
+
+  .ds-post__body :global(p) { margin-bottom: var(--space-5); }
+  .ds-post__body :global(h2) {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    margin-top: var(--space-7);
+    margin-bottom: var(--space-3);
+    color: var(--color-green-900);
+    scroll-margin-top: 80px;
+  }
+  .ds-post__body :global(ol) {
+    padding-left: 1.6em;
+    margin-bottom: var(--space-5);
+    list-style: decimal;
+  }
+  .ds-post__body :global(ul) {
+    padding-left: 1.4em;
+    margin-bottom: var(--space-5);
+    list-style: disc;
+  }
+  .ds-post__body :global(li) { margin-bottom: var(--space-2); }
+  .ds-post__body :global(a) {
+    color: var(--color-green-700);
+    border-bottom: 1px solid currentColor;
+  }
+  .ds-post__body :global(a:hover) { color: var(--color-terra-500); }
+
+  /* 余談（本筋から外れる囲み） */
+  .ds-post__body :global(.ds-aside) {
+    margin: var(--space-5) 0 var(--space-6);
+    padding: var(--space-4) var(--space-5);
+    border: 1px dashed var(--color-line);
+    border-radius: var(--radius-md);
+    background: var(--color-paper);
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--color-ink-mute);
+  }
+  .ds-post__body :global(.ds-aside p) { margin: 0; }
+  .ds-post__body :global(.ds-aside__title) {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    color: var(--color-green-900);
+    margin-bottom: var(--space-2) !important;
+  }
+
+  .ds-post__foot {
+    margin-top: var(--space-8);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-line);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .ds-post__signature {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    font-family: var(--font-serif);
+  }
+
+  .ds-post__signature-label {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--color-ink-mute);
+  }
+
+  .ds-post__signature-name {
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--color-green-900);
+  }
+
+  .ds-post__signature-name small {
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--color-ink-mute);
+  }
+
+  @media (max-width: 768px) {
+    .ds-post__title { font-size: 22px; }
+  }
+</style>
