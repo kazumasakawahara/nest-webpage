@@ -153,6 +153,7 @@ const {
     font-size: 36px;
     font-weight: 600;
     letter-spacing: 0.04em;
+    white-space: nowrap;
   }
 
   .cta__tel-hours {
@@ -178,6 +179,8 @@ const {
   @media (max-width: 768px) {
     .cta { padding: var(--space-7) var(--space-5); }
     .cta__title { font-size: 22px; }
-    .cta__tel-num { font-size: 28px; }
+    .cta__tel { padding: var(--space-4) var(--space-5); }
+    /* 番号を1行に保つ（幅 320px の端末でも囲みに収まる大きさまで縮める） */
+    .cta__tel-num { font-size: clamp(22px, 7vw, 28px); }
   }
 </style>
