@@ -1,6 +1,7 @@
 ---
 title: レシートの山、もう手入力しない ― スマホで撮ってAIにExcel／スプレッドシートへまとめてもらう
 date: 2026-07-09
+updated: 2026-09-24
 summary: レシートや領収書を1枚ずつ手で打ち込んでいませんか。スマホで撮ってAIに渡すと、日付・店名・金額を表にまとめて、ExcelやGoogleスプレッドシートにそのまま貼れます。その手順をAIに聞いてみました。
 ---
 
@@ -23,6 +24,11 @@ summary: レシートや領収書を1枚ずつ手で打ち込んでいません�
   <img src="/images/ai-tips/receipt-flow.svg" alt="スマホでレシートを撮り、AIが読み取り、表に貼り付ける3ステップの流れ図" width="600" height="210" loading="lazy" decoding="async" />
   <figcaption>▲ やることは「撮る → AIが読み取る → 表に貼る」の3ステップ</figcaption>
 </figure>
+
+<div class="callout">
+  <span class="callout__label">2026年9月の更新：Excelファイルで受け取れるように</span>
+  <p>この記事では「AIが作った表をコピーして、Excelに貼る」手順をご紹介しました。2026年の夏から、有料プランの <strong>Gemini Notebook</strong> なら、レシートの写真を入れて「Excelファイルで」と頼むだけで、<strong>合計の数式まで入ったExcelファイル</strong>が届くようになりました。架空のレシート3枚で試した様子と、AIに自分で照合させる頼み方は、<a href="/ai-tips/2026-09-24-google-3-notebook-desk/">Gemini Notebookに“作業机”が付いた</a>にまとめています。コピーして貼る方法は、無料のAIでも使える方法として、このまま有効です。</p>
+</div>
 
 ## やってみよう
 
