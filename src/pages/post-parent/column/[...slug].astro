@@ -25,7 +25,15 @@ const fmtDate = (d: Date) =>
           <span aria-hidden="true">←</span> 親なき後へ
         </a>
         <span class="badge badge--accent">寄稿</span>
-        <h1 class="ds-post__title">{item.data.title}</h1>
+        <h1 class="ds-post__title">
+          {item.data.titleLines
+            ? item.data.titleLines.map((line) => (
+                <span class="ds-post__title-line">
+                  {line.split('|').map((phrase) => <span class="ds-post__phrase">{phrase}</span>)}
+                </span>
+              ))
+            : item.data.title}
+        </h1>
         {item.data.subtitle && <p class="ds-post__subtitle">― {item.data.subtitle} ―</p>}
         <p class="ds-post__byline">
           {item.data.authorTitle && <span class="ds-post__affil">{item.data.authorTitle}</span>}
@@ -87,6 +95,10 @@ const fmtDate = (d: Date) =>
     line-height: 1.5;
     margin-block: var(--space-4);
   }
+
+  /* titleLines 指定時：1行＝block、文節＝inline-block（狭い画面では文節の境目でだけ折れる） */
+  .ds-post__title-line { display: block; }
+  .ds-post__phrase { display: inline-block; }
 
   .ds-post__subtitle {
     font-family: var(--font-serif);

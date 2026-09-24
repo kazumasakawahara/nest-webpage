@@ -70,6 +70,8 @@ const postParentColumn = defineCollection({
     title: z.string(),
     // 副題（記事ページの題の下に「― 副題 ―」として表示）
     subtitle: z.string().optional(),
+    // 題の折り返しを固定したいとき。1要素＝1行、行の中を「|」で区切ると文節になり、狭い画面ではその境目でしか折れない
+    titleLines: z.array(z.string()).optional(),
     date: z.coerce.date(),
     summary: z.string().optional(),
     author: z.string(),

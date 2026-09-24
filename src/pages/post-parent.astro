@@ -62,7 +62,15 @@ const fmtDate = (d: Date) => `${d.getFullYear()}年${d.getMonth() + 1}月${d.get
                     <span class="badge badge--accent">寄稿</span>
                     <time datetime={post.data.date.toISOString()}>{fmtDate(post.data.date)}</time>
                   </span>
-                  <span class="ds-post-card__title">{post.data.title}</span>
+                  <span class="ds-post-card__title">
+                    {post.data.titleLines
+                      ? post.data.titleLines.map((line) => (
+                          <span class="ds-post-card__title-line">
+                            {line.split('|').map((phrase) => <span class="ds-post-card__phrase">{phrase}</span>)}
+                          </span>
+                        ))
+                      : post.data.title}
+                  </span>
                   {post.data.subtitle && <span class="ds-post-card__subtitle">― {post.data.subtitle} ―</span>}
                   <span class="ds-post-card__author">
                     {post.data.authorTitle && <small>{post.data.authorTitle}</small>}
@@ -827,6 +835,9 @@ const fmtDate = (d: Date) => `${d.getFullYear()}年${d.getMonth() + 1}月${d.get
     line-height: 1.5;
     color: var(--color-green-900);
   }
+
+  .ds-post-card__title-line { display: block; }
+  .ds-post-card__phrase { display: inline-block; }
 
   .ds-post-card__subtitle {
     font-family: var(--font-serif);
