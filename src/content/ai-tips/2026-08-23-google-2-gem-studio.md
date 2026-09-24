@@ -1,7 +1,7 @@
 ---
 title: Gemをつくる ― うちの事情を覚えたGeminiを、ひとり用意する（発展編：Workspace Studioで“流れ”を組む）
 date: 2026-08-23
-summary: 「前も同じ説明をしたのに……」Gemini にも、“うちのやり方”を先に覚えさせる仕組みがあります。その名も Gem（ジェム）。名前と指示を書くだけ、無料で作れて、プログラミングは要りません。後半は発展編——有料の Google Workspace なら、「毎朝7時に」「フォームに回答が来たら」といった“きっかけ”から自動で動く流れを、Workspace Studio で組めます。特集「Googleの道具箱」最終回。
+summary: 「前も同じ説明をしたのに……」Gemini にも、“うちのやり方”を先に覚えさせる仕組みがあります。その名も Gem（ジェム）。名前と指示を書くだけ、無料で作れて、プログラミングは要りません。後半は発展編——有料の Google Workspace なら、「毎朝7時に」「フォームに回答が来たら」といった“きっかけ”から自動で動く流れを、Workspace Studio で組めます。特集「Googleの道具箱」第6回。
 draft: false
 kind: practice
 series: [google]
@@ -13,7 +13,7 @@ Google では、これを **Gem（ジェム）** と呼びます。
 
 <div class="callout series-nav">
   <span class="callout__label">🧰 特集・Googleの道具箱</span>
-  <p>この記事は、特集<strong>「Googleの道具箱 ― いつものGoogleで、ここまでできる」</strong>（全6回）の第6回・最終回です。今回の道具：<strong>レシピカード（その2）</strong>——Claude 版の「スキル」にあたる Gem。発展編として、<strong>目覚まし時計</strong>——Claude 版の「<a href="/ai-tips/2026-07-20-ai-alarm-scheduled-tasks/">定期タスク</a>」にあたる Workspace Studio も。</p>
+  <p>この記事は、特集<strong>「Googleの道具箱 ― いつものGoogleで、ここまでできる」</strong>（全7回）の第6回です。今回の道具：<strong>レシピカード（その2）</strong>——Claude 版の「スキル」にあたる Gem。発展編として、<strong>目覚まし時計</strong>——Claude 版の「<a href="/ai-tips/2026-07-20-ai-alarm-scheduled-tasks/">定期タスク</a>」にあたる Workspace Studio も。</p>
   <ol class="series-nav__list">
     <li><a href="/ai-tips/2026-07-10-gemini-canvas/">Gemini Canvasで、案内文も議事録も“その場で”仕上げる</a></li>
     <li><a href="/ai-tips/2026-07-10-notebooklm-slides/">スライド作成も、AIさんに“1行”お願いするだけ ― Gemini Notebook（旧 NotebookLM）で資料づくり</a></li>
@@ -21,6 +21,7 @@ Google では、これを **Gem（ジェム）** と呼びます。
     <li><a href="/ai-tips/2026-07-19-ai-keys-calendar-mail/">AIに“合鍵”を渡すと、秘書になる ― 手帳とメールをつなぐ</a></li>
     <li><a href="/ai-tips/2026-08-23-google-1-drive-hands/">Googleドライブを、AIの“手”にする ― フォルダごと読ませる3つの道</a></li>
     <li class="is-current">Gemをつくる ― うちの事情を覚えたGeminiを、ひとり用意する（この記事）</li>
+    <li><a href="/ai-tips/2026-09-24-google-3-notebook-desk/">Gemini Notebookに“作業机”が付いた ― レシート3枚が、数式入りのExcelで届くまで</a></li>
   </ol>
 </div>
 
@@ -148,6 +149,8 @@ Gem は「開いて、頼む」道具でした。呼べば来る。でも、実�
 これで **Google の道具箱** が一式そろいました。机（Canvas）、ノート（Gemini Notebook）、合鍵（手帳とメール）、手（ドライブ）、レシピカード（Gem）、そして目覚まし時計（Workspace Studio）。[道具の入手](/ai-tips/#dougu)でそろえた Claude の道具箱と、役どころはひとつずつ対応しています。
 
 どちらの道具箱を開けるかは、お使いの環境しだい。**大事なのは道具の名前ではなく、「AI に何を持たせるか」という考え方のほう**です。その考え方は、[連載「AIに道具を持たせる」](/ai-tips/2026-07-13-ai-tools-1-same-question/)でお話ししたとおり、Claude でも Google でも変わりません。
+
+追補として、第7回では Gemini Notebook に付いた<strong>作業机</strong>——自分で計算して、Excel などのファイルで渡してくれる新しい力——を、レシートで試しています（→ [Gemini Notebookに“作業机”が付いた](/ai-tips/2026-09-24-google-3-notebook-desk/)）。
 
 道具箱が2つそろったら、次は遊ぶ番です。Claude と Google の道具を組み合わせる実演連載——[特集「道具箱で、あそぶ」](/ai-tips/#asobi)へどうぞ。旅の写真が、かべ新聞とラジオ番組に変わります。
 

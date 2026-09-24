@@ -22,7 +22,7 @@ series: [google]
 
 <div class="callout series-nav">
   <span class="callout__label">🧰 特集・Googleの道具箱</span>
-  <p>この記事は、特集<strong>「Googleの道具箱 ― いつものGoogleで、ここまでできる」</strong>（全6回）の第2回です。今回の道具：<strong>ノート</strong>——手元の資料を入れておき、そこから作る場所。Claude 版の「<a href="/ai-tips/2026-08-15-dougu-3-obsidian/">Obsidian</a>」に近い役どころです。なお NotebookLM は 2026年7月に<strong>「Gemini Notebook」</strong>へ名前が変わりました（中身と使い方は同じです。本文は公開当時の名前のままにしています）。</p>
+  <p>この記事は、特集<strong>「Googleの道具箱 ― いつものGoogleで、ここまでできる」</strong>（全7回）の第2回です。今回の道具：<strong>ノート</strong>——手元の資料を入れておき、そこから作る場所。Claude 版の「<a href="/ai-tips/2026-08-15-dougu-3-obsidian/">Obsidian</a>」に近い役どころです。なお NotebookLM は 2026年7月に<strong>「Gemini Notebook」</strong>へ名前が変わりました（中身と使い方は同じです。本文は公開当時の名前のままにしています）。</p>
   <ol class="series-nav__list">
     <li><a href="/ai-tips/2026-07-10-gemini-canvas/">Gemini Canvasで、案内文も議事録も“その場で”仕上げる</a></li>
     <li class="is-current">スライド作成も、AIさんに“1行”お願いするだけ ― Gemini Notebook（旧 NotebookLM）で資料づくり（この記事）</li>
@@ -30,6 +30,7 @@ series: [google]
     <li><a href="/ai-tips/2026-07-19-ai-keys-calendar-mail/">AIに“合鍵”を渡すと、秘書になる ― 手帳とメールをつなぐ</a></li>
     <li><a href="/ai-tips/2026-08-23-google-1-drive-hands/">Googleドライブを、AIの“手”にする ― フォルダごと読ませる3つの道</a></li>
     <li><a href="/ai-tips/2026-08-23-google-2-gem-studio/">Gemをつくる ― うちの事情を覚えたGeminiを、ひとり用意する（発展編：Workspace Studioで“流れ”を組む）</a></li>
+    <li><a href="/ai-tips/2026-09-24-google-3-notebook-desk/">Gemini Notebookに“作業机”が付いた ― レシート3枚が、数式入りのExcelで届くまで</a></li>
   </ol>
 </div>
 

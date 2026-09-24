@@ -1,7 +1,7 @@
 ---
 title: AIが“書類ごと”作ってくれる ― 納品型と同席型、2つの事務机
 date: 2026-07-18
-updated: 2026-09-23
+updated: 2026-09-24
 summary: AIの答えをコピーして、Wordに貼って、体裁を整え直して……その「最後のひと手間」、実はもう要りません。いまのAIは、Word・Excel・PowerPointといったファイルそのものを作れます。しかもそのやり方には「ファイルで納品してくれるタイプ」と「いつものソフトに同席してくれるタイプ」の2つの流儀が。ClaudeとGemini（Google Workspace）を中心に、お使いの環境ならどちらから試すべきかまでご案内します。
 draft: false
 kind: practice
@@ -147,6 +147,11 @@ Claudeには**ファイル作成**という機能があり、チャットでお�
 <div class="callout">
   <span class="callout__label">気をつけたいこと</span>
   <p><strong>①共有の範囲を広げる前に、中身を見直す。</strong>共同編集型の文書は、リンク一つで人に渡せるのが強みで、同時に弱みでもあります。利用者さんやご家族の個人情報が入った文書は、事業所のルールを確かめてから扱ってください。<strong>②まだ「ベータ」です。</strong>表示や機能は、これからも変わっていきます。<strong>③印刷の仕上がりは、自分の目で。</strong>Claude自身が「はみ出すかもしれません」と言っていたとおり、紙に刷ったときの見た目は、最後に人間が確かめる仕事です。</p>
+</div>
+
+<div class="callout">
+  <span class="callout__label">2026年9月の更新：Gemini にも“納品型”の机</span>
+  <p>上では Gemini を「同席型」の代表としてご紹介しましたが、有料プランの <strong>Gemini Notebook</strong> は、2026年の夏から<strong>ファイルを作って渡す納品型</strong>にもなりました。ノートに入れた資料をもとに、Excel・PowerPoint・Word・PDF などのファイルを作り、画面右側の「Studio」に置いてくれます。レシート3枚をExcelにした実演は、<a href="/ai-tips/2026-09-24-google-3-notebook-desk/">Gemini Notebookに“作業机”が付いた</a>をどうぞ。</p>
 </div>
 
 ## で、うちはどちらから試せばいい？
