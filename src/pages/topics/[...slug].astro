@@ -25,7 +25,15 @@ const fmtDate = (d: Date) =>
           <span aria-hidden="true">←</span> トピック 一覧へ
         </a>
         <span class="badge badge--accent">トピック</span>
-        <h1 class="topic-article__title">{item.data.title}</h1>
+        <h1 class="topic-article__title">
+          {item.data.titleLines
+            ? item.data.titleLines.map((line) => (
+                <span class="topic-article__title-line">
+                  {line.split('|').map((phrase) => <span class="topic-article__phrase">{phrase}</span>)}
+                </span>
+              ))
+            : item.data.title}
+        </h1>
         <time class="topic-article__date" datetime={item.data.date.toISOString()}>
           {fmtDate(item.data.date)}
         </time>
@@ -75,6 +83,10 @@ const fmtDate = (d: Date) =>
     line-height: 1.5;
     margin-block: var(--space-4);
   }
+
+  /* titleLines 指定時：1行＝block、文節＝inline-block（狭い画面では文節の境目でだけ折れる） */
+  .topic-article__title-line { display: block; }
+  .topic-article__phrase { display: inline-block; }
 
   .topic-article__date {
     font-family: var(--font-mono);
