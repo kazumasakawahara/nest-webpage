@@ -1,5 +1,11 @@
 import { describe, it, expect } from 'vitest';
-import { yearsSince, establishedOn, stats } from '~/lib/site';
+import { yearsSince, establishedOn, stats, site } from '~/lib/site';
+
+describe('site.copyright', () => {
+  it('spans from the founding year to the current year', () => {
+    expect(site.copyright).toBe(`© 2006–${new Date().getFullYear()} 特定非営利活動法人（NPO法人）nest`);
+  });
+});
 
 describe('yearsSince', () => {
   it('counts full years, adding one on the anniversary itself', () => {
