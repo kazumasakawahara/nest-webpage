@@ -79,7 +79,7 @@ export const stats = [
   // since があれば、閲覧時にも年数を数え直す（StatsSection のスクリプト）
   { value: yearsSince(establishedOn), since: establishedOn, suffix: '年', label: '設立から', sub: '平成18年（2006年）〜' },
   { value: 14, suffix: '拠点', label: 'グループホーム', sub: 'STATION / BRANCH / SATELLITE' },
-  { value: 1, suffix: 'カ所', label: '就労継続支援B型', sub: '木町家・nestDesign' },
+  { value: 1, suffix: 'カ所', label: '就労継続支援B型', sub: 'nestワークSTATION' },
   { value: 4, suffix: '本柱', label: '当事者活動', sub: '鉄道・研究・余暇・学習' },
 ] as const;
 
