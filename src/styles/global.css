@@ -15,8 +15,9 @@
   --color-sand:      #f0ead8;  /* Section alternate */
   --color-paper:     #ffffff;  /* Card background */
 
-  --color-terra-700: #b85f3d;
-  --color-terra-500: #d97757;  /* Accent — warm */
+  --color-terra-700: #8c4326;
+  --color-terra-500: #a34f2f;  /* Accent — warm。明るい背景の文字・白文字のボタンで 4.5:1 以上（旧 #d97757 は 2.6〜3.1:1） */
+  --color-terra-300: #eea07c;  /* 濃い緑の背景の上の文字用（green-900 で 5.8:1）。terra-500 は暗い背景では読みにくい */
   --color-terra-100: #f9e8df;
 
   --color-ink:       #2a2620;  /* Body text — warmer than #333 */
