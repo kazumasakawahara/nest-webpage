@@ -43,6 +43,8 @@ const topics = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/topics' }),
   schema: z.object({
     title: z.string(),
+    // 記事ページの見出しだけ折り返しを固定したいとき。1要素＝1行、行の中を「|」で区切ると文節になり、狭い画面ではその境目でしか折れない
+    titleLines: z.array(z.string()).optional(),
     date: z.coerce.date(),
     summary: z.string().optional(),
     draft: z.boolean().default(false),
