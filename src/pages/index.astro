@@ -58,14 +58,6 @@ const services = [
     image: '/images/nest-image1/mori_subako3.webp',
     imageAlt: '森の中の巣箱',
   },
-  {
-    title: '入会・ご支援のお願い',
-    body: '正会員・賛助会員、ボランティアの方を募集しています。nestの活動を支えてください。',
-    href: '/join/',
-    icon: '💌',
-    image: '/images/daihyo-mascot.webp',
-    imageAlt: 'nest代表のマスコット人形（コーヒーを手にした笑顔のフェルト人形）',
-  },
 ];
 
 const promises = [
@@ -241,13 +233,33 @@ const milestones = [
         <div class="section-head__row">
           <h2 class="section__title" id="services-title">現在の主な事業</h2>
           <p class="section-head__lead">
-            nestが取り組んでいる7つの事業。<br />
+            nestが取り組んでいる6つの事業。<br />
             「働く・暮らす・つながる」を、それぞれの場所で支えています。
           </p>
         </div>
       </div>
 
       <ServiceCardGrid cards={services} columns={3} />
+
+      <!-- 入会は事業ではないので、事業カードとは別枠にする -->
+      <a href="/join/" class="join-band reveal">
+        <img
+          src="/images/daihyo-mascot.webp"
+          alt="nest代表のマスコット人形（コーヒーを手にした笑顔のフェルト人形）"
+          class="join-band__img"
+          width="1126"
+          height="704"
+          loading="lazy"
+        />
+        <div class="join-band__body">
+          <h3 class="join-band__title"><span aria-hidden="true">💌</span> 入会・ご支援のお願い</h3>
+          <p class="join-band__text">正会員・賛助会員、ボランティアの方を募集しています。nestの活動を支えてください。</p>
+        </div>
+        <span class="btn btn--accent join-band__btn">
+          入会・寄付について
+          <span class="btn__icon" aria-hidden="true">→</span>
+        </span>
+      </a>
     </div>
   </section>
 
@@ -547,7 +559,48 @@ const milestones = [
 
   .section-head__link:hover { color: var(--color-terra-500); }
 
+  .join-band {
+    display: grid;
+    grid-template-columns: 160px 1fr auto;
+    align-items: center;
+    gap: var(--space-5);
+    margin-top: var(--space-7);
+    padding: var(--space-5) var(--space-6);
+    background-color: var(--color-terra-100);
+    border-radius: var(--radius-lg);
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .join-band__img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+  }
+
+  .join-band__title {
+    font-family: var(--font-hand);
+    font-size: 21px;
+    font-weight: 600;
+    color: var(--color-green-900);
+    line-height: 1.5;
+    margin-bottom: var(--space-2);
+  }
+
+  .join-band__text {
+    color: var(--color-ink-mute);
+    line-height: var(--lh-normal);
+  }
+
+  .join-band:hover .join-band__btn { transform: translateY(-1px); }
+
   @media (max-width: 768px) {
+    .join-band {
+      grid-template-columns: 1fr;
+      justify-items: start;
+      padding: var(--space-5);
+    }
+    .join-band__img { width: 160px; }
     .mission__title { font-size: 26px; }
     .section-head__row { flex-direction: column; align-items: flex-start; }
 
