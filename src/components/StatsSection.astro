@@ -17,7 +17,7 @@ import { stats } from '../lib/site';
         stats.map((s, i) => (
           <div class="stats__item reveal" data-delay={i + 1}>
             <div class="stats__value">
-              <span class="stats__num" data-target={s.value}>0</span>
+              <span class="stats__num" data-target={s.value} data-since={'since' in s ? s.since : undefined}>0</span>
               <span class="stats__suffix">{s.suffix}</span>
             </div>
             <div class="stats__label">{s.label}</div>
@@ -106,6 +106,8 @@ import { stats } from '../lib/site';
 </style>
 
 <script>
+  import { yearsSince } from '../lib/site';
+
   // Animate counter on view
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -122,6 +124,11 @@ import { stats } from '../lib/site';
   };
 
   const nums = document.querySelectorAll<HTMLElement>('.stats__num');
+
+  // 設立からの年数は閲覧時の日付で数え直す（ビルドの日から記念日をまたいでも古くならない）
+  nums.forEach((n) => {
+    if (n.dataset.since) n.dataset.target = String(yearsSince(n.dataset.since));
+  });
 
   if (reduceMotion) {
     nums.forEach((n) => {

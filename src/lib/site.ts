@@ -64,8 +64,20 @@ export const navLinks: NavLink[] = [
   { label: 'アクセス', href: '/access/' },
 ];
 
+/** 設立日（site.established と同じ日）。「数字で見るnest」の年数はここから数える */
+export const establishedOn = '2006-08-15';
+
+/** isoDate（YYYY-MM-DD）から today までの満年数。記念日当日に1つ増える */
+export function yearsSince(isoDate: string, today: Date = new Date()): number {
+  const [y, m, d] = isoDate.split('-').map(Number);
+  const beforeAnniversary =
+    today.getMonth() + 1 < m || (today.getMonth() + 1 === m && today.getDate() < d);
+  return today.getFullYear() - y - (beforeAnniversary ? 1 : 0);
+}
+
 export const stats = [
-  { value: 19, suffix: '年', label: '設立から', sub: '平成18年（2006年）〜' },
+  // since があれば、閲覧時にも年数を数え直す（StatsSection のスクリプト）
+  { value: yearsSince(establishedOn), since: establishedOn, suffix: '年', label: '設立から', sub: '平成18年（2006年）〜' },
   { value: 14, suffix: '拠点', label: 'グループホーム', sub: 'STATION / BRANCH / SATELLITE' },
   { value: 1, suffix: 'カ所', label: '就労継続支援B型', sub: '木町家・nestDesign' },
   { value: 4, suffix: '本柱', label: '当事者活動', sub: '鉄道・研究・余暇・学習' },
