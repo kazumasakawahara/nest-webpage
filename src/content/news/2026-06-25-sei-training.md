@@ -11,15 +11,15 @@ summary: 性に関する行動への関わりを考える研修の初回を6月2
 
 <div class="news-gallery">
   <figure>
-    <img src="/images/news/2026-06-25-training-3.jpg" alt="スクリーン横で資料を手に話す講師" width="1204" height="1600" loading="lazy" decoding="async" />
+    <img src="/images/news/2026-06-25-training-3.webp" alt="スクリーン横で資料を手に話す講師" width="1204" height="1600" loading="lazy" decoding="async" />
     <figcaption>「参加するにあたって」——研修のはじまり</figcaption>
   </figure>
   <figure>
-    <img src="/images/news/2026-06-25-training-1.jpg" alt="着席して講師の話に耳を傾ける参加者" width="1600" height="1204" loading="lazy" decoding="async" />
+    <img src="/images/news/2026-06-25-training-1.webp" alt="着席して講師の話に耳を傾ける参加者" width="1600" height="1204" loading="lazy" decoding="async" />
     <figcaption>実践報告に聞き入る参加者のみなさん</figcaption>
   </figure>
   <figure>
-    <img src="/images/news/2026-06-25-training-2.jpg" alt="資料を手に聴講する参加者で埋まった会場全体" width="1600" height="1204" loading="lazy" decoding="async" />
+    <img src="/images/news/2026-06-25-training-2.webp" alt="資料を手に聴講する参加者で埋まった会場全体" width="1600" height="1204" loading="lazy" decoding="async" />
     <figcaption>約20名の支援者が集まった会場</figcaption>
   </figure>
 </div>
