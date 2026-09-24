@@ -15,13 +15,14 @@
   --color-sand:      #f0ead8;  /* Section alternate */
   --color-paper:     #ffffff;  /* Card background */
 
-  --color-terra-700: #b85f3d;
-  --color-terra-500: #d97757;  /* Accent — warm */
+  --color-terra-700: #8c4326;
+  --color-terra-500: #a34f2f;  /* Accent — warm。明るい背景の文字・白文字のボタンで 4.5:1 以上（旧 #d97757 は 2.6〜3.1:1） */
+  --color-terra-300: #eea07c;  /* 濃い緑の背景の上の文字用（green-900 で 5.8:1）。terra-500 は暗い背景では読みにくい */
   --color-terra-100: #f9e8df;
 
   --color-ink:       #2a2620;  /* Body text — warmer than #333 */
   --color-ink-mute:  #6b665e;
-  --color-ink-soft:  #9a948a;
+  --color-ink-soft:  #6d675f;  /* 明るい背景（砂色含む）で 4.5:1 以上。旧 #9a948a は 2.5〜3.0:1 */
 
   --color-line:      #e6e0d4;
   --color-line-soft: #efebe1;
@@ -31,9 +32,9 @@
   --font-sans:  'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic', sans-serif;
   --font-mono:  'Inter', 'Helvetica Neue', sans-serif;
   --font-heading: var(--font-serif); /* 見出し用の意味的エイリアス */
-  --font-display: 'Cormorant Garamond', 'Shippori Mincho B1', serif; /* ロゴ・ラテン表示用の高コントラスト・セリフ */
+  --font-display: 'Shippori Mincho B1', serif; /* ロゴ・ラテン表示用の高コントラスト・セリフ */
   --font-hand: 'Zen Kurenaido', 'Shippori Mincho B1', 'Hiragino Mincho ProN', serif; /* 見出し用の手書き（やわらかいペン書き）フォント。読込前は明朝にフォールバック */
-  --font-round: 'Zen Maru Gothic', 'Hiragino Maru Gothic ProN', 'Noto Sans JP', sans-serif; /* 丸ゴシック。やわらかく親しみのある強調用 */
+  --font-round: 'Hiragino Maru Gothic ProN', 'Noto Sans JP', sans-serif; /* 丸ゴシック。やわらかく親しみのある強調用 */
 
   --fs-eyebrow: 12px;
   --fs-small:   13px;
@@ -147,6 +148,9 @@ h1, h2, h3, h4 {
   color: var(--color-green-900);
   line-height: var(--lh-tight);
   letter-spacing: 0.02em;
+  /* 狭い画面で1〜2文字だけが次の行に落ちないように。auto-phrase は日本語を文節で折る（Chrome 系のみ、他は無視） */
+  text-wrap: balance;
+  word-break: auto-phrase;
 }
 
 h1 { font-size: var(--fs-h1); }
@@ -678,6 +682,7 @@ p { line-height: var(--lh-normal); }
 .text-center { text-align: center; }
 .text-mute   { color: var(--color-ink-mute); }
 .text-soft   { color: var(--color-ink-soft); font-size: 13px; }
+.phrase      { display: inline-block; } /* 文節をひとかたまりにして、途中で折り返させない */
 .flow > * + * { margin-top: var(--space-5); }
 .flow-tight > * + * { margin-top: var(--space-3); }
 

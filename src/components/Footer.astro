@@ -101,7 +101,7 @@ import { site, navLinks } from '../lib/site';
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: var(--color-terra-500);
+    color: var(--color-terra-300);
     margin-bottom: var(--space-4);
   }
 
@@ -110,7 +110,7 @@ import { site, navLinks } from '../lib/site';
     font-size: 14px;
     color: rgba(250, 246, 239, 0.85);
   }
-  .site-footer__list a:hover { color: var(--color-terra-500); }
+  .site-footer__list a:hover { color: var(--color-terra-300); }
 
   .site-footer__sublist {
     display: flex;
@@ -124,7 +124,16 @@ import { site, navLinks } from '../lib/site';
     font-size: 13px;
     color: rgba(250, 246, 239, 0.7);
   }
-  .site-footer__sublist a:hover { color: var(--color-terra-500); }
+  .site-footer__sublist a:hover { color: var(--color-terra-300); }
+
+  /* タップ領域を 24px 以上に（WCAG 2.2 の 2.5.8）。負のマージンで見た目の行間は変えない */
+  .site-footer__list a,
+  .site-footer__sublist a,
+  .site-footer__meta a {
+    display: inline-block;
+    padding-block: 5px;
+    margin-block: -5px;
+  }
 
   .site-footer__address {
     font-style: normal;
@@ -134,15 +143,17 @@ import { site, navLinks } from '../lib/site';
   }
 
   .site-footer__address p { margin-bottom: var(--space-3); }
+  /* 濃い緑の上なので、明るい背景用の --color-ink-soft ではなくクリームの半透明にする */
+  .site-footer__address .text-soft { color: rgba(250, 246, 239, 0.7); }
   .site-footer__address a {
     color: var(--color-cream);
     font-weight: 600;
     border-bottom: 1px dotted rgba(250, 246, 239, 0.5);
   }
-  .site-footer__address a:hover { color: var(--color-terra-500); }
+  .site-footer__address a:hover { color: var(--color-terra-300); }
 
   .footer-holiday {
-    color: var(--color-terra-500);
+    color: var(--color-terra-300);
     font-weight: 600;
   }
 
@@ -172,7 +183,7 @@ import { site, navLinks } from '../lib/site';
     color: rgba(250, 246, 239, 0.7);
   }
 
-  .site-footer__meta a:hover { color: var(--color-terra-500); }
+  .site-footer__meta a:hover { color: var(--color-terra-300); }
 
   @media (max-width: 880px) {
     .site-footer__grid {
