@@ -63,4 +63,20 @@ const decisionSupport = defineCollection({
   }),
 });
 
-export const collections = { news, aiTips, topics, decisionSupport };
+// 親なき後ページの「寄稿」：外部・内部の執筆者による読みもの（/post-parent/column/<slug>/）
+const postParentColumn = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/post-parent' }),
+  schema: z.object({
+    title: z.string(),
+    // 副題（記事ページの題の下に「― 副題 ―」として表示）
+    subtitle: z.string().optional(),
+    date: z.coerce.date(),
+    summary: z.string().optional(),
+    author: z.string(),
+    // 肩書き・所属（署名行で author の前に表示）
+    authorTitle: z.string().optional(),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { news, aiTips, topics, decisionSupport, postParentColumn };
