@@ -39,6 +39,9 @@
 
 どちらも Cloudflare の管理画面で、`nponest.com` のゾーンを開いて行います。
 
+**注意：** Workers（nest-webpage）の画面にいると、左のメニューに「SSL/TLS」や「ルール」は出てきません。
+左のメニューの「**ドメイン**」→「**nponest.com**」を選び、ドメインの画面に切り替えてから進めてください（2026-09-25、河原さんの画面で確認）。
+
 ---
 
 ## 作業1：Always Use HTTPS をオンにする
@@ -46,7 +49,10 @@
 1. https://dash.cloudflare.com/ にログイン（アカウント：`Kazumasa.kawahara@lawnest.net`）
 2. ドメイン一覧から **`nponest.com`** を選ぶ
 3. 左のメニューで **SSL/TLS** → **Edge Certificates**（エッジ証明書）を開く
+   - 直接開くリンク：https://dash.cloudflare.com/3ec7d1eea1364d018062807d2c783e30/nponest.com/ssl-tls/edge-certificates
+   - 開けないときは公式の案内用リンク（アカウントとドメインを選ぶ画面が出る）：https://dash.cloudflare.com/?to=/:account/:zone/ssl-tls/edge-certificates
 4. **Always Use HTTPS**（常に HTTPS を使用）のスイッチを **オン** にする
+   - 項目が見当たらないときは、SSL/TLS →「概要」で暗号化モードが「オフ」になっていないか確認（オフだとこの項目は表示されない。公式文書 2026-08-14 更新）
 
 これで `http://…` で開いた人は、すべて `https://…` に移ります。
 
