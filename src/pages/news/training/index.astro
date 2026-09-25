@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Hero from '../../../components/Hero.astro';
+import NewsList from '../../../components/NewsList.astro';
+---
+
+<BaseLayout
+  title="研修会"
+  description="NPO法人nestが開催した研修会の報告をまとめています。"
+>
+  <Hero
+    eyebrow="TRAINING"
+    title="研修会"
+    lead="nestが開催した研修会の様子をお伝えします。"
+    size="md"
+    placeholderLabel="TRAINING"
+  />
+
+  <section class="section">
+    <div class="container container--narrow">
+      <NewsList showSummary={true} tag="研修会" />
+
+      <p class="text-soft text-center" style="margin-top:var(--space-7);">
+        <a href="/news/" class="inline-link">nest News 一覧へ</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>

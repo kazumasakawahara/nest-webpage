@@ -13,6 +13,10 @@ export async function getStaticPaths() {
 const { item } = Astro.props;
 const { Content } = await render(item);
 
+// 研修会の記事は「研修会」コーナーへ戻す
+const isTraining = item.data.tag === '研修会';
+const backHref = isTraining ? '/news/training/' : '/news/';
+
 const fmtDate = (d: Date) =>
   `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
 ---
@@ -21,8 +25,8 @@ const fmtDate = (d: Date) =>
   <article class="news-article">
     <div class="container container--narrow">
       <header class="news-article__head reveal">
-        <a href="/news/" class="news-article__back">
-          <span aria-hidden="true">←</span> nest News 一覧へ
+        <a href={backHref} class="news-article__back">
+          <span aria-hidden="true">←</span> {isTraining ? '研修会 一覧へ' : 'nest News 一覧へ'}
         </a>
         <span class="badge badge--accent">{item.data.tag}</span>
         <h1 class="news-article__title">{item.data.title}</h1>
@@ -36,7 +40,7 @@ const fmtDate = (d: Date) =>
       </div>
 
       <div class="news-article__foot reveal">
-        <a href="/news/" class="btn btn--outline">一覧に戻る</a>
+        <a href={backHref} class="btn btn--outline">一覧に戻る</a>
       </div>
     </div>
   </article>

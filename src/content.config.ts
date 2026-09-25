@@ -7,7 +7,8 @@ const news = defineCollection({
     title: z.string(),
     date: z.coerce.date(),
     summary: z.string().optional(),
-    tag: z.enum(['お知らせ', 'イベント', '事業所', 'メディア']).default('お知らせ'),
+    // 研修会＝nest News の「研修会」コーナー（/news/training/）に並び、News 一覧には出ない
+    tag: z.enum(['お知らせ', 'イベント', '事業所', 'メディア', '研修会']).default('お知らせ'),
     image: z.string().optional(),
     draft: z.boolean().default(false),
   }),

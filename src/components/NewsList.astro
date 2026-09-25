@@ -4,11 +4,16 @@ import { getCollection, render } from 'astro:content';
 interface Props {
   limit?: number;
   showSummary?: boolean;
+  /** 指定するとそのタグの記事だけ。未指定なら「研修会」を除く（研修会は /news/training/ に並ぶ） */
+  tag?: string;
 }
 
-const { limit, showSummary = false } = Astro.props;
+const { limit, showSummary = false, tag } = Astro.props;
 
-const all = await getCollection('news', ({ data }) => !data.draft);
+const all = await getCollection(
+  'news',
+  ({ data }) => !data.draft && (tag ? data.tag === tag : data.tag !== '研修会'),
+);
 const sorted = all.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 const items = limit ? sorted.slice(0, limit) : sorted;
 
