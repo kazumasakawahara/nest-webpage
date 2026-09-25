@@ -47,14 +47,15 @@ export const navLinks: NavLink[] = [
     href: '/sudachi/',
     children: [
       { label: '意思決定支援', href: '/sudachi/decision-support/' },
+      { label: '親なき後', href: '/post-parent/' },
     ],
   },
-  { label: '親なき後', href: '/post-parent/' },
   { label: '利用者募集中', href: '/recruit/' },
   {
     label: 'nest News',
     href: '/news/',
     children: [
+      { label: '研修会', href: '/news/training/' },
       { label: 'トピック（法律・制度）', href: '/topics/' },
     ],
   },
