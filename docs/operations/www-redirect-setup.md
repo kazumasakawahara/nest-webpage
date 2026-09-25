@@ -2,6 +2,7 @@
 
 作成：2026-09-25（評価報告 #11）
 作業する人：河原さん（Cloudflare の管理画面での操作。サイトのコード変更はなし）
+**実施済み：2026-09-25**（下の「実施記録」参照）
 所要時間：10分ほど
 
 ---
@@ -122,3 +123,11 @@
   https://developers.cloudflare.com/workers/configuration/routing/custom-domains/
 
 ※ 管理画面のメニュー名は Cloudflare 側の変更で変わることがあります。見当たらないときは画面上部の検索で「Redirect Rules」「Always Use HTTPS」と探してください。
+
+---
+
+## 実施記録（2026-09-25）
+
+- 作業1：Always Use HTTPS をオン。ドメインの画面の SSL/TLS → エッジ証明書（Workers の画面からは出てこないので「ドメイン」→「nponest.com」で切り替え）。「リダイレクト ループ」の注意が出るが、配信元（Worker）は http→https の転送をしていないので問題なし
+- 作業2：Redirect Rule「apex to www」。デプロイ時に「このルールはあなたのトラフィックには適用されない可能性があります（http のトラフィックがプロキシされていない可能性）」と出たが、「**とにかくルールを無視して展開する**」を選んで展開（新しい DNS レコードは作らない）。apex は Workers のカスタムドメインとして Cloudflare を通っており、実際に転送は効いた
+- 確認結果：`https://nponest.com/`・`http://nponest.com/`・`http://www.nponest.com/` はすべて 1 回の 301 で `https://www.nponest.com/…` へ。パス（`/about/`、寄稿記事）とクエリ（`?test=1`、`?utm=x&a=1`）は保持。`https://www.nponest.com/` は 200。会員エリア・サイトマップも www で到達
