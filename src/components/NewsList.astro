@@ -114,6 +114,16 @@ const fmtDate = (d: Date) =>
       padding: var(--space-4) var(--space-3);
     }
 
+    /* 広い画面用の grid-column: 3 が残ると、見えない列が足されて題がはみ出す */
+    .news-list__summary {
+      grid-column: auto;
+    }
+
+    /* 1列では幅いっぱいに伸びるので、ラベルは文字の幅に戻す */
+    .news-list__tag {
+      justify-self: start;
+    }
+
     .news-list__arrow {
       display: none;
     }
