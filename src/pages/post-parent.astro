@@ -266,11 +266,14 @@ const [chBelief, chVoices, chPrepare, chConnect] = CHAPTERS;
           <p>身体障害者手帳 1・2級／療育手帳 A（重度）／精神障害者保健福祉手帳 1級 など</p>
         </div>
         <div class="pp-tax-kubun__card">
-          <span class="pp-tax-kubun__tag pp-tax-kubun__tag--general">一般（特定）障害者</span>
-          <p>上記以外の中程度の知的障害／精神障害者保健福祉手帳 2・3級 など</p>
+          <span class="pp-tax-kubun__tag pp-tax-kubun__tag--general">一般障害者</span>
+          <p>身体障害者手帳 3〜6級／療育手帳 B（中・軽度）／精神障害者保健福祉手帳 2・3級 など</p>
         </div>
       </div>
       <p class="pp-tax__note">※ 手帳がなくても、市区町村長の認定などで対象になる場合があります。</p>
+      <p class="pp-tax__lead">
+        この区分で金額が変わるのは、下の6つのうち3つです（所得税・住民税の障害者控除、相続税の障害者控除、特定贈与信託）。残りの3つは、区分による違いはありません。
+      </p>
 
       <h4 class="pp-tax__h3">6つの制度を、「いつ効くか」で見る</h4>
       <div class="pp-tax-map">
@@ -279,14 +282,19 @@ const [chBelief, chVoices, chPrepare, chConnect] = CHAPTERS;
           <div class="pp-tax-item">
             <h5>所得税・住民税の障害者控除</h5>
             <p class="pp-tax-item__amount">所得税 27万〜75万円<span>＋住民税 26万〜53万円を所得から控除</span></p>
-            <p>本人に収入がなくても、扶養している親の側で受けられます。同居の特別障害者は所得税75万円・住民税53万円（見落としが多いところです）。</p>
+            <p>本人に収入がなくても、扶養している親の側で受けられます。</p>
+            <ul class="pp-tax-rates">
+              <li class="pp-tax-rates__row"><span class="pp-tax-rates__kubun">一般障害者</span>所得税27万円・住民税26万円</li>
+              <li class="pp-tax-rates__row pp-tax-rates__row--special"><span class="pp-tax-rates__kubun">特別障害者</span>所得税40万円・住民税30万円</li>
+              <li class="pp-tax-rates__row pp-tax-rates__row--special"><span class="pp-tax-rates__kubun">同居の特別障害者</span>所得税75万円・住民税53万円（見落としが多いところです）</li>
+            </ul>
             <p class="pp-tax-item__how">年末調整・確定申告に書くだけ。さかのぼって5年分の還付請求もできます。</p>
             <p class="pp-tax-item__refs">根拠：所得税法79条／地方税法34条・314条の2（各1項6号・3項）</p>
           </div>
           <div class="pp-tax-item">
             <h5>少額貯蓄の利子非課税（マル優）</h5>
             <p class="pp-tax-item__amount">元本350万円<span>＋国債等に別枠350万円</span></p>
-            <p>通常20.315％かかる預貯金の利子が非課税になります。</p>
+            <p>通常20.315％かかる預貯金の利子が非課税になります。特別・一般の区分による違いはありません。障害者手帳（等級を問わない）を持つ方や、障害年金を受けている方など、本人名義の預貯金が対象です。</p>
             <p class="pp-tax-item__how">手帳などを持って金融機関の窓口で申込み。自動では適用されません。</p>
             <p class="pp-tax-item__refs">根拠：所得税法10条・租税特別措置法3条の4／特別マル優は同法4条</p>
           </div>
@@ -296,14 +304,19 @@ const [chBelief, chVoices, chPrepare, chConnect] = CHAPTERS;
           <div class="pp-tax-item">
             <h5>相続税の障害者控除</h5>
             <p class="pp-tax-item__amount">1年につき10万／20万円<span>×85歳までの年数</span></p>
-            <p>相続税そのものから直接差し引けます。例えば40歳の特別障害者の方なら、(85−40)年×20万円＝900万円。効果が特に大きい制度です。</p>
+            <p>相続税そのものから直接差し引けます。</p>
+            <ul class="pp-tax-rates">
+              <li class="pp-tax-rates__row"><span class="pp-tax-rates__kubun">一般障害者</span>1年につき10万円</li>
+              <li class="pp-tax-rates__row pp-tax-rates__row--special"><span class="pp-tax-rates__kubun">特別障害者</span>1年につき20万円</li>
+            </ul>
+            <p>例えば40歳の特別障害者の方なら、(85−40)年×20万円＝900万円。効果が特に大きい制度です。</p>
             <p class="pp-tax-item__how">引ききれない分は、きょうだいなど他の扶養義務者の相続税からも差し引けます。</p>
             <p class="pp-tax-item__refs">根拠：相続税法19条の4</p>
           </div>
           <div class="pp-tax-item">
             <h5>相続登記の義務化（あわせて確認）</h5>
             <p class="pp-tax-item__amount">3年以内<span>に登記の申請が必要</span></p>
-            <p>令和6年4月から、不動産を相続した人は取得を知った日から3年以内の登記申請が義務になりました。過去の相続も対象です。</p>
+            <p>令和6年4月から、不動産を相続した人は取得を知った日から3年以内の登記申請が義務になりました。過去の相続も対象です。障害の有無に関係なく、不動産を相続したすべての人に関わります。</p>
             <p class="pp-tax-item__how">「亡くなった祖父名義のまま」の土地・建物がないか、この機会にご確認を。</p>
             <p class="pp-tax-item__refs">根拠：不動産登記法76条の2・164条1項（過去の相続への適用は令和3年改正法附則5条6項）</p>
           </div>
@@ -314,13 +327,18 @@ const [chBelief, chVoices, chPrepare, chConnect] = CHAPTERS;
             <h5>特定贈与信託（贈与税の非課税）</h5>
             <p class="pp-tax-item__amount">3,000万／6,000万円<span>まで贈与税なし</span></p>
             <p>親がまとまったお金を信託銀行に預け、銀行が生活費・医療費を本人へ定期的に渡し続ける仕組み。一度に大金が渡らないので、使い切りやトラブルを防げます。</p>
+            <ul class="pp-tax-rates">
+              <li class="pp-tax-rates__row"><span class="pp-tax-rates__kubun">一般障害者のうち知的障害・精神障害の方</span>3,000万円まで</li>
+              <li class="pp-tax-rates__row pp-tax-rates__row--special"><span class="pp-tax-rates__kubun">特別障害者</span>6,000万円まで</li>
+            </ul>
+            <p>身体障害だけの一般障害者は対象外です。</p>
             <p class="pp-tax-item__how">取り扱う金融機関が限られるため、事前の相談を。</p>
             <p class="pp-tax-item__refs">根拠：相続税法21条の4</p>
           </div>
           <div class="pp-tax-item">
             <h5>心身障害者扶養共済（しょうがい共済）</h5>
             <p class="pp-tax-item__amount">月2万円<span>（1口）を一生涯支給・2口まで</span></p>
-            <p>親が掛金を払い、親が亡くなった後にお子さんへ年金を届ける都道府県の制度。受け取る年金は非課税、掛金は全額が親の所得控除になります。</p>
+            <p>親が掛金を払い、親が亡くなった後にお子さんへ年金を届ける都道府県の制度。受け取る年金は非課税、掛金は全額が親の所得控除になります。特別・一般の区分による違いはありません（加入できるお子さんの条件は、税の区分とは別に決まっています）。</p>
             <p class="pp-tax-item__how">加入は市区町村の障害福祉担当窓口へ。親の年齢が上がるほど掛金も上がるため、検討は早いほど有利です。</p>
             <p class="pp-tax-item__refs">根拠：所得税法9条1項3号ハ・75条2項3号／相続税法12条1項5号・21条の3第1項5号</p>
           </div>
@@ -366,9 +384,9 @@ const [chBelief, chVoices, chPrepare, chConnect] = CHAPTERS;
           <li><strong>障害者・特別障害者の区分</strong>：<a href="https://laws.e-gov.go.jp/law/340AC0000000033" rel="external" target="_blank">所得税法</a>2条1項28号・29号＋<a href="https://laws.e-gov.go.jp/law/340CO0000000096" rel="external" target="_blank">所得税法施行令</a>10条（手帳の等級との対応はここに規定）。相続税では<a href="https://laws.e-gov.go.jp/law/325AC0000000073" rel="external" target="_blank">相続税法</a>19条の4第2項＋<a href="https://laws.e-gov.go.jp/law/325CO0000000071" rel="external" target="_blank">相続税法施行令</a>4条の4</li>
           <li><strong>所得税・住民税の障害者控除</strong>：所得税法79条（27万・40万・同居特別障害者75万円）／<a href="https://laws.e-gov.go.jp/law/325AC0000000226" rel="external" target="_blank">地方税法</a>34条1項6号・3項、314条の2第1項6号・3項（26万・30万・同居特別障害者53万円）。5年分の還付請求は<a href="https://laws.e-gov.go.jp/law/337AC0000000066" rel="external" target="_blank">国税通則法</a>74条</li>
           <li><strong>相続税の障害者控除</strong>：相続税法19条の4（1年につき10万・20万円×85歳までの年数。他の扶養義務者からの控除は同条3項）</li>
-          <li><strong>特定贈与信託</strong>：相続税法21条の4（特別障害者6,000万円・それ以外の特定障害者3,000万円）</li>
+          <li><strong>特定贈与信託</strong>：相続税法21条の4（特別障害者6,000万円・それ以外の特定障害者3,000万円）。特別障害者以外の特定障害者の範囲（知的障害・精神障害の方）は<a href="https://laws.e-gov.go.jp/law/325CO0000000071" rel="external" target="_blank">相続税法施行令</a>4条の8</li>
           <li><strong>しょうがい共済</strong>：年金の非課税は所得税法9条1項3号ハ＋施行令20条、掛金の全額所得控除は所得税法75条2項3号、受給権の非課税は相続税法12条1項5号（相続税）・21条の3第1項5号（贈与税）</li>
-          <li><strong>マル優</strong>：所得税法10条。<strong>限度額350万円は<a href="https://laws.e-gov.go.jp/law/332AC0000000026" rel="external" target="_blank">租税特別措置法</a>3条の4による読替え</strong>（所得税法本則は300万円のまま）。国債・地方債の特別マル優350万円は同法4条</li>
+          <li><strong>マル優</strong>：所得税法10条（対象となる障害者等の範囲は所得税法施行令31条の2）。<strong>限度額350万円は<a href="https://laws.e-gov.go.jp/law/332AC0000000026" rel="external" target="_blank">租税特別措置法</a>3条の4による読替え</strong>（所得税法本則は300万円のまま）。国債・地方債の特別マル優350万円は同法4条</li>
           <li><strong>相続登記の義務化</strong>：<a href="https://laws.e-gov.go.jp/law/416AC0000000123" rel="external" target="_blank">不動産登記法</a>76条の2（3年以内の申請義務）・164条1項（10万円以下の過料）。施行日〔令和6年4月1日〕前の相続への適用は令和3年法律第24号附則5条6項</li>
         </ul>
         <p>※ 各リンク先は e-Gov 法令検索の現行条文です（2026年8月30日照合）。条番号で該当箇所をご確認ください。</p>
@@ -601,6 +619,29 @@ const [chBelief, chVoices, chPrepare, chConnect] = CHAPTERS;
   }
 
   .pp-tax-kubun__tag--general { color: var(--color-green-700); }
+
+  /* 区分ごとの金額。冒頭の2枚と同じ色（一般＝緑、特別＝テラコッタ）の線でつなぐ */
+  .pp-tax-rates {
+    list-style: none;
+    margin: 0 0 var(--space-2);
+    padding: 0;
+  }
+  .pp-tax-rates__row {
+    margin: 0 0 6px;
+    padding-left: 10px;
+    border-left: 3px solid var(--color-green-700);
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--color-ink);
+  }
+  .pp-tax-rates__row--special { border-left-color: var(--color-terra-500); }
+  .pp-tax-rates__kubun {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-green-700);
+  }
+  .pp-tax-rates__row--special .pp-tax-rates__kubun { color: var(--color-terra-500); }
 
   .pp-tax-map {
     display: grid;
