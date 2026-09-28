@@ -94,7 +94,7 @@ for (const width of [375, 1280]) {
     if (!el) return [t, null];
     const cs = getComputedStyle(el);
     return [t, Object.fromEntries(props.map((p) => [p, cs[p]]))];
-  }), [TEXTS, PROPS]);
+  })), [TEXTS, PROPS]);
 }
 // 本文（段落・箇条書き）の文字列。目次と章の区切りは新しく足すものなので除く
 out.texts = await page.evaluate(() =>
