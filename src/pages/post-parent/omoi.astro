@@ -1,0 +1,93 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import OmoiCard from '../../components/OmoiCard.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+import { OMOI_FORM_URL, OMOI_THEME_KEYS, OMOI_THEME_LABELS, sortOmoi } from '../../lib/omoi';
+
+const items = sortOmoi(await getCollection('postParentOmoi', ({ data }) => !data.draft));
+// 掲載のあるお題だけを、定義順に並べる
+const usedThemes = OMOI_THEME_KEYS.filter((t) => items.some((e) => e.data.theme === t));
+---
+
+<BaseLayout
+  title="私の想い｜親なき後"
+  description="「親なき後」を思うとき、胸にあること。ご家族から寄せられた想いを、編集部が確認して掲載しています。"
+>
+  <PageIntro
+    eyebrow="Voices"
+    title="私の想い"
+    lead="「親なき後」を思うとき、胸にあること。ご家族から寄せられた想いを掲載しています。"
+  />
+
+  <section class="section">
+    <div class="container container--narrow reveal">
+      <p class="omoi-crumb"><a class="inline-link" href="/post-parent/">親なき後</a> › 私の想い</p>
+
+      {usedThemes.length >= 2 && (
+        <div class="omoi-filter" data-omoi-filter hidden>
+          <button type="button" class="btn btn--sm btn--outline" aria-pressed="true" data-theme="all">すべて</button>
+          {usedThemes.map((t) => (
+            <button type="button" class="btn btn--sm btn--outline" aria-pressed="false" data-theme={t}>{OMOI_THEME_LABELS[t]}</button>
+          ))}
+        </div>
+      )}
+
+      {items.length === 0
+        ? <p class="text-soft">まだ掲載はありません。最初の想いを、お待ちしています。</p>
+        : (
+          <ul class="omoi-list">
+            {items.map((e) => <li data-theme={e.data.theme}><OmoiCard entry={e} mode="full" /></li>)}
+          </ul>
+        )}
+
+      <div class="omoi-actions">
+        {OMOI_FORM_URL
+          ? <a href={OMOI_FORM_URL} class="btn btn--accent" rel="external" target="_blank">想いを寄せる</a>
+          : <p class="text-soft">※ 投稿フォームは準備中です。</p>}
+        <p class="omoi-note">
+          掲載された想いの取り下げは、<a href="/contact/" class="inline-link">お問い合わせ</a>から、掲載名とおおよその掲載日を添えてご連絡ください。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <CtaBlock
+        title="親なき後の備えについて"
+        body="ご家族の備えや、わたしたちの取り組みにご関心のある方は、お気軽にお問い合わせください。"
+        primary={{ label: 'お問い合わせフォーム', href: '/contact/' }}
+        secondary={{ label: '親なき後トップへ', href: '/post-parent/' }}
+        variant="dark"
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // お題で絞り込む。JavaScript が無ければ絞り込みは出ず、全件がそのまま読める
+  const bar = document.querySelector<HTMLElement>('[data-omoi-filter]');
+  if (bar) {
+    bar.hidden = false;
+    const buttons = [...bar.querySelectorAll<HTMLButtonElement>('button[data-theme]')];
+    const cards = [...document.querySelectorAll<HTMLElement>('.omoi-list > li')];
+    bar.addEventListener('click', (ev) => {
+      const btn = (ev.target as HTMLElement).closest<HTMLButtonElement>('button[data-theme]');
+      if (!btn) return;
+      const theme = btn.dataset.theme;
+      buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+      cards.forEach((li) => { li.hidden = theme !== 'all' && li.dataset.theme !== theme; });
+    });
+  }
+</script>
+
+<style>
+  .omoi-crumb { font-size: 14px; color: var(--color-ink-mute); margin: 0 0 var(--space-6); }
+  .omoi-filter { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-6); }
+  .omoi-filter [aria-pressed='true'] { background: var(--color-green-900); color: var(--color-paper); }
+  .omoi-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-6); }
+  .omoi-actions { margin-top: var(--space-7); }
+  .omoi-note { margin-top: var(--space-4); font-size: 14px; color: var(--color-ink-mute); }
+</style>
