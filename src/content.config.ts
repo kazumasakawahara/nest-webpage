@@ -1,5 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { OMOI_THEME_KEYS, OMOI_RELATION_KEYS } from './lib/omoi';
 
 const news = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/news' }),
@@ -84,4 +85,19 @@ const postParentColumn = defineCollection({
   }),
 });
 
-export const collections = { news, aiTips, topics, decisionSupport, postParentColumn };
+// 親なき後ページの「私の想い」：家族から寄せられた想い（編集部が確認して掲載。/post-parent/omoi/）
+// ※ src/content/post-parent/ の下に置くとコラムに混ざるため、別ディレクトリにする
+const postParentOmoi = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/post-parent-omoi' }),
+  schema: z.object({
+    theme: z.enum(OMOI_THEME_KEYS),
+    relation: z.enum(OMOI_RELATION_KEYS),
+    ageRange: z.string().optional(),
+    // ペンネームか「匿名」のみ。実名は載せない
+    penName: z.string().min(1).default('匿名'),
+    publishedAt: z.coerce.date(),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { news, aiTips, topics, decisionSupport, postParentColumn, postParentOmoi };
