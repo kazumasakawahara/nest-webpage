@@ -35,9 +35,16 @@ test('in-page link to a closed feature box on ai-tips opens it', async ({ page }
 test.describe('on a phone, block anchors land below the fixed top bar', () => {
   test.use({ viewport: { width: 375, height: 812 } });
 
-  for (const id of ['omoi', 'column', 'tax']) {
-    test(`#${id}`, async ({ page }) => {
-      await page.goto(`/post-parent/#${id}`);
+  for (const [path, id] of [
+    ['/post-parent/', 'omoi'],
+    ['/post-parent/', 'column'],
+    ['/post-parent/', 'tax'],
+    ['/kimachiya/', 'makasete-wednesday'],
+  ]) {
+    test(`${path}#${id}`, async ({ page }) => {
+      // 読み込み済みのページの中でリンクを押したときと同じ移動
+      await page.goto(path, { waitUntil: 'load' });
+      await page.evaluate((i) => (location.hash = i), id);
       // スクロールが止まるのを待ってから位置を測る
       const top = await page.evaluate(async (i) => {
         let last = -1;
