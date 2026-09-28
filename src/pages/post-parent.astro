@@ -572,14 +572,16 @@ const [chBelief, chVoices, chPrepare, chConnect] = CHAPTERS;
     .pp-tax-kubun { grid-template-columns: 1fr; }
   }
 
+  /* 2枚は並べて見比べる説明。切り替えボタンに見えないよう、枠は同じにして上辺の色だけで区別する */
   .pp-tax-kubun__card {
     background: var(--color-paper);
     border: 1px solid var(--color-line);
+    border-top: 4px solid var(--color-green-700);
     border-radius: var(--radius-md);
     padding: var(--space-4) var(--space-5);
   }
 
-  .pp-tax-kubun__card--em { border-color: var(--color-terra-500); }
+  .pp-tax-kubun__card--em { border-top-color: var(--color-terra-500); }
 
   .pp-tax-kubun__card p {
     margin: 0;
@@ -588,19 +590,17 @@ const [chBelief, chVoices, chPrepare, chConnect] = CHAPTERS;
     color: var(--color-ink);
   }
 
+  /* 区分名は見出しの文字。塗りつぶしの丸いラベルはボタンに見えるので使わない */
   .pp-tax-kubun__tag {
-    display: inline-block;
+    display: block;
     margin-bottom: var(--space-2);
-    padding: 2px 12px;
-    border-radius: 999px;
-    background: var(--color-terra-500);
-    color: #fff;
-    font-size: 13px;
+    font-family: var(--font-serif);
+    font-size: 17px;
     font-weight: 600;
-    letter-spacing: 0.04em;
+    color: var(--color-terra-500);
   }
 
-  .pp-tax-kubun__tag--general { background: var(--color-green-700); }
+  .pp-tax-kubun__tag--general { color: var(--color-green-700); }
 
   .pp-tax-map {
     display: grid;
