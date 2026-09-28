@@ -5,6 +5,7 @@ import Hero from '../components/Hero.astro';
 import CtaBlock from '../components/CtaBlock.astro';
 import OmoiCard from '../components/OmoiCard.astro';
 import { OMOI_FORM_URL, sortOmoi } from '../lib/omoi';
+import PpChapterHead from '../components/PpChapterHead.astro';
 
 // ゆるい公開入口の登録フォーム（用意でき次第 URL を設定。空文字なら「準備中」を表示）
 const NEWSLETTER_FORM_URL = '';
@@ -17,6 +18,15 @@ const fmtDate = (d: Date) => `${d.getFullYear()}年${d.getMonth() + 1}月${d.get
 
 // 「私の想い」の最新3件（抜粋）
 const omoiLatest = sortOmoi(await getCollection('postParentOmoi', ({ data }) => !data.draft)).slice(0, 3);
+
+// ページの章立て（目次と各章の区切りで使う）。共感を先に、実用を後に並べる
+const CHAPTERS = [
+  { id: 'belief', num: '01', title: 'わたしたちの考え', lead: 'お金より遺すべきもの。nest の15年の歩み' },
+  { id: 'voices', num: '02', title: '声を聴く', lead: 'ご家族から寄せられた想いと、寄稿' },
+  { id: 'prepare', num: '03', title: 'いま、備える', lead: '知恵を引き継ぐ道具と、知っておきたい税の話' },
+  { id: 'connect', num: '04', title: '資料とつながり', lead: '資料室・研修アーカイブと、お知らせの登録' },
+] as const;
+const [chBelief, chVoices, chPrepare, chConnect] = CHAPTERS;
 ---
 
 <BaseLayout
@@ -37,6 +47,30 @@ const omoiLatest = sortOmoi(await getCollection('postParentOmoi', ({ data }) => 
     <p class="pp-hero-sublead">とはいえ、税にまつわる話もおまけです。</p>
   </Hero>
 
+  <!-- ===== 目次 ===== -->
+  <section class="section section--cream pp-toc-section" id="toc" aria-labelledby="pp-toc-title">
+    <div class="container container--narrow">
+      <h2 class="pp-toc__title" id="pp-toc-title">このページの内容</h2>
+      <nav aria-label="このページの目次">
+        <ol class="pp-toc">
+          {CHAPTERS.map((c) => (
+            <li>
+              <a class="pp-toc__item" href={`#${c.id}`}>
+                <span class="pp-toc__num" aria-hidden="true">{c.num}</span>
+                <span class="pp-toc__name">{c.title}</span>
+                <span class="pp-toc__lead">{c.lead}</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+      <p class="pp-toc__note">支援者の方は、03 の『3つの道具』と 04 の資料室からご覧ください。</p>
+    </div>
+  </section>
+
+  <!-- ============ 01 わたしたちの考え ============ -->
+  <PpChapterHead id={chBelief.id} num={chBelief.num} title={chBelief.title} />
+
   <!-- ===== 理念（主役） ===== -->
   <section class="section">
     <div class="container container--narrow reveal">
@@ -52,43 +86,6 @@ const omoiLatest = sortOmoi(await getCollection('postParentOmoi', ({ data }) => 
       <p style="font-size:16px; line-height:2; color:var(--color-ink);">
         nest がめざすのは、その知恵と、支援者たちの経験を持ち寄り、親なき後も本人の暮らしを支え続けられる「仕組み」をつくることです。
       </p>
-
-      <!-- 寄稿（理念を掘り下げる読みもの） -->
-      {posts.length > 0 && (
-        <div class="pp-column" id="column">
-          <span class="eyebrow">Column</span>
-          <h3 class="pp-column__title">寄稿</h3>
-          <p class="pp-column__lead">親なき後にかかわる読みものを掲載しています。</p>
-          <ul class="ds-posts">
-            {posts.map((post) => (
-              <li>
-                <a class="ds-post-card" href={`/post-parent/column/${post.id}/`}>
-                  <span class="ds-post-card__meta">
-                    <span class="badge badge--accent">寄稿</span>
-                    <time datetime={post.data.date.toISOString()}>{fmtDate(post.data.date)}</time>
-                  </span>
-                  <span class="ds-post-card__title">
-                    {post.data.titleLines
-                      ? post.data.titleLines.map((line) => (
-                          <span class="ds-post-card__title-line">
-                            {line.split('|').map((phrase) => <span class="ds-post-card__phrase">{phrase}</span>)}
-                          </span>
-                        ))
-                      : post.data.title}
-                  </span>
-                  {post.data.subtitle && <span class="ds-post-card__subtitle">― {post.data.subtitle} ―</span>}
-                  <span class="ds-post-card__author">
-                    {post.data.authorTitle && <small>{post.data.authorTitle}</small>}
-                    {post.data.author}
-                  </span>
-                  {post.data.summary && <span class="ds-post-card__summary">{post.data.summary}</span>}
-                  <span class="ds-post-card__more" aria-hidden="true">読む →</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
     </div>
   </section>
 
@@ -145,6 +142,75 @@ const omoiLatest = sortOmoi(await getCollection('postParentOmoi', ({ data }) => 
       </div>
     </div>
   </section>
+
+  <!-- ============ 02 声を聴く ============ -->
+  <PpChapterHead id={chVoices.id} num={chVoices.num} title={chVoices.title} />
+
+  <!-- ===== 私の想い（ご家族から寄せられた想い） ===== -->
+  <section class="section" id="omoi" aria-labelledby="pp-omoi-title">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">Voices</span>
+      <h2 class="section__title" id="pp-omoi-title">私の想い</h2>
+      <p style="font-size:16px; line-height:2; color:var(--color-ink); margin-bottom:var(--space-5);">
+        「親なき後」を思うとき、胸にあることを、ご家族のことばで寄せていただくコーナーです。
+        同じ立場の誰かが読んで、「わたしだけじゃない」と感じられる場所にしたいと考えています。
+        まとまっていない想いも、答えの出ていない迷いも歓迎します。
+      </p>
+      {omoiLatest.length > 0 && (
+        <ul class="pp-omoi-list">
+          {omoiLatest.map((e) => <li><OmoiCard entry={e} mode="excerpt" /></li>)}
+        </ul>
+      )}
+      <div class="pp-omoi-actions">
+        {OMOI_FORM_URL
+          ? <a href={OMOI_FORM_URL} class="btn btn--accent" rel="external" target="_blank">想いを寄せる</a>
+          : <p class="text-soft">※ 投稿フォームは準備中です。</p>}
+        {omoiLatest.length > 0 && <a href="/post-parent/omoi/" class="btn btn--outline">ほかの想いを読む</a>}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 寄稿（親なき後にかかわる読みもの） ===== -->
+  {posts.length > 0 && (
+    <section class="section section--sand" id="column" aria-labelledby="pp-column-title">
+      <div class="container container--narrow reveal">
+        <span class="eyebrow">Column</span>
+        <h2 class="section__title" id="pp-column-title">寄稿</h2>
+        <p class="pp-column__lead">親なき後にかかわる読みものを掲載しています。</p>
+        <ul class="ds-posts">
+          {posts.map((post) => (
+            <li>
+              <a class="ds-post-card" href={`/post-parent/column/${post.id}/`}>
+                <span class="ds-post-card__meta">
+                  <span class="badge badge--accent">寄稿</span>
+                  <time datetime={post.data.date.toISOString()}>{fmtDate(post.data.date)}</time>
+                </span>
+                <span class="ds-post-card__title">
+                  {post.data.titleLines
+                    ? post.data.titleLines.map((line) => (
+                        <span class="ds-post-card__title-line">
+                          {line.split('|').map((phrase) => <span class="ds-post-card__phrase">{phrase}</span>)}
+                        </span>
+                      ))
+                    : post.data.title}
+                </span>
+                {post.data.subtitle && <span class="ds-post-card__subtitle">― {post.data.subtitle} ―</span>}
+                <span class="ds-post-card__author">
+                  {post.data.authorTitle && <small>{post.data.authorTitle}</small>}
+                  {post.data.author}
+                </span>
+                {post.data.summary && <span class="ds-post-card__summary">{post.data.summary}</span>}
+                <span class="ds-post-card__more" aria-hidden="true">読む →</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <!-- ============ 03 いま、備える ============ -->
+  <PpChapterHead id={chPrepare.id} num={chPrepare.num} title={chPrepare.title} />
 
   <!-- ===== 構想：暗黙知をデジタルで継承する ===== -->
   <section class="section">
@@ -314,6 +380,9 @@ const omoiLatest = sortOmoi(await getCollection('postParentOmoi', ({ data }) => 
     </div>
   </section>
 
+  <!-- ============ 04 資料とつながり ============ -->
+  <PpChapterHead id={chConnect.id} num={chConnect.num} title={chConnect.title} bg="cream" />
+
   <!-- ===== リソースへの入口 ===== -->
   <section class="section section--cream" aria-labelledby="pp-resources-title">
     <div class="container">
@@ -347,30 +416,6 @@ const omoiLatest = sortOmoi(await getCollection('postParentOmoi', ({ data }) => 
   </section>
 
   <!-- ===== ゆるいつながり（公開コミュニティ入口） ===== -->
-  <!-- ===== 私の想い（ご家族から寄せられた想い） ===== -->
-  <section class="section" id="omoi" aria-labelledby="pp-omoi-title">
-    <div class="container container--narrow reveal">
-      <span class="eyebrow">Voices</span>
-      <h2 class="section__title" id="pp-omoi-title">私の想い</h2>
-      <p style="font-size:16px; line-height:2; color:var(--color-ink); margin-bottom:var(--space-5);">
-        「親なき後」を思うとき、胸にあることを、ご家族のことばで寄せていただくコーナーです。
-        同じ立場の誰かが読んで、「わたしだけじゃない」と感じられる場所にしたいと考えています。
-        まとまっていない想いも、答えの出ていない迷いも歓迎します。
-      </p>
-      {omoiLatest.length > 0 && (
-        <ul class="pp-omoi-list">
-          {omoiLatest.map((e) => <li><OmoiCard entry={e} mode="excerpt" /></li>)}
-        </ul>
-      )}
-      <div class="pp-omoi-actions">
-        {OMOI_FORM_URL
-          ? <a href={OMOI_FORM_URL} class="btn btn--accent" rel="external" target="_blank">想いを寄せる</a>
-          : <p class="text-soft">※ 投稿フォームは準備中です。</p>}
-        {omoiLatest.length > 0 && <a href="/post-parent/omoi/" class="btn btn--outline">ほかの想いを読む</a>}
-      </div>
-    </div>
-  </section>
-
   <section class="section section--sand" aria-labelledby="pp-community-title">
     <div class="container container--narrow reveal">
       <span class="eyebrow">Stay Connected</span>
@@ -799,21 +844,6 @@ const omoiLatest = sortOmoi(await getCollection('postParentOmoi', ({ data }) => 
     }
   }
   /* 寄稿（理念セクションの末尾） */
-  .pp-column {
-    margin-top: var(--space-7);
-    padding-top: var(--space-6);
-    border-top: 1px solid var(--color-line);
-    scroll-margin-top: 80px;
-  }
-
-  .pp-column__title {
-    font-family: var(--font-heading);
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--color-green-900);
-    margin: var(--space-2) 0 var(--space-3);
-  }
-
   .pp-column__lead {
     font-size: 15px;
     line-height: 1.9;
@@ -911,4 +941,43 @@ const omoiLatest = sortOmoi(await getCollection('postParentOmoi', ({ data }) => 
   .ds-post-card:hover .ds-post-card__more { color: var(--color-terra-500); }
   .pp-omoi-list { list-style: none; margin: 0 0 var(--space-6); padding: 0; display: grid; gap: var(--space-4); }
   .pp-omoi-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4); }
+
+  /* 目次（ヒーロー直後に一度だけ。画面上部には固定しない） */
+  .pp-toc-section { padding-block: var(--space-7); }
+  .pp-toc__title { font-size: 20px; margin: 0 0 var(--space-4); }
+  .pp-toc {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+  }
+  .pp-toc__item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: var(--space-3);
+    height: 100%;
+    padding: var(--space-4) var(--space-5);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    background: var(--color-paper);
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+  .pp-toc__item:hover { border-color: var(--color-terra-500); }
+  .pp-toc__num {
+    grid-row: span 2;
+    font-family: var(--font-serif);
+    font-size: 22px;
+    line-height: 1.2;
+    color: var(--color-terra-500);
+  }
+  .pp-toc__name { font-family: var(--font-serif); font-size: 17px; font-weight: 600; color: var(--color-green-900); }
+  .pp-toc__lead { font-size: 13px; line-height: 1.7; color: var(--color-ink-mute); }
+  .pp-toc__note { margin: var(--space-4) 0 0; font-size: 14px; color: var(--color-ink-mute); }
+  @media (max-width: 768px) { .pp-toc { grid-template-columns: 1fr; } }
+
+  /* 章の区切りの直後のブロックは、上の余白を詰めて章の頭と一体に見せる */
+  :global(.pp-chapter) + .section { padding-top: var(--space-6); }
 </style>
