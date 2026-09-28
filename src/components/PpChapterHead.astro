@@ -1,0 +1,55 @@
+---
+// 親なき後ページの章の区切り（番号・章題・目次へ戻る）。章題は h2、中のブロックの見出しは h3
+interface Props {
+  id: string;
+  num: string;
+  title: string;
+  // 直後のブロックと同じ背景にして、章の頭として一体に見せる
+  bg?: 'sand' | 'cream';
+}
+const { id, num, title, bg } = Astro.props;
+---
+
+<div class:list={['pp-chapter', bg && `section--${bg}`]} id={id}>
+  <div class="container container--narrow pp-chapter__inner">
+    <p class="pp-chapter__num" aria-hidden="true">{num}</p>
+    <h2 class="pp-chapter__title">{title}</h2>
+    <a class="pp-chapter__toc" href="#toc">目次へ戻る ↑</a>
+  </div>
+</div>
+
+<style>
+  .pp-chapter {
+    padding: var(--space-8) 0 0;
+    scroll-margin-top: 80px;
+  }
+  .pp-chapter__inner {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: baseline;
+    gap: var(--space-4);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-line);
+  }
+  .pp-chapter__num {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: 32px;
+    line-height: 1;
+    color: var(--color-terra-500);
+  }
+  .pp-chapter__title {
+    margin: 0;
+    font-size: clamp(22px, 5vw, 28px);
+  }
+  .pp-chapter__toc {
+    font-size: 13px;
+    color: var(--color-ink-mute);
+    white-space: nowrap;
+  }
+  .pp-chapter__toc:hover { color: var(--color-terra-500); }
+  @media (max-width: 480px) {
+    .pp-chapter__inner { grid-template-columns: auto 1fr; }
+    .pp-chapter__toc { grid-column: 1 / -1; justify-self: end; }
+  }
+</style>
