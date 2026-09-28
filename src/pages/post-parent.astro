@@ -3,6 +3,8 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import CtaBlock from '../components/CtaBlock.astro';
+import OmoiCard from '../components/OmoiCard.astro';
+import { OMOI_FORM_URL, sortOmoi } from '../lib/omoi';
 
 // ゆるい公開入口の登録フォーム（用意でき次第 URL を設定。空文字なら「準備中」を表示）
 const NEWSLETTER_FORM_URL = '';
@@ -12,6 +14,9 @@ const posts = (await getCollection('postParentColumn', ({ data }) => !data.draft
   (a, b) => b.data.date.getTime() - a.data.date.getTime(),
 );
 const fmtDate = (d: Date) => `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`;
+
+// 「私の想い」の最新3件（抜粋）
+const omoiLatest = sortOmoi(await getCollection('postParentOmoi', ({ data }) => !data.draft)).slice(0, 3);
 ---
 
 <BaseLayout
@@ -342,6 +347,30 @@ const fmtDate = (d: Date) => `${d.getFullYear()}年${d.getMonth() + 1}月${d.get
   </section>
 
   <!-- ===== ゆるいつながり（公開コミュニティ入口） ===== -->
+  <!-- ===== 私の想い（ご家族から寄せられた想い） ===== -->
+  <section class="section" id="omoi" aria-labelledby="pp-omoi-title">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">Voices</span>
+      <h2 class="section__title" id="pp-omoi-title">私の想い</h2>
+      <p style="font-size:16px; line-height:2; color:var(--color-ink); margin-bottom:var(--space-5);">
+        「親なき後」を思うとき、胸にあることを、ご家族のことばで寄せていただくコーナーです。
+        同じ立場の誰かが読んで、「わたしだけじゃない」と感じられる場所にしたいと考えています。
+        まとまっていない想いも、答えの出ていない迷いも歓迎します。
+      </p>
+      {omoiLatest.length > 0 && (
+        <ul class="pp-omoi-list">
+          {omoiLatest.map((e) => <li><OmoiCard entry={e} mode="excerpt" /></li>)}
+        </ul>
+      )}
+      <div class="pp-omoi-actions">
+        {OMOI_FORM_URL
+          ? <a href={OMOI_FORM_URL} class="btn btn--accent" rel="external" target="_blank">想いを寄せる</a>
+          : <p class="text-soft">※ 投稿フォームは準備中です。</p>}
+        {omoiLatest.length > 0 && <a href="/post-parent/omoi/" class="btn btn--outline">ほかの想いを読む</a>}
+      </div>
+    </div>
+  </section>
+
   <section class="section section--sand" aria-labelledby="pp-community-title">
     <div class="container container--narrow reveal">
       <span class="eyebrow">Stay Connected</span>
@@ -880,4 +909,6 @@ const fmtDate = (d: Date) => `${d.getFullYear()}年${d.getMonth() + 1}月${d.get
   }
 
   .ds-post-card:hover .ds-post-card__more { color: var(--color-terra-500); }
+  .pp-omoi-list { list-style: none; margin: 0 0 var(--space-6); padding: 0; display: grid; gap: var(--space-4); }
+  .pp-omoi-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4); }
 </style>

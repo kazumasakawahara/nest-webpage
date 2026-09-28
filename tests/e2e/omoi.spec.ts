@@ -10,3 +10,13 @@ test('omoi list page renders the empty state', async ({ page }) => {
   // 絞り込みは2種類以上のお題があるときだけ
   await expect(page.locator('[data-omoi-filter]')).toHaveCount(0);
 });
+
+test('post-parent hub shows the omoi section without cards when nothing is published', async ({ page }) => {
+  await page.goto('/post-parent/');
+  const section = page.locator('#omoi');
+  await expect(section.getByRole('heading', { level: 2, name: '私の想い' })).toBeVisible();
+  await expect(section.getByText('投稿フォームは準備中です')).toBeVisible();
+  // 0件のときは抜粋カードも一覧へのリンクも出さない
+  await expect(section.locator('.omoi-card')).toHaveCount(0);
+  await expect(section.getByRole('link', { name: 'ほかの想いを読む' })).toHaveCount(0);
+});
