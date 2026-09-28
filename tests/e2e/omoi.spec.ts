@@ -20,3 +20,14 @@ test('post-parent hub shows the omoi section without cards when nothing is publi
   await expect(section.locator('.omoi-card')).toHaveCount(0);
   await expect(section.getByRole('link', { name: 'ほかの想いを読む' })).toHaveCount(0);
 });
+
+test.describe('without JavaScript', () => {
+  test.use({ javaScriptEnabled: false });
+
+  // 絞り込みは JavaScript でしか動かないので、無いときはボタンを見せない（全件はそのまま読める）
+  test('omoi list page does not show the theme filter', async ({ page }) => {
+    await page.goto('/post-parent/omoi/');
+    const filter = page.locator('[data-omoi-filter]');
+    if ((await filter.count()) > 0) await expect(filter).toBeHidden();
+  });
+});
