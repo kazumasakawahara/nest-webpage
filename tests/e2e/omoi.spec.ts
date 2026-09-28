@@ -14,7 +14,8 @@ test('omoi list page renders the empty state', async ({ page }) => {
 test('post-parent hub shows the omoi section without cards when nothing is published', async ({ page }) => {
   await page.goto('/post-parent/');
   const section = page.locator('#omoi');
-  await expect(section.getByRole('heading', { level: 2, name: '私の想い' })).toBeVisible();
+  // 章「声を聴く」（h2）の中のブロックなので h3
+  await expect(section.getByRole('heading', { level: 3, name: '私の想い' })).toBeVisible();
   await expect(section.getByText('投稿フォームは準備中です')).toBeVisible();
   // 0件のときは抜粋カードも一覧へのリンクも出さない
   await expect(section.locator('.omoi-card')).toHaveCount(0);

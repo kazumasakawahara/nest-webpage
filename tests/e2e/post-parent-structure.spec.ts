@@ -45,3 +45,23 @@ test('blocks follow the chapter order and existing anchors remain', async ({ pag
   });
   expect(inOrder).toBe('ok');
 });
+
+test('headings step down from chapter h2 to block h3 and below', async ({ page }) => {
+  await page.goto('/post-parent/');
+  for (const name of [
+    'お金より、遺すべきものがある',
+    '「親なき後」を希望に変える',
+    '私の想い',
+    '寄稿',
+    '知恵を、引き継げる形に',
+    'とはいえ、知っておきたい税の話',
+    '知恵と仕組みを、分かち合う',
+    'ゆるく、つながる',
+  ]) {
+    await expect(page.getByRole('heading', { level: 3, name, exact: true })).toHaveCount(1);
+  }
+  for (const name of ['「本気」のスタートが切り開いた自立への道', 'めざすネットワークを、一枚の地図に', 'まず、「区分」を知る', '資料室']) {
+    await expect(page.getByRole('heading', { level: 4, name, exact: true })).toHaveCount(1);
+  }
+  await expect(page.getByRole('heading', { level: 5, name: '所得税・住民税の障害者控除', exact: true })).toHaveCount(1);
+});
