@@ -185,6 +185,12 @@ p { line-height: var(--lh-normal); }
   border-radius: 2px;
 }
 
+/* ページ内リンクの移動先（章・セクション）はスクリプトで focus するだけで、
+   Tab では止まらない。ブロック全体を囲む枠は出さない */
+[tabindex="-1"]:focus-visible {
+  outline: none;
+}
+
 /* === Container === */
 .container {
   width: 100%;

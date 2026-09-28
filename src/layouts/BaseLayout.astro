@@ -154,16 +154,17 @@ const jsonLd = {
         document.querySelectorAll('.reveal').forEach((el) => el.classList.add('is-visible'));
       }
 
-      // Smooth scroll for in-page anchors
+      // In-page anchors: let the browser scroll and update the hash (smooth
+      // scrolling and reduced motion are handled in CSS), and move keyboard
+      // focus to the target so Tab continues from the chapter, not the link.
       document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((a) => {
-        a.addEventListener('click', (e) => {
-          const id = a.getAttribute('href')?.slice(1);
+        a.addEventListener('click', () => {
+          const id = decodeURIComponent(a.getAttribute('href')?.slice(1) ?? '');
           if (!id) return;
           const target = document.getElementById(id);
-          if (target) {
-            e.preventDefault();
-            target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
-          }
+          if (!target) return;
+          if (!target.hasAttribute('tabindex') && target.tabIndex < 0) target.setAttribute('tabindex', '-1');
+          target.focus({ preventScroll: true });
         });
       });
     </script>
