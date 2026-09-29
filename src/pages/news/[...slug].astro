@@ -29,11 +29,19 @@ const fmtDate = (d: Date) =>
           <span aria-hidden="true">←</span> {isTraining ? '研修会 一覧へ' : 'nest News 一覧へ'}
         </a>
         <span class="badge badge--accent">{item.data.tag}</span>
+        {item.data.soldOut && <span class="badge badge--sold-out">満席</span>}
         <h1 class="news-article__title">{item.data.title}</h1>
         <time class="news-article__date" datetime={item.data.date.toISOString()}>
           {fmtDate(item.data.date)}
         </time>
       </header>
+
+      {item.data.soldOut && (
+        <div class="news-article__notice" role="note">
+          <p class="news-article__notice-title">満席となりました</p>
+          <p>おかげさまで、定員に達しました。お申し込みの受付は終了しています。たくさんのお申し込み、ありがとうございました。</p>
+        </div>
+      )}
 
       <div class="news-article__body reveal">
         <Content />
@@ -194,5 +202,24 @@ const fmtDate = (d: Date) =>
 
   @media (max-width: 768px) {
     .news-article__title { font-size: 22px; }
+  }
+
+  /* 満席のお知らせ（見出しのすぐ下に、目立つ囲みで） */
+  .news-article__notice {
+    margin: 0 0 var(--space-7);
+    padding: var(--space-5) var(--space-6);
+    border: 2px solid var(--color-terra-500);
+    border-radius: var(--radius-lg);
+    background: var(--color-terra-100);
+    color: var(--color-ink);
+    line-height: 1.9;
+  }
+  .news-article__notice p { margin: 0; }
+  .news-article__notice .news-article__notice-title {
+    margin-bottom: var(--space-2);
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-terra-700);
   }
 </style>
