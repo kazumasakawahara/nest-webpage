@@ -36,9 +36,3 @@ export function omoiByline(m: { relation: OmoiRelation; ageRange?: string; penNa
   const who = [OMOI_RELATION_LABELS[m.relation], m.ageRange].filter(Boolean).join('・');
   return `${who}／${m.penName}`;
 }
-
-// 抜粋：改行をつめ、max 字（コードポイント単位）を超えたら「…」
-export function omoiExcerpt(body: string, max = 120): string {
-  const chars = Array.from(body.replace(/\s+/g, ' ').trim());
-  return chars.length > max ? chars.slice(0, max).join('') + '…' : chars.join('');
-}
