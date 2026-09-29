@@ -22,7 +22,7 @@ export const OMOI_RELATION_LABELS: Record<OmoiRelation, string> = {
 };
 
 // 投稿フォームの公開URL（Apps Script の実行ログの「公開URL」）。空文字の間は「準備中」を表示する
-export const OMOI_FORM_URL = '';
+export const OMOI_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSc3TmxWeuseZTTW3aIS2OGqbQ_E0wrhHyXwElKjAGIvzUWaWg/viewform';
 
 // 新しい順。同じ掲載日はファイル名の連番が大きいほうを先に
 export function sortOmoi<T extends { id: string; data: { publishedAt: Date } }>(items: T[]): T[] {
