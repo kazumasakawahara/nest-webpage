@@ -93,6 +93,8 @@ const postParentOmoi = defineCollection({
     theme: z.enum(OMOI_THEME_KEYS),
     relation: z.enum(OMOI_RELATION_KEYS),
     ageRange: z.string().optional(),
+    // 見出し（任意）。編集部が投稿者の了承を得て付ける
+    title: z.string().min(1).optional(),
     // ペンネームか「匿名」のみ。実名は載せない
     penName: z.string().min(1).default('匿名'),
     publishedAt: z.coerce.date(),

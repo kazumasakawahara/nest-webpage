@@ -17,12 +17,14 @@ const byline = omoiByline(data);
 {mode === 'full' ? (
   <article class="omoi-card" id={entry.id}>
     <p class="omoi-card__theme">{theme}</p>
+    {data.title && <h3 class="omoi-card__title">{data.title}</h3>}
     <div class="omoi-card__body">{Content && <Content />}</div>
     <p class="omoi-card__byline">{byline}</p>
   </article>
 ) : (
   <a class="omoi-card omoi-card--link" href={`/post-parent/omoi/#${entry.id}`}>
     <span class="omoi-card__theme">{theme}</span>
+    {data.title && <span class="omoi-card__title">{data.title}</span>}
     <span class="omoi-card__body">{omoiExcerpt(entry.body ?? '')}</span>
     <span class="omoi-card__byline">{byline}</span>
   </a>
@@ -51,6 +53,14 @@ const byline = omoiByline(data);
     font-size: 13px;
     letter-spacing: 0.05em;
     color: var(--color-terra-500);
+  }
+  .omoi-card__title {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.6;
+    color: var(--color-green-900);
   }
   .omoi-card__body {
     font-family: var(--font-serif);
