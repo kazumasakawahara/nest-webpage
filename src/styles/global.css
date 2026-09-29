@@ -439,6 +439,13 @@ p { line-height: var(--lh-normal); }
   color: var(--color-terra-700);
 }
 
+/* イベントの満席。塗りのテラコッタで、一覧の中でも目に留まるように */
+.badge--sold-out {
+  background-color: var(--color-terra-500);
+  color: #fff;
+  font-weight: 700;
+}
+
 @keyframes pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
   50%      { opacity: 0.5; transform: scale(1.4); }

@@ -30,7 +30,10 @@ const fmtDate = (d: Date) =>
             {fmtDate(item.data.date)}
           </time>
           <span class="news-list__tag badge badge--accent">{item.data.tag}</span>
-          <h3 class="news-list__title">{item.data.title}</h3>
+          <h3 class="news-list__title">
+            {item.data.soldOut && <span class="news-list__sold-out badge badge--sold-out">満席</span>}
+            {item.data.title}
+          </h3>
           {showSummary && item.data.summary && (
             <p class="news-list__summary">{item.data.summary}</p>
           )}
@@ -88,6 +91,11 @@ const fmtDate = (d: Date) =>
     font-weight: 500;
     color: var(--color-green-900);
     line-height: 1.6;
+  }
+
+  .news-list__sold-out {
+    margin-right: var(--space-2);
+    vertical-align: 0.1em;
   }
 
   .news-list__summary {

@@ -12,6 +12,59 @@ https://github.com/kazumasakawahara/oya-inai-db （2026-08-08 MIT で public 公
   旧 `nest-support-manual.html` は旧スタック（Claude Desktop前提）の記録として残置（リンクは全て外し済み）。
   図解は簡易SVG。実機スクリーンショットへの差し替えは任意の改善タスク。
 
+# HANDOVER — 2026-09-28 親なき後「私の想い」コーナー新設＋ページ構成見直し（本番公開済み）
+
+> 家族から寄せられた想いを、編集部が確認してから載せるコーナー。**2026-09-29 追記：受付を開始済み**（フォーム作成・通知先設定・`OMOI_FORM_URL` 設定、最初の1件を掲載、親なき後ページは見出し＋「見る」の開閉表示。いずれも別セッション、詳細はタスク.md 2026-09-29）。同時に親なき後ページを「目次＋4章」に組み直した（本文は無変更）。PR #71 → マージ 5288742。**main への push で本番ビルドが始まらず**、同一内容のブランチ版 90a540c8 を河原さんがダッシュボードで「バージョンをプロモート」して公開（2026-09-28）。
+
+## 再開コマンド（コピペで動く）
+
+```bash
+# 作業ブランチは main にマージ済み。新しい作業は main から切った worktree で始める
+cd /Users/k-kawahara/Projects/nest-webpage/.claude/worktrees/oyanakinogo-watashi-no-omoi-design-e19834
+git fetch origin && git log --oneline -1 origin/main    # 5288742 以降
+npm run build && npx vitest run                         # 150件
+# e2e：ポート 4321 は別の作業場所のサーバーのことがある。preview_start の astro-dev（autoPort）で
+# 自分のサーバーを立て、そのポートを渡す。Chromium は砂場の外で
+E2E_BASE_URL=http://localhost:<port> npx playwright test   # 10件（投稿0件の前提のテストを含む）
+```
+
+## 現在地
+- 設計書：`docs/superpowers/specs/2026-09-28-watashi-no-omoi-design.md`、`docs/superpowers/specs/2026-09-28-post-parent-restructure-design.md`
+- 実装計画：`docs/superpowers/plans/2026-09-28-watashi-no-omoi.md`、`docs/superpowers/plans/2026-09-28-post-parent-restructure.md`
+- [x] 表示ロジック `src/lib/omoi.ts`（お題・お立場のキーとラベル、`OMOI_FORM_URL`、並び順、抜粋）＋ unit
+- [x] コレクション `postParentOmoi`（`src/content/post-parent-omoi/`。**`src/content/post-parent/` の下に置くとコラムに混ざる**）
+- [x] `src/components/OmoiCard.astro`、一覧 `/post-parent/omoi/`（お題で絞り込み。JavaScript なしでも全件が読める）
+- [x] 親なき後ページ：目次 `#toc`＋章 `#belief` `#voices` `#prepare` `#connect`（`PpChapterHead.astro`）。寄稿は独立（`#column`）。見出しは1段ずつ下げた（見た目は不変を計測で確認）
+- [x] プライバシーポリシー「Ⅵ.『私の想い』への投稿について」（取り下げても写しが残る場合がある旨を明記）
+- [x] フォーム作成スクリプト `scripts/create-watashi-no-omoi-form.gs`（未実行）
+- [x] 運用文書 `docs/operations/watashi-no-omoi-checklist.md`（担当者の一次確認）、`docs/operations/watashi-no-omoi-publishing.md`（掲載・取り下げ）
+- [x] 受付開始（フォーム作成・通知先・`OMOI_FORM_URL`、2026-09-29）
+- [x] 最初の1件を掲載（2026-09-29）。2件目以降は通常の審査で
+- [x] 記録コミット（公開の記録・この HANDOVER）は 2026-09-29 の満席表示の PR で main へ
+
+## 決めた線引き（忘れると事故になる）
+- 投稿は**家族全般**（親・きょうだい・祖父母・その他の家族）。掲載名は**ペンネームか「匿名」のみ**
+- **特定の相手（nest 自身・他事業所・行政・個人）への不満・批判は掲載しない**（spec §6.1）
+- 審査は二段階：一次確認は担当者、最終判断は河原さん。**Claude には原文を渡さない**（台帳の「掲載用本文」列だけ）
+- 掲載後の「掲載しました」メールは送らない（ポリシーでメールの利用目的を限っているため）
+- **取り下げても GitHub の履歴（リポジトリは公開）とウェブ上の保存サービスに写しが残る。履歴は書き換えない**（案3、2026-09-28 河原さん承認）。守りは掲載前の確認
+
+## グレーな判断（事後報告済み・異議なし）
+- 構成見直しで、第3章の段落の並べ替えを取りやめた（「そして」「その仕組みを」の受けが崩れるため。設計書に反映）
+- 最終レビューの軽微な指摘は未対応（2つの計画の軽微な指摘の一覧は作業ログ 2026-09-28 と各最終報告）
+
+## 既知の罠・注意
+- **main へのマージで本番ビルドが始まらないことがある**（2026-09-28 の1回だけ。#64〜#70 は正常、設定も正常）。公開後は main コミットに「Workers Builds」の記録が付き、本番の新ページが開くことを必ず確かめる。付かなければ、ツリー一致（`git rev-parse <merge>^{tree}` と ブランチ最終の `^{tree}`）を確かめて、ダッシュボードの版の「…」→「バージョンをプロモート」
+- **削除した投稿がビルドのキャッシュ（`node_modules/.astro/data-store.json`）に残って表示される**ことがある（コレクションが0件になったときに確認）。取り下げでは `npx astro build --force` と本番での消去確認（手順書に記載）。根本対策は別セッションで進行中
+- dev サーバーは、起動後に追加・削除した投稿ファイルや、スクリプトで書き換えた CSS を拾わないことがある → 再起動
+- `npx playwright test` は `test-results/` を消す。撮影はテストの後
+- ページ内リンクは BaseLayout の JS がなめらかスクロールに置き換える。着地位置を測るなら `reducedMotion: 'reduce'`
+
+## 次タスク（優先度順）
+- A: ビルドキャッシュ対策（別セッション task_059e87e1。2026-09-29 時点で main 未反映＝`package.json` の build は `--force` なし）。取り下げが出る前に
+- ~~B: ページ内リンクのフォーカス・URL~~ → 2026-09-29 公開済み（別セッション）
+- C: 最終レビューの軽微な指摘（目次の読み上げが2重、「↑」の読み上げ、寄稿0件時の目次の説明、使っていない `bg="sand"`、クラス名 `.pp-tax__h3` が h4 に付いている 等）
+
 # HANDOVER — 2026-09-11 新特集「こんな風にお願いするといいよ」その1
 
 > 河原さん発案の常設コーナー。**うまくいった頼み方を、そのときの文面と返ってきたものごと一つずつ棚に並べる**。その1は「図（HTMLが良い）」の一言で、パソコン版 Google ドライブの同期方式の説明が、ボタンで切り替わる一枚のページになった実例。依頼文は河原さんの原文、お手本 HTML は AI 出力を無加工で同梱。**その1〜5 を PR #40〜#43 で公開、告知記事は main へ直接 push（2893a33）。ここで一区切り（2026-09-11）。再開時は D グラフから。候補は docs/ai-tips-kikaku-2026-09-11-onegai-ideas.md（A〜G＋締めの H「重なったら Skill に」）。**

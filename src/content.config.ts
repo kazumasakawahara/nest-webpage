@@ -11,6 +11,8 @@ const news = defineCollection({
     // 研修会＝nest News の「研修会」コーナー（/news/training/）に並び、News 一覧には出ない
     tag: z.enum(['お知らせ', 'イベント', '事業所', 'メディア', '研修会']).default('お知らせ'),
     image: z.string().optional(),
+    // イベントが満席になったら true。一覧の題名の頭と記事ページに「満席」を目立つ形で出す
+    soldOut: z.boolean().default(false),
     draft: z.boolean().default(false),
   }),
 });
