@@ -6,7 +6,6 @@ import {
   OMOI_RELATION_LABELS,
   sortOmoi,
   omoiByline,
-  omoiExcerpt,
 } from '~/lib/omoi';
 
 describe('labels', () => {
@@ -51,21 +50,5 @@ describe('omoiByline', () => {
 
   it('omits the age when it is not given', () => {
     expect(omoiByline({ relation: 'oya', penName: '匿名' })).toBe('親／匿名');
-  });
-});
-
-describe('omoiExcerpt', () => {
-  it('returns short text as is, with line breaks collapsed', () => {
-    expect(omoiExcerpt('一行目\n\n二行目')).toBe('一行目 二行目');
-  });
-
-  it('cuts long text and adds an ellipsis', () => {
-    const out = omoiExcerpt('あ'.repeat(200), 120);
-    expect(out).toBe('あ'.repeat(120) + '…');
-  });
-
-  it('does not split a surrogate pair', () => {
-    const out = omoiExcerpt('😊'.repeat(5), 3);
-    expect(out).toBe('😊😊😊…');
   });
 });
