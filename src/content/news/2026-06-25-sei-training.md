@@ -20,7 +20,7 @@ summary: "2026.6.25(木)　18:30～ウェルとばたにて「現場での関わ
   </figure>
   <figure>
     <img src="/images/news/2026-06-25-training-2.webp" alt="資料を手に聴講する参加者で埋まった会場全体" width="1600" height="1204" loading="lazy" decoding="async" />
-    <figcaption>約21名の支援者が集まった会場</figcaption>
+    <figcaption>21名の支援者が集まった会場</figcaption>
   </figure>
 </div>
 
