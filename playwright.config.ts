@@ -10,6 +10,8 @@ export default defineConfig({
   use: {
     baseURL: process.env.E2E_BASE_URL ?? 'http://localhost:4321',
     trace: 'on-first-retry',
+    // クラウド実行環境など、同梱の Chromium を使いたい時だけ PW_CHROMIUM_PATH で指定する（未設定なら従来どおり）
+    launchOptions: process.env.PW_CHROMIUM_PATH ? { executablePath: process.env.PW_CHROMIUM_PATH } : {},
   },
   webServer: {
     command: 'npm run dev',
