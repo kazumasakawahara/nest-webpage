@@ -352,7 +352,7 @@ export function initApp(root: HTMLElement): void {
       <footer>
         写真も記録も<strong>この端末の中だけ</strong>に保存され、どこにも送られません。「ホーム画面に追加」しておくと、データが消えにくく、アイコンからすぐ開けます。<br />
         めやすは冷凍した日から ${DEFAULT_BESTBY_DAYS} 日を初期値にしています（食品や保存状態で変わります。実際の判断はご自身で）。<br />
-        つくったのは <a href="https://www.nponest.com/ai-tips/">NPO法人nest「教えてAIさん」</a> のAIチームです。
+        使い方は <a href="/downloads/ai-tips/reitouko-torisetsu.html">取扱説明書</a> をどうぞ。つくったのは <a href="https://www.nponest.com/ai-tips/">NPO法人nest「教えてAIさん」</a> のAIチームです。
       </footer>
       <input id="pickCamera" type="file" accept="image/*" capture="environment" hidden />
       <input id="pickLibrary" type="file" accept="image/*" hidden />
