@@ -1,4 +1,4 @@
-// れいとうこチェッカー — 型定義。
+// 冷凍庫チェッカー — 型定義。
 // データはすべて端末内（IndexedDB）に置き、サーバーには送らない（姉妹アプリと同じ約束）。
 
 export type Category = 'meat' | 'fish' | 'veg' | 'rice' | 'dish' | 'other';

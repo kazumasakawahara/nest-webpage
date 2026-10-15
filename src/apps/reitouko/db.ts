@@ -1,4 +1,4 @@
-// れいとうこチェッカー — IndexedDB（端末内のみ。サーバー送信なし）。
+// 冷凍庫チェッカー — IndexedDB（端末内のみ。サーバー送信なし）。
 // モジュール読み込み時にはブラウザ API に触れない（SSR／vitest で import しても安全）。
 import type { Item, LogEntry } from './types';
 
