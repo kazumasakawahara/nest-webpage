@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Git 手引き（nest-webpage）</title>
+<meta name="description" content="Mac と Claude のクラウド環境で nest-webpage を扱う時に必要な git の最小知識。画面の読み方、毎回の型、こう出たらこうする、の対応表。">
+<style>
+  :root {
+    --bg: #faf8f4; --panel: #ffffff; --ink: #1f2a33; --muted: #5d6b78; --line: #e3ddd3;
+    --accent: #2a6f8f; --accent-soft: #e3f0f6; --ok: #2f7d4f; --ok-soft: #e6f3ea;
+    --warn: #a2651a; --warn-soft: #fbefdd; --bad: #a83a3a; --bad-soft: #f9e5e5;
+    --code-bg: #f1ede6; --shadow: 0 1px 2px rgba(0,0,0,.05);
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --bg: #15191d; --panel: #1d2329; --ink: #e8e6e1; --muted: #a6adb4; --line: #323a42;
+    --accent: #7fb6d1; --accent-soft: #1e3340; --ok: #7fc69a; --ok-soft: #1d3326;
+    --warn: #e0b06a; --warn-soft: #3a2d18; --bad: #e08a8a; --bad-soft: #3d2222;
+    --code-bg: #262d34; --shadow: none;
+  } }
+  :root[data-theme="dark"] {
+    --bg: #15191d; --panel: #1d2329; --ink: #e8e6e1; --muted: #a6adb4; --line: #323a42;
+    --accent: #7fb6d1; --accent-soft: #1e3340; --ok: #7fc69a; --ok-soft: #1d3326;
+    --warn: #e0b06a; --warn-soft: #3a2d18; --bad: #e08a8a; --bad-soft: #3d2222;
+    --code-bg: #262d34; --shadow: none;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif; line-height: 1.75; font-size: 16px; }
+  main { max-width: 860px; margin: 0 auto; padding: 32px 16px 80px; }
+  header { margin-bottom: 28px; }
+  h1 { font-size: 1.75rem; margin: 0 0 6px; letter-spacing: .01em; }
+  .lead { color: var(--muted); margin: 0; }
+  nav.toc { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; margin: 20px 0 32px; box-shadow: var(--shadow); }
+  nav.toc ol { margin: 0; padding-left: 1.4em; columns: 2; column-gap: 24px; }
+  nav.toc li { break-inside: avoid; }
+  nav.toc a { color: var(--accent); text-decoration: none; }
+  nav.toc a:hover { text-decoration: underline; }
+  section { margin: 0 0 40px; }
+  h2 { font-size: 1.3rem; margin: 0 0 12px; padding-bottom: 6px; border-bottom: 2px solid var(--accent); }
+  h3 { font-size: 1.05rem; margin: 22px 0 8px; }
+  p { margin: 0 0 12px; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: .92em; background: var(--code-bg); padding: 1px 6px; border-radius: 5px; }
+  pre { background: var(--code-bg); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; overflow-x: auto; margin: 10px 0 14px; }
+  pre code { background: none; padding: 0; font-size: .9rem; }
+  table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin: 10px 0 14px; font-size: .95rem; }
+  th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+  th { background: var(--accent-soft); font-weight: 600; }
+  tr:last-child td { border-bottom: 0; }
+  .note { border-left: 4px solid var(--accent); background: var(--accent-soft); padding: 10px 14px; border-radius: 0 10px 10px 0; margin: 12px 0; }
+  .ok   { border-left-color: var(--ok);   background: var(--ok-soft); }
+  .warn { border-left-color: var(--warn); background: var(--warn-soft); }
+  .bad  { border-left-color: var(--bad);  background: var(--bad-soft); }
+  .tag { display: inline-block; font-size: .78rem; padding: 1px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 600; margin-right: 6px; vertical-align: middle; }
+  .tag.ok { background: var(--ok-soft); color: var(--ok); }
+  .tag.warn { background: var(--warn-soft); color: var(--warn); }
+  .tag.bad { background: var(--bad-soft); color: var(--bad); }
+  /* 3つの場所の図 */
+  .map { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 8px; margin: 14px 0 18px; }
+  .box { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; box-shadow: var(--shadow); min-height: 120px; }
+  .box b { display: block; font-size: 1.02rem; margin-bottom: 4px; }
+  .box small { color: var(--muted); display: block; line-height: 1.5; }
+  .box.hub { border-color: var(--accent); background: var(--accent-soft); }
+  .arrow { text-align: center; color: var(--muted); font-size: .8rem; line-height: 1.3; white-space: nowrap; }
+  .arrow span { display: block; font-size: 1.3rem; color: var(--accent); }
+  @media (max-width: 640px) {
+    .map { grid-template-columns: 1fr; }
+    .arrow span { transform: rotate(90deg); }
+    nav.toc ol { columns: 1; }
+  }
+  .prompt { font-family: ui-monospace, Menlo, monospace; background: #1b1f24; color: #d9dde2; padding: 12px 16px; border-radius: 10px; font-size: .9rem; margin: 10px 0; overflow-x: auto; }
+  .prompt .b { color: #9fd0e6; } .prompt .n { color: #e7c07a; } .prompt .g { color: #9fd49f; }
+  .legend { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; margin: 8px 0 14px; font-size: .95rem; }
+  .legend code { white-space: nowrap; }
+  footer { color: var(--muted); font-size: .85rem; border-top: 1px solid var(--line); padding-top: 14px; margin-top: 40px; }
+  @media print { body { background: #fff; } nav.toc { display: none; } section { break-inside: avoid; } }
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>Git 手引き（nest-webpage）</h1>
+  <p class="lead">Mac と Claude のクラウド環境で同じリポジトリを扱う時に、これだけ分かっていれば困らない、という最小の知識。2026-10-15 の作業で実際に出た画面をもとに書いています。</p>
+</header>
+
+<nav class="toc" aria-label="目次">
+  <ol>
+    <li><a href="#places">3つの場所と、つなぐ2つの動き</a></li>
+    <li><a href="#read">画面の読み方</a></li>
+    <li><a href="#routine">毎回の型（これだけ守る）</a></li>
+    <li><a href="#cases">こう出たら、こうする</a></li>
+    <li><a href="#dict">コマンド辞典（今回使ったもの）</a></li>
+    <li><a href="#claude">Claude に頼む時の言い方</a></li>
+    <li><a href="#never">やらないこと</a></li>
+  </ol>
+</nav>
+
+<section id="places">
+  <h2>1. 3つの場所と、つなぐ2つの動き</h2>
+  <p>ファイルの置き場所は3つあります。つながっているのは <b>GitHub を経由する経路だけ</b> で、Mac とクラウドが直接やり取りすることはありません。</p>
+  <div class="map">
+    <div class="box"><b>Mac（手元）</b><small>~/projects/nest-webpage<br>あなたが編集する場所。Claude デスクトップアプリのセッションもここを触る。</small></div>
+    <div class="arrow">push →<span>⇄</span>← pull</div>
+    <div class="box hub"><b>GitHub（中継点）</b><small>kazumasakawahara/nest-webpage<br>ここに載って初めて「確定」。main へのマージで本番サイトが更新される。</small></div>
+    <div class="arrow">pull →<span>⇄</span>← push</div>
+    <div class="box"><b>クラウド（Claude）</b><small>使い捨てのコンテナ。セッション開始時に GitHub から複製し、終了後しばらくで消える。</small></div>
+  </div>
+  <div class="note warn"><b>いちばん大事なこと。</b> どちらの場所でも、<b>commit と push をしていない変更は、その場所にしか存在しません。</b> クラウドはコンテナごと消え、Mac も作業ディレクトリの整理で消えます。「GitHub に載ったか」が、安全かどうかの境目です。</div>
+  <h3>main と作業ブランチ</h3>
+  <p><code>main</code> は本番サイトの元になる本線です。作業は別名のブランチ（例 <code>topics-quality-gate</code>）で行い、GitHub の <b>PR（プルリクエスト）</b> でレビューと CI を通してから main に合流（マージ）します。マージ済みのブランチは消してかまいません。</p>
+</section>
+
+<section id="read">
+  <h2>2. 画面の読み方</h2>
+  <p>ターミナルのプロンプトに、知るべきことがほぼ全部出ています。</p>
+  <div class="prompt">v24.13.0 ~/projects/nest-webpage <span class="b">git:(sudachi-training-pamphlets)</span> <span class="n">8 • +651 -0</span> (0.8s)</div>
+  <div class="legend">
+    <code>git:(…)</code><span><b>いま居るブランチ。</b> main に居るか、作業ブランチに居るかで、やってよいことが変わる。</span>
+    <code>8 • +651 -0</code><span><b>未コミットの変更。</b> 8ファイル、651行追加。これがある間は、ブランチの切り替えや pull の前に commit か stash が要る。</span>
+    <code>± 0</code><span><b>きれいな状態。</b> 未コミットの変更なし。安心して切り替えや pull ができる。</span>
+  </div>
+  <h3>git status の3つの言い方</h3>
+  <table>
+    <tr><th>表示</th><th>意味</th><th>どうする</th></tr>
+    <tr><td><code>up to date with 'origin/main'</code></td><td>GitHub と同じ</td><td>何もしなくてよい</td></tr>
+    <tr><td><code>behind 'origin/main' by N commits</code></td><td>GitHub の方が新しい</td><td><code>git pull --ff-only origin main</code></td></tr>
+    <tr><td><code>ahead of 'origin/main' by N commits</code></td><td>手元の方が新しい（未送信）</td><td><code>git push</code></td></tr>
+    <tr><td><code>have diverged</code></td><td>両方に別々の変更がある</td><td>4章「分岐しています」を見る</td></tr>
+  </table>
+</section>
+
+<section id="routine">
+  <h2>3. 毎回の型（これだけ守る）</h2>
+  <h3><span class="tag ok">作業前</span> main を最新にしてから、作業ブランチを切る</h3>
+<pre><code>git switch main
+git pull --ff-only origin main
+git switch -c 作業名   # 例: git switch -c news-2026-10-20</code></pre>
+  <h3><span class="tag ok">作業後</span> 必ず commit と push まで。ここで終わらせない</h3>
+<pre><code>git add -A
+git commit -m "何をしたか（日本語でよい）"
+git push -u origin 作業名</code></pre>
+  <p>push すると GitHub が「Create a pull request for … by visiting:」と URL を出します。その URL を開くか、Claude に「PR を作ってマージまで」と頼めば、main への合流に進めます。</p>
+  <h3><span class="tag ok">マージ後</span> main に戻って最新を取り込み、終わったブランチを消す</h3>
+<pre><code>git switch main
+git pull --ff-only origin main
+git branch -d 作業名</code></pre>
+  <div class="note ok">この3ブロックで日常の9割は済みます。<code>--ff-only</code> は「素直に進められる時だけ進む」という安全弁で、分岐していれば止まって教えてくれます。</div>
+</section>
+
+<section id="cases">
+  <h2>4. こう出たら、こうする</h2>
+
+  <h3><span class="tag warn">止まった</span> Need to specify how to reconcile divergent branches.</h3>
+  <p>「分岐しているので、合わせ方を指定して」という意味。壊れてはいません。<b>まず、自分がどのブランチに居るかを見ます。</b> 作業ブランチに居たまま <code>git pull origin main</code> をすると、こうなります。</p>
+<pre><code># main を最新にしたいだけなら、main に移ってから
+git switch main
+git pull --ff-only origin main</code></pre>
+  <p>一度だけ次を実行しておくと、以後は安全な進め方だけで pull するようになります。</p>
+<pre><code>git config --global pull.ff only</code></pre>
+
+  <h3><span class="tag warn">止まった</span> Your local changes … would be overwritten by checkout.</h3>
+  <p>未コミットの変更があって、切り替え先のブランチと同じファイルが違うため、切り替えられません。変更を退避してから切り替えます。</p>
+<pre><code>git stash push -u -m "退避の名前"
+git switch main
+git pull --ff-only origin main</code></pre>
+  <p>退避したものの扱いは、次の項目へ。</p>
+
+  <h3><span class="tag warn">確認</span> 退避（stash）した中身を、戻すか、捨てるか</h3>
+<pre><code>git stash list                        # 退避の一覧
+git stash show --stat --include-untracked   # 新規ファイルも含めた一覧
+git stash show -p                     # 変更の中身</code></pre>
+  <table>
+    <tr><th>中身が</th><th>やること</th></tr>
+    <tr><td>GitHub（main）にまだ無い作業</td><td>元のブランチに戻り <code>git stash pop</code> で復元 → commit → push</td></tr>
+    <tr><td>すでに main に入っている作業の重複</td><td><code>git stash drop</code> で捨てる（取り消せないので、中身を見てから）</td></tr>
+    <tr><td>判断がつかない</td><td>そのまま残しておき、Claude に <code>git stash show -p</code> の出力を貼って判定を頼む</td></tr>
+  </table>
+  <div class="note"><b>今回の実例。</b> 退避した中身は「ブランチ上で未コミットのまま1日置かれていた6ファイル」で、GitHub のどこにも無い作業でした。復元してブランチ名を付け直し、push して PR #103 でマージしました。</div>
+
+  <h3><span class="tag warn">止まった</span> Not possible to fast-forward, aborting.</h3>
+  <p><code>--ff-only</code> の安全弁が働いた状態。作業ブランチに居るのに main を取り込もうとした時に出ます。main に移ってから pull するか、作業ブランチに main を入れたいなら <code>git merge main</code> を使います。</p>
+
+  <h3><span class="tag warn">衝突</span> CONFLICT (content): Merge conflict in …</h3>
+  <p>同じファイルの同じ場所を両側で変えた時に出ます。<b>タスク.md と 作業ログ.md は両側で末尾に追記するので、衝突しやすい</b>ファイルです。自分で直すなら、ファイル内の <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> から <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> までを読んで両方を残すか片方を選び、印を消して <code>git add</code> と <code>git commit</code>。迷ったら、その状態のまま Claude に「衝突を解消して」と頼めば、クラウド側で引き受けられます。</p>
+
+  <h3><span class="tag ok">正常</span> Fast-forward / Already up to date / Deleted branch …</h3>
+  <p>すべて正常です。<code>Fast-forward</code> は素直に進んだ印、<code>Deleted branch</code> はマージ済みブランチを安全に消せた印です。</p>
+
+  <h3><span class="tag ok">正常</span> no changes added to commit</h3>
+  <p><code>git stash pop</code> の直後などに出ます。変更は作業ディレクトリに戻っていて、まだ <code>git add</code> していないだけ。続けて <code>git add -A</code> すればよい状態です。</p>
+</section>
+
+<section id="dict">
+  <h2>5. コマンド辞典（今回使ったもの）</h2>
+  <table>
+    <tr><th>コマンド</th><th>何をするか</th></tr>
+    <tr><td><code>git status</code></td><td>いまの状態（ブランチ、未コミット、GitHub との差）を表示。迷ったらまずこれ。</td></tr>
+    <tr><td><code>git switch 名前</code></td><td>ブランチを切り替える。<code>-c</code> を付けると新しく作って切り替える。</td></tr>
+    <tr><td><code>git fetch origin</code></td><td>GitHub の最新状態を「知るだけ」。手元のファイルは変えない。</td></tr>
+    <tr><td><code>git pull --ff-only origin main</code></td><td>GitHub の main を手元に取り込む。素直に進めない時は止まる。</td></tr>
+    <tr><td><code>git add -A</code></td><td>すべての変更（新規ファイル含む）を、次の commit に入れる準備をする。</td></tr>
+    <tr><td><code>git commit -m "…"</code></td><td>準備した変更をひとまとまりとして記録する。</td></tr>
+    <tr><td><code>git push -u origin 名前</code></td><td>ブランチを GitHub に送る。<code>-u</code> は次回から <code>git push</code> だけで済むようにする印。</td></tr>
+    <tr><td><code>git branch -m 新しい名前</code></td><td>いま居るブランチの名前を変える。</td></tr>
+    <tr><td><code>git branch -d 名前</code></td><td>マージ済みのブランチを消す。未マージなら拒否される（安全）。</td></tr>
+    <tr><td><code>git stash push -u -m "…"</code></td><td>未コミットの変更を、新規ファイルごと名前を付けて退避する。</td></tr>
+    <tr><td><code>git stash list / show / pop / drop</code></td><td>退避の一覧 / 中身 / 戻す / 捨てる。</td></tr>
+    <tr><td><code>git log --oneline -5</code></td><td>直近5件の commit を1行ずつ見る。</td></tr>
+    <tr><td><code>git merge main</code></td><td>作業ブランチに main の変更を入れる（作業ブランチ上で実行）。</td></tr>
+  </table>
+</section>
+
+<section id="claude">
+  <h2>6. Claude に頼む時の言い方</h2>
+  <p>クラウドで作ったものは、Claude が commit と push をしない限り消えます。依頼の終わりに次の一文を付けると、取りこぼしが無くなります。</p>
+  <div class="note"><b>「終わったらブランチにコミットして push まで。PR の作成とマージは私が指示する」</b></div>
+  <p>Mac 上のセッション（デスクトップアプリ）でも同じです。セッションを閉じる前に「commit と push まで済ませて、ブランチ名を教えて」と言う習慣にすると、今回のような「1日置かれた未コミット」が起きません。</p>
+  <h3>場面ごとの頼み方</h3>
+  <table>
+    <tr><th>場面</th><th>言い方</th></tr>
+    <tr><td>main に入れたい</td><td>「このブランチの PR を作ってマージまで進めて」</td></tr>
+    <tr><td>記録だけの小さな変更</td><td>「main へ直接 push して」（毎回その都度）</td></tr>
+    <tr><td>衝突が出た</td><td>「衝突を解消して」＋画面のスクショ</td></tr>
+    <tr><td>退避したものの判定</td><td>「git stash show -p の結果です。戻すべきか判定して」</td></tr>
+    <tr><td>Mac に取り込む手順が知りたい</td><td>「手元に取り込むコマンドを教えて」</td></tr>
+  </table>
+</section>
+
+<section id="never">
+  <h2>7. やらないこと</h2>
+  <table>
+    <tr><th>コマンド</th><th>理由</th></tr>
+    <tr><td><code>git push --force</code></td><td>GitHub の履歴を書き換える。他の場所（クラウドや別の Mac）の状態と食い違い、復旧が難しくなる。</td></tr>
+    <tr><td><code>git reset --hard</code></td><td>未コミットの変更を即座に消す。取り消せない。</td></tr>
+    <tr><td><code>git checkout -- ファイル</code> / <code>git restore ファイル</code></td><td>そのファイルの未コミットの変更を消す。意図して使う時以外は避ける。</td></tr>
+    <tr><td><code>git stash drop</code>（中身を見ずに）</td><td>退避したものを捨てる。見てからでないと、今回のように未送信の作業を失う。</td></tr>
+    <tr><td>main 上で直接編集して push</td><td>PR と CI を通さず本番に出る。記録ファイルの追記のように影響が無いものだけ、その都度判断する。</td></tr>
+  </table>
+  <div class="note bad">エラーが出た時に、エラー文の中の「hint:」をそのまま実行しないこと。hint は一般論で、いまの状況に合っているとは限りません。まず 4 章を見て、無ければスクショを Claude に。</div>
+</section>
+
+<footer>nest-webpage 作業用の手引き。更新する時は <code>docs/git-tebiki.html</code> を編集し、デスクトップのコピーを取り直してください。</footer>
+</main>
+</body>
+</html>
