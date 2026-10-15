@@ -1,4 +1,4 @@
-// れいとうこチェッカー — 純粋ロジック（ブラウザ API に触れない。vitest で検証）。
+// 冷凍庫チェッカー — 純粋ロジック（ブラウザ API に触れない。vitest で検証）。
 import type { Backup, Category, Item, LogEntry } from './types';
 
 export const CATEGORIES: { id: Category; label: string; emoji: string }[] = [

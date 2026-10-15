@@ -1,4 +1,4 @@
-// れいとうこチェッカー — 写真の縮小と、表示用 URL の管理（ブラウザ専用）。
+// 冷凍庫チェッカー — 写真の縮小と、表示用 URL の管理（ブラウザ専用）。
 // 写真は端末の IndexedDB にだけ置く。アップロードも解析もしない。
 import { deletePhotoBlob, getPhoto, putPhoto } from './db';
 

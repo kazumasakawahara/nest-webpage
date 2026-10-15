@@ -1,4 +1,4 @@
-// れいとうこチェッカー — 画面（DOM）。状態をひとつ持ち、変わるたびに描き直す素朴な作り。
+// 冷凍庫チェッカー — 画面（DOM）。状態をひとつ持ち、変わるたびに描き直す素朴な作り。
 import {
   CATEGORIES,
   DEFAULT_BESTBY_DAYS,
@@ -121,7 +121,7 @@ export function initApp(root: HTMLElement): void {
     if (s.over) parts.push(`<span class="sum-over">めやす超え ${s.over}</span>`);
     return `
       <header class="top">
-        <h1>❄️ れいとうこチェッカー</h1>
+        <h1>❄️ 冷凍庫チェッカー</h1>
         <p class="summary" role="status">${parts.join('　')}</p>
       </header>`;
   }

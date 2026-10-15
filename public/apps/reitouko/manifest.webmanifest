@@ -1,6 +1,6 @@
 {
-  "name": "れいとうこチェッカー",
-  "short_name": "れいとうこ",
+  "name": "冷凍庫チェッカー",
+  "short_name": "冷凍庫",
   "lang": "ja",
   "dir": "ltr",
   "start_url": "/apps/reitouko/",

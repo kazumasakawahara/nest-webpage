@@ -1,4 +1,4 @@
-/* れいとうこチェッカー Service Worker
+/* 冷凍庫チェッカー Service Worker
  *
  * Strategy (scope: /apps/reitouko/ only — the rest of the site is untouched):
  *  - Precache the app shell (navigation HTML), manifest and icons.
