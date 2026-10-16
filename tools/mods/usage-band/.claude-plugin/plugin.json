@@ -1,0 +1,9 @@
+{
+  "name": "usage-band",
+  "version": "0.1.0",
+  "description": "Band above the prompt: mood face, session cost, 5h/7d rate-limit bars and the context-window bar",
+  "types": "./types/index.d.ts",
+  "author": {
+    "name": "nest-webpage"
+  }
+}
