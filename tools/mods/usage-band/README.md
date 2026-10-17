@@ -16,18 +16,36 @@
 - `/usage-band` で表示／非表示を切り替え。
 - 帯はターミナルとデスクトップアプリの画面に出ます（アンケート表示中は譲ります）。
 
-## Mac での使い方
+## インストール（クラウドセッション・デスクトップアプリ・ターミナル共通）
 
-1. このフォルダを Mac の任意の場所に置く（例: `~/claude-mods/usage-band`）。
-   リポジトリを clone してあるなら、そのパスをそのまま使えます。
-2. `~/.claude/settings.json` の `env` に次を足す（デスクトップアプリ起動のセッションにも効く方式）:
+このリポジトリ直下の `.claude-plugin/marketplace.json` が marketplace になっているので、
+一行で入ります。ターミナルのセッションのプロンプトで:
 
-   ```json
-   { "env": { "CLAUDE_CODE_PLUGIN_DIRS": "~/claude-mods/usage-band" } }
-   ```
+```
+/plugin install usage-band --marketplace kazumasakawahara/nest-webpage
+```
 
-   ターミナルから一回だけ試すなら `claude --plugin-dir ~/claude-mods/usage-band` でも可。
-3. Claude Code を起動し直す。
+続けて `y`（marketplace の追加）→ スコープ（user を推奨）を選ぶと、そのセッションから
+帯が出ます。シェルからなら `claude plugin install usage-band --marketplace kazumasakawahara/nest-webpage`。
+
+デスクトップアプリでは `/plugin` が使えないので、プロンプト横の「+」→ Plugins →
+Add marketplace に `kazumasakawahara/nest-webpage` → Add plugin で usage-band を選びます。
+
+クラウドセッション（claude.ai/code）で毎回使うには、環境のセットアップスクリプトに
+`claude plugin marketplace add kazumasakawahara/nest-webpage && claude plugin install usage-band@nest-webpage`
+を入れます（private リポジトリなので、GitHub 連携が有効な環境で動きます）。
+
+CLI の statusLine（シェルスクリプト方式）を既に使っている場合、CLI にこの mod を入れると
+帯と statusLine の二重表示になるので、CLI には入れず、クラウドとアプリだけで使うのが
+おすすめです。
+
+### 開発中にフォルダから直接読む場合
+
+```json
+{ "env": { "CLAUDE_CODE_PLUGIN_DIRS": "~/path/to/nest-webpage/tools/mods/usage-band" } }
+```
+
+を `~/.claude/settings.json` に置くか、`claude --plugin-dir <フォルダ>` で起動します。
 
 ## 開発
 
