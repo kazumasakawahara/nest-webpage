@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 500" width="640" height="500" role="img" aria-labelledby="t1 d1">
+  <title id="t1">生命保険信託の仕組み</title>
+  <desc id="d1">親が保険会社と生命保険契約を結び、死亡保険金の受取人を信託銀行にする。親が亡くなると保険会社が信託銀行に保険金を支払い、信託銀行が決められた方法でお子さんに少しずつお金を届ける。指図権者（きょうだいや後見人）は、入院費などの急な出費があったとき領収書を添えて信託銀行に請求する。</desc>
+  <defs>
+    <style>
+      .t { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; fill: #2a2620; }
+      .s { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; fill: #6b5f52; }
+      .box { fill: #ffffff; stroke: #6b4a2f; stroke-width: 2.5; }
+      .ln { fill: none; stroke: #6b4a2f; stroke-width: 2.5; }
+    </style>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#6b4a2f"/>
+    </marker>
+  </defs>
+  <rect width="640" height="500" rx="16" fill="#faf6ef"/>
+
+  <text x="320" y="30" text-anchor="middle" class="t" font-size="19">保険金に、配達係をつける</text>
+
+  <!-- ② 信託契約：親→信託銀行（上を迂回） -->
+  <path d="M105 92 V62 H535 V90" class="ln" stroke-dasharray="6 5" marker-end="url(#ar)"/>
+  <text x="320" y="56" text-anchor="middle" class="s" font-size="12">②「このように配ってください」と信託契約</text>
+
+  <!-- 上段の3つの箱 y=94..172 -->
+  <g transform="translate(30 94)">
+    <rect width="150" height="78" rx="12" class="box"/>
+    <text x="75" y="30" text-anchor="middle" class="t" font-size="17">親</text>
+    <text x="75" y="54" text-anchor="middle" class="s" font-size="12">生命保険の</text>
+    <text x="75" y="70" text-anchor="middle" class="s" font-size="12">契約者兼被保険者</text>
+  </g>
+  <g transform="translate(245 94)">
+    <rect width="150" height="78" rx="12" class="box"/>
+    <text x="75" y="30" text-anchor="middle" class="t" font-size="17">保険会社</text>
+    <text x="75" y="54" text-anchor="middle" class="s" font-size="12">親が亡くなったら</text>
+    <text x="75" y="70" text-anchor="middle" class="s" font-size="12">保険金を払う</text>
+  </g>
+  <g transform="translate(460 94)">
+    <rect width="150" height="78" rx="12" class="box" fill="#fff4e0"/>
+    <text x="75" y="30" text-anchor="middle" class="t" font-size="17">信託銀行</text>
+    <text x="75" y="54" text-anchor="middle" class="s" font-size="12">保険金を受け取り、</text>
+    <text x="75" y="70" text-anchor="middle" class="s" font-size="12">預かって配る「配達係」</text>
+  </g>
+
+  <!-- ① ③ -->
+  <line x1="182" y1="133" x2="242" y2="133" class="ln" marker-end="url(#ar)"/>
+  <text x="212" y="124" text-anchor="middle" class="s" font-size="11">①保険契約</text>
+  <line x1="397" y1="133" x2="457" y2="133" class="ln" marker-end="url(#ar)"/>
+  <text x="427" y="124" text-anchor="middle" class="s" font-size="11">③保険金</text>
+
+  <!-- ④ 信託銀行→お子さん（右端を下へ。ラベルは線の右側） -->
+  <line x1="560" y1="174" x2="560" y2="332" class="ln" marker-end="url(#ar)"/>
+  <g fill="#c9a44a" stroke="#8a6a1f" stroke-width="1.5">
+    <circle cx="580" cy="215" r="7"/>
+    <circle cx="580" cy="245" r="7"/>
+    <circle cx="580" cy="275" r="7"/>
+  </g>
+  <text x="548" y="300" text-anchor="end" class="s" font-size="12">④決めたとおりに</text>
+  <text x="548" y="317" text-anchor="end" class="s" font-size="12">毎月届ける</text>
+
+  <!-- ⑤ 指図権者→信託銀行（左の箱から上へ、信託銀行の左端へ） -->
+  <path d="M150 336 V215 H457 L490 175" class="ln" stroke-dasharray="6 5" marker-end="url(#ar)"/>
+  <text x="160" y="200" text-anchor="start" class="s" font-size="12">⑤「入院費がかかりました」と領収書を添えて請求</text>
+  <text x="160" y="236" text-anchor="start" class="s" font-size="11">（随時交付の指図。頼めるのは本人と指図権者だけ）</text>
+
+  <!-- 下段 y=340..436 -->
+  <g transform="translate(40 340)">
+    <rect width="220" height="96" rx="12" class="box" stroke-dasharray="6 4"/>
+    <text x="110" y="32" text-anchor="middle" class="t" font-size="16">指図権者（手伝う人）</text>
+    <text x="110" y="58" text-anchor="middle" class="s" font-size="12">きょうだい・後見人・支援者など。</text>
+    <text x="110" y="76" text-anchor="middle" class="s" font-size="12">親が生前に決めておく。2人まで</text>
+  </g>
+  <g transform="translate(430 340)">
+    <rect width="180" height="96" rx="12" class="box" fill="#e8f1e0"/>
+    <text x="90" y="32" text-anchor="middle" class="t" font-size="17">お子さん（受益者）</text>
+    <text x="90" y="58" text-anchor="middle" class="s" font-size="12">受け取ったお金は</text>
+    <text x="90" y="76" text-anchor="middle" class="s" font-size="12">自分のもの</text>
+  </g>
+  <line x1="262" y1="388" x2="428" y2="388" stroke="#6b4a2f" stroke-width="2" stroke-dasharray="4 4"/>
+  <text x="345" y="380" text-anchor="middle" class="s" font-size="11">そばで手伝う</text>
+
+  <text x="320" y="474" text-anchor="middle" class="s" font-size="13">元手は死亡保険金。親が亡くなって初めてタンクに水が入る。</text>
+</svg>

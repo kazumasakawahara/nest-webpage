@@ -170,6 +170,48 @@ const fmtDate = (d: Date) =>
   }
   .ds-post__body :global(a:hover) { color: var(--color-terra-500); }
 
+  /* 図版と表（コラムでも罫線入りの表を使えるように） */
+  .ds-post__body :global(figure) {
+    margin: var(--space-5) 0 var(--space-6);
+  }
+  .ds-post__body :global(figure img) {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+  .ds-post__body :global(figcaption) {
+    margin-top: var(--space-2);
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--color-ink-mute);
+    text-align: center;
+  }
+  .ds-post__body :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--space-5) 0 var(--space-6);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .ds-post__body :global(th),
+  .ds-post__body :global(td) {
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--color-line);
+    text-align: left;
+    vertical-align: top;
+  }
+  .ds-post__body :global(th) {
+    background: var(--color-cream);
+    color: var(--color-green-900);
+    font-weight: 600;
+  }
+  @media (max-width: 640px) {
+    .ds-post__body :global(table) { font-size: 13px; }
+    .ds-post__body :global(th),
+    .ds-post__body :global(td) { padding: var(--space-1) var(--space-2); }
+  }
+
   /* 余談（本筋から外れる囲み） */
   .ds-post__body :global(.ds-aside) {
     margin: var(--space-5) 0 var(--space-6);

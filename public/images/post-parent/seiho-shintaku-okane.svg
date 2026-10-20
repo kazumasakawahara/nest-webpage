@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 410" width="640" height="410" role="img" aria-labelledby="t3 d3">
+  <title id="t3">保険金1,000万円を20年かけて届けた場合のお金の流れ（例）</title>
+  <desc id="d3">保険金1,000万円のうち、信託銀行の手数料は受け取り時に2.2パーセントの22万円、毎年2万2千円が20年で44万円、合計およそ66万円。お子さんに届くのは残りのおよそ934万円。相続税は、お子さんが相続人で法定相続人が1人なら500万円まで非課税で、残り500万円は他の遺産と合わせて計算する。</desc>
+  <defs>
+    <style>
+      .t { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; fill: #2a2620; }
+      .s { font-family: 'Zen Kurenaido', 'Shippori Mincho B1', serif; fill: #6b5f52; }
+    </style>
+  </defs>
+  <rect width="640" height="410" rx="16" fill="#faf6ef"/>
+
+  <text x="320" y="36" text-anchor="middle" class="t" font-size="18">たとえば保険金1,000万円を、20年かけて届けると</text>
+
+  <!-- 横棒 -->
+  <g transform="translate(40 62)">
+    <rect x="0" y="0" width="560" height="54" rx="8" fill="#e8f1e0" stroke="#4f7a3a" stroke-width="2"/>
+    <rect x="523" y="0" width="37" height="54" rx="8" fill="#f4c88a" stroke="#b85f3d" stroke-width="2"/>
+    <text x="262" y="33" text-anchor="middle" class="t" font-size="16">お子さんに届く　約934万円</text>
+    <text x="541" y="72" text-anchor="middle" class="s" font-size="11">手数料</text>
+    <text x="541" y="86" text-anchor="middle" class="s" font-size="11">約66万円</text>
+  </g>
+
+  <!-- 手数料の内訳 -->
+  <g transform="translate(40 176)">
+    <text x="0" y="0" class="t" font-size="15">手数料の中身（プルデンシャル信託・税込の例）</text>
+    <text x="0" y="26" class="s" font-size="13">・契約したとき　5,500円</text>
+    <text x="0" y="48" class="s" font-size="13">・保険金を受け取ったとき　保険金の2.2％ ＝ 22万円</text>
+    <text x="0" y="70" class="s" font-size="13">・預かっている間　毎年2万2千円 × 20年 ＝ 44万円</text>
+    <text x="0" y="98" class="s" font-size="12" fill="#b85f3d">みずほ信託（第一生命）は契約時5万5千円、受取時2.2％、毎年2万2千円に</text>
+    <text x="0" y="115" class="s" font-size="12" fill="#b85f3d">運用報酬が加わる。会社によって少し違う。</text>
+  </g>
+
+  <!-- 税金 -->
+  <g transform="translate(40 322)">
+    <rect x="0" y="-22" width="560" height="88" rx="10" fill="#ffffff" stroke="#6b4a2f" stroke-width="1.5" stroke-dasharray="6 4"/>
+    <text x="16" y="4" class="t" font-size="15">相続税は、ふつうの保険金と同じ扱い</text>
+    <text x="16" y="28" class="s" font-size="13">お子さんが相続人なら「500万円 × 法定相続人の数」まで非課税。</text>
+    <text x="16" y="48" class="s" font-size="13">相続人がお子さん1人なら500万円までは税金なし。残りは他の遺産と合わせて計算。</text>
+  </g>
+</svg>
