@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>冷凍庫チェッカー 取扱説明書</title>
+<meta name="description" content="冷凍庫チェッカーの使い方。入れるとき撮って登録、出すとき「出庫」。ホーム画面への追加、めやすの色の意味、使いきりからの再入庫、バックアップ、こまったときの答え。">
+<style>
+  :root{
+    --cream:#faf6ef;--ink:#333;--ink-soft:#5f5847;--line:#e6ddca;--card:#fff;
+    --ice:#3a6ea5;--ice-dark:#27507a;--ice-pale:#e8f0f9;--green:#4a8c3f;--green-pale:#eef4ea;
+    --terra:#d97757;--terra-dark:#b4552d;--terra-pale:#fbeae3;--amber:#b7791f;--amber-pale:#fdf3dc;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--cream:#23211c;--ink:#f0ece2;--ink-soft:#b8b09c;--line:#454035;--card:#2e2b24;
+      --ice:#6b9bd2;--ice-dark:#a9c8ea;--ice-pale:#263446;--green:#6cb45e;--green-pale:#2c3a28;
+      --terra:#e08a6c;--terra-dark:#f0a98f;--terra-pale:#46302a;--amber:#e2a94a;--amber-pale:#443620}
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--cream);color:var(--ink);font-family:system-ui,-apple-system,'Hiragino Kaku Gothic ProN','Yu Gothic','Meiryo',sans-serif;line-height:1.9;font-size:17px;-webkit-text-size-adjust:100%}
+  .page{max-width:720px;margin:0 auto;padding:24px 18px 64px}
+  header.top{border-bottom:2px solid var(--line);padding-bottom:16px;margin-bottom:20px}
+  .eyebrow{font-size:13px;letter-spacing:.12em;color:var(--terra-dark);font-weight:700}
+  h1{font-size:28px;line-height:1.4;margin:6px 0 8px;color:var(--ice-dark)}
+  .lead{margin:0;color:var(--ink-soft);font-size:15px}
+  nav.toc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin:0 0 28px}
+  nav.toc strong{display:block;margin-bottom:6px}
+  nav.toc ol{margin:0;padding-left:1.4em;columns:2;column-gap:24px}
+  nav.toc li{break-inside:avoid;padding:2px 0}
+  nav.toc a{color:var(--ice-dark);text-decoration:none}
+  nav.toc a:hover{text-decoration:underline}
+  section{margin:0 0 36px;scroll-margin-top:16px;break-inside:avoid-page}
+  h2{font-size:22px;margin:0 0 12px;padding-left:12px;border-left:6px solid var(--ice);line-height:1.4}
+  h3{font-size:18px;margin:20px 0 8px;color:var(--ice-dark)}
+  p{margin:0 0 12px}
+  ul,ol{margin:0 0 12px;padding-left:1.5em}
+  li{margin:4px 0}
+  .steps{counter-reset:s;list-style:none;padding:0}
+  .steps li{counter-increment:s;position:relative;padding:10px 12px 10px 54px;margin:8px 0;background:var(--card);border:1px solid var(--line);border-radius:12px}
+  .steps li::before{content:counter(s);position:absolute;left:12px;top:10px;width:32px;height:32px;border-radius:50%;background:var(--ice);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+  .btn{display:inline-block;padding:1px 10px;border-radius:999px;font-weight:700;font-size:.92em;white-space:nowrap}
+  .btn-blue{background:var(--ice);color:#fff}
+  .btn-red{background:var(--terra);color:#fff}
+  .btn-white{background:var(--card);border:1.5px solid var(--line);color:var(--ink-soft)}
+  .badge{display:inline-block;padding:0 8px;border-radius:999px;font-size:.85em;font-weight:700}
+  .b-ok{background:var(--green-pale);color:var(--green)}
+  .b-soon{background:var(--amber-pale);color:var(--amber)}
+  .b-over{background:var(--terra);color:#fff}
+  .note{background:var(--ice-pale);border-left:5px solid var(--ice);border-radius:0 12px 12px 0;padding:10px 14px;margin:12px 0}
+  .warn{background:var(--terra-pale);border-left:5px solid var(--terra);border-radius:0 12px 12px 0;padding:10px 14px;margin:12px 0}
+  figure{margin:14px 0;text-align:center}
+  figure img{max-width:min(100%,320px);height:auto;border-radius:14px;border:1px solid var(--line);background:var(--card)}
+  figure figcaption{font-size:13px;color:var(--ink-soft);margin-top:6px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media (max-width:560px){.two{grid-template-columns:1fr} nav.toc ol{columns:1}}
+  table{width:100%;border-collapse:collapse;margin:0 0 12px;font-size:15px}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:var(--card);white-space:nowrap}
+  details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:8px 0}
+  summary{cursor:pointer;font-weight:700}
+  details p{margin:8px 0 4px}
+  footer{border-top:1px solid var(--line);padding-top:14px;font-size:14px;color:var(--ink-soft)}
+  a{color:var(--ice-dark)}
+  .open{display:inline-block;margin:6px 0 0;padding:10px 20px;border-radius:999px;background:var(--ice);color:#fff;font-weight:800;text-decoration:none}
+  .print{font-size:14px;color:var(--ink-soft)}
+  @media print{
+    body{background:#fff;color:#000;font-size:12pt}
+    .page{max-width:none;padding:0}
+    nav.toc,.open,.print{display:none}
+    figure img{max-width:220px}
+    h2{break-after:avoid}
+    a{color:#000;text-decoration:none}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+<header class="top">
+  <div class="eyebrow">教えてAIさん ／ AIさんのポケット</div>
+  <h1>❄️ 冷凍庫チェッカー　取扱説明書</h1>
+  <p class="lead">入れるとき、撮って登録。出すとき、「出庫」。冷凍庫の中身を、スマホで忘れないための小さなアプリです。</p>
+  <a class="open" href="https://www.nponest.com/apps/reitouko/">アプリをひらく</a>
+  <p class="print">この説明書は、ブラウザの「印刷」でそのまま紙にできます。</p>
+</header>
+
+<nav class="toc">
+  <strong>もくじ</strong>
+  <ol>
+    <li><a href="#about">これは、なに？</a></li>
+    <li><a href="#start">ひらく・ホーム画面に追加</a></li>
+    <li><a href="#screen">画面の見かた</a></li>
+    <li><a href="#in">入れる（入庫）</a></li>
+    <li><a href="#stock">見る（在庫と、めやすの色）</a></li>
+    <li><a href="#out">出す（出庫）</a></li>
+    <li><a href="#used">使いきり・もういちど入庫</a></li>
+    <li><a href="#edit">直す・消す</a></li>
+    <li><a href="#log">きろく</a></li>
+    <li><a href="#backup">バックアップ（機種変更）</a></li>
+    <li><a href="#qa">こまったとき</a></li>
+    <li><a href="#promise">約束とお願い</a></li>
+  </ol>
+</nav>
+
+<section id="about">
+  <h2>1. これは、なに？</h2>
+  <p>冷凍庫は便利ですが、何でも凍らせているうちに「何が入っていたか」を忘れてしまいます。気がつくと肝心なものが無かったり、奥から正体不明の袋が出てきたり。</p>
+  <p>冷凍庫チェッカーは、その「忘れる」を無くすための道具です。やることは二つだけ。</p>
+  <ul>
+    <li><strong>入れるとき</strong>：スマホで撮って、登録する（<span class="btn btn-blue">📷 撮って入庫</span>）</li>
+    <li><strong>出すとき</strong>：<span class="btn btn-red">出庫</span> を押して、在庫を減らす</li>
+  </ul>
+  <p>あとは、アプリが「何がいくつ」「いつ入れたか」「そろそろ食べたほうがいいもの」を見せてくれます。</p>
+  <div class="note">写真も記録も、<strong>お使いの端末の中だけ</strong>に保存されます。インターネットのどこかに送られることはありません。アカウントもログインも要りません。</div>
+</section>
+
+<section id="start">
+  <h2>2. ひらく・ホーム画面に追加</h2>
+  <p>スマホのブラウザ（iPhone は Safari、Android は Chrome）で、次のアドレスをひらきます。</p>
+  <p><strong>https://www.nponest.com/apps/reitouko/</strong></p>
+  <p>教えてAIさんの「<a href="https://www.nponest.com/ai-tips/pocket/">AIさんのポケット</a>」にある「❄️ 冷凍庫」の<span class="btn btn-blue">開く</span>からも入れます。</p>
+  <h3>ホーム画面に追加しておくと便利です</h3>
+  <p>ふつうのアプリと同じように、アイコンから一発でひらけます。写真や記録も消えにくくなります。<strong>いちど「ホーム画面に追加」しておくことを、強くおすすめします。</strong></p>
+  <div class="two">
+    <div>
+      <h3>iPhone（Safari）</h3>
+      <ol class="steps">
+        <li>画面の下にある <strong>共有ボタン</strong>（四角から上向きの矢印）を押す</li>
+        <li>メニューを少し下にたどって <strong>「ホーム画面に追加」</strong> を押す</li>
+        <li>右上の <strong>「追加」</strong> を押す</li>
+      </ol>
+    </div>
+    <div>
+      <h3>Android（Chrome）</h3>
+      <ol class="steps">
+        <li>右上の <strong>「⋮」</strong>（点が三つ）を押す</li>
+        <li><strong>「ホーム画面に追加」</strong>（機種によっては「アプリをインストール」）を押す</li>
+        <li><strong>「追加」</strong> または <strong>「インストール」</strong> を押す</li>
+      </ol>
+    </div>
+  </div>
+  <div class="note">はじめて開くときだけ、電波のよい場所でひらいてください。一度ひらけば、次からは電波のない場所（冷凍庫の前が圏外でも）でも使えます。</div>
+</section>
+
+<section id="screen">
+  <h2>3. 画面の見かた</h2>
+  <figure>
+    <img src="/images/ai-tips/reitouko-shot-list.webp" alt="冷凍庫チェッカーの在庫画面。上に「撮って入庫」の青いボタン、在庫・使いきり・きろくの3つのタブ、さがす欄としゅるいのボタン、その下に食パン・ブロッコリーなどのカードが並び、右に赤い「出庫」ボタン" width="390" height="780" loading="lazy">
+    <figcaption>在庫の画面（見本。写真の代わりに絵を入れています）</figcaption>
+  </figure>
+  <p>上から順に、こうなっています。</p>
+  <ol>
+    <li><strong>見出しと数</strong>：「いま 4 品目（10こ）」のように、入っている品目と合計の数。「そろそろ」「めやす超え」があれば、ここに出ます</li>
+    <li><strong>入庫のボタン</strong>：<span class="btn btn-blue">📷 撮って入庫</span>（カメラが開く）、<span class="btn btn-white">🖼 写真を選んで入庫</span>（撮ってある写真から）、<span class="btn btn-white">✏️ 写真なしで入庫</span></li>
+    <li><strong>3つのタブ</strong>：<span class="btn btn-white">❄️ 在庫</span>（いま入っているもの）、<span class="btn btn-white">✅ 使いきり</span>（0になったもの）、<span class="btn btn-white">📒 きろく</span>（入れた・出したの履歴）</li>
+    <li><strong>さがす・しゅるい・並び</strong>：名前でさがす、しゅるいで絞る、並び替え</li>
+    <li><strong>カード</strong>：1品目が1枚。写真・名前・数・冷凍した日・めやすの色、そして赤い <span class="btn btn-red">出庫</span> ボタン。カードの写真や名前のところを押すと、くわしい画面がひらきます</li>
+  </ol>
+</section>
+
+<section id="in">
+  <h2>4. 入れる（入庫）</h2>
+  <ol class="steps">
+    <li>冷凍庫に入れる前に、<span class="btn btn-blue">📷 撮って入庫</span> を押す。カメラが開くので、袋や容器を撮る（はじめてのときは「カメラの使用を許可しますか」と聞かれるので「許可」）</li>
+    <li>写真が出たら、<strong>なまえ</strong>を入れる（例：とり肉、カレー）。前に入れた名前は、入力欄を押すと候補に出ます。空のままでも登録できます（そのときは「お肉」など、しゅるいの名前になります）</li>
+    <li><strong>数量</strong>を <span class="btn btn-white">−</span> <span class="btn btn-white">＋</span> で合わせ、単位（こ・袋・パック・食分…）を選ぶ</li>
+    <li><strong>しゅるい</strong>を一つ選ぶ（お肉／お魚／野菜・くだもの／ごはん・パン・めん／おかず・作りおき／そのほか）</li>
+    <li><strong>冷凍した日</strong>は、きょうの日付が入っています。<strong>めやす</strong>は、冷凍した日から30日後が入っています。変えたいときは <span class="btn btn-white">2週間</span> <span class="btn btn-white">1か月</span> <span class="btn btn-white">2か月</span> <span class="btn btn-white">3か月</span> のボタンか、日付そのものを直す</li>
+    <li>必要なら <strong>メモ</strong>（例：下味つき、半分は使った）</li>
+    <li><span class="btn btn-blue">❄️ 冷凍庫に 入れた！</span> を押す。在庫にカードが増えます</li>
+  </ol>
+  <figure>
+    <img src="/images/ai-tips/reitouko-shot-form.webp" alt="入庫の画面。上に撮った写真、なまえ、数量の−と＋、しゅるいの選択、冷凍した日とめやすの日付、めやすの早見ボタン、メモ、いちばん下に「冷凍庫に入れた！」の青いボタン" width="390" height="780" loading="lazy">
+    <figcaption>入庫の画面</figcaption>
+  </figure>
+  <h3>写真を撮らずに入れる・あとから撮る</h3>
+  <p><span class="btn btn-white">✏️ 写真なしで入庫</span> なら、名前だけでも登録できます。写真はあとから「直す」で足せます（→ <a href="#edit">8. 直す・消す</a>）。</p>
+  <h3>「めやす」とは</h3>
+  <p>「このくらいまでに食べると安心」という<strong>目安の日</strong>です。家庭の冷凍はおおむね1か月が目安と言われるので、初期値を30日にしています。食品や保存状態で変わりますから、ご自身で調整してください。めやすを過ぎてもアプリが何かを捨てることはありません。<strong>食べられるかどうかの判断は、必ずご自身で。</strong></p>
+</section>
+
+<section id="stock">
+  <h2>5. 見る（在庫と、めやすの色）</h2>
+  <p>カードの枠と札の色で、急ぎ具合が分かります。</p>
+  <table>
+    <tr><th>見た目</th><th>意味</th></tr>
+    <tr><td><span class="badge b-ok">あと 27日</span>　白いカード</td><td>まだ余裕があります</td></tr>
+    <tr><td><span class="badge b-soon">あと 5日</span>　黄色い枠</td><td><strong>そろそろ</strong>。めやすまで7日以内（当日は「きょうが めやす」）</td></tr>
+    <tr><td><span class="badge b-over">めやすを 10日 すぎた</span>　赤い枠</td><td><strong>めやす超え</strong>。先に使うか、状態を確かめて判断を</td></tr>
+  </table>
+  <h3>さがす・絞る・並べる</h3>
+  <ul>
+    <li><strong>さがす</strong>：名前の一部を入れると、その場で絞られます（ひらがな・カタカナ、全角・半角はどちらでも）</li>
+    <li><strong>しゅるい</strong>：「お肉」「お魚」などのボタンで絞ります。「ぜんぶ」で戻ります</li>
+    <li><strong>並び</strong>：「めやすが近い順」（初期）／「冷凍が古い順」／「冷凍が新しい順」／「名前順」</li>
+  </ul>
+  <h3>くわしい画面</h3>
+  <p>カードの写真や名前のところを押すと、大きな写真と、数量・しゅるい・冷凍した日・めやす・メモが見られます。ここからも出庫でき、「直す」「消す」はこの画面にあります。</p>
+  <figure>
+    <img src="/images/ai-tips/reitouko-shot-detail.webp" alt="くわしい画面。大きな写真、名前、数量・しゅるい・冷凍した日・めやすの一覧、赤い「1つ出庫」ボタン、その下に「直す」「消す」" width="390" height="780" loading="lazy">
+    <figcaption>くわしい画面</figcaption>
+  </figure>
+</section>
+
+<section id="out">
+  <h2>6. 出す（出庫）</h2>
+  <ol class="steps">
+    <li>冷凍庫から出すとき、そのカードの右にある <span class="btn btn-red">出庫</span> を押す</li>
+    <li>数が1つなら、それで終わり。数が複数なら「<strong>1つ 出す</strong>」「<strong>ぜんぶ 出す</strong>」「やめる」の小さな窓が出るので、選ぶ</li>
+    <li>数が減ります。<strong>0になると、カードは「✅ 使いきり」タブへ移ります</strong></li>
+  </ol>
+  <figure>
+    <img src="/images/ai-tips/reitouko-shot-dialog.webp" alt="出庫の小さな窓。品名と「いま 3 こ」、赤い「1つ 出す」、「ぜんぶ（3）出す」、「やめる」" width="390" height="780" loading="lazy">
+    <figcaption>数が複数のときの、出庫の窓</figcaption>
+  </figure>
+  <div class="note">押しまちがえたら、「✅ 使いきり」タブから <span class="btn btn-white">在庫にもどす</span> で戻せます（数は1に戻ります。必要なら「直す」で数を直してください）。</div>
+</section>
+
+<section id="used">
+  <h2>7. 使いきり・もういちど入庫</h2>
+  <p>「✅ 使いきり」タブには、0になったものが並びます。ここでできることは三つ。</p>
+  <ul>
+    <li><span class="btn btn-white">🔁 もういちど入庫</span>：<strong>写真と名前を引きついで</strong>、きょうの日付で新しく登録します。いつも同じものを冷凍する方は、これがいちばん速い入れ方です</li>
+    <li><span class="btn btn-white">在庫にもどす</span>：押しまちがえたときに。数は1で戻ります</li>
+    <li><span class="btn btn-white">消す</span>：一覧から消します（写真も消えます）</li>
+  </ul>
+</section>
+
+<section id="edit">
+  <h2>8. 直す・消す</h2>
+  <p>カードを押してくわしい画面をひらき、下の <span class="btn btn-white">✏️ 直す</span> を押すと、名前・数量・しゅるい・日付・メモ・写真をすべて直せます。写真は「撮りなおす」「選ぶ」「写真を消す」から。直したら <span class="btn btn-blue">保存する</span>。</p>
+  <p><span class="btn btn-white">🗑 消す</span> は、その品目を一覧から消します。確認の窓が出ます。消したものは戻せません。</p>
+</section>
+
+<section id="log">
+  <h2>9. きろく</h2>
+  <p>「📒 きろく」タブには、入庫・出庫・もどす・消去の履歴が新しい順に並びます（例：<code>10/3 12:05　出庫　とり肉 ×1</code>）。「あれ、いつ使ったっけ」の確認に。古いものから自動で整理され、200件までを残します。「きろくを ぜんぶ消す」で消せます（在庫は消えません）。</p>
+</section>
+
+<section id="backup">
+  <h2>10. バックアップ（機種変更・ほかの端末）</h2>
+  <p>写真も記録も端末の中だけにあるので、スマホを替えるときは、ご自身で持っていく必要があります。画面のいちばん下、「📦 バックアップ」をひらいてください。</p>
+  <ol class="steps">
+    <li>古いスマホで <span class="btn btn-white">書き出す</span> を押す。<code>reitouko-backup-日付.json</code> という1つのファイル（写真入り）が保存されます。保存先はスマホの「ファイル」や「ダウンロード」です</li>
+    <li>そのファイルを、新しいスマホへ送る（AirDrop、メールの添付、Google ドライブ など、ふだんの方法で）</li>
+    <li>新しいスマホで冷凍庫チェッカーをひらき、<span class="btn btn-white">読み込む</span> → そのファイルを選ぶ</li>
+  </ol>
+  <div class="warn">「読み込む」と、<strong>いまの中身はファイルの中身に置きかわります</strong>（足されるのではありません）。読み込む前に確認の窓が出ます。</div>
+</section>
+
+<section id="qa">
+  <h2>11. こまったとき</h2>
+  <details><summary>「撮って入庫」を押してもカメラが開かない</summary>
+    <p>ブラウザにカメラの許可が要ります。iPhone は「設定 → アプリ → Safari → カメラ」を「確認」か「許可」に。Android は Chrome の「サイトの設定 → カメラ」を確かめてください。カメラが使えないときは「🖼 写真を選んで入庫」で、撮ってある写真からも登録できます。</p></details>
+  <details><summary>写真や記録が消えた</summary>
+    <p>多くは次のどれかです。①プライベートブラウズ（シークレットモード）で使っていた → 閉じると消えます。ふつうのタブで使ってください。②ブラウザの「履歴とサイトデータを消去」をした → 一緒に消えます。③長く開かないでいた → ブラウザが整理することがあります。<strong>「ホーム画面に追加」して使うと、消えにくくなります。</strong>大事な中身は、ときどき「書き出す」でバックアップを。</p></details>
+  <details><summary>家族のスマホと同じ中身を見たい</summary>
+    <p>このアプリは端末ごとに中身を持ち、同期はしません（どこにも送らない約束のため）。「書き出す → 読み込む」で写すことはできますが、片方の中身は置きかわります。ふだんは「冷凍庫の担当のスマホ」を一台決めるのがおすすめです。</p></details>
+  <details><summary>めやすを過ぎたら、食べられないの？</summary>
+    <p>いいえ。めやすは「このくらいまでに」という目安の日で、アプリが安全を判定するものではありません。見た目・におい・保存状態を見て、ご自身で判断してください。心配なものは早めに使うか、処分を。</p></details>
+  <details><summary>電波がない場所でも使える？</summary>
+    <p>一度ひらいたあとなら使えます（写真も記録も端末の中にあるため）。はじめてひらくときだけ、電波のある場所で。</p></details>
+  <details><summary>登録できる数に上限は？</summary>
+    <p>決まった上限はありません。写真は小さく縮めて保存しているので（長い辺が640ピクセル）、100品目でも数MB程度です。</p></details>
+  <details><summary>消したものを戻したい</summary>
+    <p>「消す」で消したものは戻せません。「出庫」で0になっただけなら「✅ 使いきり」タブに残っていて、「在庫にもどす」で戻せます。</p></details>
+</section>
+
+<section id="promise">
+  <h2>12. 約束とお願い</h2>
+  <ul>
+    <li><strong>どこにも送りません。</strong>写真も記録も、お使いの端末の中だけです。NPO法人nest にも届きません</li>
+    <li><strong>めやすは目安です。</strong>食べられるかどうかの判断は、ご自身で</li>
+    <li><strong>食品の名前だけを入れてください。</strong>人の名前や住所など、個人に関わることは入れないでください（端末を落としたときのために）</li>
+    <li>うまく動かない・こうしてほしい、があれば、<a href="https://www.nponest.com/contact/">お問い合わせ</a>から教えてください。次の改良のヒントになります</li>
+  </ul>
+</section>
+
+<footer>
+  冷凍庫チェッカー 取扱説明書　第1版（2026年10月15日）<br>
+  つくったのは <a href="https://www.nponest.com/ai-tips/">NPO法人nest「教えてAIさん」</a> のAIチームです。アプリ本体：<a href="https://www.nponest.com/apps/reitouko/">https://www.nponest.com/apps/reitouko/</a>
+</footer>
+</div>
+</body>
+</html>

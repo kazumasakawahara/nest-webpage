@@ -1,0 +1,14 @@
+{
+  "name": "nest-webpage",
+  "owner": {
+    "name": "kazumasakawahara"
+  },
+  "description": "NPO法人nest の Web サイトのリポジトリに同梱した Claude Code 用 mod（tools/mods/）",
+  "plugins": [
+    {
+      "name": "usage-band",
+      "source": "./tools/mods/usage-band",
+      "description": "Claude Code のプロンプト直上に、気分顔・セッション累計コスト・5時間/7日間レート上限バー・コンテキスト使用量バーを描く帯"
+    }
+  ]
+}

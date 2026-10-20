@@ -1,0 +1,26 @@
+{
+  "name": "冷凍庫チェッカー",
+  "short_name": "冷凍庫",
+  "lang": "ja",
+  "dir": "ltr",
+  "start_url": "/apps/reitouko/",
+  "scope": "/apps/reitouko/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#faf6ef",
+  "theme_color": "#3a6ea5",
+  "icons": [
+    {
+      "src": "/apps/reitouko/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/apps/reitouko/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
