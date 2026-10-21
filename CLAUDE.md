@@ -20,3 +20,7 @@
 - くらしサポートカード（src/lib/post-parent.ts）と導入マニュアル
   （public/internal/oya-inai-db-hajimete-guide.html）は oya-inai-db 系に統一済み（2026-08-08）。
 - 作業状態・経緯の詳細は **HANDOVER.md を必ず読むこと**。
+
+## イベントの告知・開催報告（nest News）
+
+- 手順と依頼文の型は `docs/operations/event-news.md`。告知には `eventDate`、報告には `reportOf` を必ず書く。

@@ -15,6 +15,10 @@ const news = defineCollection({
     image: z.string().optional(),
     // イベントが満席になったら true。一覧の題名の頭と記事ページに「満席」を目立つ形で出す
     soldOut: z.boolean().default(false),
+    // イベントの告知記事に書く開催日。翌日からは記事ページに「終了しました」と出る（src/lib/event-news.ts）
+    eventDate: z.coerce.date().optional(),
+    // 開催報告の記事に書く、告知記事の id（ファイル名から .md を除いたもの）。告知の冒頭に報告への案内が出る
+    reportOf: z.string().optional(),
     draft: z.boolean().default(false),
   }),
 });

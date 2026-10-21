@@ -2,6 +2,7 @@
 title: 風と歌とピアノと ― 木町家 秋の音楽会を開催しました
 date: 2026-10-21
 tag: イベント
+reportOf: 2026-09-02-kimachiya-autumn-concert
 summary: 10月17日（土）、キッチン＆マルシェ木町家で秋の音楽会「風と歌とピアノと」を開催しました。満席のお客さまに日本の歌をお届けし、最後は会場の全員で歌って締めくくりました。
 image: /images/news/2026-10-21-kimachiya-autumn-concert-2.webp
 ---

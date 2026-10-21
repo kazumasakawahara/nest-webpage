@@ -4,8 +4,9 @@ import { test, expect } from '@playwright/test';
 const ANNOUNCE = '/news/2026-10-01-sei-training-2/';
 const REPORT = '/news/2026-06-25-sei-training/';
 
-test('training announcement appears in the news list, top page, and training corner', async ({ page }) => {
-  for (const path of ['/news/', '/', '/news/training/']) {
+// トップは新着4件だけなので、新しい記事が増えると押し出される。News 一覧と同じ絞り込み（NewsList）なので一覧で確かめる
+test('training announcement appears in the news list and training corner', async ({ page }) => {
+  for (const path of ['/news/', '/news/training/']) {
     await page.goto(path);
     await expect(page.locator(`.news-list a[href="${ANNOUNCE}"]`)).toHaveCount(1);
   }
