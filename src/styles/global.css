@@ -439,6 +439,13 @@ p { line-height: var(--lh-normal); }
   color: var(--color-terra-700);
 }
 
+/* イベントの開催日を過ぎたら切り替える札・囲み（BaseLayout のスクリプトが hidden を付け外しする）。
+   .badge の display より強く隠す */
+[data-hide-after][hidden],
+[data-show-after][hidden] {
+  display: none !important;
+}
+
 /* イベントの満席。塗りのテラコッタで、一覧の中でも目に留まるように */
 .badge--sold-out {
   background-color: var(--color-terra-500);

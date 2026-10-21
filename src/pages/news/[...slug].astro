@@ -1,17 +1,24 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { eventEndsAt, eventNotice, findReport } from '../../lib/event-news';
 
 export async function getStaticPaths() {
   const items = await getCollection('news', ({ data }) => !data.draft);
   return items.map((item) => ({
     params: { slug: item.id },
-    props: { item },
+    props: { item, report: findReport(items, item.id) },
   }));
 }
 
-const { item } = Astro.props;
+const { item, report } = Astro.props;
 const { Content } = await render(item);
+
+// イベントの告知記事なら、冒頭に「満席」「終了」「開催報告」のどれかを出す
+const { eventDate, soldOut } = item.data;
+const notice = eventNotice({ eventDate, soldOut, hasReport: !!report }, new Date());
+// ビルドの時点でまだ開催前なら、開催日を過ぎた時点でブラウザ側で「終了」に切り替える（BaseLayout のスクリプト）
+const endsAt = eventDate && (notice === 'soldOut' || notice === 'none') ? eventEndsAt(eventDate).toISOString() : undefined;
 
 // 研修会の記事は「研修会」コーナーへ戻す
 const isTraining = item.data.tag === '研修会';
@@ -29,17 +36,38 @@ const fmtDate = (d: Date) =>
           <span aria-hidden="true">←</span> {isTraining ? '研修会 一覧へ' : 'nest News 一覧へ'}
         </a>
         <span class="badge badge--accent">{item.data.tag}</span>
-        {item.data.soldOut && <span class="badge badge--sold-out">満席</span>}
+        {notice === 'soldOut' && <span class="badge badge--sold-out" data-hide-after={endsAt}>満席</span>}
+        {(notice === 'over' || notice === 'report') && <span class="badge badge--closed">終了</span>}
+        {endsAt && <span class="badge badge--closed" data-show-after={endsAt} hidden>終了</span>}
         <h1 class="news-article__title">{item.data.title}</h1>
         <time class="news-article__date" datetime={item.data.date.toISOString()}>
           {fmtDate(item.data.date)}
         </time>
       </header>
 
-      {item.data.soldOut && (
-        <div class="news-article__notice" role="note">
+      {notice === 'soldOut' && (
+        <div class="news-article__notice" role="note" data-hide-after={endsAt}>
           <p class="news-article__notice-title">満席となりました</p>
           <p>おかげさまで、定員に達しました。お申し込みの受付は終了しています。たくさんのお申し込み、ありがとうございました。</p>
+        </div>
+      )}
+
+      {notice === 'report' && report && (
+        <div class="news-article__notice news-article__notice--report" role="note">
+          <p class="news-article__notice-title">開催報告を掲載しました</p>
+          <p>このイベントは終了しました。当日のようすは<a href={`/news/${report.id}/`}>開催報告の記事</a>でご紹介しています。</p>
+        </div>
+      )}
+
+      {(notice === 'over' || endsAt) && (
+        <div
+          class="news-article__notice news-article__notice--over"
+          role="note"
+          data-show-after={endsAt}
+          hidden={notice !== 'over'}
+        >
+          <p class="news-article__notice-title">このイベントは終了しました</p>
+          <p>ご参加いただいた皆さま、ありがとうございました。下のご案内は、開催前に掲載したときのままです。</p>
         </div>
       )}
 
@@ -222,4 +250,21 @@ const fmtDate = (d: Date) =>
     font-weight: 700;
     color: var(--color-terra-700);
   }
+
+  /* 開催後（終了・開催報告あり）は、落ち着いた緑の囲みに */
+  .news-article__notice--report,
+  .news-article__notice--over {
+    border-color: var(--color-green-700);
+    background: var(--color-green-100);
+  }
+  .news-article__notice--report .news-article__notice-title,
+  .news-article__notice--over .news-article__notice-title {
+    color: var(--color-green-900);
+  }
+  .news-article__notice a {
+    color: var(--color-green-700);
+    font-weight: 600;
+    border-bottom: 1px solid currentColor;
+  }
+  .news-article__notice a:hover { color: var(--color-terra-500); }
 </style>

@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
+import { eventEndsAt, eventNotice, findReport } from '../lib/event-news';
 
 interface Props {
   limit?: number;
@@ -16,6 +17,14 @@ const all = await getCollection(
 );
 const sorted = all.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 const items = limit ? sorted.slice(0, limit) : sorted;
+const now = new Date();
+// 満席のイベントは題名の頭に「満席」。開催日を過ぎるか開催報告が出たら「終了」（ビルド後に過ぎた分はブラウザ側で切り替え）
+const badgeOf = (item: (typeof items)[number]) => {
+  const { eventDate, soldOut } = item.data;
+  const notice = eventNotice({ eventDate, soldOut, hasReport: !!findReport(all, item.id) }, now);
+  const upcoming = notice === 'soldOut' || notice === 'none';
+  return { notice, endsAt: upcoming && eventDate ? eventEndsAt(eventDate).toISOString() : undefined };
+};
 
 const fmtDate = (d: Date) =>
   `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
@@ -31,7 +40,22 @@ const fmtDate = (d: Date) =>
           </time>
           <span class="news-list__tag badge badge--accent">{item.data.tag}</span>
           <h3 class="news-list__title">
-            {item.data.soldOut && <span class="news-list__sold-out badge badge--sold-out">満席</span>}
+            {(() => {
+              const { notice, endsAt } = badgeOf(item);
+              return (
+                <>
+                  {notice === 'soldOut' && (
+                    <span class="news-list__sold-out badge badge--sold-out" data-hide-after={endsAt}>満席</span>
+                  )}
+                  {(notice === 'over' || notice === 'report') && (
+                    <span class="news-list__sold-out badge badge--closed">終了</span>
+                  )}
+                  {endsAt && (
+                    <span class="news-list__sold-out badge badge--closed" data-show-after={endsAt} hidden>終了</span>
+                  )}
+                </>
+              );
+            })()}
             {item.data.title}
           </h3>
           {showSummary && item.data.summary && (

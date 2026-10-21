@@ -119,6 +119,19 @@ const jsonLd = {
 
     <StickyCallBar />
 
+    <script is:inline>
+      // イベントの開催日を過ぎたら、ビルドし直さなくても「満席」を隠して「終了」を出す（src/lib/event-news.ts）
+      (function () {
+        var now = Date.now();
+        document.querySelectorAll('[data-hide-after]').forEach(function (el) {
+          if (now >= Date.parse(el.getAttribute('data-hide-after'))) el.hidden = true;
+        });
+        document.querySelectorAll('[data-show-after]').forEach(function (el) {
+          if (now >= Date.parse(el.getAttribute('data-show-after'))) el.hidden = false;
+        });
+      })();
+    </script>
+
     {
       CF_BEACON_TOKEN && (
         <script
