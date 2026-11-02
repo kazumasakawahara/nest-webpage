@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320" width="640" height="320" role="img" aria-labelledby="t d">
   <title id="t">民主化のあとも、人の仕事は残る</title>
-  <desc id="d">三つの枠が矢印でつながった図。①決める（人）：何に困っていて、何がほしいか。②書く（AIさん）：職人さんの言葉でプログラムや図を書く。③確かめる（人）：動くか、ちがわないか、使ってよいか。③から②へ「直してほしい所は、また日本語で」と書かれた点線の矢印が戻っている。</desc>
+  <desc id="d">三つの枠が矢印でつながった図。①と③には代表マスコット、②にはAIさん人形が描かれている。①決める（人）：何に困っていて、何がほしいか。②書く（AIさん）：職人さんの言葉でプログラムや図を書く。③確かめる（人）：動くか、ちがわないか、使ってよいか。③から②へ「直してほしい所は、また日本語で」と書かれた点線の矢印が戻っている。</desc>
   <defs>
     <style>
       .ink{fill:#2b2a27}.mute{fill:#6b6a66}
@@ -8,15 +8,71 @@
       .serif{font-family:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif}
       .mono{font-family:"SFMono-Regular",Menlo,Consolas,"Courier New",monospace}
     </style>
-    <g id="person">
-      <ellipse cx="0" cy="176" rx="46" ry="7" fill="#e3d9c3"/>
-      <path d="M-34 172 V80 q0-30 34-30 q34 0 34 30 V172 Z" fill="#4a8c3f"/>
-      <circle cx="0" cy="26" r="34" fill="#f3d3b3" stroke="#2b2a27" stroke-width="2"/>
-      <path d="M-34 20 q10-36 46-28 q22 6 22 26 q-16-14-38-8 q-18 6-30 10Z" fill="#3b2f2a"/>
-      <circle cx="-11" cy="30" r="3" fill="#2b2a27"/>
-      <circle cx="11" cy="30" r="3" fill="#2b2a27"/>
-      <path d="M-7 44 q7 5 14 0" stroke="#2b2a27" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <!-- 代表マスコット（白髪・金縁メガネ・紺フリース。ai-tips の既存挿絵と同じ） -->
+    <g id="person"><g transform="translate(0 37) scale(.45)">
+    <path d="M-64 250 C-72 302 -18 320 10 302 C-4 326 -66 322 -72 286 Z" fill="#1c2942"/>
+    <path d="M64 250 C72 302 18 320 -10 302 C4 326 66 322 72 286 Z" fill="#243654"/>
+    <rect x="-14" y="48" width="28" height="22" rx="7" fill="#e6b892"/>
+    <path d="M-66 252 C-78 168 -58 80 -18 64 C-8 58 8 58 18 64 C58 80 78 168 66 252 Z" fill="#22314f"/>
+    <path d="M-30 70 Q0 56 30 70 L22 98 Q0 84 -22 98 Z" fill="#2c3c5e"/>
+    <path d="M-17 78 Q0 68 17 78 L11 100 Q0 92 -11 100 Z" fill="#e9eef5"/>
+    <line x1="0" y1="96" x2="0" y2="244" stroke="#33456b" stroke-width="3"/>
+    <path d="M-72 6 C-88 -66 -44 -100 0 -100 C44 -100 88 -66 72 6 C64 -6 54 -4 48 8 C40 -8 30 -6 24 8 C16 -8 4 -8 -2 8 C-10 -8 -22 -8 -28 8 C-36 -6 -48 -6 -54 10 C-60 2 -66 2 -72 6 Z" fill="#8c908c"/>
+    <circle cx="0" cy="0" r="60" fill="#f0c9a8"/>
+    <path d="M-52 -52 C-30 -74 30 -74 52 -50" stroke="#a9ada8" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M-44 -34 C-30 -50 -6 -52 6 -40" stroke="#7d817d" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <path d="M46 -30 C34 -46 14 -48 4 -38" stroke="#7d817d" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <circle cx="-38" cy="24" r="10" fill="#e79a78" opacity="0.5"/>
+    <circle cx="38" cy="24" r="10" fill="#e79a78" opacity="0.5"/>
+    <path d="M-38 6 Q-26 -8 -14 6" stroke="#4a3b2f" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <path d="M14 6 Q26 -8 38 6" stroke="#4a3b2f" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <g stroke="#c9a44a" stroke-width="3.5" fill="#ffffff" fill-opacity="0.14">
+      <ellipse cx="-26" cy="6" rx="22" ry="15"/>
+      <ellipse cx="26" cy="6" rx="22" ry="15"/>
     </g>
+    <path d="M-4 4 Q0 -1 4 4" stroke="#c9a44a" stroke-width="3.5" fill="none"/>
+    <line x1="-48" y1="2" x2="-64" y2="-4" stroke="#c9a44a" stroke-width="3"/>
+    <line x1="48" y1="2" x2="64" y2="-4" stroke="#c9a44a" stroke-width="3"/>
+    <path d="M-26 30 Q0 40 26 30 Q0 68 -26 30 Z" fill="#9e4a3a"/>
+    <path d="M-21 32 Q0 40 21 32 Q0 35 -21 32 Z" fill="#faf6ef"/>
+    <path d="M-56 132 C-64 178 -32 198 -8 198" fill="none" stroke="#22314f" stroke-width="30" stroke-linecap="round"/>
+    <path d="M56 132 C64 178 32 198 8 198" fill="none" stroke="#243654" stroke-width="30" stroke-linecap="round"/>
+    <path d="M-17 176 h34 a4 4 0 0 1 4 4 v13 a13 13 0 0 1 -13 13 h-16 a13 13 0 0 1 -13 -13 v-13 a4 4 0 0 1 4 -4 Z" fill="#ffffff" stroke="#d9cfbb" stroke-width="1.5"/>
+    <path d="M21 182 a9 9 0 0 1 0 18" fill="none" stroke="#d9cfbb" stroke-width="3"/>
+    <ellipse cx="0" cy="180" rx="15" ry="4.5" fill="#8a5a3c"/>
+    <circle cx="-12" cy="198" r="13" fill="#f0c9a8"/>
+    <circle cx="12" cy="198" r="13" fill="#f0c9a8"/>
+  </g></g>
+    <g id="person-komari"><g transform="translate(0 37) scale(.45)">
+    <path d="M-64 250 C-72 302 -18 320 10 302 C-4 326 -66 322 -72 286 Z" fill="#1c2942"/>
+    <path d="M64 250 C72 302 18 320 -10 302 C4 326 66 322 72 286 Z" fill="#243654"/>
+    <rect x="-14" y="48" width="28" height="22" rx="7" fill="#e6b892"/>
+    <path d="M-66 252 C-78 168 -58 80 -18 64 C-8 58 8 58 18 64 C58 80 78 168 66 252 Z" fill="#22314f"/>
+    <path d="M-30 70 Q0 56 30 70 L22 98 Q0 84 -22 98 Z" fill="#2c3c5e"/>
+    <path d="M-17 78 Q0 68 17 78 L11 100 Q0 92 -11 100 Z" fill="#e9eef5"/>
+    <line x1="0" y1="96" x2="0" y2="244" stroke="#33456b" stroke-width="3"/>
+    <path d="M-72 6 C-88 -66 -44 -100 0 -100 C44 -100 88 -66 72 6 C64 -6 54 -4 48 8 C40 -8 30 -6 24 8 C16 -8 4 -8 -2 8 C-10 -8 -22 -8 -28 8 C-36 -6 -48 -6 -54 10 C-60 2 -66 2 -72 6 Z" fill="#8c908c"/>
+    <circle cx="0" cy="0" r="60" fill="#f0c9a8"/>
+    <path d="M-52 -52 C-30 -74 30 -74 52 -50" stroke="#a9ada8" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <circle cx="-38" cy="24" r="10" fill="#e79a78" opacity="0.5"/>
+    <circle cx="38" cy="24" r="10" fill="#e79a78" opacity="0.5"/>
+    <path d="M-40 -12 Q-26 -20 -14 -14" stroke="#4a3b2f" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <path d="M14 -14 Q26 -20 40 -12" stroke="#4a3b2f" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <circle cx="-26" cy="8" r="6" fill="#4a3b2f"/>
+    <circle cx="26" cy="8" r="6" fill="#4a3b2f"/>
+    <g stroke="#c9a44a" stroke-width="3.5" fill="#ffffff" fill-opacity="0.14">
+      <ellipse cx="-26" cy="6" rx="22" ry="15"/>
+      <ellipse cx="26" cy="6" rx="22" ry="15"/>
+    </g>
+    <path d="M-4 4 Q0 -1 4 4" stroke="#c9a44a" stroke-width="3.5" fill="none"/>
+    <line x1="-48" y1="2" x2="-64" y2="-4" stroke="#c9a44a" stroke-width="3"/>
+    <line x1="48" y1="2" x2="64" y2="-4" stroke="#c9a44a" stroke-width="3"/>
+    <ellipse cx="0" cy="42" rx="10" ry="12" fill="#9e4a3a"/>
+    <path d="M-56 132 C-64 178 -32 198 -8 198" fill="none" stroke="#22314f" stroke-width="30" stroke-linecap="round"/>
+    <path d="M56 132 C64 178 32 198 8 198" fill="none" stroke="#243654" stroke-width="30" stroke-linecap="round"/>
+    <circle cx="-12" cy="198" r="13" fill="#f0c9a8"/>
+    <circle cx="12" cy="198" r="13" fill="#f0c9a8"/>
+  </g></g>
     <g id="robot">
       <ellipse cx="0" cy="156" rx="44" ry="7" fill="#e3d9c3"/>
       <rect x="-34" y="40" width="68" height="104" rx="18" fill="#d97757"/>

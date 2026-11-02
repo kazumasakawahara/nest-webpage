@@ -30,7 +30,7 @@ AIの話をすると、福祉の現場ではいまも「私には無理」とい
 </div>
 
 <figure class="mockup mockup--wide">
-  <img src="/images/ai-tips/minshuka-1-mukashi-ima.svg" alt="左（むかし）では、英語のような記号が並んだ黒板の前で人が汗をかき「私には、無理……」とつぶやいている。右（いま）では、人が「今月が誕生日の人を、一覧にしてください」と日本語で頼み、AIさん人形が「日本語で、どうぞ」と言いながら「できました」と書かれた一覧のカードを差し出している絵" width="640" height="400" loading="lazy" decoding="async" />
+  <img src="/images/ai-tips/minshuka-1-mukashi-ima.svg" alt="左（むかし）では、英語のような記号が並んだ黒板の前で代表マスコットが汗をかき「私には、無理……」とつぶやいている。右（いま）では、代表マスコットが「今月が誕生日の人を、一覧にしてください」と日本語で頼み、AIさん人形が「日本語で、どうぞ」と言いながら「できました」と書かれた一覧のカードを差し出している絵" width="640" height="400" loading="lazy" decoding="async" />
   <figcaption>▲ 記号の言葉を覚えた人だけが頼めた時代から、日本語でだれでも頼める時代へ（イメージ図）</figcaption>
 </figure>
 
@@ -80,7 +80,7 @@ AIの話をすると、福祉の現場ではいまも「私には無理」とい
 では、右のお願いはどうやって職人さんに届くのでしょうか。あいだに、通訳さんが入るようになったのです。
 
 <figure class="mockup mockup--wide">
-  <img src="/images/ai-tips/minshuka-5-tsuyaku.svg" alt="上段（むかし）は、人が職人さんの言葉を自分で勉強して書き、コンピュータに直接渡している。下段（いま）は、人が日本語でお願いし、AIさん人形が通訳として職人さんの言葉に訳してから、コンピュータに渡している図" width="640" height="380" loading="lazy" decoding="async" />
+  <img src="/images/ai-tips/minshuka-5-tsuyaku.svg" alt="上段（むかし）は、代表マスコットが職人さんの言葉を自分で勉強して書き、コンピュータに直接渡している。下段（いま）は、代表マスコットが日本語でお願いし、AIさん人形が通訳として職人さんの言葉に訳してから、コンピュータに渡している図" width="640" height="380" loading="lazy" decoding="async" />
   <figcaption>▲ 職人さんの言葉がなくなったのではない。書く係が、人からAIに代わった</figcaption>
 </figure>
 
@@ -112,7 +112,7 @@ AIの話をすると、福祉の現場ではいまも「私には無理」とい
 誤解してほしくないことがあります。日本語で頼めるようになっても、全部をAIに任せられるわけではありません。
 
 <figure class="mockup mockup--wide">
-  <img src="/images/ai-tips/minshuka-6-yakuwari.svg" alt="三つの枠が矢印でつながった図。①決める（人）：何に困っていて、何がほしいか。②書く（AIさん）：職人さんの言葉でプログラムや図を書く。③確かめる（人）：動くか、ちがわないか、使ってよいか。③から②へ「直してほしい所は、また日本語で」と書かれた点線の矢印が戻っている" width="640" height="320" loading="lazy" decoding="async" />
+  <img src="/images/ai-tips/minshuka-6-yakuwari.svg" alt="三つの枠が矢印でつながった図。①と③には代表マスコット、②にはAIさん人形が描かれている。①決める（人）：何に困っていて、何がほしいか。②書く（AIさん）：職人さんの言葉でプログラムや図を書く。③確かめる（人）：動くか、ちがわないか、使ってよいか。③から②へ「直してほしい所は、また日本語で」と書かれた点線の矢印が戻っている" width="640" height="320" loading="lazy" decoding="async" />
   <figcaption>▲ 書く係はAIに代わっても、決める係と確かめる係は人のまま</figcaption>
 </figure>
 
