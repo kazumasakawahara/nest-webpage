@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-labelledby="t d">
+  <title id="t">コンピュータに頼むときの言葉の、うつりかわり</title>
+  <desc id="d">三本の壁の高さで、コンピュータに頼むための言葉の変化を示した図。①0と1（1940〜50年代）はとても高い壁で、上に立てるのはひと握りの研究者。②プログラミング言語（1950年代〜）はまだ高い壁で、勉強した人が立てる。③ふだんの日本語（2020年代〜）はひざの高さで、話せる人みんなが立てる。</desc>
+  <defs>
+    <style>
+      .ink{fill:#2b2a27}.mute{fill:#6b6a66}
+      .hand{font-family:"Zen Kurenaido","Klee One","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif}
+      .serif{font-family:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif}
+      .mono{font-family:"SFMono-Regular",Menlo,Consolas,"Courier New",monospace}
+    </style>
+    <!-- 代表マスコット（白髪・金縁メガネ・紺フリース。ai-tips の既存挿絵と同じ） -->
+    <g id="person"><g transform="translate(0 37) scale(.45)">
+    <path d="M-64 250 C-72 302 -18 320 10 302 C-4 326 -66 322 -72 286 Z" fill="#1c2942"/>
+    <path d="M64 250 C72 302 18 320 -10 302 C4 326 66 322 72 286 Z" fill="#243654"/>
+    <rect x="-14" y="48" width="28" height="22" rx="7" fill="#e6b892"/>
+    <path d="M-66 252 C-78 168 -58 80 -18 64 C-8 58 8 58 18 64 C58 80 78 168 66 252 Z" fill="#22314f"/>
+    <path d="M-30 70 Q0 56 30 70 L22 98 Q0 84 -22 98 Z" fill="#2c3c5e"/>
+    <path d="M-17 78 Q0 68 17 78 L11 100 Q0 92 -11 100 Z" fill="#e9eef5"/>
+    <line x1="0" y1="96" x2="0" y2="244" stroke="#33456b" stroke-width="3"/>
+    <path d="M-72 6 C-88 -66 -44 -100 0 -100 C44 -100 88 -66 72 6 C64 -6 54 -4 48 8 C40 -8 30 -6 24 8 C16 -8 4 -8 -2 8 C-10 -8 -22 -8 -28 8 C-36 -6 -48 -6 -54 10 C-60 2 -66 2 -72 6 Z" fill="#8c908c"/>
+    <circle cx="0" cy="0" r="60" fill="#f0c9a8"/>
+    <path d="M-52 -52 C-30 -74 30 -74 52 -50" stroke="#a9ada8" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M-44 -34 C-30 -50 -6 -52 6 -40" stroke="#7d817d" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <path d="M46 -30 C34 -46 14 -48 4 -38" stroke="#7d817d" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <circle cx="-38" cy="24" r="10" fill="#e79a78" opacity="0.5"/>
+    <circle cx="38" cy="24" r="10" fill="#e79a78" opacity="0.5"/>
+    <path d="M-38 6 Q-26 -8 -14 6" stroke="#4a3b2f" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <path d="M14 6 Q26 -8 38 6" stroke="#4a3b2f" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <g stroke="#c9a44a" stroke-width="3.5" fill="#ffffff" fill-opacity="0.14">
+      <ellipse cx="-26" cy="6" rx="22" ry="15"/>
+      <ellipse cx="26" cy="6" rx="22" ry="15"/>
+    </g>
+    <path d="M-4 4 Q0 -1 4 4" stroke="#c9a44a" stroke-width="3.5" fill="none"/>
+    <line x1="-48" y1="2" x2="-64" y2="-4" stroke="#c9a44a" stroke-width="3"/>
+    <line x1="48" y1="2" x2="64" y2="-4" stroke="#c9a44a" stroke-width="3"/>
+    <path d="M-26 30 Q0 40 26 30 Q0 68 -26 30 Z" fill="#9e4a3a"/>
+    <path d="M-21 32 Q0 40 21 32 Q0 35 -21 32 Z" fill="#faf6ef"/>
+    <path d="M-56 132 C-64 178 -32 198 -8 198" fill="none" stroke="#22314f" stroke-width="30" stroke-linecap="round"/>
+    <path d="M56 132 C64 178 32 198 8 198" fill="none" stroke="#243654" stroke-width="30" stroke-linecap="round"/>
+    <path d="M-17 176 h34 a4 4 0 0 1 4 4 v13 a13 13 0 0 1 -13 13 h-16 a13 13 0 0 1 -13 -13 v-13 a4 4 0 0 1 4 -4 Z" fill="#ffffff" stroke="#d9cfbb" stroke-width="1.5"/>
+    <path d="M21 182 a9 9 0 0 1 0 18" fill="none" stroke="#d9cfbb" stroke-width="3"/>
+    <ellipse cx="0" cy="180" rx="15" ry="4.5" fill="#8a5a3c"/>
+    <circle cx="-12" cy="198" r="13" fill="#f0c9a8"/>
+    <circle cx="12" cy="198" r="13" fill="#f0c9a8"/>
+  </g></g>
+    <g id="person-komari"><g transform="translate(0 37) scale(.45)">
+    <path d="M-64 250 C-72 302 -18 320 10 302 C-4 326 -66 322 -72 286 Z" fill="#1c2942"/>
+    <path d="M64 250 C72 302 18 320 -10 302 C4 326 66 322 72 286 Z" fill="#243654"/>
+    <rect x="-14" y="48" width="28" height="22" rx="7" fill="#e6b892"/>
+    <path d="M-66 252 C-78 168 -58 80 -18 64 C-8 58 8 58 18 64 C58 80 78 168 66 252 Z" fill="#22314f"/>
+    <path d="M-30 70 Q0 56 30 70 L22 98 Q0 84 -22 98 Z" fill="#2c3c5e"/>
+    <path d="M-17 78 Q0 68 17 78 L11 100 Q0 92 -11 100 Z" fill="#e9eef5"/>
+    <line x1="0" y1="96" x2="0" y2="244" stroke="#33456b" stroke-width="3"/>
+    <path d="M-72 6 C-88 -66 -44 -100 0 -100 C44 -100 88 -66 72 6 C64 -6 54 -4 48 8 C40 -8 30 -6 24 8 C16 -8 4 -8 -2 8 C-10 -8 -22 -8 -28 8 C-36 -6 -48 -6 -54 10 C-60 2 -66 2 -72 6 Z" fill="#8c908c"/>
+    <circle cx="0" cy="0" r="60" fill="#f0c9a8"/>
+    <path d="M-52 -52 C-30 -74 30 -74 52 -50" stroke="#a9ada8" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <circle cx="-38" cy="24" r="10" fill="#e79a78" opacity="0.5"/>
+    <circle cx="38" cy="24" r="10" fill="#e79a78" opacity="0.5"/>
+    <path d="M-40 -12 Q-26 -20 -14 -14" stroke="#4a3b2f" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <path d="M14 -14 Q26 -20 40 -12" stroke="#4a3b2f" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <circle cx="-26" cy="8" r="6" fill="#4a3b2f"/>
+    <circle cx="26" cy="8" r="6" fill="#4a3b2f"/>
+    <g stroke="#c9a44a" stroke-width="3.5" fill="#ffffff" fill-opacity="0.14">
+      <ellipse cx="-26" cy="6" rx="22" ry="15"/>
+      <ellipse cx="26" cy="6" rx="22" ry="15"/>
+    </g>
+    <path d="M-4 4 Q0 -1 4 4" stroke="#c9a44a" stroke-width="3.5" fill="none"/>
+    <line x1="-48" y1="2" x2="-64" y2="-4" stroke="#c9a44a" stroke-width="3"/>
+    <line x1="48" y1="2" x2="64" y2="-4" stroke="#c9a44a" stroke-width="3"/>
+    <ellipse cx="0" cy="42" rx="10" ry="12" fill="#9e4a3a"/>
+    <path d="M-56 132 C-64 178 -32 198 -8 198" fill="none" stroke="#22314f" stroke-width="30" stroke-linecap="round"/>
+    <path d="M56 132 C64 178 32 198 8 198" fill="none" stroke="#243654" stroke-width="30" stroke-linecap="round"/>
+    <circle cx="-12" cy="198" r="13" fill="#f0c9a8"/>
+    <circle cx="12" cy="198" r="13" fill="#f0c9a8"/>
+  </g></g>
+    <g id="robot">
+      <ellipse cx="0" cy="156" rx="44" ry="7" fill="#e3d9c3"/>
+      <rect x="-34" y="40" width="68" height="104" rx="18" fill="#d97757"/>
+      <rect x="-9" y="26" width="18" height="16" rx="4" fill="#6b6a66" stroke="#2b2a27" stroke-width="1.5"/>
+      <rect x="-30" y="-30" width="60" height="58" rx="14" fill="#fff" stroke="#2b2a27" stroke-width="2"/>
+      <rect x="-22" y="-20" width="44" height="34" rx="8" fill="#2b2a27"/>
+      <circle cx="-9" cy="-4" r="5" fill="#8fe3a3"/>
+      <circle cx="9" cy="-4" r="5" fill="#8fe3a3"/>
+      <path d="M-8 6 q8 5 16 0" stroke="#8fe3a3" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <line x1="0" y1="-30" x2="0" y2="-44" stroke="#2b2a27" stroke-width="2"/>
+      <circle cx="0" cy="-48" r="5" fill="#d97757" stroke="#2b2a27" stroke-width="2"/>
+      <path d="M-12 44 l10 6 l-10 6Z M12 44 l-10 6 l10 6Z" fill="#2b2a27"/>
+    </g>
+  </defs>
+  <rect width="640" height="400" fill="#f7f1e3"/>
+  <text x="320" y="32" class="hand ink" font-size="19" font-weight="700" text-anchor="middle">コンピュータに頼むときの言葉の、うつりかわり</text>
+  <path d="M0 282 H640" stroke="#b7ac97" stroke-width="2"/>
+  <g class="hand" font-size="16" font-weight="700" text-anchor="middle">
+    <text x="110" y="68" fill="#5f5847">① 0と1</text>
+    <text x="320" y="68" fill="#5f5847">② プログラミング言語</text>
+    <text x="530" y="68" fill="#b4542f">③ ふだんの日本語</text>
+  </g>
+  <rect x="40" y="132" width="140" height="150" rx="4" fill="#b7ac97" stroke="#8f846f" stroke-width="1.5"/>
+  <text x="110" y="214" class="hand" font-size="15" fill="#fff" text-anchor="middle" font-weight="700">とても高い壁</text>
+  <rect x="250" y="186" width="140" height="96" rx="4" fill="#c9bfa8" stroke="#8f846f" stroke-width="1.5"/>
+  <text x="320" y="240" class="hand" font-size="15" fill="#fff" text-anchor="middle" font-weight="700">まだ高い壁</text>
+  <rect x="460" y="252" width="140" height="30" rx="4" fill="#e9c3ad" stroke="#d97757" stroke-width="1.5"/>
+  <text x="530" y="273" class="hand" font-size="14" fill="#8a3d22" text-anchor="middle" font-weight="700">ひざの高さ</text>
+<g transform="translate(110 108)"><circle cx="0" cy="6" r="6" fill="#f3d3b3" stroke="#2b2a27" stroke-width="1.2"/><path d="M-7 24 v-6 q0-6 7-6 q7 0 7 6 v6Z" fill="#4a8c3f"/></g>
+<g transform="translate(296 162)"><circle cx="0" cy="6" r="6" fill="#f3d3b3" stroke="#2b2a27" stroke-width="1.2"/><path d="M-7 24 v-6 q0-6 7-6 q7 0 7 6 v6Z" fill="#4a8c3f"/></g>
+<g transform="translate(320 162)"><circle cx="0" cy="6" r="6" fill="#f3d3b3" stroke="#2b2a27" stroke-width="1.2"/><path d="M-7 24 v-6 q0-6 7-6 q7 0 7 6 v6Z" fill="#4a8c3f"/></g>
+<g transform="translate(344 162)"><circle cx="0" cy="6" r="6" fill="#f3d3b3" stroke="#2b2a27" stroke-width="1.2"/><path d="M-7 24 v-6 q0-6 7-6 q7 0 7 6 v6Z" fill="#4a8c3f"/></g>
+<g transform="translate(470 228)"><circle cx="0" cy="6" r="6" fill="#f3d3b3" stroke="#2b2a27" stroke-width="1.2"/><path d="M-7 24 v-6 q0-6 7-6 q7 0 7 6 v6Z" fill="#4a8c3f"/></g>
+<g transform="translate(490 228)"><circle cx="0" cy="6" r="6" fill="#f3d3b3" stroke="#2b2a27" stroke-width="1.2"/><path d="M-7 24 v-6 q0-6 7-6 q7 0 7 6 v6Z" fill="#4a8c3f"/></g>
+<g transform="translate(510 228)"><circle cx="0" cy="6" r="6" fill="#f3d3b3" stroke="#2b2a27" stroke-width="1.2"/><path d="M-7 24 v-6 q0-6 7-6 q7 0 7 6 v6Z" fill="#4a8c3f"/></g>
+<g transform="translate(530 228)"><circle cx="0" cy="6" r="6" fill="#f3d3b3" stroke="#2b2a27" stroke-width="1.2"/><path d="M-7 24 v-6 q0-6 7-6 q7 0 7 6 v6Z" fill="#4a8c3f"/></g>
+<g transform="translate(550 228)"><circle cx="0" cy="6" r="6" fill="#f3d3b3" stroke="#2b2a27" stroke-width="1.2"/><path d="M-7 24 v-6 q0-6 7-6 q7 0 7 6 v6Z" fill="#4a8c3f"/></g>
+<g transform="translate(570 228)"><circle cx="0" cy="6" r="6" fill="#f3d3b3" stroke="#2b2a27" stroke-width="1.2"/><path d="M-7 24 v-6 q0-6 7-6 q7 0 7 6 v6Z" fill="#4a8c3f"/></g>
+<g transform="translate(590 228)"><circle cx="0" cy="6" r="6" fill="#f3d3b3" stroke="#2b2a27" stroke-width="1.2"/><path d="M-7 24 v-6 q0-6 7-6 q7 0 7 6 v6Z" fill="#4a8c3f"/></g>
+  <g class="mono" font-size="12.5" text-anchor="middle" fill="#2b2a27">
+    <rect x="30" y="294" width="160" height="28" rx="6" fill="#fff" stroke="#d6cbb3"/>
+    <text x="110" y="313">10110000 01100001</text>
+    <rect x="240" y="294" width="160" height="28" rx="6" fill="#fff" stroke="#d6cbb3"/>
+    <text x="320" y="313">print("こんにちは")</text>
+  </g>
+  <rect x="450" y="294" width="160" height="28" rx="6" fill="#fff" stroke="#d97757"/>
+  <text x="530" y="313" class="hand" font-size="14" text-anchor="middle" fill="#2b2a27">「あいさつを出して」</text>
+  <g class="hand" text-anchor="middle">
+    <text x="110" y="346" font-size="13" fill="#7c7360">1940〜50年代</text>
+    <text x="320" y="346" font-size="13" fill="#7c7360">1950年代〜</text>
+    <text x="530" y="346" font-size="13" fill="#b4542f">2020年代〜</text>
+    <text x="110" y="370" font-size="15" font-weight="700" fill="#2b2a27">ひと握りの研究者</text>
+    <text x="320" y="370" font-size="15" font-weight="700" fill="#2b2a27">勉強した人</text>
+    <text x="530" y="370" font-size="15" font-weight="700" fill="#b4542f">話せる人みんな</text>
+  </g>
+  <text x="320" y="394" class="serif mute" font-size="12" text-anchor="middle">壁の上に立てる人＝コンピュータに仕事を頼める人</text>
+</svg>
