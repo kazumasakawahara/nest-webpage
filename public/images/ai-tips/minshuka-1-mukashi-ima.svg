@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-labelledby="t d">
+  <title id="t">むかしは呪文を覚えた人だけ、いまは日本語でだれでも頼める</title>
+  <desc id="d">左（むかし）では、英語のような記号が並んだ黒板の前で人が汗をかき「私には、無理……」とつぶやいている。右（いま）では、人が「今月が誕生日の人を、一覧にしてください」と日本語で頼み、AIさん人形が「日本語で、どうぞ」と言いながら「できました」と書かれた一覧のカードを差し出している。</desc>
+  <defs>
+    <style>
+      .ink{fill:#2b2a27}.mute{fill:#6b6a66}
+      .hand{font-family:"Zen Kurenaido","Klee One","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif}
+      .serif{font-family:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif}
+      .mono{font-family:"SFMono-Regular",Menlo,Consolas,"Courier New",monospace}
+    </style>
+    <g id="person">
+      <ellipse cx="0" cy="176" rx="46" ry="7" fill="#e3d9c3"/>
+      <path d="M-34 172 V80 q0-30 34-30 q34 0 34 30 V172 Z" fill="#4a8c3f"/>
+      <circle cx="0" cy="26" r="34" fill="#f3d3b3" stroke="#2b2a27" stroke-width="2"/>
+      <path d="M-34 20 q10-36 46-28 q22 6 22 26 q-16-14-38-8 q-18 6-30 10Z" fill="#3b2f2a"/>
+      <circle cx="-11" cy="30" r="3" fill="#2b2a27"/>
+      <circle cx="11" cy="30" r="3" fill="#2b2a27"/>
+      <path d="M-7 44 q7 5 14 0" stroke="#2b2a27" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </g>
+    <g id="robot">
+      <ellipse cx="0" cy="156" rx="44" ry="7" fill="#e3d9c3"/>
+      <rect x="-34" y="40" width="68" height="104" rx="18" fill="#d97757"/>
+      <rect x="-9" y="26" width="18" height="16" rx="4" fill="#6b6a66" stroke="#2b2a27" stroke-width="1.5"/>
+      <rect x="-30" y="-30" width="60" height="58" rx="14" fill="#fff" stroke="#2b2a27" stroke-width="2"/>
+      <rect x="-22" y="-20" width="44" height="34" rx="8" fill="#2b2a27"/>
+      <circle cx="-9" cy="-4" r="5" fill="#8fe3a3"/>
+      <circle cx="9" cy="-4" r="5" fill="#8fe3a3"/>
+      <path d="M-8 6 q8 5 16 0" stroke="#8fe3a3" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <line x1="0" y1="-30" x2="0" y2="-44" stroke="#2b2a27" stroke-width="2"/>
+      <circle cx="0" cy="-48" r="5" fill="#d97757" stroke="#2b2a27" stroke-width="2"/>
+      <path d="M-12 44 l10 6 l-10 6Z M12 44 l-10 6 l10 6Z" fill="#2b2a27"/>
+    </g>
+  </defs>
+  <rect width="640" height="400" fill="#f7f1e3"/>
+  <rect width="320" height="400" fill="#ece5d5"/>
+  <path d="M320 0 V400" stroke="#d6cbb3" stroke-width="2" stroke-dasharray="6 6"/>
+  <path d="M0 376 H640" stroke="#e3d9c3" stroke-width="2"/>
+  <text x="24" y="38" class="hand" font-size="22" font-weight="700" fill="#7c7360">むかし</text>
+  <text x="344" y="38" class="hand" font-size="22" font-weight="700" fill="#2f5d3a">いま</text>
+
+  <!-- blackboard of code -->
+  <rect x="24" y="56" width="272" height="132" rx="8" fill="#2f4a3a" stroke="#2b2a27" stroke-width="2"/>
+  <g class="mono" font-size="13" fill="#e4eedb">
+    <text x="40" y="84">for r in csv.reader(f):</text>
+    <text x="56" y="106">if int(r[2]) == m:</text>
+    <text x="72" y="128">print(r[0]</text>
+  </g>
+  <text x="40" y="166" class="mono" font-size="13" fill="#ffb4a2">SyntaxError ✕</text>
+
+  <!-- worried person -->
+  <g transform="translate(92 234) scale(.8)"><use href="#person"/></g>
+  <path d="M74 252 q6 -5 12 0" stroke="#2b2a27" stroke-width="2" fill="none"/>
+  <path d="M128 238 q6 10 0 14 q-6 -4 0 -14Z" fill="#7cc4e8" stroke="#2b2a27" stroke-width="1.2"/>
+  <g transform="translate(146 214)">
+    <rect x="0" y="0" width="164" height="46" rx="14" fill="#fff" stroke="#2b2a27" stroke-width="2"/>
+    <path d="M0 28 l-14 10 l14 -2Z" fill="#fff" stroke="#2b2a27" stroke-width="2"/>
+    <path d="M1 30 v6" stroke="#fff" stroke-width="3"/>
+    <text x="14" y="30" class="hand ink" font-size="16">私には、無理……</text>
+  </g>
+
+  <!-- happy person -->
+  <g transform="translate(396 234) scale(.8)"><use href="#person"/></g>
+  <g transform="translate(336 58)">
+    <rect x="0" y="0" width="200" height="78" rx="16" fill="#fff" stroke="#2b2a27" stroke-width="2"/>
+    <path d="M50 78 l6 22 l14 -22Z" fill="#fff" stroke="#2b2a27" stroke-width="2"/>
+    <path d="M52 78 h16" stroke="#fff" stroke-width="4"/>
+    <text x="16" y="32" class="hand ink" font-size="17">今月が誕生日の人を、</text>
+    <text x="16" y="60" class="hand ink" font-size="17" font-weight="700">一覧にしてください</text>
+  </g>
+
+  <!-- card handed over -->
+  <g transform="rotate(-5 480 280)">
+    <rect x="442" y="232" width="78" height="96" rx="6" fill="#fff" stroke="#2b2a27" stroke-width="2"/>
+    <text x="481" y="252" class="hand ink" font-size="12" font-weight="700" text-anchor="middle">できました</text>
+    <g fill="#d97757"><circle cx="454" cy="270" r="3"/><circle cx="454" cy="288" r="3"/><circle cx="454" cy="306" r="3"/></g>
+    <g fill="#c9bfa8"><rect x="462" y="267" width="46" height="6" rx="3"/><rect x="462" y="285" width="38" height="6" rx="3"/><rect x="462" y="303" width="42" height="6" rx="3"/></g>
+  </g>
+
+  <!-- robot -->
+  <g transform="translate(574 252) scale(.78)"><use href="#robot"/></g>
+  <path d="M548 300 q-14 -6 -26 -10" stroke="#d97757" stroke-width="9" stroke-linecap="round" fill="none"/>
+  <g transform="translate(506 150)">
+    <rect x="0" y="0" width="126" height="38" rx="12" fill="#fff" stroke="#2b2a27" stroke-width="2"/>
+    <path d="M70 38 l2 12 l10 -12Z" fill="#fff" stroke="#2b2a27" stroke-width="2"/>
+    <path d="M71 38 h10" stroke="#fff" stroke-width="3"/>
+    <text x="63" y="25" class="hand ink" font-size="14" text-anchor="middle">日本語で、どうぞ</text>
+  </g>
+
+  <text x="24" y="394" class="hand mute" font-size="13">記号の言葉を覚えた人だけが、頼めた</text>
+  <text x="344" y="394" class="hand mute" font-size="13">ふだんの日本語で、だれでも頼める</text>
+</svg>

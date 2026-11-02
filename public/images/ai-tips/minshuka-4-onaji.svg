@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-labelledby="t d">
+  <title id="t">同じお願いを、二つの言葉で</title>
+  <desc id="d">左の黒い画面に、名簿から今月が誕生日の人を選んで表示するPythonのプログラム6行。下に「点やかっこが一つ違うだけで、動かない」。右の白い枠に、同じ内容の日本語「名簿の中から、今月が誕生日の人だけを選んで、並べてください。」。下に「言い方が少し違っても通じる」。</desc>
+  <defs>
+    <style>
+      .ink{fill:#2b2a27}.mute{fill:#6b6a66}
+      .hand{font-family:"Zen Kurenaido","Klee One","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif}
+      .serif{font-family:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif}
+      .mono{font-family:"SFMono-Regular",Menlo,Consolas,"Courier New",monospace}
+    </style>
+    <g id="person">
+      <ellipse cx="0" cy="176" rx="46" ry="7" fill="#e3d9c3"/>
+      <path d="M-34 172 V80 q0-30 34-30 q34 0 34 30 V172 Z" fill="#4a8c3f"/>
+      <circle cx="0" cy="26" r="34" fill="#f3d3b3" stroke="#2b2a27" stroke-width="2"/>
+      <path d="M-34 20 q10-36 46-28 q22 6 22 26 q-16-14-38-8 q-18 6-30 10Z" fill="#3b2f2a"/>
+      <circle cx="-11" cy="30" r="3" fill="#2b2a27"/>
+      <circle cx="11" cy="30" r="3" fill="#2b2a27"/>
+      <path d="M-7 44 q7 5 14 0" stroke="#2b2a27" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </g>
+    <g id="robot">
+      <ellipse cx="0" cy="156" rx="44" ry="7" fill="#e3d9c3"/>
+      <rect x="-34" y="40" width="68" height="104" rx="18" fill="#d97757"/>
+      <rect x="-9" y="26" width="18" height="16" rx="4" fill="#6b6a66" stroke="#2b2a27" stroke-width="1.5"/>
+      <rect x="-30" y="-30" width="60" height="58" rx="14" fill="#fff" stroke="#2b2a27" stroke-width="2"/>
+      <rect x="-22" y="-20" width="44" height="34" rx="8" fill="#2b2a27"/>
+      <circle cx="-9" cy="-4" r="5" fill="#8fe3a3"/>
+      <circle cx="9" cy="-4" r="5" fill="#8fe3a3"/>
+      <path d="M-8 6 q8 5 16 0" stroke="#8fe3a3" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <line x1="0" y1="-30" x2="0" y2="-44" stroke="#2b2a27" stroke-width="2"/>
+      <circle cx="0" cy="-48" r="5" fill="#d97757" stroke="#2b2a27" stroke-width="2"/>
+      <path d="M-12 44 l10 6 l-10 6Z M12 44 l-10 6 l10 6Z" fill="#2b2a27"/>
+    </g>
+  </defs>
+  <rect width="640" height="360" fill="#f7f1e3"/>
+  <text x="320" y="32" class="hand ink" font-size="19" font-weight="700" text-anchor="middle">同じお願いを、二つの言葉で</text>
+  <rect x="20" y="50" width="352" height="232" rx="12" fill="#2f3a35" stroke="#2b2a27" stroke-width="2"/>
+  <text x="36" y="76" class="hand" font-size="14" fill="#c9d6c4">職人さんの言葉（Python）で書くと</text>
+  <g class="mono" font-size="12.5" fill="#e4eedb">
+    <text x="36" y="112">import csv, datetime</text>
+    <text x="36" y="136">m = datetime.date.today().month</text>
+    <text x="36" y="160">with open("meibo.csv") as f:</text>
+    <text x="66" y="184">for r in csv.DictReader(f):</text>
+    <text x="96" y="208">if int(r["誕生月"]) == m:</text>
+    <text x="126" y="232">print(r["名前"])</text>
+  </g>
+  <rect x="392" y="50" width="228" height="232" rx="12" fill="#fff" stroke="#d97757" stroke-width="2.5"/>
+  <text x="408" y="76" class="hand" font-size="14" fill="#b4542f">日本語で頼むと</text>
+  <g class="hand ink" font-size="19" font-weight="700">
+    <text x="412" y="124">名簿の中から、</text>
+    <text x="412" y="156">今月が誕生日の</text>
+    <text x="412" y="188">人だけを選んで、</text>
+    <text x="412" y="220">並べてください。</text>
+  </g>
+  <g class="hand" font-size="14">
+    <circle cx="40" cy="306" r="9" fill="none" stroke="#c0392b" stroke-width="2.5"/>
+    <path d="M35 301 l10 10 M45 301 l-10 10" stroke="#c0392b" stroke-width="2.5"/>
+    <text x="58" y="311" fill="#5f5847">点やかっこが一つ違うだけで、動かない</text>
+    <circle cx="412" cy="306" r="9" fill="none" stroke="#4a8c3f" stroke-width="2.5"/>
+    <text x="428" y="311" fill="#264a2c">言い方が少し違っても通じる</text>
+  </g>
+  <text x="320" y="346" class="serif mute" font-size="12" text-anchor="middle">コンピュータがする仕事は、どちらも同じ</text>
+</svg>
