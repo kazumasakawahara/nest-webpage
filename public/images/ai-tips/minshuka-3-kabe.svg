@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-labelledby="t d">
   <title id="t">コンピュータに頼むためのハードルの、うつりかわり</title>
-  <desc id="d">三台のハードルのバーの高さで、コンピュータに頼むための言葉の変化を示した図。①0と1（1940〜50年代）はバーの高さ2メートル以上で、越えられたのはひと握りの研究者。②プログラミング言語（1950年代〜）はまだ高いバーで、勉強した人が越えられる。③ふだんの日本語（2020年代〜）はバーが10センチで、話せる人みんなが越えられる。</desc>
+  <desc id="d">三台のハードルのバーの高さで、コンピュータに頼むための言葉の変化を示した図。①0と1（機械語、1940〜50年代）はバーの高さ2メートル以上で、越えられたのはひと握りの研究者。②プログラミング言語（1950年代〜）はまだ高いバーで、勉強した人が越えられる。③ふだんの日本語（2020年代〜）はバーが10センチで、話せる人みんなが越えられる。</desc>
   <defs>
     <style>
       .ink{fill:#2b2a27}.mute{fill:#6b6a66}
@@ -91,7 +91,7 @@
   <text x="320" y="32" class="hand ink" font-size="19" font-weight="700" text-anchor="middle">コンピュータに頼むためのハードルの、うつりかわり</text>
   <path d="M0 282 H640" stroke="#b7ac97" stroke-width="2"/>
   <g class="hand" font-size="16" font-weight="700" text-anchor="middle">
-    <text x="110" y="64" fill="#5f5847">① 0と1</text>
+    <text x="110" y="64" fill="#5f5847">① 0と1（機械語）</text>
     <text x="320" y="64" fill="#5f5847">② プログラミング言語</text>
     <text x="530" y="64" fill="#b4542f">③ ふだんの日本語</text>
   </g>
