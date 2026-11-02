@@ -3,6 +3,8 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
 import AiTipsQuestionBox from '../../components/AiTipsQuestionBox.astro';
+import AiTipsNewBadge from '../../components/AiTipsNewBadge.astro';
+import { latestTips, shelfLabel } from '../../lib/ai-tips-new';
 
 const all = await getCollection('aiTips', ({ data }) => !data.draft);
 
@@ -91,6 +93,9 @@ const aibouIntro = all.find((e) => e.data.kind === 'aibou');
 const seriesItems = all.filter((e) => e.data.kind === 'series').sort((a, b) => a.id.localeCompare(b.id));
 const practiceItems = all.filter((e) => e.data.kind === 'practice').sort((a, b) => byDateDesc(b, a));
 
+// 新着（棚の並び順とは別に、公開日の新しい順。ページ上部に数本だけ）
+const latestItems = latestTips(all);
+
 const fmtDate = (d: Date) =>
   `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
 ---
@@ -114,6 +119,27 @@ const fmtDate = (d: Date) =>
 
   <section class="section">
     <div class="container container--narrow">
+      {latestItems.length > 0 && (
+        <div class="latest reveal" id="latest">
+          <h2 class="latest__title">🆕 新着記事</h2>
+          <ul class="latest__list">
+            {latestItems.map((item) => (
+              <li class="latest__item">
+                <a href={`/ai-tips/${item.id}/`} class="latest__link">
+                  <span class="latest__meta">
+                    <time class="latest__date" datetime={item.data.date.toISOString()}>{fmtDate(item.data.date)}</time>
+                    <span class="latest__shelf">{shelfLabel(item)}</span>
+                    <AiTipsNewBadge date={item.data.date} />
+                  </span>
+                  <span class="latest__name">{item.data.title}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p class="latest__note">新着の記事は、下の棚にも並んでいます。<a href="/ai-tips/rss.xml">RSS</a> でも受け取れます。</p>
+        </div>
+      )}
+
       <h2 class="section__title">3つの棚から、どうぞ</h2>
       <p class="series-lead">
         はじめての方は 🌱 あんしん編 を上から順に。慣れてきたら、💡 と 🤝 へ。
@@ -163,6 +189,7 @@ const fmtDate = (d: Date) =>
                 <li class="feature-box__item">
                   <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
                     <span class="feature-box__name">{item.data.title}</span>
+                    <AiTipsNewBadge date={item.data.date} />
                   </a>
                 </li>
               ))}
@@ -189,6 +216,7 @@ const fmtDate = (d: Date) =>
                 <li class="feature-box__item">
                   <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
                     <span class="feature-box__name">{item.data.title}</span>
+                    <AiTipsNewBadge date={item.data.date} />
                   </a>
                 </li>
               ))}
@@ -196,6 +224,7 @@ const fmtDate = (d: Date) =>
                 <li class="feature-box__item feature-box__item--extra">
                   <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
                     <span class="feature-box__name">{item.data.title}</span>
+                    <AiTipsNewBadge date={item.data.date} />
                   </a>
                 </li>
               ))}
@@ -223,6 +252,7 @@ const fmtDate = (d: Date) =>
                 <li class="feature-box__item">
                   <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
                     <span class="feature-box__name">{item.data.title}</span>
+                    <AiTipsNewBadge date={item.data.date} />
                   </a>
                 </li>
               ))}
@@ -249,6 +279,7 @@ const fmtDate = (d: Date) =>
                 <li class="feature-box__item">
                   <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
                     <span class="feature-box__name">{item.data.title}</span>
+                    <AiTipsNewBadge date={item.data.date} />
                   </a>
                 </li>
               ))}
@@ -274,6 +305,7 @@ const fmtDate = (d: Date) =>
                 <li class="feature-box__item">
                   <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
                     <span class="feature-box__name">{item.data.title}</span>
+                    <AiTipsNewBadge date={item.data.date} />
                   </a>
                 </li>
               ))}
@@ -298,6 +330,7 @@ const fmtDate = (d: Date) =>
                 <li class="feature-box__item">
                   <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
                     <span class="feature-box__name">{item.data.title}</span>
+                    <AiTipsNewBadge date={item.data.date} />
                   </a>
                 </li>
               ))}
@@ -323,6 +356,7 @@ const fmtDate = (d: Date) =>
                 <li class="feature-box__item">
                   <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
                     <span class="feature-box__name">{item.data.title}</span>
+                    <AiTipsNewBadge date={item.data.date} />
                   </a>
                 </li>
               ))}
@@ -348,6 +382,7 @@ const fmtDate = (d: Date) =>
                 <li class="feature-box__item">
                   <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
                     <span class="feature-box__name">{item.data.title}</span>
+                    <AiTipsNewBadge date={item.data.date} />
                   </a>
                 </li>
               ))}
@@ -375,6 +410,7 @@ const fmtDate = (d: Date) =>
                 <li class="feature-box__item">
                   <a href={`/ai-tips/${item.id}/`} class="feature-box__link">
                     <span class="feature-box__name">{item.data.title}</span>
+                    <AiTipsNewBadge date={item.data.date} />
                   </a>
                 </li>
               ))}
@@ -406,7 +442,7 @@ const fmtDate = (d: Date) =>
             <li class="tips-list__item reveal" data-delay={(i % 3) + 1}>
               <a href={`/ai-tips/${item.id}/`} class="tips-list__link tips-list__link--num">
                 <span class="tips-list__num" aria-hidden="true">{i + 1}</span>
-                <h3 class="tips-list__title">{item.data.title}</h3>
+                <h3 class="tips-list__title">{item.data.title} <AiTipsNewBadge date={item.data.date} /></h3>
                 {item.data.summary && (
                   <p class="tips-list__summary">{item.data.summary}</p>
                 )}
@@ -437,7 +473,7 @@ const fmtDate = (d: Date) =>
                 <time class="tips-list__date" datetime={item.data.date.toISOString()}>
                   {fmtDate(item.data.date)}
                 </time>
-                <h3 class="tips-list__title">{item.data.title}</h3>
+                <h3 class="tips-list__title">{item.data.title} <AiTipsNewBadge date={item.data.date} /></h3>
                 {item.data.summary && (
                   <p class="tips-list__summary">{item.data.summary}</p>
                 )}
@@ -468,7 +504,7 @@ const fmtDate = (d: Date) =>
             <p class="series-box__intro">
               <span class="series-box__badge">はじめに</span>
               <a href={`/ai-tips/${aibouIntro.id}/`} class="series-box__link series-box__link--intro">
-                <span class="series-box__title">{aibouIntro.data.title}</span>
+                <span class="series-box__title">{aibouIntro.data.title} <AiTipsNewBadge date={aibouIntro.data.date} /></span>
               </a>
             </p>
           )}
@@ -476,7 +512,7 @@ const fmtDate = (d: Date) =>
             {seriesItems.map((item) => (
               <li class="series-box__item">
                 <a href={`/ai-tips/${item.id}/`} class="series-box__link">
-                  <span class="series-box__title">{item.data.title}</span>
+                  <span class="series-box__title">{item.data.title} <AiTipsNewBadge date={item.data.date} /></span>
                 </a>
               </li>
             ))}
@@ -489,7 +525,7 @@ const fmtDate = (d: Date) =>
                   <li>
                     <a href={`/ai-tips/${item.id}/`} class="series-box__link">
                       <span class="series-box__badge">実践編</span>
-                      <span class="series-box__title">{item.data.title}</span>
+                      <span class="series-box__title">{item.data.title} <AiTipsNewBadge date={item.data.date} /></span>
                     </a>
                   </li>
                 ))}
@@ -528,6 +564,80 @@ const fmtDate = (d: Date) =>
 </script>
 
 <style>
+  /* === 新着記事（ページ上部） === */
+  .latest {
+    margin-bottom: var(--space-7);
+    padding: var(--space-4) var(--space-5);
+    border: 1.5px solid var(--color-line);
+    border-left: 4px solid var(--color-terra-500);
+    border-radius: 12px;
+    background: #fff;
+  }
+
+  .latest__title {
+    font-family: var(--font-hand);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-green-900);
+  }
+
+  .latest__list {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-3);
+  }
+
+  .latest__item + .latest__item {
+    border-top: 1px dashed var(--color-line);
+  }
+
+  .latest__link {
+    display: block;
+    padding: var(--space-3) var(--space-2);
+    color: var(--color-ink);
+    transition: background-color var(--dur-fast) var(--ease-out);
+  }
+
+  .latest__link:hover {
+    background-color: rgba(217, 119, 87, 0.06);
+    color: var(--color-ink);
+  }
+
+  .latest__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 12px;
+    color: var(--color-ink-soft);
+  }
+
+  .latest__date {
+    font-family: var(--font-mono);
+    letter-spacing: 0.05em;
+  }
+
+  .latest__shelf {
+    color: var(--color-green-700);
+    font-weight: 600;
+  }
+
+  .latest__name {
+    display: block;
+    margin-top: 4px;
+    font-family: var(--font-hand);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--color-green-900);
+    line-height: 1.6;
+  }
+
+  .latest__note {
+    margin-top: var(--space-3);
+    font-size: 12px;
+    color: var(--color-ink-mute);
+  }
+
   /* === 3つの棚ナビ === */
   #anshin, #waza, #aibou, #dougu, #haiyu, #google, #asobi, #genko, #kiroku {
     scroll-margin-top: 96px;
