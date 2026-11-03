@@ -52,6 +52,13 @@ kind: anshin
   氏名や個人名をファイル名から推測して reason に書かない。
 </div>
 
+<div class="qa">
+  <div class="qa__row qa__row--me">
+    <div class="qa__avatar">🙂</div>
+    <p class="qa__bubble">これも、AIさんに作ってもらいました。</p>
+  </div>
+</div>
+
 英語まじりの記号は、フォルダの名前です。inbox が「入口の箱」、_private が「鍵付きの棚」にあたります。記号を外せば、新人さんに口で伝えるのと変わらない中身です。
 
 ## 一行ずつ、ふだんの言葉に直すと
