@@ -130,6 +130,60 @@ import Hero from '../components/Hero.astro';
             </div>
           </div>
         </div>
+
+        <!-- ===== 関連：ユネスコ「国際セクシュアリティ教育ガイダンス」（CC BY-NC-ND 3.0 IGO のため再配布せず公式ページへリンク） ===== -->
+        <div class="unesco-card">
+          <span class="guide-card__eyebrow">関連資料・無料で読める本</span>
+          <h4 class="guide-card__title">ユネスコ『国際セクシュアリティ教育ガイダンス』（改訂版・日本語）</h4>
+          <p class="unesco-card__text">
+            「やさしい性教育ガイド」の土台にある考え方を、もう一歩深く知りたい方へ。
+            ユネスコをはじめとする国連の機関が、世界中の研究をもとにまとめた性教育の手引きです。
+            5歳から18歳以上までを四つの年ごろに分け、家族や友だちとの関係、からだの成長、
+            同意やプライバシー、暴力から身を守ることなどを、何歳ごろに何を学ぶとよいかという形で整理しています。
+          </p>
+          <p class="unesco-card__text">
+            もともと学校の先生向けに書かれた本なので、障がいのある人にそのまま使える教材ではありません。
+            それでも、わが子に「いつ、何を、どう伝えるか」を考えるときの物差しになります。
+            日本語版は約290ページあり、ユネスコの公式サイトから無料で読めて、PDFとして保存もできます。
+          </p>
+
+          <h5 class="unesco-card__subtitle">保存のしかた</h5>
+          <p class="unesco-card__text">
+            下のボタンからユネスコのページを開くと、上のほうに表紙と本の情報が出てきます。
+            画面を少し下へ進めると「Full text」という欄があり、本の中身がそのまま映っています。
+            その黒い帯の右端近くにある、紙に下向きの矢印がついたボタン（図の赤い枠）を押すと、
+            お使いのパソコンにPDFファイルとして保存されます。ページの案内は英語ですが、本文は日本語です。
+          </p>
+
+          <div class="unesco-figs">
+            <figure class="unesco-fig unesco-fig--wide">
+              <a href="/images/sudachi/unesco-guidance-page.webp" target="_blank" rel="noopener">
+                <img src="/images/sudachi/unesco-guidance-page.webp" alt="ユネスコの文書サイトで国際セクシュアリティ教育ガイダンス日本語版を開いた画面。表紙と本の情報の下に本文が表示され、その上の黒い帯の右側にあるダウンロードボタンが赤い枠で囲まれている" width="1200" height="910" loading="lazy" />
+              </a>
+              <figcaption>ユネスコのページをパソコンで開いたところ。赤い枠がダウンロードのボタンです。</figcaption>
+            </figure>
+            <figure class="unesco-fig">
+              <a href="/images/sudachi/unesco-guidance-download-button.webp" target="_blank" rel="noopener">
+                <img src="/images/sudachi/unesco-guidance-download-button.webp" alt="ダウンロードボタンの拡大図。プリンターの絵の右隣にある、紙に下向き矢印のボタンが赤い丸で囲まれている" width="612" height="510" loading="lazy" />
+              </a>
+              <figcaption>ボタンを大きくしたところ。プリンターの絵の右隣です。矢印を合わせると「Download」と出ます。</figcaption>
+            </figure>
+          </div>
+
+          <p class="unesco-card__note">
+            スマートフォンでは、画面の形が図と違うことがあります。
+            この本の権利はユネスコにあり、営利を目的としない範囲で、手を加えずに共有することが認められています
+            （<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/igo/" target="_blank" rel="noopener">CC BY-NC-ND 3.0 IGO</a>）。
+            nest のサイトにはファイルを置かず、ユネスコの公式ページをご案内しています。
+          </p>
+
+          <div class="guide-card__actions">
+            <a class="btn btn--outline btn--sm" href="https://unesdoc.unesco.org/ark:/48223/pf0000374167" target="_blank" rel="noopener">
+              ユネスコの公式ページを開く
+              <span class="btn__icon" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
       </article>
     </div>
   </section>
@@ -695,6 +749,70 @@ import Hero from '../components/Hero.astro';
   }
 
   .guide-card__src:hover { color: var(--color-terra-500); }
+
+  /* ユネスコ「国際セクシュアリティ教育ガイダンス」のダウンロード案内（PDFは置かず公式ページへ） */
+  .unesco-card {
+    margin-top: var(--space-5);
+    padding: var(--space-5);
+    background: var(--color-cream);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+  }
+
+  .unesco-card__text {
+    font-size: var(--fs-body);
+    color: var(--color-ink);
+    line-height: var(--lh-normal);
+    margin: 0 0 var(--space-3);
+  }
+
+  .unesco-card__subtitle {
+    font-family: var(--font-heading);
+    font-size: var(--fs-body);
+    font-weight: 700;
+    color: var(--color-green-900);
+    margin: var(--space-5) 0 var(--space-2);
+  }
+
+  .unesco-figs {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-4);
+    align-items: start;
+    margin: var(--space-4) 0;
+  }
+
+  .unesco-fig { margin: 0; }
+
+  .unesco-fig img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-sm);
+    background: #fff;
+  }
+
+  .unesco-fig figcaption {
+    font-size: var(--fs-small);
+    color: var(--color-ink-mute);
+    line-height: var(--lh-snug);
+    margin-top: var(--space-2);
+  }
+
+  .unesco-card__note {
+    font-size: var(--fs-small);
+    color: var(--color-ink-mute);
+    line-height: var(--lh-snug);
+    margin: 0 0 var(--space-4);
+  }
+
+  .unesco-card__note a { color: var(--color-terra-700); }
+
+  @media (max-width: 640px) {
+    .unesco-figs { grid-template-columns: 1fr; }
+    .unesco-fig:not(.unesco-fig--wide) { max-width: 260px; }
+  }
 
   /* 意思決定支援への導線カード（本体は /sudachi/decision-support/） */
   .ds-entry {
