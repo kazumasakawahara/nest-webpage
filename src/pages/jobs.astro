@@ -7,6 +7,23 @@ import { site } from '../lib/site';
 // 要領にない条件は足さない。条件が変わったら、PDF とこのページを一緒に差し替える。
 const pdf = '/pdfs/recruit/nest-sewanin-part-2026.pdf';
 const telHref = `tel:${site.tel.replaceAll('-', '')}`;
+
+// 見出しのデジタル時計（6:30 AM）。7セグメントの数字を四角形で描く（フォントに左右されない）
+const SEG: Record<string, string> = { '6': 'acdefg', '3': 'abcdg', '0': 'abcdef' };
+function digit(ch: string, x: number, y = 22, w = 12, h = 22, t = 3): number[][] {
+  const half = h / 2;
+  const parts: Record<string, number[]> = {
+    a: [x + 1.5, y, w - 3, t],
+    b: [x + w - t, y + 1.5, t, half - 1.5],
+    c: [x + w - t, y + half, t, half - 1.5],
+    d: [x + 1.5, y + h - t, w - 3, t],
+    e: [x, y + half, t, half - 1.5],
+    f: [x, y + 1.5, t, half - 1.5],
+    g: [x + 1.5, y + half - t / 2, w - 3, t],
+  };
+  return [...SEG[ch]].map((k) => parts[k]);
+}
+const segs = [...digit('6', 17), ...digit('3', 40), ...digit('0', 57)];
 ---
 
 <BaseLayout
@@ -26,30 +43,21 @@ const telHref = `tel:${site.tel.replaceAll('-', '')}`;
   <section class="section">
     <div class="container container--narrow reveal">
       <h2 class="section__title jobs-title">
-        <svg class="jobs-clock" viewBox="0 0 64 64" role="img" aria-label="午前6時30分を指す目覚まし時計">
-          <!-- ベル（左右）と持ち手 -->
-          <path d="M9 17a9 9 0 0 1 14-9z" fill="var(--color-terra-500)" />
-          <path d="M55 17a9 9 0 0 0-14-9z" fill="var(--color-terra-500)" />
-          <path d="M26 6.5h12" stroke="var(--color-green-900)" stroke-width="3" stroke-linecap="round" />
-          <!-- 足 -->
-          <path d="M17 55l-4 6M47 55l4 6" stroke="var(--color-green-900)" stroke-width="3.5" stroke-linecap="round" />
-          <!-- 文字盤 -->
-          <circle cx="32" cy="35" r="24" fill="var(--color-green-900)" />
-          <circle cx="32" cy="35" r="19.5" fill="#fffaf2" />
-          <!-- 目盛り（12・3・6・9） -->
+        <svg class="jobs-clock" viewBox="0 0 96 66" role="img" aria-label="6:30 AM と表示したデジタル時計">
+          <!-- 上のボタンと足 -->
+          <rect x="62" y="3" width="16" height="7" rx="3.5" fill="var(--color-terra-500)" />
+          <rect x="16" y="56" width="12" height="8" rx="4" fill="var(--color-green-900)" />
+          <rect x="68" y="56" width="12" height="8" rx="4" fill="var(--color-green-900)" />
+          <!-- 本体と画面 -->
+          <rect x="4" y="8" width="88" height="50" rx="14" fill="var(--color-green-900)" />
+          <rect x="12" y="16" width="72" height="34" rx="8" fill="#fffaf2" />
+          <!-- 6:30（7セグメントの数字） -->
           <g fill="var(--color-green-900)">
-            <circle cx="32" cy="19" r="1.8" />
-            <circle cx="48" cy="35" r="1.8" />
-            <circle cx="32" cy="51" r="1.8" />
-            <circle cx="16" cy="35" r="1.8" />
+            {segs.map(([x, y, w, h]) => <rect x={x} y={y} width={w} height={h} rx="1.5" />)}
+            <circle cx="34.5" cy="28" r="2" />
+            <circle cx="34.5" cy="38" r="2" />
           </g>
-          <!-- ほっぺ -->
-          <circle cx="22" cy="40" r="2.6" fill="#f4b9a3" />
-          <circle cx="42" cy="40" r="2.6" fill="#f4b9a3" />
-          <!-- 針：長針は6（180°）、短針は6と7のあいだ（195°）＝6時30分 -->
-          <line x1="32" y1="35" x2="32" y2="18.5" stroke="var(--color-green-900)" stroke-width="2.2" stroke-linecap="round" transform="rotate(180 32 35)" />
-          <line x1="32" y1="35" x2="32" y2="26.5" stroke="var(--color-terra-500)" stroke-width="4" stroke-linecap="round" transform="rotate(195 32 35)" />
-          <circle cx="32" cy="35" r="2.4" fill="var(--color-terra-500)" />
+          <text x="76.5" y="47" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-terra-500)" font-family="var(--font-sans)">AM</text>
         </svg>
         <span>朝の三時間、ホームに来てくださる方を</span>
       </h2>
@@ -182,8 +190,8 @@ const telHref = `tel:${site.tel.replaceAll('-', '')}`;
 
   .jobs-clock {
     flex: none;
-    width: 2.2em;
-    height: 2.2em;
+    width: 2.6em;
+    height: 1.8em;
   }
 
   .jobs-lead {
