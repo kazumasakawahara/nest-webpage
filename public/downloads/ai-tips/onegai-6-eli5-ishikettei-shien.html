@@ -1,0 +1,250 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>わたしが きめる</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Zen+Maru+Gothic:wght@700;900&display=swap">
+<style>
+/* Layout: one tall column of picture panels, a picture first and a few big words under it */
+:root{
+  --bg:#F1F6FA; --fg:#1D2833; --muted:#4D5D6C; --card:#FFFFFF; --soft:#E1ECF5;
+  --me:#E07A2E; --me-soft:#FCE6D4; --helper:#2F86AE; --skin:#F1C79E; --ok:#3E9B5C; --line:#C9D8E5;
+  --display:"Zen Maru Gothic","Hiragino Maru Gothic ProN","BIZ UDPGothic",sans-serif;
+  --body:"BIZ UDPGothic","Hiragino Sans","Meiryo",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#131A21; --fg:#EEF2F6; --muted:#A9B7C4; --card:#1C2630; --soft:#22303D;
+  --me:#F39A55; --me-soft:#3A2A1D; --helper:#62B3D9; --skin:#E2B78E; --ok:#5DBB7A; --line:#33444F; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131A21; --fg:#EEF2F6; --muted:#A9B7C4; --card:#1C2630; --soft:#22303D;
+  --me:#F39A55; --me-soft:#3A2A1D; --helper:#62B3D9; --skin:#E2B78E; --ok:#5DBB7A; --line:#33444F; color-scheme:dark}
+
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:20px;line-height:1.8}
+.wrap{max-width:720px;margin:0 auto;padding-block:24px 64px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;gap:28px}
+h1,h2{font-family:var(--display);font-weight:900;text-wrap:balance;margin:0;line-height:1.4}
+h1{font-size:clamp(34px,8vw,52px);text-align:center}
+h2{font-size:clamp(26px,6vw,34px)}
+p{margin:0}
+rt{font-size:.5em;font-family:var(--body);font-weight:400}
+.lead{text-align:center;color:var(--muted);font-size:20px}
+.panel{background:var(--card);border-radius:28px;padding:24px;display:flex;flex-direction:column;gap:16px}
+.panel svg.pic{width:100%;height:auto;max-width:100%;display:block}
+.big{font-size:24px;font-weight:700}
+.note{color:var(--muted)}
+.me{color:var(--me)} .helper{color:var(--helper)}
+.hl{background:var(--me-soft);border-radius:8px;padding:0 6px}
+
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.tile{background:var(--soft);border-radius:20px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;font-weight:700;font-size:19px;line-height:1.5}
+.tile svg{width:72px;height:72px}
+
+.says{display:flex;flex-direction:column;gap:12px}
+.say{all:unset;cursor:pointer;display:flex;align-items:center;gap:14px;background:var(--me-soft);border:3px solid var(--me);border-radius:22px;padding:16px 18px;font-family:var(--display);font-weight:700;font-size:22px;line-height:1.5;color:var(--fg)}
+.say:focus-visible{outline:4px solid var(--helper);outline-offset:3px}
+.say .eye{flex:none;width:40px;height:40px;border-radius:50%;background:var(--me);display:grid;place-items:center}
+.say .eye svg{width:24px;height:24px}
+.tip{font-size:17px;color:var(--muted);text-align:center}
+
+.rights{border:4px solid var(--me)}
+footer{font-size:15px;line-height:1.7;color:var(--muted);border-top:2px solid var(--line);padding-top:16px}
+footer h3{font-size:16px;margin:0 0 4px;color:var(--fg)}
+
+#show{position:fixed;inset:0;z-index:20;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;
+  padding:calc(24px + env(safe-area-inset-top,0px)) max(24px,env(safe-area-inset-right,0px)) calc(24px + env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px))}
+#show-text{font-family:var(--display);font-weight:900;font-size:clamp(36px,9vw,72px);line-height:1.45;text-align:center;text-wrap:balance;color:var(--fg)}
+#show-close{all:unset;cursor:pointer;background:var(--fg);color:var(--bg);font-weight:700;font-size:22px;border-radius:999px;padding:12px 32px}
+#show-close:focus-visible{outline:4px solid var(--me);outline-offset:3px}
+@media (max-width:420px){body{font-size:19px}.panel{padding:18px}.tile{font-size:17px}}
+</style>
+
+<!-- shared drawings -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="person" viewBox="0 0 100 160">
+      <path d="M16 158 Q16 78 50 74 Q84 78 84 158 Z" fill="currentColor"/>
+      <circle cx="50" cy="38" r="26" fill="var(--skin)"/>
+      <circle cx="41" cy="38" r="3.2" fill="#2A2A2A"/>
+      <circle cx="59" cy="38" r="3.2" fill="#2A2A2A"/>
+      <path d="M40 48 Q50 57 60 48" stroke="#2A2A2A" stroke-width="3" fill="none" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="eye" viewBox="0 0 24 24">
+      <path d="M1 12 Q12 2 23 12 Q12 22 1 12 Z" fill="#fff"/>
+      <circle cx="12" cy="12" r="4" fill="var(--me)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<main class="wrap">
+
+  <header style="display:flex;flex-direction:column;gap:10px">
+    <h1>わたしの ことは<br><span class="me">わたしが きめる</span></h1>
+    <p class="lead">いしけってい しえん の はなし</p>
+  </header>
+
+  <!-- 1: you decide -->
+  <section class="panel" aria-labelledby="h1s">
+    <svg class="pic" viewBox="0 0 400 240" role="img" aria-label="あなたが ふたつの なかから ひとつを えらんでいる え">
+      <rect x="0" y="0" width="400" height="240" rx="20" fill="var(--soft)"/>
+      <use href="#person" x="150" y="70" width="100" height="160" style="color:var(--me)"/>
+      <!-- choice A -->
+      <rect x="30" y="40" width="96" height="96" rx="18" fill="var(--card)" stroke="var(--line)" stroke-width="3"/>
+      <circle cx="78" cy="88" r="26" fill="#E5534B"/>
+      <path d="M78 62 q6 -10 14 -8" stroke="#3E9B5C" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <!-- choice B, chosen -->
+      <rect x="274" y="40" width="96" height="96" rx="18" fill="var(--card)" stroke="var(--ok)" stroke-width="6"/>
+      <path d="M298 70 h48 l-6 44 h-36 Z" fill="#F2B233"/>
+      <rect x="296" y="64" width="52" height="10" rx="5" fill="#9C6B2E"/>
+      <circle cx="362" cy="44" r="18" fill="var(--ok)"/>
+      <path d="M353 44 l7 7 l12 -13" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- bubble -->
+      <rect x="140" y="12" width="120" height="44" rx="22" fill="var(--card)" stroke="var(--me)" stroke-width="3"/>
+      <path d="M196 56 l6 12 l6 -12" fill="var(--card)" stroke="var(--me)" stroke-width="3" stroke-linejoin="round"/>
+      <rect x="194" y="52" width="16" height="6" fill="var(--card)"/>
+      <text x="200" y="42" text-anchor="middle" font-family="Zen Maru Gothic, sans-serif" font-weight="900" font-size="22" fill="var(--fg)">これに する</text>
+    </svg>
+    <h2 id="h1s">きめるのは <span class="me">あなた</span></h2>
+    <p class="big">たべる もの。 きる ふく。 すむ ところ。 しごと。 おかねの つかいかた。</p>
+    <p>あなたの ことは、 あなたが きめます。</p>
+  </section>
+
+  <!-- 2: helpers help -->
+  <section class="panel" aria-labelledby="h2s">
+    <svg class="pic" viewBox="0 0 400 240" role="img" aria-label="てつだう ひとが えを みせて、 どれが いいか きいている え">
+      <rect x="0" y="0" width="400" height="240" rx="20" fill="var(--soft)"/>
+      <use href="#person" x="60" y="70" width="100" height="160" style="color:var(--me)"/>
+      <use href="#person" x="250" y="62" width="104" height="168" style="color:var(--helper)"/>
+      <!-- picture card held by helper -->
+      <rect x="168" y="118" width="92" height="70" rx="12" fill="var(--card)" stroke="var(--helper)" stroke-width="3"/>
+      <rect x="180" y="130" width="30" height="22" rx="4" fill="#E5534B"/>
+      <rect x="218" y="130" width="30" height="22" rx="4" fill="#F2B233"/>
+      <rect x="180" y="160" width="68" height="8" rx="4" fill="var(--line)"/>
+      <!-- bubble -->
+      <rect x="214" y="10" width="170" height="44" rx="22" fill="var(--card)" stroke="var(--helper)" stroke-width="3"/>
+      <path d="M296 54 l6 12 l6 -12" fill="var(--card)" stroke="var(--helper)" stroke-width="3" stroke-linejoin="round"/>
+      <rect x="294" y="50" width="16" height="6" fill="var(--card)"/>
+      <text x="299" y="40" text-anchor="middle" font-family="Zen Maru Gothic, sans-serif" font-weight="900" font-size="21" fill="var(--fg)">どれが いい？</text>
+      <!-- heart near me -->
+      <path d="M110 46 c-10 -14 -30 -4 -20 12 l20 18 l20 -18 c10 -16 -10 -26 -20 -12 Z" fill="var(--me)"/>
+    </svg>
+    <h2 id="h2s"><span class="helper">まわりの ひと</span>は てつだう</h2>
+    <p>しえん する ひと、 かぞく、 せんせい は、 あなたが <span class="hl">じぶんで きめられる ように</span> てつだいます。</p>
+    <p class="big">あなたの かわりに きめる ひと では ありません。</p>
+  </section>
+
+  <!-- 3: ways of helping -->
+  <section class="panel" aria-labelledby="h3s">
+    <h2 id="h3s">こんな ふうに てつだうよ</h2>
+    <div class="tiles">
+      <div class="tile">
+        <svg viewBox="0 0 72 72" aria-hidden="true"><rect x="6" y="12" width="60" height="48" rx="8" fill="var(--card)" stroke="var(--helper)" stroke-width="4"/><circle cx="24" cy="28" r="6" fill="#F2B233"/><path d="M10 56 l18 -18 l12 12 l8 -8 l14 14 Z" fill="var(--ok)"/></svg>
+        えや しゃしんで<br>わかりやすく
+      </div>
+      <div class="tile">
+        <svg viewBox="0 0 72 72" aria-hidden="true"><rect x="4" y="18" width="28" height="36" rx="6" fill="#E5534B"/><rect x="40" y="18" width="28" height="36" rx="6" fill="#F2B233"/><text x="18" y="44" text-anchor="middle" font-size="18" font-weight="900" fill="#fff" font-family="sans-serif">A</text><text x="54" y="44" text-anchor="middle" font-size="18" font-weight="900" fill="#fff" font-family="sans-serif">B</text></svg>
+        えらべる ように<br>ならべる
+      </div>
+      <div class="tile">
+        <svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="28" fill="var(--card)" stroke="var(--helper)" stroke-width="4"/><path d="M36 18 v18 l12 8" stroke="var(--fg)" stroke-width="5" fill="none" stroke-linecap="round"/></svg>
+        ゆっくり<br>まつ
+      </div>
+      <div class="tile">
+        <svg viewBox="0 0 72 72" aria-hidden="true"><path d="M36 60 l-24 -22 c-12 -14 4 -32 24 -16 c20 -16 36 2 24 16 Z" fill="var(--me)"/></svg>
+        あなたの きもちを<br>きく
+      </div>
+    </div>
+  </section>
+
+  <!-- 4: it's your right -->
+  <section class="panel rights" aria-labelledby="h4s">
+    <svg class="pic" viewBox="0 0 400 200" role="img" aria-label="あなたを まもる たてと ほし の え">
+      <rect x="0" y="0" width="400" height="200" rx="20" fill="var(--me-soft)"/>
+      <path d="M200 22 l80 26 v52 c0 44 -36 72 -80 86 c-44 -14 -80 -42 -80 -86 v-52 Z" fill="var(--card)" stroke="var(--me)" stroke-width="6"/>
+      <use href="#person" x="166" y="54" width="68" height="109" style="color:var(--me)"/>
+      <path d="M78 60 l7 15 l16 2 l-12 11 l3 16 l-14 -8 l-14 8 l3 -16 l-12 -11 l16 -2 Z" fill="#F2B233"/>
+      <path d="M322 60 l7 15 l16 2 l-12 11 l3 16 l-14 -8 l-14 8 l3 -16 l-12 -11 l16 -2 Z" fill="#F2B233"/>
+    </svg>
+    <h2 id="h4s">じぶんの ことを きめるのは<br><span class="me">わたしの <ruby>権利<rt>けんり</rt></ruby></span></h2>
+    <p class="big">しょうがいが あっても、 おなじ です。</p>
+    <p>だれかに「あなたには むり」と いわれても、 この <ruby>権利<rt>けんり</rt></ruby>は なくなりません。</p>
+  </section>
+
+  <!-- 5: you can say it -->
+  <section class="panel" aria-labelledby="h5s">
+    <svg class="pic" viewBox="0 0 400 220" role="img" aria-label="あなたが あいてに はっきり いっている え">
+      <rect x="0" y="0" width="400" height="220" rx="20" fill="var(--soft)"/>
+      <use href="#person" x="40" y="58" width="96" height="154" style="color:var(--me)"/>
+      <use href="#person" x="290" y="66" width="86" height="138" style="color:var(--helper)"/>
+      <rect x="120" y="22" width="200" height="74" rx="24" fill="var(--me)"/>
+      <path d="M134 86 l-16 22 l30 -14 Z" fill="var(--me)"/>
+      <text x="220" y="54" text-anchor="middle" font-family="Zen Maru Gothic, sans-serif" font-weight="900" font-size="20" fill="#fff">わたしが</text>
+      <text x="220" y="80" text-anchor="middle" font-family="Zen Maru Gothic, sans-serif" font-weight="900" font-size="20" fill="#fff">きめたいです</text>
+      <!-- listening ear marks -->
+      <path d="M272 120 q-8 10 0 20" stroke="var(--helper)" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M262 112 q-14 18 0 36" stroke="var(--helper)" stroke-width="4" fill="none" stroke-linecap="round"/>
+    </svg>
+    <h2 id="h5s">あいてに <span class="me">いって いい</span></h2>
+    <p>このことは、 しえん する ひとにも、 かぞくにも、 だれにでも いって いいです。</p>
+    <div class="says">
+      <button class="say" type="button" id="say1"><span class="eye"><svg viewBox="0 0 24 24"><use href="#eye"/></svg></span>わたしの ことは わたしが きめます</button>
+      <button class="say" type="button" id="say2"><span class="eye"><svg viewBox="0 0 24 24"><use href="#eye"/></svg></span>わかる ように せつめい して ください</button>
+      <button class="say" type="button" id="say3"><span class="eye"><svg viewBox="0 0 24 24"><use href="#eye"/></svg></span>かんがえる じかんを ください</button>
+      <button class="say" type="button" id="say4"><span class="eye"><svg viewBox="0 0 24 24"><use href="#eye"/></svg></span>わたしの きもちを きいて ください</button>
+      <button class="say" type="button" id="say5"><span class="eye"><svg viewBox="0 0 24 24"><use href="#eye"/></svg></span>きめるのは わたしの <ruby>権利<rt>けんり</rt></ruby> です</button>
+    </div>
+    <p class="tip">ことばを おすと、 おおきく なります。<br>あいてに みせて つかえます。</p>
+  </section>
+
+  <!-- 6: changing your mind / getting help -->
+  <section class="panel" aria-labelledby="h6s">
+    <h2 id="h6s">おぼえて おいてね</h2>
+    <div class="tiles">
+      <div class="tile">
+        <svg viewBox="0 0 72 72" aria-hidden="true"><path d="M16 36 a20 20 0 1 1 6 14" stroke="var(--helper)" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M8 30 l8 8 l8 -8" stroke="var(--helper)" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        きめた あとで<br>かえても いい
+      </div>
+      <div class="tile">
+        <svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="28" fill="var(--ok)"/><path d="M24 40 q12 12 24 0" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round"/><circle cx="27" cy="29" r="3.5" fill="#fff"/><circle cx="45" cy="29" r="3.5" fill="#fff"/></svg>
+        しっぱい しても<br>だいじょうぶ
+      </div>
+      <div class="tile">
+        <svg viewBox="0 0 72 72" aria-hidden="true"><rect x="10" y="12" width="52" height="34" rx="14" fill="var(--me)"/><path d="M22 44 l-6 14 l18 -12 Z" fill="var(--me)"/><circle cx="26" cy="29" r="4" fill="#fff"/><circle cx="36" cy="29" r="4" fill="#fff"/><circle cx="46" cy="29" r="4" fill="#fff"/></svg>
+        「いまは きめない」<br>も えらべる
+      </div>
+      <div class="tile">
+        <svg viewBox="0 0 72 72" aria-hidden="true"><circle cx="24" cy="24" r="10" fill="var(--skin)"/><circle cx="48" cy="24" r="10" fill="var(--skin)"/><path d="M8 62 q0 -24 16 -26 q16 2 16 26 Z" fill="var(--me)"/><path d="M32 62 q0 -24 16 -26 q16 2 16 26 Z" fill="var(--helper)"/></svg>
+        きいて もらえない ときは<br>しんじられる ひとに そうだん
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <h3>しえん する かたへ</h3>
+    <p>意思決定支援は、本人が自分で決められるように支える営みであり、支援者が代わりに決めることではありません。根拠として、障害者権利条約 第12条（法の前に等しく認められる権利）と、厚生労働省「障害福祉サービス等の提供に係る意思決定支援ガイドライン」（2017年）があります。本人の「わたしが決めたい」という言葉は、支援の出発点として受け止めてください。</p>
+  </footer>
+</main>
+
+<div id="show" hidden role="dialog" aria-modal="true" aria-labelledby="show-text">
+  <p id="show-text"></p>
+  <button id="show-close" type="button">とじる</button>
+</div>
+
+<script>
+(function(){
+  var show=document.getElementById('show'), txt=document.getElementById('show-text'), close=document.getElementById('show-close'), last=null;
+  document.querySelectorAll('.say').forEach(function(b){
+    b.addEventListener('click',function(){
+      last=b;
+      var c=b.cloneNode(true); var e=c.querySelector('.eye'); if(e) e.remove();
+      txt.innerHTML=c.innerHTML;
+      show.hidden=false; close.focus();
+    });
+  });
+  function shut(){show.hidden=true; if(last) last.focus();}
+  close.addEventListener('click',shut);
+  show.addEventListener('click',function(e){ if(e.target===show) shut(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && !show.hidden) shut(); });
+})();
+</script>
+
+</body></html>
