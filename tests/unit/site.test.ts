@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { yearsSince, establishedOn, stats, site } from '~/lib/site';
+import { yearsSince, establishedOn, stats, site, navGroups, navFootLinks, navLinks } from '~/lib/site';
 
 describe('site.copyright', () => {
   it('spans from the founding year to the current year', () => {
@@ -26,5 +26,23 @@ describe('stats', () => {
     const founding = stats.find((s) => s.label === '設立から');
     expect(founding?.since).toBe(establishedOn);
     expect(founding?.value).toBe(yearsSince(establishedOn));
+  });
+});
+
+describe('navigation', () => {
+  it('groups the sidebar links and keeps contact/access for the sidebar foot', () => {
+    const grouped = navGroups.flatMap((g) => g.links.map((l) => l.href));
+    expect(grouped).toContain('/jobs/');
+    expect(grouped).not.toContain('/contact/');
+    expect(navFootLinks.map((l) => l.href)).toEqual(['/contact/', '/access/']);
+  });
+
+  it('flattens every link, in order, for the footer sitemap', () => {
+    expect(navLinks.map((l) => l.href)).toEqual([
+      ...navGroups.flatMap((g) => g.links.map((l) => l.href)),
+      '/contact/',
+      '/access/',
+    ]);
+    expect(new Set(navLinks.map((l) => l.href)).size).toBe(navLinks.length);
   });
 });

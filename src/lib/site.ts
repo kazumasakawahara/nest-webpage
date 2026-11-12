@@ -22,48 +22,84 @@ export type NavLink = {
   children?: { label: string; href: string }[];
 };
 
-export const navLinks: NavLink[] = [
-  { label: 'TOP', href: '/' },
-  { label: 'nestについて', href: '/about/' },
+/**
+ * サイドバーの項目は、見出しのついたまとまり（group）に分けて並べる。
+ * heading のないまとまりは見出しを出さない（TOP・nestについて）。
+ * お問い合わせ・アクセスはサイドバーでは下の電話番号の近くに出す（navFootLinks）。
+ */
+export type NavGroup = {
+  heading?: string;
+  links: NavLink[];
+};
+
+export const navGroups: NavGroup[] = [
   {
-    label: '就労継続支援B型',
-    href: '/b-type/',
-    children: [
-      { label: '木町家', href: '/kimachiya/' },
-      { label: 'nestDesign', href: '/nest-design/' },
-    ],
-  },
-  { label: 'グループホーム', href: '/group-home/' },
-  {
-    label: '当事者活動支援',
-    href: '/peer-activities/',
-    children: [
-      { label: '当事者研究', href: '/peer-activities/tojisha-kenkyu/' },
-      { label: '鉄道倶楽部', href: '/peer-activities/railway-club/' },
+    links: [
+      { label: 'TOP', href: '/' },
+      { label: 'nestについて', href: '/about/' },
     ],
   },
   {
-    label: '地域生活支援',
-    href: '/sudachi/',
-    children: [
-      { label: '意思決定支援', href: '/sudachi/decision-support/' },
-      { label: '親なき後', href: '/post-parent/' },
+    heading: '事業のご案内',
+    links: [
+      {
+        label: '就労継続支援B型',
+        href: '/b-type/',
+        children: [
+          { label: '木町家', href: '/kimachiya/' },
+          { label: 'nestDesign', href: '/nest-design/' },
+        ],
+      },
+      { label: 'グループホーム', href: '/group-home/' },
+      {
+        label: '当事者活動支援',
+        href: '/peer-activities/',
+        children: [
+          { label: '当事者研究', href: '/peer-activities/tojisha-kenkyu/' },
+          { label: '鉄道倶楽部', href: '/peer-activities/railway-club/' },
+        ],
+      },
+      {
+        label: '地域生活支援',
+        href: '/sudachi/',
+        children: [
+          { label: '意思決定支援', href: '/sudachi/decision-support/' },
+          { label: '親なき後', href: '/post-parent/' },
+        ],
+      },
     ],
   },
-  { label: '利用者募集中', href: '/recruit/' },
   {
-    label: 'nest News',
-    href: '/news/',
-    children: [
-      { label: '研修会', href: '/news/training/' },
-      { label: 'トピック（法律・制度）', href: '/topics/' },
+    heading: 'お知らせ・読みもの',
+    links: [
+      {
+        label: 'nest News',
+        href: '/news/',
+        children: [
+          { label: '研修会', href: '/news/training/' },
+          { label: 'トピック（法律・制度）', href: '/topics/' },
+        ],
+      },
+      { label: '教えてAIさん', href: '/ai-tips/' },
     ],
   },
-  { label: '教えてAIさん', href: '/ai-tips/' },
-  { label: '入会・寄付', href: '/join/' },
+  {
+    heading: '募集・ご支援',
+    links: [
+      { label: '利用者募集', href: '/recruit/' },
+      { label: 'スタッフ募集', href: '/jobs/' },
+      { label: '入会・寄付', href: '/join/' },
+    ],
+  },
+];
+
+export const navFootLinks: { label: string; href: string }[] = [
   { label: 'お問い合わせ', href: '/contact/' },
   { label: 'アクセス', href: '/access/' },
 ];
+
+/** すべての項目を一列に並べたもの（フッターのサイトマップ用） */
+export const navLinks: NavLink[] = [...navGroups.flatMap((g) => g.links), ...navFootLinks];
 
 /** 設立日（site.established と同じ日）。「数字で見るnest」の年数はここから数える */
 export const establishedOn = '2006-08-15';
