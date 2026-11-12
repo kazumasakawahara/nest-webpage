@@ -1,10 +1,16 @@
 ---
-import { navLinks, site } from '../lib/site';
+import { navGroups, navFootLinks, site } from '../lib/site';
 
 const currentPath = Astro.url.pathname;
 // 公開静的ページでは locals.member は undefined。/members/* の SSR ページではセットされる。
 const member = Astro.locals.member;
 const membersLinkLabel = member ? '会員ページ' : '会員の方へ';
+
+// 番号はまとまりをまたいで通しで振る（01, 02, …）
+const numbered = navGroups.map((group, gi) => {
+  const offset = navGroups.slice(0, gi).reduce((n, g) => n + g.links.length, 0);
+  return { ...group, links: group.links.map((link, i) => ({ ...link, num: offset + i + 1 })) };
+});
 
 function isActive(href: string) {
   if (href === '/') return currentPath === '/' || currentPath === '/index.html';
@@ -47,35 +53,40 @@ function isActive(href: string) {
   <div class="sidebar__rule"></div>
 
   <nav class="sommaire" aria-label="メインナビゲーション">
-    <ul class="sommaire__list">
-      {
-        navLinks.map((link, i) => (
-          <li class:list={['sommaire__item', { 'has-sub': link.children }]}>
-            <a
-              href={link.href}
-              class:list={['sommaire__link', { 'is-active': isActive(link.href) }]}
-            >
-              <span class="sommaire__num">{String(i + 1).padStart(2, '0')}</span>
-              <span class="sommaire__lbl">{link.label}</span>
-            </a>
-            {link.children && (
-              <ul class="sommaire__sub">
-                {link.children.map((child) => (
-                  <li>
-                    <a
-                      href={child.href}
-                      class:list={['sommaire__sublink', { 'is-active': isActive(child.href) }]}
-                    >
-                      — {child.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </li>
-        ))
-      }
-    </ul>
+    {
+      numbered.map((group) => (
+        <div class="sommaire__group">
+          {group.heading && <p class="sommaire__heading">{group.heading}</p>}
+          <ul class="sommaire__list">
+            {group.links.map((link) => (
+              <li class:list={['sommaire__item', { 'has-sub': link.children }]}>
+                <a
+                  href={link.href}
+                  class:list={['sommaire__link', { 'is-active': isActive(link.href) }]}
+                >
+                  <span class="sommaire__num">{String(link.num).padStart(2, '0')}</span>
+                  <span class="sommaire__lbl">{link.label}</span>
+                </a>
+                {link.children && (
+                  <ul class="sommaire__sub">
+                    {link.children.map((child) => (
+                      <li>
+                        <a
+                          href={child.href}
+                          class:list={['sommaire__sublink', { 'is-active': isActive(child.href) }]}
+                        >
+                          {child.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
   </nav>
 
   <div class="sidebar__foot">
@@ -84,6 +95,20 @@ function isActive(href: string) {
     <a href={`tel:${site.tel.replaceAll('-', '')}`} class="sidebar__tel">
       {site.tel.replaceAll('-', ' ')}
     </a>
+    <ul class="sidebar__footlinks">
+      {
+        navFootLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class:list={['sidebar__footlink', { 'is-active': isActive(link.href) }]}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
     <a
       href="/members/"
       class:list={['sidebar__member', { 'is-active': isActive('/members/') }]}
@@ -144,6 +169,22 @@ function isActive(href: string) {
     list-style: none;
   }
 
+  /* まとまりの見出し（事業のご案内・お知らせ・読みもの・募集・ご支援） */
+  .sommaire__group + .sommaire__group {
+    margin-top: 12px;
+  }
+
+  .sommaire__heading {
+    font-family: var(--font-sans);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: var(--color-terra-300);
+    padding-bottom: 4px;
+    margin-bottom: 2px;
+    border-bottom: 1px solid rgba(250, 246, 239, 0.22);
+  }
+
   .sommaire__item {
     border-top: 1px solid rgba(250, 246, 239, 0.14);
   }
@@ -161,7 +202,7 @@ function isActive(href: string) {
     font-family: var(--font-serif);
     font-size: 15px;
     letter-spacing: 0.06em;
-    padding: 9px 0;
+    padding: 7px 0;
     color: rgba(250, 246, 239, 0.82);
     transition: color var(--dur-fast) var(--ease-out);
   }
@@ -195,9 +236,14 @@ function isActive(href: string) {
     color: var(--color-terra-300);
   }
 
+  /* 子項目は横に並べ、入りきらなければ折り返す（縦の長さを抑える） */
   .sommaire__sub {
     list-style: none;
-    padding: 0 0 8px 26px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 14px;
+    padding: 0 0 6px 30px;
+    margin-top: -3px;
   }
 
   .sommaire__sublink {
@@ -206,8 +252,8 @@ function isActive(href: string) {
     font-family: var(--font-sans);
     font-size: 12px;
     letter-spacing: 0.04em;
-    padding: 5px 0;
-    color: rgba(250, 246, 239, 0.5);
+    padding: 4px 0; /* 文字と合わせてタップ領域 24px 以上 */
+    color: rgba(250, 246, 239, 0.62);
     transition: color var(--dur-fast) var(--ease-out);
   }
 
@@ -247,6 +293,36 @@ function isActive(href: string) {
 
   .sidebar__tel:hover {
     color: var(--color-terra-300);
+  }
+
+  .sidebar__footlinks {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 18px;
+    margin-top: 10px;
+  }
+
+  .sidebar__footlink {
+    display: inline-block;
+    font-family: var(--font-serif);
+    font-size: 13.5px;
+    letter-spacing: 0.06em;
+    color: rgba(250, 246, 239, 0.82);
+    text-decoration: none;
+    padding: 4px 0; /* タップ領域を 24px 以上に */
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+
+  .sidebar__footlink:hover,
+  .sidebar__footlink.is-active {
+    color: #fff;
+  }
+
+  .sidebar__footlink.is-active {
+    text-decoration: underline;
+    text-decoration-color: var(--color-terra-500);
+    text-underline-offset: 4px;
   }
 
   .sidebar__member {

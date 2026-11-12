@@ -1,0 +1,293 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import { site } from '../lib/site';
+
+// 募集の条件は、募集要領（public/pdfs/recruit/nest-sewanin-part-2026.pdf）のとおりに書く。
+// 要領にない条件は足さない。条件が変わったら、PDF とこのページを一緒に差し替える。
+const pdf = '/pdfs/recruit/nest-sewanin-part-2026.pdf';
+const telHref = `tel:${site.tel.replaceAll('-', '')}`;
+
+// 見出しのデジタル時計（6:30 AM）。7セグメントの数字を四角形で描く（フォントに左右されない）
+const SEG: Record<string, string> = { '6': 'acdefg', '3': 'abcdg', '0': 'abcdef' };
+function digit(ch: string, x: number, y = 22, w = 12, h = 22, t = 3): number[][] {
+  const half = h / 2;
+  const parts: Record<string, number[]> = {
+    a: [x + 1.5, y, w - 3, t],
+    b: [x + w - t, y + 1.5, t, half - 1.5],
+    c: [x + w - t, y + half, t, half - 1.5],
+    d: [x + 1.5, y + h - t, w - 3, t],
+    e: [x, y + half, t, half - 1.5],
+    f: [x, y + 1.5, t, half - 1.5],
+    g: [x + 1.5, y + half - t / 2, w - 3, t],
+  };
+  return [...SEG[ch]].map((k) => parts[k]);
+}
+const segs = [...digit('6', 17), ...digit('3', 40), ...digit('0', 57)];
+---
+
+<BaseLayout
+  title="スタッフ募集（グループホームの世話人・パート）"
+  description="NPO法人nestでは、北九州市小倉北区木町周辺のグループホームで働く世話人（パート職員）を募集しています。勤務は朝6時30分から9時30分、時給1,150円、資格は不要です。応募はお電話で。"
+>
+  <Hero
+    eyebrow="Staff Wanted"
+    title="スタッフ募集"
+    lead="グループホームの世話人（パート）を探しています"
+    size="md"
+    image="/images/grouphome-interior.webp"
+    imagePosition="center 32%"
+    placeholderLabel="STAFF WANTED"
+  />
+
+  <section class="section">
+    <div class="container container--narrow reveal">
+      <h2 class="section__title jobs-title">
+        <svg class="jobs-clock" viewBox="0 0 96 66" role="img" aria-label="6:30 AM と表示したデジタル時計">
+          <!-- 上のボタンと足 -->
+          <rect x="62" y="3" width="16" height="7" rx="3.5" fill="var(--color-terra-500)" />
+          <rect x="16" y="56" width="12" height="8" rx="4" fill="var(--color-green-900)" />
+          <rect x="68" y="56" width="12" height="8" rx="4" fill="var(--color-green-900)" />
+          <!-- 本体と画面 -->
+          <rect x="4" y="8" width="88" height="50" rx="14" fill="var(--color-green-900)" />
+          <rect x="12" y="16" width="72" height="34" rx="8" fill="#fffaf2" />
+          <!-- 6:30（7セグメントの数字） -->
+          <g fill="var(--color-green-900)">
+            {segs.map(([x, y, w, h]) => <rect x={x} y={y} width={w} height={h} rx="1.5" />)}
+            <circle cx="34.5" cy="28" r="2" />
+            <circle cx="34.5" cy="38" r="2" />
+          </g>
+          <text x="76.5" y="47" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--color-terra-500)" font-family="var(--font-sans)">AM</text>
+        </svg>
+        <span>朝の三時間、ホームに来てくださる方を</span>
+      </h2>
+      <p class="jobs-lead">
+        nest のグループホームで、世話人として働いてくださるパートの方を募集しています。
+        勤務は朝の6時30分から9時30分まで。ホームで惣菜をあたためて配膳し、あわせて利用者さんの支援やサポートをする仕事です。
+        身体介助はありません。
+      </p>
+      <p class="jobs-lead">
+        nest のグループホームは、大きな建物に利用者を集めたものではなく、町内のマンションの部屋や住宅を借りて、そのひと部屋ひと部屋を住まいにしています。
+        勤務地は小倉北区の木町周辺です。
+      </p>
+      <p class="jobs-lead">
+        資格は要りません。福祉の仕事が初めての方も歓迎します。
+        経験や資格だけで決めるのではなく、人と関わるのを楽しみながら、一緒に考え、一緒に育っていける方に来ていただけたらと思っています。
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--sand">
+    <div class="container container--narrow">
+      <div class="section-head reveal">
+        <span class="eyebrow">Details</span>
+        <h2 class="section__title">募集要項</h2>
+      </div>
+
+      <div class="info-box jobs-box reveal">
+        <h3 class="info-box__title">募集内容</h3>
+        <dl>
+          <dt>募集職種</dt>
+          <dd>障害者グループホームの世話人</dd>
+          <dt>募集人数</dt>
+          <dd>若干名</dd>
+          <dt>雇用形態</dt>
+          <dd>パート職員</dd>
+          <dt>仕事内容</dt>
+          <dd>
+            <ul class="jobs-list">
+              <li>グループホームでの配膳など（簡単な惣菜のあたためなど）</li>
+              <li>利用者への支援・サポート（身体介助はありません）</li>
+              <li>その他、事業所運営に関わる業務</li>
+            </ul>
+          </dd>
+        </dl>
+      </div>
+
+      <div class="info-box jobs-box reveal">
+        <h3 class="info-box__title">勤務条件</h3>
+        <dl>
+          <dt>勤務地</dt>
+          <dd>北九州市小倉北区 木町周辺</dd>
+          <dt>勤務時間</dt>
+          <dd><strong>6時30分〜9時30分</strong></dd>
+          <dt>勤務日数</dt>
+          <dd>応相談</dd>
+          <dt>休日</dt>
+          <dd>応相談</dd>
+          <dt>給与</dt>
+          <dd><strong>時給 1,150円</strong></dd>
+          <dt>諸手当</dt>
+          <dd>交通費支給（当法人規定による）</dd>
+          <dt>社会保険</dt>
+          <dd>法令に基づき加入</dd>
+          <dt>必要資格</dt>
+          <dd>なし</dd>
+          <dt>採用予定日</dt>
+          <dd>随時</dd>
+        </dl>
+      </div>
+
+      <div class="info-box jobs-box reveal">
+        <h3 class="info-box__title">応募・選考について</h3>
+        <dl>
+          <dt>応募方法</dt>
+          <dd>お電話にてご連絡ください。</dd>
+          <dt>提出書類</dt>
+          <dd>履歴書・その他必要書類</dd>
+          <dt>選考方法</dt>
+          <dd>書類選考・面接</dd>
+          <dt>応募締切</dt>
+          <dd>採用が決まり次第終了</dd>
+        </dl>
+      </div>
+
+      <div class="jobs-wish reveal">
+        <h3 class="jobs-wish__title">こんな方をお待ちしています</h3>
+        <ul class="jobs-list">
+          <li>人と接することが好きな方</li>
+          <li>相手の立場に立って考えられる方</li>
+          <li>チームワークを大切にできる方</li>
+          <li>新しいことにも前向きに取り組める方</li>
+        </ul>
+        <p>未経験の方も歓迎します。</p>
+      </div>
+
+      <p class="jobs-pdf reveal">
+        印刷して手元に置きたい方は、<a href={pdf} target="_blank" rel="noopener">募集要項のPDF（A4・1枚）</a>をどうぞ。
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="apply">
+    <div class="container container--narrow reveal">
+      <span class="eyebrow">How to Apply</span>
+      <h2 class="section__title">応募はお電話で</h2>
+      <p class="jobs-lead">
+        応募は電話で受け付けています。下の番号にかけて、世話人の募集を見たとお伝えください。
+        仕事の中身を先に聞いてみたい、という方もどうぞ。
+      </p>
+
+      <div class="jobs-contact">
+        <p class="jobs-contact__org">{site.name}</p>
+        <a href={telHref} class="jobs-contact__tel">
+          <span class="jobs-contact__tel-k">電話</span>
+          {site.tel}
+        </a>
+        <p class="jobs-contact__note">担当：林　／　電話受付 {site.telHours}（{site.telHoliday}）</p>
+        <p class="jobs-contact__note">所在地：北九州市小倉北区木町3-6-7</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .jobs-title {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+  }
+
+  .jobs-clock {
+    flex: none;
+    width: 2.6em;
+    height: 1.8em;
+  }
+
+  .jobs-lead {
+    font-size: 16px;
+    line-height: 2;
+    color: var(--color-ink);
+  }
+
+  .jobs-lead + .jobs-lead {
+    margin-top: var(--space-5);
+  }
+
+  .jobs-box + .jobs-box {
+    margin-top: var(--space-6);
+  }
+
+  .jobs-box dd strong {
+    font-size: 17px;
+  }
+
+  .jobs-list {
+    list-style: disc;
+    padding-left: 1.3em;
+  }
+
+  .jobs-list li + li {
+    margin-top: 4px;
+  }
+
+  .jobs-wish {
+    margin-top: var(--space-7);
+    font-size: 15px;
+    line-height: 1.9;
+  }
+
+  .jobs-wish__title {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-green-900);
+    margin-bottom: var(--space-3);
+  }
+
+  .jobs-wish p {
+    margin-top: var(--space-3);
+  }
+
+  .jobs-pdf {
+    margin-top: var(--space-6);
+    font-size: 14px;
+    color: var(--color-ink-mute);
+  }
+
+  .jobs-contact {
+    margin-top: var(--space-6);
+    padding: var(--space-6);
+    background-color: var(--color-paper);
+    border-left: 3px solid var(--color-terra-500);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .jobs-contact__org {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-green-900);
+  }
+
+  .jobs-contact__tel {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 10px;
+    margin: var(--space-3) 0;
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--color-green-900);
+    text-decoration: none;
+  }
+
+  .jobs-contact__tel:hover {
+    color: var(--color-terra-500);
+  }
+
+  .jobs-contact__tel-k {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-ink-mute);
+  }
+
+  .jobs-contact__note {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--color-ink-mute);
+  }
+</style>
