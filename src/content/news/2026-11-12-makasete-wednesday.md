@@ -37,11 +37,11 @@ draft: true
 
 それから、お店のどこかに4人のシェフが隠れています。「木町家ミッション　シェフを探せ！」です。見つけたらスタッフに知らせてください。見つけた方には、プチギフトを差し上げます。どこにいるかは、ここでは書かないでおきます。
 
-メンバーを紹介するチラシもできました。似顔絵と手書きのひとことが、ずらりと並んでいます。
+メンバーを紹介するチラシもできました。似顔絵を描いたのは、[nestDesign](/nest-design/) の利用者さん2人です。一人ひとりの顔をよく見て描いてくれたので、眼鏡の形も、帽子からのぞく髪も、それぞれちゃんと違います。添えてあるひとことは、メンバーが自分で書きました。
 
 <figure>
   <a href="/images/news/2026-11-12-makasete-wednesday-members.webp" target="_blank" rel="noopener">
-    <img src="/images/news/2026-11-12-makasete-wednesday-members.webp" alt="「みんなでお待ちしています！まかせて水曜日！」と題したチラシ。黒いエプロン姿のメンバー17人の似顔絵に、それぞれの手書きのひとことが添えてある" width="1240" height="1754" loading="lazy" decoding="async" />
+    <img src="/images/news/2026-11-12-makasete-wednesday-members.webp" alt="「みんなでお待ちしています！まかせて水曜日！」と題したチラシ。nestDesign の利用者さんが描いた、黒いエプロン姿のメンバー17人の似顔絵に、本人が書いたひとことが添えてある" width="1240" height="1754" loading="lazy" decoding="async" />
   </a>
   <figcaption>メンバー紹介（画像を押すと大きく開きます）</figcaption>
 </figure>
