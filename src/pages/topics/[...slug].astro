@@ -366,6 +366,168 @@ const fmtDate = (d: Date) =>
     .topic-article__body :global(table) { display: block; overflow-x: auto; }
   }
 
+  /* ノート風の部品（目印つきの囲み・要点カード・いま→案・チェックリスト） */
+  .topic-article__body :global(mark) {
+    background: linear-gradient(transparent 58%, var(--color-terra-100) 58%);
+    color: inherit;
+    padding: 0 1px;
+  }
+  .topic-article__body :global(.note-lead) {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    line-height: 1.9;
+    color: var(--color-green-900);
+    margin: var(--space-3) 0 var(--space-5);
+    padding-left: var(--space-4);
+    border-left: 4px solid var(--color-green-500);
+  }
+  .topic-article__body :global(.note-summary) {
+    background: var(--color-paper);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    margin: var(--space-6) 0;
+  }
+  .topic-article__body :global(.note-summary__title) {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    color: var(--color-green-900);
+    margin: 0 0 var(--space-4);
+    letter-spacing: 0.06em;
+  }
+  .topic-article__body :global(.note-summary__grid) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+  }
+  .topic-article__body :global(.note-card) {
+    background: var(--color-cream);
+    border: 1px solid var(--color-line-soft);
+    border-radius: var(--radius-md);
+    padding: var(--space-3) var(--space-4);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .topic-article__body :global(.note-card p) { margin: 0; }
+  .topic-article__body :global(.note-card__num) {
+    display: inline-block;
+    font-family: var(--font-serif);
+    font-size: 12px;
+    color: var(--color-terra-700);
+    letter-spacing: 0.08em;
+  }
+  .topic-article__body :global(.note-card__name) {
+    display: block;
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--color-green-900);
+    margin: 2px 0 4px;
+  }
+  .topic-article__body :global(.note-card a) { font-size: 13px; }
+  .topic-article__body :global(.note-mark) {
+    position: relative;
+    border-radius: var(--radius-md);
+    padding: var(--space-5) var(--space-5) var(--space-4);
+    margin: var(--space-6) 0 var(--space-5);
+    font-size: 15px;
+    line-height: 1.9;
+    border: 1.5px solid var(--color-green-500);
+    background: #fff;
+  }
+  .topic-article__body :global(.note-mark p) { margin: 0; }
+  .topic-article__body :global(.note-mark p + p) { margin-top: var(--space-2); }
+  .topic-article__body :global(.note-mark__label) {
+    position: absolute;
+    top: -0.9em;
+    left: var(--space-4);
+    font-family: var(--font-serif);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    padding: 2px 12px;
+    border-radius: 999px;
+    color: #fff;
+    background: var(--color-green-700);
+  }
+  .topic-article__body :global(.note-mark--chui) {
+    border-color: var(--color-terra-500);
+    background: var(--color-terra-100);
+  }
+  .topic-article__body :global(.note-mark--chui .note-mark__label) { background: var(--color-terra-500); }
+  .topic-article__body :global(.note-mark--kazoku) {
+    border-color: var(--color-terra-300);
+    background: var(--color-cream);
+  }
+  .topic-article__body :global(.note-mark--kazoku .note-mark__label) { background: var(--color-terra-700); }
+  .topic-article__body :global(.note-mark--memo) {
+    border: 1.5px dashed var(--color-ink-mute);
+    background: var(--color-paper);
+  }
+  .topic-article__body :global(.note-mark--memo .note-mark__label) { background: var(--color-ink-soft); }
+  .topic-article__body :global(.note-compare) {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: stretch;
+    gap: var(--space-2);
+    margin: var(--space-5) 0;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .topic-article__body :global(.note-compare__box) {
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-paper);
+  }
+  .topic-article__body :global(.note-compare__box--new) {
+    border-color: var(--color-green-500);
+    background: var(--color-green-100);
+  }
+  .topic-article__body :global(.note-compare__box p) { margin: 0; }
+  .topic-article__body :global(.note-compare__tag) {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--color-ink-mute);
+    margin-bottom: 4px;
+  }
+  .topic-article__body :global(.note-compare__box--new .note-compare__tag) { color: var(--color-green-700); }
+  .topic-article__body :global(.note-compare__arrow) {
+    align-self: center;
+    color: var(--color-green-700);
+    font-size: 20px;
+  }
+  .topic-article__body :global(.note-check) {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-4) 0 var(--space-5);
+  }
+  .topic-article__body :global(.note-check li) {
+    position: relative;
+    padding: var(--space-3) 0 var(--space-3) 2em;
+    border-bottom: 1px dashed var(--color-line);
+    line-height: 1.85;
+  }
+  .topic-article__body :global(.note-check li::before) {
+    content: "";
+    position: absolute;
+    left: 0.2em;
+    top: calc(var(--space-3) + 0.35em);
+    width: 1.05em;
+    height: 1.05em;
+    border: 1.5px solid var(--color-green-700);
+    border-radius: 3px;
+  }
+  .topic-article__body :global(.note-check b) { color: var(--color-green-900); }
+  @media (max-width: 640px) {
+    .topic-article__body :global(.note-summary__grid) { grid-template-columns: 1fr; }
+    .topic-article__body :global(.note-compare) { grid-template-columns: 1fr; }
+    .topic-article__body :global(.note-compare__arrow) { transform: rotate(90deg); justify-self: center; line-height: 1; }
+  }
+
   .topic-article__foot {
     margin-top: var(--space-8);
     text-align: center;
