@@ -21,6 +21,7 @@ series: [onegai]
     <li><a href="/ai-tips/2026-09-11-onegai-3-kamishibai/">その3　利用者向けの手順を、紙芝居に</a></li>
     <li><a href="/ai-tips/2026-09-11-onegai-4-a4-oshirase/">その4　お知らせを、A4一枚の掲示物に ― 一回目ははみ出した</a></li>
     <li class="is-current">その5　nest-newsのトピックコーナーの成年後見制度改正の解説ができるまで ― お願いの合わせ技</li>
+    <li><a href="/ai-tips/2026-11-12-onegai-6-eli5/">その6　「何も知らない人に」と頼むと、挿絵入りの1枚が返ってくる ― ELI5</a></li>
   </ol>
 </div>
 
