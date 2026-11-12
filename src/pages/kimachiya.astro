@@ -176,6 +176,9 @@ const features = [
           <p class="makasete__lead">
             2026年11月4日、木町家で<strong>利用者さんたちが主役となってお店を運営する「まかせて水曜日」</strong>が始まりました。
           </p>
+          <p class="makasete__jump">
+            <a href="#makasete-card">メニューとメンバーの紹介はこちら<span aria-hidden="true">　↓</span></a>
+          </p>
           <p>
             料理をする人。お客様をお迎えする人。料理を運ぶ人。片付ける人。それぞれが自分の役割を持って、<strong>自分たちの力で、お店を動かす。</strong>そういう一日です。
           </p>
@@ -193,12 +196,27 @@ const features = [
             初日の4日も、二回目の11日も、おかげさまで大入りでした。水曜日のお昼は、メンバー一同でお待ちしています。どうぞ、あたたかく見守ってください。
           </p>
 
-          <p class="makasete__links">
-            <a href="/news/2026-11-12-makasete-wednesday/">メニューとメンバーの紹介を読む</a>
-            <a href="/news/2026-08-27-kimachiya-wednesday/">始めるまでのいきさつ</a>
-          </p>
         </div>
       </div>
+
+      <a href="/news/2026-11-12-makasete-wednesday/" class="makasete-card reveal" id="makasete-card">
+        <span class="makasete-card__thumbs" aria-hidden="true">
+          <img src="/images/kimachiya-makasete-thumb-menu.webp" alt="" width="420" height="467" loading="lazy" decoding="async" />
+          <img src="/images/kimachiya-makasete-thumb-members.webp" alt="" width="420" height="467" loading="lazy" decoding="async" />
+        </span>
+        <span class="makasete-card__body">
+          <span class="makasete-card__eyebrow">nest News の記事</span>
+          <span class="makasete-card__title">ランチの三品と、<br class="sp-only" />メンバー17人の似顔絵</span>
+          <span class="makasete-card__desc">積み木で選ぶ注文のしかたや、店内に隠れた4人のシェフのことも書いています。チラシ2枚も大きく見られます。</span>
+          <span class="btn btn--accent btn--lg makasete-card__btn">
+            メニューとメンバーの紹介を読む
+            <span class="btn__icon" aria-hidden="true">→</span>
+          </span>
+        </span>
+      </a>
+      <p class="makasete__sublink reveal">
+        <a href="/news/2026-08-27-kimachiya-wednesday/">始めるまでのいきさつ（8月のお知らせ）も読む <span aria-hidden="true">→</span></a>
+      </p>
     </div>
   </section>
 
@@ -469,15 +487,102 @@ const features = [
     color: var(--color-green-900);
   }
 
-  .makasete__links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3) var(--space-5);
-    margin-top: var(--space-5);
+  .makasete__jump { margin: 0 0 var(--space-5); }
+  .makasete__jump a {
+    display: inline-block;
+    padding: 8px 18px;
+    border: 1.5px solid var(--color-terra-500);
+    border-radius: var(--radius-pill);
+    background: var(--color-paper);
+    color: var(--color-terra-500);
     font-size: 14px;
+    font-weight: 600;
+    line-height: 1.6;
+    text-decoration: none;
+    transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
   }
+  .makasete__jump a:hover { background: var(--color-terra-500); color: #fff; }
 
-  .makasete__links a { text-decoration: underline; text-underline-offset: 3px; }
+  /* 記事への導線カード（カード全体が押せる） */
+  #makasete-card { scroll-margin-top: 96px; }
+  .makasete-card {
+    max-width: 960px;
+    margin: var(--space-8) auto 0;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: var(--space-7);
+    align-items: center;
+    padding: var(--space-6) var(--space-7);
+    background: var(--color-paper);
+    border: 2px solid var(--color-terra-500);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    color: var(--color-ink);
+    text-decoration: none;
+    transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+  }
+  .makasete-card:hover,
+  .makasete-card:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.14);
+    color: var(--color-ink);
+  }
+  .makasete-card__thumbs {
+    position: relative;
+    display: block;
+    height: 230px;
+  }
+  .makasete-card__thumbs img {
+    position: absolute;
+    top: 0;
+    width: 62%;
+    height: auto;
+    border-radius: var(--radius-md);
+    border: 4px solid #fff;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+  .makasete-card__thumbs img:first-child { left: 0; transform: rotate(-6deg); z-index: 1; }
+  .makasete-card__thumbs img:last-child { right: 0; top: 12px; transform: rotate(5deg); }
+  .makasete-card:hover .makasete-card__thumbs img:first-child { transform: rotate(-9deg) translateX(-6px); }
+  .makasete-card:hover .makasete-card__thumbs img:last-child { transform: rotate(8deg) translateX(6px); }
+  .makasete-card__body { display: block; }
+  .makasete-card__eyebrow {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--color-terra-500);
+    margin-bottom: var(--space-2);
+  }
+  .makasete-card__title {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--color-green-900);
+    margin-bottom: var(--space-3);
+  }
+  .makasete-card__desc {
+    display: block;
+    font-size: 15px;
+    line-height: 1.9;
+    margin-bottom: var(--space-5);
+  }
+  .makasete-card:hover .makasete-card__btn {
+    background-color: var(--color-terra-700);
+    border-color: var(--color-terra-700);
+  }
+  .makasete-card:hover .makasete-card__btn .btn__icon { transform: translateX(4px); }
+  .makasete__sublink {
+    max-width: 960px;
+    margin: var(--space-5) auto 0;
+    text-align: center;
+    font-size: 15px;
+  }
+  .makasete__sublink a { text-decoration: underline; text-underline-offset: 4px; }
+  .sp-only { display: none; }
 
   @media (max-width: 880px) {
     .makasete {
@@ -489,6 +594,17 @@ const features = [
       max-width: 280px;
       margin: 0 auto;
     }
+    .makasete-card {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+      padding: var(--space-6) var(--space-5);
+      text-align: center;
+    }
+    .makasete-card__thumbs { height: 200px; max-width: 300px; width: 100%; margin: 0 auto; }
+    .makasete-card__title { font-size: 21px; }
+    .makasete-card__desc { text-align: left; }
+    .makasete-card__btn { width: 100%; padding-left: 16px; padding-right: 16px; }
+    .sp-only { display: inline; }
   }
 
   .features {
