@@ -219,6 +219,10 @@ const fmtDate = (d: Date) =>
     color: var(--color-ink-mute);
     line-height: 1.6;
   }
+  /* 1枚を本文幅いっぱいに見せるとき（会場全体の写真など） */
+  .news-article__body :global(.news-gallery--wide) { columns: 1; }
+  /* 縦長の写真3枚を横に並べるとき（出演者3人など） */
+  .news-article__body :global(.news-gallery--three) { columns: 3; }
   @media (max-width: 600px) {
     .news-article__body :global(.news-gallery) { columns: 1; }
   }
