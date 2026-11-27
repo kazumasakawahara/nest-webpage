@@ -38,6 +38,6 @@ authorTitle: 法律事務所nest 弁護士
 
 <div class="ds-download">
 <a class="btn btn--accent" href="/downloads/decision-support/kamishibai-karada-no-kenri.pptx" download>PowerPointをダウンロード（12枚・約2.4MB）</a>
-<a class="btn btn--outline" href="/pdfs/decision-support/kamishibai-karada-no-kenri.pdf" download>PDFをダウンロード（12ページ・約480KB）</a>
+<a class="btn btn--outline" href="/pdfs/decision-support/kamishibai-karada-no-kenri.pdf" download>PDFをダウンロード（12ページ・約490KB）</a>
 <p>事業所内の研修や勉強会で、ご自由にお使いください。</p>
 </div>
