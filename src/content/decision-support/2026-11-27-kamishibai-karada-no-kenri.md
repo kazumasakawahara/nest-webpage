@@ -32,14 +32,12 @@ authorTitle: 法律事務所nest 弁護士
 
 ## ダウンロード
 
-紙芝居と、それに続くスライドを合わせて、PowerPointとPDFの2つの形で用意しました。
+紙芝居と、それに続くスライドを合わせた12枚を、PowerPointとPDFの2つの形で用意しました。中身は同じです。
 
-人前で読むときは、PowerPointが向いています。クリックするたびにセリフが1つずつ出てくるので、紙芝居をめくる調子で進められます。スライドは1枚ずつ画像にしてあるため、どのパソコンでも同じ見た目で映りますが、文字を書き換えることはできません。PowerPointをお持ちでなくても、MacのKeynoteやGoogleスライドで開けます。
-
-PDFは、セリフがすべて出た状態の12ページです。印刷して配るときや、手元で読むときにお使いください。
+人前で映すときはPowerPointを、印刷して配るときや手元で読むときはPDFをお使いください。PowerPointのスライドは1枚ずつ画像にしてあるため、どのパソコンでも同じ見た目で映りますが、文字を書き換えることはできません。PowerPointをお持ちでなくても、MacのKeynoteやGoogleスライドで開けます。
 
 <div class="ds-download">
-<a class="btn btn--accent" href="/downloads/decision-support/kamishibai-karada-no-kenri.pptx" download>PowerPointをダウンロード（27枚・約5MB）</a>
+<a class="btn btn--accent" href="/downloads/decision-support/kamishibai-karada-no-kenri.pptx" download>PowerPointをダウンロード（12枚・約2.4MB）</a>
 <a class="btn btn--outline" href="/pdfs/decision-support/kamishibai-karada-no-kenri.pdf" download>PDFをダウンロード（12ページ・約480KB）</a>
 <p>事業所内の研修や勉強会で、ご自由にお使いください。</p>
 </div>
