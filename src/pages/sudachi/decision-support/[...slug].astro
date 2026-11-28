@@ -156,6 +156,26 @@ const fmtDate = (d: Date) =>
     box-shadow: var(--shadow-soft);
   }
 
+  /* 本文中の動画 */
+  .ds-post__body :global(.ds-video) {
+    margin: var(--space-6) 0;
+  }
+  .ds-post__body :global(.ds-video video) {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-line);
+    box-shadow: var(--shadow-soft);
+    background: #000;
+  }
+  .ds-post__body :global(.ds-video__cap) {
+    margin-top: var(--space-3);
+    font-size: var(--fs-small);
+    color: var(--color-ink-mute);
+    text-align: center;
+  }
+
   /* 資料のダウンロード（ボタンを縦に並べる） */
   .ds-post__body :global(.ds-download) {
     margin: var(--space-6) 0;
