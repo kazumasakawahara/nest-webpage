@@ -11,7 +11,7 @@ authorTitle: 法律事務所nest 弁護士
 福祉の専門職の皆さんに、子どもの体の権利についてお話しすることになりました。いきなり法律の話を始めても眠くなるだけですから、導入に紙芝居を作りました。題して「ほうりつ幼稚園の紙芝居」。登場するのは、赤ずきんちゃんとオオカミさん、それにフクロウさんです。
 
 <figure class="ds-figure">
-<img src="/images/decision-support/kamishibai-karada-no-kenri-cover.jpg" alt="紙芝居の表紙。オオカミさん、赤ずきんちゃん、フクロウさんが並んでいる" width="1200" height="675" loading="lazy">
+<img src="/images/decision-support/kamishibai-karada-no-kenri-cover.jpg" alt="紙芝居の表紙。オオカミさん、赤ずきんちゃん、フクロウさんが並び、右上に友情出演のアマミノクロウサギさんがいる" width="1200" height="675" loading="lazy">
 </figure>
 
 紙芝居は5枚です。オオカミさんの「ぼくには、赤ずきんちゃんを食べる権利があるんだ」という言い分から始まって、権利とはどういうことか、権利は誰に認められるのか、と進みます。そして、自分の体に関することは自分にしか決めることができない、というところまで行き着きます。
@@ -54,6 +54,6 @@ authorTitle: 法律事務所nest 弁護士
 
 <div class="ds-download">
 <a class="btn btn--accent" href="/downloads/decision-support/kamishibai-karada-no-kenri.pptx" download>PowerPointをダウンロード（12枚・約2.4MB）</a>
-<a class="btn btn--outline" href="/pdfs/decision-support/kamishibai-karada-no-kenri.pdf" download>PDFをダウンロード（12ページ・約490KB）</a>
+<a class="btn btn--outline" href="/pdfs/decision-support/kamishibai-karada-no-kenri.pdf" download>PDFをダウンロード（12ページ・約500KB）</a>
 <p>事業所内の研修や勉強会で、ご自由にお使いください。</p>
 </div>

@@ -8,7 +8,7 @@ image: /images/decision-support/kamishibai-karada-no-kenri-cover.jpg
 
 意思決定支援のページの寄稿欄に、<strong>紙芝居「体の権利」</strong>を掲載しました。法律事務所nestの弁護士が、福祉の専門職に向けた研修のために作ったものです。
 
-![紙芝居の表紙。オオカミさん、赤ずきんちゃん、フクロウさんが並んでいる](/images/decision-support/kamishibai-karada-no-kenri-cover.jpg)
+![紙芝居の表紙。オオカミさん、赤ずきんちゃん、フクロウさんが並び、右上に友情出演のアマミノクロウサギさんがいる](/images/decision-support/kamishibai-karada-no-kenri-cover.jpg)
 
 ## 赤ずきんちゃんの、最後のひとこと
 
